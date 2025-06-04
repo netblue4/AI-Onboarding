@@ -154,10 +154,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         })
-        .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-            accordion.innerHTML = '<p style="color: red;">Failed to load risk assessment data. Please ensure the Principle-phase-risk-control.json file is in the same directory.</p>';
-        });
+    .catch(error => {
+    // This logs the full error object to the developer console (which is good to keep)
+    console.error('There has been a problem with your fetch operation:', error);
+
+    // Create a more detailed error message for the screen using the error.message property
+    const errorMessageHTML = `
+        <p style="color: red;">
+            <strong>Failed to load risk assessment data.</strong>
+        </p>
+        <p style="color: #d9534f; border: 1px solid #d9534f; padding: 10px; border-radius: 5px;">
+            <strong>Error Details:</strong> ${error.message}
+        </p>
+        <p>
+            This can happen if the JSON file cannot be found (check the filename and path) or if there's a security policy issue (try running a local server). If the error mentions "CORS" or "fetch", it's likely a local server issue.
+        </p>
+    `;
+
+    // Display the detailed message in the accordion element
+    accordion.innerHTML = errorMessageHTML;
+});
 });
 </script>
 
