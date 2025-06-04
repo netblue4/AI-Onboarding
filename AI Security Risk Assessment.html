@@ -18,72 +18,94 @@
 </div>
 
 <script>
-fetch('Principle_phase_risk_control.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
-    }
-    return response.json();
-  })
-  .then(item => {
+document.addEventListener('DOMContentLoaded', function() {
     const accordion = document.getElementById('accordion');
 
-    const group = document.createElement('div');
-    group.className = 'group';
+    fetch('Principle_phase_risk_control.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.forEach(item => {
+                // This check is now optional but good for validation.
+                // It's corrected to use the actual keys from your JSON.
+                if (!item.principle || !item.risk || !item.control) {
+                    console.error("Skipping item due to missing essential data:", item);
+                    return; // Exit this iteration and move to the next
+                }
 
-    const header = document.createElement('button');
-    header.className = 'header';
-    header.textContent = item.principle || 'Unnamed Principle';
-    group.appendChild(header);
+                const group = document.createElement('div');
+                group.className = 'group';
 
-    const panel = document.createElement('div');
-    panel.className = 'panel';
-    const tableContainer = document.createElement('div');
-    tableContainer.className = 'table-container';
+                const header = document.createElement('button');
+                header.className = 'header';
+                header.textContent = item.principle || 'Unnamed Principle';
+                group.appendChild(header);
 
-    const table = document.createElement('table');
-    const thead = table.createTHead();
-    const headerRow = thead.insertRow();
+                const panel = document.createElement('div');
+                panel.className = 'panel';
+                const tableContainer = document.createElement('div');
+                tableContainer.className = 'table-container';
 
-    ['Principle', 'Risk', 'Control'].forEach(headerText => {
-      const th = document.createElement('th');
-      th.textContent = headerText;
-      headerRow.appendChild(th);
-    });
+                const table = document.createElement('table');
+                const thead = table.createTHead();
+                const headerRow = thead.insertRow();
+                // Matching table headers to the data we will provide.
+                ['Principle', 'Risk', 'Mitigating Control'].forEach(headerText => {
+                    const th = document.createElement('th');
+                    th.textContent = headerText;
+                    headerRow.appendChild(th);
+                });
 
-    const tbody = table.createTBody();
-    const row = tbody.insertRow();
-    row.insertCell().innerHTML = item.principle;
-    row.insertCell().innerHTML = item.risk;
-    row.insertCell().innerHTML = item.control;
+                const tbody = table.createTBody();
+                const row = tbody.insertRow();
 
-    tableContainer.appendChild(table);
-    panel.appendChild(tableContainer);
-    group.appendChild(panel);
-    accordion.appendChild(group);
+                // FIX: Use the correct keys ('principle', 'risk', 'control')
+                // and assign them directly since they are strings, not arrays.
+                const cell1 = row.insertCell();
+                cell1.textContent = item.principle || '';
 
-    header.addEventListener('click', function () {
-      this.classList.toggle('active');
-      const panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-        panel.style.padding = "0 18px";
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-        panel.style.padding = "15px 18px";
-      }
-    });
-  })
-  .catch(error => {
-    const accordion = document.getElementById('accordion');
-    accordion.innerHTML = `
-      <p style="color: red;"><strong>Failed to load risk assessment data.</strong></p>
-      <p style="color: #d9534f; border: 1px solid #d9534f; padding: 10px; border-radius: 5px;">
-        <strong>Error Details:</strong> ${error.message}
-      </p>
-      <p>This can happen if the JSON file cannot be found (check the filename and path) or if there's a CORS or local server issue.</p>
-    `;
-  });
+                const cell2 = row.insertCell();
+                cell2.textContent = item.risk || '';
+
+                const cell3 = row.insertCell();
+                cell3.textContent = item.control || '';
+
+                tableContainer.appendChild(table);
+                panel.appendChild(tableContainer);
+                group.appendChild(panel);
+                accordion.appendChild(group);
+
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                        panel.style.padding = "0 18px";
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                        panel.style.padding = "15px 18px";
+                    }
+                });
+            });
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            const errorMessageHTML = `
+                <p style="color: red;"><strong>Failed to load risk assessment data.</strong></p>
+                <p style="color: #d9534f; border: 1px solid #d9534f; padding: 10px; border-radius: 5px;">
+                    <strong>Error Details:</strong> ${error.message}
+                </p>
+                <p>
+                    This can happen if the JSON file cannot be found (check the filename and path) or if there's a security policy issue (try running a local server). If the error mentions "CORS" or "fetch", it's likely a local server issue.
+                </p>
+            `;
+            accordion.innerHTML = errorMessageHTML;
+        });
+});
 </script>
 
 </body>
