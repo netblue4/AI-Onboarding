@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const cell1 = row.insertCell();
                 cell1.innerHTML = (item.principle || []).join('<br>');
                 const cell2 = row.insertCell();
-                cell2.innerHTML = (item.risks || []).join('<br><br>');
+                cell2.innerHTML = (item.risk || []).join('<br><br>');
                 const cell3 = row.insertCell();
-                cell3.innerHTML = (item.controls || []).join('<br><br>');
+                cell3.innerHTML = (item.control || []).join('<br><br>');
 
                 tableContainer.appendChild(table);
                 panel.appendChild(tableContainer);
