@@ -1,0 +1,74 @@
+[
+  {
+    "Phase": "Go - No go",
+    "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
+    "Instruction": "Assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle.",
+    "Template": {
+      "text": "A.5.3 - AI system impact assessment",
+      "link": "AI_Risk_Assessment_updated.html"
+    }
+  },
+  {
+    "Phase": "1. AI system requirements & specification (A.6.2.2)",
+    "Control Number and Name": "A.6.2.2: AI system requirements and specification",
+    "Instruction": "1. Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
+    "Template": {
+      "text": "A.6.2.2 - AI system requirements and specification",
+      "link": ""
+    }
+  },
+  {
+    "Phase": "2. Design (A.6.2.3)",
+    "Control Number and Name": "A.6.2.3: Design and development of AI systems",
+    "Instruction": "1. Design the AI system in accordance with the specified requirements.\n2. Involve individuals with competence in the AI system’s intended domain in the design process.",
+    "Template": {
+      "text": "A.6.2.3 - Design and development of AI systems",
+      "link": ""
+    }
+  },
+  {
+    "Phase": "3. Data acquisition & preparation (A.6.3.1)",
+    "Control Number and Name": "A.6.3.1: Data acquisition\nA.6.3.2: Data preparation",
+    "Instruction": "1. Acquire data for training, validation and testing in accordance with the AI system requirements and data-related considerations.\n2. Verify the data against the data requirements.\n3. Prepare the data for use in training, validation and testing.",
+    "Template": {
+      "text": "A.6.3.1 - Data acquisition\nA.6.3.2 - Data preparation",
+      "link": ""
+    }
+  },
+  {
+    "Phase": "4. Modelling (A.6.3.3)",
+    "Control Number and Name": "A.6.3.3: Modelling",
+    "Instruction": "1. Select appropriate model architectures, algorithms and methods for the AI system.\n2. Train the model using the prepared data.",
+    "Template": {
+      "text": "A.6.3.3 - Modelling",
+      "link": ""
+    }
+  },
+  {
+    "Phase": "5. Verification & validation (A.6.3.4 & A.6.3.5)",
+    "Control Number and Name": "A.6.3.4: Verification of AI systems\nA.6.3.5: Validation of AI systems",
+    "Instruction": "1. Verify that the outputs of the model meet the specified requirements.\n2. Validate that the AI system meets its intended use and the specified requirements.",
+    "Template": {
+      "text": "A.6.3.4 - Verification of AI systems\nA.6.3.5 - Validation of AI systems",
+      "link": ""
+    }
+  },
+  {
+    "Phase": "6. Deployment (A.6.3.6)",
+    "Control Number and Name": "A.6.3.6: Deployment of AI systems",
+    "Instruction": "Deploy the AI system to the production environment in accordance with the deployment plan.",
+    "Template": {
+      "text": "A.6.3.6 - Deployment of AI systems",
+      "link": ""
+    }
+  },
+  {
+    "Phase": "7. Operation & monitoring (A.6.3.7)",
+    "Control Number and Name": "A.6.3.7: Operation and monitoring of AI systems",
+    "Instruction": "1. Operate and monitor the AI system in accordance with the specified requirements and procedures.\n2. Collect and analyze data on the performance of the AI system.",
+    "Template": {
+      "text": "A.6.3.7 - Operation and monitoring of AI systems",
+      "link": ""
+    }
+  }
+]

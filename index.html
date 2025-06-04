@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI System Design & Development Process</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 2em; background-color: #f8f9fa; color: #333; }
+        h1 { color: #005a9c; border-bottom: 2px solid #dee2e6; padding-bottom: 0.5em;}
+        .container { background-color: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 2em; }
+        th, td { border: 1px solid #dee2e6; padding: 12px; text-align: left; vertical-align: top;}
+        th { background-color: #e9ecef; color: #495057; }
+        td a { color: #005a9c; text-decoration: none; font-weight: bold; }
+        td a:hover { text-decoration: underline; }
+        .phase-col { width: 20%; }
+        .controls-col { width: 25%; white-space: pre-wrap; }
+        .instruction-col { width: 40%; }
+        .template-col { width: 15%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI System Onboarding Procedure</h1>
+        <p>This document outlines the high-level process for designing and developing a new AI system in accordance with ISO/IEC 42001 standards.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th class="phase-col">Phase</th>
+                    <th class="controls-col">Control Number and Name</th>
+                    <th class="instruction-col">Instruction</th>
+                    <th class="template-col">Template</th>
+                </tr>
+            </thead>
+            <tbody id="procedure-body">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('AI Onboarding procedure')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('procedure-body');
+                    data.forEach(item => {
+                        const row = document.createElement('tr');
+
+                        const phaseCell = document.createElement('td');
+                        phaseCell.textContent = item.Phase;
+                        row.appendChild(phaseCell);
+
+                        const controlsCell = document.createElement('td');
+                        controlsCell.textContent = item['Control Number and Name'];
+                        row.appendChild(controlsCell);
+
+                        const instructionCell = document.createElement('td');
+                        instructionCell.textContent = item.Instruction;
+                        row.appendChild(instructionCell);
+
+                        const templateCell = document.createElement('td');
+                        if (item.Template && item.Template.link) {
+                            const link = document.createElement('a');
+                            link.href = item.Template.link;
+                            link.textContent = item.Template.text;
+                            link.target = "_blank";
+                            templateCell.appendChild(link);
+                        } else if (item.Template) {
+                            templateCell.textContent = item.Template.text;
+                        }
+                        row.appendChild(templateCell);
+
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error loading the procedure data:', error));
+        });
+    </script>
+</body>
+</html>
