@@ -28,6 +28,7 @@
                 <tr>
                     <th class="phase-col">Phase</th>
                     <th class="controls-col">Control Number and Name</th>
+                    <th class="instruction-col">Responsible</th>
                     <th class="instruction-col">Instruction</th>
                     <th class="template-col">Template</th>
                 </tr>
@@ -54,6 +55,10 @@
                         controlsCell.textContent = item['Control Number and Name'];
                         row.appendChild(controlsCell);
 
+                        const instructionCell = document.createElement('td');
+                        instructionCell.textContent = item.Role;
+                        row.appendChild(instructionCell);
+                        
                         const instructionCell = document.createElement('td');
                         instructionCell.textContent = item.Instruction;
                         row.appendChild(instructionCell);
