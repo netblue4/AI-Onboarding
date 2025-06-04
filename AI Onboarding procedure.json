@@ -26,7 +26,7 @@
         "Instruction": "If the system is regarded as high risk, assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle.",
         "Template": {
             "text": "AI Impact Assessment",
-            "link": ""
+            "link": "AI Security Risk Assessment.html"
         }
     },
     {
