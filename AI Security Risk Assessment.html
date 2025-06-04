@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const tbody = table.createTBody();
                 const row = tbody.insertRow();
                 const cell1 = row.insertCell();
-                cell1.innerHTML = (item.phases || []).join('<br>');
+                cell1.innerHTML = (item.principle || []).join('<br>');
                 const cell2 = row.insertCell();
                 cell2.innerHTML = (item.risks || []).join('<br><br>');
                 const cell3 = row.insertCell();
