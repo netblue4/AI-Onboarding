@@ -3,110 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Security Risk Assessment</title>
+    <title>AI Risk Assessment</title>
     <style>
-        /* Styles omitted for brevity */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; margin: 2em; background-color: #f4f7f6; color: #333; }
+        h1, h2 { color: #005a9c; }
+        .container { background-color: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .question { margin-bottom: 1.5em; border-left: 4px solid #005a9c; padding-left: 1em; margin-left: 2em; }
+        button { background-color: #005a9c; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 4px; transition: background-color 0.3s; }
+        button:hover { background-color: #003d69; }
+        table { width: 100%; border-collapse: collapse; margin-top: 2em; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .expand-icon { font-size: 1.2em; display: inline-block; width: 20px; }
+        #results { margin-top: 2em; display: none; }
+        .principle-header {
+            padding: 10px;
+            background-color: #e9ecef; /* Light grey for principles */
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .principle-header:hover { background-color: #d8dfe5; }
+        .questions-container { padding-top: 10px; display: none; }
+
+        /* Results Table Styles */
+        .principle-row { background-color: #005a9c; color: white; font-weight: bold; cursor: pointer; }
+        .principle-row:hover { background-color: #003d69; }
+        .risk-row { background-color: #e9ecef; font-weight: bold; cursor: pointer; }
+        .risk-row td:first-child { padding-left: 30px; }
+        .risk-row:hover { background-color: #d8dfe5; }
+        .control-row { display: none; background-color: #fafafa; }
+        .control-row td:first-child { padding-left: 60px; }
+
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>AI Security Risk Assessment</h1>
+        <p>Expand each principle to answer the relevant questions, then submit the assessment.</p>
+        
+        <div id="assessment-container"></div>
 
-<div class="container">
-    <h1>AI Security Risk Assessment</h1>
-    <p>Based on ISO/IEC 23894 Information technology — Artificial intelligence — Guidance on risk management</p>
-    <div class="accordion" id="accordion">
+        <button id="submit-btn">Submit Assessment</button>
+        
+        <div id="results">
+            <h2>Assessment Results</h2>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Principle / Risk / Control</th>
+                        <th>Control Objective</th>
+                    </tr>
+                </thead>
+                <tbody id="results-table-body">
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const accordion = document.getElementById('accordion');
-
-    fetch('Principle_phase_risk_control.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            data.forEach(item => {
-                // This check is now optional but good for validation.
-                // It's corrected to use the actual keys from your JSON.
-                if (!item.principle || !item.risk || !item.control) {
-                    console.error("Skipping item due to missing essential data:", item);
-                    return; // Exit this iteration and move to the next
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Fetch the data from the external JSON file
+        fetch('Principle_phase_risk_control.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
                 }
+                return response.json();
+            })
+            .then(assessmentData => {
+                // All the logic that uses the data now goes inside this block
+                initializeApp(assessmentData);
+            })
+            .catch(error => {
+                console.error('Error loading assessment data:', error);
+                document.getElementById('assessment-container').innerHTML = '<p style="color: red;">Failed to load assessment data. Please check the console for details.</p>';
+            });
+    });
 
-                const group = document.createElement('div');
-                group.className = 'group';
+    function initializeApp(assessmentData) {
+        // --- Initial Rendering Logic ---
+        const groupedData = assessmentData.reduce((acc, item) => {
+            const key = `${item.principle}: ${item.objective}`;
+            if (!acc[key]) {
+                acc[key] = { principle: item.principle, objective: item.objective, questions: [] };
+            }
+            if (!acc[key].questions.some(q => q.text === item.question)) {
+                acc[key].questions.push({ id: `q_${Object.keys(acc).length}_${acc[key].questions.length}`, text: item.question });
+            }
+            return acc;
+        }, {});
 
-                const header = document.createElement('button');
-                header.className = 'header';
-                header.textContent = item.principle || 'Unnamed Principle';
-                group.appendChild(header);
+        const container = document.getElementById('assessment-container');
+        let principleIndex = 0;
+        for (const key in groupedData) {
+            const group = groupedData[key];
+            const principleContainer = document.createElement('div');
+            principleContainer.className = 'principle-section';
+            const header = document.createElement('div');
+            header.className = 'principle-header';
+            header.setAttribute('data-target', `questions-${principleIndex}`);
+            header.innerHTML = `<span class="expand-icon">+</span> <strong>${group.principle}:</strong> ${group.objective}`;
+            const questionsContainer = document.createElement('div');
+            questionsContainer.id = `questions-${principleIndex}`;
+            questionsContainer.className = 'questions-container';
+            group.questions.forEach(q => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `<p>${q.text}</p><label><input type="radio" name="${q.id}" value="yes"> Yes</label><label><input type="radio" name="${q.id}" value="no" checked> No</label>`;
+                questionsContainer.appendChild(questionDiv);
+            });
+            principleContainer.appendChild(header);
+            principleContainer.appendChild(questionsContainer);
+            container.appendChild(principleContainer);
+            principleIndex++;
+        }
 
-                const panel = document.createElement('div');
-                panel.className = 'panel';
-                const tableContainer = document.createElement('div');
-                tableContainer.className = 'table-container';
+        document.querySelectorAll('.principle-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const targetId = header.getAttribute('data-target');
+                const questionsContent = document.getElementById(targetId);
+                const icon = header.querySelector('.expand-icon');
+                if (questionsContent.style.display === 'block') {
+                    questionsContent.style.display = 'none';
+                    icon.textContent = '+';
+                } else {
+                    questionsContent.style.display = 'block';
+                    icon.textContent = '-';
+                }
+            });
+        });
 
-                const table = document.createElement('table');
-                const thead = table.createTHead();
-                const headerRow = thead.insertRow();
-                // Matching table headers to the data we will provide.
-                ['Principle', 'Risk', 'Mitigating Control'].forEach(headerText => {
-                    const th = document.createElement('th');
-                    th.textContent = headerText;
-                    headerRow.appendChild(th);
-                });
+        // Add event listener to the submit button
+        document.getElementById('submit-btn').addEventListener('click', () => {
+            submitAssessment(assessmentData);
+        });
+    }
 
-                const tbody = table.createTBody();
-                const row = tbody.insertRow();
+    // --- Submit and Results Logic ---
+    function submitAssessment(assessmentData) {
+        const yesQuestionsText = [];
+        document.querySelectorAll('input[type="radio"][value="yes"]:checked').forEach(radio => {
+            const questionText = radio.closest('.question').querySelector('p').textContent;
+            if (!yesQuestionsText.includes(questionText)) {
+                yesQuestionsText.push(questionText);
+            }
+        });
+        
+        const relevantData = assessmentData.filter(item => yesQuestionsText.includes(item.question));
+        
+        // 1. Group data by Principle -> Risk -> Controls
+        const groupedResults = relevantData.reduce((acc, item) => {
+            const principleKey = `${item.principle}: ${item.objective}`;
+            if (!acc[principleKey]) {
+                acc[principleKey] = { principle: item.principle, objective: item.objective, risks: {} };
+            }
+            if (!acc[principleKey].risks[item.risk]) {
+                acc[principleKey].risks[item.risk] = [];
+            }
+            acc[principleKey].risks[item.risk].push({ Control: item.control, ControlObjective: item.control_objective });
+            return acc;
+        }, {});
 
-                // FIX: Use the correct keys ('principle', 'risk', 'control')
-                // and assign them directly since they are strings, not arrays.
-                const cell1 = row.insertCell();
-                cell1.textContent = item.principle || '';
+        const results_table_body = document.getElementById('results-table-body');
+        results_table_body.innerHTML = '';
 
-                const cell2 = row.insertCell();
-                cell2.textContent = item.risk || '';
+        if (Object.keys(groupedResults).length > 0) {
+            let p_index = 0;
+            for (const principleKey in groupedResults) {
+                const principleGroup = groupedResults[principleKey];
+                
+                // Create Principle Row (Level 1)
+                const principle_row = document.createElement('tr');
+                principle_row.className = 'principle-row';
+                principle_row.setAttribute('data-target', `p-${p_index}`);
+                principle_row.innerHTML = `<td colspan="2"><span class="expand-icon">+</span> ${principleGroup.principle}: ${principleGroup.objective}</td>`;
+                results_table_body.appendChild(principle_row);
+                
+                let r_index = 0;
+                for (const risk in principleGroup.risks) {
+                    const controls = principleGroup.risks[risk];
+                    
+                    // Create Risk Row (Level 2)
+                    const risk_row = document.createElement('tr');
+                    risk_row.className = 'risk-row';
+                    risk_row.style.display = 'none';
+                    risk_row.setAttribute('data-principle-id', `p-${p_index}`);
+                    risk_row.setAttribute('data-target', `r-${p_index}-${r_index}`);
+                    risk_row.innerHTML = `<td colspan="2"><span class="expand-icon">+</span> ${risk}</td>`;
+                    results_table_body.appendChild(risk_row);
+                    
+                    // Create Control Rows (Level 3)
+                    controls.forEach(control_item => {
+                        const control_row = document.createElement('tr');
+                        control_row.className = 'control-row';
+                        control_row.setAttribute('data-risk-id', `r-${p_index}-${r_index}`);
+                        control_row.innerHTML = `<td>${control_item.Control}</td><td>${control_item.ControlObjective}</td>`;
+                        results_table_body.appendChild(control_row);
+                    });
+                    r_index++;
+                }
+                p_index++;
+            }
 
-                const cell3 = row.insertCell();
-                cell3.textContent = item.control || '';
-
-                tableContainer.appendChild(table);
-                panel.appendChild(tableContainer);
-                group.appendChild(panel);
-                accordion.appendChild(group);
-
-                header.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    const panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
-                        panel.style.padding = "0 18px";
-                    } else {
-                        panel.style.maxHeight = panel.scrollHeight + "px";
-                        panel.style.padding = "15px 18px";
-                    }
+            // Add event listeners for the new two-level accordion
+            document.querySelectorAll('.principle-row').forEach(row => {
+                row.addEventListener('click', (e) => {
+                    const target_id = row.getAttribute('data-target');
+                    const icon = row.querySelector('.expand-icon');
+                    const isExpanded = icon.textContent === '-';
+                    document.querySelectorAll(`[data-principle-id="${target_id}"]`).forEach(risk_row => {
+                        risk_row.style.display = isExpanded ? 'none' : 'table-row';
+                        if (isExpanded) {
+                            const risk_target_id = risk_row.getAttribute('data-target');
+                            document.querySelectorAll(`[data-risk-id="${risk_target_id}"]`).forEach(control => control.style.display = 'none');
+                            risk_row.querySelector('.expand-icon').textContent = '+';
+                        }
+                    });
+                    icon.textContent = isExpanded ? '+' : '-';
                 });
             });
-        })
-        .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-            const errorMessageHTML = `
-                <p style="color: red;"><strong>Failed to load risk assessment data.</strong></p>
-                <p style="color: #d9534f; border: 1px solid #d9534f; padding: 10px; border-radius: 5px;">
-                    <strong>Error Details:</strong> ${error.message}
-                </p>
-                <p>
-                    This can happen if the JSON file cannot be found (check the filename and path) or if there's a security policy issue (try running a local server). If the error mentions "CORS" or "fetch", it's likely a local server issue.
-                </p>
-            `;
-            accordion.innerHTML = errorMessageHTML;
-        });
-});
-</script>
 
+            document.querySelectorAll('.risk-row').forEach(row => {
+                row.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const target_id = row.getAttribute('data-target');
+                    const icon = row.querySelector('.expand-icon');
+                    const isExpanded = icon.textContent === '-';
+                    document.querySelectorAll(`[data-risk-id="${target_id}"]`).forEach(control_row => {
+                        control_row.style.display = isExpanded ? 'none' : 'table-row';
+                    });
+                    icon.textContent = isExpanded ? '+' : '-';
+                });
+            });
+
+            document.getElementById('results').style.display = 'block';
+        } else {
+            results_table_body.innerHTML = '<tr><td colspan="2">No risks identified based on your selections.</td></tr>';
+            document.getElementById('results').style.display = 'block';
+        }
+    }
+    </script>
 </body>
 </html>
