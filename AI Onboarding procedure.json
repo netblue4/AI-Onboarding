@@ -1,308 +1,122 @@
 [
-  {
-    "Phase": "Go - No go",
-    "Control Number and Name": "A.6.2.2: AI system requirements and specification",
-    "Instruction": "Business Owner / Sponsor",
-    "Template": {
-      "text": "1. Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
-      "link": "A.6.2.2 - AI system requirements and specification"
+    {
+        "Phase": "Go - No go",
+        "Control Number and Name": "A.6.2.2: AI system requirements and specification",
+        "Role": "Business Owner / Sponsor",
+        "Instruction": "1. Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
+        "Template": {
+            "text": "A.6.2.2 - AI system requirements and specification",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "Go - No go",
+        "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
+        "Role": "Business Owner / Sponsor",
+        "Instruction": "Determine if the AI system is prohibited or high-risk",
+        "Template": {
+            "text": "A.5.3 -  AI system impact assessment",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "Go - No go",
+        "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
+        "Role": "Business Owner / Sponsor",
+        "Instruction": "If the system is regarded as high risk, assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle.",
+        "Template": {
+            "text": "AI Impact Assessment",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "Go - No go",
+        "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
+        "Role": "AI Governance & Risk Manager",
+        "Instruction": "Evaluate the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system.",
+        "Template": {
+            "text": null,
+            "link": ""
+        }
+    },
+    {
+        "Phase": "Go - No go",
+        "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
+        "Role": "Risk oversight committee",
+        "Instruction": "Approve Reject request",
+        "Template": {
+            "text": null,
+            "link": ""
+        }
+    },
+    {
+        "Phase": "1. AI system requirements & specification",
+        "Control Number and Name": "A.6.2.2: AI system requirements and specification",
+        "Role": "Business Owner / Sponsor",
+        "Instruction": "1. Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
+        "Template": {
+            "text": "A.6.2.2 - AI system requirements and specification",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "2. Design",
+        "Control Number and Name": "A.6.2.3: Design and development of AI systems",
+        "Role": "AI Developer",
+        "Instruction": "1. Design the AI system in accordance with the specified requirements.\n2. Involve individuals with competence in the AI system\u2019s intended domain in the design process.",
+        "Template": {
+            "text": "A.6.2.3 - Design and development of AI systems",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "3. Data acquisition & preparation",
+        "Control Number and Name": "A.6.3.1: Data acquisition\nA.6.3.2: Data preparation",
+        "Role": "AI Developer / Data Scientist",
+        "Instruction": "1. Acquire data for training, validation and testing in accordance with the AI system requirements and data-related considerations.\n2. Verify the data against the data requirements.\n3. Prepare the data for use in training, validation and testing.",
+        "Template": {
+            "text": "A.6.3.1 - Data acquisition\nA.6.3.2 - Data preparation",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "4. Modelling",
+        "Control Number and Name": "A.6.3.3: Modelling",
+        "Role": "AI Developer / Data Scientist",
+        "Instruction": "1. Select appropriate model architectures, algorithms and methods for the AI system.\n2. Train the model using the prepared data.",
+        "Template": {
+            "text": "A.6.3.3 - Modelling",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "5. Verification & validation",
+        "Control Number and Name": "A.6.3.4: Verification of AI systems\nA.6.3.5: Validation of AI systems",
+        "Role": "AI Developer / Data Scientist",
+        "Instruction": "1. Verify that the outputs of the model meet the specified requirements.\n2. Validate that the AI system meets its intended use and the specified requirements.",
+        "Template": {
+            "text": "A.6.3.4 - Verification of AI systems\nA.6.3.5 - Validation of AI systems",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "6. Deployment",
+        "Control Number and Name": "A.6.3.6: Deployment of AI systems",
+        "Role": "AI Developer / MLOps",
+        "Instruction": "Deploy the AI system to the production environment in accordance with the deployment plan.",
+        "Template": {
+            "text": "A.6.3.6 - Deployment of AI systems",
+            "link": ""
+        }
+    },
+    {
+        "Phase": "7. Operation & monitoring",
+        "Control Number and Name": "A.6.3.7: Operation and monitoring of AI systems",
+        "Role": "AI Developer / MLOps",
+        "Instruction": "1. Operate and monitor the AI system in accordance with the specified requirements and procedures.\n2. Collect and analyze data on the performance of the AI system.",
+        "Template": {
+            "text": "A.6.3.7 - Operation and monitoring of AI systems",
+            "link": ""
+        }
     }
-  },
-  {
-    "Phase": "Go - No go",
-    "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
-    "Instruction": "Business Owner / Sponsor",
-    "Template": {
-      "text": "Determine if the AI system is prohibited or high-risk",
-      "link": "A.5.3 -  AI system impact assessment"
-    }
-  },
-  {
-    "Phase": "Go - No go",
-    "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
-    "Instruction": "Business Owner / Sponsor",
-    "Template": {
-      "text": "If the system is regarded as high risk, assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle.",
-      "link": "AI Security Risk Assessment.html"
-    }
-  },
-  {
-    "Phase": "Go - No go",
-    "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
-    "Instruction": "AI Governance & Risk Manager",
-    "Template": {
-      "text": "Evaluate the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system.",
-      "link": ""
-    }
-  },
-  {
-    "Phase": "Go - No go",
-    "Control Number and Name": "A.5.2 AI system impact assessment process\nA.5.3 Documentation of AI system impact assessments\nA.5.4 Assessing AI system impact on individuals or groups of individuals\nA.5.5 Assessing societal impacts of AI systems",
-    "Instruction": "Risk oversight committee",
-    "Template": {
-      "text": "Approve Reject request ",
-      "link": ""
-    }
-  },
-  {
-    "Phase": "1. AI system requirements & specification (A.6.2.2)",
-    "Control Number and Name": "A.4.2 Resource documentation\nA.4.3 Data resources\nA.4.4 Tooling resources\nA.4.5 System and computing resources\nA.4.6 Human resources",
-    "Instruction": "",
-    "Template": {
-      "text": "2. Define the complete inventory of all required resources.",
-      "link": "A.4.2 - Resources for AI systems"
-    }
-  },
-  {
-    "Phase": "1. AI system requirements & specification (A.6.2.2)",
-    "Control Number and Name": "A.7.3 Acquisition of data\nA.7.4 Quality of data\nA.7.5 Data provenance",
-    "Instruction": "",
-    "Template": {
-      "text": "3. Define the strategy, criteria, and process for acquiring data, including its sources and any legal or ethical constraints.",
-      "link": "A.7 - Data for AI systems"
-    }
-  },
-  {
-    "Phase": "1. AI system requirements & specification (A.6.2.2)",
-    "Control Number and Name": "A.8.2 System documentation and information for users\nA.8.5 Information for interested parties\nA.8.3 External reporting\nA.8.4 Communication of incidents",
-    "Instruction": "",
-    "Template": {
-      "text": "4. Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
-      "link": "A.8.2 - System documentation & user Information"
-    }
-  },
-  {
-    "Phase": "1. AI system requirements & specification (A.6.2.2)",
-    "Control Number and Name": "A.9.3 Objectives for responsible use of AI system\nA.9.2 Processes for responsible use of AI systems",
-    "Instruction": "",
-    "Template": {
-      "text": "5. Document the AI system's intended use and limitations, establish measurable objectives for responsible AI, and define the governance processes to ensure compliance.",
-      "link": ""
-    }
-  },
-  {
-    "Phase": "1. AI system requirements & specification (A.6.2.2)",
-    "Control Number and Name": "A.9.4 Intended use of the AI system",
-    "Instruction": "",
-    "Template": {
-      "text": "5. Document the AI system's intended use and limitations, establish measurable objectives for responsible AI, and define the governance processes to ensure compliance.",
-      "link": "A.9.4 - AI System Intended Purpose"
-    }
-  },
-  {
-    "Phase": "1. AI system requirements & specification (A.6.2.2)",
-    "Control Number and Name": "A.6.1.2 Objectives for responsible development of AI system",
-    "Instruction": "",
-    "Template": {
-      "text": "Document objectives to guide the responsible development AI systems.",
-      "link": "A.6.1.2 - Objectives for AI development "
-    }
-  },
-  {
-    "Phase": "1. AI system requirements & specification (A.6.2.2)",
-    "Control Number and Name": "A.10.2 Allocating responsibilities\nA.10.3 Suppliers\nA.10.4 Customers",
-    "Instruction": "",
-    "Template": {
-      "text": "6. Establish a process to manage all stakeholder relationships, ensuring that responsibilities are clearly allocated, supplier activities align with internal AI policies, and customer needs are fully considered.",
-      "link": "A.10 - Third-party and customer relationships"
-    }
-  },
-  {
-    "Phase": "2. Documenting design & development (A.6.2.3)",
-    "Control Number and Name": "A.6.2.3: AI system design and development",
-    "Instruction": "",
-    "Template": {
-      "text": "1. Document how requirements from AI System Requirements Specification have been translated into system design.",
-      "link": "A.6.2.3 - Design and development Documentation"
-    }
-  },
-  {
-    "Phase": "2. Documenting design & development (A.6.2.3)",
-    "Control Number and Name": "A.4.2 Resource documentation\nA.4.3 Data resources\nA.4.4 Tooling resources\nA.4.5 System and computing resources\nA.4.6 Human resources",
-    "Instruction": "",
-    "Template": {
-      "text": "2. Update the AI Resource Inventory to reflect the AI Design & Development, if required.",
-      "link": "A.4.2 - Resources for AI systems"
-    }
-  },
-  {
-    "Phase": "2. Documenting design & development (A.6.2.3)",
-    "Control Number and Name": "A.7.3 Acquisition of data\nA.7.4 Quality of data\nA.7.5 Data provenance",
-    "Instruction": "",
-    "Template": {
-      "text": "2. Update the AI Data Management to reflect the AI Design & Development, if required.",
-      "link": "A.7 - Data for AI systems"
-    }
-  },
-  {
-    "Phase": "3. Deployment (A.6.2.5)",
-    "Control Number and Name": "",
-    "Instruction": "",
-    "Template": {
-      "text": "Address the risks identified in the Impact Assessment, if they are above tolerance.",
-      "link": ""
-    }
-  },
-  {
-    "Phase": "3. Deployment (A.6.2.5)",
-    "Control Number and Name": "A.6.2.5",
-    "Instruction": "",
-    "Template": {
-      "text": "Develop a comprehensive deployment plan. Prior to go-live, verify and sign-off that all resource, documentation, and operational requirements have been successfully met.",
-      "link": "AI Deployment Plan, Deployment Team Roles & Tasks"
-    }
-  },
-  {
-    "Phase": "3. Deployment (A.6.2.5)",
-    "Control Number and Name": "A.4.2 Resource documentation\nA.4.3 Data resources\nA.4.4 Tooling resources\nA.4.5 System and computing resources",
-    "Instruction": "",
-    "Template": {
-      "text": "Confirm that all AI system resources (documentation, data, tooling, computing, and human) are correctly configured and functioning in the production environment as per the deployment plan.",
-      "link": "Resource Documentation Checklist, Data Access Validation Record, Tooling Readiness Checklist, System Infrastructure Checklist"
-    }
-  },
-  {
-    "Phase": "3. Deployment (A.6.2.5)",
-    "Control Number and Name": "A.8.2 System documentation and information for users\nA.8.5 Information for interested parties\nA.8.3 External reporting\nA.8.4 Communication of incidents",
-    "Instruction": "",
-    "Template": {
-      "text": "At go-live, publish final user documentation and distribute tailored information packages to all internal and external stakeholders, clearly communicating the system's intended use and limitations.",
-      "link": "A.8.2 - System documentation & user Information"
-    }
-  },
-  {
-    "Phase": "3. Deployment (A.6.2.5)",
-    "Control Number and Name": "A.9.2, A.9.4",
-    "Instruction": "",
-    "Template": {
-      "text": "Before go-live, brief all relevant teams on the responsible use of the AI system. Communicate the system’s intended purpose, capabilities, and known limitations.",
-      "link": "Responsible Use Training Material, Purpose & Limitations Statement"
-    }
-  },
-  {
-    "Phase": "3. Deployment (A.6.2.5)",
-    "Control Number and Name": "A.10.2 Allocating responsibilities\nA.10.3 Suppliers\nA.10.4 Customers",
-    "Instruction": "",
-    "Template": {
-      "text": "Formally hand over the AI system to the live operations team, with clearly defined customer and supplier expectations.",
-      "link": "A.10 - Third-party and customer relationships"
-    }
-  },
-  {
-    "Phase": "3. Deployment (A.6.2.5)",
-    "Control Number and Name": "A.6.1.2 Objectives for responsible development of AI system",
-    "Instruction": "",
-    "Template": {
-      "text": "Formally hand over the AI system to the live operations team, with clearly defined operational responsibilities",
-      "link": "A.6.1.2 - Objectives for AI development "
-    }
-  },
-  {
-    "Phase": "4. Verification & validation (A.6.2.4)",
-    "Control Number and Name": "A.6.2.4",
-    "Instruction": "",
-    "Template": {
-      "text": "In the \"Testing\" column, Specifies the exact measures, methods, and success criteria for testing the AI system's performance, functionality, and compliance.",
-      "link": "A.6.1.2 - Objectives for AI development "
-    }
-  },
-  {
-    "Phase": "4. Verification & validation (A.6.2.4)",
-    "Control Number and Name": "A.4.2 Resource documentation\nA.4.3 Data resources\nA.4.4 Tooling resources\nA.4.5 System and computing resources\nA.4.6 Human resources",
-    "Instruction": "",
-    "Template": {
-      "text": "Verify that all testing activities are performed using only the approved and documented resources (data, tools, hardware) and personnel, all within the specified, secure computing environment to ensure repeatable and consistent results.",
-      "link": "A.4.2 - Resources for AI systems"
-    }
-  },
-  {
-    "Phase": "4. Verification & validation (A.6.2.4)",
-    "Control Number and Name": "A.7.4 Quality of data\nA.7.5 Data provenance",
-    "Instruction": "",
-    "Template": {
-      "text": "Confirm that all validation datasets are high quality, complete, and representative. Crucially, document and verify the provenance of this data to ensure it is entirely independent of the training data.",
-      "link": "A.7 - Data for AI systems"
-    }
-  },
-  {
-    "Phase": "",
-    "Control Number and Name": "A.9.4 Intended use of the AI system",
-    "Instruction": "",
-    "Template": {
-      "text": "",
-      "link": "A.9.4 - AI System Intended Purpose"
-    }
-  },
-  {
-    "Phase": "4. Verification & validation (A.6.2.4)",
-    "Control Number and Name": "A.9.3 Objectives for responsible use of AI system",
-    "Instruction": "",
-    "Template": {
-      "text": "Conduct rigorous tests to validate that the AI system not only performs reliably according to its intended purpose but also meets all predefined objectives for fairness, transparency, and other responsible AI metrics.",
-      "link": "A.6.1.2 - Objectives for AI development "
-    }
-  },
-  {
-    "Phase": "4. Verification & validation (A.6.2.4)",
-    "Control Number and Name": "A.8.2, A.10.2, A.10.3",
-    "Instruction": "",
-    "Template": {
-      "text": "Validate that all user and system documentation is accurate and reflects the tested behavior. Ensure all V&V tasks, including those by third-party suppliers, are performed in alignment with the documented responsibility matrix (RACI).",
-      "link": ""
-    }
-  },
-  {
-    "Phase": "Operation & Monitoring",
-    "Control Number and Name": "A.6.2.6, A.9.2, A.10.2",
-    "Instruction": "",
-    "Template": {
-      "text": "Establish and maintain the overall plan for system operation, including procedures for monitoring, updates, and support. Actively enforce governance processes and ensure all parties adhere to their documented responsibilities.",
-      "link": "A.6.1.2 - Objectives for AI development "
-    }
-  },
-  {
-    "Phase": "Operation & Monitoring",
-    "Control Number and Name": "A.4.x",
-    "Instruction": "",
-    "Template": {
-      "text": "Continuously monitor the health, performance, and cost of all production resources, including infrastructure, data sources, and software tools. Ensure designated teams are actively maintaining the system and applying necessary updates.",
-      "link": "Live System Health Dashboard"
-    }
-  },
-  {
-    "Phase": "Operation &Monitoring",
-    "Control Number and Name": "A.7.4, A.7.5, A.9.3, A.9.4",
-    "Instruction": "",
-    "Template": {
-      "text": "Implement continuous monitoring to track data quality, detect drift, and log data provenance for critical decisions. Actively monitor the AI model's performance against its responsible AI objectives (e.g., fairness, bias) and check for signs of misuse.",
-      "link": "Model Performance & Fairness Report"
-    }
-  },
-  {
-    "Phase": "Operation & Monitoring",
-    "Control Number and Name": "A.8.2, A.8.3, A.8.4, A.8.5",
-    "Instruction": "",
-    "Template": {
-      "text": "Execute the predefined incident communication process for any significant system failure or breach. Manage all required external reporting and ensure all user-facing documentation is continuously updated to reflect system changes.",
-      "link": "Incident Response Log & Stakeholder Comms"
-    }
-  },
-  {
-    "Phase": "Operation & Monitoring",
-    "Control Number and Name": "A.7.2, A.10.3, A.10.4",
-    "Instruction": "",
-    "Template": {
-      "text": "Establish a process to feed operational data and customer feedback back into the development cycle for future enhancements. Continuously monitor supplier performance to manage risks and ensure service quality.",
-      "link": "Customer Feedback Analysis & Improvement Plan"
-    }
-  },
-  {
-    "Phase": "Decommissioning",
-    "Control Number and Name": "",
-    "Instruction": "",
-    "Template": {
-      "text": "",
-      "link": ""
-    }
-  }
 ]
