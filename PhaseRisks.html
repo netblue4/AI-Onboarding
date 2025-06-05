@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Onboarding Risk Viewer</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI Onboarding Phase Risks</h1>
+  <table id="riskTable">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function loadJSON() {
+      const response = await fetch('PhaseRisksEvaluation.json');
+      const { schema, data } = await response.json();
+
+      const table = document.getElementById('riskTable');
+      const thead = table.querySelector('thead');
+      const tbody = table.querySelector('tbody');
+
+      if (data.length === 0) return;
+
+      // Create table headers
+      const headers = Object.keys(data[0]);
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+
+      // Create table rows
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        headers.forEach(header => {
+          const td = document.createElement('td');
+          const value = row[header];
+
+          if (schema[header] && schema[header].type === 'dropdown') {
+            const select = document.createElement('select');
+            schema[header].options.forEach(option => {
+              const opt = document.createElement('option');
+              opt.value = option;
+              opt.text = option;
+              if (value === option) {
+                opt.selected = true;
+              }
+              select.appendChild(opt);
+            });
+            td.appendChild(select);
+          } else {
+            td.textContent = value;
+          }
+
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+
+    loadJSON();
+  </script>
+</body>
+</html>
