@@ -35,7 +35,7 @@
 
   <script>
     async function loadJSON() {
-      const response = await fetch('PhaseRisks_WithSchema_AndLikelihood.json');
+      const response = await fetch('PhaseRisksEvaluation.json');
       const { schema, data } = await response.json();
 
       const table = document.getElementById('riskTable');
