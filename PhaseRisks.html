@@ -11,9 +11,18 @@
     th, td {
       border: 1px solid #ccc;
       padding: 8px;
+      vertical-align: top;
     }
     th {
       background-color: #f5f5f5;
+    }
+    details {
+      max-width: 300px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #0077cc;
     }
   </style>
 </head>
@@ -26,7 +35,7 @@
 
   <script>
     async function loadJSON() {
-      const response = await fetch('PhaseRisksEvaluation.json');
+      const response = await fetch('PhaseRisks_WithSchema_AndLikelihood.json');
       const { schema, data } = await response.json();
 
       const table = document.getElementById('riskTable');
@@ -34,6 +43,11 @@
       const tbody = table.querySelector('tbody');
 
       if (data.length === 0) return;
+
+      // Define long-text fields
+      const expandableFields = [
+        'Risk description', 'Risk Type', 'Causes', 'Consequences'
+      ];
 
       // Create table headers
       const headers = Object.keys(data[0]);
@@ -64,8 +78,20 @@
               select.appendChild(opt);
             });
             td.appendChild(select);
+
+          } else if (expandableFields.includes(header) && value) {
+            const details = document.createElement('details');
+            const summary = document.createElement('summary');
+            summary.textContent = "Show more";
+            const content = document.createElement('div');
+            content.textContent = value;
+
+            details.appendChild(summary);
+            details.appendChild(content);
+            td.appendChild(details);
+
           } else {
-            td.textContent = value;
+            td.textContent = value || "";
           }
 
           tr.appendChild(td);
