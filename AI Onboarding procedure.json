@@ -50,9 +50,9 @@
         }
     },
     {
-        "Phase": NaN,
-        "Control Number and Name": NaN,
-        "Role": NaN,
+        "Phase": "",
+        "Control Number and Name": "",
+        "Role": "",
         "Instruction": "Or",
         "Template": {
             "text": "A.5.3 -  AI system Risk Category Impact Assessment",
@@ -63,10 +63,10 @@
         "Phase": "Go - No go",
         "Control Number and Name": "A.5.5 Assessing societal impacts of AI systems",
         "Role": "AI Governance & Risk Manager",
-        "Instruction": NaN,
+        "Instruction": "",
         "Template": {
-            "text": NaN,
-            "link": "nan.html"
+            "text": "",
+            "link": ""
         }
     },
     {
@@ -75,14 +75,14 @@
         "Role": "Risk oversight committee",
         "Instruction": "Approve Reject request ",
         "Template": {
-            "text": NaN,
-            "link": "nan.html"
+            "text": "",
+            "link": ""
         }
     },
     {
         "Phase": "1. AI system requirements & specification (A.6.2.2)",
         "Control Number and Name": "A.4.2 Resource documentation\nA.4.3 Data resources\nA.4.4 Tooling resources\nA.4.5 System and computing resources\nA.4.6 Human resources",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "2. Define the complete inventory of all required resources.",
         "Template": {
             "text": "A.4.2 - Resources for AI systems",
@@ -92,7 +92,7 @@
     {
         "Phase": "1. AI system requirements & specification (A.6.2.2)",
         "Control Number and Name": "A.7.3 Acquisition of data\nA.7.4 Quality of data\nA.7.5 Data provenance",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "3. Define the strategy, criteria, and process for acquiring data, including its sources and any legal or ethical constraints.",
         "Template": {
             "text": "A.7 - Data for AI systems",
@@ -102,7 +102,7 @@
     {
         "Phase": "1. AI system requirements & specification (A.6.2.2)",
         "Control Number and Name": "A.8.2 System documentation and information for users\nA.8.5 Information for interested parties\nA.8.3 External reporting\nA.8.4 Communication of incidents",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "4. Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
         "Template": {
             "text": "A.8.2 - System documentation & user Information",
@@ -112,17 +112,17 @@
     {
         "Phase": "1. AI system requirements & specification (A.6.2.2)",
         "Control Number and Name": "A.9.3 Objectives for responsible use of AI system\nA.9.2 Processes for responsible use of AI systems",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "5. Document the AI system's intended use and limitations, establish measurable objectives for responsible AI, and define the governance processes to ensure compliance.",
         "Template": {
-            "text": NaN,
-            "link": "nan.html"
+            "text": "",
+            "link": ""
         }
     },
     {
         "Phase": "1. AI system requirements & specification (A.6.2.2)",
         "Control Number and Name": "A.9.4 Intended use of the AI system",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "5. Document the AI system's intended use and limitations, establish measurable objectives for responsible AI, and define the governance processes to ensure compliance.",
         "Template": {
             "text": "A.9.4 - AI System Intended Purpose",
@@ -132,7 +132,7 @@
     {
         "Phase": "1. AI system requirements & specification (A.6.2.2)",
         "Control Number and Name": "A.6.1.2 Objectives for responsible development of AI system",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Document objectives to guide the responsible development AI systems.",
         "Template": {
             "text": "A.6.1.2 - Objectives for AI development",
@@ -142,7 +142,7 @@
     {
         "Phase": "1. AI system requirements & specification (A.6.2.2)",
         "Control Number and Name": "A.10.2 Allocating responsibilities\nA.10.3 Suppliers\nA.10.4 Customers",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "6. Establish a process to manage all stakeholder relationships, ensuring that responsibilities are clearly allocated, supplier activities align with internal AI policies, and customer needs are fully considered.",
         "Template": {
             "text": "A.10 - Third-party and customer relationships",
@@ -152,7 +152,7 @@
     {
         "Phase": "2. Documenting design & development (A.6.2.3)",
         "Control Number and Name": "A.6.2.3: AI system design and development",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "1. Document how requirements from AI System Requirements Specification have been translated into system design.",
         "Template": {
             "text": "A.6.2.3 - Design and development Documentation",
@@ -162,7 +162,7 @@
     {
         "Phase": "2. Documenting design & development (A.6.2.3)",
         "Control Number and Name": "A.4.2 Resource documentation\nA.4.3 Data resources\nA.4.4 Tooling resources\nA.4.5 System and computing resources\nA.4.6 Human resources",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "2. Update the AI Resource Inventory to reflect the AI Design & Development, if required.",
         "Template": {
             "text": "A.4.2 - Resources for AI systems",
@@ -172,7 +172,7 @@
     {
         "Phase": "2. Documenting design & development (A.6.2.3)",
         "Control Number and Name": "A.7.3 Acquisition of data\nA.7.4 Quality of data\nA.7.5 Data provenance",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "2. Update the AI Data Management to reflect the AI Design & Development, if required.",
         "Template": {
             "text": "A.7 - Data for AI systems",
@@ -181,18 +181,18 @@
     },
     {
         "Phase": "3. Deployment (A.6.2.5)",
-        "Control Number and Name": NaN,
-        "Role": NaN,
+        "Control Number and Name": "",
+        "Role": "",
         "Instruction": "Address the risks identified in the Impact Assessment, if they are above tolerance.",
         "Template": {
-            "text": NaN,
-            "link": "nan.html"
+            "text": "",
+            "link": ""
         }
     },
     {
         "Phase": "3. Deployment (A.6.2.5)",
         "Control Number and Name": "A.6.2.5",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Develop a comprehensive deployment plan. Prior to go-live, verify and sign-off that all resource, documentation, and operational requirements have been successfully met.",
         "Template": {
             "text": "AI Deployment Plan, Deployment Team Roles & Tasks",
@@ -202,7 +202,7 @@
     {
         "Phase": "3. Deployment (A.6.2.5)",
         "Control Number and Name": "A.4.2 Resource documentation\nA.4.3 Data resources\nA.4.4 Tooling resources\nA.4.5 System and computing resources",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Confirm that all AI system resources (documentation, data, tooling, computing, and human) are correctly configured and functioning in the production environment as per the deployment plan.",
         "Template": {
             "text": "Resource Documentation Checklist, Data Access Validation Record, Tooling Readiness Checklist, System Infrastructure Checklist",
@@ -212,7 +212,7 @@
     {
         "Phase": "3. Deployment (A.6.2.5)",
         "Control Number and Name": "A.8.2 System documentation and information for users\nA.8.5 Information for interested parties\nA.8.3 External reporting\nA.8.4 Communication of incidents",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "At go-live, publish final user documentation and distribute tailored information packages to all internal and external stakeholders, clearly communicating the system's intended use and limitations.",
         "Template": {
             "text": "A.8.2 - System documentation & user Information",
@@ -222,7 +222,7 @@
     {
         "Phase": "3. Deployment (A.6.2.5)",
         "Control Number and Name": "A.9.2, A.9.4",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Before go-live, brief all relevant teams on the responsible use of the AI system. Communicate the system\u2019s intended purpose, capabilities, and known limitations.",
         "Template": {
             "text": "Responsible Use Training Material, Purpose & Limitations Statement",
@@ -232,7 +232,7 @@
     {
         "Phase": "3. Deployment (A.6.2.5)",
         "Control Number and Name": "A.10.2 Allocating responsibilities\nA.10.3 Suppliers\nA.10.4 Customers",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Formally hand over the AI system to the live operations team, with clearly defined customer and supplier expectations.",
         "Template": {
             "text": "A.10 - Third-party and customer relationships",
@@ -242,7 +242,7 @@
     {
         "Phase": "3. Deployment (A.6.2.5)",
         "Control Number and Name": "A.6.1.2 Objectives for responsible development of AI system",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Formally hand over the AI system to the live operations team, with clearly defined operational responsibilities",
         "Template": {
             "text": "A.6.1.2 - Objectives for AI development",
@@ -252,7 +252,7 @@
     {
         "Phase": "4. Verification & validation (A.6.2.4)",
         "Control Number and Name": "A.6.2.4",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "In the \"Testing\" column, Specifies the exact measures, methods, and success criteria for testing the AI system's performance, functionality, and compliance.",
         "Template": {
             "text": "A.6.1.2 - Objectives for AI development",
@@ -262,7 +262,7 @@
     {
         "Phase": "4. Verification & validation (A.6.2.4)",
         "Control Number and Name": "A.4.2 Resource documentation\nA.4.3 Data resources\nA.4.4 Tooling resources\nA.4.5 System and computing resources\nA.4.6 Human resources",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Verify that all testing activities are performed using only the approved and documented resources (data, tools, hardware) and personnel, all within the specified, secure computing environment to ensure repeatable and consistent results.",
         "Template": {
             "text": "A.4.2 - Resources for AI systems",
@@ -272,7 +272,7 @@
     {
         "Phase": "4. Verification & validation (A.6.2.4)",
         "Control Number and Name": "A.7.4 Quality of data\nA.7.5 Data provenance",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Confirm that all validation datasets are high quality, complete, and representative. Crucially, document and verify the provenance of this data to ensure it is entirely independent of the training data.",
         "Template": {
             "text": "A.7 - Data for AI systems",
@@ -280,10 +280,10 @@
         }
     },
     {
-        "Phase": NaN,
+        "Phase": "",
         "Control Number and Name": "A.9.4 Intended use of the AI system",
-        "Role": NaN,
-        "Instruction": NaN,
+        "Role": "",
+        "Instruction": "",
         "Template": {
             "text": "A.9.4 - AI System Intended Purpose",
             "link": "A.9.4 - AI System Intended Purpose.html"
@@ -292,7 +292,7 @@
     {
         "Phase": "4. Verification & validation (A.6.2.4)",
         "Control Number and Name": "A.9.3 Objectives for responsible use of AI system",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Conduct rigorous tests to validate that the AI system not only performs reliably according to its intended purpose but also meets all predefined objectives for fairness, transparency, and other responsible AI metrics.",
         "Template": {
             "text": "A.6.1.2 - Objectives for AI development",
@@ -302,17 +302,17 @@
     {
         "Phase": "4. Verification & validation (A.6.2.4)",
         "Control Number and Name": "A.8.2, A.10.2, A.10.3",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Validate that all user and system documentation is accurate and reflects the tested behavior. Ensure all V&V tasks, including those by third-party suppliers, are performed in alignment with the documented responsibility matrix (RACI).",
         "Template": {
-            "text": NaN,
-            "link": "nan.html"
+            "text": "",
+            "link": ""
         }
     },
     {
         "Phase": "Operation & Monitoring",
         "Control Number and Name": "A.6.2.6, A.9.2, A.10.2",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Establish and maintain the overall plan for system operation, including procedures for monitoring, updates, and support. Actively enforce governance processes and ensure all parties adhere to their documented responsibilities.",
         "Template": {
             "text": "A.6.1.2 - Objectives for AI development",
@@ -322,7 +322,7 @@
     {
         "Phase": "Operation & Monitoring",
         "Control Number and Name": "A.4.x",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Continuously monitor the health, performance, and cost of all production resources, including infrastructure, data sources, and software tools. Ensure designated teams are actively maintaining the system and applying necessary updates.",
         "Template": {
             "text": "Live System Health Dashboard",
@@ -332,7 +332,7 @@
     {
         "Phase": "Operation &Monitoring",
         "Control Number and Name": "A.7.4, A.7.5, A.9.3, A.9.4",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Implement continuous monitoring to track data quality, detect drift, and log data provenance for critical decisions. Actively monitor the AI model's performance against its responsible AI objectives (e.g., fairness, bias) and check for signs of misuse.",
         "Template": {
             "text": "Model Performance & Fairness Report",
@@ -342,7 +342,7 @@
     {
         "Phase": "Operation & Monitoring",
         "Control Number and Name": "A.8.2, A.8.3, A.8.4, A.8.5",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Execute the predefined incident communication process for any significant system failure or breach. Manage all required external reporting and ensure all user-facing documentation is continuously updated to reflect system changes.",
         "Template": {
             "text": "Incident Response Log & Stakeholder Comms",
@@ -352,7 +352,7 @@
     {
         "Phase": "Operation & Monitoring",
         "Control Number and Name": "A.7.2, A.10.3, A.10.4",
-        "Role": NaN,
+        "Role": "",
         "Instruction": "Establish a process to feed operational data and customer feedback back into the development cycle for future enhancements. Continuously monitor supplier performance to manage risks and ensure service quality.",
         "Template": {
             "text": "Customer Feedback Analysis & Improvement Plan",
@@ -361,12 +361,12 @@
     },
     {
         "Phase": "Decommissioning",
-        "Control Number and Name": NaN,
-        "Role": NaN,
-        "Instruction": NaN,
+        "Control Number and Name": "",
+        "Role": "",
+        "Instruction": "",
         "Template": {
-            "text": NaN,
-            "link": "nan.html"
+            "text": "",
+            "link": ""
         }
     }
 ]
