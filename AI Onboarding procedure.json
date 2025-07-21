@@ -45,8 +45,8 @@
         "Role": "",
         "Instruction": "Full AI System Risk Assessment: If the AI system is determined to be \"Significant\" (as per the significance determination logic in the questionnaire), conduct a Full AI System Risk Assessment to assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle. And define controls to treat them.",
         "Template": {
-            "text": "A.5.3 -  AI system Risk Impact Assessment",
-            "link": "A.5.3 -  AI system Risk Impact Assessment.html"
+            "text": "AI system Risk Impact Assessment",
+            "link": "forms/AISecurityRiskAssessment.html"
         }
     },
     {
