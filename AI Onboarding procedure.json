@@ -196,7 +196,7 @@
         "Instruction": "Develop a comprehensive deployment plan. Prior to go-live, verify and sign-off that all resource, documentation, and operational requirements have been successfully met.",
         "Template": {
             "text": "AI Deployment Plan, Deployment Team Roles & Tasks",
-            "link": "AI Deployment Plan, Deployment Team Roles & Tasks.html"
+            "link": ""
         }
     },
     {
@@ -206,7 +206,7 @@
         "Instruction": "Confirm that all AI system resources (documentation, data, tooling, computing, and human) are correctly configured and functioning in the production environment as per the deployment plan.",
         "Template": {
             "text": "Resource Documentation Checklist, Data Access Validation Record, Tooling Readiness Checklist, System Infrastructure Checklist",
-            "link": "Resource Documentation Checklist, Data Access Validation Record, Tooling Readiness Checklist, System Infrastructure Checklist.html"
+            "link": ""
         }
     },
     {
@@ -326,7 +326,7 @@
         "Instruction": "Continuously monitor the health, performance, and cost of all production resources, including infrastructure, data sources, and software tools. Ensure designated teams are actively maintaining the system and applying necessary updates.",
         "Template": {
             "text": "Live System Health Dashboard",
-            "link": "Live System Health Dashboard.html"
+            "link": ""
         }
     },
     {
@@ -336,7 +336,7 @@
         "Instruction": "Implement continuous monitoring to track data quality, detect drift, and log data provenance for critical decisions. Actively monitor the AI model's performance against its responsible AI objectives (e.g., fairness, bias) and check for signs of misuse.",
         "Template": {
             "text": "Model Performance & Fairness Report",
-            "link": "Model Performance & Fairness Report.html"
+            "link": ""
         }
     },
     {
@@ -346,7 +346,7 @@
         "Instruction": "Execute the predefined incident communication process for any significant system failure or breach. Manage all required external reporting and ensure all user-facing documentation is continuously updated to reflect system changes.",
         "Template": {
             "text": "Incident Response Log & Stakeholder Comms",
-            "link": "Incident Response Log & Stakeholder Comms.html"
+            "link": ""
         }
     },
     {
@@ -356,7 +356,7 @@
         "Instruction": "Establish a process to feed operational data and customer feedback back into the development cycle for future enhancements. Continuously monitor supplier performance to manage risks and ensure service quality.",
         "Template": {
             "text": "Customer Feedback Analysis & Improvement Plan",
-            "link": "Customer Feedback Analysis & Improvement Plan.html"
+            "link": ""
         }
     },
     {
