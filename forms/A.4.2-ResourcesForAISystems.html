@@ -1,1 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.4.2 Resources for AI Systems</title>
+    <style>
+        /* Styles extracted from index.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 2em;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2em;
+            margin-bottom: 2em; /* Added for spacing between tables/sections */
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        td a {
+            color: #005a9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A.4.2 Resources for AI Systems</h1>
+        <p>This document provides an inventory of resources required for AI systems, including overview, components, data, tooling, system & computing, and human resources.</p>
+
+        <h2>1. Overview</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AI System Name</td>
+                    <td>Project or system this inventory supports</td>
+                </tr>
+                <tr>
+                    <td>Inventory Owner</td>
+                    <td>Person responsible for maintaining this inventory</td>
+                </tr>
+                <tr>
+                    <td>Date Last Updated</td>
+                    <td>Self-explanatory</td>
+                </tr>
+                <tr>
+                    <td>Version / Status</td>
+                    <td>Draft, Final, Updated, Archived</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. AI System Components</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hardware components</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Software components</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>System architecture diagrams</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Data flow diagrams</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Data Resources</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dataset ID</td>
+                    <td>Unique identifier for this dataset within the project.</td>
+                    <td>DS 001</td>
+                </tr>
+                <tr>
+                    <td>Dataset Name</td>
+                    <td>Common or descriptive name of the dataset.</td>
+                    <td>Customer Churn Data Q1 2023-Q4 2024</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Brief overview of the dataset's content, origin, and general purpose.</td>
+                    <td>Historical data of customer subscriptions, usage, and churn status.</td>
+                </tr>
+                <tr>
+                    <td>Source</td>
+                    <td>Where the data originates from (e.g., internal database, third-party vendor, public repository, synthetic generation).</td>
+                    <td>Internal CRM Database (Salesforce Extract)</td>
+                </tr>
+                <tr>
+                    <td>Intended Use</td>
+                    <td>Specific purpose(s) in the AI lifecycle (e.g., training, validation, testing, fine-tuning, specific model).</td>
+                    <td>Training primary churn prediction model, testing fairness metrics.</td>
+                </tr>
+                <tr>
+                    <td>Data Type(s)</td>
+                    <td>Main types of data contained (e.g., numerical, categorical, text, image, time-series).</td>
+                    <td>Numerical, Categorical, Datetime</td>
+                </tr>
+                <tr>
+                    <td>Format</td>
+                    <td>File format or storage system (e.g., CSV, JSON, Parquet, SQL DB, ImageNet format).</td>
+                    <td>CSV, Parquet</td>
+                </tr>
+                <tr>
+                    <td>Approximate Size</td>
+                    <td>Estimated size (e.g., number of records, GB, TB).</td>
+                    <td>~5M records, ~2GB</td>
+                </tr>
+                <tr>
+                    <td>Access Method/Location</td>
+                    <td>How the data can be accessed (e.g., S3 bucket path, API endpoint, database query, shared drive).</td>
+                    <td>S3://project-bucket/raw_data/churn/</td>
+                </tr>
+                <tr>
+                    <td>Owner/Custodian</td>
+                    <td>Person or team responsible for the data.</td>
+                    <td>Sales Operations Team</td>
+                </tr>
+                <tr>
+                    <td>Date Identified</td>
+                    <td>Date the dataset was identified as a candidate.</td>
+                    <td>2025-05-29</td>
+                </tr>
+                <tr>
+                    <td>Licensing/Usage Rights</td>
+                    <td>Any licensing terms, usage restrictions, or consent requirements.</td>
+                    <td>Internal use only, GDPR compliant consent obtained.</td>
+                </tr>
+                <tr>
+                    <td>Sensitivity/PII</td>
+                    <td>Indicate if Personally Identifiable Information (PII) or other sensitive data is present and its nature.</td>
+                    <td>Contains PII (Names, Email), Anonymization required for modeling.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Tooling Resources</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tool ID</td>
+                    <td>Unique identifier for the tool/software within the project.</td>
+                    <td>TOOL 001</td>
+                </tr>
+                <tr>
+                    <td>Tool Name</td>
+                    <td>Name of the software, library, or framework.</td>
+                    <td>Python</td>
+                </tr>
+                <tr>
+                    <td>Version(s)</td>
+                    <td>Specific version(s) required or planned for use.</td>
+                    <td>3.9.x</td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>Type of tool (e.g., Programming Language, IDE, Data Processing, ML Framework, Version Control, Deployment).</td>
+                    <td>Programming Language</td>
+                </tr>
+                <tr>
+                    <td>Purpose/Use Case in Project</td>
+                    <td>How this tool will be used in the AI system's lifecycle.</td>
+                    <td>Core development language for scripting, data manipulation, and model building.</td>
+                </tr>
+                <tr>
+                    <td>Vendor/Provider</td>
+                    <td>Manufacturer or main distributor of the tool (if applicable).</td>
+                    <td>Python Software Foundation</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>5. System & Computing Resources</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Resource ID</td>
+                    <td>Unique identifier for this resource.</td>
+                    <td>COMP_001</td>
+                </tr>
+                <tr>
+                    <td>Resource Name/Type</td>
+                    <td>Descriptive name (e.g., Dev Workstation, ML Training Cluster, Inference API Server, Data Lake Storage).</td>
+                    <td>ML Training Cluster</td>
+                </tr>
+                <tr>
+                    <td>Lifecycle Phase(s) Supported</td>
+                    <td>Which parts of the AI lifecycle this resource supports (e.g., Development, Training, Testing, Staging, Production, Monitoring).</td>
+                    <td>Training, Retraining</td>
+                </tr>
+                <tr>
+                    <td>Resource Category</td>
+                    <td>On-Premise Hardware, Cloud Service (IaaS, PaaS, SaaS).</td>
+                    <td>Cloud Service (IaaS)</td>
+                </tr>
+                <tr>
+                    <td>Provider (if Cloud/Vendor)</td>
+                    <td>e.g., AWS, Azure, GCP, Dell, NVIDIA.</td>
+                    <td>AWS</td>
+                </tr>
+                <tr>
+                    <td>Service/Model (if applicable)</td>
+                    <td>Specific cloud service (e.g., EC2, S3, Azure ML, Vertex AI) or hardware model.</td>
+                    <td>EC2 p3.2xlarge instances</td>
+                </tr>
+                <tr>
+                    <td>IP Address</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>6. Human Resources</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AI system design, development, and maintenance</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Third-party collaborators</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
 
