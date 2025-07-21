@@ -1,1 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.7 Data for AI Systems</title>
+    <style>
+        /* Styles extracted from index.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 2em;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5em;
+        }
+        h2 {
+            color: #005a9c;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        h3 {
+            color: #005a9c;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            margin-bottom: 2em;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        td a {
+            color: #005a9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        ol li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A.7 Data for AI Systems</h1>
+        <p>This document outlines the comprehensive plan and requirements for data used in AI systems, covering acquisition, quality, provenance, preparation, and retention.</p>
+
+        <h2>1. Data Acquisition Plan</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dataset Name / ID</td>
+                    <td>Name or identifier for the dataset</td>
+                </tr>
+                <tr>
+                    <td>Purpose</td>
+                    <td>How will this dataset be used? (Training, testing, validation, etc.)</td>
+                </tr>
+                <tr>
+                    <td>Source</td>
+                    <td>Origin of the data (internal system, vendor, open source, etc.)</td>
+                </tr>
+                <tr>
+                    <td>Access Method</td>
+                    <td>How is the data accessed? (API, upload, pipeline, etc.)</td>
+                </tr>
+                <tr>
+                    <td>Legal Review Complete?</td>
+                    <td>Yes/No Is data usage legally approved?</td>
+                </tr>
+                <tr>
+                    <td>Ethical Constraints</td>
+                    <td>Are there ethical concerns or usage limitations? (e.g., consent, fairness)</td>
+                </tr>
+                <tr>
+                    <td>Data Sharing Agreements</td>
+                    <td>Any contracts, licenses, or documented terms in place?</td>
+                </tr>
+                <tr>
+                    <td>Sensitive Fields</td>
+                    <td>List of any fields containing PII, PHI, or other regulated data</td>
+                </tr>
+                <tr>
+                    <td>De-identification Techniques</td>
+                    <td>Techniques applied to protect privacy (e.g., masking, hashing, tokenization)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. Data Categorization</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dataset Name / ID</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>Training data</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Validation data</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Test data</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Production data</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Data Labeling</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dataset Name/ID</th>
+                    <th>Data Label</th>
+                    <th>Quality Metric/Description to ensure consistency and accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>5. Data Retention and Disposal Policies</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dataset Name/ID</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>Retention schedules based on legal and operational requirements.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Secure methods for disposing of obsolete or redundant data.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. Data Quality Requirements</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quality Dimension</th>
+                    <th>Quality Metric/Description</th>
+                    <th>Target Threshold</th>
+                    <th>Validation Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Accuracy</td>
+                    <td>Correctness of data against true values or a trusted source.</td>
+                    <td>>95% (example, adjust as needed)</td>
+                    <td>Manual sampling, comparison with ground truth, model-based error detection.</td>
+                </tr>
+                <tr>
+                    <td>Completeness</td>
+                    <td>Percentage of non-null values in key fields, all critical information present.</td>
+                    <td>No nulls in essential fields; >98% completeness for important fields.</td>
+                    <td>Data profiling tools, custom scripts to count nulls/missing values.</td>
+                </tr>
+                <tr>
+                    <td>Validity</td>
+                    <td>Data conforms to a defined schema, format, type, and range.</td>
+                    <td>100% schema match; all values within predefined valid ranges/formats.</td>
+                    <td>Automated script checks against schema definitions, regex validation, range checks.</td>
+                </tr>
+                <tr>
+                    <td>Consistency</td>
+                    <td>Logical data relationships hold true within the dataset and across related datasets no contradictory information.</td>
+                    <td>No logical contradictions; &lt;1% inconsistency in relationships.</td>
+                    <td>Scripted validation of business rules, referential integrity checks, cross-field validation.</td>
+                </tr>
+                <tr>
+                    <td>Representativeness</td>
+                    <td>Key population segments (especially those relevant to fairness) are adequately covered and reflect the target population.</td>
+                    <td>Distribution of key segments aligns with known population or is explicitly justified.</td>
+                    <td>Data audit against demographic benchmarks, expert review, statistical tests (e.g., chi-squared for distributions).</td>
+                </tr>
+                <tr>
+                    <td>Duplication</td>
+                    <td>Absence of redundant records or data entries.</td>
+                    <td>e.g., &lt;1% duplicates for critical entities.</td>
+                    <td>Hash matching, exact row comparison, fuzzy matching techniques.</td>
+                </tr>
+                <tr>
+                    <td>Timeliness/Recency</td>
+                    <td>Data is sufficiently up-to-date for the intended purpose.</td>
+                    <td>Data updated within X period, e.g., 24 hours of events.</td>
+                    <td>Timestamp analysis, comparison with source system update logs.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. Data Provenance Tracking</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dataset Name / ID</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Source Traceability</td>
+                    <td>Can origin be verified (Yes/No)?</td>
+                </tr>
+                <tr>
+                    <td>Versioning Applied?</td>
+                    <td>Git/DVC/Manual</td>
+                </tr>
+                <tr>
+                    <td>Last Modified</td>
+                    <td>yyyy-mm-dd</td>
+                </tr>
+                <tr>
+                    <td>Change Log Ref</td>
+                    <td>Link or ID</td>
+                </tr>
+                <tr>
+                    <td>Retention Policy</td>
+                    <td>e.g., Retain 5 yrs</td>
+                </tr>
+                <tr>
+                    <td>Provenance Status</td>
+                    <td>Tracked/Not Tracked</td>
+                </tr>
+                <tr>
+                    <td>Synthetic Data Created?</td>
+                    <td>Yes/No If yes, describe method in notes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Data Preparation Plan for Sensitive Data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Preparation Step</th>
+                    <th>Description & Examples</th>
+                    <th>Rationale for ISO 42001</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1. De-identification & Anonymization</td>
+                    <td>Masking</td>
+                    <td>Replacing parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).</td>
+                    <td>Demonstrates controls to protect personal data and reduce privacy risks.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Tokenization</td>
+                    <td>Replacing a sensitive data element with a non-sensitive equivalent, referred to as a "token." The original data is stored in a secure vault.</td>
+                    <td>A strong security measure to prevent data breaches from exposing sensitive information.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Hashing</td>
+                    <td>Using a cryptographic function to convert sensitive data into a fixed-size string of characters. It's a one-way process.</td>
+                    <td>Ensures data integrity and provides a secure way to verify data without exposing it.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Generalization</td>
+                    <td>Reducing the precision of data. For example, changing a specific age ('34') to an age range ('30-40') or a full date of birth to just the year.</td>
+                    <td>Reduces the risk of re-identification while retaining some analytical value.</td>
+                </tr>
+                <tr>
+                    <td>2. Access Control & Governance</td>
+                    <td>Data Segregation</td>
+                    <td>Creating physically or logically separate data stores for sensitive information, with strict access controls.</td>
+                    <td>Evidence of implementing access control policies, a key security principle.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Attribute-Based Access Control</td>
+                    <td>Applying rules so that only users with specific attributes (e.g., role, department) can access certain data fields.</td>
+                    <td>Documents a granular approach to data security and the principle of least privilege.</td>
+                </tr>
+                <tr>
+                    <td>3. Data Minimization</td>
+                    <td>Feature Pruning</td>
+                    <td>Actively removing any data fields or columns that are not strictly necessary for the AI model's purpose.</td>
+                    <td>Shows adherence to data minimization principles, reducing the "attack surface" of the data.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Row (Sample) Reduction</td>
+                    <td>Removing records of individuals who have not given consent for their data to be used for AI training.</td>
+                    <td>Documents the process for respecting user consent and legal obligations (like GDPR).</td>
+                </tr>
+                <tr>
+                    <td>4. Quality & Integrity (Post-Anonymization)</td>
+                    <td>Integrity Checks</td>
+                    <td>After de-identification, verifying that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.</td>
+                    <td>Ensures that privacy-enhancing techniques have not corrupted the dataset for its intended use.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>5. Data Preparation Plan for Public Data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Preparation Step</th>
+                    <th>Description & Examples</th>
+                    <th>Rationale for ISO 42001</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1. Data Cleaning & Quality</td>
+                    <td>Handling Missing Values</td>
+                    <td>Deciding on a strategy for empty or null fields, such as filling them with a mean/median/mode, or removing the row/column.</td>
+                    <td>Documents a systematic approach to data quality, which impacts model performance and reliability.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Correcting Inaccuracies</td>
+                    <td>Identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000 C').</td>
+                    <td>Shows that the organization validates the accuracy of its data sources, even if public.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Removing Duplicates</td>
+                    <td>Identifying and deleting redundant records from the dataset.</td>
+                    <td>Ensures that duplicate entries do not skew the model's learning process or evaluation metrics.</td>
+                </tr>
+                <tr>
+                    <td>2. Data Transformation & Formatting</td>
+                    <td>Standardization</td>
+                    <td>Ensuring data is in a consistent format (e.g., converting all dates to 'YYYY-MM-DD', standardizing units of measurement).</td>
+                    <td>Improves data consistency and is a prerequisite for many machine learning algorithms.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Normalization / Scaling</td>
+                    <td>Rescaling numeric features to a common range (e.g., 0 to 1) to prevent features with large values from dominating the learning process.</td>
+                    <td>Documents technical steps taken to improve model training efficiency and effectiveness.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Encoding Categorical Data</td>
+                    <td>Converting non-numeric labels or categories into a numerical format (e.g., 'Red' &rarr; 1, 'Green' &rarr; 2 or using one-hot encoding).</td>
+                    <td>A necessary step to prepare data for most machine learning frameworks.</td>
+                </tr>
+                <tr>
+                    <td>3. Feature Engineering</td>
+                    <td>Creating New Features</td>
+                    <td>Deriving new, informative features from existing data (e.g., creating 'day_of_week' from a timestamp).</td>
+                    <td>Documents how the organization enriches its data to improve the AI system's capabilities.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Aggregation & Summarization</td>
+                    <td>Combining multiple data points into a summary statistic (e.g., calculating the average monthly rainfall from daily records).</td>
+                    <td>Shows how raw data is refined and made more relevant for the specific AI task.</td>
+                </tr>
+                <tr>
+                    <td>4. Relevance & Suitability</td>
+                    <td>Source Provenance Check</td>
+                    <td>Even if public, documenting the original source, its license, and any known biases or limitations.</td>
+                    <td>Addresses data provenance (A.7.5) and shows due diligence in data selection.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Relevance Filtering</td>
+                    <td>Removing data that, while public, is irrelevant to the problem the AI system is designed to solve.</td>
+                    <td>Demonstrates a clear and documented rationale for data selection criteria (A.7.3).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
 
