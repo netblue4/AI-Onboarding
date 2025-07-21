@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.6.2.3 Design and Development Documentation</title>
+    <style>
+        /* Styles extracted from index.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 2em;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5em;
+        }
+        h2 {
+            color: #005a9c;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        h3 {
+            color: #005a9c;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            margin-bottom: 2em;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        td a {
+            color: #005a9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A.6.2.3 Design and Development Documentation</h1>
+        <p>This document outlines the system and data design, and how design choices support responsible AI objectives.</p>
+
+        <h2>1. System & Data Design Documents</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Response / Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>System Architecture Diagram:</td>
+                    <td>A visual chart showing all the major components (e.g., data pipelines, APIs, model serving engine, user interface) and how they interact.</td>
+                </tr>
+                <tr>
+                    <td>Data Preprocessing and Transformation Logic:</td>
+                    <td>A detailed description of all steps taken to clean, filter, augment, and transform the data before it's used for training. This is critical for reproducibility.</td>
+                </tr>
+                <tr>
+                    <td>Model Specification:</td>
+                    <td>Details the type of model chosen (e.g., logistic regression, convolutional neural network), the rationale for choosing it over others, and its key parameters.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. Responsible AI Objectives (A.9.3)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Principle</th>
+                    <th>Objective<br>How does design choices support responsible AI objectives.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Job Preservation</td>
+                    <td>Assess and mitigate potential negative impacts of the AI system on job roles and support workforce adaptation.</td>
+                </tr>
+                <tr>
+                    <td>Fairness</td>
+                    <td>Ensure model performance is consistent and equitable across relevant demographic groups (e.g., age, gender, ethnicity).</td>
+                </tr>
+                <tr>
+                    <td>Transparency</td>
+                    <td>Provide clear, understandable, and timely explanations to users and stakeholders for AI system decisions and operations.</td>
+                </tr>
+                <tr>
+                    <td>Accountability</td>
+                    <td>Clearly assign ownership and responsibility for AI system outputs, decisions, and errors.</td>
+                </tr>
+                <tr>
+                    <td>Safety</td>
+                    <td>Prevent harmful outcomes to individuals or property resulting from the AI system's operation, particularly in safety-critical contexts.</td>
+                </tr>
+                <tr>
+                    <td>Privacy</td>
+                    <td>Protect personal data processed by the AI system, ensure confidentiality, and avoid unauthorized re-identification.</td>
+                </tr>
+                <tr>
+                    <td>Human Oversight</td>
+                    <td>Ensure appropriate human involvement and intervention, especially for high-risk decisions or unexpected AI system behavior.</td>
+                </tr>
+                <tr>
+                    <td>EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity (New)</td>
+                    <td>Ensure the AI system meets documented accuracy levels, is resilient to attacks and faults, and includes adequate cybersecurity protections, as required by EU AI Act Article 15.</td>
+                </tr>
+                <tr>
+                    <td>Customer Needs & Expectations</td>
+                    <td>Ensure the AI system meets the stated needs of the customer and manage expectations through clear communication of its capabilities and limitations.</td>
+                </tr>
+                <tr>
+                    <td>Supplier Alignment & Requirements</td>
+                    <td>Ensure that third-party components, data, or services used in the AI system meet the organization's contractual and responsible AI obligations.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
 
