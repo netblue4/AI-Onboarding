@@ -3,7 +3,7 @@
         "Phase": "Go - No go",
         "Control Number and Name": "A.9.4 Intended use of the AI system",
         "Role": "",
-        "Instruction": "Document the AI system's intended use and limitations, establish measurable objectives for responsible AI, and define the governance processes to ensure compliance.",
+        "Instruction": "Document the AI system's intended use and limitations.",
         "Template": {
             "text": "A.9.4-AISystemIntendedPurpose",
             "link": "A.9.4-AISystemIntendedPurpose.html"
