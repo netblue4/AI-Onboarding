@@ -6,7 +6,7 @@
         "Instruction": "Document the AI system's intended use and limitations.",
         "Template": {
             "text": "A.9.4-AISystemIntendedPurpose",
-            "link": "A.9.4-AISystemIntendedPurpose.html"
+            "link": "forms/A.9.4-AISystemIntendedPurpose.html"
         }
     },
     {
@@ -16,7 +16,7 @@
         "Instruction": "Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
         "Template": {
             "text": "A.6.2.2-AISystemRequirementsAndSpecification",
-            "link": "A.6.2.2-AISystemRequirementsAndSpecification.html"
+            "link": "forms/A.6.2.2-AISystemRequirementsAndSpecification.html"
         }
     },
     {
@@ -26,7 +26,7 @@
         "Instruction": "Determine if the AI system is prohibited",
         "Template": {
             "text": "AISystemProhibited",
-            "link": "AISystemProhibited.html"
+            "link": "forms/AISystemProhibited.html"
         }
     },
     {
@@ -36,7 +36,7 @@
         "Instruction": "The AI System Requester must complete the \"AI System Significance Questionnaire\" to determine the system's potential impact and sensitivity. This assessment serves as a critical filter to ascertain whether the AI system requires a Full AI System Risk Assessment or a Light Touch AI System Risk Assessment. Based on the questionnaire's outcome:\n\n",
         "Template": {
             "text": "AISystemSignificanceQuestionnaire",
-            "link": "AISystemSignificanceQuestionnaire.html"
+            "link": "forms/AISystemSignificanceQuestionnaire.html"
         }
     },
     {
