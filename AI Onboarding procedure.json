@@ -156,7 +156,7 @@
         "Instruction": "Document how requirements from AI System Requirements Specification have been translated into system design.",
         "Template": {
             "text": "A.6.2.3-DesignAndDevelopmentDocumentation",
-            "link": "A.6.2.3-DesignAndDevelopmentDocumentation.html"
+            "link": "forms/A.6.2.3-DesignAndDevelopmentDocumentation.html"
         }
     },
     {
@@ -166,7 +166,7 @@
         "Instruction": "Update the AI Resource Inventory to reflect the AI Design & Development, if required.",
         "Template": {
             "text": "A.4.2-ResourcesForAISystems",
-            "link": "A.4.2-ResourcesForAISystems.html"
+            "link": "forms/A.4.2-ResourcesForAISystems.html"
         }
     },
     {
@@ -176,7 +176,7 @@
         "Instruction": "Formally hand over the Objectives for AI development to the devlopment team, and ensure they understand the RACI and complete their responsibilites.",
         "Template": {
             "text": "A.6.1.2-ObjectivesForAIDevelopment",
-            "link": "A.6.1.2-ObjectivesForAIDevelopment.html"
+            "link": "forms/A.6.1.2-ObjectivesForAIDevelopment.html"
         }
     },
     {
@@ -216,7 +216,7 @@
         "Instruction": "In the \"Tested\" column, confirm that the measures and evidence for each development objective have been tested to ensure the AI system's performance, functionality, and compliance.",
         "Template": {
             "text": "A.6.1.2-ObjectivesForAIDevelopment",
-            "link": "A.6.1.2-ObjectivesForAIDevelopment.html"
+            "link": "forms/A.6.1.2-ObjectivesForAIDevelopment.html"
         }
     },
     {
@@ -226,7 +226,7 @@
         "Instruction": "Verify that all testing activities are performed using only the approved and documented resources (data, tools, hardware) and personnel, all within the specified, secure computing environment to ensure repeatable and consistent results.",
         "Template": {
             "text": "A.4.2-ResourcesForAISystems",
-            "link": "A.4.2-ResourcesForAISystems.html"
+            "link": "forms/A.4.2-ResourcesForAISystems.html"
         }
     },
     {
@@ -236,7 +236,7 @@
         "Instruction": "Confirm that all datasets:\na) are high quality, complete, and representative\nb) have meet the Data Quality Requirements\nc) comply with the Data Preparation Plan. \nd) verify the provenance of this data to ensure it is entirely independent of the training data.",
         "Template": {
             "text": "A.7-DataForAISystems",
-            "link": "A.7-DataForAISystems.html"
+            "link": "forms/A.7-DataForAISystems.html"
         }
     },
     {
@@ -246,7 +246,7 @@
         "Instruction": "Verify that the requirements from AI System Requirements Specification have been translated into system design.",
         "Template": {
             "text": "A.6.2.3-DesignAndDevelopmentDocumentation",
-            "link": "A.6.2.3-DesignAndDevelopmentDocumentation.html"
+            "link": "forms/A.6.2.3-DesignAndDevelopmentDocumentation.html"
         }
     },
     {
@@ -256,7 +256,7 @@
         "Instruction": "Verify that the system design enforce oonly the intended use of the AI System.",
         "Template": {
             "text": "A.9.4-AISystemIntendedPurpose",
-            "link": "A.9.4-AISystemIntendedPurpose.html"
+            "link": "forms/A.9.4-AISystemIntendedPurpose.html"
         }
     },
     {
@@ -276,7 +276,7 @@
         "Instruction": "Before go-live, publish final user documentation and distribute tailored information packages to all internal and external stakeholders, clearly communicating the system's intended use and limitations.",
         "Template": {
             "text": "A.8.2-SystemDocumentationAndUserInformation",
-            "link": "A.8.2-SystemDocumentationAndUserInformation.html"
+            "link": "forms/A.8.2-SystemDocumentationAndUserInformation.html"
         }
     },
     {
@@ -286,7 +286,7 @@
         "Instruction": "Before go-live, brief all relevant teams on the responsible use of the AI system. Communicate the system’s intended purpose, capabilities, and known limitations.",
         "Template": {
             "text": "A.9.4-AISystemIntendedPurpose",
-            "link": "A.9.4-AISystemIntendedPurpose.html"
+            "link": "forms/A.9.4-AISystemIntendedPurpose.html"
         }
     },
     {
@@ -296,7 +296,7 @@
         "Instruction": "Before go-live, formally hand over the AI system to the live operations team, with clearly defined customer and supplier expectations.",
         "Template": {
             "text": "A.10-Third-PartyAndCustomerRelationships",
-            "link": "A.10-Third-PartyAndCustomerRelationships.html"
+            "link": "forms/A.10-Third-PartyAndCustomerRelationships.html"
         }
     },
     {
@@ -306,7 +306,7 @@
         "Instruction": "Before go-live, formally distribute the Objectives for of AI use to guide the responsible use AI systems.",
         "Template": {
             "text": "A.9.3-ObjectivesForAIUse",
-            "link": "A.9.3-ObjectivesForAIUse.html"
+            "link": "forms/A.9.3-ObjectivesForAIUse.html"
         }
     },
     {
@@ -316,7 +316,7 @@
         "Instruction": "Establish and maintain the overall plan for system operation, ensure that Operational Duties RACI has been completed in full. Actively enforce governance processes and ensure all parties adhere to their documented responsibilities.",
         "Template": {
             "text": "A.9.3-ObjectivesForAIUse",
-            "link": "A.9.3-ObjectivesForAIUse.html"
+            "link": "forms/A.9.3-ObjectivesForAIUse.html"
         }
     },
     {
