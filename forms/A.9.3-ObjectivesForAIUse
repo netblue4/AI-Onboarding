@@ -1,1 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.9.3 Objectives for Responsible Use of AI System</title>
+    <style>
+        /* Styles extracted from index.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 2em;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5em;
+        }
+        h2 {
+            color: #005a9c;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        h3 {
+            color: #005a9c;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            margin-bottom: 2em;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        td a {
+            color: #005a9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        ol li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A.9.3 Objectives for Responsible Use of AI System</h1>
+        <p>This document outlines the objectives for the responsible use of AI systems, detailing how these objectives will be measured, evidenced, and the operational duties involved.</p>
+
+        <h2>Objectives for Responsible Use of AI System (A.9.3)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Principle</th>
+                    <th>Objective</th>
+                    <th>How It Will Be Measured/Evidenced</th>
+                    <th>Operational Duties</th>
+                    <th>Responsible</th>
+                    <th>Accountable</th>
+                    <th>Consulted</th>
+                    <th>Informed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Human-Centric AI</td>
+                    <td>Monitor the AI system's real-world impact on job roles and ensure support resources are effective.</td>
+                    <td>
+                        <ul>
+                            <li>Post-deployment role impact analysis reports</li>
+                            <li>Retraining program participation and completion rates</li>
+                            <li>Employee feedback surveys on transition support</li>
+                        </ul>
+                    </td>
+                    <td>Track Workforce Impact: Periodically reassess how automation affects roles post-deployment. Ensure retraining resources are delivered and adjust based on feedback.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Fairness</td>
+                    <td>Ensure the model's performance remains fair and equitable across demographic groups in a live environment.</td>
+                    <td>
+                        <ul>
+                            <li>Ongoing fairness monitoring reports from production data</li>
+                            <li>Logs of drift detection and remediation actions</li>
+                            <li>Internal audit records of live system fairness reviews</li>
+                        </ul>
+                    </td>
+                    <td>Monitor for Bias: Schedule and run regular fairness audits on the live system. Trigger and document remediation when performance drift is detected.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Transparency</td>
+                    <td>Provide clear and timely explanations to users and stakeholders for live AI system decisions.</td>
+                    <td>
+                        <ul>
+                            <li>Logs of stakeholder queries and resolution responses</li>
+                            <li>Live user guidance materials and updated FAQ</li>
+                            <li>Training records for end-users on system interpretability</li>
+                        </ul>
+                    </td>
+                    <td>Handle Queries: Respond to user and stakeholder inquiries with clear, non-technical explanations. Maintain updated and accessible documentation for users.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Accountability</td>
+                    <td>Ensure clear responsibility for system outputs, incident management, and remediation in the operational environment.</td>
+                    <td>
+                        <ul>
+                            <li>AI incident register and root cause analysis reports</li>
+                            <li>Log of all human-in-the-loop interventions</li>
+                            <li>Documented remediation actions and their status</li>
+                        </ul>
+                    </td>
+                    <td>Run Incident Reviews: Use a structured playbook for post-incident debriefs. Keep ownership documentation current as operational teams evolve.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Data Governance, Quality, and Privacy</td>
+                    <td>Protect personal data and ensure confidentiality throughout the system's operational lifecycle, while also establishing robust data governance frameworks and maintaining high data quality. This means implementing clear policies for data handling, ensuring data accuracy and integrity, and prioritizing privacy from collection to deletion.</td>
+                    <td>
+                        <ul>
+                            <li>Regular audit logs of data access and processing activities</li>
+                            <li>Records of data subject requests (e.g., access, deletion)</li>
+                            <li>Up-to-date Data Privacy Impact Assessment (DPIA)</li>
+                        </ul>
+                    </td>
+                    <td>Audit Data Handling: Perform regular audits of data access logs to ensure compliance. Maintain the DPIA, reviewing it with every significant system change.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Human Oversight</td>
+                    <td>Ensure that human oversight mechanisms are used effectively and as intended for live operations.</td>
+                    <td>
+                        <ul>
+                            <li>Logs of all human intervention and override activities</li>
+                            <li>Analysis reports on the frequency and outcomes of overrides</li>
+                            <li>Records of periodic testing of oversight workflows</li>
+                        </ul>
+                    </td>
+                    <td>Review Interventions: Regularly log and analyze all instances of human intervention to identify trends and assess the effectiveness of the oversight process.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Technical Robustness and AI Security (EU AI Act Art 15)</td>
+                    <td>Ensure the live AI system maintains its documented levels of accuracy, robustness, and cybersecurity.</td>
+                    <td>
+                        <ul>
+                            <li>Live accuracy monitoring reports and deviation logs</li>
+                            <li>Cybersecurity incident response plan and test records</li>
+                            <li>Production monitoring logs for faults and anomalies</li>
+                            <li>Logs of safety-related incidents and near-misses</li>
+                            <li>Analysis of system-human interaction safety in production</li>
+                            <li>Periodic reports on the health of fail-safe mechanisms</li>
+                        </ul>
+                    </td>
+                    <td>Track Live Metrics: Monitor accuracy against established thresholds and log deviations. Perform periodic cybersecurity audits and maintain a tested incident response plan. Monitor Security Incidents: Continuously monitor and log security-related events and trigger an immediate review if a critical threshold is met.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Explainability</td>
+                    <td>Provide users and stakeholders with meaningful, context-appropriate explanations of AI system outputs, tailored to their level of expertise and decision-making needs.</td>
+                    <td>
+                        <ul>
+                            <li>Logs of explanation requests and system-generated responses</li>
+                            <li>User feedback forms on clarity of explanations</li>
+                            <li>Records of regular testing or audits of explanation quality</li>
+                        </ul>
+                    </td>
+                    <td>Manage Explanation Tools: Ensure explanation tools (dashboards, FAQs, UI prompts) remain up to date. Run periodic spot-checks to confirm explanations meet user needs and technical accuracy.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Environmental Sustainability</td>
+                    <td>Optimize the AI system's resource consumption in production (e.g., energy, compute), minimizing environmental impact over time.</td>
+                    <td>
+                        <ul>
+                            <li>Resource consumption logs (CPU, GPU, memory, storage)</li>
+                            <li>Reports on energy usage from hosting provider</li>
+                            <li>Evidence of optimization activities (e.g., retraining efficiency improvements)</li>
+                        </ul>
+                    </td>
+                    <td>Monitor Resource Use: Regularly review system resource consumption. Trigger efficiency improvements when thresholds or targets (e.g., carbon footprint, compute hours) are exceeded. Report on sustainability KPIs where required.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Reliability and Availability</td>
+                    <td>Maintain high levels of system uptime and responsiveness, especially for business-critical or safety-critical applications. Implement robust failover and incident response processes.</td>
+                    <td>
+                        <ul>
+                            <li>Uptime dashboards and SLAs</li>
+                            <li>Incident and outage logs</li>
+                            <li>Results of periodic failover and disaster recovery tests</li>
+                        </ul>
+                    </td>
+                    <td>Track System Health: Monitor uptime and system performance metrics in real time. Conduct regular failover tests and document recovery times. Initiate root cause analysis after outages.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Continuous Monitoring and Feedback Loops</td>
+                    <td>Continuously monitor the AI system for performance degradation, model drift, emerging biases, and unintended outcomes. Establish feedback mechanisms for users and stakeholders to report issues.</td>
+                    <td>
+                        <ul>
+                            <li>Drift detection reports</li>
+                            <li>Model performance dashboards</li>
+                            <li>Logs of stakeholder feedback and issue reports</li>
+                            <li>Records of model retraining or tuning decisions</li>
+                        </ul>
+                    </td>
+                    <td>Run Monitoring Processes: Schedule and review drift detection, accuracy checks, and user feedback channels. Trigger model updates or tuning activities when predefined thresholds are breached.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Ethical and Societal Impact Awareness</td>
+                    <td>Regularly assess the ongoing societal, ethical, and economic impacts of the AI system in production for high-risk use cases. Be ready to intervene if harms emerge.</td>
+                    <td>
+                        <ul>
+                            <li>Periodic impact assessment reports</li>
+                            <li>Records of stakeholder consultations</li>
+                            <li>Documented remediation actions following ethical reviews</li>
+                        </ul>
+                    </td>
+                    <td>Run Impact Reviews: Conduct regular ethical and societal impact assessments. Document findings and trigger risk mitigation actions if harm, discrimination, or unintended consequences are detected.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>AI Lifecycle Management and Documentation</td>
+                    <td>Maintain and update operational documentation (e.g., model version history, incident logs, change records) to ensure traceability, auditability, and knowledge transfer for ongoing support and future improvements.</td>
+                    <td>
+                        <ul>
+                            <li>Version control logs</li>
+                            <li>Change management records</li>
+                            <li>Model deployment and retirement logs</li>
+                            <li>Audit trail of incident and remediation records</li>
+                        </ul>
+                    </td>
+                    <td>Maintain Lifecycle Records: Keep documentation current for model versions, incidents, and operational changes. Ensure full traceability for internal reviews, audits, and regulatory inspections.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
 
