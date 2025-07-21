@@ -1,1 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.6.1.2 Objectives for AI Development</title>
+    <style>
+        /* Styles extracted from index.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 2em;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5em;
+        }
+        h2 {
+            color: #005a9c;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.3em;
+            margin-top: 1.5em;
+        }
+        h3 {
+            color: #005a9c;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            margin-bottom: 2em;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        td a {
+            color: #005a9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            padding-left: 20px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A.6.1.2 Objectives for AI Development</h1>
+        <p>This document outlines the objectives for responsible AI development, including how these objectives will be measured, evidenced, and the operational duties involved.</p>
+
+        <h2>Objectives for AI Development (A.6.1.2)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Principle</th>
+                    <th>Objective</th>
+                    <th>How It Will Be Measured/Evidenced</th>
+                    <th>Operational Duties</th>
+                    <th>Responsible</th>
+                    <th>Accountable</th>
+                    <th>Informed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Human-Centric AI</td>
+                    <td>Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.</td>
+                    <td>
+                        <ul>
+                            <li>AI Impact Assessment identifying potentially affected roles</li>
+                            <li>Design documents showing human-in-the-loop integration points</li>
+                            <li>Early-stage workforce transition and retraining plans</li>
+                        </ul>
+                    </td>
+                    <td>Plan for Transition: Develop an initial workforce transition plan based on the system's design and anticipated impact.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Fairness</td>
+                    <td>Build and validate a model that demonstrates equitable performance across key demographic subgroups.</td>
+                    <td>
+                        <ul>
+                            <li>Pre-deployment fairness test results across protected attributes</li>
+                            <li>Bias mitigation strategy documents and validation outcomes</li>
+                            <li>Data sourcing and representativeness analysis</li>
+                        </ul>
+                    </td>
+                    <td>Build for Fairness: Incorporate fairness metrics into the model development and validation pipeline. Select and apply appropriate bias mitigation techniques before finalizing the model.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Transparency</td>
+                    <td>Develop a system whose decision-making processes are understandable to developers, users, and stakeholders.</td>
+                    <td>
+                        <ul>
+                            <li>Documentation of selected explainability techniques (e.g., SHAP, LIME)</li>
+                            <li>Initial drafts of user guidance materials and FAQs</li>
+                            <li>Architecture diagrams and model cards</li>
+                        </ul>
+                    </td>
+                    <td>Design for Clarity: Build and document explainability features as part of the core system architecture. Prepare initial documentation to explain system logic.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Accountability</td>
+                    <td>Establish clear lines of ownership for the design, development and approval of the AI system.</td>
+                    <td>
+                        <ul>
+                            <li>Approved role/responsibility matrix (e.g., RACI) for the project team</li>
+                            <li>Documented sign-offs at key development milestones</li>
+                            <li>Traceability logs from requirements to code</li>
+                        </ul>
+                    </td>
+                    <td>Assign Ownership: Finalize and get approval for the RACI chart before the main development phase begins. Ensure all key design and testing decisions are logged and attributed.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Data Governance, Quality and Privacy</td>
+                    <td>Engineer the system to incorporate robust data governance frameworks, ensure high data quality throughout its lifecycle, and protect personal data by design and by default. This includes establishing clear policies for data collection, storage, access, and usage, implementing mechanisms for data accuracy and integrity, and prioritizing privacy-preserving techniques from inception.</td>
+                    <td>
+                        <ul>
+                            <li>Completed Data Privacy Impact Assessment (DPIA) before deployment</li>
+                            <li>Documentation of data minimization and de-identification techniques used</li>
+                            <li>System architecture showing privacy-preserving data flows</li>
+                        </ul>
+                    </td>
+                    <td>Implement Privacy by Design: Finalize the DPIA based on the system's architecture. Implement and test data minimization and de-identification scripts and processes.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Human Oversight</td>
+                    <td>Design workflows that require human intervention for high-risk decisions and provide clear interfaces for interaction.</td>
+                    <td>
+                        <ul>
+                            <li>System design documents detailing human review workflows</li>
+                            <li>Defined criteria for when human intervention is required</li>
+                            <li>Usability testing reports on human oversight interfaces</li>
+                        </ul>
+                    </td>
+                    <td>Design Intervention Points: Define and document the specific triggers and criteria for mandatory human review. Build and test the user interfaces for oversight.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Technical Robustness and Security (EU AI Act Art 15)</td>
+                    <td>Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.</td>
+                    <td>
+                        <ul>
+                            <li>Accuracy benchmarks established during testing</li>
+                            <li>Results of robustness tests (e.g., adversarial inputs, fault tolerance)</li>
+                            <li>Cybersecurity penetration test reports from the development environment.</li>
+                            <li>Documented safety-specific risk assessments for the design</li>
+                            <li>Records of fail-safe mechanism testing in a development environment</li>
+                            <li>Architectural documents detailing safety features</li>
+                        </ul>
+                    </td>
+                    <td>Validate Technical Performance: Establish and document accuracy baselines. Perform adversarial and fault tolerance testing to ensure resilience. Conduct pre-deployment security testing. Engineer for Safety: Conduct a safety-focused risk assessment during the design phase. Code and unit-test all safety-critical features and fail-safe mechanisms.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Explainability</td>
+                    <td>Ensure that the system provides meaningful explanations of outputs in a way that matches the user's technical level. Go beyond transparency - focus on interpretability for non-technical users.</td>
+                    <td>
+                        <ul>
+                            <li>Results of explainability validation tests using representative user personas</li>
+                            <li>Internal testing of explanation outputs across key use cases</li>
+                            <li>UX research records (e.g., user testing sessions on explanation clarity)</li>
+                        </ul>
+                    </td>
+                    <td>Design for Interpretability: Select, implement, and test explanation techniques suitable for different user types (technical and non-technical). Document how the system generates explanations and validate them with sample users before release.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Environmental Sustainability</td>
+                    <td>Design the system to minimize energy consumption during both training and inference phases, and consider the overall carbon footprint of data and compute resources.</td>
+                    <td>
+                        <ul>
+                            <li>Energy consumption logs during model training and validation</li>
+                            <li>Records of optimization activities (e.g., model pruning, distillation)</li>
+                            <li>Carbon footprint estimates from cloud or infrastructure providers</li>
+                            <li>Documentation of compute resource allocation decisions</li>
+                        </ul>
+                    </td>
+                    <td>Optimize for Efficiency: Monitor energy use during model training. Apply efficiency techniques where feasible (e.g., smaller models, batch processing). Document and track sustainability KPIs in the design phase.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Reliability and Availability</td>
+                    <td>Engineer the system for consistent performance and uptime, especially for safety-critical or business-critical use cases.</td>
+                    <td>
+                        <ul>
+                            <li>Results from load testing, stress testing, and failure mode analysis</li>
+                            <li>Documentation of redundancy and failover mechanisms</li>
+                            <li>Test logs from system reliability and availability scenarios</li>
+                        </ul>
+                    </td>
+                    <td>Design for Resilience: Implement and test failover, load balancing, and redundancy mechanisms during development. Simulate failure scenarios and validate recovery times before deployment.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Continuous Monitoring and Feedback Loops</td>
+                    <td>Implement processes and tools for ongoing monitoring of model performance, drift, bias emergence, and unintended consequences once deployed.</td>
+                    <td>
+                        <ul>
+                            <li>Design documentation showing monitoring hooks and logging frameworks</li>
+                            <li>Testing of performance monitoring tools during development</li>
+                            <li>Records of alert threshold definitions for production monitoring</li>
+                        </ul>
+                    </td>
+                    <td>Build Monitoring Hooks: Integrate monitoring and telemetry features into the system architecture. Define performance thresholds, bias alerts, and drift detection triggers as part of the development process.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Ethical and Societal Impact Awareness</td>
+                    <td>Proactively assess and mitigate broader societal, ethical, and economic impacts especially in high-risk use cases like recruitment, healthcare, finance, or criminal justice.</td>
+                    <td>
+                        <ul>
+                            <li>Completed Ethical Impact Assessment (EIA) for the system design</li>
+                            <li>Documentation of mitigation steps for identified ethical risks</li>
+                            <li>Stakeholder consultation records during development</li>
+                        </ul>
+                    </td>
+                    <td>Run Impact Assessments: Conduct and document an ethical risk assessment before finalizing the system design. Review findings with stakeholders and adjust the system to mitigate identified risks.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>AI Lifecycle Management and Documentation</td>
+                    <td>Maintain detailed, auditable documentation for every stage of the AI lifecycle from data sourcing and model training to deployment and decommissioning (helps with both compliance and knowledge transfer).</td>
+                    <td>
+                        <ul>
+                            <li>Version-controlled records of model development stages</li>
+                            <li>Data lineage documentation</li>
+                            <li>Change management logs</li>
+                            <li>Records of peer reviews and approvals at key lifecycle stages</li>
+                        </ul>
+                    </td>
+                    <td>Document the Lifecycle: Maintain comprehensive records for each development milestone (data sourcing, model training, testing, deployment plans). Ensure documentation is structured and accessible for audits and future knowledge transfer.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
 
