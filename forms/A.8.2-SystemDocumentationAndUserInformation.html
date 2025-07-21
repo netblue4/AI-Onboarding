@@ -1,1 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.8.2 System Documentation and User Information</title>
+    <style>
+        /* Styles extracted from index.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 2em;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2em;
+            margin-bottom: 2em; /* Added for spacing between tables/sections */
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        td a {
+            color: #005a9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A.8.2 System Documentation and User Information</h1>
+        <p>This document outlines the requirements for system documentation, information for interested parties, external reporting, and incident communication plans related to AI systems.</p>
+
+        <h2>1. System Documentation for Users (A.8.2)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AI System Name</td>
+                    <td>Name or ID of the system</td>
+                </tr>
+                <tr>
+                    <td>User Types</td>
+                    <td>Who are the end users? (e.g., internal analysts, customers, auditors)</td>
+                </tr>
+                <tr>
+                    <td>User Guidance Materials</td>
+                    <td>What information is provided? (e.g., user manual, model explainability guide)</td>
+                </tr>
+                <tr>
+                    <td>Delivery Format</td>
+                    <td>How is it delivered? (PDF, embedded help, chatbot, live training)</td>
+                </tr>
+                <tr>
+                    <td>Access Location</td>
+                    <td>Where can users find documentation? (e.g., SharePoint, web app help section)</td>
+                </tr>
+                <tr>
+                    <td>Last Updated</td>
+                    <td>Date of last content update</td>
+                </tr>
+                <tr>
+                    <td>Owner</td>
+                    <td>Who maintains this documentation?</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. Information for Interested Parties (A.8.5)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Party Type</th>
+                    <th>Stakeholder Name / Group</th>
+                    <th>Required Information</th>
+                    <th>Frequency</th>
+                    <th>Delivery Channel</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Regulator</td>
+                    <td>Data Protection Authority</td>
+                    <td>Data usage summary, incident logs</td>
+                    <td>Quarterly</td>
+                    <td>Secure portal</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Internal Oversight</td>
+                    <td>AI Ethics Committee</td>
+                    <td>Use case approval logs, fairness reports</td>
+                    <td>Monthly</td>
+                    <td>Email + dashboard</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Customers</td>
+                    <td>Enterprise Clients</td>
+                    <td>Model logic summary, risk disclaimers</td>
+                    <td>Onboarding + update cycle</td>
+                    <td>Web UI, Docs page</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. External Reporting Requirements (A.8.3)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Requirement Type</th>
+                    <th>Description</th>
+                    <th>Trigger/Schedule</th>
+                    <th>Destination</th>
+                    <th>Format</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Regulatory Reporting</td>
+                    <td>Mandatory AI system registration or updates</td>
+                    <td>Launch, major update</td>
+                    <td>National AI register</td>
+                    <td>JSON, XML, Form</td>
+                    <td>Compliance Officer</td>
+                </tr>
+                <tr>
+                    <td>Model Risk Reporting</td>
+                    <td>Periodic reporting for high-risk AI models</td>
+                    <td>Quarterly</td>
+                    <td>Supervisory Board</td>
+                    <td>PDF</td>
+                    <td>Model Risk Team</td>
+                </tr>
+                <tr>
+                    <td>Public Transparency</td>
+                    <td>Voluntary public summary of system purpose & safeguards</td>
+                    <td>Launch + annually</td>
+                    <td>Company website</td>
+                    <td>HTML/PDF</td>
+                    <td>Communications Lead</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Incident Communication Plan (A.8.4)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Incident Type</th>
+                    <th>Description</th>
+                    <th>Audience</th>
+                    <th>Timeframe</th>
+                    <th>Communication Method</th>
+                    <th>Responsible Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data Breach</td>
+                    <td>Unintended exposure of training data</td>
+                    <td>DPO, Regulators, Affected users</td>
+                    <td>Within 72 hours</td>
+                    <td>Email, regulatory portal</td>
+                    <td>CISO</td>
+                </tr>
+                <tr>
+                    <td>Model Misuse</td>
+                    <td>AI model used outside intended scope</td>
+                    <td>Internal Oversight, Legal</td>
+                    <td>ASAP</td>
+                    <td>Slack, email, incident ticket</td>
+                    <td>AI Ops Manager</td>
+                </tr>
+                <tr>
+                    <td>Model Failure</td>
+                    <td>False predictions causing harm</td>
+                    <td>End users, Customer support</td>
+                    <td>&lt;24 hours</td>
+                    <td>In-app alert, support notice</td>
+                    <td>Product Owner</td>
+                </tr>
+                <tr>
+                    <td>Regulatory Trigger</td>
+                    <td>New legal obligations</td>
+                    <td>Compliance, Legal</td>
+                    <td>As needed</td>
+                    <td>Briefing docs, task force</td>
+                    <td>Compliance Lead</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
 
