@@ -106,7 +106,7 @@
         "Instruction": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
         "Template": {
             "text": "A.8.2-SystemDocumentationAndUserInformation",
-            "link": "A.8.2-SystemDocumentationAndUserInformation.html"
+            "link": "forms/A.8.2-SystemDocumentationAndUserInformation.html"
         }
     },
     {
@@ -116,7 +116,7 @@
         "Instruction": "For each Data Resource identified in the AI System Inventory, define the strategy, criteria, and process for acquiring data, including its sources and any legal or ethical constraints.",
         "Template": {
             "text": "A.7-DataForAISystems",
-            "link": "A.7-DataForAISystems.html"
+            "link": "forms/A.7-DataForAISystems.html"
         }
     },
     {
@@ -126,7 +126,7 @@
         "Instruction": "Document objectives to guide the responsible use AI systems, and complete the RACI.",
         "Template": {
             "text": "A.9.3-ObjectivesForAIUse",
-            "link": "A.9.3-ObjectivesForAIUse.html"
+            "link": "forms/A.9.3-ObjectivesForAIUse.html"
         }
     },
     {
@@ -136,7 +136,7 @@
         "Instruction": "Document objectives to guide the responsible development AI systems, and complete the RACI.",
         "Template": {
             "text": "A.6.1.2-ObjectivesForAIDevelopment",
-            "link": "A.6.1.2-ObjectivesForAIDevelopment.html"
+            "link": "forms/A.6.1.2-ObjectivesForAIDevelopment.html"
         }
     },
     {
