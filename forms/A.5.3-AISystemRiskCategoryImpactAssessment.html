@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.5.3 AI System Risk Category Impact Assessment</title>
+    <style>
+        /* Styles extracted from index.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 2em;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2em;
+            margin-bottom: 2em; /* Added for spacing between tables/sections */
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        td a {
+            color: #005a9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A.5.3 AI System Risk Category Impact Assessment</h1>
+        <p>This document outlines the assessment of AI system risks by category and their potential impact, along with corresponding controls.</p>
+
+        <h2>1. Assessment Overview</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AI System Name & Version:</td>
+                    <td>e.g., Customer Churn Prediction Model v2.1</td>
+                </tr>
+                <tr>
+                    <td>System Description:</td>
+                    <td>A brief, non-technical summary of what the system does, its key inputs and outputs, and the business process it supports.</td>
+                </tr>
+                <tr>
+                    <td>Assessment Date:</td>
+                    <td>yyyy-mm-dd</td>
+                </tr>
+                <tr>
+                    <td>Assessment Performed By:</td>
+                    <td>Name(s) and Role(s)</td>
+                </tr>
+                <tr>
+                    <td>Assessment Reviewer:</td>
+                    <td>Name and Role of the person reviewing/approving the assessment.</td>
+                </tr>
+                <tr>
+                    <td>Lifecycle Phase:</td>
+                    <td>e.g., Concept, Development, Pre-Deployment, Annual Review</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3: High-Risk AI Systems</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Risk Category</th>
+                    <th>Risk Level</th>
+                    <th>Description of Risk</th>
+                    <th>Controls</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Regulatory Compliance Risk</td>
+                    <td>High/Medium/Low</td>
+                    <td>Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.</td>
+                    <td>
+                        <ol>
+                            <li>AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).</li>
+                            <li>AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).</li>
+                            <li>Contracts or usage agreements define legal obligations of AI use.</li>
+                            <li>Independent audits or internal reviews confirm AI compliance status.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IT Resilience Risk</td>
+                    <td>High/Medium/Low</td>
+                    <td>Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.</td>
+                    <td>
+                        <ol>
+                            <li>AI hosting environments include SLAs and availability monitoring.</li>
+                            <li>Disaster recovery and retraining strategies are defined.</li>
+                            <li>Model artifacts and datasets are backed up securely.</li>
+                            <li>Runbooks and fallback processes exist for critical AI workflows.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IT Security Risk</td>
+                    <td>High/Medium/Low</td>
+                    <td>Threats to the confidentiality, integrity, or availability of AI systems, including model theft, prompt injection, or malicious model updates.</td>
+                    <td>
+                        <ol>
+                            <li>AI code and model repositories are subject to secure SDLC practices.</li>
+                            <li>AI endpoints are penetration tested and hardened.</li>
+                            <li>Model versioning and integrity checks are enforced.</li>
+                            <li>AI security posture is reviewed against frameworks like NIST AI RMF.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Management Risk</td>
+                    <td>High/Medium/Low</td>
+                    <td>Risk arising from poor handling of training, validation, or inference data, including lack of lineage or quality controls.</td>
+                    <td>
+                        <ol>
+                            <li>AI onboarding requires documentation of data sources, quality, and curation steps.</li>
+                            <li>Access logs and role-based controls are enforced for training data.</li>
+                            <li>Data lifecycle policies cover ingestion to deletion for AI use.</li>
+                            <li>Internal data audits assess how data is governed within the AI lifecycle.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Risk Management Risk</td>
+                    <td>High/Medium/Low</td>
+                    <td>Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.</td>
+                    <td>
+                        <ol>
+                            <li>AI onboarding includes risk assessment aligned to internal AI risk taxonomy.</li>
+                            <li>Risk register entries are created for each AI use case.</li>
+                            <li>Ongoing risk reviews are embedded in AI lifecycle checkpoints.</li>
+                            <li>Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Security Risk</td>
+                    <td>High/Medium/Low</td>
+                    <td>Risk of unauthorized access to model training data, inference data, or outputs containing sensitive or proprietary information.</td>
+                    <td>
+                        <ol>
+                            <li>Training data is encrypted at rest and in transit.</li>
+                            <li>Access controls are enforced at dataset and model level.</li>
+                            <li>Model outputs are reviewed for potential data leakage.</li>
+                            <li>Third-party assessments validate data security in AI systems.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Protection Risk</td>
+                    <td>High/Medium/Low</td>
+                    <td>Risk of non-compliance with personal data protection laws in training or deploying AI systems that process personal/sensitive data.</td>
+                    <td>
+                        <ol>
+                            <li>Data protection impact assessments (DPIAs) are mandatory for personal-data-using AI.</li>
+                            <li>Data minimization and anonymization techniques are applied before model training.</li>
+                            <li>Onboarding includes geographic mapping of data storage and processing.</li>
+                            <li>AI-specific privacy policies and consent mechanisms are documented.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Social Impact Risk</td>
+                    <td>High/Medium/Low</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
 
