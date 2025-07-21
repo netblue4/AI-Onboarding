@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI System Prohibited Practices</title>
+    <style>
+        /* Styles extracted from index.html for consistency */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 2em;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #005a9c;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2em;
+            margin-bottom: 2em; /* Added for spacing between tables/sections */
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        td a {
+            color: #005a9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+        .prohibited-note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #664d03;
+            border-radius: 4px;
+        }
+        .prohibited-note a {
+            color: #664d03;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI System Prohibited Practices Assessment</h1>
+        <p>This document provides an overview and assessment of AI system practices that may be prohibited under the AI Act.</p>
 
+        <h2>1: Assessment Overview</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AI System Name & Version:</td>
+                    <td>e.g., Customer Churn Prediction Model v2.1</td>
+                </tr>
+                <tr>
+                    <td>System Description:</td>
+                    <td>A brief, non-technical summary of what the system does, its key inputs and outputs, and the business process it supports.</td>
+                </tr>
+                <tr>
+                    <td>Assessment Date:</td>
+                    <td>yyyy-mm-dd</td>
+                </tr>
+                <tr>
+                    <td>Assessment Performed By:</td>
+                    <td>Name(s) and Role(s)</td>
+                </tr>
+                <tr>
+                    <td>Assessment Reviewer:</td>
+                    <td>Name and Role of the person reviewing/approving the assessment.</td>
+                </tr>
+                <tr>
+                    <td>Lifecycle Phase:</td>
+                    <td>e.g., Concept, Development, Pre-Deployment, Annual Review</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2: Prohibited AI Practices</h2>
+        <div class="prohibited-note">
+            If the answer to any of these questions is "Yes," the AI system may be prohibited under the AI Act. For a more detailed assessment, you can refer to the <a href="https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/" target="_blank">EU AI Act Compliance Checker</a>.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Question</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Subliminal Manipulation</td>
+                    <td>Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?</td>
+                </tr>
+                <tr>
+                    <td>Exploitation of Vulnerabilities</td>
+                    <td>Does the AI system exploit vulnerabilities of a specific group (e.g., due to age, physical or mental disability, social or economic situation) to materially distort their behavior in a way likely to cause harm to that person or another?</td>
+                </tr>
+                <tr>
+                    <td>Social Scoring by Public Authorities</td>
+                    <td>Is the AI system used by public authorities for evaluating or classifying the trustworthiness of natural persons based on their social behavior or personal characteristics, leading to detrimental or unfavorable treatment?</td>
+                </tr>
+                <tr>
+                    <td>Real-time Remote Biometric Identification (Law Enforcement, Public Spaces)</td>
+                    <td>Is the AI system used by law enforcement for real-time remote biometric identification of natural persons in publicly accessible spaces? (Note: Very limited exceptions exist)</td>
+                </tr>
+                <tr>
+                    <td>Emotion Inference (Workplace/Education)</td>
+                    <td>Does the AI system infer emotions of natural persons in the context of workplaces or educational institutions?</td>
+                </tr>
+                <tr>
+                    <td>Biometric Categorization (Sensitive Attributes)</td>
+                    <td>Does the AI system use biometric data to categorize natural persons based on sensitive attributes like race, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation?</td>
+                </tr>
+                <tr>
+                    <td>Untargeted Scraping of Facial Images</td>
+                    <td>Does the AI system involve untargeted scraping of facial images from the internet or CCTV footage to create or expand facial recognition databases?</td>
+                </tr>
+                <tr>
+                    <td>Risk Assessment of Criminal Offenses (Profiling)</td>
+                    <td>Does the AI system assess the risk of a natural person committing a criminal offense based solely on profiling or assessment of their personality traits or characteristics?</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
