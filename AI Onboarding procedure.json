@@ -1,22 +1,22 @@
 [
     {
         "Phase": "Go - No go",
-        "Control Number and Name": "A.6.2.2: AI system requirements and specification",
-        "Role": "",
-        "Instruction": "Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
-        "Template": {
-            "text": "A.6.2.2-AISystemRequirementsAndSpecification",
-            "link": "A.6.2.2-AISystemRequirementsAndSpecification.html"
-        }
-    },
-    {
-        "Phase": "Go - No go",
         "Control Number and Name": "A.9.4 Intended use of the AI system",
         "Role": "",
         "Instruction": "Document the AI system's intended use and limitations, establish measurable objectives for responsible AI, and define the governance processes to ensure compliance.",
         "Template": {
             "text": "A.9.4-AISystemIntendedPurpose",
             "link": "A.9.4-AISystemIntendedPurpose.html"
+        }
+    },
+    {
+        "Phase": "Go - No go",
+        "Control Number and Name": "A.6.2.2: AI system requirements and specification",
+        "Role": "",
+        "Instruction": "Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
+        "Template": {
+            "text": "A.6.2.2-AISystemRequirementsAndSpecification",
+            "link": "A.6.2.2-AISystemRequirementsAndSpecification.html"
         }
     },
     {
