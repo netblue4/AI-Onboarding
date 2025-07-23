@@ -191,7 +191,7 @@
     },
     {
         "Phase": "3. Deployment (A.6.2.5)",
-        "Control Number and Name": "A.6.2.5",
+        "Control Number and Name": "A.6.2.5	AI system deployment",
         "Role": "",
         "Instruction": "Develop a comprehensive deployment plan. Prior to go-live, verify and sign-off that all resource, documentation, and operational requirements have been successfully met.",
         "Template": {
