@@ -106,14 +106,14 @@
                                 label.textContent = field.FieldLabel; 
                                 fieldDiv.appendChild(label);
 
-//const multiline = field.FieldLabel.split('||');
-//multiline.forEach(lineText => {
+const multiline = field.FieldLabel.split('||');
+multiline.forEach(lineText => {
 //    const label = document.createElement('label');
 //    label.setAttribute('for', sanitizedId);
 //    label.textContent = lineText.trim();
 //    label.classList.add('multiline-label'); // Add a class for styling
 //    fieldDiv.appendChild(label);
-//});
+});
                                 const select = document.createElement('select');
                                 select.id = sanitizedId;
                                 select.name = sanitizedId;                                
