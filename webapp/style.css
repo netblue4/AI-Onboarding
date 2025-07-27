@@ -23,6 +23,10 @@ body {
     justify-content: space-between; /* Pushes buttons to opposite ends */
     margin-top: 20px; /* Adds some space above the buttons */
 }
+.multiline-label {
+    display: block;
+    margin-bottom: 4px; /* Optional: adds a little space between lines */
+}
 #main-title {
     text-align: center;
     color: #444;
