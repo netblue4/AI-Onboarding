@@ -45,7 +45,7 @@ body {
 .form-field label {
     display: block;
     margin-bottom: 0.5rem;
-    font-weight: 600;
+    font-weight: 100;
 }
 .form-field input[type="text"],
 .form-field select,
