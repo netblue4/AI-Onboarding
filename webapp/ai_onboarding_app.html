@@ -101,9 +101,10 @@
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
-                                //const label = document.createElement('label');
-                                //label.setAttribute('for', sanitizedId);
-                                //label.innerHTML = field.FieldLabel; //.replace(/\\n/g, '<br>');
+                                const label = document.createElement('label');
+                                label.setAttribute('for', sanitizedId);
+                                label.innerHTML = field.FieldLabel; 
+                                fieldDiv.appendChild(label);
 
 const multiline = field.FieldLabel.split('||');
 multiline.forEach(lineText => {
