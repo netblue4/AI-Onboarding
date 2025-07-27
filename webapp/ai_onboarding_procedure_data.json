@@ -41,7 +41,7 @@
                 "FieldName": "Functional Requirement (A.6.2.2) - Inputs",
                 "FieldLabel": "What data will the system take in? (e.g., images, text, logs)",
                 "FieldType": "TextBox"
-            },
+            }
         ]
     },
      "If the system is Prohibited then Exit else continue to next step.": {
