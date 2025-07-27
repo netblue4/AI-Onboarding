@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Onboarding Procedure 222</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        #main-title {
+            text-align: center;
+            color: #444;
+            margin-top: 0;
+        }
+        #form-container {
+            margin-bottom: 1.5rem;
+            min-height: 300px;
+        }
+        .form-step {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-field {
+            margin-bottom: 1.25rem;
+        }
+        .form-field label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .form-field input[type="text"],
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+         .form-field .auto-generated-label {
+            font-style: italic;
+            color: #555;
+            background-color: #eee;
+            padding: 0.75rem;
+            border-radius: 4px;
+            display: block;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            float: right;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #download-btn {
+            background-color: #28a745;
+        }
+        #download-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Loading...</h1>
+        <div id="form-container"></div>
+        <button id="next-btn">Next</button>
+        <button id="download-btn" style="display: none;">Download JSON</button>
+    </div>
+
+    <script>
+    // --- START OF EMBEDDED DATA ---
+    	const response = await fetch('webapp_data.json');
+    	if (!response.ok) {
+    	    throw new Error(`HTTP error! Status: ${response.status}`);
+    	}
+    	webappData = await response.json();
+    // --- END OF EMBEDDED DATA ---
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const formContainer = document.getElementById('form-container');
+        const nextBtn = document.getElementById('next-btn');
+        const downloadBtn = document.getElementById('download-btn');
+        const mainTitle = document.getElementById('main-title');
+
+        const capturedData = {};
+        const procedureSteps = Object.keys(webappData);
+        let currentStepIndex = 0;
+
+        function sanitizeForId(text) {
+            if (typeof text !== 'string') return '';
+            return text.replace(/[^a-zA-Z0-9_]/g, '_');
+        }
+
+        function renderCurrentStep() {
+            const stepKey = procedureSteps[currentStepIndex];
+            const stepData = webappData[stepKey];
+            
+            if (!stepData) {
+                mainTitle.textContent = "Error";
+                formContainer.innerHTML = "<p>Could not find step data. Please check the data source.</p>";
+                return;
+            }
+
+            mainTitle.textContent = stepData.WebFormTitle || "Procedure Step";
+            formContainer.innerHTML = ''; 
+
+            const formStepDiv = document.createElement('div');
+            formStepDiv.className = 'form-step';
+
+            if (!stepData.Fields || stepData.Fields.length === 0) {
+                 const note = document.createElement('p');
+                 note.textContent = "This is a procedural note or a decision point. Click 'Next' to continue.";
+                 formStepDiv.appendChild(note);
+            } else {
+                stepData.Fields.forEach(field => {
+                    if (!field) return;
+                    const fieldDiv = document.createElement('div');
+                    fieldDiv.className = 'form-field';
+                    const sanitizedId = sanitizeForId(field.FieldName);
+
+                    if (field.FieldType === 'Auto generated number') {
+                        const label = document.createElement('label');
+                        label.textContent = field.FieldLabel + ': ';
+                        const span = document.createElement('span');
+                        span.className = 'auto-generated-label';
+                        const uniqueId = 'AutoGen_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+                        span.textContent = uniqueId;
+                        fieldDiv.appendChild(label);
+                        fieldDiv.appendChild(span);
+                        capturedData[field.FieldName] = uniqueId;
+                    } else if (field.FieldType === 'TextBox') {
+                        const label = document.createElement('label');
+                        label.setAttribute('for', sanitizedId);
+                        label.textContent = field.FieldLabel;
+                        const input = document.createElement('textarea');
+                        input.id = sanitizedId;
+                        input.name = sanitizedId;
+                        input.rows = 3;
+                        fieldDiv.appendChild(label);
+                        fieldDiv.appendChild(input);
+                    } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
+                        const label = document.createElement('label');
+                        label.setAttribute('for', sanitizedId);
+                        label.textContent = field.FieldLabel;
+                        const select = document.createElement('select');
+                        select.id = sanitizedId;
+                        select.name = sanitizedId;
+                        
+                        const optionsString = field.FieldType.split(':')[1]?.trim() || '';
+                        const options = optionsString.split('/');
+                        
+                        options.forEach(optionText => {
+                            const option = document.createElement('option');
+                            option.value = optionText.trim();
+                            option.textContent = optionText.trim();
+                            select.appendChild(option);
+                        });
+                        
+                        fieldDiv.appendChild(label);
+                        fieldDiv.appendChild(select);
+                    }
+                    formStepDiv.appendChild(fieldDiv);
+                });
+            }
+            formContainer.appendChild(formStepDiv);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const currentStepKey = procedureSteps[currentStepIndex];
+            const stepData = webappData[currentStepKey];
+
+            if (stepData && stepData.Fields) {
+                stepData.Fields.forEach(field => {
+                    if (field && field.FieldType !== 'Auto generated number') {
+                        const sanitizedId = sanitizeForId(field.FieldName);
+                        const inputElement = document.getElementById(sanitizedId);
+                        if (inputElement) {
+                            capturedData[field.FieldName] = inputElement.value;
+                        }
+                    }
+                });
+            }
+
+            currentStepIndex++;
+            if (currentStepIndex < procedureSteps.length) {
+                renderCurrentStep();
+            } else {
+                formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file containing all your input.</p>';
+                mainTitle.textContent = "Finished";
+                nextBtn.style.display = 'none';
+                downloadBtn.style.display = 'block';
+            }
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            const jsonData = JSON.stringify(capturedData, null, 4);
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'onboarding_documentation.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // Initial render
+        renderCurrentStep();
+    });
+    </script>
+</body>
+</html>
