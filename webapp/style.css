@@ -27,6 +27,9 @@ body {
     display: block;
     margin-bottom: 4px; /* Optional: adds a little space between lines */
 }
+.label-bold {
+    font-weight: bold;
+}
 #main-title {
     text-align: center;
     color: #444;
