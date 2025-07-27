@@ -17,7 +17,7 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Fetch the external JSON data
-        fetch('ai_onboardnig_procedure_data.json')
+        fetch('ai_onboarding_procedure_data.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -161,7 +161,7 @@
             .catch(error => {
                 console.error('Error loading the webapp data:', error);
                 document.getElementById('main-title').textContent = "Error";
-                document.getElementById('form-container').innerHTML = "<p>Failed to load procedure data. Please check the console for errors and ensure 'ai_onboardnig_procedure_data.json' is available in the same directory.</p>";
+                document.getElementById('form-container').innerHTML = "<p>Failed to load procedure data. Please check the console for errors and ensure 'ai_onboarding_procedure_data.json' is available in the same directory.</p>";
             });
     });
     </script>
