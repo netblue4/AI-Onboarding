@@ -18,7 +18,7 @@
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Target Users / Stakeholders",
+                "FieldName": "Target Users",
                 "FieldLabel": "Who will use this system or be affected by it? (e.g., employees, customers, analysts)",
                 "FieldType": "TextBox"
             },
@@ -28,7 +28,7 @@
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Out-of-Scope Use / Limitations",
+                "FieldName": "Out-of-Scope Use",
                 "FieldLabel": "What is this system not intended to do? (e.g., no use for employment decisions)",
                 "FieldType": "TextBox"
             },
@@ -73,12 +73,12 @@
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Non-Functional Requirements (A.6.2.2) - Explainability / Transparency",
+                "FieldName": "Non-Functional Requirements (A.6.2.2) - Explainability & Transparency",
                 "FieldLabel": "Must the system justify its outputs? If yes, how?",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Non-Functional Requirements (A.6.2.2) - Fairness / Bias Considerations",
+                "FieldName": "Non-Functional Requirements (A.6.2.2) - Bias Considerations",
                 "FieldLabel": "Are there fairness metrics or requirements to meet?",
                 "FieldType": "TextBox"
             },
