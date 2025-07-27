@@ -179,7 +179,7 @@
             }
         ]
     },
-    "Determine the AI system's potential impact and sensitivity. This assessment serves as a critical filter to ascertain whether the AI system requires a Full AI System Risk Assessment or a Light Touch AI System Risk Assessment. Based on the questionnaire's outcome:\n\n": {
+    "Determine the AI system's potential impact and sensitivity": {
         "WebFormTitle": "AI System Significance Questionnaire",
         "Fields": [
             {
