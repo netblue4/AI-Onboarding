@@ -4,10 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Onboarding Procedure 111</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="container">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        #main-title {
+            text-align: center;
+            color: #444;
+            margin-top: 0;
+        }
+        #form-container {
+            margin-bottom: 1.5rem;
+            min-height: 300px;
+        }
+        .form-step {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-field {
+            margin-bottom: 1.25rem;
+        }
+        .form-field label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .form-field input[type="text"],
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+         .form-field .auto-generated-label {
+            font-style: italic;
+            color: #555;
+            background-color: #eee;
+            padding: 0.75rem;
+            border-radius: 4px;
+            display: block;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            float: right;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #download-btn {
+            background-color: #28a745;
+        }
+        #download-btn:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -18,154 +98,978 @@
     </div>
 
     <script>
+    // --- START OF EMBEDDED DATA ---
+    const webappData = {
+    "Document the AI system's intended use and limitations.": {
+        "WebFormTitle": "AI system's intended use and limitations",
+        "Fields": [
+            {
+                "FieldName": "A.9.4-AISystemIntendedPurpose_ID",
+                "FieldLabel": "AI System Unique Number",
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "AI System Name",
+                "FieldLabel": "Name or ID of the AI application",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Business Purpose",
+                "FieldLabel": "What specific problem or task does this system address?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Target Users / Stakeholders",
+                "FieldLabel": "Who will use this system or be affected by it? (e.g., employees, customers, analysts)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Intended Use",
+                "FieldLabel": "Describe the legitimate and approved use cases (include examples)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Out-of-Scope Use / Limitations",
+                "FieldLabel": "What is this system not intended to do? (e.g., no use for employment decisions)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Operational Boundaries",
+                "FieldLabel": "Context and constraints (e.g., only operates on internal data, only usable with human review)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Functional Requirement (A.6.2.2) - Inputs",
+                "FieldLabel": "What data will the system take in? (e.g., images, text, logs)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Functional Requirement (A.6.2.2) - Processing Logic",
+                "FieldLabel": "What\u2019s the core logic or model behavior expected?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Functional Requirement (A.6.2.2) - Outputs",
+                "FieldLabel": "What should the system produce?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Functional Requirement (A.6.2.2) - Interaction Model",
+                "FieldLabel": "Will it run in the background, have a UI, API, etc.?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements (A.6.2.2) - Performance",
+                "FieldLabel": "Are there any SLA's associated with the AI system?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements (A.6.2.2) - Security",
+                "FieldLabel": "Any key security constraints or expectations? (e.g., no internet access, encryption)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements (A.6.2.2) - Compliance",
+                "FieldLabel": "Are there regulations or policies it must follow? (e.g., GDPR, AI Act)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements (A.6.2.2) - Explainability / Transparency",
+                "FieldLabel": "Must the system justify its outputs? If yes, how?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements (A.6.2.2) - Fairness / Bias Considerations",
+                "FieldLabel": "Are there fairness metrics or requirements to meet?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "AISystemProhibited_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table AISystemProhibited"
+            },
+            {
+                "FieldName": "AISystemSignificanceQuestionnaire_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table AISystemSignificanceQuestionnaire"
+            },
+            {
+                "FieldName": "A.5.3-AISystemRiskCategoryImpactAssessment_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table A.5.3-AISystemRiskCategoryImpactAssessment"
+            },
+            {
+                "FieldName": "A.4.2-ResourcesForAISystems_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
+            },
+            {
+                "FieldName": "A.8.2-SystemDocumentationAndUserInformation_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table A.8.2-SystemDocumentationAndUserInformation"
+            },
+            {
+                "FieldName": "A.10-Third-PartyAndCustomerRelationships_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table A.10-Third-PartyAndCustomerRelationships"
+            }
+        ]
+    },
+    "Determine if the AI system is prohibited": {
+        "WebFormTitle": "AI Act Prohibited Practices Assessment",
+        "Fields": [
+            {
+                "FieldName": "AISystemProhibited_ID",
+                "FieldLabel": NaN,
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "Subliminal Manipulation",
+                "FieldLabel": "Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Exploitation of Vulnerabilities",
+                "FieldLabel": "Does the AI system exploit vulnerabilities of a specific group (e.g., due to age, physical or mental disability, social or economic situation) to materially distort their behavior in a way likely to cause harm to that person or another?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Social Scoring by Public Authorities",
+                "FieldLabel": "Is the AI system used by public authorities for evaluating or classifying the trustworthiness of natural persons based on their social behavior or personal characteristics, leading to detrimental or unfavorable treatment?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Real-time Remote Biometric Identification (Law Enforcement, Public Spaces)",
+                "FieldLabel": "Is the AI system used by law enforcement for real-time remote biometric identification of natural persons in publicly accessible spaces? (Note: Very limited exceptions exist)",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Emotion Inference (Workplace/Education)",
+                "FieldLabel": "Does the AI system infer emotions of natural persons in the context of workplaces or educational institutions?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Biometric Categorization (Sensitive Attributes)",
+                "FieldLabel": "Does the AI system use biometric data to categorize natural persons based on sensitive attributes like race, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Untargeted Scraping of Facial Images",
+                "FieldLabel": "Does the AI system involve untargeted scraping of facial images from the internet or CCTV footage to create or expand facial recognition databases?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Risk Assessment of Criminal Offenses (Profiling)",
+                "FieldLabel": "Does the AI system assess the risk of a natural person committing a criminal offense based solely on profiling or assessment of their personality traits or characteristics?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Is Prohibited",
+                "FieldLabel": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker: https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
+                "FieldType": "Dropdown box with values: Yes/No"
+            }
+        ]
+    },
+    "If the system is Prohibited then Exit else continue to next step.": {
+        "WebFormTitle": NaN,
+        "Fields": [
+            {
+                "FieldName": NaN,
+                "FieldLabel": NaN,
+                "FieldType": NaN
+            }
+        ]
+    },
+    "Determine the AI system's potential impact and sensitivity. This assessment serves as a critical filter to ascertain whether the AI system requires a Full AI System Risk Assessment or a Light Touch AI System Risk Assessment. Based on the questionnaire's outcome:\n\n": {
+        "WebFormTitle": "AI System Significance Questionnaire",
+        "Fields": [
+            {
+                "FieldName": "AISystemSignificanceQuestionnaire_ID",
+                "FieldLabel": NaN,
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "Data Sensitivity & Privacy - Store",
+                "FieldLabel": "Will the AI system process, store, or interpret any sensitive data (e.g., personal health information (PHI), personally identifiable information (PII) beyond basic contact details, financial data, biometric data, protected class information, classified data)?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Data Sensitivity & Privacy - Output",
+                "FieldLabel": "Will the AI system's output directly or indirectly lead to decisions or actions that impact an individual's privacy rights (e.g., surveillance, profiling for targeted advertising, monitoring of online behavior)?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Critical Business Function & Impact - Calculations",
+                "FieldLabel": "Will the AI system perform calculations, make decisions, or provide recommendations that support a critical business function (e.g., fraud detection, credit scoring, medical diagnosis, infrastructure management, legal compliance, safety-critical operations)?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Critical Business Function & Impact - Bias",
+                "FieldLabel": "Could a failure, error, or bias in the AI system's operation lead to significant financial loss, reputational damage, legal/regulatory penalties, or harm to individuals (e.g., physical harm, denial of services, unfair treatment)?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Transparency & Human Oversight - Oversight",
+                "FieldLabel": "Will the AI system operate with limited or no human oversight/intervention in its decision-making or output generation process for critical functions?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Transparency & Human Oversight - Decisions",
+                "FieldLabel": "Is it crucial for the AI system's decisions or outputs to be explainable or interpretable to users, affected individuals, or regulators (e.g., why a loan was denied, why a medical diagnosis was made)?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Novelty & Complexity - Technology",
+                "FieldLabel": "Does the AI system utilize novel, cutting-edge, or unproven AI technologies that are new to the organization or the industry?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Novelty & Complexity - Interconnections",
+                "FieldLabel": "Will the AI system integrate with complex or interconnected systems where its failure could cascade and impact other critical operations?",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Is Significant",
+                "FieldLabel": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
+                "FieldType": "Dropdown box with values: Yes/No"
+            }
+        ]
+    },
+    "Conduct a AI System Risk Category Impact Assessment, assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle. And define controls to treat them.": {
+        "WebFormTitle": "AI System Risk Category Impact Assessment",
+        "Fields": [
+            {
+                "FieldName": "A.5.3-AISystemRiskCategoryImpactAssessment_ID",
+                "FieldLabel": NaN,
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "Regulatory Compliance Risk - Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.",
+                "FieldLabel": "1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).\n2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).\n3. Contracts or usage agreements define legal obligations of AI use.\n4. Independent audits or internal reviews confirm AI compliance status.",
+                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+            },
+            {
+                "FieldName": "IT Resilience Risk - Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.",
+                "FieldLabel": "1. AI hosting environments include SLAs and availability monitoring.\n2. Disaster recovery and retraining strategies are defined.\n3. Model artifacts and datasets are backed up securely.\n4. Runbooks and fallback processes exist for critical AI workflows.",
+                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+            },
+            {
+                "FieldName": "IT Security Risk - Threats to the confidentiality, integrity, or availability of AI systems, including model theft, prompt injection, or malicious model updates.",
+                "FieldLabel": "1. AI code and model repositories are subject to secure SDLC practices.\n2. AI endpoints are penetration tested and hardened.\n3. Model versioning and integrity checks are enforced.\n4. AI security posture is reviewed against frameworks like NIST AI RMF.",
+                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+            },
+            {
+                "FieldName": "Data Management Risk - Risk arising from poor handling of training, validation, or inference data, including lack of lineage or quality controls.",
+                "FieldLabel": "1. AI onboarding requires documentation of data sources, quality, and curation steps.\n2. Access logs and role-based controls are enforced for training data.\n3. Data lifecycle policies cover ingestion to deletion for AI use.\n4. Internal data audits assess how data is governed within the AI lifecycle.",
+                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+            },
+            {
+                "FieldName": "Risk Management Risk - Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.",
+                "FieldLabel": "1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.\n2. Risk register entries are created for each AI use case.\n3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.\n4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
+                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+            },
+            {
+                "FieldName": "Data Security Risk - Risk of unauthorized access to model training data, inference data, or outputs containing sensitive or proprietary information.",
+                "FieldLabel": "1. Training data is encrypted at rest and in transit.\n2. Access controls are enforced at dataset and model level.\n3. Model outputs are reviewed for potential data leakage.\n4. Third-party assessments validate data security in AI systems.",
+                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+            },
+            {
+                "FieldName": "Data Protection Risk - Risk of non-compliance with personal data protection laws in training or deploying AI systems that process personal/sensitive data.",
+                "FieldLabel": "1. Data protection impact assessments (DPIAs) are mandatory for personal-data-using AI.\n2. Data minimization and anonymization techniques are applied before model training.\n3. Onboarding includes geographic mapping of data storage and processing.\n4. AI-specific privacy policies and consent mechanisms are documented.",
+                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+            },
+            {
+                "FieldName": "Social Impact Risk - ",
+                "FieldLabel": NaN,
+                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+            }
+        ]
+    },
+    "Define the complete inventory of all required resources.": {
+        "WebFormTitle": "AI Systems Resources",
+        "Fields": [
+            {
+                "FieldName": "A.4.2-ResourcesForAISystems_ID",
+                "FieldLabel": NaN,
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "AI System Components - System architecture diagrams",
+                "FieldLabel": "System architecture diagrams",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "AI System Components - Data flow diagrams",
+                "FieldLabel": "Data flow diagrams",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    "Define the software and tools usd by the AI system.": {
+        "WebFormTitle": "AI Systems Software and Tooling Resources",
+        "Fields": [
+            {
+                "FieldName": "A.4.2-ResourcesForAISystemsTooling_ID",
+                "FieldLabel": NaN,
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "A.4.2-ResourcesForAISystems_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
+            },
+            {
+                "FieldName": "Tooling Resources - Tool Name",
+                "FieldLabel": "Name of the software, library, or framework.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Tooling Resources - Version(s)",
+                "FieldLabel": "Specific version(s) required or planned for use.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Tooling Resources - Category",
+                "FieldLabel": "Type of tool (e.g., Programming Language, IDE, Data Processing, ML Framework, Version Control, Deployment).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Tooling Resources - Purpose/Use Case in Project",
+                "FieldLabel": "How this tool will be used in the AI system's lifecycle.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Tooling Resources - Vendor/Provider",
+                "FieldLabel": "Manufacturer or main distributor of the tool (if applicable).",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    "Define the computing resources used by the AI system": {
+        "WebFormTitle": "AI Systems Computing Resources",
+        "Fields": [
+            {
+                "FieldName": "A.4.2-ResourcesForAISystemsComputing_ID",
+                "FieldLabel": NaN,
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "A.4.2-ResourcesForAISystems_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
+            },
+            {
+                "FieldName": "System & Computing Resources - Resource Name/Type",
+                "FieldLabel": "Descriptive name (e.g., Dev Workstation, ML Training Cluster, Inference API Server, Data Lake Storage).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "System & Computing Resources - Lifecycle Phase(s) Supported",
+                "FieldLabel": "Which parts of the AI lifecycle this resource supports (e.g., Development, Training, Testing, Staging, Production, Monitoring).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "System & Computing Resources - Resource Category",
+                "FieldLabel": "On-Premise Hardware, Cloud Service (IaaS, PaaS, SaaS).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "System & Computing Resources - Provider (if Cloud/Vendor)",
+                "FieldLabel": "e.g., AWS, Azure, GCP, Dell, NVIDIA.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "System & Computing Resources - Service/Model (if applicable)",
+                "FieldLabel": "Specific cloud service (e.g., EC2, S3, Azure ML, Vertex AI) or hardware model.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "System & Computing Resources - IPAddress",
+                "FieldLabel": NaN,
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Human Resources - AI system design, development, and maintenance",
+                "FieldLabel": "AI system design, development, and maintenance",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Human Resources - Third-party collaborators",
+                "FieldLabel": "Third-party collaborators",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    "Define the data resources used by the AI system": {
+        "WebFormTitle": "AI Systems Data Resources",
+        "Fields": [
+            {
+                "FieldName": "A.4.2-ResourcesForAISystemsData_ID",
+                "FieldLabel": NaN,
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "A.4.2-ResourcesForAISystems_ID",
+                "FieldLabel": NaN,
+                "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
+            },
+            {
+                "FieldName": "Data Resources - Dataset Name",
+                "FieldLabel": "Common or descriptive name of the dataset.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Resources - Description",
+                "FieldLabel": "Brief overview of the dataset's content, origin, and general purpose.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Resources - Source",
+                "FieldLabel": "Where the data originates from (e.g., internal database, third-party vendor, public repository, synthetic generation).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Resources - Intended Use",
+                "FieldLabel": "Specific purpose(s) in the AI lifecycle (e.g., training, validation, testing, fine-tuning, specific model).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Resources - Data Type(s)",
+                "FieldLabel": "Main types of data contained (e.g., numerical, categorical, text, image, time-series).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Resources - Format",
+                "FieldLabel": "File format or storage system (e.g., CSV, JSON, Parquet, SQL DB, ImageNet format).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Resources - Approximate Size",
+                "FieldLabel": "Estimated size (e.g., number of records, GB, TB).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Resources - Access Method/Location",
+                "FieldLabel": "How the data can be accessed (e.g., S3 bucket path, API endpoint, database query, shared drive).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Resources - Owner/Custodian",
+                "FieldLabel": "Person or team responsible for the data.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Characteristics - Legal Review Complete?",
+                "FieldLabel": "Yes / No \u2014 Is data usage legally approved?",
+                "FieldType": "Yes/No"
+            },
+            {
+                "FieldName": "Data Characteristics - Ethical Constraints",
+                "FieldLabel": "Are there ethical concerns or usage limitations? (e.g., consent, fairness)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Characteristics - Data Sharing Agreements",
+                "FieldLabel": "Any contracts, licenses, or documented terms in place?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Characteristics - De-identification Techniques",
+                "FieldLabel": "Techniques applied to protect privacy (e.g., masking, hashing, tokenization)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Characteristics - Data Categorization",
+                "FieldLabel": "Training data/Validation data/Test data/Production data",
+                "FieldType": "Training data/Validation data/Test data/Production data"
+            },
+            {
+                "FieldName": "Data Characteristics - Data Labeling",
+                "FieldLabel": NaN,
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Characteristics - Retention schedules",
+                "FieldLabel": "Retention schedules based on legal and operational requirements.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Characteristics - Secure methods ",
+                "FieldLabel": "Secure methods for disposing of obsolete or redundant data. ",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Accuracy",
+                "FieldLabel": "Correctness of data against true values or a trusted source.\n - >95% (example, adjust as needed)",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Completeness",
+                "FieldLabel": "Percentage of non-null values in key fields; all critical information present.\n - No nulls in essential fields; >98% completeness for important fields.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Validity",
+                "FieldLabel": "Data conforms to a defined schema, format, type, and range.\n - 100% schema match; all values within predefined valid ranges/formats.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Consistency",
+                "FieldLabel": "Logical data relationships hold true within the dataset and across related datasets; no contradictory information.\n - No logical contradictions; <1% inconsistency in defined relationships.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Representativeness",
+                "FieldLabel": "Key population segments (especially those relevant to fairness) are adequately covered and reflect the target population.\n - Distribution of key segments aligns with known population or is explicitly justified.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Duplication",
+                "FieldLabel": "Absence of redundant records or data entries.\n - e.g., <1% duplicates for critical entities.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Timeliness/Recency",
+                "FieldLabel": "Data is sufficiently up-to-date for the intended purpose.\n - Data updated within [X period, e.g., 24 hours] of events.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Source Traceability",
+                "FieldLabel": "Can origin be verified (Yes/No)?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Versioning Applied?",
+                "FieldLabel": "Git / DVC / Manual",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Last Modified",
+                "FieldLabel": "yyyy-mm-dd",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Change Log Ref",
+                "FieldLabel": "Link or ID",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Retention Policy",
+                "FieldLabel": "e.g., Retain 5 yrs",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Provenance Status",
+                "FieldLabel": "Tracked / Not Tracked",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Quality Requirements (A.7) - Synthetic Data Created?",
+                "FieldLabel": "Yes / No \u2014 If yes, describe method in notes",
+                "FieldType": "Dropdown box with values: Yes/No"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Masking",
+                "FieldLabel": "Replacing parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Tokenization",
+                "FieldLabel": "Replacing a sensitive data element with a non-sensitive equivalent, referred to as a \"token.\" The original data is stored in a secure vault.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Hashing",
+                "FieldLabel": "Using a cryptographic function to convert sensitive data into a fixed-size string of characters. It's a one-way process.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Generalization",
+                "FieldLabel": "Reducing the precision of data. For example, changing a specific age ('34') to an age range ('30-40') or a full date of birth to just the year.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Access Control & Governance - Data Segregation",
+                "FieldLabel": "Creating physically or logically separate data stores for sensitive information, with strict access controls.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Access Control & Governance - Attribute-Based Access Control",
+                "FieldLabel": "Applying rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Data Minimization - Feature Pruning",
+                "FieldLabel": "Actively removing any data fields or columns that are not strictly necessary for the AI model's purpose.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Data Minimization - Row (Sample) Reduction",
+                "FieldLabel": "Removing records of individuals who have not given consent for their data to be used for AI training.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Quality & Integrity (Post-Anonymization) - Integrity Checks",
+                "FieldLabel": "After de-identification, verifying that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Handling Missing Values",
+                "FieldLabel": "Deciding on a strategy for empty or null fields, such as filling them with a mean/median/mode, or removing the row/column.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Correcting Inaccuracies",
+                "FieldLabel": "Identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000\u00b0C').",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Removing Duplicates",
+                "FieldLabel": "Identifying and deleting redundant records from the dataset.",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.": {
+        "WebFormTitle": "AI System Documentation and User Information",
+        "Fields": [
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Transformation & Formatting - Standardization",
+                "FieldLabel": "Ensuring data is in a consistent format (e.g., converting all dates to 'YYYY-MM-DD', standardizing units of measurement).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Transformation & Formatting - Normalization / Scaling",
+                "FieldLabel": "Rescaling numeric features to a common range (e.g., 0 to 1) to prevent features with large values from dominating the learning process.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Transformation & Formatting - Encoding Categorical Data",
+                "FieldLabel": "Converting non-numeric labels or categories into a numerical format (e.g., 'Red' -> 1, 'Green' -> 2, or using one-hot encoding).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Feature Engineering - Creating New Features",
+                "FieldLabel": "Deriving new, informative features from existing data (e.g., creating 'day_of_week' from a timestamp).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Feature Engineering - Aggregation & Summarization",
+                "FieldLabel": "Combining multiple data points into a summary statistic (e.g., calculating the average monthly rainfall from daily records).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Relevance & Suitability - Source Provenance Check",
+                "FieldLabel": "Even if public, documenting the original source, its license, and any known biases or limitations.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Relevance & Suitability - Relevance Filtering",
+                "FieldLabel": "Removing data that, while public, is irrelevant to the problem the AI system is designed to solve.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Incident Communication Plan (A.8.4) - Data Breach",
+                "FieldLabel": "Unintended exposure of training data",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Incident Communication Plan (A.8.4) - Model Misuse",
+                "FieldLabel": "AI model used outside intended scope",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Incident Communication Plan (A.8.4) - Model Failure",
+                "FieldLabel": "False predictions causing harm",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Incident Communication Plan (A.8.4) - Regulatory Trigger",
+                "FieldLabel": "New legal obligations",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    "Establish a process to manage all stakeholder relationships, ensuring that responsibilities are clearly allocated, supplier activities align with internal AI policies, and customer needs are fully considered.": {
+        "WebFormTitle": "Third-Party and Customer Relationships",
+        "Fields": [
+            {
+                "FieldName": "A.10-Third-PartyAndCustomerRelationships_ID",
+                "FieldLabel": NaN,
+                "FieldType": "Auto generated number"
+            },
+            {
+                "FieldName": "Functional Requirement - Inputs - Party / Stakeholder Name:",
+                "FieldLabel": "[e.g., End-Users (Marketing Dept), ACME Corp (Data Supplier), etc.]",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Functional Requirement - Inputs - Party Type:",
+                "FieldLabel": "Select one: Customer/User, Supplier/Partner, Internal Team, Regulator",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Functional Requirement - Inputs - Primary Point of Contact:",
+                "FieldLabel": "[Name, Title, Email]",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Functional Requirement - Inputs - General Description of Involvement:",
+                "FieldLabel": "[Briefly describe this party's relationship to the AI system.]",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements - Explainability / Transparency - Customer's Needs & Expectations:",
+                "FieldLabel": "Describe the primary needs this customer group has regarding the AI system.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements - Explainability / Transparency - (Evidence for A.10.4): Intended Use of the AI System",
+                "FieldLabel": "How is this customer group expected to interact with and use the AI system?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements - Explainability / Transparency - Assumed Technical Capabilities:",
+                "FieldLabel": "Describe the expected technical skills and understanding of this customer group.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements - Explainability / Transparency - Expectations for Transparency:",
+                "FieldLabel": "What information does this customer need to trust and operate the system?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Non-Functional Requirements - Explainability / Transparency - Responsibilities",
+                "FieldLabel": "What are the customers responsibilites to ensure the AI system operates as expected.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Social Scoring by Public Authorities - Description of Product / Service:",
+                "FieldLabel": "Detail the specific products, services, or platforms this supplier provides.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Social Scoring by Public Authorities - (Evidence for A.10.3): Requirements for this Supplier",
+                "FieldLabel": "List the specific requirements for this supplier (e.g., data quality, security).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Social Scoring by Public Authorities - Evaluation & Selection Process:",
+                "FieldLabel": "Describe the process used to evaluate and select this supplier.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Social Scoring by Public Authorities - Alignment with AI Policies:",
+                "FieldLabel": "Confirm and describe how the supplier's policies align with yours.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Social Scoring by Public Authorities - Responsibilities",
+                "FieldLabel": "What are the suppliers responsibilites to ensure the AI system operates as expected.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "System & Data Design Documents - System Architecture Diagram:",
+                "FieldLabel": "A visual chart showing all the major components (e.g., data pipelines, APIs, model serving engine, user interface) and how they interact.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "System & Data Design Documents - Data Preprocessing and Transformation Logic:",
+                "FieldLabel": "A detailed description of all steps taken to clean, filter, augment, and transform the data before it's used for training. This is critical for reproducibility.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "System & Data Design Documents - Model Specification:",
+                "FieldLabel": "Details the type of model chosen (e.g., logistic regression, convolutional neural network), the rationale for choosing it over others, and its key parameters.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Job Preservation",
+                "FieldLabel": "How does design choices support responsible AI objective: Assess and mitigate potential negative impacts of the AI system on job roles and support workforce adaptation.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Fairness",
+                "FieldLabel": "How does design choices support responsible AI objective: Ensure model performance is consistent and equitable across relevant demographic groups (e.g., age, gender, ethnicity).",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Transparency",
+                "FieldLabel": "How does design choices support responsible AI objective: Provide clear, understandable, and timely explanations to users and stakeholders for AI system decisions and operations.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Accountability",
+                "FieldLabel": "How does design choices support responsible AI objective: Clearly assign ownership and responsibility for AI system outputs, decisions, and errors.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Safety",
+                "FieldLabel": "How does design choices support responsible AI objective: Prevent harmful outcomes to individuals or property resulting from the AI system's operation, particularly in safety-critical contexts.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Privacy",
+                "FieldLabel": "How does design choices support responsible AI objective: Protect personal data processed by the AI system, ensure confidentiality, and avoid unauthorized re-identification.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Human Oversight",
+                "FieldLabel": "How does design choices support responsible AI objective: Ensure appropriate human involvement and intervention, especially for high-risk decisions or unexpected AI system behavior.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity (New)",
+                "FieldLabel": "How does design choices support responsible AI objective: Ensure the AI system meets documented accuracy levels, is resilient to attacks and faults, and includes adequate cybersecurity protections, as required by EU AI Act Article 15.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Customer Needs & Expectations",
+                "FieldLabel": "How does design choices support responsible AI objective: Ensure the AI system meets the stated needs of the customer and manage expectations through clear communication of its capabilities and limitations.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "Responsible AI Objectives (A.9.3) - Supplier Alignment & Requirements",
+                "FieldLabel": "How does design choices support responsible AI objective: Ensure that third-party components, data, or services used in the AI system meet the organization's contractual and responsible AI obligations.",
+                "FieldType": "TextBox"
+            }
+        ]
+    }
+};
+    // --- END OF EMBEDDED DATA ---
+
+
     document.addEventListener('DOMContentLoaded', () => {
-        // Fetch the external JSON data
-        fetch('ai_onboarding_procedure_data.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(webappData => {
-                // All the logic now runs inside this 'then' block
-                const formContainer = document.getElementById('form-container');
-                const nextBtn = document.getElementById('next-btn');
-                const downloadBtn = document.getElementById('download-btn');
-                const mainTitle = document.getElementById('main-title');
+        const formContainer = document.getElementById('form-container');
+        const nextBtn = document.getElementById('next-btn');
+        const downloadBtn = document.getElementById('download-btn');
+        const mainTitle = document.getElementById('main-title');
 
-                const capturedData = {};
-                const procedureSteps = Object.keys(webappData);
-                let currentStepIndex = 0;
+        const capturedData = {};
+        const procedureSteps = Object.keys(webappData);
+        let currentStepIndex = 0;
 
-                function sanitizeForId(text) {
-                    if (typeof text !== 'string') return '';
-                    return text.replace(/[^a-zA-Z0-9_]/g, '_');
-                }
+        function sanitizeForId(text) {
+            if (typeof text !== 'string') return '';
+            return text.replace(/[^a-zA-Z0-9_]/g, '_');
+        }
 
-                function renderCurrentStep() {
-                    const stepKey = procedureSteps[currentStepIndex];
-                    const stepData = webappData[stepKey];
-                    
-                    if (!stepData) {
-                        mainTitle.textContent = "Error";
-                        formContainer.innerHTML = "<p>Could not find step data. Please check the data source.</p>";
-                        return;
-                    }
+        function renderCurrentStep() {
+            const stepKey = procedureSteps[currentStepIndex];
+            const stepData = webappData[stepKey];
+            
+            if (!stepData) {
+                mainTitle.textContent = "Error";
+                formContainer.innerHTML = "<p>Could not find step data. Please check the data source.</p>";
+                return;
+            }
 
-                    mainTitle.textContent = stepData.WebFormTitle || "Procedure Step";
-                    formContainer.innerHTML = ''; 
+            mainTitle.textContent = stepData.WebFormTitle || "Procedure Step";
+            formContainer.innerHTML = ''; 
 
-                    const formStepDiv = document.createElement('div');
-                    formStepDiv.className = 'form-step';
+            const formStepDiv = document.createElement('div');
+            formStepDiv.className = 'form-step';
 
-                    if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
-                        const note = document.createElement('p');
-                        note.textContent = "This is a procedural note or a decision point. Click 'Next' to continue.";
-                        formStepDiv.appendChild(note);
-                    } else {
-                        stepData.Fields.forEach(field => {
-                            if (!field || !field.FieldName) return;
-                            const fieldDiv = document.createElement('div');
-                            fieldDiv.className = 'form-field';
-                            const sanitizedId = sanitizeForId(field.FieldName);
+            if (!stepData.Fields || stepData.Fields.length === 0) {
+                 const note = document.createElement('p');
+                 note.textContent = "This is a procedural note or a decision point. Click 'Next' to continue.";
+                 formStepDiv.appendChild(note);
+            } else {
+                stepData.Fields.forEach(field => {
+                    if (!field) return;
+                    const fieldDiv = document.createElement('div');
+                    fieldDiv.className = 'form-field';
+                    const sanitizedId = sanitizeForId(field.FieldName);
 
-                            if (field.FieldType === 'Auto generated number') {
-                                const label = document.createElement('label');
-                                label.textContent = field.FieldLabel + ': ';
-                                const span = document.createElement('span');
-                                span.className = 'auto-generated-label';
-                                const uniqueId = 'AutoGen_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
-                                span.textContent = uniqueId;
-                                fieldDiv.appendChild(label);
-                                fieldDiv.appendChild(span);
-                                capturedData[field.FieldName] = uniqueId;
-                            } else if (field.FieldType === 'TextBox') {
-                                //const label = document.createElement('label');
-                                //label.setAttribute('for', sanitizedId);
-                                //label.textContent = field.FieldLabel;
-                                const input = document.createElement('textarea');
-                                input.id = sanitizedId;
-                                input.name = sanitizedId;
-                                input.textContent = field.FieldLabel;
-                                input.rows = 3;
-                                fieldDiv.appendChild(label);
-                                fieldDiv.appendChild(input);
-                            } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
-                                const label = document.createElement('label');
-                                label.setAttribute('for', sanitizedId);
-                                label.textContent = field.FieldLabel;
-                                const select = document.createElement('select');
-                                select.id = sanitizedId;
-                                select.name = sanitizedId;
-                                
-                                const optionsString = field.FieldType.split(':')[1]?.trim() || '';
-                                const options = optionsString.split('/');
-                                
-                                options.forEach(optionText => {
-                                    const option = document.createElement('option');
-                                    option.value = optionText.trim();
-                                    option.textContent = optionText.trim();
-                                    select.appendChild(option);
-                                });
-                                
-                                fieldDiv.appendChild(label);
-                                fieldDiv.appendChild(select);
-                            }
-                            formStepDiv.appendChild(fieldDiv);
+                    if (field.FieldType === 'Auto generated number') {
+                        const label = document.createElement('label');
+                        label.textContent = field.FieldLabel + ': ';
+                        const span = document.createElement('span');
+                        span.className = 'auto-generated-label';
+                        const uniqueId = 'AutoGen_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+                        span.textContent = uniqueId;
+                        fieldDiv.appendChild(label);
+                        fieldDiv.appendChild(span);
+                        capturedData[field.FieldName] = uniqueId;
+                    } else if (field.FieldType === 'TextBox') {
+                        const label = document.createElement('label');
+                        label.setAttribute('for', sanitizedId);
+                        label.textContent = field.FieldLabel;
+                        const input = document.createElement('textarea');
+                        input.id = sanitizedId;
+                        input.name = sanitizedId;
+                        input.rows = 3;
+                        fieldDiv.appendChild(label);
+                        fieldDiv.appendChild(input);
+                    } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
+                        const label = document.createElement('label');
+                        label.setAttribute('for', sanitizedId);
+                        label.textContent = field.FieldLabel;
+                        const select = document.createElement('select');
+                        select.id = sanitizedId;
+                        select.name = sanitizedId;
+                        
+                        const optionsString = field.FieldType.split(':')[1]?.trim() || '';
+                        const options = optionsString.split('/');
+                        
+                        options.forEach(optionText => {
+                            const option = document.createElement('option');
+                            option.value = optionText.trim();
+                            option.textContent = optionText.trim();
+                            select.appendChild(option);
                         });
+                        
+                        fieldDiv.appendChild(label);
+                        fieldDiv.appendChild(select);
                     }
-                    formContainer.appendChild(formStepDiv);
-                }
+                    formStepDiv.appendChild(fieldDiv);
+                });
+            }
+            formContainer.appendChild(formStepDiv);
+        }
 
-                nextBtn.addEventListener('click', () => {
-                    const currentStepKey = procedureSteps[currentStepIndex];
-                    const stepData = webappData[currentStepKey];
+        nextBtn.addEventListener('click', () => {
+            const currentStepKey = procedureSteps[currentStepIndex];
+            const stepData = webappData[currentStepKey];
 
-                    if (stepData && stepData.Fields) {
-                        stepData.Fields.forEach(field => {
-                            if (field && field.FieldName && field.FieldType !== 'Auto generated number') {
-                                const sanitizedId = sanitizeForId(field.FieldName);
-                                const inputElement = document.getElementById(sanitizedId);
-                                if (inputElement) {
-                                    capturedData[field.FieldName] = inputElement.value;
-                                }
-                            }
-                        });
-                    }
-
-                    currentStepIndex++;
-                    if (currentStepIndex < procedureSteps.length) {
-                        renderCurrentStep();
-                    } else {
-                        formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file containing all your input.</p>';
-                        mainTitle.textContent = "Finished";
-                        nextBtn.style.display = 'none';
-                        downloadBtn.style.display = 'block';
+            if (stepData && stepData.Fields) {
+                stepData.Fields.forEach(field => {
+                    if (field && field.FieldType !== 'Auto generated number') {
+                        const sanitizedId = sanitizeForId(field.FieldName);
+                        const inputElement = document.getElementById(sanitizedId);
+                        if (inputElement) {
+                            capturedData[field.FieldName] = inputElement.value;
+                        }
                     }
                 });
+            }
 
-                downloadBtn.addEventListener('click', () => {
-                    const jsonData = JSON.stringify(capturedData, null, 4);
-                    const blob = new Blob([jsonData], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'onboarding_documentation.json';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                });
-
-                // Initial render
+            currentStepIndex++;
+            if (currentStepIndex < procedureSteps.length) {
                 renderCurrentStep();
-            })
-            .catch(error => {
-                console.error('Error loading the webapp data:', error);
-                document.getElementById('main-title').textContent = "Error";
-                document.getElementById('form-container').innerHTML = "<p>Failed to load procedure data. Please check the console for errors and ensure 'ai_onboarding_procedure_data.json' is available in the same directory.</p>";
-            });
+            } else {
+                formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file containing all your input.</p>';
+                mainTitle.textContent = "Finished";
+                nextBtn.style.display = 'none';
+                downloadBtn.style.display = 'block';
+            }
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            const jsonData = JSON.stringify(capturedData, null, 4);
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'onboarding_documentation.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // Initial render
+        renderCurrentStep();
     });
     </script>
 </body>
