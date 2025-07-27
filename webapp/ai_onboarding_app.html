@@ -10,6 +10,7 @@
     <div class="container">
         <h1 id="main-title">Loading...</h1>
         <div id="form-container"></div>
+        <button id="prev-btn" style="display: none;">Previous</button>
         <button id="next-btn">Next</button>
         <button id="download-btn" style="display: none;">Download JSON</button>
     </div>
@@ -29,6 +30,7 @@
                 // ensuring it only runs after the data has been successfully loaded.
                 
                 const formContainer = document.getElementById('form-container');
+                const prevBtn = document.getElementById('prev-btn'); // New Previous Button
                 const nextBtn = document.getElementById('next-btn');
                 const downloadBtn = document.getElementById('download-btn');
                 const mainTitle = document.getElementById('main-title');
@@ -54,21 +56,24 @@
                         return;
                     }
 
+                    // --- Button Visibility Logic ---
+                    prevBtn.style.display = currentStepIndex > 0 ? 'inline-block' : 'none';
+                    nextBtn.style.display = 'inline-block';
+                    downloadBtn.style.display = 'none';
+
                     mainTitle.textContent = stepData.WebFormTitle || "Procedure Step";
                     formContainer.innerHTML = ''; 
 
                     const formStepDiv = document.createElement('div');
                     formStepDiv.className = 'form-step';
 
-                    // Check if the step is a note or a decision point (has no actual fields).
                     if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
                          const note = document.createElement('p');
                          note.textContent = "This is a procedural note or a decision point. Click 'Next' to continue.";
                          formStepDiv.appendChild(note);
                     } else {
-                        // Dynamically create form fields based on the JSON data.
                         stepData.Fields.forEach(field => {
-                            if (!field || !field.FieldName) return; // Skip empty/invalid field objects
+                            if (!field || !field.FieldName) return;
                             
                             const fieldDiv = document.createElement('div');
                             fieldDiv.className = 'form-field';
@@ -79,21 +84,19 @@
                                 label.textContent = field.FieldLabel + ': ';
                                 const span = document.createElement('span');
                                 span.className = 'auto-generated-label';
-                                const uniqueId = 'AutoGen_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+                                // Use existing value if available, otherwise generate new
+                                const uniqueId = capturedData[field.FieldName] || 'AutoGen_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
                                 span.textContent = uniqueId;
                                 fieldDiv.appendChild(label);
                                 fieldDiv.appendChild(span);
-                                capturedData[field.FieldName] = uniqueId; // Pre-capture auto-generated value
+                                capturedData[field.FieldName] = uniqueId;
                             } else if (field.FieldType === 'TextBox') {
-                                //const label = document.createElement('label');
-                                //label.setAttribute('for', sanitizedId);
-                                //label.textContent = field.FieldLabel;
                                 const input = document.createElement('textarea');
                                 input.id = sanitizedId;
                                 input.name = sanitizedId;
                                 input.placeholder = field.FieldLabel;
                                 input.rows = 3;
-                                //fieldDiv.appendChild(label);
+                                input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
                                 const label = document.createElement('label');
@@ -112,7 +115,7 @@
                                     option.textContent = optionText.trim();
                                     select.appendChild(option);
                                 });
-                                
+                                select.value = capturedData[field.FieldName] || options[0].trim(); // Restore captured data
                                 fieldDiv.appendChild(label);
                                 fieldDiv.appendChild(select);
                             }
@@ -122,12 +125,19 @@
                     formContainer.appendChild(formStepDiv);
                 }
 
+                // Event listener for the 'Previous' button.
+                prevBtn.addEventListener('click', () => {
+                    if (currentStepIndex > 0) {
+                        currentStepIndex--;
+                        renderCurrentStep();
+                    }
+                });
+
                 // Event listener for the 'Next' button.
                 nextBtn.addEventListener('click', () => {
                     const currentStepKey = procedureSteps[currentStepIndex];
                     const stepData = webappData[currentStepKey];
 
-                    // Capture data from the current form fields before moving to the next step.
                     if (stepData && stepData.Fields) {
                         stepData.Fields.forEach(field => {
                             if (field && field.FieldName && field.FieldType !== 'Auto generated number') {
@@ -144,10 +154,10 @@
                     if (currentStepIndex < procedureSteps.length) {
                         renderCurrentStep();
                     } else {
-                        // End of the procedure.
                         formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file containing all your input.</p>';
                         mainTitle.textContent = "Finished";
                         nextBtn.style.display = 'none';
+                        prevBtn.style.display = 'none'; // Hide on final screen
                         downloadBtn.style.display = 'block';
                     }
                 });
@@ -170,7 +180,6 @@
                 renderCurrentStep();
             })
             .catch(error => {
-                // Handle errors during the fetch operation (e.g., file not found).
                 console.error('Error loading the webapp data:', error);
                 mainTitle.textContent = "Error";
                 formContainer.innerHTML = "<p>Failed to load procedure data. Please check the console for errors and ensure 'webappData.json' is available in the same directory.</p>";
