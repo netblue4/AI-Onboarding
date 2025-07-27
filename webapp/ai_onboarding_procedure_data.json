@@ -94,47 +94,42 @@
         "Fields": [
             {
                 "FieldName": "Subliminal Manipulation",
-                "FieldLabel": "<b>Subliminal Manipulation</b> Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?",
+                "FieldLabel": "Subliminal Manipulation: Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
                 "FieldName": "Exploitation of Vulnerabilities",
-                "FieldLabel": "Does the AI system exploit vulnerabilities of a specific group (e.g., due to age, physical or mental disability, social or economic situation) to materially distort their behavior in a way likely to cause harm to that person or another?",
+                "FieldLabel": "Exploitation of Vulnerabilities: Does the AI system exploit vulnerabilities of a specific group (e.g., due to age, physical or mental disability, social or economic situation) to materially distort their behavior in a way likely to cause harm to that person or another?",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
                 "FieldName": "Social Scoring by Public Authorities",
-                "FieldLabel": "Is the AI system used by public authorities for evaluating or classifying the trustworthiness of natural persons based on their social behavior or personal characteristics, leading to detrimental or unfavorable treatment?",
+                "FieldLabel": "Social Scoring: Is the AI system used by public authorities for evaluating or classifying the trustworthiness of natural persons based on their social behavior or personal characteristics, leading to detrimental or unfavorable treatment?",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
                 "FieldName": "Real-time Remote Biometric Identification (Law Enforcement, Public Spaces)",
-                "FieldLabel": "Is the AI system used by law enforcement for real-time remote biometric identification of natural persons in publicly accessible spaces? (Note: Very limited exceptions exist)",
+                "FieldLabel": "Biometric Identification: Is the AI system used by law enforcement for real-time remote biometric identification of natural persons in publicly accessible spaces? (Note: Very limited exceptions exist)",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
                 "FieldName": "Emotion Inference (Workplace/Education)",
-                "FieldLabel": "Does the AI system infer emotions of natural persons in the context of workplaces or educational institutions?",
+                "FieldLabel": "Emotion Inference: Does the AI system infer emotions of natural persons in the context of workplaces or educational institutions?",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
                 "FieldName": "Biometric Categorization (Sensitive Attributes)",
-                "FieldLabel": "Does the AI system use biometric data to categorize natural persons based on sensitive attributes like race, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation?",
+                "FieldLabel": "Biometric Categorization: Does the AI system use biometric data to categorize natural persons based on sensitive attributes like race, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation?",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
                 "FieldName": "Untargeted Scraping of Facial Images",
-                "FieldLabel": "Does the AI system involve untargeted scraping of facial images from the internet or CCTV footage to create or expand facial recognition databases?",
+                "FieldLabel": "Untargeted Scraping: Does the AI system involve untargeted scraping of facial images from the internet or CCTV footage to create or expand facial recognition databases?",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
                 "FieldName": "Risk Assessment of Criminal Offenses (Profiling)",
-                "FieldLabel": "Does the AI system assess the risk of a natural person committing a criminal offense based solely on profiling or assessment of their personality traits or characteristics?",
-                "FieldType": "Dropdown box with values: Yes/No"
-            },
-            {
-                "FieldName": "Is Prohibited",
-                "FieldLabel": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker: https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
+                "FieldLabel": "Profiling: Does the AI system assess the risk of a natural person committing a criminal offense based solely on profiling or assessment of their personality traits or characteristics?",
                 "FieldType": "Dropdown box with values: Yes/No"
             }
         ]
@@ -143,9 +138,9 @@
         "WebFormTitle": "Decision point",
         "Fields": [
             {
-                "FieldName": null,
-                "FieldLabel": null,
-                "FieldType": null
+                "FieldName": "Is Prohibited",
+                "FieldLabel": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker: https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
+                "FieldType": "Dropdown box with values: Yes/No"
             }
         ]
     },
@@ -217,11 +212,6 @@
     "Conduct a AI System Risk Category Impact Assessment, assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle. And define controls to treat them.": {
         "WebFormTitle": "AI System Risk Category Impact Assessment",
         "Fields": [
-            {
-                "FieldName": "A.5.3-AISystemRiskCategoryImpactAssessment_ID",
-                "FieldLabel": null,
-                "FieldType": "Auto generated number"
-            },
             {
                 "FieldName": "Regulatory Compliance Risk - Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.",
                 "FieldLabel": "1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).\n2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).\n3. Contracts or usage agreements define legal obligations of AI use.\n4. Independent audits or internal reviews confirm AI compliance status.",
