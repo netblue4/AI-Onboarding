@@ -112,13 +112,8 @@
                                         label.setAttribute('for', sanitizedId);
                                         label.textContent = lineText.trim(); // Use the trimmed line of text
                                         
-                                        // If it's the first item in the array (index is 0), make it bold
-                                        if (index === 0) {
-                                            label.classList.add('label-bold');
-                                        }else {
-                                           // Add a class for CSS styling (to make it display on a new line)
-                                            label.classList.add('multiline-label'); 
-                                        }
+                                       // Add a class for CSS styling (to make it display on a new line)
+                                        label.classList.add('multiline-label'); 
                                         
                                         // Add the new label to your container
                                         fieldDiv.appendChild(label);
