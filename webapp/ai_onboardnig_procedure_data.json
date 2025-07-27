@@ -44,7 +44,7 @@
             },
             {
                 "FieldName": "Functional Requirement (A.6.2.2) - Processing Logic",
-                "FieldLabel": "What\u2019s the core logic or model behavior expected?",
+                "FieldLabel": "What’s the core logic or model behavior expected?",
                 "FieldType": "TextBox"
             },
             {
@@ -84,32 +84,32 @@
             },
             {
                 "FieldName": "AISystemProhibited_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table AISystemProhibited"
             },
             {
                 "FieldName": "AISystemSignificanceQuestionnaire_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table AISystemSignificanceQuestionnaire"
             },
             {
                 "FieldName": "A.5.3-AISystemRiskCategoryImpactAssessment_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table A.5.3-AISystemRiskCategoryImpactAssessment"
             },
             {
                 "FieldName": "A.4.2-ResourcesForAISystems_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
             },
             {
                 "FieldName": "A.8.2-SystemDocumentationAndUserInformation_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table A.8.2-SystemDocumentationAndUserInformation"
             },
             {
                 "FieldName": "A.10-Third-PartyAndCustomerRelationships_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table A.10-Third-PartyAndCustomerRelationships"
             }
         ]
@@ -119,7 +119,7 @@
         "Fields": [
             {
                 "FieldName": "AISystemProhibited_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Auto generated number"
             },
             {
@@ -170,12 +170,12 @@
         ]
     },
     "If the system is Prohibited then Exit else continue to next step.": {
-        "WebFormTitle": NaN,
+        "WebFormTitle": null,
         "Fields": [
             {
-                "FieldName": NaN,
-                "FieldLabel": NaN,
-                "FieldType": NaN
+                "FieldName": null,
+                "FieldLabel": null,
+                "FieldType": null
             }
         ]
     },
@@ -184,7 +184,7 @@
         "Fields": [
             {
                 "FieldName": "AISystemSignificanceQuestionnaire_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Auto generated number"
             },
             {
@@ -239,7 +239,7 @@
         "Fields": [
             {
                 "FieldName": "A.5.3-AISystemRiskCategoryImpactAssessment_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Auto generated number"
             },
             {
@@ -279,7 +279,7 @@
             },
             {
                 "FieldName": "Social Impact Risk - ",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Dropdown box with values: Applicable/Not Applicable"
             }
         ]
@@ -289,7 +289,7 @@
         "Fields": [
             {
                 "FieldName": "A.4.2-ResourcesForAISystems_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Auto generated number"
             },
             {
@@ -309,12 +309,12 @@
         "Fields": [
             {
                 "FieldName": "A.4.2-ResourcesForAISystemsTooling_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Auto generated number"
             },
             {
                 "FieldName": "A.4.2-ResourcesForAISystems_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
             },
             {
@@ -349,12 +349,12 @@
         "Fields": [
             {
                 "FieldName": "A.4.2-ResourcesForAISystemsComputing_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Auto generated number"
             },
             {
                 "FieldName": "A.4.2-ResourcesForAISystems_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
             },
             {
@@ -384,7 +384,7 @@
             },
             {
                 "FieldName": "System & Computing Resources - IPAddress",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "TextBox"
             },
             {
@@ -404,12 +404,12 @@
         "Fields": [
             {
                 "FieldName": "A.4.2-ResourcesForAISystemsData_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Auto generated number"
             },
             {
                 "FieldName": "A.4.2-ResourcesForAISystems_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
             },
             {
@@ -459,7 +459,7 @@
             },
             {
                 "FieldName": "Data Characteristics - Legal Review Complete?",
-                "FieldLabel": "Yes / No \u2014 Is data usage legally approved?",
+                "FieldLabel": "Yes / No — Is data usage legally approved?",
                 "FieldType": "Yes/No"
             },
             {
@@ -484,7 +484,7 @@
             },
             {
                 "FieldName": "Data Characteristics - Data Labeling",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "TextBox"
             },
             {
@@ -564,7 +564,7 @@
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Synthetic Data Created?",
-                "FieldLabel": "Yes / No \u2014 If yes, describe method in notes",
+                "FieldLabel": "Yes / No — If yes, describe method in notes",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
@@ -619,7 +619,7 @@
             },
             {
                 "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Correcting Inaccuracies",
-                "FieldLabel": "Identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000\u00b0C').",
+                "FieldLabel": "Identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000°C').",
                 "FieldType": "TextBox"
             },
             {
@@ -694,7 +694,7 @@
         "Fields": [
             {
                 "FieldName": "A.10-Third-PartyAndCustomerRelationships_ID",
-                "FieldLabel": NaN,
+                "FieldLabel": null,
                 "FieldType": "Auto generated number"
             },
             {
