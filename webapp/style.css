@@ -18,6 +18,11 @@ body {
     width: 100%;
     max-width: 800px;
 }
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Pushes buttons to opposite ends */
+    margin-top: 20px; /* Adds some space above the buttons */
+}
 #main-title {
     text-align: center;
     color: #444;
