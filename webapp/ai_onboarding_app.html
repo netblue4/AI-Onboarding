@@ -96,7 +96,7 @@
                                 const input = document.createElement('textarea');
                                 input.id = sanitizedId;
                                 input.name = sanitizedId;
-                                input.placeholder = field.FieldLabel.replace(/\n/g, '</br>');
+                                input.placeholder = field.FieldLabel.replace(/\\n/g, '<br>');
                                 input.rows = 3;
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
