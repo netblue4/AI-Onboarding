@@ -101,13 +101,21 @@
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
-                                const label = document.createElement('label');
-                                label.setAttribute('for', sanitizedId);
-                                label.innerHTML = field.FieldLabel; //.replace(/\\n/g, '<br>');
+                                //const label = document.createElement('label');
+                                //label.setAttribute('for', sanitizedId);
+                                //label.innerHTML = field.FieldLabel; //.replace(/\\n/g, '<br>');
+
+                                const multiline = field.FieldLabel.split('/');
+                                multiline.forEach(lineText => {
+                                    const label = document.createElement('label');
+                                    label.setAttribute('for', sanitizedId);
+                                    label.textContent = lineText.trim();
+                                    fieldDiv.appendChild(label);
+                                });
+ 
                                 const select = document.createElement('select');
                                 select.id = sanitizedId;
-                                select.name = sanitizedId;
-                                
+                                select.name = sanitizedId;                                
                                 const optionsString = field.FieldType.split(':')[1]?.trim() || '';
                                 const options = optionsString.split('/');
                                 
@@ -118,7 +126,6 @@
                                     select.appendChild(option);
                                 });
                                 select.value = capturedData[field.FieldName] || options[0].trim(); // Restore captured data
-                                fieldDiv.appendChild(label);
                                 fieldDiv.appendChild(select);
                             }
                             formStepDiv.appendChild(fieldDiv);
