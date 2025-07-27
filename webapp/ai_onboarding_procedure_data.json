@@ -14,7 +14,7 @@
             },
             {
                 "FieldName": "Business Purpose",
-                "FieldLabel": "What specific problem or task does this system address? \\n peterddee",
+                "FieldLabel": "What specific problem or task does this system address?",
                 "FieldType": "TextBox"
             },
             {
