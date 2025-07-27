@@ -20,8 +20,9 @@ body {
 }
 .button-container {
     display: flex;
-    justify-content: space-between; /* Pushes buttons to opposite ends */
-    margin-top: 20px; /* Adds some space above the buttons */
+    justify-content: flex-end; /* Aligns all items to the end (right) */
+    gap: 10px; /* Adds space between the buttons */
+    margin-top: 20px;
 }
 #main-title {
     text-align: center;
