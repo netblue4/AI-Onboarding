@@ -101,19 +101,60 @@
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
-                                const label = document.createElement('label');
-                                label.setAttribute('for', sanitizedId);
-                                label.textContent = field.FieldLabel; 
-                                fieldDiv.appendChild(label);
+                                //const label = document.createElement('label');
+                                //label.setAttribute('for', sanitizedId);
+                                //label.textContent = field.FieldLabel; 
+                                //fieldDiv.appendChild(label);
 
-const multiline = field.FieldLabel.split('||');
-multiline.forEach(lineText => {
-//    const label = document.createElement('label');
-//    label.setAttribute('for', sanitizedId);
-//    label.textContent = lineText.trim();
-//    label.classList.add('multiline-label'); // Add a class for styling
-//    fieldDiv.appendChild(label);
-});
+                                ///const multiline = field.FieldLabel.split('||');
+                                //multiline.forEach(lineText => {    
+                                //    const label = document.createElement('label');
+                                //    label.setAttribute('for', sanitizedId);
+                                //    label.textContent = lineText.trim();
+                                //    label.classList.add('multiline-label'); // Add a class for styling
+                                //    fieldDiv.appendChild(label);
+                                //    fieldDiv.appendChild(document.createElement('br')); 
+                                //});
+
+
+
+
+// Check if FieldLabel exists and is a string
+if (field.FieldLabel && typeof field.FieldLabel === 'string') {
+
+    // Split the label text by the "||" delimiter
+    const multiline = field.FieldLabel.split('||');
+
+    // Loop through each line of text
+    multiline.forEach(lineText => {
+        // Create a new label for each line
+        const label = document.createElement('label');
+        label.setAttribute('for', sanitizedId);
+        label.textContent = lineText.trim(); // Use the trimmed line of text
+
+        // Add a class for CSS styling (to make it display on a new line)
+        label.classList.add('multiline-label'); 
+        
+        // Add the new label to your container
+        fieldDiv.appendChild(label);
+    });
+
+} else {
+    // (Optional) Handle cases where FieldLabel is missing or not text
+    // For example, you could create a single, default label
+    const label = document.createElement('label');
+    label.setAttribute('for', sanitizedId);
+    // Use the FieldName as a fallback, or a default message
+    label.textContent = field.FieldName || 'Label not available'; 
+    fieldDiv.appendChild(label);
+}
+
+
+
+
+
+
+                                
                                 const select = document.createElement('select');
                                 select.id = sanitizedId;
                                 select.name = sanitizedId;                                
