@@ -42,75 +42,50 @@
                 "FieldLabel": "What data will the system take in? (e.g., images, text, logs)",
                 "FieldType": "TextBox"
             },
+        ]
+    },
+     "If the system is Prohibited then Exit else continue to next step.": {
+        "WebFormTitle": "AI system's Functional Requirement (A.6.2.2)",
+        "Fields": [       
             {
-                "FieldName": "Functional Requirement (A.6.2.2) - Processing Logic",
+                "FieldName": "Processing Logic",
                 "FieldLabel": "What’s the core logic or model behavior expected?",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Functional Requirement (A.6.2.2) - Outputs",
+                "FieldName": "Outputs",
                 "FieldLabel": "What should the system produce?",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Functional Requirement (A.6.2.2) - Interaction Model",
+                "FieldName": "Interaction Model",
                 "FieldLabel": "Will it run in the background, have a UI, API, etc.?",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Non-Functional Requirements (A.6.2.2) - Performance",
+                "FieldName": "Performance",
                 "FieldLabel": "Are there any SLA's associated with the AI system?",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Non-Functional Requirements (A.6.2.2) - Security",
+                "FieldName": "Security",
                 "FieldLabel": "Any key security constraints or expectations? (e.g., no internet access, encryption)",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Non-Functional Requirements (A.6.2.2) - Compliance",
+                "FieldName": "Compliance",
                 "FieldLabel": "Are there regulations or policies it must follow? (e.g., GDPR, AI Act)",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Non-Functional Requirements (A.6.2.2) - Explainability & Transparency",
+                "FieldName": "Explainability & Transparency",
                 "FieldLabel": "Must the system justify its outputs? If yes, how?",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Non-Functional Requirements (A.6.2.2) - Bias Considerations",
+                "FieldName": "Bias Considerations",
                 "FieldLabel": "Are there fairness metrics or requirements to meet?",
                 "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "AISystemProhibited_ID",
-                "FieldLabel": null,
-                "FieldType": "One to One Foreign Key relationship to the table AISystemProhibited"
-            },
-            {
-                "FieldName": "AISystemSignificanceQuestionnaire_ID",
-                "FieldLabel": null,
-                "FieldType": "One to One Foreign Key relationship to the table AISystemSignificanceQuestionnaire"
-            },
-            {
-                "FieldName": "A.5.3-AISystemRiskCategoryImpactAssessment_ID",
-                "FieldLabel": null,
-                "FieldType": "One to One Foreign Key relationship to the table A.5.3-AISystemRiskCategoryImpactAssessment"
-            },
-            {
-                "FieldName": "A.4.2-ResourcesForAISystems_ID",
-                "FieldLabel": null,
-                "FieldType": "One to One Foreign Key relationship to the table A.4.2-ResourcesForAISystems"
-            },
-            {
-                "FieldName": "A.8.2-SystemDocumentationAndUserInformation_ID",
-                "FieldLabel": null,
-                "FieldType": "One to One Foreign Key relationship to the table A.8.2-SystemDocumentationAndUserInformation"
-            },
-            {
-                "FieldName": "A.10-Third-PartyAndCustomerRelationships_ID",
-                "FieldLabel": null,
-                "FieldType": "One to One Foreign Key relationship to the table A.10-Third-PartyAndCustomerRelationships"
             }
         ]
     },
@@ -118,13 +93,8 @@
         "WebFormTitle": "AI Act Prohibited Practices Assessment",
         "Fields": [
             {
-                "FieldName": "AISystemProhibited_ID",
-                "FieldLabel": null,
-                "FieldType": "Auto generated number"
-            },
-            {
                 "FieldName": "Subliminal Manipulation",
-                "FieldLabel": "Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?",
+                "FieldLabel": "<b>Subliminal Manipulation</b> Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?",
                 "FieldType": "Dropdown box with values: Yes/No"
             },
             {
@@ -170,7 +140,7 @@
         ]
     },
     "If the system is Prohibited then Exit else continue to next step.": {
-        "WebFormTitle": null,
+        "WebFormTitle": "Decision point",
         "Fields": [
             {
                 "FieldName": null,
@@ -179,14 +149,9 @@
             }
         ]
     },
-    "Determine the AI system's potential impact and sensitivity": {
-        "WebFormTitle": "AI System Significance Questionnaire",
+    "Determine the AI system's Data Sensitivity & Privacy impact": {
+        "WebFormTitle": "AI System Significance Questionnaire - Data Sensitivity & Privacy",
         "Fields": [
-            {
-                "FieldName": "AISystemSignificanceQuestionnaire_ID",
-                "FieldLabel": null,
-                "FieldType": "Auto generated number"
-            },
             {
                 "FieldName": "Data Sensitivity & Privacy - Store",
                 "FieldLabel": "Will the AI system process, store, or interpret any sensitive data (e.g., personal health information (PHI), personally identifiable information (PII) beyond basic contact details, financial data, biometric data, protected class information, classified data)?",
@@ -196,7 +161,12 @@
                 "FieldName": "Data Sensitivity & Privacy - Output",
                 "FieldLabel": "Will the AI system's output directly or indirectly lead to decisions or actions that impact an individual's privacy rights (e.g., surveillance, profiling for targeted advertising, monitoring of online behavior)?",
                 "FieldType": "Dropdown box with values: Yes/No"
-            },
+            }
+        ]
+    },
+    "Determine if the AI system's supports a Critical Business Function": {
+        "WebFormTitle": "AI System Significance Questionnaire - Critical Business Function",
+        "Fields": [
             {
                 "FieldName": "Critical Business Function & Impact - Calculations",
                 "FieldLabel": "Will the AI system perform calculations, make decisions, or provide recommendations that support a critical business function (e.g., fraud detection, credit scoring, medical diagnosis, infrastructure management, legal compliance, safety-critical operations)?",
@@ -206,7 +176,12 @@
                 "FieldName": "Critical Business Function & Impact - Bias",
                 "FieldLabel": "Could a failure, error, or bias in the AI system's operation lead to significant financial loss, reputational damage, legal/regulatory penalties, or harm to individuals (e.g., physical harm, denial of services, unfair treatment)?",
                 "FieldType": "Dropdown box with values: Yes/No"
-            },
+            }
+        ]
+    },
+    "Determine the AI system's Transparency & Human Oversight requirements": {
+        "WebFormTitle": "AI System Significance Questionnaire - Transparency & Human Oversight",
+        "Fields": [            
             {
                 "FieldName": "Transparency & Human Oversight - Oversight",
                 "FieldLabel": "Will the AI system operate with limited or no human oversight/intervention in its decision-making or output generation process for critical functions?",
@@ -216,7 +191,12 @@
                 "FieldName": "Transparency & Human Oversight - Decisions",
                 "FieldLabel": "Is it crucial for the AI system's decisions or outputs to be explainable or interpretable to users, affected individuals, or regulators (e.g., why a loan was denied, why a medical diagnosis was made)?",
                 "FieldType": "Dropdown box with values: Yes/No"
-            },
+            }
+        ]
+    },
+    "Determine the AI system's Novelty & Complexity": {
+        "WebFormTitle": "AI System Significance Questionnaire - Novelty & Complexity",
+        "Fields": [                        
             {
                 "FieldName": "Novelty & Complexity - Technology",
                 "FieldLabel": "Does the AI system utilize novel, cutting-edge, or unproven AI technologies that are new to the organization or the industry?",
