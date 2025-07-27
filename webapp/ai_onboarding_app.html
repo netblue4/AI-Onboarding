@@ -78,12 +78,13 @@
                                 fieldDiv.appendChild(span);
                                 capturedData[field.FieldName] = uniqueId;
                             } else if (field.FieldType === 'TextBox') {
-                                const label = document.createElement('label');
-                                label.setAttribute('for', sanitizedId);
-                                label.textContent = field.FieldLabel;
+                                //const label = document.createElement('label');
+                                //label.setAttribute('for', sanitizedId);
+                                //label.textContent = field.FieldLabel;
                                 const input = document.createElement('textarea');
                                 input.id = sanitizedId;
                                 input.name = sanitizedId;
+                                input.textContent = field.FieldLabel;
                                 input.rows = 3;
                                 fieldDiv.appendChild(label);
                                 fieldDiv.appendChild(input);
