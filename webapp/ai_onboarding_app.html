@@ -10,11 +10,13 @@
     <div class="container">
         <h1 id="main-title">Loading...</h1>
         <div id="form-container"></div>
-        <button id="prev-btn" style="display: none;">Previous</button>
-        <button id="next-btn">Next</button>
-        <button id="download-btn" style="display: none;">Download JSON</button>
-    </div>
 
+        <div class="button-container">
+            <button id="prev-btn" style="display: none;">Previous</button>
+            <button id="next-btn">Next</button>
+            <button id="download-btn" style="display: none;">Download JSON</button>
+        </div>
+    </div>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Fetch the external JSON data from the 'webappData.json' file
