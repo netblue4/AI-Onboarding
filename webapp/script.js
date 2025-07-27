@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
                     const label = document.createElement('label');
                     label.setAttribute('for', sanitizedId);
-                    label.textContent = field.FieldLabel.replace(/\n/g, '<br>');
+                    label.textContent = field.FieldLabel.replace(/\n/g, '</br> jjj');
                     const select = document.createElement('select');
                     select.id = sanitizedId;
                     select.name = sanitizedId;
