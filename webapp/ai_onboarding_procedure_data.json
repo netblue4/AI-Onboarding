@@ -214,7 +214,7 @@
         "Fields": [
             {
                 "FieldName": "Regulatory Compliance Risk - Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.",
-                "FieldLabel": "1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).\n2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).\n3. Contracts or usage agreements define legal obligations of AI use.\n4. Independent audits or internal reviews confirm AI compliance status.",
+                "FieldLabel": "1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).\\n2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).\\n3. Contracts or usage agreements define legal obligations of AI use.\n4. Independent audits or internal reviews confirm AI compliance status.",
                 "FieldType": "Dropdown box with values: Applicable/Not Applicable"
             },
             {
