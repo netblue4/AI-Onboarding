@@ -96,14 +96,21 @@ button:hover {
 #download-btn:hover {
     background-color: #218838;
 }
-/* --- Progress Bar Styles (New) --- */
+/* --- Progress Bar & Counter Styles (New) --- */
+.progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Space between bar and text */
+    margin-bottom: 2rem;
+}
+
 .progress-container {
-    width: 100%;
+    flex-grow: 1; /* Make the bar take up available space */
     background-color: #e0e0e0;
     border-radius: 8px;
-    margin-bottom: 2rem;
-    overflow: hidden; /* Ensures the inner bar has rounded corners */
+    overflow: hidden; 
 }
+
 #progress-bar {
     height: 12px;
     width: 0%; /* Initial width is 0 */
@@ -111,6 +118,7 @@ button:hover {
     border-radius: 8px;
     transition: width 0.4s ease-in-out; /* Smooth transition for width changes */
 }
+
 #progress-text {
     font-size: 0.9rem;
     color: #555;
