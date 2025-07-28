@@ -99,7 +99,6 @@
                                 input.placeholder = field.FieldLabel;
                                 input.rows = 3;
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
-                                input.classList.add('text-area'); 
                                 fieldDiv.appendChild(input);
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
                                 // Check if FieldLabel exists and is a string
