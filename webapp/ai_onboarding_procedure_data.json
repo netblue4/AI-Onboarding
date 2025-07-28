@@ -78,47 +78,47 @@
         "WebFormTitle": "AI Act Prohibited Practices Assessment",
         "Fields": [
             {
-                "FieldName": "Subliminal Manipulation",
+                "FieldName": "Prohibited Practices: Subliminal Manipulation",
                 "FieldLabel": "Subliminal Manipulation||Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Exploitation of Vulnerabilities",
+                "FieldName": "Prohibited Practices: Exploitation of Vulnerabilities",
                 "FieldLabel": "Exploitation of Vulnerabilities||Does the AI system exploit vulnerabilities of a specific group (e.g., due to age, physical or mental disability, social or economic situation) to materially distort their behavior in a way likely to cause harm to that person or another?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Social Scoring by Public Authorities",
+                "FieldName": "Prohibited Practices: Social Scoring by Public Authorities",
                 "FieldLabel": "Social Scoring||Is the AI system used by public authorities for evaluating or classifying the trustworthiness of natural persons based on their social behavior or personal characteristics, leading to detrimental or unfavorable treatment?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Real-time Remote Biometric Identification (Law Enforcement, Public Spaces)",
+                "FieldName": "Prohibited Practices: Real-time Remote Biometric Identification",
                 "FieldLabel": "Biometric Identification||Is the AI system used by law enforcement for real-time remote biometric identification of natural persons in publicly accessible spaces? (Note: Very limited exceptions exist)",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Emotion Inference (Workplace/Education)",
+                "FieldName": "Prohibited Practices: Emotion Inference",
                 "FieldLabel": "Emotion Inference||Does the AI system infer emotions of natural persons in the context of workplaces or educational institutions?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Biometric Categorization (Sensitive Attributes)",
+                "FieldName": "Prohibited Practices: Biometric Categorization",
                 "FieldLabel": "Biometric Categorization||Does the AI system use biometric data to categorize natural persons based on sensitive attributes like race, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Untargeted Scraping of Facial Images",
+                "FieldName": "Prohibited Practices: Untargeted Scraping of Facial Images",
                 "FieldLabel": "Untargeted Scraping||Does the AI system involve untargeted scraping of facial images from the internet or CCTV footage to create or expand facial recognition databases?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Risk Assessment of Criminal Offenses (Profiling)",
+                "FieldName": "Prohibited Practices: Risk Assessment of Criminal Offenses (Profiling)",
                 "FieldLabel": "Profiling||Does the AI system assess the risk of a natural person committing a criminal offense based solely on profiling or assessment of their personality traits or characteristics?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "AI system is Prohibited",
+                "FieldName": "Prohibited Practices: AI system is Prohibited",
                 "FieldLabel": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.||For a more detailed assessment, you can refer to the EU AI Act Compliance Checker: https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
                 "FieldType": "Dropdown box with values:/Yes/No"
             }
@@ -138,12 +138,12 @@
         "WebFormTitle": "AI System Significance Questionnaire - Data Sensitivity & Privacy",
         "Fields": [
             {
-                "FieldName": "Data Sensitivity & Privacy - Process, store, or interpret any sensitive data",
+                "FieldName": "AI System Significance: Data Sensitivity & Privacy - Process, store, or interpret any sensitive data",
                 "FieldLabel": "Will the AI system process, store, or interpret any sensitive data (e.g., personal health information (PHI), personally identifiable information (PII) beyond basic contact details, financial data, biometric data, protected class information, classified data)?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Data Sensitivity & Privacy - Output directly or indirectly lead to decisions or actions that impact an individual's privacy rights",
+                "FieldName": "AI System Significance: Data Sensitivity & Privacy - Output directly or indirectly lead to decisions or actions that impact an individual's privacy rights",
                 "FieldLabel": "Will the AI system's output directly or indirectly lead to decisions or actions that impact an individual's privacy rights (e.g., surveillance, profiling for targeted advertising, monitoring of online behavior)?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             }
@@ -153,12 +153,12 @@
         "WebFormTitle": "AI System Significance Questionnaire - Critical Business Function",
         "Fields": [
             {
-                "FieldName": "Critical Business Function & Impact - Calculations, make decisions, or provide recommendations that support a critical business function",
+                "FieldName": "AI System Significance: Critical Business Function & Impact - Calculations, make decisions, or provide recommendations that support a critical business function",
                 "FieldLabel": "Will the AI system perform calculations, make decisions, or provide recommendations that support a critical business function (e.g., fraud detection, credit scoring, medical diagnosis, infrastructure management, legal compliance, safety-critical operations)?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Critical Business Function & Impact - Failure, error, or bias negitively impact organiation or individual",
+                "FieldName": "AI System Significance: Critical Business Function & Impact - Failure, error, or bias negitively impact organiation or individual",
                 "FieldLabel": "Could a failure, error, or bias in the AI system's operation lead to significant financial loss, reputational damage, legal/regulatory penalties, or harm to individuals (e.g., physical harm, denial of services, unfair treatment)?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             }
@@ -168,12 +168,12 @@
         "WebFormTitle": "AI System Significance Questionnaire - Transparency & Human Oversight",
         "Fields": [            
             {
-                "FieldName": "Transparency & Human Oversight - Operate with limited or no human oversight",
+                "FieldName": "AI System Significance: Transparency & Human Oversight - Operate with limited or no human oversight",
                 "FieldLabel": "Will the AI system operate with limited or no human oversight/intervention in its decision-making or output generation process for critical functions?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Transparency & Human Oversight - Decisions or outputs need to be explainable",
+                "FieldName": "AI System Significance: Transparency & Human Oversight - Decisions or outputs need to be explainable",
                 "FieldLabel": "Is it crucial for the AI system's decisions or outputs to be explainable or interpretable to users, affected individuals, or regulators (e.g., why a loan was denied, why a medical diagnosis was made)?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             }
@@ -183,17 +183,17 @@
         "WebFormTitle": "AI System Significance Questionnaire - Novelty & Complexity",
         "Fields": [                        
             {
-                "FieldName": "Novelty & Complexity - Utilize novel, cutting-edge, or unproven AI technologies",
+                "FieldName": "AI System Significance: Novelty & Complexity - Utilize novel, cutting-edge, or unproven AI technologies",
                 "FieldLabel": "Does the AI system utilize novel, cutting-edge, or unproven AI technologies that are new to the organization or the industry?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "Novelty & Complexity - Interconnections with complex or interconnected systems",
+                "FieldName": "AI System Significance: Novelty & Complexity - Interconnections with complex or interconnected systems",
                 "FieldLabel": "Will the AI system integrate with complex or interconnected systems where its failure could cascade and impact other critical operations?",
                 "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
-                "FieldName": "AI system is Significant",
+                "FieldName": "AI System Significance: AI system is Significant",
                 "FieldLabel": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
                 "FieldType": "Dropdown box with values:/Yes/No"
             }
