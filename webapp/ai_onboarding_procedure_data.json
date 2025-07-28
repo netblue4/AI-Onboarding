@@ -127,7 +127,7 @@
                 "FieldLabel": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker: https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
                 "FieldType": "Dropdown box with values: Yes/No"
             }
-        ]=========================
+        ]
     },
     "Determine the AI system's Data Sensitivity & Privacy impact": {
         "WebFormTitle": "AI System Significance Questionnaire - Data Sensitivity & Privacy",
