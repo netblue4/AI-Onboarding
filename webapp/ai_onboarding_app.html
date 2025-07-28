@@ -8,6 +8,12 @@
 </head>
 <body>
     <div class="container">
+
+        <!-- New Progress Bar HTML -->
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        
         <h1 id="main-title">Loading...</h1>
         <div id="form-container"></div>
 
@@ -36,6 +42,7 @@
                 const nextBtn = document.getElementById('next-btn');
                 const downloadBtn = document.getElementById('download-btn');
                 const mainTitle = document.getElementById('main-title');
+                const progressBar = document.getElementById('progress-bar'); // Get the progress bar element
 
                 const capturedData = {};
                 const procedureSteps = Object.keys(webappData);
@@ -46,9 +53,19 @@
                     if (typeof text !== 'string') return '';
                     return text.replace(/[^a-zA-Z0-9_]/g, '_');
                 }
-
+        
+                // --- New Function to Update the Progress Bar ---
+                function updateProgressBar() {
+                    // Calculate progress percentage. We add 1 to the index because it's 0-based.
+                    const progressPercentage = ((currentStepIndex) / (procedureSteps.length - 1)) * 100;
+                    progressBar.style.width = progressPercentage + '%';
+                }
+                
                 // Renders the current step of the form based on the currentStepIndex.
                 function renderCurrentStep() {
+                    // Update the progress bar every time a new step is rendered
+                    updateProgressBar();
+                    
                     const stepKey = procedureSteps[currentStepIndex];
                     const stepData = webappData[stepKey];
                     
