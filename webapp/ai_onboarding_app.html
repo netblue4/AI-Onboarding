@@ -131,9 +131,29 @@
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
                             } else if (field.FieldType === 'DecisionFieldType') {
+                                // 1. Create the simple label as requested
                                 const label = document.createElement('label');
                                 label.textContent = "Branch here" + ': ';
                                 fieldDiv.appendChild(label);
+                            
+                                // 2. Create the select (dropdown) element
+                                const select = document.createElement('select');
+                                select.id = sanitizedId;
+                                select.name = sanitizedId;
+                            
+                                // 3. Parse the DecisionFieldType string to create the options
+                                const optionsString = field.DecisionFieldType.split('values:/')[1];
+                                const optionPairs = optionsString.split('/');
+                            
+                                optionPairs.forEach(pair => {
+                                    const [key, value] = pair.split('=');
+                                    if (key && value) {
+                                        const option = document.createElement('option');
+                                        option.textContent = key;
+                                        // Remove surrounding quotes from the value string
+                                        option.value = value.replace(/^"|"$/g, '');
+                                        select.appendChild(option);
+                                    };
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
                                 // Check if FieldLabel exists and is a string
                                 if (field.FieldLabel && typeof field.FieldLabel === 'string') {
