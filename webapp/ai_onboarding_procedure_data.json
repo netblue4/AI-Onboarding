@@ -185,7 +185,7 @@
             {
                 "FieldName": "Novelty & Complexity - Interconnections with complex or interconnected systems",
                 "FieldLabel": "Will the AI system integrate with complex or interconnected systems where its failure could cascade and impact other critical operations?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "AI system is Significant",
@@ -219,7 +219,7 @@
             },
             {
                 "FieldName": "Risk Management Risk: Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.||Applicable Controls||1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.||2. Risk register entries are created for each AI use case.||3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.||4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
-                "FieldLabel": "Risk Management Risk: Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.||v||1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.||2. Risk register entries are created for each AI use case.||3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.||4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
+                "FieldLabel": "Risk Management Risk: Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.||Applicable Controls||1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.||2. Risk register entries are created for each AI use case.||3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.||4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
@@ -414,42 +414,42 @@
         "Fields": [ 
             {
                 "FieldName": "Data Quality Requirements (A.7) - Accuracy",
-                "FieldLabel": "Data Quality - Accuracy: Correctness or accuracy of data against true values or a trusted source.",
+                "FieldLabel": "Data Quality - Accuracy//Correctness or accuracy of data against true values or a trusted source.",
                 "FieldType": "Dropdown box with values:/>95%/>50%/>20%"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Completeness",
-                "FieldLabel": "Data Quality - Completeness: Percentage of non-null values in key fields.",
+                "FieldLabel": "Data Quality - Completeness//Percentage of non-null values in key fields.",
                 "FieldType": "Dropdown box with values:/All critical information present/No nulls in essential fields/>98% completeness for important fields"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Validity",
-                "FieldLabel": "Data Quality - Validity: Data conforms to a defined schema, format, type, and range.\n - 100% schema match; all values within predefined valid ranges/formats.",
-                "FieldType": "TextBox"
+                "FieldLabel": "Data Quality - Validity//Data conforms to a defined schema, format, type, and range. Schema match:",
+                "FieldType": "Dropdown box with values:/>90%/>50%/>20%"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Consistency",
-                "FieldLabel": "Data Quality - Consistency: Logical data relationships hold true within the dataset and across related datasets.",
+                "FieldLabel": "Data Quality - Consistency//Logical data relationships hold true within the dataset and across related datasets.",
                 "FieldType": "Dropdown box with values:/No contradictory information/No logical contradictions/<1% inconsistency in defined relationships"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Duplication",
-                "FieldLabel": "Data Quality - Duplication: Absence of redundant records or data entries",
+                "FieldLabel": "Data Quality - Duplication//Absence of redundant records or data entries",
                 "FieldType": "Dropdown box with values:/<1% duplicates for critical entities/<50% duplicates for critical entities/<20% duplicates for critical entities"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Timeliness/Recency",
-                "FieldLabel": "Data Quality - Timeliness/Recency: Data is sufficiently up-to-date for the intended purpose. Data updated within:",
+                "FieldLabel": "Data Quality - Timeliness/Recency//Data is sufficiently up-to-date for the intended purpose. Data updated within:",
                 "FieldType": "Dropdown box with values:/24 hours/48 hours/1 week/1 month/1 year"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Source Traceability",
-                "FieldLabel": "Data Quality - Source Traceability: Can origin be verified?",
+                "FieldLabel": "Data Quality - Source Traceability//Can origin be verified?",
                 "FieldType": "Dropdown box with values:/No/Yes"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Versioning Applied?",
-                "FieldLabel": "Data Quality - Versioning: How is the data versioned?",
+                "FieldLabel": "Data Quality - Versioning//How is the data versioned?",
                 "FieldType": "Dropdown box with values:/Git/DVC/Manual"
             }
         ]
@@ -459,62 +459,62 @@
         "Fields": [ 
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Masking",
-                "FieldLabel": "Sensitive Data protection - Masking: Replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
+                "FieldLabel": "Sensitive Data protection - Masking//Replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Tokenization",
-                "FieldLabel": "Sensitive Data protection - Tokenization: Replace a sensitive data element with a non-sensitive equivalent, referred to as a \"token.\" The original data is stored in a secure vault.",
+                "FieldLabel": "Sensitive Data protection - Tokenization//Replace a sensitive data element with a non-sensitive equivalent, referred to as a \"token.\" The original data is stored in a secure vault.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Hashing",
-                "FieldLabel": "Sensitive Data protection - Hashing: Use a cryptographic function to convert sensitive data into a fixed-size string of characters. It's a one-way process.",
+                "FieldLabel": "Sensitive Data protection - Hashing//Use a cryptographic function to convert sensitive data into a fixed-size string of characters. It's a one-way process.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Generalization",
-                "FieldLabel": "Sensitive Data protection - Generalization: Reduce the precision of data. For example, changing a specific age ('34') to an age range ('30-40') or a full date of birth to just the year.",
+                "FieldLabel": "Sensitive Data protection - Generalization//Reduce the precision of data. For example, changing a specific age ('34') to an age range ('30-40') or a full date of birth to just the year.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Access Control & Governance - Data Segregation",
-                "FieldLabel": "Sensitive Data protection - Data Segregation: Create physically or logically separate data stores for sensitive information, with strict access controls.",
+                "FieldLabel": "Sensitive Data protection - Data Segregation//Create physically or logically separate data stores for sensitive information, with strict access controls.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Access Control & Governance - Attribute-Based Access Control",
-                "FieldLabel": "Sensitive Data protection - Attribute-Based Access Control: Apply rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
+                "FieldLabel": "Sensitive Data protection - Attribute-Based Access Control//Apply rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Data Minimization - Feature Pruning",
-                "FieldLabel": "Sensitive Data protection - Feature Pruning: Remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
+                "FieldLabel": "Sensitive Data protection - Feature Pruning//Remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Data Minimization",
-                "FieldLabel": "Sensitive Data protection - Data Minimization: Remove records of individuals who have not given consent for their data to be used for AI training.",
+                "FieldLabel": "Sensitive Data protection - Data Minimization//Remove records of individuals who have not given consent for their data to be used for AI training.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Quality & Integrity (Post-Anonymization) - Integrity Checks",
-                "FieldLabel": "Sensitive Data protection - Integrity Checks: After de-identification, verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
+                "FieldLabel": "Sensitive Data protection - Integrity Checks//After de-identification, verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Handling Missing Values",
-                "FieldLabel": "Sensitive Data protection - Handling Missing Values: Remove empty or null fields, such as filling them with a mean/median/mode, or removing the row/column.",
+                "FieldLabel": "Sensitive Data protection - Handling Missing Values//Remove empty or null fields, such as filling them with a mean/median/mode, or removing the row/column.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Correcting Inaccuracies",
-                "FieldLabel": "Sensitive Data protection - Correcting Inaccuracies: Identify and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000°C').",
+                "FieldLabel": "Sensitive Data protection - Correcting Inaccuracies//Identify and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000°C').",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Removing Duplicates",
-                "FieldLabel": "Sensitive Data protection - Duplicates: Identify and deleting redundant records from the dataset.",
+                "FieldLabel": "Sensitive Data protection - Duplicates//Identify and deleting redundant records from the dataset.",
                 "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             }
         ]
@@ -524,22 +524,22 @@
         "Fields": [
             {
                 "FieldName": "Incident Communication Plan (A.8.4) - Data Breach",
-                "FieldLabel": "Incident Communication Plan - Data Breach: Unintended exposure of training data",
+                "FieldLabel": "Incident Communication Plan - Data Breach//Unintended exposure of training data",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Incident Communication Plan (A.8.4) - Model Misuse",
-                "FieldLabel": "Incident Communication Plan - Model Misuse: AI model used outside intended scope",
+                "FieldLabel": "Incident Communication Plan - Model Misuse//AI model used outside intended scope",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Incident Communication Plan (A.8.4) - Model Failure",
-                "FieldLabel": "Incident Communication Plan - Model Failure: False predictions causing harm",
+                "FieldLabel": "Incident Communication Plan - Model Failure//False predictions causing harm",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Incident Communication Plan (A.8.4) - Regulatory Trigger",
-                "FieldLabel": "Incident Communication Plan - Regulatory Trigger: New legal obligations",
+                "FieldLabel": "Incident Communication Plan - Regulatory Trigger//New legal obligations",
                 "FieldType": "TextBox"
             }
         ]
@@ -549,7 +549,7 @@
         "Fields": [
             {
                 "FieldName": "Third-Party Name",
-                "FieldLabel": "[e.g., End-Users (Marketing Dept), ACME Corp (Data Supplier), etc.]",
+                "FieldLabel": "Third-Party Name [e.g., End-Users (Marketing Dept), ACME Corp (Data Supplier), etc.]",
                 "FieldType": "TextBox"
             },
             {
@@ -559,22 +559,22 @@
             },
             {
                 "FieldName": "Third-Party - General Description of Involvement",
-                "FieldLabel": "Briefly describe this party's relationship to the AI system.",
+                "FieldLabel": "Briefly describe this Third-Party's relationship to the AI system.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Third-Party - Responsibilities",
-                "FieldLabel": "What are the customers responsibilites to ensure the AI system operates as expected.",
+                "FieldLabel": "What are the Third-Party's responsibilites to ensure the AI system operates as expected.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Third-Party - Evaluation & Selection Process:",
-                "FieldLabel": "Describe the process used to evaluate and select this supplier.",
+                "FieldLabel": "Describe the process used to evaluate and select this Third-Party.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Third-Party - Alignment with AI Policies:",
-                "FieldLabel": "Confirm and describe how the supplier's policies align with yours.",
+                "FieldLabel": "Confirm and describe how the Third-Party's policies align with yours.",
                 "FieldType": "Dropdown box with values:/Yes/No"
             }        
         ]
@@ -584,52 +584,52 @@
         "Fields": [
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Job Preservation",
-                "FieldLabel": "Responsible AI Objective - Job Preservation: How does design choices support responsible AI objective: Assess and mitigate potential negative impacts of the AI system on job roles and support workforce adaptation.",
+                "FieldLabel": "Responsible AI Objective - Job Preservation//How does design choices support responsible AI objective: Assess and mitigate potential negative impacts of the AI system on job roles and support workforce adaptation.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Fairness",
-                "FieldLabel": "Responsible AI Objective - Fairness: How does design choices support responsible AI objective: Ensure model performance is consistent and equitable across relevant demographic groups (e.g., age, gender, ethnicity).",
+                "FieldLabel": "Responsible AI Objective - Fairness//How does design choices support responsible AI objective: Ensure model performance is consistent and equitable across relevant demographic groups (e.g., age, gender, ethnicity).",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Transparency",
-                "FieldLabel": "Responsible AI Objective - Transparency:How does design choices support responsible AI objective: Provide clear, understandable, and timely explanations to users and stakeholders for AI system decisions and operations.",
+                "FieldLabel": "Responsible AI Objective - Transparency//How does design choices support responsible AI objective: Provide clear, understandable, and timely explanations to users and stakeholders for AI system decisions and operations.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Accountability",
-                "FieldLabel": "Responsible AI Objective - Accountability:How does design choices support responsible AI objective: Clearly assign ownership and responsibility for AI system outputs, decisions, and errors.",
+                "FieldLabel": "Responsible AI Objective - Accountability//How does design choices support responsible AI objective: Clearly assign ownership and responsibility for AI system outputs, decisions, and errors.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Safety",
-                "FieldLabel": "Responsible AI Objective - Safety:How does design choices support responsible AI objective: Prevent harmful outcomes to individuals or property resulting from the AI system's operation, particularly in safety-critical contexts.",
+                "FieldLabel": "Responsible AI Objective - Safety//How does design choices support responsible AI objective: Prevent harmful outcomes to individuals or property resulting from the AI system's operation, particularly in safety-critical contexts.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Privacy",
-                "FieldLabel": "Responsible AI Objective - Privacy:How does design choices support responsible AI objective: Protect personal data processed by the AI system, ensure confidentiality, and avoid unauthorized re-identification.",
+                "FieldLabel": "Responsible AI Objective - Privacy//How does design choices support responsible AI objective: Protect personal data processed by the AI system, ensure confidentiality, and avoid unauthorized re-identification.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Human Oversight",
-                "FieldLabel": "Responsible AI Objective - Human Oversight:How does design choices support responsible AI objective: Ensure appropriate human involvement and intervention, especially for high-risk decisions or unexpected AI system behavior.",
+                "FieldLabel": "Responsible AI Objective - Human Oversight//How does design choices support responsible AI objective: Ensure appropriate human involvement and intervention, especially for high-risk decisions or unexpected AI system behavior.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity",
-                "FieldLabel": "Responsible AI Objective - EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity:How does design choices support responsible AI objective: Ensure the AI system meets documented accuracy levels, is resilient to attacks and faults, and includes adequate cybersecurity protections, as required by EU AI Act Article 15.",
+                "FieldLabel": "Responsible AI Objective - EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity//How does design choices support responsible AI objective: Ensure the AI system meets documented accuracy levels, is resilient to attacks and faults, and includes adequate cybersecurity protections, as required by EU AI Act Article 15.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Customer Needs & Expectations",
-                "FieldLabel": "Responsible AI Objective - Customer Needs & Expectations:How does design choices support responsible AI objective: Ensure the AI system meets the stated needs of the customer and manage expectations through clear communication of its capabilities and limitations.",
+                "FieldLabel": "Responsible AI Objective - Customer Needs & Expectations//How does design choices support responsible AI objective: Ensure the AI system meets the stated needs of the customer and manage expectations through clear communication of its capabilities and limitations.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Supplier Alignment & Requirements",
-                "FieldLabel": "Responsible AI Objective - Supplier Alignment & Requirements:How does design choices support responsible AI objective: Ensure that third-party components, data, or services used in the AI system meet the organization's contractual and responsible AI obligations.",
+                "FieldLabel": "Responsible AI Objective - Supplier Alignment & Requirements//How does design choices support responsible AI objective: Ensure that third-party components, data, or services used in the AI system meet the organization's contractual and responsible AI obligations.",
                 "FieldType": "TextBox"
             }
         ]
