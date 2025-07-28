@@ -54,7 +54,7 @@ body {
 .form-field select,
 .form-field textarea {
     font-size: 1rem;
-    font-weight: 400; /* Note: 100 is very thin, '400' or 'normal' is standard */
+    font-weight: 200; /* Note: 100 is very thin, '400' or 'normal' is standard */
 }
 .form-field label {
     display: block;
