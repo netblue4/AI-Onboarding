@@ -120,6 +120,9 @@
                                 fieldDiv.appendChild(span);
                                 capturedData[field.FieldName] = uniqueId;
                             } else if (field.FieldType === 'TextBox') {
+                                const label = document.createElement('label');
+                                label.textContent = "Risk" + ': ';
+                                fieldDiv.appendChild(label);
                                 const input = document.createElement('textarea');
                                 input.id = sanitizedId;
                                 input.name = sanitizedId;
@@ -127,7 +130,7 @@
                                 input.rows = 3;
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
-                            } else if (field.FieldType === 'TextBox') {
+                            } else if (field.FieldType === 'DecisionFieldType') {
                                 const label = document.createElement('label');
                                 label.textContent = "Branch here";
                                 fieldDiv.appendChild(label);
