@@ -53,7 +53,7 @@ body {
 .form-field input[type="text"],
 .form-field select,
 .form-field textarea {
-    font-size: 1rem;
+    font-size: 10rem;
     font-weight: 200; /* Note: 100 is very thin, '400' or 'normal' is standard */
 }
 .form-field label {
