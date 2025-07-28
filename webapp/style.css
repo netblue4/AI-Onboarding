@@ -111,4 +111,9 @@ button:hover {
     border-radius: 8px;
     transition: width 0.4s ease-in-out; /* Smooth transition for width changes */
 }
+#progress-text {
+    font-size: 0.9rem;
+    color: #555;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
 /* --- End of Progress Bar Styles --- */
