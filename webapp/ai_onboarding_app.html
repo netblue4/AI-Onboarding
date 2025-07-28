@@ -153,7 +153,9 @@
                                         // Remove surrounding quotes from the value string
                                         option.value = value.replace(/^"|"$/g, '');
                                         select.appendChild(option);
-                                    };
+                                    }
+                                }
+                            );
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
                                 // Check if FieldLabel exists and is a string
                                 if (field.FieldLabel && typeof field.FieldLabel === 'string') {
