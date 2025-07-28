@@ -263,28 +263,48 @@
         "WebFormTitle": "AI Systems Software and Tooling Resources",
         "Fields": [
             {
-                "FieldName": "Tooling Resources - Tool Name",
-                "FieldLabel": "Name of the software, library, or framework.",
+                "FieldName": "1. Tooling Resources - Tool Name and Version",
+                "FieldLabel": "Name of the software, library, or framework and Version number.",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Tooling Resources - Version(s)",
-                "FieldLabel": "Specific version(s) required or planned for use.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Tooling Resources - Category",
+                "FieldName": "1. Tooling Resources - Category",
                 "FieldLabel": "Type of tool.",
                 "FieldType": "Dropdown box with values: Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
-                "FieldName": "Tooling Resources - Purpose/Use Case in Project",
+                "FieldName": "1. Tooling Resources - Purpose/Use Case in Project",
                 "FieldLabel": "How this tool will be used in the AI system's lifecycle.",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Tooling Resources - Vendor/Provider (if applicable)",
-                "FieldLabel": "Manufacturer or main distributor of the tool.",
+                "FieldName": "2. Tooling Resources - Tool Name and Version",
+                "FieldLabel": "Name of the software, library, or framework and Version number.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "2. Tooling Resources - Category",
+                "FieldLabel": "Type of tool.",
+                "FieldType": "Dropdown box with values: Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+            },
+            {
+                "FieldName": "2. Tooling Resources - Purpose/Use Case in Project",
+                "FieldLabel": "How this tool will be used in the AI system's lifecycle.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "3. Tooling Resources - Tool Name and Version",
+                "FieldLabel": "Name of the software, library, or framework and Version number.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "3. Tooling Resources - Category",
+                "FieldLabel": "Type of tool.",
+                "FieldType": "Dropdown box with values: Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+            },
+            {
+                "FieldName": "3. Tooling Resources - Purpose/Use Case in Project",
+                "FieldLabel": "How this tool will be used in the AI system's lifecycle.",
                 "FieldType": "TextBox"
             }
         ]
