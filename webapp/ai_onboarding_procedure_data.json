@@ -8,11 +8,6 @@
                 "FieldType": "Auto generated number"
             },
             {
-                "FieldName": "EU AI Act Art 15",
-                "FieldLabel": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
-                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
-            },
-            {
                 "FieldName": "AI System Name",
                 "FieldLabel": "Name of the AI application",
                 "FieldType": "TextBox"
@@ -231,6 +226,16 @@
                 "FieldName": "AI System Significance: AI system is Significant",
                 "FieldLabel": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
                 "FieldType": "Dropdown box with values:/Yes/No"
+            }
+        ]
+    },
+    "Conduct a detialed AI System Risk Impact Assessment,": {
+        "WebFormTitle": "Detailed AI System Risk Impact Assessment",
+        "Fields": [
+            {
+                "FieldName": "EU AI Act Art 15||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
+                "FieldLabel": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
+                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             }
         ]
     },
