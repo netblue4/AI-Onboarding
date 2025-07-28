@@ -130,7 +130,7 @@
                                 input.rows = 3;
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
-                            } else if (field.FieldType === 'DecisionFieldType') {
+                            } else if (field.FieldType && field.FieldType.startsWith('Decision Dropdown box with values')) {
                                 // 1. Create the simple label as requested
                                 const label = document.createElement('label');
                                 label.textContent = 'Branch' + ': ';
