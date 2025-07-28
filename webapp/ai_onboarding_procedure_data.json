@@ -170,7 +170,7 @@
             {
                 "FieldName": "AI system is Prohibited",
                 "FieldLabel": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker||https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "DecisionFieldType": "Dropdown box with values:/Yes=Finished/No=\"Determine the AI system's Data Sensitivity & Privacy impact\""
             }
         ]
     },
@@ -225,12 +225,12 @@
             {
                 "FieldName": "AI System Significance: AI system is Significant",
                 "FieldLabel": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "DecisionFieldType": "Dropdown box with values:/Yes=\"Conduct a detialed AI System Risk Impact Assessment.\"/No=\"Conduct a AI System Risk Category Impact Assessment.\""
             }
         ]
     },
-    "Conduct a detialed AI System Risk Impact Assessment,": {
-        "WebFormTitle": "Detailed AI System Risk Impact Assessment",
+    "Conduct a detialed AI System Risk Impact Assessment": {
+        "WebFormTitle": "Detailed AI System Risk Impact Assessment.",
         "Fields": [
             {
                 "FieldName": "EU AI Act Art 15||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
@@ -239,7 +239,7 @@
             }
         ]
     },
-    "Conduct a AI System Risk Category Impact Assessment, assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle. And define controls to treat them.": {
+    "Conduct a AI System Risk Category Impact Assessment.": {
         "WebFormTitle": "AI System Risk Category Impact Assessment",
         "Fields": [
             {
