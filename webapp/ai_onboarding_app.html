@@ -127,6 +127,10 @@
                                 input.rows = 3;
                                 input.value = capturedData[field.FieldName] || ''; // Restore captured data
                                 fieldDiv.appendChild(input);
+                            } else if (field.FieldType === 'TextBox') {
+                                const label = document.createElement('label');
+                                label.textContent = "Branch here";
+                                fieldDiv.appendChild(label);
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
                                 // Check if FieldLabel exists and is a string
                                 if (field.FieldLabel && typeof field.FieldLabel === 'string') {
