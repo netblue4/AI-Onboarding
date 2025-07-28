@@ -500,7 +500,7 @@
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Data Minimization",
                 "FieldLabel": "Data Minimization||Remove records of individuals who have not given consent for their data to be used for AI training.",
-                "FieldType": "TextBox"
+                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Quality & Integrity (Post-Anonymization) - Integrity Checks",
@@ -650,7 +650,7 @@
             {
                 "FieldName": "AI System Security Approval",
                 "FieldLabel": "Approval: AI System Security",
-                "FieldType": "Dropdown box with values:No/Yes"
+                "FieldType": "Dropdown box with values:/No/Yes"
             },
             {
                 "FieldName": "AI System DPO Approver",
@@ -660,7 +660,7 @@
             {
                 "FieldName": "AI System DPO Approval",
                 "FieldLabel": "Approval: AI System DPO",
-                "FieldType": "Dropdown box with values:No/Yes"
+                "FieldType": "Dropdown box with values:/No/Yes"
             },
             {
                 "FieldName": "AI System Risk Approver",
@@ -670,7 +670,7 @@
             {
                 "FieldName": "AI System Risk Approval",
                 "FieldLabel": "Approval: AI System Risk",
-                "FieldType": "Dropdown box with values:No/Yes"
+                "FieldType": "Dropdown box with values:/No/Yes"
             },
             {
                 "FieldName": "AI System Business Approver",
@@ -680,7 +680,7 @@
             {
                 "FieldName": "AI System Business Approval",
                 "FieldLabel": "Approval: AI System Business",
-                "FieldType": "Dropdown box with values:No/Yes"
+                "FieldType": "Dropdown box with values:/No/Yes"
             }
         ]
     }
