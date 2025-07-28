@@ -15,7 +15,7 @@
             {
                 "FieldName": "Target Users",
                 "FieldLabel": "Who will use this system or be affected by it?",
-                "FieldType": "Dropdown box with values:Employees/Customers/Analysts"
+                "FieldType": "Dropdown box with values:/Employees/Customers/Analysts/Customer/Supplier/Partner/egulator"
             },
             {
                 "FieldName": "Business Purpose",
@@ -95,27 +95,27 @@
             {
                 "FieldName": "Real-time Remote Biometric Identification (Law Enforcement, Public Spaces)",
                 "FieldLabel": "Biometric Identification: Is the AI system used by law enforcement for real-time remote biometric identification of natural persons in publicly accessible spaces? (Note: Very limited exceptions exist)",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "Emotion Inference (Workplace/Education)",
                 "FieldLabel": "Emotion Inference: Does the AI system infer emotions of natural persons in the context of workplaces or educational institutions?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "Biometric Categorization (Sensitive Attributes)",
                 "FieldLabel": "Biometric Categorization: Does the AI system use biometric data to categorize natural persons based on sensitive attributes like race, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "Untargeted Scraping of Facial Images",
                 "FieldLabel": "Untargeted Scraping: Does the AI system involve untargeted scraping of facial images from the internet or CCTV footage to create or expand facial recognition databases?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "Risk Assessment of Criminal Offenses (Profiling)",
                 "FieldLabel": "Profiling: Does the AI system assess the risk of a natural person committing a criminal offense based solely on profiling or assessment of their personality traits or characteristics?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             }
         ]
     },
@@ -125,7 +125,7 @@
             {
                 "FieldName": "AI system is Prohibited",
                 "FieldLabel": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker: https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             }
         ]
     },
@@ -135,12 +135,12 @@
             {
                 "FieldName": "Data Sensitivity & Privacy - Process, store, or interpret any sensitive data",
                 "FieldLabel": "Will the AI system process, store, or interpret any sensitive data (e.g., personal health information (PHI), personally identifiable information (PII) beyond basic contact details, financial data, biometric data, protected class information, classified data)?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "Data Sensitivity & Privacy - Output directly or indirectly lead to decisions or actions that impact an individual's privacy rights",
                 "FieldLabel": "Will the AI system's output directly or indirectly lead to decisions or actions that impact an individual's privacy rights (e.g., surveillance, profiling for targeted advertising, monitoring of online behavior)?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             }
         ]
     },
@@ -150,12 +150,12 @@
             {
                 "FieldName": "Critical Business Function & Impact - Calculations, make decisions, or provide recommendations that support a critical business function",
                 "FieldLabel": "Will the AI system perform calculations, make decisions, or provide recommendations that support a critical business function (e.g., fraud detection, credit scoring, medical diagnosis, infrastructure management, legal compliance, safety-critical operations)?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "Critical Business Function & Impact - Failure, error, or bias negitively impact organiation or individual",
                 "FieldLabel": "Could a failure, error, or bias in the AI system's operation lead to significant financial loss, reputational damage, legal/regulatory penalties, or harm to individuals (e.g., physical harm, denial of services, unfair treatment)?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             }
         ]
     },
@@ -165,12 +165,12 @@
             {
                 "FieldName": "Transparency & Human Oversight - Operate with limited or no human oversight",
                 "FieldLabel": "Will the AI system operate with limited or no human oversight/intervention in its decision-making or output generation process for critical functions?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "Transparency & Human Oversight - Decisions or outputs need to be explainable",
                 "FieldLabel": "Is it crucial for the AI system's decisions or outputs to be explainable or interpretable to users, affected individuals, or regulators (e.g., why a loan was denied, why a medical diagnosis was made)?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             }
         ]
     },
@@ -180,7 +180,7 @@
             {
                 "FieldName": "Novelty & Complexity - Utilize novel, cutting-edge, or unproven AI technologies",
                 "FieldLabel": "Does the AI system utilize novel, cutting-edge, or unproven AI technologies that are new to the organization or the industry?",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             },
             {
                 "FieldName": "Novelty & Complexity - Interconnections with complex or interconnected systems",
@@ -190,7 +190,7 @@
             {
                 "FieldName": "AI system is Significant",
                 "FieldLabel": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
-                "FieldType": "Dropdown box with values: Yes/No"
+                "FieldType": "Dropdown box with values:/Yes/No"
             }
         ]
     },
@@ -200,37 +200,37 @@
             {
                 "FieldName": "Regulatory Compliance Risk: Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.||Applicable Controls||1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).||2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).||3. Contracts or usage agreements define legal obligations of AI use.||4. Independent audits or internal reviews confirm AI compliance status.",
                 "FieldLabel": "Regulatory Compliance Risk: Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.||Applicable Controls||1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).||2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).||3. Contracts or usage agreements define legal obligations of AI use.||4. Independent audits or internal reviews confirm AI compliance status.",
-                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "IT Resilience Risk: Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.||Applicable Controls||1. AI hosting environments include SLAs and availability monitoring.||2. Disaster recovery and retraining strategies are defined.||3. Model artifacts and datasets are backed up securely.||4. Runbooks and fallback processes exist for critical AI workflows.",
                 "FieldLabel": "IT Resilience Risk: Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.||Applicable Controls||1. AI hosting environments include SLAs and availability monitoring.||2. Disaster recovery and retraining strategies are defined.||3. Model artifacts and datasets are backed up securely.||4. Runbooks and fallback processes exist for critical AI workflows.",
-                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "IT Security Risk: Threats to the confidentiality, integrity, or availability of AI systems, including model theft, prompt injection, or malicious model updates.||Applicable Controls||1. AI code and model repositories are subject to secure SDLC practices.||2. AI endpoints are penetration tested and hardened.||3. Model versioning and integrity checks are enforced.||4. AI security posture is reviewed against frameworks like NIST AI RMF.",
                 "FieldLabel": "IT Security Risk: Threats to the confidentiality, integrity, or availability of AI systems, including model theft, prompt injection, or malicious model updates.||Applicable Controls||1. AI code and model repositories are subject to secure SDLC practices.||2. AI endpoints are penetration tested and hardened.||3. Model versioning and integrity checks are enforced.||4. AI security posture is reviewed against frameworks like NIST AI RMF.",
-                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "Data Management Risk: Risk arising from poor handling of training, validation, or inference data, including lack of lineage or quality controls.||Applicable Controls||1. AI onboarding requires documentation of data sources, quality, and curation steps.||2. Access logs and role-based controls are enforced for training data.||3. Data lifecycle policies cover ingestion to deletion for AI use.||4. Internal data audits assess how data is governed within the AI lifecycle.",
                 "FieldLabel": "Data Management Risk: Risk arising from poor handling of training, validation, or inference data, including lack of lineage or quality controls.||Applicable Controls||1. AI onboarding requires documentation of data sources, quality, and curation steps.||2. Access logs and role-based controls are enforced for training data.||3. Data lifecycle policies cover ingestion to deletion for AI use.||4. Internal data audits assess how data is governed within the AI lifecycle.",
-                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "Risk Management Risk: Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.||Applicable Controls||1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.||2. Risk register entries are created for each AI use case.||3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.||4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
                 "FieldLabel": "Risk Management Risk: Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.||v||1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.||2. Risk register entries are created for each AI use case.||3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.||4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
-                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "Data Security Risk: Risk of unauthorized access to model training data, inference data, or outputs containing sensitive or proprietary information.||Applicable Controls||1. Training data is encrypted at rest and in transit.||2. Access controls are enforced at dataset and model level.||3. Model outputs are reviewed for potential data leakage.||4. Third-party assessments validate data security in AI systems.",
                 "FieldLabel": "Data Security Risk: Risk of unauthorized access to model training data, inference data, or outputs containing sensitive or proprietary information.||Applicable Controls||1. Training data is encrypted at rest and in transit.||2. Access controls are enforced at dataset and model level.||3. Model outputs are reviewed for potential data leakage.||4. Third-party assessments validate data security in AI systems.",
-                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "Data Protection Risk: Risk of non-compliance with personal data protection laws in training or deploying AI systems that process personal/sensitive data.||Applicable Controls||1. Data protection impact assessments (DPIAs) are mandatory for personal-data-using AI.||2. Data minimization and anonymization techniques are applied before model training.||3. Onboarding includes geographic mapping of data storage and processing.||4. AI-specific privacy policies and consent mechanisms are documented.",
                 "FieldLabel": "Data Protection Risk: Risk of non-compliance with personal data protection laws in training or deploying AI systems that process personal/sensitive data.||Applicable Controls||1. Data protection impact assessments (DPIAs) are mandatory for personal-data-using AI.||2. Data minimization and anonymization techniques are applied before model training.||3. Onboarding includes geographic mapping of data storage and processing.||4. AI-specific privacy policies and consent mechanisms are documented.",
-                "FieldType": "Dropdown box with values: Applicable/Not Applicable"
+                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             }
         ]
     },
@@ -260,7 +260,7 @@
             {
                 "FieldName": "1. Tooling Resources - Category",
                 "FieldLabel": "Tooling Resource 1: Type of tool.",
-                "FieldType": "Dropdown box with values: Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
                 "FieldName": "1. Tooling Resources - Purpose/Use Case in Project",
@@ -275,7 +275,7 @@
             {
                 "FieldName": "2. Tooling Resources - Category",
                 "FieldLabel": "Tooling Resource 2: Type of tool.",
-                "FieldType": "Dropdown box with values: Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
                 "FieldName": "2. Tooling Resources - Purpose/Use Case in Project",
@@ -290,7 +290,7 @@
             {
                 "FieldName": "3. Tooling Resources - Category",
                 "FieldLabel": "Tooling Resource 3: Type of tool.",
-                "FieldType": "Dropdown box with values: Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
                 "FieldName": "3. Tooling Resources - Purpose/Use Case in Project",
@@ -310,12 +310,12 @@
             {
                 "FieldName": "1. System & Computing Resources - Category",
                 "FieldLabel": "Computing Resource 1: Type of computing resource.",
-                "FieldType": "Dropdown box with values:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
             },
             {
                 "FieldName": "1. System & Computing Resources - Lifecycle Phase(s) Supported",
                 "FieldLabel": "Computing Resource 1: Which parts of the AI lifecycle this resource supports.",
-                "FieldType": "Dropdown box with values:Development/Training/Testing/Staging/Production/Monitoring"
+                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
             },
             {
                 "FieldName": "2. Computing Resources - Computing Resource Name and Version",
@@ -325,12 +325,12 @@
             {
                 "FieldName": "2. System & Computing Resources - Category",
                 "FieldLabel": "Computing Resource 2: Type of computing resource.",
-                "FieldType": "Dropdown box with values:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
             },
             {
                 "FieldName": "2. System & Computing Resources - Lifecycle Phase(s) Supported",
                 "FieldLabel": "Computing Resource 2: Which parts of the AI lifecycle this resource supports.",
-                "FieldType": "Dropdown box with values:Development/Training/Testing/Staging/Production/Monitoring"
+                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
             },
             {
                 "FieldName": "3. Computing Resources - Computing Resource Name and Version",
@@ -340,12 +340,12 @@
             {
                 "FieldName": "3. System & Computing Resources - Category",
                 "FieldLabel": "Computing Resource 3: Type of computing resource.",
-                "FieldType": "Dropdown box with values:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
             },
             {
                 "FieldName": "3. System & Computing Resources - Lifecycle Phase(s) Supported",
                 "FieldLabel": "Computing Resource 3: Which parts of the AI lifecycle this resource supports.",
-                "FieldType": "Dropdown box with values:Development/Training/Testing/Staging/Production/Monitoring"
+                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
             }
         ]
     },
@@ -365,27 +365,27 @@
             {
                 "FieldName": "Data Resources - Source",
                 "FieldLabel": "Where the data originates from.",
-                "FieldType": "Dropdown box with values:Internal database/Third-party vendor/Public repository/Synthetic generation"
+                "FieldType": "Dropdown box with values:/Internal database/Third-party vendor/Public repository/Synthetic generation"
             },
             {
                 "FieldName": "Data Resources - Intended Use",
                 "FieldLabel": "Specific purpose(s) in the AI lifecycle.",
-                "FieldType": "Dropdown box with values:Training data/Validation data/Test data/Production data"
+                "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
             },
             {
                 "FieldName": "Data Resources - Format",
                 "FieldLabel": "File format or storage system?",
-                "FieldType": "Dropdown box with values:CSV/JSON/Parquet/SQL DB"
+                "FieldType": "Dropdown box with values:/CSV/JSON/Parquet/SQL DB"
             },
             {
                 "FieldName": "Data Resources - Data Labeling",
                 "FieldLabel": "Data Label",
-                "FieldType": "Dropdown box with values:Sensitive/Internal/Public"
+                "FieldType": "Dropdown box with values:/Sensitive/Internal/Public"
             },
             {
                 "FieldName": "Data Resources - Retention schedules",
                 "FieldLabel": "Retention schedules based on legal and operational requirements.",
-                "FieldType": "Dropdown box with values:1 Year/5 Years/10 Years"
+                "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
             },
             {
                 "FieldName": "Data Resources - Secure disposing",
@@ -400,7 +400,7 @@
             {
                 "FieldName": "Data Resources - Access Method/Location",
                 "FieldLabel": "How the data can be accessed?",
-                "FieldType": "Dropdown box with values:S3 bucket path/API endpoint/Database query/Shared drive"
+                "FieldType": "Dropdown box with values:/S3 bucket path/API endpoint/Database query/Shared drive"
             },
             {
                 "FieldName": "Data Resources - Owner/Custodian",
@@ -415,12 +415,12 @@
             {
                 "FieldName": "Data Quality Requirements (A.7) - Accuracy",
                 "FieldLabel": "Data Quality - Accuracy: Correctness or accuracy of data against true values or a trusted source.",
-                "FieldType": "Dropdown box with values:>95%/>50%/>20%"
+                "FieldType": "Dropdown box with values:/>95%/>50%/>20%"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Completeness",
                 "FieldLabel": "Data Quality - Completeness: Percentage of non-null values in key fields.",
-                "FieldType": "Dropdown box with values:All critical information present/No nulls in essential fields/>98% completeness for important fields"
+                "FieldType": "Dropdown box with values:/All critical information present/No nulls in essential fields/>98% completeness for important fields"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Validity",
@@ -430,22 +430,22 @@
             {
                 "FieldName": "Data Quality Requirements (A.7) - Consistency",
                 "FieldLabel": "Data Quality - Consistency: Logical data relationships hold true within the dataset and across related datasets.",
-                "FieldType": "Dropdown box with values:No contradictory information/No logical contradictions/<1% inconsistency in defined relationships"
+                "FieldType": "Dropdown box with values:/No contradictory information/No logical contradictions/<1% inconsistency in defined relationships"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Duplication",
                 "FieldLabel": "Data Quality - Duplication: Absence of redundant records or data entries",
-                "FieldType": "Dropdown box with values:<1% duplicates for critical entities/<50% duplicates for critical entities/<20% duplicates for critical entities"
+                "FieldType": "Dropdown box with values:/<1% duplicates for critical entities/<50% duplicates for critical entities/<20% duplicates for critical entities"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Timeliness/Recency",
                 "FieldLabel": "Data Quality - Timeliness/Recency: Data is sufficiently up-to-date for the intended purpose. Data updated within:",
-                "FieldType": "Dropdown box with values:24 hours/48 hours/1 week/1 month/1 year"
+                "FieldType": "Dropdown box with values:/24 hours/48 hours/1 week/1 month/1 year"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Source Traceability",
                 "FieldLabel": "Data Quality - Source Traceability: Can origin be verified?",
-                "FieldType": "Dropdown box with values:No/Yes"
+                "FieldType": "Dropdown box with values:/No/Yes"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Versioning Applied?",
@@ -548,138 +548,88 @@
         "WebFormTitle": "Third-Party and Customer Relationships",
         "Fields": [
             {
-                "FieldName": "Functional Requirement - Inputs - Party / Stakeholder Name:",
+                "FieldName": "Third-Party Name",
                 "FieldLabel": "[e.g., End-Users (Marketing Dept), ACME Corp (Data Supplier), etc.]",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Functional Requirement - Inputs - Party Type:",
-                "FieldLabel": "Select one: Customer/User, Supplier/Partner, Internal Team, Regulator",
+                "FieldName": "Third-Party - Primary Point of Contact",
+                "FieldLabel": "Third-Party Primary Point of Contact [Name, Title, Email]",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Functional Requirement - Inputs - Primary Point of Contact:",
-                "FieldLabel": "[Name, Title, Email]",
+                "FieldName": "Third-Party - General Description of Involvement",
+                "FieldLabel": "Briefly describe this party's relationship to the AI system.",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Functional Requirement - Inputs - General Description of Involvement:",
-                "FieldLabel": "[Briefly describe this party's relationship to the AI system.]",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Non-Functional Requirements - Explainability / Transparency - Customer's Needs & Expectations:",
-                "FieldLabel": "Describe the primary needs this customer group has regarding the AI system.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Non-Functional Requirements - Explainability / Transparency - (Evidence for A.10.4): Intended Use of the AI System",
-                "FieldLabel": "How is this customer group expected to interact with and use the AI system?",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Non-Functional Requirements - Explainability / Transparency - Assumed Technical Capabilities:",
-                "FieldLabel": "Describe the expected technical skills and understanding of this customer group.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Non-Functional Requirements - Explainability / Transparency - Expectations for Transparency:",
-                "FieldLabel": "What information does this customer need to trust and operate the system?",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Non-Functional Requirements - Explainability / Transparency - Responsibilities",
+                "FieldName": "Third-Party - Responsibilities",
                 "FieldLabel": "What are the customers responsibilites to ensure the AI system operates as expected.",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Social Scoring by Public Authorities - Description of Product / Service:",
-                "FieldLabel": "Detail the specific products, services, or platforms this supplier provides.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Social Scoring by Public Authorities - (Evidence for A.10.3): Requirements for this Supplier",
-                "FieldLabel": "List the specific requirements for this supplier (e.g., data quality, security).",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Social Scoring by Public Authorities - Evaluation & Selection Process:",
+                "FieldName": "Third-Party - Evaluation & Selection Process:",
                 "FieldLabel": "Describe the process used to evaluate and select this supplier.",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Social Scoring by Public Authorities - Alignment with AI Policies:",
+                "FieldName": "Third-Party - Alignment with AI Policies:",
                 "FieldLabel": "Confirm and describe how the supplier's policies align with yours.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Social Scoring by Public Authorities - Responsibilities",
-                "FieldLabel": "What are the suppliers responsibilites to ensure the AI system operates as expected.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "System & Data Design Documents - System Architecture Diagram:",
-                "FieldLabel": "A visual chart showing all the major components (e.g., data pipelines, APIs, model serving engine, user interface) and how they interact.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "System & Data Design Documents - Data Preprocessing and Transformation Logic:",
-                "FieldLabel": "A detailed description of all steps taken to clean, filter, augment, and transform the data before it's used for training. This is critical for reproducibility.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "System & Data Design Documents - Model Specification:",
-                "FieldLabel": "Details the type of model chosen (e.g., logistic regression, convolutional neural network), the rationale for choosing it over others, and its key parameters.",
-                "FieldType": "TextBox"
-            },
+                "FieldType": "Dropdown box with values:/Yes/No"
+            }        
+        ]
+    },
+    "Document how does design choices support responsible AI objectives.": {
+        "WebFormTitle": "Responsible AI System Objectives assessment",
+        "Fields": [
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Job Preservation",
-                "FieldLabel": "How does design choices support responsible AI objective: Assess and mitigate potential negative impacts of the AI system on job roles and support workforce adaptation.",
+                "FieldLabel": "Responsible AI Objective - Job Preservation: How does design choices support responsible AI objective: Assess and mitigate potential negative impacts of the AI system on job roles and support workforce adaptation.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Fairness",
-                "FieldLabel": "How does design choices support responsible AI objective: Ensure model performance is consistent and equitable across relevant demographic groups (e.g., age, gender, ethnicity).",
+                "FieldLabel": "Responsible AI Objective - Fairness: How does design choices support responsible AI objective: Ensure model performance is consistent and equitable across relevant demographic groups (e.g., age, gender, ethnicity).",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Transparency",
-                "FieldLabel": "How does design choices support responsible AI objective: Provide clear, understandable, and timely explanations to users and stakeholders for AI system decisions and operations.",
+                "FieldLabel": "Responsible AI Objective - Transparency:How does design choices support responsible AI objective: Provide clear, understandable, and timely explanations to users and stakeholders for AI system decisions and operations.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Accountability",
-                "FieldLabel": "How does design choices support responsible AI objective: Clearly assign ownership and responsibility for AI system outputs, decisions, and errors.",
+                "FieldLabel": "Responsible AI Objective - Accountability:How does design choices support responsible AI objective: Clearly assign ownership and responsibility for AI system outputs, decisions, and errors.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Safety",
-                "FieldLabel": "How does design choices support responsible AI objective: Prevent harmful outcomes to individuals or property resulting from the AI system's operation, particularly in safety-critical contexts.",
+                "FieldLabel": "Responsible AI Objective - Safety:How does design choices support responsible AI objective: Prevent harmful outcomes to individuals or property resulting from the AI system's operation, particularly in safety-critical contexts.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Privacy",
-                "FieldLabel": "How does design choices support responsible AI objective: Protect personal data processed by the AI system, ensure confidentiality, and avoid unauthorized re-identification.",
+                "FieldLabel": "Responsible AI Objective - Privacy:How does design choices support responsible AI objective: Protect personal data processed by the AI system, ensure confidentiality, and avoid unauthorized re-identification.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Human Oversight",
-                "FieldLabel": "How does design choices support responsible AI objective: Ensure appropriate human involvement and intervention, especially for high-risk decisions or unexpected AI system behavior.",
+                "FieldLabel": "Responsible AI Objective - Human Oversight:How does design choices support responsible AI objective: Ensure appropriate human involvement and intervention, especially for high-risk decisions or unexpected AI system behavior.",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Responsible AI Objectives (A.9.3) - EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity (New)",
-                "FieldLabel": "How does design choices support responsible AI objective: Ensure the AI system meets documented accuracy levels, is resilient to attacks and faults, and includes adequate cybersecurity protections, as required by EU AI Act Article 15.",
+                "FieldName": "Responsible AI Objectives (A.9.3) - EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity",
+                "FieldLabel": "Responsible AI Objective - EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity:How does design choices support responsible AI objective: Ensure the AI system meets documented accuracy levels, is resilient to attacks and faults, and includes adequate cybersecurity protections, as required by EU AI Act Article 15.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Customer Needs & Expectations",
-                "FieldLabel": "How does design choices support responsible AI objective: Ensure the AI system meets the stated needs of the customer and manage expectations through clear communication of its capabilities and limitations.",
+                "FieldLabel": "Responsible AI Objective - Customer Needs & Expectations:How does design choices support responsible AI objective: Ensure the AI system meets the stated needs of the customer and manage expectations through clear communication of its capabilities and limitations.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Supplier Alignment & Requirements",
-                "FieldLabel": "How does design choices support responsible AI objective: Ensure that third-party components, data, or services used in the AI system meet the organization's contractual and responsible AI obligations.",
+                "FieldLabel": "Responsible AI Objective - Supplier Alignment & Requirements:How does design choices support responsible AI objective: Ensure that third-party components, data, or services used in the AI system meet the organization's contractual and responsible AI obligations.",
                 "FieldType": "TextBox"
             }
         ]
