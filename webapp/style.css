@@ -96,3 +96,19 @@ button:hover {
 #download-btn:hover {
     background-color: #218838;
 }
+/* --- Progress Bar Styles (New) --- */
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    overflow: hidden; /* Ensures the inner bar has rounded corners */
+}
+#progress-bar {
+    height: 12px;
+    width: 0%; /* Initial width is 0 */
+    background-color: #007bff; /* A nice blue color */
+    border-radius: 8px;
+    transition: width 0.4s ease-in-out; /* Smooth transition for width changes */
+}
+/* --- End of Progress Bar Styles --- */
