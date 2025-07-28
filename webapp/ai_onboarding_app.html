@@ -132,7 +132,7 @@
                                 fieldDiv.appendChild(input);
                             } else if (field.FieldType === 'DecisionFieldType') {
                                 const label = document.createElement('label');
-                                label.textContent = "Branch here";
+                                label.textContent = "Branch here" + ': ';
                                 fieldDiv.appendChild(label);
                             } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
                                 // Check if FieldLabel exists and is a string
