@@ -211,13 +211,13 @@
                 "FieldName": "AI System Significance - Data Sensitivity & Privacy - Process, store, or interpret any sensitive data",
                 "FieldLabel": "Process, store, or interpret any sensitive data",
                 "FieldText": "Will the AI system process, store, or interpret any sensitive data (e.g., personal health information (PHI), personally identifiable information (PII) beyond basic contact details, financial data, biometric data, protected class information, classified data)?",
-                "FieldType": "Option box with values:/Yes/No"
+                "FieldType": "Option box with values:Yes/No"
             },
             {
                 "FieldName": "AI System Significance: Data Sensitivity & Privacy - Output directly or indirectly lead to decisions or actions that impact an individual's privacy rights",
                 "FieldLabel": "Individual's privacy rights",
                 "FieldText": "Will the AI system's output directly or indirectly lead to decisions or actions that impact an individual's privacy rights (e.g., surveillance, profiling for targeted advertising, monitoring of online behavior)?",
-                "FieldType": "Option box with values:/Yes/No"
+                "FieldType": "Option box with values:Yes/No"
             }
         ]
     },
@@ -228,13 +228,13 @@
                 "FieldName": "AI System Significance - Critical Business Function & Impact - Calculations, make decisions, or provide recommendations that support a critical business function",
                 "FieldLabel": "Critical business function",
                 "FieldText": "Will the AI system perform calculations, make decisions, or provide recommendations that support a critical business function (e.g., fraud detection, credit scoring, medical diagnosis, infrastructure management, legal compliance, safety-critical operations)?",
-                "FieldType": "Option box with values:/Yes/No"
+                "FieldType": "Option box with values:Yes/No"
             },
             {
                 "FieldName": "AI System Significance - Critical Business Function & Impact - Failure, error, or bias negitively impact organiation or individual",
                 "FieldLabel": "Risk exposure",
                 "FieldText": "Could a failure, error, or bias in the AI system's operation lead to significant financial loss, reputational damage, legal/regulatory penalties, or harm to individuals (e.g., physical harm, denial of services, unfair treatment)?",
-                "FieldType": "Option box with values:/Yes/No"
+                "FieldType": "Option box with values:Yes/No"
             }
         ]
     },
@@ -257,7 +257,7 @@
                 "FieldQuestionGroup": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
                 "FieldLabel": "Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||",
                 "FieldText": "Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
-                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
+                "FieldType": "Option box with values:/Applicable/Not Applicable"
             }
         ]
     },
