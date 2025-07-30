@@ -28,7 +28,7 @@ body {
     margin-bottom: 4px; /* Optional: adds a little space between lines */
 }
 .label-bold {
-    font-weight: bold;
+    font-weight: 500;
 }
 #main-title {
     text-align: center;
