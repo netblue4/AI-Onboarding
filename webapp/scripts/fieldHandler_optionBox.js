@@ -18,7 +18,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
 
         const radioInput = document.createElement('input');
         radioInput.type = 'radio';
-        radioInput.id = optionId; // Correctly assign the unique ID
+        radioInput.id = sanitizedId; //optionId; // Correctly assign the unique ID
         radioInput.name = sanitizedId; // Group buttons with the same name
         radioInput.value = trimmedOption;
 
