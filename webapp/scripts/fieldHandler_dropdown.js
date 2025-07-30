@@ -10,6 +10,16 @@ function createDropdown(field, capturedData, sanitizeForId) {
     label.classList.add('label-bold');
     fieldDiv.appendChild(label);
 
+
+
+    // Handle question groups to make the form look less busy"
+    if (field.FieldQuestionGroup && typeof field.FieldQuestionGroup === 'string') {
+            const label = document.createElement('label');
+            label.setAttribute('for', sanitizedId);
+            label.textContent = field.FieldQuestionGroup.trim();
+            label.classList.add('label-bold');
+            fieldDiv.appendChild(label);
+    }
     
     // Handle multiline Text split by "||"
     if (field.FieldText && typeof field.FieldText === 'string') {
