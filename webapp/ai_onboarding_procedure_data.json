@@ -35,7 +35,7 @@
         ]
     },
     "Describe how the AI system protects the organisations Responsible AI Objectives": {
-        "WebFormTitle": "Protect the organisations Responsible AI Objectives",
+        "WebFormTitle": "Responsible and Ethical AI Objectives",
         "Fields": [    
             {
                 "FieldName": "Protect Responsible AI Objective - Job Preservation",
@@ -100,7 +100,7 @@
         ]
     },
      "Specify and document all requirements for new AI systems or for material enhancements to existing systems.": {
-        "WebFormTitle": "AI system's Functional Requirement (A.6.2.2)",
+        "WebFormTitle": "AI system's Functional Requirement",
         "Fields": [       
             {
                 "FieldName": "AI System Functional Requirement (A.6.2.2) - Processing Logic",
@@ -396,13 +396,13 @@
             {
                 "FieldName": "Data Resources - Source",
                 "FieldLabel": "Source",
-                "FieldText": "Where the data originates from.",
+                "FieldText": "Where does the data originate from?",
                 "FieldType": "Dropdown box with values:/Internal database/Third-party vendor/Public repository/Synthetic generation"
             },
             {
                 "FieldName": "Data Resources - Intended Use",
                 "FieldLabel": "Intended Use",
-                "FieldText": "Specific purpose(s) in the AI lifecycle.",
+                "FieldText": "What is the specific purpose(s) of the data?",
                 "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
             },
             {
@@ -414,25 +414,25 @@
             {
                 "FieldName": "Data Resources - Data Labeling",
                 "FieldLabel": "Data Labeling",
-                "FieldText": "Data Label",
+                "FieldText": "How is the Data Labeled?",
                 "FieldType": "Dropdown box with values:/Sensitive/Internal/Public"
             },
             {
                 "FieldName": "Data Resources - Retention Schedules",
                 "FieldLabel": "Retention Schedules",
-                "FieldText": "Retention schedules based on legal and operational requirements.",
+                "FieldText": "What is the data Retention schedules based on legal and operational requirements?",
                 "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
             },
             {
                 "FieldName": "Data Resources - Secure Disposing",
                 "FieldLabel": "Secure Disposing",
-                "FieldText": "Secure methods for disposing of obsolete or redundant data. ",
+                "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Data Resources - Approximate Size",
                 "FieldLabel": "Approximate Size",
-                "FieldText": "Estimated size (e.g., number of records, GB, TB)?",
+                "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
                 "FieldType": "TextBox"
             },
             {
@@ -444,7 +444,7 @@
             {
                 "FieldName": "Data Resources - Owner/Custodian",
                 "FieldLabel": "Owner/Custodian",
-                "FieldText": "Person or team responsible for the data.",
+                "FieldText": "Person or team responsible for the data?",
                 "FieldType": "TextBox"
             }
         ]
@@ -455,7 +455,7 @@
             {
                 "FieldName": "Data Quality Requirements (A.7) - Accuracy",
                 "FieldLabel": "Accuracy",
-                "FieldText": "Correctness or accuracy of data against true values or a trusted source.",
+                "FieldText": "Threshold for correctness or accuracy of data against true values or a trusted source.",
                 "FieldType": "Dropdown box with values:/>95%/>50%/>20%"
             },
             {
@@ -463,12 +463,6 @@
                 "FieldLabel": "Completeness",
                 "FieldText": "Percentage of non-null values in key fields.",
                 "FieldType": "Dropdown box with values:/All critical information present/No nulls in essential fields/>98% completeness for important fields"
-            },
-            {
-                "FieldName": "Data Quality Requirements (A.7) - Validity",
-                "FieldLabel": "Validity",
-                "FieldText": "Data conforms to a defined schema, format, type, and range. Schema match:",
-                "FieldType": "Dropdown box with values:/>90%/>50%/>20%"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Consistency",
@@ -479,7 +473,7 @@
             {
                 "FieldName": "Data Quality Requirements (A.7) - Duplication",
                 "FieldLabel": "Duplication",
-                "FieldText": "Absence of redundant records or data entries",
+                "FieldText": "Threshold for absence of redundant records or data entries",
                 "FieldType": "Dropdown box with values:/<1% duplicates for critical entities/<50% duplicates for critical entities/<20% duplicates for critical entities"
             },
             {
@@ -585,25 +579,19 @@
             {
                 "FieldName": "Incident Communication Plan (A.8.4) - Data Breach",
                 "FieldLabel": "Data Breach",
-                "FieldText": "Incident Communication Plan for Unintended exposure of training data",
+                "FieldText": "Incident Communication Plan for Unintended exposure of training data.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Incident Communication Plan (A.8.4) - Model Misuse",
                 "FieldLabel": "Model Misuse",
-                "FieldText": "Incident Communication for AI model used outside intended scope",
+                "FieldText": "Incident Communication for AI model used outside intended scope.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Incident Communication Plan (A.8.4) - Model Failure",
                 "FieldLabel": "Model Failure",
-                "FieldText": "Incident Communication Plan for False predictions causing harm",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Incident Communication Plan (A.8.4) - Regulatory Trigger",
-                "FieldLabel": "Regulatory Trigger",
-                "FieldText": "Incident Communication Plan for New legal obligations",
+                "FieldText": "Incident Communication Plan for False predictions causing harm.",
                 "FieldType": "TextBox"
             }
         ]
@@ -655,61 +643,61 @@
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Job Preservation",
                 "FieldLabel": "Job Preservation",
-                "FieldText": "How does design choices support responsible AI objective: Assess and mitigate potential negative impacts of the AI system on job roles and support workforce adaptation.",
+                "FieldText": "How does design choices support the responsible AI objective: Assess and mitigate potential negative impacts of the AI system on job roles and support workforce adaptation.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Fairness",
                 "FieldLabel": "Fairness",
-                "FieldText": "How does design choices support responsible AI objective: Ensure model performance is consistent and equitable across relevant demographic groups (e.g., age, gender, ethnicity).",
+                "FieldText": "How does design choices support the responsible AI objective: Ensure model performance is consistent and equitable across relevant demographic groups (e.g., age, gender, ethnicity).",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Transparency",
                 "FieldLabel": "Transparency",
-                "FieldText": "How does design choices support responsible AI objective: Provide clear, understandable, and timely explanations to users and stakeholders for AI system decisions and operations.",
+                "FieldText": "How does design choices support the responsible AI objective: Provide clear, understandable, and timely explanations to users and stakeholders for AI system decisions and operations.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Accountability",
                 "FieldLabel": "Accountability",
-                "FieldText": "How does design choices support responsible AI objective: Clearly assign ownership and responsibility for AI system outputs, decisions, and errors.",
+                "FieldText": "How does design choices support the responsible AI objective: Clearly assign ownership and responsibility for AI system outputs, decisions, and errors.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Safety",
                 "FieldLabel": "Safety",
-                "FieldText": "How does design choices support responsible AI objective: Prevent harmful outcomes to individuals or property resulting from the AI system's operation, particularly in safety-critical contexts.",
+                "FieldText": "How does design choices support the responsible AI objective: Prevent harmful outcomes to individuals or property resulting from the AI system's operation, particularly in safety-critical contexts.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Privacy",
                 "FieldLabel": "Privacy",
-                "FieldText": "How does design choices support responsible AI objective: Protect personal data processed by the AI system, ensure confidentiality, and avoid unauthorized re-identification.",
+                "FieldText": "How does design choices support the responsible AI objective: Protect personal data processed by the AI system, ensure confidentiality, and avoid unauthorized re-identification.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Human Oversight",
                 "FieldLabel": "Human Oversight",
-                "FieldText": "How does design choices support responsible AI objective: Ensure appropriate human involvement and intervention, especially for high-risk decisions or unexpected AI system behavior.",
+                "FieldText": "How does design choices support the responsible AI objective: Ensure appropriate human involvement and intervention, especially for high-risk decisions or unexpected AI system behavior.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - EU AI Act Art 15 - Accuracy, Robustness, and Cybersecurity",
                 "FieldLabel": "Accuracy, Robustness, and Cybersecurity",
-                "FieldText": "How does design choices support responsible AI objective: Ensure the AI system meets documented accuracy levels, is resilient to attacks and faults, and includes adequate cybersecurity protections, as required by EU AI Act Article 15.",
+                "FieldText": "How does design choices support the responsible AI objective: Ensure the AI system meets documented accuracy levels, is resilient to attacks and faults, and includes adequate cybersecurity protections, as required by EU AI Act Article 15.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Customer Needs & Expectations",
                 "FieldLabel": "Customer Needs & Expectations",
-                "FieldText": "How does design choices support responsible AI objective: Ensure the AI system meets the stated needs of the customer and manage expectations through clear communication of its capabilities and limitations.",
+                "FieldText": "How does design choices support the responsible AI objective: Ensure the AI system meets the stated needs of the customer and manage expectations through clear communication of its capabilities and limitations.",
                 "FieldType": "TextBox"
             },
             {
                 "FieldName": "Responsible AI Objectives (A.9.3) - Supplier Alignment & Requirements",
                 "FieldLabel": "Supplier Alignment & Requirements",
-                "FieldText": "How does design choices support responsible AI objective: Ensure that third-party components, data, or services used in the AI system meet the organization's contractual and responsible AI obligations.",
+                "FieldText": "How does design choices support the responsible AI objective: Ensure that third-party components, data, or services used in the AI system meet the organization's contractual and responsible AI obligations.",
                 "FieldType": "TextBox"
             }
         ]
