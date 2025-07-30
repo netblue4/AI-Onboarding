@@ -103,7 +103,11 @@ button:hover {
     gap: 1rem; /* Space between bar and text */
     margin-bottom: 2rem;
 }
-
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adjust the space between the button and label as needed */
+}
 .progress-container {
     flex-grow: 1; /* Make the bar take up available space */
     background-color: #e0e0e0;
