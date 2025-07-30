@@ -3,8 +3,14 @@ function createOptionBox(field, capturedData, sanitizeForId) {
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.FieldName);
 
-    if (field.FieldLabel && typeof field.FieldLabel === 'string') {
-        field.FieldLabel.split('||').forEach(lineText => {
+    // Field header
+    const label = document.createElement('label');
+    label.textContent = field.FieldLabel;
+    label.classList.add('label-bold');
+    fieldDiv.appendChild(label);
+    
+    if (field.FieldText && typeof field.FieldText === 'string') {
+        field.FieldText.split('||').forEach(lineText => {
             const label = document.createElement('label');
             label.textContent = lineText.trim();
             label.classList.add('multiline-label');
@@ -12,14 +18,13 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         });
     } else {
         const label = document.createElement('label');
-        label.textContent = field.FieldName || 'Label not available';
+        label.textContent = field.FieldText || 'FieldText not available';
         fieldDiv.appendChild(label);
     }
 
     const optionsString = field.FieldType.split(':')[1]?.trim() || '';
     const options = optionsString.split('/');
     
-    // --- CHANGE IS HERE ---
     // By setting the default to null, no radio button will be selected initially.
     const defaultValue = null; 
     
