@@ -3,9 +3,16 @@ function createDropdown(field, capturedData, sanitizeForId) {
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.FieldName);
 
-    // Handle multiline labels split by "||"
-    if (field.FieldLabel && typeof field.FieldLabel === 'string') {
-        field.FieldLabel.split('||').forEach(lineText => {
+    // Field header
+    const label = document.createElement('label');
+    label.textContent = field.FieldLabel;
+    label.classList.add('label-bold');
+    fieldDiv.appendChild(label);
+
+    
+    // Handle multiline Text split by "||"
+    if (field.FieldText && typeof field.FieldText === 'string') {
+        field.FieldText.split('||').forEach(lineText => {
             const label = document.createElement('label');
             label.setAttribute('for', sanitizedId);
             label.textContent = lineText.trim();
@@ -15,7 +22,7 @@ function createDropdown(field, capturedData, sanitizeForId) {
     } else {
         const label = document.createElement('label');
         label.setAttribute('for', sanitizedId);
-        label.textContent = field.FieldName || 'Label not available';
+        label.textContent = field.FieldText || 'FieldText not available';
         fieldDiv.appendChild(label);
     }
 
