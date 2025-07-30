@@ -486,7 +486,7 @@
                 "FieldName": "Data Quality Requirements (A.7) - Source Traceability",
                 "FieldLabel": "Source Traceability",
                 "FieldText": "Can origin be verified?",
-                "FieldType": "Dropdown box with values:/No/Yes"
+                "FieldType": "Option box with values:/No/Yes"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Versioning Applied?",
@@ -503,73 +503,73 @@
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Masking",
                 "FieldLabel": "Masking",
                 "FieldText": "Replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Tokenization",
                 "FieldLabel": "Tokenization",
                 "FieldText": "Replace a sensitive data element with a non-sensitive equivalent, referred to as a \"token.\" The original data is stored in a secure vault.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Hashing",
                 "FieldLabel": "Hashing",
                 "FieldText": "Data Preparation Plan - Hashing||Use a cryptographic function to convert sensitive data into a fixed-size string of characters. It's a one-way process.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - De-identification & Anonymization - Generalization",
                 "FieldLabel": "Generalization",
                 "FieldText": "Reduce the precision of data. For example, changing a specific age ('34') to an age range ('30-40') or a full date of birth to just the year.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Access Control & Governance - Data Segregation",
                 "FieldLabel": "Data Segregation",
                 "FieldText": "Create physically or logically separate data stores for sensitive information, with strict access controls.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Access Control & Governance - Attribute-Based Access Control",
                 "FieldLabel": "Attribute-Based Access Control",
                 "FieldText": "Apply rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Data Minimization - Feature Pruning",
                 "FieldLabel": "Feature Pruning",
                 "FieldText": "Remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Data Minimization",
                 "FieldLabel": "Data Minimization",
                 "FieldText": "Remove records of individuals who have not given consent for their data to be used for AI training.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Sensitive Data (A.7) - Quality & Integrity (Post-Anonymization) - Integrity Checks",
                 "FieldLabel": "Integrity Checks",
                 "FieldText": "After de-identification, verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Handling Missing Values",
                 "FieldLabel": "Handling Missing Values",
                 "FieldText": "Remove empty or null fields, such as filling them with a mean/median/mode, or removing the row/column.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Correcting Inaccuracies",
                 "FieldLabel": "Correcting Inaccuracies",
                 "FieldText": "Identify and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000°C').",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             },
             {
                 "FieldName": "Data Preparation Plan for Public Data -  (A.7) - Data Cleaning & Quality - Removing Duplicates",
                 "FieldLabel": "Removing Duplicates",
                 "FieldText": "Identify and deleting redundant records from the dataset.",
-                "FieldType": "Dropdown box with values:/Not Applicable/Applicable"
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
             }
         ]
     },
@@ -628,13 +628,7 @@
                 "FieldLabel": "Evaluation & Selection Process",
                 "FieldText": "Describe the process used to evaluate and select this Third-Party.",
                 "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "Third-Party - Alignment with AI Policies",
-                "FieldLabel": "Alignment with AI Policies",
-                "FieldText": "Confirm and describe how the Third-Party's policies align with yours.",
-                "FieldType": "Dropdown box with values:/Yes/No"
-            }        
+            }      
         ]
     },
     "Document how does design choices support responsible AI objectives.": {
@@ -703,7 +697,7 @@
         ]
     },
     "Define Objective and roles for Development": {
-        "WebFormTitle": "AI Systems development objective and roles objectives",
+        "WebFormTitle": "AI Systems development objective and roles",
         "Fields": [
             {
                 "FieldName": "Development Roles",
@@ -737,7 +731,7 @@
         ]
     },
     "Define Objective and roles for Use": {
-        "WebFormTitle": "AI Systems use objective and roles objectives ",
+        "WebFormTitle": "AI Systems use objective and roles",
         "Fields": [
             {
                 "FieldName": "Usage roles",
@@ -765,7 +759,7 @@
             {
                 "FieldName": "AI System Security Approver",
                 "FieldLabel": "Security Approver",
-                "FieldText": "Security Aprover",
+                "FieldText": "Name/Role of the Security Aprover",
                 "FieldType": "TextBox"
             },
             {
@@ -777,7 +771,7 @@
             {
                 "FieldName": "AI System DPO Approver",
                 "FieldLabel": "DPO Approver",
-                "FieldText": "DPO Aprover",
+                "FieldText": "Name/Role of the DPO Aprover",
                 "FieldType": "TextBox"
             },
             {
@@ -789,7 +783,7 @@
             {
                 "FieldName": "AI System Risk Approver",
                 "FieldLabel": "Risk Approver",
-                "FieldText": "Risk Aprover",
+                "FieldText": "Name/Role of the Risk Aprover",
                 "FieldType": "TextBox"
             },
             {
@@ -801,7 +795,7 @@
             {
                 "FieldName": "AI System Business Approver",
                 "FieldLabel": "Business Approver",
-                "FieldText": "Business Approver",
+                "FieldText": "Name/Role of the Business Approver",
                 "FieldType": "TextBox"
             },
             {
