@@ -120,47 +120,47 @@
             {
                 "FieldName": "Prohibited Practices: Subliminal Manipulation",
                 "FieldLabel": "Subliminal Manipulation||Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             },
             {
                 "FieldName": "Prohibited Practices: Exploitation of Vulnerabilities",
                 "FieldLabel": "Exploitation of Vulnerabilities||Does the AI system exploit vulnerabilities of a specific group (e.g., due to age, physical or mental disability, social or economic situation) to materially distort their behavior in a way likely to cause harm to that person or another?",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             },
             {
                 "FieldName": "Prohibited Practices: Social Scoring by Public Authorities",
                 "FieldLabel": "Social Scoring||Is the AI system used by public authorities for evaluating or classifying the trustworthiness of natural persons based on their social behavior or personal characteristics, leading to detrimental or unfavorable treatment?",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             },
             {
                 "FieldName": "Prohibited Practices: Real-time Remote Biometric Identification",
                 "FieldLabel": "Biometric Identification||Is the AI system used by law enforcement for real-time remote biometric identification of natural persons in publicly accessible spaces? (Note: Very limited exceptions exist)",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             },
             {
                 "FieldName": "Prohibited Practices: Emotion Inference",
                 "FieldLabel": "Emotion Inference||Does the AI system infer emotions of natural persons in the context of workplaces or educational institutions?",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             },
             {
                 "FieldName": "Prohibited Practices: Biometric Categorization",
                 "FieldLabel": "Biometric Categorization||Does the AI system use biometric data to categorize natural persons based on sensitive attributes like race, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation?",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             },
             {
                 "FieldName": "Prohibited Practices: Untargeted Scraping of Facial Images",
                 "FieldLabel": "Untargeted Scraping||Does the AI system involve untargeted scraping of facial images from the internet or CCTV footage to create or expand facial recognition databases?",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             },
             {
                 "FieldName": "Prohibited Practices: Risk Assessment of Criminal Offenses (Profiling)",
                 "FieldLabel": "Profiling||Does the AI system assess the risk of a natural person committing a criminal offense based solely on profiling or assessment of their personality traits or characteristics?",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             },
             {
                 "FieldName": "Prohibited Practices: AI system is Prohibited",
                 "FieldLabel": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.||For a more detailed assessment, you can refer to the EU AI Act Compliance Checker: https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
-                "FieldType": "Dropdown box with values:/Yes/No"
+                "FieldType": "Option box with values:/Yes/No"
             }
         ]
     },
