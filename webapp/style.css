@@ -127,3 +127,56 @@ button:hover {
     color: #007BFF;
     white-space: nowrap; /* Prevent text from wrapping */
 }
+/* Styles for the collapsible container */
+.form-field {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* The clickable header area */
+.collapsible-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none; /* Prevents text selection on click */
+}
+
+/* The expand/collapse icon (▶/▼) */
+.collapse-icon {
+    margin-right: 12px;
+    font-weight: bold;
+    color: #555;
+    width: 1em; /* Ensures alignment */
+}
+
+/* The wrapper for the content that will be hidden or shown */
+.collapsible-content {
+    padding-left: 25px; /* Indents content under the header */
+    margin-left: 5px;   /* Aligns with the space for the icon */
+    border-left: 1px solid #e0e0e0;
+    
+    /* Smooth transition for collapse/expand animation */
+    overflow: hidden;
+    transition: max-height 0.35s ease-in-out;
+    max-height: 600px; /* A large enough height for the content when expanded */
+}
+
+/* The state when content is collapsed (hidden) */
+.collapsible-content.collapsed {
+    max-height: 0;
+    border-left-color: transparent;
+}
+
+/* General styling for elements inside the collapsible area */
+.collapsible-content .label-bold,
+.collapsible-content .multiline-label,
+.collapsible-content select {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.collapsible-content select {
+    margin-top: 12px;
+}
