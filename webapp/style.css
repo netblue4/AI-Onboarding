@@ -68,6 +68,8 @@ body {
     border: 1px solid #007BFF;
     border-radius: 4px;
     box-sizing: border-box;
+    height: 2.7rem;    /* Force a specific height for a single line feel */
+    resize: none;      /* Optional: disable resizing */
 }
  .form-field .auto-generated-label {
     font-style: italic;
