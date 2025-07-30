@@ -16,8 +16,9 @@
             },
             {
                 "FieldName": "AI System - Target Users",
+                "FieldQuestionGroup": "Who will use this system or be affected by it?",
                 "FieldLabel": "Target Users",
-                "FieldText": "Who will use this system or be affected by it?",
+                "FieldText": "",
                 "FieldType": "Dropdown box with values:/Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
             },
             {
