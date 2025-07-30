@@ -6,6 +6,7 @@ function createDropdown(field, capturedData, sanitizeForId) {
     // Field header
     const label = document.createElement('label');
     label.textContent = field.FieldLabel;
+    label.setAttribute('for', sanitizedId);
     label.classList.add('label-bold');
     fieldDiv.appendChild(label);
 
