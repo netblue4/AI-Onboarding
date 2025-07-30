@@ -486,7 +486,7 @@
                 "FieldName": "Data Quality Requirements (A.7) - Source Traceability",
                 "FieldLabel": "Source Traceability",
                 "FieldText": "Can origin be verified?",
-                "FieldType": "Option box with values:/No/Yes"
+                "FieldType": "Option box with values:No/Yes"
             },
             {
                 "FieldName": "Data Quality Requirements (A.7) - Versioning Applied?",
@@ -765,6 +765,7 @@
             {
                 "FieldName": "AI System Security Approval",
                 "FieldLabel": "Security Approved",
+                "FieldText": "",
                 "FieldType": "Option box with values:Yes/No"
             },
             {
@@ -788,7 +789,7 @@
             {
                 "FieldName": "AI System Risk Approval",
                 "FieldLabel": "Risk Approved",
-                "FieldText": "Risk Approved",
+                "FieldText": "",
                 "FieldType": "Option box with values:Yes/No"
             },
             {
@@ -800,7 +801,7 @@
             {
                 "FieldName": "AI System Business Approval",
                 "FieldLabel": "Business Approved",
-                "FieldText": "Business Approved",
+                "FieldText": "",
                 "FieldType": "Option box with values:Yes/No"
             }
         ]
