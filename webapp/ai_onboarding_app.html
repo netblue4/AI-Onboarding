@@ -176,7 +176,74 @@
                                 });
                                 select.value = capturedData[field.FieldName] || options[0].trim(); // Restore captured data
                                 fieldDiv.appendChild(select);
+                            } else if (field.FieldType && field.FieldType.startsWith('Option box with values')) {
+                                // Check if FieldLabel exists and is a string
+                                if (field.FieldLabel && typeof field.FieldLabel === 'string') {
+                                    // Split the label text by the "||" delimiter
+                                    const multiline = field.FieldLabel.split('||');
+                                    // Loop through each line of text
+                                    multiline.forEach(lineText => {
+                                        // Create a new label for each line
+                                        const label = document.createElement('label');
+                                        label.setAttribute('for', sanitizedId);
+                                        label.textContent = lineText.trim(); // Use the trimmed line of text
+                                        
+                                       // Add a class for CSS styling (to make it display on a new line)
+                                        label.classList.add('multiline-label'); 
+                                        
+                                        // Add the new label to your container
+                                        fieldDiv.appendChild(label);
+                                    });
+                                } else {
+                                    // (Optional) Handle cases where FieldLabel is missing or not text
+                                    // For example, you could create a single, default label
+                                    const label = document.createElement('label');
+                                    label.setAttribute('for', sanitizedId);
+                                    // Use the FieldName as a fallback, or a default message
+                                    label.textContent = field.FieldName || 'Label not available'; 
+                                    fieldDiv.appendChild(label);
+                                }
+                               
+                                // Create a container for the radio buttons
+                                const radioGroup = document.createElement('div');
+                                radioGroup.id = sanitizedId;
+                                
+                                const optionsString = field.FieldType.split(':')[1]?.trim() || '';
+                                const options = optionsString.split('/');
+                                
+                                // Loop through each option to create a radio button and a label
+                                options.forEach((optionText, index) => {
+                                    const trimmedText = optionText.trim();
+                                    // Unique ID for each radio button to link with its label
+                                    const optionId = `${sanitizedId}-${index}`;
+                                
+                                    // Create the <input type="radio"> element
+                                    const radio = document.createElement('input');
+                                    radio.type = 'radio';
+                                    radio.id = optionId;
+                                    radio.name = sanitizedId; // Use the same name to group them
+                                    radio.value = trimmedText;
+                                
+                                    // Create the <label> for the radio button
+                                    const label = document.createElement('label');
+                                    label.htmlFor = optionId;
+                                    label.textContent = trimmedText;
+                                
+                                    // Optional: Wrap each radio/label pair in a div for styling
+                                    const wrapper = document.createElement('div');
+                                    wrapper.appendChild(radio);
+                                    wrapper.appendChild(label);
+                                
+                                    // Add the pair to the main container
+                                    radioGroup.appendChild(wrapper);
+                                });
+
+
+                                
+                                select.value = capturedData[field.FieldName] || options[0].trim(); // Restore captured data
+                                fieldDiv.appendChild(select);
                             }
+                            
                             formStepDiv.appendChild(fieldDiv);
                         });
                     }
