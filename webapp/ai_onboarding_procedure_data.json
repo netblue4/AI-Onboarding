@@ -3,28 +3,32 @@
         "WebFormTitle": "AI system's intended use and limitations",
         "Fields": [
             {
-                "FieldName": "AI System ID",
+                "FieldName": "AI System - ID",
                 "FieldLabel": "AI System Unique Number",
                 "FieldText": "AI System Unique Number",
                 "FieldType": "Auto generated number"
             },
             {
-                "FieldName": "AI System Name",
+                "FieldName": "AI System - Name",
+                "FieldLabel": "AI System Name",
                 "FieldText": "Name of the AI application",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Target Users",
+                "FieldName": "AI System - Target Users",
+                "FieldLabel": "Target Users",
                 "FieldText": "Who will use this system or be affected by it?",
                 "FieldType": "Dropdown box with values:/Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
             },
             {
-                "FieldName": "Business Purpose",
+                "FieldName": "AI System - Business Purpose",
+                "FieldLabel": "Business Purpose",
                 "FieldText": "What specific business problem or task does this system address?",
                 "FieldType": "TextBox"
             },
             {
-                "FieldName": "Intended Use",
+                "FieldName": "AI System - Intended Use",
+                "FieldLabel": "Intended Use",
                 "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
                 "FieldType": "TextBox"
             }
