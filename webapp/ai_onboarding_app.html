@@ -177,8 +177,7 @@
                                 select.value = capturedData[field.FieldName] || options[0].trim(); // Restore captured data
                                 fieldDiv.appendChild(select);
                             } else if (field.FieldType && field.FieldType.startsWith('Option box with values')) {
-                                // This part handles the main label/question text above the options.
-                                // It's unchanged from your original script.
+                                // The main label/question text part is unchanged.
                                 if (field.FieldLabel && typeof field.FieldLabel === 'string') {
                                     const multiline = field.FieldLabel.split('||');
                                     multiline.forEach(lineText => {
@@ -193,50 +192,45 @@
                                     fieldDiv.appendChild(label);
                                 }
                             
-                                // --- Start of Changed Code ---
-                            
-                                // 1. Extract the options from the FieldType string
+                                // The logic to restore the selected value is also unchanged.
                                 const optionsString = field.FieldType.split(':')[1]?.trim() || '';
                                 const options = optionsString.split('/');
-                            
-                                // 2. Determine the value that should be pre-selected
-                                const selectedValue = capturedData[field.FieldName] || options[0]?.trim();
+                                const defaultValue = options[0]?.trim() || '';
+                                const capturedValue = capturedData[field.FieldName] != null 
+                                    ? String(capturedData[field.FieldName]).trim() 
+                                    : null;
+                                const selectedValue = capturedValue ?? defaultValue;
                                 
-                                // 3. Loop through each option to create a radio button and its label
+                                // Loop through each option to create a radio button and its label
                                 options.forEach((optionText, index) => {
                                     const trimmedOption = optionText.trim();
-                                    // Create a unique ID for each radio button to link it with its label
                                     const optionId = `${sanitizedId}-${index}`;
                             
-                                    // Create the radio button input element
                                     const radioInput = document.createElement('input');
                                     radioInput.type = 'radio';
                                     radioInput.id = optionId;
-                                    radioInput.name = sanitizedId; // All radios in a group must have the same name
+                                    radioInput.name = sanitizedId;
                                     radioInput.value = trimmedOption;
                             
-                                    // Check this radio button if its value matches the captured data or if it's the first option
                                     if (trimmedOption === selectedValue) {
                                         radioInput.checked = true;
                                     }
                             
-                                    // Create the label for this specific radio button
                                     const radioLabel = document.createElement('label');
                                     radioLabel.setAttribute('for', optionId);
                                     radioLabel.textContent = trimmedOption;
                                     
-                                    // Optional: Wrap each radio/label pair in a div for easier styling (e.g., to put each on a new line)
+                                    // The wrapper div gets the 'radio-option' class.
+                                    // The inline styles have been removed.
                                     const wrapper = document.createElement('div');
-                                    wrapper.classList.add('radio-option'); // Add a class for CSS
+                                    wrapper.classList.add('radio-option'); 
+                                    
                                     wrapper.appendChild(radioInput);
                                     wrapper.appendChild(radioLabel);
+                                    
                                     fieldDiv.appendChild(wrapper);
                                 });
                             }
-                            
-                            formStepDiv.appendChild(fieldDiv);
-                        });
-                    }
                     formContainer.appendChild(formStepDiv);
                 }
 
