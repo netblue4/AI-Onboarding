@@ -5,6 +5,7 @@ function createTextBox(field, capturedData, sanitizeForId) {
 
     const label = document.createElement('label');
     label.textContent = 'Risk' + ': ';
+    label.classList.add('label-bold');
     fieldDiv.appendChild(label);
 
     const input = document.createElement('textarea');
