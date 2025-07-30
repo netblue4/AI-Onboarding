@@ -6,7 +6,6 @@ function createOptionBox(field, capturedData, sanitizeForId) {
     if (field.FieldLabel && typeof field.FieldLabel === 'string') {
         field.FieldLabel.split('||').forEach(lineText => {
             const label = document.createElement('label');
-            label.setAttribute('for', sanitizedId);
             label.textContent = lineText.trim();
             label.classList.add('multiline-label');
             fieldDiv.appendChild(label);
@@ -14,13 +13,16 @@ function createOptionBox(field, capturedData, sanitizeForId) {
     } else {
         const label = document.createElement('label');
         label.textContent = field.FieldName || 'Label not available';
-        label.setAttribute('for', sanitizedId);
         fieldDiv.appendChild(label);
     }
 
     const optionsString = field.FieldType.split(':')[1]?.trim() || '';
     const options = optionsString.split('/');
-    const defaultValue = options[0]?.trim() || '';
+    
+    // --- CHANGE IS HERE ---
+    // By setting the default to null, no radio button will be selected initially.
+    const defaultValue = null; 
+    
     const selectedValue = capturedData[field.FieldName] ?? defaultValue;
 
     options.forEach((optionText, index) => {
@@ -32,6 +34,8 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         radioInput.id = sanitizedId; //optionId;
         radioInput.name = sanitizedId;
         radioInput.value = trimmedOption;
+        
+        // This check will now only be true if a value was previously captured
         if (trimmedOption === String(selectedValue).trim()) {
             radioInput.checked = true;
         }
