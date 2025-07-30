@@ -765,7 +765,6 @@
             {
                 "FieldName": "AI System Security Approval",
                 "FieldLabel": "Security Approved",
-                "FieldText": "Security Approved",
                 "FieldType": "Option box with values:Yes/No"
             },
             {
@@ -777,7 +776,7 @@
             {
                 "FieldName": "AI System DPO Approval",
                 "FieldLabel": "DPO Approved",
-                "FieldText": "DPO Approved",
+                "FieldText": "",
                 "FieldType": "Option box with values:Yes/No"
             },
             {
