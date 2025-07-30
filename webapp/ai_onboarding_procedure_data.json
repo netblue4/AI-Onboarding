@@ -255,7 +255,7 @@
             {
                 "FieldName": "EU AI Act Art 15||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
                 "FieldQuestionGroup": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
-                "FieldLabel": "Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||",
+                "FieldLabel": "Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping",
                 "FieldText": "Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
                 "FieldType": "Option box with values:/Applicable/Not Applicable"
             }
@@ -265,46 +265,52 @@
         "WebFormTitle": "AI System Risk Category Impact Assessment",
         "Fields": [
             {
-                "FieldName": "Regulatory Compliance Risk: Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.||Applicable Controls||1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).||2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).||3. Contracts or usage agreements define legal obligations of AI use.||4. Independent audits or internal reviews confirm AI compliance status.",
-                "FieldQuestionGroup": "Is the AI system goverend by any AI regulations (e.g., EU AI Act) or sector-specific laws?",
+                "FieldName": "Regulatory Compliance Risk - Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.||Applicable Controls||1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).||2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).||3. Contracts or usage agreements define legal obligations of AI use.||4. Independent audits or internal reviews confirm AI compliance status.",
+                "FieldQuestionGroup": "Is the AI system subject to existing or emerging AI regulations (e.g., EU AI Act, GDPR, sector-specific rules)?",
                 "FieldLabel": "Regulatory Compliance Risk",
                 "FieldText": "Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.||Applicable Controls||1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).||2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).||3. Contracts or usage agreements define legal obligations of AI use.||4. Independent audits or internal reviews confirm AI compliance status.",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "IT Resilience Risk: Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.||Applicable Controls||1. AI hosting environments include SLAs and availability monitoring.||2. Disaster recovery and retraining strategies are defined.||3. Model artifacts and datasets are backed up securely.||4. Runbooks and fallback processes exist for critical AI workflows.",
+                "FieldQuestionGroup": "Would downtime or failure of this AI system disrupt any critical business processes or services?",
                 "FieldLabel": "IT Resilience Risk",
-                "FieldText": "Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.||Applicable Controls||1. AI hosting environments include SLAs and availability monitoring.||2. Disaster recovery and retraining strategies are defined.||3. Model artifacts and datasets are backed up securely.||4. Runbooks and fallback processes exist for critical AI workflows.",
-                "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
+                "FieldText": "Applicable Controls||1. AI hosting environments include SLAs and availability monitoring.||2. Disaster recovery and retraining strategies are defined.||3. Model artifacts and datasets are backed up securely.||4. Runbooks and fallback processes exist for critical AI workflows.",
+                "FieldType": "Option box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "IT Security Risk: Threats to the confidentiality, integrity, or availability of AI systems, including model theft, prompt injection, or malicious model updates.||Applicable Controls||1. AI code and model repositories are subject to secure SDLC practices.||2. AI endpoints are penetration tested and hardened.||3. Model versioning and integrity checks are enforced.||4. AI security posture is reviewed against frameworks like NIST AI RMF.",
-                "FieldLabel": "xxx",
-                "FieldText": "IT Security Risk||Threats to the confidentiality, integrity, or availability of AI systems, including model theft, prompt injection, or malicious model updates.||Applicable Controls||1. AI code and model repositories are subject to secure SDLC practices.||2. AI endpoints are penetration tested and hardened.||3. Model versioning and integrity checks are enforced.||4. AI security posture is reviewed against frameworks like NIST AI RMF.",
+                "FieldQuestionGroup": "Does this AI system handle sensitive data, expose endpoints, or operate in environments where security breaches could cause harm or disruption?",
+                "FieldLabel": "IT Security Risk",
+                "FieldText": "Applicable Controls||1. AI code and model repositories are subject to secure SDLC practices.||2. AI endpoints are penetration tested and hardened.||3. Model versioning and integrity checks are enforced.||4. AI security posture is reviewed against frameworks like NIST AI RMF.",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "Data Management Risk: Risk arising from poor handling of training, validation, or inference data, including lack of lineage or quality controls.||Applicable Controls||1. AI onboarding requires documentation of data sources, quality, and curation steps.||2. Access logs and role-based controls are enforced for training data.||3. Data lifecycle policies cover ingestion to deletion for AI use.||4. Internal data audits assess how data is governed within the AI lifecycle.",
-                "FieldLabel": "xxx",
-                "FieldText": "Data Management Risk||Risk arising from poor handling of training, validation, or inference data, including lack of lineage or quality controls.||Applicable Controls||1. AI onboarding requires documentation of data sources, quality, and curation steps.||2. Access logs and role-based controls are enforced for training data.||3. Data lifecycle policies cover ingestion to deletion for AI use.||4. Internal data audits assess how data is governed within the AI lifecycle.",
+                "FieldQuestionGroup": "Does the AI system rely on data for training, validation, or inference where data quality, lineage, or access control could impact performance or compliance?",
+                "FieldLabel": "Data Management Risk",
+                "FieldText": "Applicable Controls||1. AI onboarding requires documentation of data sources, quality, and curation steps.||2. Access logs and role-based controls are enforced for training data.||3. Data lifecycle policies cover ingestion to deletion for AI use.||4. Internal data audits assess how data is governed within the AI lifecycle.",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "Risk Management Risk: Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.||Applicable Controls||1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.||2. Risk register entries are created for each AI use case.||3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.||4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
-                "FieldLabel": "xxx",
-                "FieldText": "Risk Management Risk||Inadequate identification, assessment, and mitigation of AI-specific risks throughout the system lifecycle.||Applicable Controls||1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.||2. Risk register entries are created for each AI use case.||3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.||4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
+                "FieldQuestionGroup": "Is there a need to formally identify and manage risks associated with this AI system across its design, deployment, and operation?",
+                "FieldLabel": "Risk Management Risk",
+                "FieldText": "Applicable Controls||1. AI onboarding includes risk assessment aligned to internal AI risk taxonomy.||2. Risk register entries are created for each AI use case.||3. Ongoing risk reviews are embedded in AI lifecycle checkpoints.||4. Mitigations are documented and tested for effectiveness (e.g., fairness controls, monitoring).",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "Data Security Risk: Risk of unauthorized access to model training data, inference data, or outputs containing sensitive or proprietary information.||Applicable Controls||1. Training data is encrypted at rest and in transit.||2. Access controls are enforced at dataset and model level.||3. Model outputs are reviewed for potential data leakage.||4. Third-party assessments validate data security in AI systems.",
-                "FieldLabel": "xxx",
-                "FieldText": "Data Security Risk||Risk of unauthorized access to model training data, inference data, or outputs containing sensitive or proprietary information.||Applicable Controls||1. Training data is encrypted at rest and in transit.||2. Access controls are enforced at dataset and model level.||3. Model outputs are reviewed for potential data leakage.||4. Third-party assessments validate data security in AI systems.",
+                "FieldQuestionGroup": "Does this AI system process sensitive, confidential, or proprietary data where unauthorized access or leakage could cause harm or regulatory exposure?",
+                "FieldLabel": "Data Security Risk",
+                "FieldText": "Applicable Controls||1. Training data is encrypted at rest and in transit.||2. Access controls are enforced at dataset and model level.||3. Model outputs are reviewed for potential data leakage.||4. Third-party assessments validate data security in AI systems.",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "Data Protection Risk: Risk of non-compliance with personal data protection laws in training or deploying AI systems that process personal/sensitive data.||Applicable Controls||1. Data protection impact assessments (DPIAs) are mandatory for personal-data-using AI.||2. Data minimization and anonymization techniques are applied before model training.||3. Onboarding includes geographic mapping of data storage and processing.||4. AI-specific privacy policies and consent mechanisms are documented.",
-                "FieldLabel": "xxx",
-                "FieldText": "Data Protection Risk||Risk of non-compliance with personal data protection laws in training or deploying AI systems that process personal/sensitive data.||Applicable Controls||1. Data protection impact assessments (DPIAs) are mandatory for personal-data-using AI.||2. Data minimization and anonymization techniques are applied before model training.||3. Onboarding includes geographic mapping of data storage and processing.||4. AI-specific privacy policies and consent mechanisms are documented.",
+                "FieldQuestionGroup": "Does the AI system process personal or sensitive data that may trigger compliance obligations under laws like GDPR or HIPAA?",
+                "FieldLabel": "Data Protection Risk",
+                "FieldText": "Applicable Controls||1. Data protection impact assessments (DPIAs) are mandatory for personal-data-using AI.||2. Data minimization and anonymization techniques are applied before model training.||3. Onboarding includes geographic mapping of data storage and processing.||4. AI-specific privacy policies and consent mechanisms are documented.",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             }
         ]
