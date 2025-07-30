@@ -265,14 +265,15 @@
         "Fields": [
             {
                 "FieldName": "Regulatory Compliance Risk: Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.||Applicable Controls||1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).||2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).||3. Contracts or usage agreements define legal obligations of AI use.||4. Independent audits or internal reviews confirm AI compliance status.",
+                "FieldQuestionGroup": "Is the AI system goverend by any AI regulations (e.g., EU AI Act) or sector-specific laws?",
                 "FieldLabel": "Regulatory Compliance Risk",
                 "FieldText": "Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.||Applicable Controls||1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).||2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).||3. Contracts or usage agreements define legal obligations of AI use.||4. Independent audits or internal reviews confirm AI compliance status.",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
                 "FieldName": "IT Resilience Risk: Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.||Applicable Controls||1. AI hosting environments include SLAs and availability monitoring.||2. Disaster recovery and retraining strategies are defined.||3. Model artifacts and datasets are backed up securely.||4. Runbooks and fallback processes exist for critical AI workflows.",
-                "FieldLabel": "xxx",
-                "FieldText": "IT Resilience Risk||Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.||Applicable Controls||1. AI hosting environments include SLAs and availability monitoring.||2. Disaster recovery and retraining strategies are defined.||3. Model artifacts and datasets are backed up securely.||4. Runbooks and fallback processes exist for critical AI workflows.",
+                "FieldLabel": "IT Resilience Risk",
+                "FieldText": "Risk that AI systems become unavailable, causing operational disruption due to poor resilience of the models or platforms.||Applicable Controls||1. AI hosting environments include SLAs and availability monitoring.||2. Disaster recovery and retraining strategies are defined.||3. Model artifacts and datasets are backed up securely.||4. Runbooks and fallback processes exist for critical AI workflows.",
                 "FieldType": "Dropdown box with values:/Applicable/Not Applicable"
             },
             {
