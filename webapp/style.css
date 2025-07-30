@@ -139,7 +139,7 @@ button:hover {
     display: flex;
     align-items: center;
     cursor: pointer;
-    user-select: none; /* Prevents text selection on click */
+    user-select: none;
 }
 
 /* The expand/collapse icon (▶/▼) */
@@ -147,19 +147,25 @@ button:hover {
     margin-right: 12px;
     font-weight: bold;
     color: #555;
-    width: 1em; /* Ensures alignment */
+    width: 1em;
+}
+
+/* NEW: Styles for the dropdown when it appears after the header */
+.dropdown-after-header {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    /* Indent the dropdown to align with the collapsible content below it */
+    margin-left: 28px; 
 }
 
 /* The wrapper for the content that will be hidden or shown */
 .collapsible-content {
-    padding-left: 25px; /* Indents content under the header */
-    margin-left: 5px;   /* Aligns with the space for the icon */
+    padding-left: 25px;
+    margin-left: 5px;
     border-left: 1px solid #e0e0e0;
-    
-    /* Smooth transition for collapse/expand animation */
     overflow: hidden;
     transition: max-height 0.35s ease-in-out;
-    max-height: 600px; /* A large enough height for the content when expanded */
+    max-height: 600px;
 }
 
 /* The state when content is collapsed (hidden) */
@@ -170,13 +176,8 @@ button:hover {
 
 /* General styling for elements inside the collapsible area */
 .collapsible-content .label-bold,
-.collapsible-content .multiline-label,
-.collapsible-content select {
+.collapsible-content .multiline-label {
     display: block;
     margin-bottom: 8px;
     margin-top: 8px;
-}
-
-.collapsible-content select {
-    margin-top: 12px;
 }
