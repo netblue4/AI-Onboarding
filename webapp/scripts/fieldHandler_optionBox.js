@@ -6,6 +6,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
     if (field.FieldLabel && typeof field.FieldLabel === 'string') {
         field.FieldLabel.split('||').forEach(lineText => {
             const label = document.createElement('label');
+            label.setAttribute('for', sanitizedId);
             label.textContent = lineText.trim();
             label.classList.add('multiline-label');
             fieldDiv.appendChild(label);
@@ -13,6 +14,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
     } else {
         const label = document.createElement('label');
         label.textContent = field.FieldName || 'Label not available';
+        label.setAttribute('for', sanitizedId);
         fieldDiv.appendChild(label);
     }
 
@@ -27,7 +29,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
 
         const radioInput = document.createElement('input');
         radioInput.type = 'radio';
-        radioInput.id = optionId;
+        radioInput.id = sanitizedId; //optionId;
         radioInput.name = sanitizedId;
         radioInput.value = trimmedOption;
         if (trimmedOption === String(selectedValue).trim()) {
