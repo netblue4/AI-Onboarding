@@ -3,67 +3,8 @@ function createDropdown(field, capturedData, sanitizeForId) {
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.FieldName);
 
-    // This variable will hold the container for the main form elements.
-    // Its value is determined by the conditional logic below.
-    let contentContainer;
-
-    // --- CONDITION: Only create a collapsible structure if FieldQuestionGroup exists. ---
-    if (field.FieldQuestionGroup && typeof field.FieldQuestionGroup === 'string') {
-        // CASE 1: Create the collapsible structure.
-        const headerDiv = document.createElement('div');
-        headerDiv.className = 'collapsible-header';
-
-        const icon = document.createElement('span');
-        icon.className = 'collapse-icon';
-        icon.textContent = '▶';
-        headerDiv.appendChild(icon);
-
-        const questionLabel = document.createElement('label');
-        questionLabel.textContent = field.FieldQuestionGroup.trim();
-        questionLabel.classList.add('label-bold');
-        headerDiv.appendChild(questionLabel);
-        
-        fieldDiv.appendChild(headerDiv);
-
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'collapsible-content collapsed';
-        fieldDiv.appendChild(contentDiv);
-
-        // Add the event listener to the header to toggle the content's visibility.
-        headerDiv.addEventListener('click', () => {
-            const isCollapsed = contentDiv.classList.toggle('collapsed');
-            icon.textContent = isCollapsed ? '▶' : '▼';
-        });
-
-        // Set the new collapsible div as the container for the form elements.
-        contentContainer = contentDiv;
-
-    } else {
-        // CASE 2: Fallback to the original, non-collapsible behavior.
-        // The main 'fieldDiv' will hold all elements directly.
-        contentContainer = fieldDiv;
-    }
-
-    // --- COMMON LOGIC: Create and append form elements to the correct container. ---
-
-    // FieldLabel (The main title for the field)
-    const fieldLabel = document.createElement('label');
-    fieldLabel.textContent = field.FieldLabel;
-    fieldLabel.setAttribute('for', sanitizedId);
-    fieldLabel.classList.add('label-bold');
-    contentContainer.appendChild(fieldLabel);
-
-    // Multiline FieldText
-    if (field.FieldText && typeof field.FieldText === 'string') {
-        field.FieldText.split('||').forEach(lineText => {
-            const textLabel = document.createElement('label');
-            textLabel.textContent = lineText.trim();
-            textLabel.classList.add('multiline-label');
-            contentContainer.appendChild(textLabel);
-        });
-    }
-
-    // Dropdown Select Element
+    // --- Create the Dropdown Select Element First ---
+    // It will be appended in the correct position by the logic below.
     const select = document.createElement('select');
     select.id = sanitizedId;
     select.name = sanitizedId;
@@ -78,7 +19,80 @@ function createDropdown(field, capturedData, sanitizeForId) {
         select.appendChild(option);
     });
     select.value = capturedData[field.FieldName] || options[0]?.trim();
-    contentContainer.appendChild(select);
+
+
+    // --- CONDITION: Check if a collapsible structure is needed ---
+    if (field.FieldQuestionGroup && typeof field.FieldQuestionGroup === 'string') {
+        // CASE 1: Build the COLLAPSIBLE structure.
+
+        // 1a. Create the visible header with the question.
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'collapsible-header';
+
+        const icon = document.createElement('span');
+        icon.className = 'collapse-icon';
+        icon.textContent = '▶'; // Icon to indicate collapsible details
+        headerDiv.appendChild(icon);
+
+        const questionLabel = document.createElement('label');
+        questionLabel.textContent = field.FieldQuestionGroup.trim();
+        questionLabel.classList.add('label-bold');
+        headerDiv.appendChild(questionLabel);
+
+        fieldDiv.appendChild(headerDiv);
+
+        // 1b. Append the SELECT dropdown to be always visible under the header.
+        select.classList.add('dropdown-after-header');
+        fieldDiv.appendChild(select);
+        
+        // 1c. Create the collapsible container for the details.
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'collapsible-content collapsed';
+
+        // 1d. Add the detailed labels (FieldLabel, FieldText) INTO the collapsible container.
+        const fieldLabel = document.createElement('label');
+        fieldLabel.textContent = field.FieldLabel;
+        fieldLabel.classList.add('label-bold');
+        contentDiv.appendChild(fieldLabel);
+
+        if (field.FieldText && typeof field.FieldText === 'string') {
+            field.FieldText.split('||').forEach(lineText => {
+                const textLabel = document.createElement('label');
+                textLabel.textContent = lineText.trim();
+                textLabel.classList.add('multiline-label');
+                contentDiv.appendChild(textLabel);
+            });
+        }
+        
+        fieldDiv.appendChild(contentDiv);
+
+        // 1e. Add the click listener to the header to control the contentDiv.
+        headerDiv.addEventListener('click', () => {
+            const isCollapsed = contentDiv.classList.toggle('collapsed');
+            icon.textContent = isCollapsed ? '▶' : '▼';
+        });
+
+    } else {
+        // CASE 2: Build the original FLAT structure (no question group).
+
+        const fieldLabel = document.createElement('label');
+        fieldLabel.textContent = field.FieldLabel;
+        fieldLabel.setAttribute('for', sanitizedId);
+        fieldLabel.classList.add('label-bold');
+        fieldDiv.appendChild(fieldLabel);
+
+        if (field.FieldText && typeof field.FieldText === 'string') {
+            field.FieldText.split('||').forEach(lineText => {
+                const textLabel = document.createElement('label');
+                textLabel.textContent = lineText.trim();
+                textLabel.classList.add('multiline-label');
+                fieldDiv.appendChild(textLabel);
+            });
+        }
+        
+        // Add the SELECT dropdown last in the flat structure.
+        fieldDiv.appendChild(select);
+    }
 
     return fieldDiv;
 }
