@@ -176,7 +176,7 @@
                                 });
                                 select.value = capturedData[field.FieldName] || options[0].trim(); // Restore captured data
                                 fieldDiv.appendChild(select);
-                            } else if (field.FieldType && field.FieldType.startsWith('Dropdown box with values')) {
+                            } else if (field.FieldType && field.FieldType.startsWith('Option box with values')) {
                                 // This part handles the main label/question text above the options.
                                 // It's unchanged from your original script.
                                 if (field.FieldLabel && typeof field.FieldLabel === 'string') {
