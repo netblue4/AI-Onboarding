@@ -77,6 +77,12 @@ body {
     border-radius: 4px;
     display: block;
 }
+.radio-option {
+  display: flex;
+  align-items: top;
+  gap: 8px; /* Adjust the space between the button and label as needed */
+}
+/* --- Buttons Styles --- */
 button {
     background-color: #007BFF;
     color: white;
@@ -103,18 +109,12 @@ button:hover {
     gap: 1rem; /* Space between bar and text */
     margin-bottom: 2rem;
 }
-.radio-option {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Adjust the space between the button and label as needed */
-}
 .progress-container {
     flex-grow: 1; /* Make the bar take up available space */
     background-color: #e0e0e0;
     border-radius: 8px;
     overflow: hidden; 
 }
-
 #progress-bar {
     height: 12px;
     width: 0%; /* Initial width is 0 */
@@ -122,10 +122,8 @@ button:hover {
     border-radius: 8px;
     transition: width 0.4s ease-in-out; /* Smooth transition for width changes */
 }
-
 #progress-text {
     font-size: 0.9rem;
     color: #007BFF;
     white-space: nowrap; /* Prevent text from wrapping */
 }
-/* --- End of Progress Bar Styles --- */
