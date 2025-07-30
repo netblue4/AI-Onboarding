@@ -79,7 +79,7 @@ body {
 }
 .radio-option {
   display: flex;
-  align-items: top;
+  align-items: flex-start;
   gap: 8px; /* Adjust the space between the button and label as needed */
 }
 /* --- Buttons Styles --- */
