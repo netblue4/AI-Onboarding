@@ -12,7 +12,6 @@ function createTextBox(field, capturedData, sanitizeForId) {
     input.id = sanitizedId;
     input.name = sanitizedId;
     input.placeholder = field.FieldText;
-    input.rows = 3;
     input.value = capturedData[field.FieldName] || ''; // Restore captured data
     fieldDiv.appendChild(input);
 
