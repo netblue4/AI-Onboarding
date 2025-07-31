@@ -59,6 +59,13 @@
                     return text.replace(/[^a-zA-Z0-9_]/g, '_');
                 }
 
+                function getStepKeyByString(searchText) {
+                    // The indexOf() method returns the first index at which a given element
+                    // can be found in the array, or -1 if it is not present.
+                    currentStepIndex = procedureSteps.indexOf(searchText);
+                    renderCurrentStep();
+                }
+                
                 function updateProgressBar() {
                     const totalSteps = procedureSteps.length;
                     if (currentStepIndex < totalSteps) {
