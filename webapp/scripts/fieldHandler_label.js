@@ -10,7 +10,7 @@ function createDisabledLabel(field, capturedData, sanitizeForId) {
     span.textContent = field.FieldText;
     fieldDiv.appendChild(label);
     fieldDiv.appendChild(span);
-    capturedData[field.FieldName] = uniqueId; // Update the captured data object
+    capturedData[field.FieldName] = field.FieldText; // Update the captured data object
 
     return fieldDiv;
 }
