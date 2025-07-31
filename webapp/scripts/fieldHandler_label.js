@@ -11,7 +11,7 @@ function createDisabledLabel(field, capturedData, sanitizeForId) {
     const labeldis = document.createElement('label');
     labeldis.id = sanitizedId;
     labeldis.name = sanitizedId;
-    labeldis.placeholder = field.FieldText;
+    labeldis.textContent = field.FieldText;
     labeldis.className = 'auto-generated-label';
     fieldDiv.appendChild(labeldis);
     return fieldDiv;
