@@ -4,11 +4,12 @@ function createDecisionField(field, capturedData) {
 
     const optionsString = field.FieldType.split(':')[1]?.trim() || '';
     const options = optionsString.split('/');
-    const selectedValue = capturedData[field.FieldName] ?? null;
-
-
-
     
+    const options_CapturedData = options[0].split('=')[1];
+    const options_Yes = options[1].split('=')[1];
+    const options_No = options[2].split('=')[1];
+
+        
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
 
