@@ -8,11 +8,11 @@ function createDisabledLabel(field, capturedData) {
     label.classList.add('label-bold');
     fieldDiv.appendChild(label);
 
-    const label = document.createElement('label');
-    label.id = sanitizedId;
-    label.name = sanitizedId;
-    label.placeholder = field.FieldText;
-    label.className = 'auto-generated-label';
-    fieldDiv.appendChild(input);
+    const labeldis = document.createElement('label');
+    labeldis.id = sanitizedId;
+    labeldis.name = sanitizedId;
+    labeldis.placeholder = field.FieldText;
+    labeldis.className = 'auto-generated-label';
+    fieldDiv.appendChild(labeldis);
     return fieldDiv;
 }
