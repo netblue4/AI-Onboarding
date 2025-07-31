@@ -1,4 +1,4 @@
-function createDisabledLabel(field, capturedData) {
+function createDisabledLabel(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.FieldName);
