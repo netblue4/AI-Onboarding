@@ -13,6 +13,8 @@ function createDisabledLabel(field, capturedData, sanitizeForId) {
     labeldis.name = sanitizedId;
     labeldis.textContent = field.FieldText;
     labeldis.className = 'auto-generated-label';
+    capturedData[field.FieldName] = field.FieldText; // Update the captured data object
+
     fieldDiv.appendChild(labeldis);
     return fieldDiv;
 }
