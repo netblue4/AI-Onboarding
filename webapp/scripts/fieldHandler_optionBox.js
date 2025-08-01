@@ -1,111 +1,118 @@
 function createOptionBox(field, capturedData, sanitizeForId) {
+    // Destructure properties from the field object for cleaner access
+    const { FieldName, FieldType, FieldLabel, FieldText, FieldQuestionGroup } = field;
+
+    // --- 1. Basic Setup ---
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
-    const sanitizedId = sanitizeForId(field.FieldName);
 
-    // --- 1. Create the Radio Button Group First ---
-    // We'll create them in a container and append the whole container later.
+    const sanitizedId = sanitizeForId(FieldName);
+    const selectedValue = capturedData[FieldName] ?? null;
+
+    // --- 2. Create the Radio Button Group ---
     const radioGroupContainer = document.createElement('div');
     radioGroupContainer.className = 'radio-group-container';
 
-    const optionsString = field.FieldType.split(':')[1]?.trim() || '';
-    const options = optionsString.split('/');
-    const selectedValue = capturedData[field.FieldName] ?? null;
+    // Extract options from the FieldType string (e.g., "Decision:Yes/No")
+    const options = (FieldType.split(':')[1] || '').split('/');
 
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
-        const optionId = `${sanitizedId}-${index}`; // Unique ID for each option
+        if (!trimmedOption) return; // Skip if the option is empty
 
+        const optionId = `${sanitizedId}-${index}`; // Create a unique ID for each radio
+
+        // Create the radio input element
         const radioInput = document.createElement('input');
         radioInput.type = 'radio';
-        radioInput.id = sanitizedId; //optionId; // Correctly assign the unique ID
-        radioInput.name = sanitizedId; // Group buttons with the same name
+        radioInput.name = sanitizedId; // All radios in a group share the same name
         radioInput.value = trimmedOption;
-        radioInput.required = true;
-        
+        radioInput.id = optionId;      // *** FIX: Assign the unique ID to the input ***
+        radioInput.required = true;    // Make selection mandatory
+
+        // Pre-check the button if its value matches captured data
         if (trimmedOption === String(selectedValue).trim()) {
             radioInput.checked = true;
         }
 
+        // Create the label for the radio button
         const radioLabel = document.createElement('label');
-        radioLabel.setAttribute('for', optionId);
+        radioLabel.htmlFor = optionId; // Link label to the input by its unique ID
         radioLabel.textContent = trimmedOption;
-        
+
+        // Wrap input and label in a div for styling
         const wrapper = document.createElement('div');
-        wrapper.classList.add('radio-option');
+        wrapper.className = 'radio-option';
         wrapper.appendChild(radioInput);
         wrapper.appendChild(radioLabel);
         radioGroupContainer.appendChild(wrapper);
     });
-    
-    // --- 2. Check if a collapsible structure is needed ---
-    if (field.FieldQuestionGroup && typeof field.FieldQuestionGroup === 'string') {
-        // CASE 1: Build the COLLAPSIBLE structure.
 
+    // --- 3. Build the Field Structure (Collapsible or Flat) ---
+    if (FieldQuestionGroup) {
+        // CASE: Collapsible Structure
         const headerDiv = document.createElement('div');
         headerDiv.className = 'collapsible-header';
 
         const icon = document.createElement('span');
         icon.className = 'collapse-icon';
         icon.textContent = '▶';
-        headerDiv.appendChild(icon);
 
         const questionLabel = document.createElement('label');
-        questionLabel.textContent = field.FieldQuestionGroup.trim();
-        questionLabel.classList.add('label-bold');
-        headerDiv.appendChild(questionLabel);
-
+        questionLabel.textContent = FieldQuestionGroup.trim();
+        questionLabel.className = 'label-bold';
+        
+        headerDiv.append(icon, questionLabel); // Use append for multiple elements
         fieldDiv.appendChild(headerDiv);
 
-        // Append the Radio Button group to be always visible under the header.
+        // Place radio buttons directly under the header, always visible
         radioGroupContainer.classList.add('options-after-header');
         fieldDiv.appendChild(radioGroupContainer);
-        
-        // Create the collapsible container for the details.
+
+        // Create the container for content that will collapse
         const contentDiv = document.createElement('div');
         contentDiv.className = 'collapsible-content collapsed';
 
-        // Add the detailed labels INTO the collapsible container.
-        const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldLabel;
-        fieldLabel.classList.add('label-bold');
-        contentDiv.appendChild(fieldLabel);
+        // Add detailed labels to the collapsible area
+        const detailLabel = document.createElement('label');
+        detailLabel.textContent = FieldLabel;
+        detailLabel.className = 'label-bold';
+        contentDiv.appendChild(detailLabel);
 
-        if (field.FieldText && typeof field.FieldText === 'string') {
-            field.FieldText.split('||').forEach(lineText => {
-                const textLabel = document.createElement('label');
-                textLabel.textContent = lineText.trim();
-                textLabel.classList.add('multiline-label');
-                contentDiv.appendChild(textLabel);
+        if (FieldText) {
+            FieldText.split('||').forEach(line => {
+                const textNode = document.createElement('label');
+                textNode.textContent = line.trim();
+                textNode.className = 'multiline-label';
+                contentDiv.appendChild(textNode);
             });
         }
         
         fieldDiv.appendChild(contentDiv);
 
-        // Add the click listener to the header.
+        // Add click event to toggle visibility
         headerDiv.addEventListener('click', () => {
             const isCollapsed = contentDiv.classList.toggle('collapsed');
             icon.textContent = isCollapsed ? '▶' : '▼';
         });
 
     } else {
-        // CASE 2: Build the original FLAT structure.
+        // CASE: Standard Flat Structure
+        const mainLabel = document.createElement('label');
+        mainLabel.textContent = FieldLabel;
+        mainLabel.className = 'label-bold';
+        fieldDiv.appendChild(mainLabel);
 
-        const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldLabel;
-        fieldLabel.classList.add('label-bold');
-        fieldDiv.appendChild(fieldLabel);
-
-        if (field.FieldText && typeof field.FieldText === 'string') {
-            field.FieldText.split('||').forEach(lineText => {
-                const textLabel = document.createElement('label');
-                textLabel.textContent = lineText.trim();
-                textLabel.classList.add('multiline-label');
-                fieldDiv.appendChild(textLabel);
+        if (FieldText) {
+            FieldText.split('||').forEach(line => {
+                const textNode = document.createElement('label');
+                textNode.textContent = line.trim();
+                textNode.className = 'multiline-label';
+                fieldDiv.appendChild(textNode);
             });
         }
         
-        // Add the radio button group last.
+        // Add the radio buttons at the end
         fieldDiv.appendChild(radioGroupContainer);
     }
 
