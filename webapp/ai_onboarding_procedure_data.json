@@ -462,16 +462,10 @@
                 "FieldType": "Dropdown box with values:/No contradictory information/No logical contradictions/<1% inconsistency in defined relationships"
             },
             {
-                "FieldName": "(A.7.4) - Data Quality Requirements - Duplication",
-                "FieldLabel": "Duplication",
-                "FieldText": "Threshold for absence of redundant records or data entries",
-                "FieldType": "Dropdown box with values:/<1% duplicates for critical entities/<50% duplicates for critical entities/<20% duplicates for critical entities"
-            },
-            {
                 "FieldName": "(A.7.4) - Data Quality Requirements - Recency",
                 "FieldLabel": "Recency",
-                "FieldText": "Data is sufficiently up-to-date for the intended purpose. Data updated within:",
-                "FieldType": "Dropdown box with values:/24 hours/48 hours/1 week/1 month/1 year"
+                "FieldText": "Data is sufficiently up-to-date for the intended purpose. How often should the data be updated:",
+                "FieldType": "Dropdown box with values:/Daily/Monthly/Yearly/Real-time"
             },
             {
                 "FieldName": "(A.7.4) - Data Quality Requirements - Source Traceability",
