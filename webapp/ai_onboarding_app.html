@@ -139,7 +139,7 @@
                             if (inputElement) {
                                 // For radio buttons, find the checked one
                                 if (inputElement.type === 'radio') {
-                                    capturedData[field.FieldName] = checkedRadio.value;
+                                    inputElement[field.FieldName] = checkedRadio.value;
                                 } else {
                                     capturedData[field.FieldName] = inputElement.value;
                                 }
