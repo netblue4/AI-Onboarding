@@ -5,25 +5,11 @@ function createDecisionField(field, capturedData) {
     const optionsString = field.FieldType.split(':')[1]?.trim() || '';
     const options = optionsString.split('/');
     
-    const options_CapturedData = options[0].split('=')[1];
-    const options_Yes = options[1].split('=')[1];
-    const options_No = options[2].split('=')[1];
-    const selectedValue = capturedData[options_CapturedData]
+    const options_CapturedData_field_name_to_interogate = field.FieldType;
+    const options_Yes = options[0].split('=')[1];
+    const options_No = options[1].split('=')[1];
+    const selectedValue = capturedData[options_CapturedData_field_name_to_interogate]
 
-    
-    window.getStepKeyByString(options_Yes);
+    window.getStepKeyByString(selectedValue);
 
-    
-    options.forEach((optionText, index) => {
-        const trimmedOption = optionText.trim();
-
-        const label = document.createElement('label');
-        label.textContent = trimmedOption;
-        fieldDiv.appendChild(label);
-    });
-
-
-
-
-    return fieldDiv;
 }
