@@ -11,7 +11,7 @@ function createDecisionField(field, capturedData) {
     const selectedValue = capturedData[options_CapturedData]
 
     
-    getStepKeyByString(options_Yes);
+    window.getStepKeyByString(options_Yes);
 
     
     options.forEach((optionText, index) => {
