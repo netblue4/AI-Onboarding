@@ -224,7 +224,7 @@
     "Define the AI system's Significance": {
         "WebFormTitle": "Decidion point",
         "Fields": [                        
-            {==========
+            {
                 "FieldName": "AI System Significance: AI system is Significant",
                 "FieldLabel": "FieldName = the field to interigate to determine the decision branch.",
                 "FieldText": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
