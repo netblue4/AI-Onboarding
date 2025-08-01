@@ -137,12 +137,8 @@
                             const inputElement = document.getElementById(sanitizedId);
 
                             if (inputElement) {
-                                // For radio buttons, find the checked one
-                                if (inputElement.type === 'radio') {
-                                    inputElement[field.FieldName] = checkedRadio.value;
-                                } else {
-                                    capturedData[field.FieldName] = inputElement.value;
-                                }
+                                capturedData[field.FieldName] = inputElement.value;
+                            }
                             }
                         });
                     }
