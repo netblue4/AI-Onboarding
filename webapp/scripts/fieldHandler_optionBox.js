@@ -27,7 +27,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         radioInput.type = 'radio';
         radioInput.name = sanitizedId; // All radios in a group share the same name
         radioInput.value = trimmedOption;
-        radioInput.id = optionId;      // *** FIX: Assign the unique ID to the input ***
+        radioInput.id = sanitizedId;      // *** FIX: Assign the unique ID to the input ***
         radioInput.required = true;    // Make selection mandatory
 
         // Pre-check the button if its value matches captured data
