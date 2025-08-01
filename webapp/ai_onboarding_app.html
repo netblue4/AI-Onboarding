@@ -136,17 +136,20 @@
                             const sanitizedId = sanitizeForId(field.FieldName);
                             const inputElement = document.getElementById(sanitizedId);
 
-                            
                             if (inputElement) {
                                 // For radio buttons, find the checked one
                                 if (inputElement.type === 'radio') {
-                                    inputElement[field.FieldName] = checkedRadio.value;
+                                     const checkedRadio = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+                                     if(checkedRadio) {
+                                         capturedData[field.FieldName] = checkedRadio.value;
+                                     }
                                 } else {
                                     capturedData[field.FieldName] = inputElement.value;
                                 }
                             }
                         });
                     }
+
 
                     currentStepIndex++;
                     if (currentStepIndex < procedureSteps.length) {
