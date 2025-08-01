@@ -182,12 +182,12 @@
                 "FieldName": "Prohibited Practices - AI system is Prohibited",
                 "FieldLabel": "FieldName = the field to interigate to determine the decision branch.",
                 "FieldText": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker||https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
-                "FieldType": "Decision:capturedData=Yes=Document AI system approvals/No=Determine the AI system's Data Sensitivity & Privacy impact"
+                "FieldType": "Decision:Yes=Document AI system approvals/No=Determine the AI system's Data Sensitivity & Privacy impact"
             }
         ]
     },
-    "Determine the AI system's Data Sensitivity & Privacy impact": {
-        "WebFormTitle": "AI System Significance Questionnaire - Data Sensitivity & Privacy",
+    "Determine the AI System Significance": {
+        "WebFormTitle": "AI System Significance Questionnaire",
         "Fields": [
             {
                 "FieldName": "AI System Significance - Data Sensitivity & Privacy - Process, store, or interpret any sensitive data",
@@ -200,12 +200,7 @@
                 "FieldLabel": "Individual's privacy rights",
                 "FieldText": "Will the AI system's output directly or indirectly lead to decisions or actions that impact an individual's privacy rights (e.g., surveillance, profiling for targeted advertising, monitoring of online behavior)?",
                 "FieldType": "Option box with values:Yes/No"
-            }
-        ]
-    },
-    "Determine if the AI system's supports a Critical Business Function": {
-        "WebFormTitle": "AI System Significance Questionnaire - Critical Business Function",
-        "Fields": [
+            },
             {
                 "FieldName": "AI System Significance - Critical Business Function & Impact - Calculations, make decisions, or provide recommendations that support a critical business function",
                 "FieldLabel": "Critical business function",
@@ -217,17 +212,23 @@
                 "FieldLabel": "Risk exposure",
                 "FieldText": "Could a failure, error, or bias in the AI system's operation lead to significant financial loss, reputational damage, legal/regulatory penalties, or harm to individuals (e.g., physical harm, denial of services, unfair treatment)?",
                 "FieldType": "Option box with values:Yes/No"
+            },
+            {
+                "FieldName": "AI System Significance: AI system is Significant",
+                "FieldLabel": "AI system is Significant",
+                "FieldText": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
+                "DecisionFieldType": "Option box with values:/Yes=\"Conduct a detialed AI System Risk Impact Assessment.\"/No=\"Conduct a AI System Risk Category Impact Assessment.\""
             }
         ]
     },
     "Define the AI system's Significance": {
         "WebFormTitle": "Decidion point",
         "Fields": [                        
-            {
+            {==========
                 "FieldName": "AI System Significance: AI system is Significant",
-                "FieldLabel": "AI system is Significant",
+                "FieldLabel": "FieldName = the field to interigate to determine the decision branch.",
                 "FieldText": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
-                "DecisionFieldType": "Option box with values:/Yes=\"Conduct a detialed AI System Risk Impact Assessment.\"/No=\"Conduct a AI System Risk Category Impact Assessment.\""
+                "FieldType": "Decision:Yes=Conduct a detialed AI System Risk Impact Assessments/No=Conduct a AI System Risk Category Impact Assessment"
             }
         ]
     },
@@ -243,7 +244,7 @@
             }
         ]
     },
-    "Conduct a AI System Risk Category Impact Assessment.": {
+    "Conduct a AI System Risk Category Impact Assessment": {
         "WebFormTitle": "AI System Risk Category Impact Assessment",
         "Fields": [
             {
