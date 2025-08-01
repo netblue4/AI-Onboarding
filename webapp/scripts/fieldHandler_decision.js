@@ -12,4 +12,5 @@ function createDecisionField(field, capturedData) {
 
     window.getStepKeyByString(selectedValue);
 
+    return fieldDiv;
 }
