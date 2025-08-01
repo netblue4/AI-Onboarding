@@ -13,34 +13,29 @@ function createOptionBox(field, capturedData, sanitizeForId) {
     const radioGroupContainer = document.createElement('div');
     radioGroupContainer.className = 'radio-group-container';
 
-    // Extract options from the FieldType string (e.g., "Decision:Yes/No")
     const options = (FieldType.split(':')[1] || '').split('/');
 
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
-        if (!trimmedOption) return; // Skip if the option is empty
+        if (!trimmedOption) return;
 
-        const optionId = `${sanitizedId}-${index}`; // Create a unique ID for each radio
+        const optionId = `${sanitizedId}-${index}`;
 
-        // Create the radio input element
         const radioInput = document.createElement('input');
         radioInput.type = 'radio';
-        radioInput.name = sanitizedId; // All radios in a group share the same name
+        radioInput.name = sanitizedId;
         radioInput.value = trimmedOption;
-        radioInput.id = sanitizedId;      // *** FIX: Assign the unique ID to the input ***
-        radioInput.required = true;    // Make selection mandatory
+        radioInput.id = sanitizedId;
+        radioInput.required = true; // This handles the validation logic
 
-        // Pre-check the button if its value matches captured data
         if (trimmedOption === String(selectedValue).trim()) {
             radioInput.checked = true;
         }
 
-        // Create the label for the radio button
         const radioLabel = document.createElement('label');
-        radioLabel.htmlFor = optionId; // Link label to the input by its unique ID
+        radioLabel.htmlFor = optionId;
         radioLabel.textContent = trimmedOption;
 
-        // Wrap input and label in a div for styling
         const wrapper = document.createElement('div');
         wrapper.className = 'radio-option';
         wrapper.appendChild(radioInput);
@@ -61,19 +56,17 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         const questionLabel = document.createElement('label');
         questionLabel.textContent = FieldQuestionGroup.trim();
         questionLabel.className = 'label-bold';
-        
-        headerDiv.append(icon, questionLabel); // Use append for multiple elements
+        questionLabel.classList.add('required-label'); // *** ADD THIS CLASS FOR CSS ***
+
+        headerDiv.append(icon, questionLabel);
         fieldDiv.appendChild(headerDiv);
 
-        // Place radio buttons directly under the header, always visible
         radioGroupContainer.classList.add('options-after-header');
         fieldDiv.appendChild(radioGroupContainer);
 
-        // Create the container for content that will collapse
         const contentDiv = document.createElement('div');
         contentDiv.className = 'collapsible-content collapsed';
 
-        // Add detailed labels to the collapsible area
         const detailLabel = document.createElement('label');
         detailLabel.textContent = FieldLabel;
         detailLabel.className = 'label-bold';
@@ -90,7 +83,6 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         
         fieldDiv.appendChild(contentDiv);
 
-        // Add click event to toggle visibility
         headerDiv.addEventListener('click', () => {
             const isCollapsed = contentDiv.classList.toggle('collapsed');
             icon.textContent = isCollapsed ? '▶' : '▼';
@@ -101,6 +93,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         const mainLabel = document.createElement('label');
         mainLabel.textContent = FieldLabel;
         mainLabel.className = 'label-bold';
+        mainLabel.classList.add('required-label'); // *** ADD THIS CLASS FOR CSS ***
         fieldDiv.appendChild(mainLabel);
 
         if (FieldText) {
@@ -112,7 +105,6 @@ function createOptionBox(field, capturedData, sanitizeForId) {
             });
         }
         
-        // Add the radio buttons at the end
         fieldDiv.appendChild(radioGroupContainer);
     }
 
