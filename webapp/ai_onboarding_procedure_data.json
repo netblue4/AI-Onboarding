@@ -183,6 +183,8 @@
                 "FieldLabel": "FieldName = the field to interigate to determine the decision branch.",
                 "FieldText": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker||https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
                 "FieldType": "Decision:Yes=Document AI system approvals/No=Determine the AI system's Data Sensitivity & Privacy impact"
+                "YesTarget": "Document AI system approvals"
+                "NoTarget": "Determine the AI system's Data Sensitivity & Privacy impact"
             }
         ]
     },
