@@ -21,7 +21,8 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         radioInput.id = sanitizedId; //optionId; // Correctly assign the unique ID
         radioInput.name = sanitizedId; // Group buttons with the same name
         radioInput.value = trimmedOption;
-
+        radioInput.required = true;
+        
         if (trimmedOption === String(selectedValue).trim()) {
             radioInput.checked = true;
         }
