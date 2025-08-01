@@ -65,6 +65,8 @@
                     currentStepIndex = procedureSteps.indexOf(searchText);
                     renderCurrentStep();
                 }
+                // Expose the function to the global scope
+                window.getStepKeyByString = getStepKeyByString;
                 
                 function updateProgressBar() {
                     const totalSteps = procedureSteps.length;
@@ -115,8 +117,6 @@
                     }
                     formContainer.appendChild(formStepDiv);
                 }
-                // Expose the function to the global scope
-                window.renderCurrentStep = renderCurrentStep;
                 
                 prevBtn.addEventListener('click', () => {
                     if (currentStepIndex > 0) {
