@@ -182,3 +182,8 @@ button:hover {
     margin-bottom: 8px;
     margin-top: 8px;
 }
+.required-label::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
