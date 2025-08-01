@@ -115,7 +115,9 @@
                     }
                     formContainer.appendChild(formStepDiv);
                 }
-
+                // Expose the function to the global scope
+                window.renderCurrentStep = renderCurrentStep;
+                
                 prevBtn.addEventListener('click', () => {
                     if (currentStepIndex > 0) {
                         currentStepIndex--;
