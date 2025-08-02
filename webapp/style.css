@@ -53,14 +53,12 @@ body {
 .form-field input[type="text"],
 .form-field select,
 .form-field textarea {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 200; /* Note: 100 is very thin, '400' or 'normal' is standard */
 }
 .form-field label {
     display: block;
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    color: #007BFF;
 }
 .form-field input[type="text"],
 .form-field select,
