@@ -445,13 +445,6 @@
     "(A.7.4) AI System Data Quality Requirements for Sensitive data": {
         "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data",
         "Fields": [ 
-
-
-
-
-
-
-
             {
                 "FieldName": "(A.7.4) - Data Quality Requirements - Accuracy",
                 "FieldLabel": "Accuracy",
@@ -487,55 +480,6 @@
                 "FieldLabel": "",
                 "FieldText": "Specify the system or method used to manage and track different versions of the dataset.",
                 "FieldType": "Dropdown with options: /'Git'/'DVC'/'Manual'/'Not Applicable'"
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-            
-            {
-                "FieldName": "(A.7.4) - Data Quality Requirements - Accuracy",
-                "FieldLabel": "Accuracy",
-                "FieldText": "Threshold for correctness or accuracy of data against true values or a trusted source.",
-                "FieldType": "Dropdown box with values:/>95%/>50%/>20%"
-            },
-            {
-                "FieldName": "(A.7.4) - Data Quality Requirements - Completeness",
-                "FieldLabel": "Completeness",
-                "FieldText": "Percentage of non-null values in key fields.",
-                "FieldType": "Dropdown box with values:/All critical information present/No nulls in essential fields/>98% completeness for important fields"
-            },
-            {
-                "FieldName": "(A.7.4) - Data Quality Requirements - Consistency",
-                "FieldLabel": "Consistency",
-                "FieldText": "Logical data relationships hold true within the dataset and across related datasets.",
-                "FieldType": "Dropdown box with values:/No contradictory information/No logical contradictions/<1% inconsistency in defined relationships"
-            },
-            {
-                "FieldName": "(A.7.4) - Data Quality Requirements - Recency",
-                "FieldLabel": "Recency",
-                "FieldText": "Data is sufficiently up-to-date for the intended purpose. How often should the data be updated:",
-                "FieldType": "Dropdown box with values:/Daily/Monthly/Yearly/Real-time"
-            },
-            {
-                "FieldName": "(A.7.4) - Data Quality Requirements - Source Traceability",
-                "FieldLabel": "Source Traceability",
-                "FieldText": "Can origin be verified?",
-                "FieldType": "Option box with values:No/Yes"
-            },
-            {
-                "FieldName": "(A.7.4) - Data Quality Requirements - Versioning Applied?",
-                "FieldLabel": "Versioning",
-                "FieldText": "How is the data versioned?",
-                "FieldType": "Dropdown box with values:/Git/DVC/Manual"
             }
         ]
     },
