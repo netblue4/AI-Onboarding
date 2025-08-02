@@ -1,5 +1,5 @@
 {
-    "AI system's intended use and limitations": {
+    "(A.9.4) AI system's intended use and limitations": {
         "WebFormTitle": "Document the AI system's intended use and limitations.",
         "Fields": [
             {
@@ -34,7 +34,7 @@
             }
         ]
     },
-    "Objectives for Responsible and Ethical Use of AI Systems": {
+    "(A.9.3) Objectives for Responsible and Ethical Use of AI Systems": {
         "WebFormTitle": "Describe the Responsible and Ethical objectives to guide the use of AI systems.",
         "Fields": [    
             {
@@ -81,7 +81,7 @@
             }  
         ]
     },
-     "AI system's Functional Requirement": {
+     "(A.6.2.2) AI system's Functional Requirement": {
         "WebFormTitle": "Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
         "Fields": [       
             {
@@ -236,7 +236,7 @@
             }
         ]
     },
-    "Detailed AI System Risk Impact Assessment": {
+    "(A.5.3) Detailed AI System Risk Impact Assessment": {
         "WebFormTitle": "Conduct a detialed AI System Risk Impact Assessment",
         "Fields": [
             {
@@ -248,7 +248,7 @@
             }
         ]
     },
-    "AI System Risk Category Impact Assessment": {
+    "(A.5.3) AI System Risk Category Impact Assessment": {
         "WebFormTitle": "Conduct a AI System Risk Category Impact Assessment",
         "Fields": [
             {
@@ -302,7 +302,7 @@
             }
         ]
     },
-    "AI Systems Resources": {
+    "(A.4.2) AI Systems Resources": {
         "WebFormTitle": "Define the complete inventory of all required resources.",
         "Fields": [
             {
@@ -319,7 +319,7 @@
             }
         ]
     },
-    "AI Systems Software and Tooling Resources": {
+    "(A.4.4) AI Systems Software and Tooling Resources": {
         "WebFormTitle": "Define the software and tools used by the AI system.",
         "Fields": [
             {
@@ -342,7 +342,7 @@
             }
         ]
     },
-    "AI Systems Computing Resources": {
+    "(A.4.5) AI Systems Computing Resources": {
         "WebFormTitle": "Define the computing resources used by the AI system",
         "Fields": [
             {
@@ -365,7 +365,7 @@
             }
         ]
     },
-    "AI Systems Data Resources": {
+    "(A.4.3) AI Systems Data Resources": {
         "WebFormTitle": "Define the data resources used by the AI system",
         "Fields": [
             {
@@ -442,7 +442,7 @@
             }
         ]
     },
-    "AI System Data Quality Requirements for Sensitive data": {
+    "(A.7.4) AI System Data Quality Requirements for Sensitive data": {
         "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data",
         "Fields": [ 
             {
@@ -483,7 +483,7 @@
             }
         ]
     },
-    "AI System Data Preparation Plan for Sensitive data": {
+    "(A.7.6) AI System Data Preparation Plan for Sensitive data": {
         "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data",
         "Fields": [ 
             {
@@ -560,7 +560,7 @@
             }
         ]
     },
-    "AI System Documentation and User Information": {
+    "(A.8.4) AI System Documentation and User Information": {
         "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
         "Fields": [
             {
@@ -583,7 +583,7 @@
             }
         ]
     },
-    "Information for interested parties": {
+    "(A.8.5) Information for interested parties": {
         "WebFormTitle": "Establish a process to manage all stakeholder relationships, ensuring that responsibilities are clearly allocated, supplier activities align with internal AI policies, and customer needs are fully considered.",
         "Fields": [
             {
@@ -606,7 +606,7 @@
             }  
         ]
     },
-    "Objectives for Responsible and Ethical Development of AI Systems": {
+    "(A.6.1.2) Objectives for Responsible and Ethical Development of AI Systems": {
         "WebFormTitle": "Describe the Responsible and Ethical objectives to guide the development of AI systems",
         "Fields": [
             {
@@ -641,7 +641,7 @@
             }              
         ]
     },
-    "AI system recording of event logs and monitoring": {
+    "(A.6.2.6, A.6.2.8) AI system recording of event logs and monitoring": {
         "WebFormTitle": "Define the events to be logged when the AI system is in use and how they will ensure the Responsible and Ethical use of AI systems.",
         "Fields": [
             {
@@ -699,7 +699,7 @@
             }
         ]
     },
-    "AI Systems verifications": {
+    "(A.6.2.4) AI Systems verifications": {
         "WebFormTitle": "Document verification and validation measures for the AI system and specify criteria for their use.",
         "Fields": [
             {
