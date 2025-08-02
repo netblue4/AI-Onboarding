@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <div class="steps-container">
+   <div class="container">
         <div class="progress-wrapper">
             <div class="progress-container">
                 <div id="progress-bar"></div>
@@ -15,6 +15,7 @@
             <div id="progress-text"></div>
         </div>
        <h1 id="steps-title">Steps</h1>
+       <!-- This container will be populated by JavaScript -->
        <div id="step-container"></div>
    </div>
     
@@ -54,20 +55,20 @@
                 const mainTitle = document.getElementById('main-title');
                 const progressBar = document.getElementById('progress-bar');
                 const progressText = document.getElementById('progress-text');
-                // Reference to the new step container
                 const stepContainer = document.getElementById('step-container');
 
                 const capturedData = {};
                 const procedureSteps = Object.keys(webappData);
                 let currentStepIndex = 0;
 
-                // --- NEW FUNCTION: Renders the initial list of all procedure steps ---
+                // --- MODIFIED FUNCTION ---
+                // This function now makes each step item clickable.
                 function renderProcedureSteps() {
-                    stepContainer.innerHTML = ''; // Clear existing content
+                    stepContainer.innerHTML = ''; 
                     procedureSteps.forEach((stepText, index) => {
                         const stepDiv = document.createElement('div');
                         stepDiv.className = 'step-item';
-                        stepDiv.id = `step-item-${index}`; // Unique ID for targeting
+                        stepDiv.id = `step-item-${index}`;
 
                         const iconSpan = document.createElement('span');
                         iconSpan.className = 'icon';
@@ -77,23 +78,27 @@
                         textSpan.textContent = stepText;
                         stepDiv.appendChild(textSpan);
                         
+                        // --- Add click event listener to each step ---
+                        stepDiv.addEventListener('click', () => {
+                            // 1. Update the currentStepIndex to the clicked step's index
+                            currentStepIndex = index;
+                            // 2. Call renderCurrentStep() to display the new step's content
+                            renderCurrentStep();
+                        });
+
                         stepContainer.appendChild(stepDiv);
                     });
                 }
 
-                // --- NEW FUNCTION: Updates the highlight and checkmarks on the step list ---
                 function updateStepHighlight() {
                     procedureSteps.forEach((_, index) => {
                         const stepDiv = document.getElementById(`step-item-${index}`);
                         if (stepDiv) {
-                            // Reset classes first
                             stepDiv.classList.remove('active-step', 'completed-step');
 
                             if (index < currentStepIndex) {
-                                // Mark previous steps as completed
                                 stepDiv.classList.add('completed-step');
                             } else if (index === currentStepIndex) {
-                                // Mark the current step as active
                                 stepDiv.classList.add('active-step');
                             }
                         }
@@ -122,7 +127,7 @@
 
                 function renderCurrentStep() {
                     updateProgressBar();
-                    updateStepHighlight(); // <-- Call the highlight function here
+                    updateStepHighlight();
                     
                     const stepKey = procedureSteps[currentStepIndex];
                     const stepData = webappData[stepKey];
@@ -191,14 +196,12 @@
                     if (currentStepIndex < procedureSteps.length) {
                         renderCurrentStep();
                     } else {
-                        // All steps are finished
                         formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file.</p>';
                         mainTitle.textContent = "Finished";
                         nextBtn.style.display = 'none';
                         prevBtn.style.display = 'none';
                         downloadBtn.style.display = 'block';
                         
-                        // Mark all steps as complete one last time
                         procedureSteps.forEach((_, index) => {
                            document.getElementById(`step-item-${index}`).classList.remove('active-step');
                            document.getElementById(`step-item-${index}`).classList.add('completed-step');
@@ -219,8 +222,8 @@
                     URL.revokeObjectURL(url);
                 });
 
-                renderProcedureSteps(); // <-- Initial call to build the step list
-                renderCurrentStep(); // Initial render for form and highlights
+                renderProcedureSteps();
+                renderCurrentStep();
             })
             .catch(error => {
                 console.error('Error loading the webapp data:', error);
