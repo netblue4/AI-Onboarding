@@ -54,23 +54,61 @@
                 const mainTitle = document.getElementById('main-title');
                 const progressBar = document.getElementById('progress-bar');
                 const progressText = document.getElementById('progress-text');
+                // Reference to the new step container
+                const stepContainer = document.getElementById('step-container');
 
                 const capturedData = {};
                 const procedureSteps = Object.keys(webappData);
                 let currentStepIndex = 0;
 
+                // --- NEW FUNCTION: Renders the initial list of all procedure steps ---
+                function renderProcedureSteps() {
+                    stepContainer.innerHTML = ''; // Clear existing content
+                    procedureSteps.forEach((stepText, index) => {
+                        const stepDiv = document.createElement('div');
+                        stepDiv.className = 'step-item';
+                        stepDiv.id = `step-item-${index}`; // Unique ID for targeting
+
+                        const iconSpan = document.createElement('span');
+                        iconSpan.className = 'icon';
+                        stepDiv.appendChild(iconSpan);
+
+                        const textSpan = document.createElement('span');
+                        textSpan.textContent = stepText;
+                        stepDiv.appendChild(textSpan);
+                        
+                        stepContainer.appendChild(stepDiv);
+                    });
+                }
+
+                // --- NEW FUNCTION: Updates the highlight and checkmarks on the step list ---
+                function updateStepHighlight() {
+                    procedureSteps.forEach((_, index) => {
+                        const stepDiv = document.getElementById(`step-item-${index}`);
+                        if (stepDiv) {
+                            // Reset classes first
+                            stepDiv.classList.remove('active-step', 'completed-step');
+
+                            if (index < currentStepIndex) {
+                                // Mark previous steps as completed
+                                stepDiv.classList.add('completed-step');
+                            } else if (index === currentStepIndex) {
+                                // Mark the current step as active
+                                stepDiv.classList.add('active-step');
+                            }
+                        }
+                    });
+                }
+                
                 function sanitizeForId(text) {
                     if (typeof text !== 'string') return '';
                     return text.replace(/[^a-zA-Z0-9_]/g, '_');
                 }
 
                 function getStepKeyByString(searchText) {
-                    // The indexOf() method returns the first index at which a given element
-                    // can be found in the array, or -1 if it is not present.
                     currentStepIndex = procedureSteps.indexOf(searchText);
                     renderCurrentStep();
                 }
-                // Expose the function to the global scope
                 window.getStepKeyByString = getStepKeyByString;
                 
                 function updateProgressBar() {
@@ -82,9 +120,10 @@
                     progressBar.style.width = progressPercentage + '%';
                 }
 
-                // --- REFACTORED RENDER FUNCTION ---
                 function renderCurrentStep() {
                     updateProgressBar();
+                    updateStepHighlight(); // <-- Call the highlight function here
+                    
                     const stepKey = procedureSteps[currentStepIndex];
                     const stepData = webappData[stepKey];
 
@@ -104,17 +143,13 @@
                     const formStepDiv = document.createElement('div');
                     formStepDiv.className = 'form-step';
 
-                    // Check for procedural notes (no fields)
                     if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
                          formStepDiv.appendChild(createNoteField());
                     } else {
-                        // Use the factory to generate fields
                         stepData.Fields.forEach(field => {
                             if (!field || !field.FieldName) return;
-
                             const handler = getFieldHandler(field.FieldType);
                             if (handler) {
-                                // Call the handler function and pass necessary arguments
                                 const fieldElement = handler(field, capturedData, sanitizeForId);
                                 formStepDiv.appendChild(fieldElement);
                             }
@@ -137,12 +172,9 @@
                     if (stepData && stepData.Fields) {
                         stepData.Fields.forEach(field => {
                             if (!field || !field.FieldName || field.FieldType === 'Auto generated number') return;
-
                             const sanitizedId = sanitizeForId(field.FieldName);
                             const inputElement = document.getElementById(sanitizedId);
-
                             if (inputElement) {
-                                // For radio buttons, find the checked one
                                 if (inputElement.type === 'radio') {
                                      const checkedRadio = document.querySelector(`input[name="${sanitizedId}"]:checked`);
                                      if(checkedRadio) {
@@ -155,16 +187,22 @@
                         });
                     }
 
-
                     currentStepIndex++;
                     if (currentStepIndex < procedureSteps.length) {
                         renderCurrentStep();
                     } else {
+                        // All steps are finished
                         formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file.</p>';
                         mainTitle.textContent = "Finished";
                         nextBtn.style.display = 'none';
                         prevBtn.style.display = 'none';
                         downloadBtn.style.display = 'block';
+                        
+                        // Mark all steps as complete one last time
+                        procedureSteps.forEach((_, index) => {
+                           document.getElementById(`step-item-${index}`).classList.remove('active-step');
+                           document.getElementById(`step-item-${index}`).classList.add('completed-step');
+                        });
                     }
                 });
 
@@ -181,7 +219,8 @@
                     URL.revokeObjectURL(url);
                 });
 
-                renderCurrentStep(); // Initial render
+                renderProcedureSteps(); // <-- Initial call to build the step list
+                renderCurrentStep(); // Initial render for form and highlights
             })
             .catch(error => {
                 console.error('Error loading the webapp data:', error);
