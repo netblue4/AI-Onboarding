@@ -202,7 +202,7 @@ button:hover {
     transition: all 0.3s ease;
     display: flex;
     align-items: flex-start; 
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 .step-item .icon {
