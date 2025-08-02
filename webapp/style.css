@@ -59,6 +59,8 @@ body {
 .form-field label {
     display: block;
     margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #007BFF;
 }
 .form-field input[type="text"],
 .form-field select,
