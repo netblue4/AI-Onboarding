@@ -330,8 +330,8 @@
             },
             {
                 "FieldName": "(A.4.2, A.4.4) - Tooling Resources - Category",
-                "FieldLabel": "Category",
-                "FieldText": "Type of tool.",
+                "FieldLabel": "",
+                "FieldText": "Category of the tool?",
                 "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
@@ -353,14 +353,14 @@
             },
             {
                 "FieldName": "(A.4.2, A.4.5) - System & Computing Resources - Category",
-                "FieldLabel": "Category",
-                "FieldText": "Type of computing resource.",
+                "FieldLabel": "",
+                "FieldText": "Category of the computing resource.",
                 "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
             },
             {
                 "FieldName": "(A.4.2, A.4.5) - System & Computing Resources - Lifecycle Phase(s) Supported",
-                "FieldLabel": "Lifecycle Phase(s) Supported",
-                "FieldText": "Which parts of the AI lifecycle this resource supports.",
+                "FieldLabel": "",
+                "FieldText": "Which part of the AI lifecycle does this resource supports?",
                 "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
             }
         ]
@@ -382,37 +382,37 @@
             },
             {
                 "FieldName": "(A.4.2, A.4.3, A.7.5) - Data Resources - Source",
-                "FieldLabel": "Source",
+                "FieldLabel": "",
                 "FieldText": "Where does the data originate from?",
                 "FieldType": "Dropdown box with values:/Internal database/Third-party vendor/Public repository/Synthetic generation"
             },
             {
                 "FieldName": "(A.4.2, A.4.3) - Data Resources - Intended Use",
-                "FieldLabel": "Intended Use",
+                "FieldLabel": "",
                 "FieldText": "What is the specific purpose(s) of the data?",
                 "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
             },
             {
                 "FieldName": "(A.4.2, A.4.3) - Data Resources - Format",
-                "FieldLabel": "Format",
-                "FieldText": "File format or storage system?",
+                "FieldLabel": "",
+                "FieldText": "What is the File format or storage system?",
                 "FieldType": "Dropdown box with values:/CSV/JSON/Parquet/SQL DB"
             },
             {
                 "FieldName": "(A.4.2, A.4.3) - Data Resources - Data Labeling",
-                "FieldLabel": "Data Labeling",
+                "FieldLabel": "",
                 "FieldText": "How is the Data Labeled?",
                 "FieldType": "Dropdown box with values:/Sensitive/Internal/Public"
             },
             {
                 "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Data Resources - Acquisition of data",
-                "FieldLabel": "Acquisition of data",
+                "FieldLabel": "",
                 "FieldText": "How will the Data be acquired and selected?",
                 "FieldType": "Dropdown box with values:/Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
             },
             {
                 "FieldName": "(A.4.2, A.4.3) - Data Resources - Retention Schedules",
-                "FieldLabel": "Retention Schedules",
+                "FieldLabel": "",
                 "FieldText": "What is the data Retention schedules based on legal and operational requirements?",
                 "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
             },
@@ -430,8 +430,8 @@
             },
             {
                 "FieldName": "(A.4.2, A.4.3) - Data Resources - Access Method",
-                "FieldLabel": "Access Method",
-                "FieldText": "How the data can be accessed?",
+                "FieldLabel": "",
+                "FieldText": "How will the data be accessed?",
                 "FieldType": "Dropdown box with values:/S3 bucket path/API endpoint/Database query/Shared drive"
             },
             {
@@ -445,6 +445,62 @@
     "(A.7.4) AI System Data Quality Requirements for Sensitive data": {
         "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data",
         "Fields": [ 
+
+
+
+
+
+
+
+            {
+                "FieldName": "(A.7.4) - Data Quality Requirements - Accuracy",
+                "FieldLabel": "Accuracy",
+                "FieldText": "Specify the minimum acceptable accuracy level, defined as the percentage of data points that are correct when compared to a trusted source.",
+                "FieldType": "Dropdown with options: /'> 95%'/'> 50%'/'> 20%'"
+            },
+            {
+                "FieldName": "(A.7.4) - Data Quality Requirements - Completeness",
+                "FieldLabel": "Completeness",
+                "FieldText": "Specify the required level of data completeness, ensuring that all necessary data fields are populated.",
+                "FieldType": "Dropdown with options:/'All critical information present'/'No nulls in essential fields'/'> 98% completeness for important fields'"
+            },
+            {
+                "FieldName": "(A.7.4) - Data Quality Requirements - Consistency",
+                "FieldLabel": "Consistency",
+                "FieldText": "Define the requirement for data consistency, ensuring data is free from logical contradictions and maintains integrity across related datasets.",
+                "FieldType": "Dropdown with options:/'No contradictory information'/'No logical contradictions'/'< 1% inconsistency rate'"
+            },
+            {
+                "FieldName": "(A.7.4) - Data Quality Requirements - Recency",
+                "FieldLabel": "Recency",
+                "FieldText": "Specify how frequently the data must be updated to be considered current for its intended use.",
+                "FieldType": "Dropdown with options: /'Real-time'/'Daily'/'Monthly'/'Yearly'"
+            },
+            {
+                "FieldName": "(A.7.4) - Data Quality Requirements - Source Traceability",
+                "FieldLabel": "",
+                "FieldText": "Specify whether the origin and history (provenance) of the data can be fully traced and verified.",
+                "FieldType": "Radio buttons with options:'Yes'/'No'"
+            },
+            {
+                "FieldName": "(A.7.4) - Data Quality Requirements - Versioning Applied?",
+                "FieldLabel": "",
+                "FieldText": "Specify the system or method used to manage and track different versions of the dataset.",
+                "FieldType": "Dropdown with options: /'Git'/'DVC'/'Manual'/'Not Applicable'"
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+            
             {
                 "FieldName": "(A.7.4) - Data Quality Requirements - Accuracy",
                 "FieldLabel": "Accuracy",
