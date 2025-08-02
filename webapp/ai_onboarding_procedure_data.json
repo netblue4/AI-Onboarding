@@ -1,6 +1,6 @@
 {
-    "Document the AI system's intended use and limitations.": {
-        "WebFormTitle": "AI system's intended use and limitations",
+    "AI system's intended use and limitations": {
+        "WebFormTitle": "Document the AI system's intended use and limitations.",
         "Fields": [
             {
                 "FieldName": "(A.9.4) - AI System - ID",
@@ -34,8 +34,8 @@
             }
         ]
     },
-    "Describe the Responsible and Ethical objectives to guide the use of AI systems.": {
-        "WebFormTitle": "Responsible and Ethical Use of AI Objectives",
+    "Objectives for Responsible and Ethical Use of AI Systems": {
+        "WebFormTitle": "Describe the Responsible and Ethical objectives to guide the use of AI systems.",
         "Fields": [    
             {
                 "FieldName": "(A.9.2, A.9.3) - Use of AI Objectives Use - Human-Centric",
@@ -81,8 +81,8 @@
             }  
         ]
     },
-     "Specify and document all requirements for new AI systems or for material enhancements to existing systems.": {
-        "WebFormTitle": "AI system's Functional Requirement",
+     "AI system's Functional Requirement": {
+        "WebFormTitle": "Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
         "Fields": [       
             {
                 "FieldName": "(A.6.2.2) - AI System Functional Requirement - Processing Logic",
@@ -116,8 +116,8 @@
             }
         ]
     },
-    "Determine if the AI system is prohibited": {
-        "WebFormTitle": "AI Act Prohibited Practices Assessment",
+    "AI Act Prohibited Practices Assessment": {
+        "WebFormTitle": "Determine if the AI system is prohibited",
         "Fields": [
             {
                 "FieldName": "Prohibited Practices - Subliminal Manipulation",
@@ -175,8 +175,8 @@
             }
         ]
     },
-    "If the system is Prohibited then Exit else continue to next step.": {
-        "WebFormTitle": "Decision point",
+    "Decision point": {
+        "WebFormTitle": "If the system is Prohibited then Exit else continue to next step.",
         "Fields": [
             {
                 "FieldName": "Prohibited Practices - AI system is Prohibited",
@@ -188,8 +188,8 @@
             }
         ]
     },
-    "Determine the AI System Significance": {
-        "WebFormTitle": "AI System Significance Questionnaire",
+    "AI System Significance Questionnaire": {
+        "WebFormTitle": "Determine the AI System Significance",
         "Fields": [
             {
                 "FieldName": "AI System Significance - Data Sensitivity & Privacy - Process, store, or interpret any sensitive data",
@@ -223,8 +223,8 @@
             }
         ]
     },
-    "Define the AI system's Significance": {
-        "WebFormTitle": "Decidion point",
+    "Decidion point": {
+        "WebFormTitle": "Define the AI system's Significance",
         "Fields": [                        
             {
                 "FieldName": "AI System Significance: AI system is Significant",
@@ -236,8 +236,8 @@
             }
         ]
     },
-    "Conduct a detialed AI System Risk Impact Assessment": {
-        "WebFormTitle": "Detailed AI System Risk Impact Assessment",
+    "Detailed AI System Risk Impact Assessment": {
+        "WebFormTitle": "Conduct a detialed AI System Risk Impact Assessment",
         "Fields": [
             {
                 "FieldName": "(A.5.2, A.5.3, A.5.4, A.5.5) - EU AI Act Art 15||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
@@ -248,8 +248,8 @@
             }
         ]
     },
-    "Conduct a AI System Risk Category Impact Assessment": {
-        "WebFormTitle": "AI System Risk Category Impact Assessment",
+    "AI System Risk Category Impact Assessment": {
+        "WebFormTitle": "Conduct a AI System Risk Category Impact Assessment",
         "Fields": [
             {
                 "FieldName": "(A.5.2, A.5.3, A.5.4, A.5.5) - Regulatory Compliance Risk - Risk of non-compliance with applicable AI regulations (e.g., EU AI Act) or sector-specific laws governing AI usage.||Applicable Controls||1. AI system undergoes compliance review against relevant AI regulations (e.g., EU AI Act, GDPR).||2. AI documentation includes alignment with regulatory requirements (e.g., Article 9-15 compliance mapping).||3. Contracts or usage agreements define legal obligations of AI use.||4. Independent audits or internal reviews confirm AI compliance status.",
@@ -302,8 +302,8 @@
             }
         ]
     },
-    "Define the complete inventory of all required resources.": {
-        "WebFormTitle": "AI Systems Resources",
+    "AI Systems Resources": {
+        "WebFormTitle": "Define the complete inventory of all required resources.",
         "Fields": [
             {
                 "FieldName": "(A.4.2) - AI System Components - System architecture diagrams",
@@ -319,8 +319,8 @@
             }
         ]
     },
-    "Define the software and tools used by the AI system.": {
-        "WebFormTitle": "AI Systems Software and Tooling Resources",
+    "AI Systems Software and Tooling Resources": {
+        "WebFormTitle": "Define the software and tools used by the AI system.",
         "Fields": [
             {
                 "FieldName": "(A.4.2, A.4.4) - Tooling Resources - Tool Name and Version",
@@ -342,8 +342,8 @@
             }
         ]
     },
-    "Define the computing resources used by the AI system": {
-        "WebFormTitle": "AI Systems Computing Resources",
+    "AI Systems Computing Resources": {
+        "WebFormTitle": "Define the computing resources used by the AI system",
         "Fields": [
             {
                 "FieldName": "(A.4.2, A.4.5) - Computing Resources - Computing Resource Name and Version",
@@ -365,8 +365,8 @@
             }
         ]
     },
-    "Define the data resources used by the AI system": {
-        "WebFormTitle": "AI Systems Data Resources",
+    "AI Systems Data Resources": {
+        "WebFormTitle": "Define the data resources used by the AI system",
         "Fields": [
             {
                 "FieldName": "(A.4.2, A.4.3) - Data Resources - Dataset Name",
@@ -442,8 +442,8 @@
             }
         ]
     },
-    "Define the AI system's Data Quality Requirements for Sensitive data": {
-        "WebFormTitle": "AI System Data Quality Requirements for Sensitive data",
+    "AI System Data Quality Requirements for Sensitive data": {
+        "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data",
         "Fields": [ 
             {
                 "FieldName": "(A.7.4) - Data Quality Requirements - Accuracy",
@@ -483,8 +483,8 @@
             }
         ]
     },
-    "Define the AI system's Data Preparation Plan for Sensitive Data": {
-        "WebFormTitle": "AI System Data Preparation Plan for Sensitive data",
+    "AI System Data Preparation Plan for Sensitive data": {
+        "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data",
         "Fields": [ 
             {
                 "FieldName": "(A.7.2, A.7.6) - Data Preparation Plan for Sensitive Data - De-identification & Anonymization - Masking",
@@ -560,8 +560,8 @@
             }
         ]
     },
-    "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.": {
-        "WebFormTitle": "AI System Documentation and User Information",
+    "AI System Documentation and User Information": {
+        "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
         "Fields": [
             {
                 "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
@@ -583,8 +583,8 @@
             }
         ]
     },
-    "Establish a process to manage all stakeholder relationships, ensuring that responsibilities are clearly allocated, supplier activities align with internal AI policies, and customer needs are fully considered.": {
-        "WebFormTitle": "Information for interested parties",
+    "Information for interested parties": {
+        "WebFormTitle": "Establish a process to manage all stakeholder relationships, ensuring that responsibilities are clearly allocated, supplier activities align with internal AI policies, and customer needs are fully considered.",
         "Fields": [
             {
                 "FieldName": "(A.8.5, A.8.3) - Interested parties - Name",
@@ -606,8 +606,8 @@
             }  
         ]
     },
-    "Describe the Responsible and Ethical objectives to guide the development of AI systems": {
-        "WebFormTitle": "Responsible and Ethical Development of AI Objectives",
+    "Objectives for Responsible and Ethical Development of AI Systems": {
+        "WebFormTitle": "Describe the Responsible and Ethical objectives to guide the development of AI systems",
         "Fields": [
             {
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Human-Centric",
@@ -641,8 +641,8 @@
             }              
         ]
     },
-    "Define the events to be logged when the AI system is in use and how they will ensure the Responsible and Ethical use of AI systems.": {
-        "WebFormTitle": "AI system recording of event logs and monitoring",
+    "AI system recording of event logs and monitoring": {
+        "WebFormTitle": "Define the events to be logged when the AI system is in use and how they will ensure the Responsible and Ethical use of AI systems.",
         "Fields": [
             {
                 "FieldName": "(A.6.2.6, A.6.2.8) - AI system recording of event logs and monitoring - Human-Centric",
@@ -676,8 +676,8 @@
             }            
         ]
     },
-    "Define Objective and roles for Development": {
-        "WebFormTitle": "AI Systems development objective and roles",
+    "AI Systems development objective and roles": {
+        "WebFormTitle": "Define Objective and roles for Development",
         "Fields": [
             {
                 "FieldName": "Development Roles",
@@ -699,8 +699,8 @@
             }
         ]
     },
-    "Document verification and validation measures for the AI system and specify criteria for their use.": {
-        "WebFormTitle": "AI Systems verifications",
+    "AI Systems verifications": {
+        "WebFormTitle": "Document verification and validation measures for the AI system and specify criteria for their use.",
         "Fields": [
             {
                 "FieldName": "(A.6.2.4) - AI Systems verifications - Human-Centric",
@@ -734,8 +734,8 @@
             }
         ]
     },
-    "Define Objective and roles for Use": {
-        "WebFormTitle": "AI Systems use objective and roles",
+    "AI Systems use objective and roles": {
+        "WebFormTitle": "Define Objective and roles for Use",
         "Fields": [
             {
                 "FieldName": "Usage roles",
@@ -757,8 +757,8 @@
             }
         ]
     },
-    "Document AI system approvals": {
-        "WebFormTitle": "AI Systems approvals",
+    "AI Systems approvals": {
+        "WebFormTitle": "Document AI system approvals",
         "Fields": [
             {
                 "FieldName": "AI System Security Approver",
