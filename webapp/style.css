@@ -191,8 +191,6 @@ button:hover {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
     margin-right: 20px; /* Adds a 20px space below the container */
 }
 
