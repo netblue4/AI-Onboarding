@@ -68,7 +68,7 @@ body {
     border: 1px solid #007BFF;
     border-radius: 4px;
     box-sizing: border-box;
-    height: 2.7rem;    /* Force a specific height for a single line feel */
+     /* height: 2.7rem;    Force a specific height for a single line feel */
 }
  .form-field .auto-generated-label {
     font-style: italic;
@@ -181,9 +181,4 @@ button:hover {
     display: block;
     margin-bottom: 8px;
     margin-top: 8px;
-}
-.required-label::after {
-    content: " *";
-    color: red;
-    font-weight: bold;
 }
