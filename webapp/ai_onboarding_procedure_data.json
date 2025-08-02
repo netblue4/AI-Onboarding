@@ -16,8 +16,8 @@
             },
             {
                 "FieldName": "(A.9.4) - AI System - Target Users",
-                "FieldLabel": "Target Users",
-                "FieldText": "Who will use this system or be affected by it?",
+                "FieldLabel": "",
+                "FieldText": "Who are the Target Users of the Ai system?",
                 "FieldType": "Dropdown box with values:/Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
             },
             {
