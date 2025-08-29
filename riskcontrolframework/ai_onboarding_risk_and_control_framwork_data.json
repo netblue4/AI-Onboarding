@@ -525,6 +525,7 @@
     "principle": "AI system deployment and operational resilience",
     "objective": "Integrate AI system into existing resilience mechanisms.",
     "risks": 
+    [
       {
         "risk": "Insufficient Scalability Management",
         "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
