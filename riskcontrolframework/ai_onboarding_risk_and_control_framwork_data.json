@@ -1,6 +1,6 @@
 [
   {
-    "principle": "AI Act Section 2: Requirements for High-Risk AI Systems",
+    "principle": "AI Act - Section 2: Requirements for High-Risk AI Systems",
     "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
     "risks": 
     [
