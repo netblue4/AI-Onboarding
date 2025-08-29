@@ -3,122 +3,190 @@
     "principle": "EU AI Act Art 15",
     "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
     "risks": [
+    {
+        "risk": "[Article 8] - Non-Compliance with High-Risk AI System Requirements",
+        "question": "Is the AI system, or the product incorporating the AI system, subject to other EU regulations, and if so, how is compliance with all applicable regulations, including the AI Act, managed and documented?",
+        "controls": [
+         {
+          "control": "[Art-8][Par-1][1] - Establish and maintain a documented process to ensure and demonstrate that high-risk AI systems comply with the requirements of Section 2 of the AI Act, considering the system's intended purpose and the state of the art in AI.",
+          "control_objective": "To ensure that high-risk AI systems meet all legal and technical standards set forth in the AI Act, and to have a clear, auditable trail of compliance."
+         },
+         {
+          "control": "[Art-8][Par-2][2] - For products containing a high-risk AI system that are also subject to other Union harmonisation legislation, ensure the product is fully compliant with all applicable requirements from all relevant regulations.",
+          "control_objective": "To achieve comprehensive legal compliance for products that incorporate AI systems and are subject to multiple regulatory frameworks."
+         },
+         {
+          "control": "[Art-8][Par-2][3] - Where applicable, integrate the testing, reporting, and documentation processes required by the AI Act with existing compliance processes under other EU legislation to ensure consistency, avoid duplication, and minimize administrative burden.",
+          "control_objective": "To streamline compliance activities, improve efficiency, and ensure a coherent approach to regulatory requirements across different legal instruments."
+         }
+        ]
+      },
       {
-        "risk": "[Article 12] - Incomplete or Inconsistent Record-Keeping",
-        "question": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
+        "risk": "[Article 9] - Inadequate or Ineffective Risk Management",
+        "question": "Does the organization have a documented and continuously updated risk management system for its high-risk AI systems that covers the entire lifecycle of the system?",
         "controls": [
           {
-            "control": "[Art-12][Par-1][1] - Implement automatic event logging capabilities for adopted AI systems throughout their lifecycle.",
-            "control_objective": "Ensure comprehensive traceability and accountability in AI system operations."
+            "control": "[Art-9][Par-1][1] - Establish, implement, document, and maintain a comprehensive risk management system for high-risk AI systems.",
+            "control_objective": "To ensure a systematic and ongoing process for identifying, evaluating, and mitigating risks associated with high-risk AI systems throughout their lifecycle."
           },
           {
-            "control": "[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.",
-            "control_objective": "Facilitate ongoing risk management, performance evaluation, and regulatory compliance of AI systems."
+            "control": "[Art-9][Par-2][2] - Implement a continuous iterative risk management process that includes regular systematic reviews and updates, covering identification, analysis, estimation, and evaluation of foreseeable risks.",
+            "control_objective": "To proactively manage and adapt to evolving risks by maintaining a dynamic and up-to-date risk management framework."
           },
           {
-            "control": "[Art-12][Par-3][3] - For adopted AI systems, implement logging capabilities that record usage periods, reference databases, and input data that led to matches during searches.",
-            "control_objective": "Enhance transparency and auditability of AI system decisions and operations in critical applications."
+            "control": "[Art-9][Par-2][3] - Adopt appropriate and targeted risk management measures to address identified risks, including those from post-market monitoring.",
+            "control_objective": "To effectively mitigate identified risks through the implementation of specific and relevant control measures."
+          },
+          {
+            "control": "[Art-9][Par-5][4] - Ensure that residual risks, both individual and overall, are acceptable by eliminating or reducing risks as far as technically feasible through design, implementing mitigation measures, and providing information and training.",
+            "control_objective": "To reduce the potential for harm to an acceptable level by employing a multi-layered approach to risk mitigation."
+          },
+          {
+            "control": "[Art-9][Par-6][5] - Conduct testing of high-risk AI systems to identify the most appropriate risk management measures and to ensure consistent performance and compliance with requirements.",
+            "control_objective": "To validate the effectiveness of risk management measures and ensure the AI system operates as intended."
+          },
+          {
+            "control": "[Art-9][Par-9][6] - Consider the potential adverse impact on persons under the age of 18 and other vulnerable groups when implementing the risk management system.",
+            "control_objective": "To provide heightened protection for vulnerable populations who may be disproportionately affected by the AI system."
           }
         ]
       },
       {
-        "risk": "[Article 13] - Lack of Transparency and Explainability",
-        "question": "Will users or customers need to understand why the AI made a specific decision or recommendation?",
+        "risk": "[Article 10] - Poor Data Quality and Governance",
+        "question": "Are there appropriate data governance and management practices in place for the training, validation, and testing datasets used by the high-risk AI system to ensure they are relevant, representative, and free of errors and biases?",
         "controls": [
           {
-            "control": "[Art-13][Par-1][1] - Ensure that the AI systems fine-tuning process is designed with sufficient transparency to enable appropriate interpretation and use of system outputs.",
-            "control_objective": "Facilitate proper understanding and utilisation of AI system results within the organisation."
+            "control": "[Art-10][Par-2][1] - Implement and document data governance and management practices covering the entire data lifecycle, including design choices, collection, and preparation processes like annotation and cleaning.",
+            "control_objective": "To ensure that data used for high-risk AI systems is handled systematically and responsibly, maintaining quality and integrity from collection to use."
           },
           {
-            "control": "[Art-13][Par-2][2] - Provide comprehensive, clear, and accessible instructions for use of adopted AI systems in an appropriate digital format.",
-            "control_objective": "Enable effective deployment and operation of AI systems by organisational users."
+            "control": "[Art-10][Par-2][2] - Establish a process to examine data sets for possible biases that could negatively impact fundamental rights, health, or safety, and implement measures to detect, prevent, and mitigate these biases.",
+            "control_objective": "To minimize the risk of discriminatory or unfair outcomes and ensure the AI system operates in a manner that is safe and respects fundamental rights."
           },
           {
-            "control": "[Art-13][Par-3][3] - Include detailed information in the instructions for use, covering provider details, system capabilities, limitations, performance metrics, potential risks, data specifications, and operational requirements.",
-            "control_objective": "Ensure thorough understanding of the adopted AI system's functionalities, limitations, and operational needs for responsible use within the organisation."
+            "control": "[Art-10][Par-3][3] - Ensure that training, validation, and testing data sets are relevant, sufficiently representative, free of errors, and complete for the system's intended purpose, with appropriate statistical properties.",
+            "control_objective": "To build a robust and reliable AI system by using high-quality data that accurately reflects the operational environment and minimizes performance issues."
+          },
+          {
+            "control": "[Art-10][Par-4][4] - Verify that data sets account for the specific geographical, contextual, behavioral, or functional settings in which the high-risk AI system will be used.",
+            "control_objective": "To ensure the AI system performs effectively and as intended in its specific operational context, reducing the risk of failures due to environmental mismatches."
+          },
+          {
+            "control": "[Art-10][Par-5][5] - Where strictly necessary for bias detection and correction, process special categories of personal data only with appropriate safeguards, technical limitations, and security measures, ensuring data is deleted after use.",
+            "control_objective": "To enable effective bias mitigation while upholding the highest standards of data protection and privacy for sensitive personal information."
+          }
+        ]
+     },
+     {
+        "risk": "[Article 12] - Inadequate Traceability and Record-Keeping",
+        "question": "Does the organization need to trace the operational history of its high-risk AI system to investigate incidents, audit results, or ensure accountability?",
+        "controls": [
+         {
+          "control": "[Art-12][Par-1][1] - Implement capabilities for the automatic recording of events (logs) while the high-risk AI system is operating.",
+          "control_objective": "To ensure a level of traceability of the AI system’s functioning throughout its lifecycle that is appropriate to its intended purpose."
+         },
+         {
+          "control": "[Art-12][Par-2][2] - For high-risk AI systems covered by specific points in Annex III (e.g., biometrics, law enforcement), ensure logging capabilities record the period of each use, the reference database, the input data, and the identity of the persons involved in verifying the results.",
+          "control_objective": "To provide detailed operational transparency and accountability for AI systems used in critical public and justice-related applications."
+         },
+         {
+          "control": "[Art-12][Par-4][3] - For AI systems intended for remote biometric identification, ensure logging capabilities record the period of use, reference database, input data, and the identification of the person generating the match.",
+          "control_objective": "To enhance auditability and accountability in the use of sensitive remote biometric identification technologies."
+         }
+        ]
+      },
+      {
+        "risk": "[Article 13] - Lack of Transparency and Provision of Information to Users",
+        "question": "Will users of this AI system need to understand its capabilities, limitations, and the meaning of its outputs to use it safely and effectively?",
+        "controls": [
+          {
+            "control": "[Art-13][Par-1] - Ensure the design of high-risk AI systems allows users to interpret outputs and use the system appropriately.",
+            "control_objective": "To enable safe and effective use of the AI system by ensuring user comprehension."
+          },
+          {
+            "control": "[Art-13][Par-2] - Provide clear, complete, and accessible instructions for use with all high-risk AI systems.",
+            "control_objective": "To ensure users have the necessary information to operate the AI system correctly and safely."
+          },
+          {
+            "control": "[Art-13][Par-3a] - Include the identity and contact details of the provider and their authorized representative in the instructions for use.",
+            "control_objective": "To establish clear lines of communication and accountability for the AI system."
+          },
+          {
+            "control": "[Art-13][Par-3b] - Detail the AI system's characteristics, capabilities, limitations, intended purpose, accuracy, robustness, cybersecurity, and performance metrics in the instructions for use.",
+            "control_objective": "To provide a comprehensive understanding of the AI system's operational parameters and performance expectations."
+          },
+          {
+            "control": "[Art-13][Par-3c-e-f] - Specify the necessary hardware resources, expected lifetime, maintenance, and pre-determined changes for operating the AI system in the instructions for use.",
+            "control_objective": "To ensure users have the required infrastructure and information to run and maintain the AI system effectively over its lifecycle."
+          },
+          {
+            "control": "[Art-13][Par-3d] - Detail the human oversight measures from Article 14, including technical aids for interpreting system outputs, in the instructions for use.",
+            "control_objective": "To facilitate effective human oversight and intervention in the AI system's operation."
           }
         ]
       },
       {
-        "risk": "[Article 14] - Inadequate Human Oversight",
-        "question": "Should a human be able to override or monitor the AI's decisions in your use case?",
+        "risk": "[Article 14] - Ineffective or Insufficient Human Oversight",
+        "question": "Does the AI system operate in a way that requires human monitoring, intervention, or decision-making to prevent or mitigate risks to health, safety, or fundamental rights?",
         "controls": [
           {
-            "control": "[Art-14][Par-2][2] - Establish human oversight measures to prevent or minimise risks to health, safety, or fundamental rights when using adopted AI systems.",
-            "control_objective": "Mitigate potential negative impacts of AI systems on individuals and the organisation."
+            "control": "[Art-14][Par-1] - Design and develop high-risk AI systems with appropriate human-machine interface tools to enable effective oversight by natural persons.",
+            "control_objective": "To ensure that a human can effectively monitor and control the AI system while it is in use."
           },
           {
-            "control": "[Art-14][Par-4][4] - Provide adopted AI systems with features that enable designated personnel to understand system capabilities, monitor operations, interpret outputs, and intervene when necessary.",
-            "control_objective": "Empower human operators to effectively oversee and control AI systems, reducing risks of misuse or over-reliance."
+            "control": "[Art-14][Par-2] - Implement human oversight to prevent or minimize risks to health, safety, or fundamental rights, especially those risks that persist after other requirements have been applied.",
+            "control_objective": "To provide a final layer of risk mitigation through active human involvement."
           },
           {
-            "control": "[Art-14][Par-5][5] - For adopted AI systems, implement logging capabilities that record usage periods, reference databases, and input data that led to matches during searches.",
-            "control_objective": "Enhance decision-making reliability and reduce errors in critical applications of AI systems within the organisation."
+            "control": "[Art-14][Par-3] - Ensure human oversight measures are built into the AI system by the provider or are appropriate for implementation by the deployer.",
+            "control_objective": "To integrate necessary oversight capabilities either directly into the system or into the operational procedures of the user."
+          },
+          {
+            "control": "[Art-14][Par-4a, 4b, 4c] - Enable assigned human overseers to understand the AI system's capabilities and limitations, monitor for anomalies, and correctly interpret its output, while remaining aware of potential automation bias.",
+            "control_objective": "To empower human overseers with the knowledge and awareness needed to make informed judgments about the system's performance."
+          },
+          {
+            "control": "[Art-14][Par-4d, 4e] - Enable assigned human overseers to have the ability to decide not to use the system, override its output, or interrupt its operation via a 'stop' button or similar procedure.",
+            "control_objective": "To ensure ultimate human control over the AI system's actions and decisions in any given situation."
+          },
+          {
+            "control": "[Art-14][Par-5] - For remote biometric identification systems, ensure that any identification is verified and confirmed by at least two competent, trained, and authorized natural persons before action is taken.",
+            "control_objective": "To increase the reliability and accountability of critical identification tasks performed by AI."
           }
         ]
       },
       {
-        "risk": "[Article 15] - Inaccurate Monitoring of System accuracy and robustness",
+        "risk": "[Article 15] - Inadequate Accuracy, Robustness, and Cybersecurity",
         "question": "Will poor AI performance (e.g., incorrect or unreliable outputs) cause business disruption, compliance issues, or customer dissatisfaction?",
         "controls": [
           {
-            "control": "[Art-15][Par-2][2] - Collaborate with relevant stakeholders to develop and implement benchmarks and measurement methodologies for assessing the accuracy and robustness of adopted AI systems.",
-            "control_objective": "Establish standardised methods for evaluating AI system performance within the organisation."
+            "control": "[Art-15][Par-1] - Ensure high-risk AI systems are designed and developed to achieve and maintain an appropriate level of accuracy, robustness, and cybersecurity throughout their lifecycle.",
+            "control_objective": "To maintain the system's trustworthiness and prevent harm from inaccurate or insecure operation."
           },
           {
-            "control": "[Art-15][Par-4][4] - Implement technical and organisational measures to enhance the resilience of adopted AI systems against errors, faults, or inconsistencies, including backup plans and mitigation strategies for feedback loops in continuously learning systems.",
-            "control_objective": "Minimise risks associated with AI system failures and unintended behaviours during operation."
-          }
-        ]
-      },
-      {
-        "risk": "Unclear AI scope and purpose definition",
-        "question": "Is the goal of this AI system clearly defined, and do you know exactly what business problem it is solving?",
-        "controls": [
-          {
-            "control": "SC[1] -  Clearly define the scope and purpose of the AI system",
-            "control_objective": "To ensure that the AI system is developed and deployed with a clear understanding of its intended functions and boundaries, thereby aligning its capabilities with the organisation's strategic goals, ensuring transparency, and preventing misuse or unintended consequences"
-          }
-        ]
-      },
-      {
-        "risk": "Use of Unverified Data Sources",
-        "question": "Will you use any external or previously unused datasets to train or operate the AI?",
-        "controls": [
-          {
-            "control": "[Art-10][Par-2][2(b)] -  Establish a Data tracking capability to ensure accurate tracking of data origins from valid, approved, and reliable sources in AI model fine-tuning.",
-            "control_objective": "To implement structured administrative processes that define roles, responsibilities, and procedures for tracking and validating the origins of data used in AI model fine-tuning, ensuring data integrity and compliance with regulatory requirements."
+            "control": "[Art-15][Par-2] - Encourage the development of benchmarks and measurement methodologies for accuracy and robustness in cooperation with relevant stakeholders.",
+            "control_objective": "To establish standardized methods for evaluating and verifying the performance of AI systems."
           },
           {
-            "control": "DO[2] -  Implement technical measures to ensure accurate tracking of data origins from valid, approved, and reliable sources in AI model fine-tuning.",
-            "control_objective": "To deploy technical controls that provide real-time tracking, logging, and validation of data origins, ensuring data integrity and traceability throughout the AI model fine-tuning process."
-          }
-        ]
-      },
-      {
-        "risk": "Poor Data Quality",
-        "question": "Do you suspect that the data used for this AI may contain errors, gaps, or outdated information?",
-        "controls": [
-          {
-            "control": "DQ[1] -  Establish a data quality management process to maintain high data quality in AI model fine-tuning.",
-            "control_objective": "To implement structured administrative processes that define roles, responsibilities, and procedures for managing data quality, ensuring the accuracy, completeness, consistency, and relevance of data throughout the AI model fine-tuning lifecycle."
+            "control": "[Art-15][Par-3] - Clearly state the levels of accuracy and the relevant accuracy metrics in the AI system's instructions for use.",
+            "control_objective": "To provide transparency to users about the system's expected performance."
           },
           {
-            "control": "DQ[2] -  Implement technical measures to ensure and maintain high data quality in AI model fine-tuning.",
-            "control_objective": "To deploy comprehensive technical controls that provide real-time monitoring, validation, and management of data quality, ensuring the accuracy, completeness, consistency, and relevance of data throughout the AI model fine-tuning process."
-          }
-        ]
-      },
-      {
-        "risk": "Failure to Remove Duplicate Data",
-        "question": "Is it possible that your data sources contain duplicates which could distort outcomes or skew analysis?",
-        "controls": [
+            "control": "[Art-15][Par-4] - Design AI systems to be resilient to errors, faults, or inconsistencies, using technical redundancies and fail-safe plans where appropriate, and mitigate risks from biased feedback loops in learning systems.",
+            "control_objective": "To ensure the system can handle unexpected situations and maintain stable performance without being negatively influenced by its own outputs."
+          },
           {
-            "control": "DD[1] -  Implement data deduplication techniques during the pre-processing stage to identify and remove duplicate records or instances from proprietary datasets used for fine-tuning.",
-            "control_objective": "To eliminate redundant data and ensure that the AI model is trained on a unique and diverse set of examples, improving its accuracy and generalisation capabilities."
+            "control": "[Art-15][Par-5] - Implement cybersecurity measures to protect high-risk AI systems from unauthorized alteration of their use, outputs, or performance by exploiting vulnerabilities.",
+            "control_objective": "To safeguard the AI system against malicious attacks such as data poisoning, model poisoning, and adversarial examples."
           }
         ]
-      },
+      }
+          ]
+  },
+  {
+    "principle": "xxx",
+    "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+    "risks": [
       {
         "risk": "Inadequate Data & Privacy Protection Measures",
         "question": "Will this AI system process personal, confidential, or sensitive business data?",
