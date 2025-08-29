@@ -1,6 +1,6 @@
 [
   {
-    "principle": "EU AI Act Art 15",
+    "principle": "Section 2: Requirements for High-Risk AI Systems",
     "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
     "risks": 
     [
@@ -542,6 +542,26 @@
         ]
       },
       {
+        "risk": "AI system hallucinations",
+        "question": "Will the AI generate content (text, images, etc.) that could be factually wrong but appear convincing?",
+        "controls": [
+          {
+            "control": "HA[1] -  Establish an AI system hallucination detection and mitigation process.",
+            "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for managing and mitigating AI system hallucinations, ensuring the accuracy and reliability of AI outputs."
+          },
+          {
+            "control": "HA[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations, ensuring the reliability and accuracy of AI outputs.",
+            "control_objective": "To deploy comprehensive technical controls that enable real-time detection, analysis, and correction of AI system hallucinations, maintaining the integrity and reliability of AI models."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "principle": "Operational risks",
+    "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+    "risks": [
+      {
         "risk": "Insufficient Scalability Management",
         "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
         "controls": [
@@ -632,20 +652,6 @@
           {
             "control": "IM[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations and other incidents, ensuring the reliability and accuracy of AI outputs.",
             "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance and security, enabling prompt detection and resolution of incidents to maintain optimal operation."
-          }
-        ]
-      },
-      {
-        "risk": "AI system hallucinations",
-        "question": "Will the AI generate content (text, images, etc.) that could be factually wrong but appear convincing?",
-        "controls": [
-          {
-            "control": "HA[1] -  Establish an AI system hallucination detection and mitigation process.",
-            "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for managing and mitigating AI system hallucinations, ensuring the accuracy and reliability of AI outputs."
-          },
-          {
-            "control": "HA[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations, ensuring the reliability and accuracy of AI outputs.",
-            "control_objective": "To deploy comprehensive technical controls that enable real-time detection, analysis, and correction of AI system hallucinations, maintaining the integrity and reliability of AI models."
           }
         ]
       }
