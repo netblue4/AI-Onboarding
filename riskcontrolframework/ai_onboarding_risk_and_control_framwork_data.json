@@ -367,7 +367,8 @@
             "control_objective": "To develop well-rounded and comprehensive data risk profiles through multi-disciplinary collaboration."
           }
         ]
-      }{
+      },
+      {
         "risk": "Uncontrolled Synthetic Data Usage",
         "question": "Will synthetic (artificially generated) data be used in training or testing without clear documentation or controls?",
         "controls": [
@@ -392,28 +393,6 @@
           {
             "control": "DD[1] -  Establish clear thresholds for data drift based on statistical measures (e.g., Kullback-Leibler divergence, Kolmogorov-Smirnov test) to determine when data changes are significant enough to warrant action.",
             "control_objective": "To trigger alerts or initiate retraining procedures when data drift exceeds predefined thresholds, ensuring the model's accuracy remains reliable despite changes in data distribution."
-          }
-        ]
-      },
-      {
-        "risk": "Amplification of Biases",
-        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
-        "controls": [
-          {
-            "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
-            "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
-          },
-          {
-            "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
-            "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
-          },
-          {
-            "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
-            "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
-          },
-          {
-            "control": "LDD[4] -  Include data from different geographic and demographic regions.",
-            "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
           }
         ]
       },
@@ -543,16 +522,9 @@
     ]
   },
   {
-    "principle": "AI system deployment",
-    "objective": "Secure deployment of AI systems.",
-    "risks": 
-    [
-    ]
-  },
-  {
-    "principle": "AI system operational resilience",
+    "principle": "AI system deployment and operational resilience",
     "objective": "Integrate AI system into existing resilience mechanisms.",
-    "risks": [
+    "risks": 
       {
         "risk": "Insufficient Scalability Management",
         "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
@@ -832,6 +804,28 @@
             "control_objective": "Proactively identify and address new or changing biases in deployed AI systems to maintain fair outcomes."
           }
         ]
+      },
+      {
+        "risk": "Amplification of Biases",
+        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "controls": [
+          {
+            "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
+            "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
+          },
+          {
+            "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
+            "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
+          },
+          {
+            "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
+            "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
+          },
+          {
+            "control": "LDD[4] -  Include data from different geographic and demographic regions.",
+            "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
+          }
+        ]
       }
     ]
   },
@@ -890,26 +884,6 @@
           {
             "control": "[Safety][Tech-2] Implement robust testing and validation frameworks for AI systems, including adversarial testing and stress testing.",
             "control_objective": "Ensure the AI system is resilient to attacks, faults, and operates reliably in diverse conditions."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "principle": "Privacy",
-    "objective": "Engineer the system to protect personal data by design and by default.",
-    "risks": [
-      {
-        "risk": "[Privacy] - Personal Data Breaches and Misuse",
-        "question": "Could the system’s handling of data infringe on the privacy, dignity, or confidentiality of individuals?",
-        "controls": [
-          {
-            "control": "[Privacy][Tech-1] Implement data anonymization and pseudonymization techniques during data preparation for AI training and processing.",
-            "control_objective": "Protect personal data by reducing or removing direct identifiers while retaining data utility for AI."
-          },
-          {
-            "control": "[Privacy][Tech-2] Implement robust access controls and encryption for personal data used by AI systems.",
-            "control_objective": "Ensure confidentiality of personal data and prevent unauthorized access or processing by AI systems."
           }
         ]
       }
