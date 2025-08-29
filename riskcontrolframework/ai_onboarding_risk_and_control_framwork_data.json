@@ -300,16 +300,6 @@
             "control_objective": "To ensure that the AI pipeline operates smoothly and securely, preventing disruptions and unauthorised data exposure."
           }
         ]
-      },
-      {
-        "risk": "Exposure of Sensitive Data Through Federated Learning",
-        "question": "Will the AI system collaborate or learn from external datasets without centralizing data (e.g., via federated learning)?",
-        "controls": [
-          {
-            "control": "FL[1] -  Ensure a secure federated learning process",
-            "control_objective": "To ensure the secure handling of distributed sensitive data used in federated learning"
-          }
-        ]
       }
     ]
   },
@@ -407,6 +397,16 @@
           {
             "control": "HA[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations, ensuring the reliability and accuracy of AI outputs.",
             "control_objective": "To deploy comprehensive technical controls that enable real-time detection, analysis, and correction of AI system hallucinations, maintaining the integrity and reliability of AI models."
+          }
+        ]
+      },
+      {
+        "risk": "Exposure of Sensitive Data Through Federated Learning",
+        "question": "Will the AI system collaborate or learn from external datasets without centralizing data (e.g., via federated learning)?",
+        "controls": [
+          {
+            "control": "FL[1] -  Ensure a secure federated learning process",
+            "control_objective": "To ensure the secure handling of distributed sensitive data used in federated learning"
           }
         ]
       }
@@ -597,16 +597,6 @@
         ]
       },
       {
-        "risk": "Inadequate User Training and Awareness",
-        "question": "Will non-technical users rely on this AI — and have they been trained on its limitations and correct usage?",
-        "controls": [
-          {
-            "control": "[Art-9][Par-5][5c] -  Provide comprehensive information and training to AI system users within the organisation, considering their technical knowledge, experience, and education.",
-            "control_objective": "To ensure safe and responsible use of the adopted AI system by equipping users with necessary knowledge and skills."
-          }
-        ]
-      },
-      {
         "risk": "Ineffective Incident Management",
         "question": "Do you have a process in place if the AI system causes an issue (e.g., incorrect output, outage, or data leak)?",
         "controls": [
@@ -651,6 +641,16 @@
           {
             "control": "DT[2] -  Establish data sharing agreements and protocols with internal and external stakeholders involved in the data collection and fine-tuning processes.",
             "control_objective": "To define clear guidelines, roles, and responsibilities for secure data sharing, ensuring compliance with data protection regulations and ethical standards. [GV.SC-02, GV.SC-05]"
+          }
+        ]
+      },
+      {
+        "risk": "Inadequate User Training and Awareness",
+        "question": "Will non-technical users rely on this AI — and have they been trained on its limitations and correct usage?",
+        "controls": [
+          {
+            "control": "[Art-9][Par-5][5c] -  Provide comprehensive information and training to AI system users within the organisation, considering their technical knowledge, experience, and education.",
+            "control_objective": "To ensure safe and responsible use of the adopted AI system by equipping users with necessary knowledge and skills."
           }
         ]
       },
@@ -871,26 +871,6 @@
     ]
   },
   {
-    "principle": "Safety",
-    "objective": "Design and build the AI system with integrated safety controls and fail-safe mechanisms.",
-    "risks": [
-      {
-        "risk": "[Safety] - Unintended Harm from AI System Operation",
-        "question": "Could the AI system’s failure, misuse, or malfunction result in physical or psychological harm to individuals or groups?",
-        "controls": [
-          {
-            "control": "[Safety][Tech-1] Implement AI system monitoring with anomaly detection and automated fail-safe mechanisms.",
-            "control_objective": "Prevent harmful outcomes by detecting abnormal AI behavior and initiating safe states or human intervention."
-          },
-          {
-            "control": "[Safety][Tech-2] Implement robust testing and validation frameworks for AI systems, including adversarial testing and stress testing.",
-            "control_objective": "Ensure the AI system is resilient to attacks, faults, and operates reliably in diverse conditions."
-          }
-        ]
-      }
-    ]
-  },
-  {
     "principle": "Human Oversight",
     "objective": "Design workflows that require human intervention for high-risk decisions and provide clear interfaces for interaction.",
     "risks": [
@@ -905,46 +885,6 @@
           {
             "control": "[Human Oversight][Tech-2] Implement automated alerts and monitoring dashboards for AI system performance and deviation detection.",
             "control_objective": "Proactively identify unexpected AI system behavior or performance degradation requiring human attention."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "principle": "Customer Needs",
-    "objective": "Develop an AI system that is aligned with documented user requirements and technical specifications.",
-    "risks": [
-      {
-        "risk": "[Customer Needs & Expectations] - Misalignment of AI with Customer Needs",
-        "question": "Could misunderstanding or misuse of the system by customers result in negative outcomes for individuals or third parties?",
-        "controls": [
-          {
-            "control": "[Customer Needs & Expectations][Tech-1] Implement AI-powered sentiment analysis and feedback collection tools to monitor customer satisfaction with AI systems.",
-            "control_objective": "Continuously assess and understand customer needs and expectations regarding AI system performance and experience."
-          },
-          {
-            "control": "[Customer Needs & Expectations][Tech-2] Implement user experience (UX) analytics tools for AI interfaces to track user engagement and identify usability issues.",
-            "control_objective": "Ensure the AI system is intuitive, user-friendly, and meets customer expectations for ease of use and functionality."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "principle": "Supplier Alignment",
-    "objective": "Ensure all third-party components and data are selected and integrated according to organizational standards.",
-    "risks": [
-      {
-        "risk": "[Supplier Alignment & Requirements] - Non-Compliance of Third-Party AI Components",
-        "question": "Could failure or misconduct by third-party suppliers lead to outcomes that negatively affect individuals relying on the AI system?",
-        "controls": [
-          {
-            "control": "[Supplier Alignment & Requirements][Tech-1] Implement automated vulnerability scanning and security audits for third-party AI components and libraries.",
-            "control_objective": "Ensure that third-party AI components meet the organization's cybersecurity obligations and do not introduce vulnerabilities."
-          },
-          {
-            "control": "[Supplier Alignment & Requirements][Tech-2] Implement technical due diligence processes including data provenance verification and bias audits for third-party AI data and models.",
-            "control_objective": "Ensure that third-party data and models align with responsible AI principles and do not introduce unintended biases or privacy risks."
           }
         ]
       }
