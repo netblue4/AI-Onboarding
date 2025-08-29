@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Framework Browser</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; margin: 2em; background-color: #f9f9f9; color: #333; }
+        h1 { color: #005a9c; }
+        .container { background-color: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        button { background-color: #6c757d; color: white; border: none; padding: 8px 16px; font-size: 14px; margin-bottom: 1em; cursor: pointer; border-radius: 4px; transition: background-color 0.3s; }
+        button:hover { background-color: #5a6268; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+        td { border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: top; }
+        .principle-row, .risk-row, .control-row { cursor: pointer; font-weight: bold; }
+        .principle-row { background-color: #dbeafe; }
+        .risk-row { background-color: #e7f3fe; }
+        .control-row { background-color: #f0f8ff; }
+        .principle-row:hover, .risk-row:hover, .control-row:hover { background-color: #d0e8fd; }
+        .hidden { display: none; }
+        .risk-cell { padding-left: 30px !important; }
+        .control-cell { padding-left: 60px !important; }
+        .objective-cell { background-color: #ffffff; padding-left: 90px !important; font-weight: normal; }
+        .objective-cell ul { margin: 0; padding-left: 20px; }
+        .objective-cell li { margin-bottom: 10px; }
+        .expand-icon { font-family: monospace; font-size: 1.2em; width: 20px; display: inline-block; text-align: center; color: #005a9c; }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1>AI Framework Browser</h1>
+  <p>Click on a Principle to see its risks, then a risk for its controls.</p>
+  <button id="closeAllButton">Close all nodes</button>
+  <table id="framework_table">
+    <tbody id="framework_table_body"></tbody>
+  </table>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('ai_onboarding_risk_and_control_framwork_data.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(assessmentData => {
+                const table_body = document.getElementById('framework_table_body');
+                const close_button = document.getElementById('closeAllButton');
 
+                // 1. Group the flat data into a nested structure
+                const groupedData = assessmentData.reduce((acc, item) => {
+                    const principleKey = `${item.principle}: ${item.objective}`;
+                    if (!acc[principleKey]) {
+                        acc[principleKey] = {
+                            principle: item.principle,
+                            objective: item.objective,
+                            risks: {}
+                        };
+                    }
+                    if (!acc[principleKey].risks[item.risk]) {
+                        acc[principleKey].risks[item.risk] = [];
+                    }
+                    acc[principleKey].risks[item.risk].push({
+                        control: item.control,
+                        control_objective: item.control_objective
+                    });
+                    return acc;
+                }, {});
+
+                // 2. Dynamically build the table from the grouped data
+                Object.keys(groupedData).forEach((principleKey, p_idx) => {
+                    const principleGroup = groupedData[principleKey];
+                    const principle_id = `p_${p_idx}`;
+                    
+                    // Principle Row (Level 1)
+                    const principle_row = table_body.insertRow();
+                    principle_row.className = 'principle-row';
+                    principle_row.setAttribute('data-id', principle_id);
+                    principle_row.innerHTML = `<td colspan="2"><span class="expand-icon">+</span><strong>${principleGroup.principle}:</strong> ${principleGroup.objective}</td>`;
+                    principle_row.addEventListener('click', () => toggle_visibility(principle_id));
+
+                    Object.keys(principleGroup.risks).forEach((riskText, r_idx) => {
+                        const risk_id = `${principle_id}_r_${r_idx}`;
+                        const controls = principleGroup.risks[riskText];
+
+                        // Risk Row (Level 2)
+                        const risk_row = table_body.insertRow();
+                        risk_row.className = `hidden risk-row parent-${principle_id}`;
+                        risk_row.setAttribute('data-id', risk_id);
+                        risk_row.innerHTML = `<td class="risk-cell" colspan="2"><span class="expand-icon">+</span>${riskText}</td>`;
+                        risk_row.addEventListener('click', (e) => { e.stopPropagation(); toggle_visibility(risk_id); });
+
+                        controls.forEach((control_item, c_idx) => {
+                            const control_id = `${risk_id}_c_${c_idx}`;
+                            
+                            // Control Row (Level 3)
+                            const control_row = table_body.insertRow();
+                            control_row.className = `hidden control-row parent-${principle_id} parent-${risk_id}`;
+                            control_row.setAttribute('data-id', control_id);
+                            control_row.innerHTML = `<td class="control-cell" colspan="2"><span class="expand-icon">+</span>${control_item.control}</td>`;
+                            control_row.addEventListener('click', (e) => { e.stopPropagation(); toggle_visibility(control_id); });
+
+                            // Control Objective Row (Level 4 - The content)
+                            const objective_row = table_body.insertRow();
+                            objective_row.className = `hidden objective-row parent-${principle_id} parent-${risk_id} parent-${control_id}`;
+                            objective_row.innerHTML = `<td class="objective-cell" colspan="2"><b>Objective:</b> ${control_item.control_objective}</td>`;
+                        });
+                    });
+                });
+
+                collapse_all();
+                close_button.addEventListener('click', collapse_all);
+            })
+            .catch(error => {
+                console.error('Error fetching or processing data:', error);
+                const table_body = document.getElementById('framework_table_body');
+                table_body.innerHTML = `<tr><td colspan="2" style="color: red; text-align: center;">Failed to load AI framework data. Please check the console for details.</td></tr>`;
+            });
+    });
+
+    function collapse_all() {
+        document.querySelectorAll('.risk-row, .control-row, .objective-row').forEach(row => row.classList.add('hidden'));
+        document.querySelectorAll('.expand-icon').forEach(icon => icon.textContent = '+');
+    }
+
+    function toggle_visibility(id_selector) {
+        const parent_row = document.querySelector(`[data-id="${id_selector}"]`);
+        if (!parent_row) return;
+
+        const icon = parent_row.querySelector('.expand-icon');
+        const all_descendants = document.querySelectorAll(`.parent-${id_selector}`);
+        const is_opening = icon.textContent === '+';
+
+        icon.textContent = is_opening ? '-' : '+';
+
+        if (is_opening) {
+            // When OPENING, only show the IMMEDIATE children.
+            all_descendants.forEach(row => {
+                if ((parent_row.classList.contains('principle-row') && row.classList.contains('risk-row')) ||
+                    (parent_row.classList.contains('risk-row') && row.classList.contains('control-row')) ||
+                    (parent_row.classList.contains('control-row') && row.classList.contains('objective-row'))) {
+                    row.classList.remove('hidden');
+                }
+            });
+        } else {
+            // When CLOSING, hide ALL descendants and reset their icons.
+            all_descendants.forEach(row => {
+                row.classList.add('hidden');
+                const child_icon = row.querySelector('.expand-icon');
+                if (child_icon) {
+                    child_icon.textContent = '+';
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>
