@@ -1,1 +1,1226 @@
-
+[
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
+        "risk": "[Article 12] - Incomplete or Inconsistent Record-Keeping",
+        "control": "[Art-12][Par-1][1] - Implement automatic event logging capabilities for adopted AI systems throughout their lifecycle.",
+        "control_objective": "Ensure comprehensive traceability and accountability in AI system operations."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
+        "risk": "[Article 12] - Incomplete or Inconsistent Record-Keeping",
+        "control": "[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.",
+        "control_objective": "Facilitate ongoing risk management, performance evaluation, and regulatory compliance of AI systems."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
+        "risk": "[Article 12] - Incomplete or Inconsistent Record-Keeping",
+        "control": "[Art-12][Par-3][3] - For adopted AI systems, implement logging capabilities that record usage periods, reference databases, and input data that led to matches during searches.",
+        "control_objective": "Enhance transparency and auditability of AI system decisions and operations in critical applications."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will users or customers need to understand why the AI made a specific decision or recommendation?",
+        "risk": "[Article 13] - Lack of Transparency and Explainability",
+        "control": "[Art-13][Par-1][1] - Ensure that the AI systems fine-tuning process is designed with sufficient transparency to enable appropriate interpretation and use of system outputs.",
+        "control_objective": "Facilitate proper understanding and utilisation of AI system results within the organisation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will users or customers need to understand why the AI made a specific decision or recommendation?",
+        "risk": "[Article 13] - Lack of Transparency and Explainability",
+        "control": "[Art-13][Par-2][2] - Provide comprehensive, clear, and accessible instructions for use of adopted AI systems in an appropriate digital format.",
+        "control_objective": "Enable effective deployment and operation of AI systems by organisational users."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will users or customers need to understand why the AI made a specific decision or recommendation?",
+        "risk": "[Article 13] - Lack of Transparency and Explainability",
+        "control": "[Art-13][Par-3][3] - Include detailed information in the instructions for use, covering provider details, system capabilities, limitations, performance metrics, potential risks, data specifications, and operational requirements.",
+        "control_objective": "Ensure thorough understanding of the adopted AI system's functionalities, limitations, and operational needs for responsible use within the organisation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Should a human be able to override or monitor the AI's decisions in your use case?",
+        "risk": "[Article 14] - Inadequate Human Oversight",
+        "control": "[Art-14][Par-2][2] - Establish human oversight measures to prevent or minimise risks to health, safety, or fundamental rights when using adopted AI systems.",
+        "control_objective": "Mitigate potential negative impacts of AI systems on individuals and the organisation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Should a human be able to override or monitor the AI's decisions in your use case?",
+        "risk": "[Article 14] - Inadequate Human Oversight",
+        "control": "[Art-14][Par-4][4] - Provide adopted AI systems with features that enable designated personnel to understand system capabilities, monitor operations, interpret outputs, and intervene when necessary.",
+        "control_objective": "Empower human operators to effectively oversee and control AI systems, reducing risks of misuse or over-reliance."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Should a human be able to override or monitor the AI's decisions in your use case?",
+        "risk": "[Article 14] - Inadequate Human Oversight",
+        "control": "[Art-14][Par-5][5] - For adopted AI systems, implement logging capabilities that record usage periods, reference databases, and input data that led to matches during searches.",
+        "control_objective": "Enhance decision-making reliability and reduce errors in critical applications of AI systems within the organisation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will poor AI performance (e.g., incorrect or unreliable outputs) cause business disruption, compliance issues, or customer dissatisfaction?",
+        "risk": "[Article 15] - Inaccurate Monitoring of System accuracy and robustness",
+        "control": "[Art-15][Par-2][2] - Collaborate with relevant stakeholders to develop and implement benchmarks and measurement methodologies for assessing the accuracy and robustness of adopted AI systems.",
+        "control_objective": "Establish standardised methods for evaluating AI system performance within the organisation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will poor AI performance (e.g., incorrect or unreliable outputs) cause business disruption, compliance issues, or customer dissatisfaction?",
+        "risk": "[Article 15] - Inaccurate Monitoring of System accuracy and robustness",
+        "control": "[Art-15][Par-4][4] - Implement technical and organisational measures to enhance the resilience of adopted AI systems against errors, faults, or inconsistencies, including backup plans and mitigation strategies for feedback loops in continuously learning systems.",
+        "control_objective": "Minimise risks associated with AI system failures and unintended behaviours during operation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Is the goal of this AI system clearly defined, and do you know exactly what business problem it is solving?",
+        "risk": "Unclear AI scope and purpose definition",
+        "control": "SC[1] -  Clearly define the scope and purpose of the AI system",
+        "control_objective": "To ensure that the AI system is developed and deployed with a clear understanding of its intended functions and boundaries, thereby aligning its capabilities with the organisation's strategic goals, ensuring transparency, and preventing misuse or unintended consequences"
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will you use any external or previously unused datasets to train or operate the AI?",
+        "risk": "Use of Unverified Data Sources",
+        "control": "[Art-10][Par-2][2(b)] -  Establish a Data tracking capability to ensure accurate tracking of data origins from valid, approved, and reliable sources in AI model fine-tuning.",
+        "control_objective": "To implement structured administrative processes that define roles, responsibilities, and procedures for tracking and validating the origins of data used in AI model fine-tuning, ensuring data integrity and compliance with regulatory requirements."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will you use any external or previously unused datasets to train or operate the AI?",
+        "risk": "Use of Unverified Data Sources",
+        "control": "DO[2] -  Implement technical measures to ensure accurate tracking of data origins from valid, approved, and reliable sources in AI model fine-tuning.",
+        "control_objective": "To deploy technical controls that provide real-time tracking, logging, and validation of data origins, ensuring data integrity and traceability throughout the AI model fine-tuning process."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Do you suspect that the data used for this AI may contain errors, gaps, or outdated information?",
+        "risk": "Poor Data Quality",
+        "control": "DQ[1] -  Establish a data quality management process to maintain high data quality in AI model fine-tuning.",
+        "control_objective": "To implement structured administrative processes that define roles, responsibilities, and procedures for managing data quality, ensuring the accuracy, completeness, consistency, and relevance of data throughout the AI model fine-tuning lifecycle."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Do you suspect that the data used for this AI may contain errors, gaps, or outdated information?",
+        "risk": "Poor Data Quality",
+        "control": "DQ[2] -  Implement technical measures to ensure and maintain high data quality in AI model fine-tuning.",
+        "control_objective": "To deploy comprehensive technical controls that provide real-time monitoring, validation, and management of data quality, ensuring the accuracy, completeness, consistency, and relevance of data throughout the AI model fine-tuning process."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Is it possible that your data sources contain duplicates which could distort outcomes or skew analysis?",
+        "risk": "Failure to Remove Duplicate Data",
+        "control": "DD[1] -  Implement data deduplication techniques during the pre-processing stage to identify and remove duplicate records or instances from proprietary datasets used for fine-tuning.",
+        "control_objective": "To eliminate redundant data and ensure that the AI model is trained on a unique and diverse set of examples, improving its accuracy and generalisation capabilities."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "PPM[1] -  Implement data anonymization and pseudonymization techniques during the pre-processing stage to remove or obfuscate personally identifiable information (PII) and sensitive data from proprietary datasets used for fine-tuning.",
+        "control_objective": "To protect the privacy of individuals by reducing the risk of re-identification and unauthorised access to sensitive personal data within the training datasets."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "PPM[2] -  Establish data privacy policies and guidelines that define the criteria and methods for anonymization and pseudonymization, ensuring consistent and effective privacy protection across the organisation's datasets.",
+        "control_objective": "To provide a standardised framework for privacy reduction techniques, ensuring compliance with data protection regulations and ethical standards."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "PPM[3] -  Conduct regular privacy impact assessments and audits to identify and address any potential privacy risks or vulnerabilities introduced during data collection, processing, or fine-tuning.",
+        "control_objective": "To continuously monitor and improve the effectiveness of privacy reduction measures, ensuring that the AI model is trained on data that adheres to privacy regulations and ethical standards."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.01 Establish data risk profiles to better understand the specific security and privacy risks associated with the types of data managed by the organisation, such as:\na) Confidentiality rating 1, 2, and 3\nb) Integrity rating 1, 2, and 3\nc) Availability rating 1, 2, and 3",
+        "control_objective": "To categorise data based on its security and privacy risks to ensure appropriate protection measures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.01 Establish data risk profiles to better understand the specific security and privacy risks associated with the types of data managed by the organisation, such as:\na) Confidentiality rating 1, 2, and 3\nb) Integrity rating 1, 2, and 3\nc) Availability rating 1, 2, and 3",
+        "control_objective": "To categorise data based on its security and privacy risks to ensure appropriate protection measures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.01 Establish data risk profiles to better understand the specific security and privacy risks associated with the types of data managed by the organisation, such as:\na) Confidentiality rating 1, 2, and 3\nb) Integrity rating 1, 2, and 3\nc) Availability rating 1, 2, and 3",
+        "control_objective": "To categorise data based on its security and privacy risks to ensure appropriate protection measures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.02 Perform an IT risk assessment on each data risk profile, and assign proportionate data protection measures to it.",
+        "control_objective": "To evaluate and apply appropriate data protection strategies for each risk profile."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.02 Perform an IT risk assessment on each data risk profile, and assign proportionate data protection measures to it.",
+        "control_objective": "To evaluate and apply appropriate data protection strategies for each risk profile."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.02 Perform an IT risk assessment on each data risk profile, and assign proportionate data protection measures to it.",
+        "control_objective": "To evaluate and apply appropriate data protection strategies for each risk profile."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.03 Define the legal and regulatory compliance requirements relevant to each data risk profile, considering regulations such as GDPR and HIPAA.",
+        "control_objective": "To ensure compliance with legal and regulatory standards for each type of data."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.04 Define requirements relating to the incident breach notification responsibilities for each data risk profile.",
+        "control_objective": "To establish clear breach notification protocols for different types of data breaches."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.05 Document Data risk profile mapping criteria to facilitate the consistent and correct mapping of software change to the most appropriate Data risk profile.",
+        "control_objective": "To establish clear criteria for accurately mapping system changes to relevant data risk profiles."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.06 Periodically review and update data risk profiles to reflect changes in data types, emerging threats, and evolving regulatory requirements.",
+        "control_objective": "To Ensure that data risk profiles remain relevant and effective in the face of evolving data types, threats, and regulatory changes."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.06 Periodically review and update data risk profiles to reflect changes in data types, emerging threats, and evolving regulatory requirements.",
+        "control_objective": "To Ensure that data risk profiles remain relevant and effective in the face of evolving data types, threats, and regulatory changes."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.07 Develop training modules for DevSecOps teams on the application and implications of Data risk profiles, focusing on how to utilise them effectively in their workflows.",
+        "control_objective": "To educate DevSecOps teams on the importance and application of Data risk profiles."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "control": "DRP.08 Involve relevant stakeholders, such as legal, compliance, and data privacy teams, in the creation and refinement of data risk profiles to ensure comprehensive coverage of all risk aspects.",
+        "control_objective": "To develop well-rounded and comprehensive data risk profiles through multi-disciplinary collaboration."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.02 Create a Data Flow Diagram to visualise the AI system architecture profile, including:\na) System boundaries\nb) External entities that interact with the system\nc) Trust levels of these entities\nd) Data entry and exit points\ne) Internal components and their interaction with other components\nf) Where sensitive data is stored or processed\ng) The types of data the system handles",
+        "control_objective": "To map out and understand the flow of data within the AI system architectures, identifying potential security risks."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.02 Create a Data Flow Diagram to visualise the AI system architecture profile, including:\na) System boundaries\nb) External entities that interact with the system\nc) Trust levels of these entities\nd) Data entry and exit points\ne) Internal components and their interaction with other components\nf) Where sensitive data is stored or processed\ng) The types of data the system handles",
+        "control_objective": "To map out and understand the flow of data within the AI system architectures, identifying potential security risks."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.02 Create a Data Flow Diagram to visualise the AI system architecture profile, including:\na) System boundaries\nb) External entities that interact with the system\nc) Trust levels of these entities\nd) Data entry and exit points\ne) Internal components and their interaction with other components\nf) Where sensitive data is stored or processed\ng) The types of data the system handles",
+        "control_objective": "To map out and understand the flow of data within the AI system architectures, identifying potential security risks."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.04 Incorporate mechanisms into the AI system architecture profile to protect the confidentiality of sensitive data, such as encryption, ACLs, secure data storage, and secure data transmission protocols.",
+        "control_objective": "To ensure the confidentiality of sensitive data within system architectures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.04 Incorporate mechanisms into the AI system architecture profile to protect the confidentiality of sensitive data, such as encryption, ACLs, secure data storage, and secure data transmission protocols.",
+        "control_objective": "To ensure the confidentiality of sensitive data within system architectures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.04 Incorporate mechanisms into the AI system architecture profile to protect the confidentiality of sensitive data, such as encryption, ACLs, secure data storage, and secure data transmission protocols.",
+        "control_objective": "To ensure the confidentiality of sensitive data within system architectures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.05 Incorporate mechanisms into the AI system architecture profile to protect the integrity of sensitive data, including hashing, referential integrity design, resource locking, and code signing.",
+        "control_objective": "To maintain the integrity of sensitive data within system architectures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.05 Incorporate mechanisms into the AI system architecture profile to protect the integrity of sensitive data, including hashing, referential integrity design, resource locking, and code signing.",
+        "control_objective": "To maintain the integrity of sensitive data within system architectures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.05 Incorporate mechanisms into the AI system architecture profile to protect the integrity of sensitive data, including hashing, referential integrity design, resource locking, and code signing.",
+        "control_objective": "To maintain the integrity of sensitive data within system architectures."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.06 Incorporate mechanisms into the AI system architecture profile to ensure the availability of the system, including replication, failover, and scalability.",
+        "control_objective": "To maintain the availability of the system under various conditions and loads."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.07 Incorporate mechanisms into the AI system architecture profile to authenticate the identity of users or entities, including passwords, smart cards, and biometric traits.",
+        "control_objective": "To authenticate users or entities reliably before granting access to the system."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.08 Incorporate mechanisms into the AI system architecture profile to authorise granular level access to system resources, including RBAC, ABAC, MAC, MFA, and TBAC.",
+        "control_objective": "To control and restrict access to system resources based on roles, attributes, and other factors."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.09 Incorporate mechanisms into the AI system architecture profile to enforce non-repudiation and record user actions and events, such as audit trails, authentication and authorisation logs, change management logs, DAM, and network traffic monitoring.",
+        "control_objective": "To ensure accountability and traceability of actions and events within the system."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.10 Define the availability and performance-related requirements, such as recovery time and point objectives, and ensure these are met by the system architecture.",
+        "control_objective": "To establish and meet specific availability and performance targets for the system."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.11 Establish key performance indicators (KPIs) and metrics to measure the effectiveness of the profile protection controls within the DevSecOps process.",
+        "control_objective": "To evaluate and enhance the effectiveness of system architecture protection controls."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.12 Periodically review and update th AI system architecture profiles to adapt to new technologies, threats, and changes in the organisation's infrastructure.",
+        "control_objective": "To ensure that system architecture profiles remain relevant and effective in a dynamic technological and threat landscape."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.13 Develop training modules for DevSecOps teams on the application and implications of AI system architecture profiles, focusing on how to utilise them effectively in their workflows.",
+        "control_objective": "To educate DevSecOps teams on the importance and application of system architecture profiles."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "SATP.14 Document AI System architectural threat profile mapping criteria to map system changes to the most appropriate System architecture profile.",
+        "control_objective": "To standardise the process of mapping system changes to the relevant architecture profiles for consistent risk assessment."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.2 Incorporate mechanisms into the AI system architecture profile to protect the Authentication Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the authentication processes and components."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.4 Incorporate mechanisms into the AI system architecture profile to protect the Access Control Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the access control processes and components."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.5 Incorporate mechanisms into the AI system architecture profile to protect the Input and Output Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the input and output processes and components."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.6 Incorporate mechanisms into the AI system architecture profile to protect the Cryptographic Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the cryptographic processes and components."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.7 Incorporate mechanisms into the AI system architecture profile to protect the Errors, Logging and Auditing Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to error handling, logging, and auditing."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.8 Incorporate mechanisms into the AI system architecture profile to protect the Data Protection and Privacy Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to data protection and privacy."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.9 Incorporate mechanisms into the AI system architecture profile to protect the Communications Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to communication."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.10 Incorporate mechanisms into the AI system architecture profile to protect the Malicious Software Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard against malicious software."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.11 Incorporate mechanisms into the AI system architecture profile to protect the Business Logic Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the business logic processes and components."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.12 Incorporate mechanisms into the AI system architecture profile to protect the Secure File Upload Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to secure file uploads."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+        "risk": "Inadequate AI System architcture Protection Measures",
+        "control": "ASVS-V1.14 Incorporate mechanisms into the AI system architecture profile to protect the Configuration Architecture",
+        "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the configuration processes and components."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.01 Ensure masking and anonymisation of sensitive or confidential data.",
+        "control_objective": "To protect sensitive data from unauthorised exposure during the packaging process."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
+        "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.03 Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
+        "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.04 Enforce read/write access control for registries containing proprietary or sensitive container images.",
+        "control_objective": "To restrict unauthorised access and modifications to container images stored in registries."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.05 Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
+        "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.06 Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
+        "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.07 Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
+        "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.08 Establish stringent trust mechanisms for orchestrator nodes, including\na) secure introduction to the cluster\nb) persistent node identity\nc) inventory of nodes and their connectivity states\nd) resilience to individual node compromise\ne) mutual authentication of network connections with end-to-end encryption of intracluster traffic.",
+        "control_objective": "To build a secure and resilient orchestrator environment with trusted nodes and secure communications."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.09 Implement mechanisms for identifying Common Vulnerabilities and Exposures (CVEs) in the runtimes deployed.",
+        "control_objective": "To promptly identify and address known vulnerabilities in deployed runtimes, enhancing system security."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.10 Implement robust controls at network borders for monitoring and regulating egress network traffic originating from containers.",
+        "control_objective": "To control and monitor the outbound network traffic from containers, enhancing network security."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.11 Develop mechanisms to automatically enforce compliance requirements and, where applicable, prevent the execution of noncompliant container images.",
+        "control_objective": "To ensure that only compliant container images are deployed, maintaining a secure and regulated environment."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.12 Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
+        "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.13 Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
+        "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.14 Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
+        "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.15 Implement mechanisms for continuous updating, centralised reporting, and monitoring of image compliance to identify weaknesses and risks.",
+        "control_objective": "To maintain up-to-date compliance and security status of container images, enabling proactive risk management."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.16 Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
+        "control_objective": "To safeguard the environment from untrusted or potentially harmful container images."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.17 Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
+        "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.18 Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
+        "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.19 Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
+        "control_objective": "To ensure the secure operation of APIs"
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.20 Images should be configured to run as non-privileged users.",
+        "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.21 Secrets should be stored outside of images and provided dynamically at runtime as needed.",
+        "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.22 Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
+        "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.23 Utilise built-in security features of your containerisation platform.",
+        "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "risk": "Insecure AI component Packaging",
+        "control": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
+        "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will synthetic (artificially generated) data be used in training or testing without clear documentation or controls?",
+        "risk": "Uncontrolled Synthetic Data Usage",
+        "control": "SD[1] -  Establish guidelines and criteria for data augmentation, including acceptable techniques, quality standards, and validation processes.",
+        "control_objective": "To ensure that data augmentation is performed consistently and effectively, while maintaining the integrity and relevance of the generated or augmented data."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will synthetic (artificially generated) data be used in training or testing without clear documentation or controls?",
+        "risk": "Uncontrolled Synthetic Data Usage",
+        "control": "SD[2] -  Maintain detailed records of all data augmentation or generation methods used, including parameters, algorithms, and the rationale behind their selection. Implement version control for these techniques to track changes and ensure reproducibility.",
+        "control_objective": "To ensure transparency, traceability, and auditability of data augmentation processes, allowing for the identification and correction of potential issues or biases introduced during augmentation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will synthetic (artificially generated) data be used in training or testing without clear documentation or controls?",
+        "risk": "Uncontrolled Synthetic Data Usage",
+        "control": "SD[3] -  When generating synthetic data or augmenting existing data, employ privacy-preserving techniques (e.g., differential privacy, data masking) to protect sensitive information and ensure compliance with data protection regulations.",
+        "control_objective": "To safeguard the confidentiality and privacy of individuals while still allowing for the creation of diverse and representative training data."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Could shifts in customer behavior, market trends, or other inputs cause the AI to produce unexpected results over time?",
+        "risk": "Undetected Changes in Data Distribution",
+        "control": "DD[1] -  Establish clear thresholds for data drift based on statistical measures (e.g., Kullback-Leibler divergence, Kolmogorov-Smirnov test) to determine when data changes are significant enough to warrant action.",
+        "control_objective": "To trigger alerts or initiate retraining procedures when data drift exceeds predefined thresholds, ensuring the model's accuracy remains reliable despite changes in data distribution."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will you need to track who accessed the AI system, what it did, and when \u2014 for accountability or regulatory purposes?",
+        "risk": "Insufficient Audit Trails and Logging",
+        "control": "AT[1] -  Record detailed logs of all data pre-processing activities, including data cleaning, normalisation, transformation, and any outlier removal or imputation techniques applied. Include timestamps, user IDs, and descriptions of actions taken.",
+        "control_objective": "To enable traceability and reconstruction of the entire data pre-processing workflow, providing a clear audit trail for identifying any issues or anomalies that may arise during this phase."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will you need to track who accessed the AI system, what it did, and when \u2014 for accountability or regulatory purposes?",
+        "risk": "Insufficient Audit Trails and Logging",
+        "control": "AT[2] -  Store logs in a secure and tamper-proof manner, ensuring their integrity and availability for future audits or investigations.",
+        "control_objective": "To ensure the availability of audit logs for a sufficient period to allow for thorough analysis and investigation of potential security or compliance issues. Protect logs from unauthorised modification or deletion to maintain their evidentiary value."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system exchange data across teams, systems, or external vendors that may not have the same security controls?",
+        "risk": "Insecure Data Sharing and Transfer",
+        "control": "DT[1] -  Implement secure data transfer protocols and encryption mechanisms for proprietary datasets during collection, storage, and fine-tuning processes.",
+        "control_objective": "To protect the confidentiality and integrity of sensitive data throughout its lifecycle, preventing unauthorised access or tampering during data sharing and transfer activities. [PR.DS-02]"
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI system exchange data across teams, systems, or external vendors that may not have the same security controls?",
+        "risk": "Insecure Data Sharing and Transfer",
+        "control": "DT[2] -  Establish data sharing agreements and protocols with internal and external stakeholders involved in the data collection and fine-tuning processes.",
+        "control_objective": "To define clear guidelines, roles, and responsibilities for secure data sharing, ensuring compliance with data protection regulations and ethical standards. [GV.SC-02, GV.SC-05]"
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Does the process of developing, testing, or deploying this AI system rely on infrastructure you\u2019re unsure is secure?",
+        "risk": "Insecure AI Pipeline Infrastructure",
+        "control": "PI[1] -  Establish a secure AI pipeline data feed process",
+        "control_objective": "To facilitate transparency and accountability into the AI pipeline data processing activities."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Does the process of developing, testing, or deploying this AI system rely on infrastructure you\u2019re unsure is secure?",
+        "risk": "Insecure AI Pipeline Infrastructure",
+        "control": "PI[2] -  Protect the AI pipeline infrastructure",
+        "control_objective": "To ensure that the AI pipeline operates smoothly and securely, preventing disruptions and unauthorised data exposure."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI system collaborate or learn from external datasets without centralizing data (e.g., via federated learning)?",
+        "risk": "Exposure of Sensitive Data Through Federated Learning",
+        "control": "FL[1] -  Ensure a secure federated learning process",
+        "control_objective": "To ensure the secure handling of distributed sensitive data used in federated learning"
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "risk": "Amplification of Biases",
+        "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
+        "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "risk": "Amplification of Biases",
+        "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
+        "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "risk": "Amplification of Biases",
+        "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
+        "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "risk": "Amplification of Biases",
+        "control": "LDD[4] -  Include data from different geographic and demographic regions.",
+        "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI be used across multiple teams, products, or regions \u2014 and is it ready to scale reliably?",
+        "risk": "Insufficient Scalability Management",
+        "control": "SC[1] -  Develop and implement a structured scalability management process for AI infrastructure to ensure efficient handling of increasing workloads and data volumes.",
+        "control_objective": "To ensure that the AI infrastructure can scale effectively and efficiently, meeting the growing demands of the organisation while maintaining performance, stability, and security."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this AI be used across multiple teams, products, or regions \u2014 and is it ready to scale reliably?",
+        "risk": "Insufficient Scalability Management",
+        "control": "SC[2] -  Deploy comprehensive technical measures to ensure the AI infrastructure can scale seamlessly to accommodate varying workloads and future growth.",
+        "control_objective": "To guarantee that the AI infrastructure is equipped with the necessary technical capabilities to support scalability, ensuring uninterrupted performance and resource availability as demands increase."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this system evolve over time, and do you have a plan for tracking and approving changes?",
+        "risk": "Ineffective Change Management Practice",
+        "control": "CM[1] -  Implement a structured change management process for AI infrastructure and integrate it with existing organisational change management practices.",
+        "control_objective": "To ensure that all changes to the AI infrastructure are systematically reviewed, approved, and documented, thereby maintaining the stability, security, and performance of AI systems within the organisation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will this system evolve over time, and do you have a plan for tracking and approving changes?",
+        "risk": "Ineffective Change Management Practice",
+        "control": "CM[2] -  Enforce controls over all modifications to the AI infrastructure through technical change management measures.",
+        "control_objective": "To ensure that all changes to the AI infrastructure are properly managed, tested, and validated to prevent the introduction of vulnerabilities or disruptions, thereby ensuring the reliability and security of AI systems."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "What would happen to your business process if this AI system suddenly stopped working?",
+        "risk": "Inadequate Disaster Recovery and Business Continuity Planning",
+        "control": "BU[1] -  Establish a comprehensive disaster recovery and business continuity planning process to ensure preparedness and resilience in the face of disruptions to AI infrastructure.",
+        "control_objective": "To develop and implement administrative controls that ensure the organisation is prepared for and can effectively respond to disruptions, thereby maintaining the continuity of AI operations and minimising downtime."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "What would happen to your business process if this AI system suddenly stopped working?",
+        "risk": "Inadequate Disaster Recovery and Business Continuity Planning",
+        "control": "BU[2] -  Implement technical measures to support disaster recovery and business continuity, ensuring the resilience and availability of AI infrastructure.",
+        "control_objective": "To deploy comprehensive technical controls that enable rapid recovery and continuity of AI operations in the event of a disruption, minimising data loss and operational downtime."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI\u2019s outputs need to be continuously monitored to ensure they stay accurate and relevant?",
+        "risk": "Insufficient Performance Monitoring and Analysis",
+        "control": "PER[1] -  Establish a structured performance monitoring and analysis process to ensure continuous oversight and optimization of AI infrastructure performance.",
+        "control_objective": "To implement robust administrative controls that define roles, responsibilities, and procedures for performance monitoring and analysis, ensuring that performance issues are identified and addressed proactively."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI\u2019s outputs need to be continuously monitored to ensure they stay accurate and relevant?",
+        "risk": "Insufficient Performance Monitoring and Analysis",
+        "control": "PER[2] -  Implement advanced technical measures to ensure continuous and effective performance monitoring and analysis of AI infrastructure.",
+        "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance, enabling prompt detection and resolution of performance issues to maintain optimal operation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Do you need visibility into whether this AI system is under attack or being misused?",
+        "risk": "Inadequate Security Monitoring and Threat Detection",
+        "control": "STM[1] -  Establish a security monitoring and threat detection process to ensure continuous oversight and protection of AI infrastructure.",
+        "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for effective security monitoring and threat detection, ensuring proactive identification and mitigation of security threats."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Do you need visibility into whether this AI system is under attack or being misused?",
+        "risk": "Inadequate Security Monitoring and Threat Detection",
+        "control": "STM[2] -  Implement advanced technical measures to ensure continuous and effective security monitoring and threat detection within AI infrastructure.",
+        "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into security threats and enable prompt detection and response to ensure the protection and integrity of AI systems."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will non-technical users rely on this AI \u2014 and have they been trained on its limitations and correct usage?",
+        "risk": "Inadequate User Training and Awareness",
+        "control": "[Art-9][Par-5][5c] -  Provide comprehensive information and training to AI system users within the organisation, considering their technical knowledge, experience, and education.",
+        "control_objective": "To ensure safe and responsible use of the adopted AI system by equipping users with necessary knowledge and skills."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Do you have a process in place if the AI system causes an issue (e.g., incorrect output, outage, or data leak)?",
+        "risk": "Ineffective Incident Management",
+        "control": "IM[1] -  Establish an incident management capability to ensure effective detection, response, and mitigation of AI-related incidents.",
+        "control_objective": "To establish incident management processes that define roles, responsibilities, and procedures for managing AI-related incidents, ensuring timely and effective response to maintain AI system integrity and security."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Do you have a process in place if the AI system causes an issue (e.g., incorrect output, outage, or data leak)?",
+        "risk": "Ineffective Incident Management",
+        "control": "IM[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations and other incidents, ensuring the reliability and accuracy of AI outputs.",
+        "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance and security, enabling prompt detection and resolution of incidents to maintain optimal operation."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI generate content (text, images, etc.) that could be factually wrong but appear convincing?",
+        "risk": "AI system hallucinations",
+        "control": "HA[1] -  Establish an AI system hallucination detection and mitigation process.",
+        "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for managing and mitigating AI system hallucinations, ensuring the accuracy and reliability of AI outputs."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI generate content (text, images, etc.) that could be factually wrong but appear convincing?",
+        "risk": "AI system hallucinations",
+        "control": "HA[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations, ensuring the reliability and accuracy of AI outputs.",
+        "control_objective": "To deploy comprehensive technical controls that enable real-time detection, analysis, and correction of AI system hallucinations, maintaining the integrity and reliability of AI models."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
+        "risk": "LLM01 Prompt Injection",
+        "control": "[LLM01][1] - All user inputs within the UI must be validated to prevent the injection of malicious code.",
+        "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
+        "risk": "LLM01 Prompt Injection",
+        "control": "[LLM01][2] - Implement input sanitization techniques to remove harmful characters from user inputs.",
+        "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
+        "risk": "LLM01 Prompt Injection",
+        "control": "[LLM01][4] - Encrypt all sensitive data transmitted through APIs.",
+        "control_objective": "Protect sensitive data from unauthorised interception or tampering during communication through APIs."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
+        "risk": "LLM01 Prompt Injection",
+        "control": "[LLM01][5] - Enforce privilege control on LLM access to backend systems.",
+        "control_objective": "To restrict the LLM to the minimum level of access necessary, mitigating the risk of prompt injection leading to unauthorised operations."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
+        "risk": "LLM01 Prompt Injection",
+        "control": "[LLM01][8] - Treat the LLM as an untrusted component, ensuring user oversight over decision-making processes.",
+        "control_objective": "To treat the LLM as an untrusted component, ensuring user oversight over decision-making processes."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI output be used in other systems, documents, or communications without being verified first?",
+        "risk": "LLM02 Insecure Output Handling",
+        "control": "[LLM02][1] - Ensure that sensitive or IP data is not exposed in AI system outputs.",
+        "control_objective": "To mitigate the risk of insecure output handling by treating LLM-generated outputs as potentially untrusted."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Could this AI system be overwhelmed or misused in a way that impacts availability?",
+        "risk": "LLM04 Model Denial of Service",
+        "control": "[LLM04][3] - Enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe.",
+        "control_objective": "To control the rate of requests and prevent overwhelming the LLM with a high volume of concurrent requests."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Could this AI system be overwhelmed or misused in a way that impacts availability?",
+        "risk": "LLM04 Model Denial of Service",
+        "control": "[LLM04][4] - Limit the number of queued actions and the number of total actions in a system reacting to LLM responses.",
+        "control_objective": "To prevent the accumulation of excessive workload and ensure that the system can effectively process LLM responses without becoming overwhelmed."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Could this AI system be overwhelmed or misused in a way that impacts availability?",
+        "risk": "LLM04 Model Denial of Service",
+        "control": "[LLM04][5] - Continuously monitor the resource utilisation of the LLM to identify abnormal spikes or patterns that may indicate a DoS attack.",
+        "control_objective": "To detect and respond to anomalous resource usage patterns indicative of a denial of service attack on the LLM."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Does the AI system depend on third-party libraries, tools, or models you haven\u2019t vetted?",
+        "risk": "LLM05: Supply Chain Vulnerabilities",
+        "control": "[LLM05][2] - Only use reputable plugins that have been tested for application requirements.",
+        "control_objective": "Minimise plugin-related vulnerabilities."
+    },
+    {
+        "princile": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Does the AI system depend on third-party libraries, tools, or models you haven\u2019t vetted?",
+        "risk": "LLM05: Supply Chain Vulnerabilities",
+        "control": "[LLM05][4] - Maintain an up-to-date inventory using a Software Bill of Materials (SBOM).",
+        "control_objective": "Track and manage components."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Does the AI system depend on third-party libraries, tools, or models you haven\u2019t vetted?",
+        "risk": "LLM05: Supply Chain Vulnerabilities",
+        "control": "[LLM05][6] - Implement anomaly detection and adversarial robustness tests.",
+        "control_objective": "Detect tampering and poisoning."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Does the AI system depend on third-party libraries, tools, or models you haven\u2019t vetted?",
+        "risk": "LLM05: Supply Chain Vulnerabilities",
+        "control": "[LLM05][7] - Implement sufficient monitoring and a robust patching policy.",
+        "control_objective": "Maintain system security and component currency."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Does the AI system depend on third-party libraries, tools, or models you haven\u2019t vetted?",
+        "risk": "LLM05: Supply Chain Vulnerabilities",
+        "control": "[LLM05][8] - Regularly review and audit supplier security and access controls.",
+        "control_objective": "Verify supplier compliance and security."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI be allowed to take actions or make decisions automatically on behalf of a person or system?",
+        "risk": "LLM08 Excessive Agency",
+        "control": "[LLM08][4] - Limit the permissions that LLM plugins/tools are granted to other systems to the minimum necessary.",
+        "control_objective": "To restrict the scope of actions that LLM agents can perform on other systems, thereby minimising the potential for harmful activities."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI be allowed to take actions or make decisions automatically on behalf of a person or system?",
+        "risk": "LLM08 Excessive Agency",
+        "control": "[LLM08][5] - Track user authorization and security scope to ensure actions taken on behalf of a user are executed with the minimum privileges necessary.",
+        "control_objective": "To enforce proper user authentication and authorization, limiting the potential impact of actions performed by LLM agents."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Will the AI be allowed to take actions or make decisions automatically on behalf of a person or system?",
+        "risk": "LLM08 Excessive Agency",
+        "control": "[LLM08][8] - Log and monitor the activity of LLM plugins/tools and downstream systems to identify and respond to undesirable actions.",
+        "control_objective": "To detect and mitigate unauthorised or harmful activities by monitoring system activity and responding promptly to incidents."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Is this AI system considered a valuable business asset \u2014 and could losing it expose intellectual property or trade secrets?",
+        "risk": "LLM10: Model Theft",
+        "control": "[LLM10][4] - Restrict the LLMs access to network resources, internal services, and APIs.",
+        "control_objective": "Control what the LLM application has access to."
+    },
+    {
+        "principle": "EU AI Act Art 15",
+        "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
+        "question": "Is this AI system considered a valuable business asset \u2014 and could losing it expose intellectual property or trade secrets?",
+        "risk": "LLM10: Model Theft",
+        "control": "[LLM10][6] - Automate MLOps deployment with governance and tracking and approval workflows.",
+        "control_objective": "Tighten access and deployment controls."
+    },
+    {
+        "principle": "Job Preservation",
+        "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+        "question": "Could this system automate, reduce, or significantly alter existing job roles or responsibilities? If so, which groups are most affected?",
+        "risk": "[Job Preservation] - Negative Workforce Impact",
+        "control": "[Job Preservation][Tech-1] Implement AI impact assessment tools that simulate workforce shifts and identify roles at risk of significant automation.",
+        "control_objective": "Proactively identify and mitigate potential negative impacts of AI on job roles and support workforce adaptation."
+    },
+    {
+        "principle": "Job Preservation",
+        "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+        "question": "Could this system automate, reduce, or significantly alter existing job roles or responsibilities? If so, which groups are most affected?",
+        "risk": "[Job Preservation] - Negative Workforce Impact",
+        "control": "[Job Preservation][Tech-2] Develop and deploy AI-powered tools that facilitate reskilling and upskilling for employees in AI-augmented roles.",
+        "control_objective": "Provide effective training and adaptation support for the workforce in response to AI integration."
+    },
+    {
+        "principle": "Fairness",
+        "objective": "Build and validate a model that demonstrates equitable performance across key demographic subgroups.",
+        "question": "Could the AI system produce unequal outcomes or treatment across demographic groups? Are any groups at greater risk of harm or exclusion?",
+        "risk": "[Fairness] - Algorithmic Bias Leading to Unfair Outcomes",
+        "control": "[Fairness][Tech-1] Implement automated bias detection and mitigation tools during AI model development and testing.",
+        "control_objective": "Ensure consistent and equitable AI model performance across relevant demographic groups by identifying and correcting biases."
+    },
+    {
+        "principle": "Fairness",
+        "objective": "Build and validate a model that demonstrates equitable performance across key demographic subgroups.",
+        "question": "Could the AI system produce unequal outcomes or treatment across demographic groups? Are any groups at greater risk of harm or exclusion?",
+        "risk": "[Fairness] - Algorithmic Bias Leading to Unfair Outcomes",
+        "control": "[Fairness][Tech-2] Implement continuous monitoring systems for AI model outputs in production environments to detect and alert on emergent biases.",
+        "control_objective": "Proactively identify and address new or changing biases in deployed AI systems to maintain fair outcomes."
+    },
+    {
+        "principle": "Transparency",
+        "objective": "Develop a system whose decision-making processes are understandable to developers, users, and stakeholders.",
+        "question": "Would individuals impacted by the AI system be able to understand how decisions affecting them were made? Are some users more likely to be confused or disadvantaged by lack of clarity?",
+        "risk": "[Transparency] - Opaque AI System Decisions",
+        "control": "[Transparency][Tech-1] Deploy explainable AI (XAI) tools to provide interpretable insights into complex AI model decisions.",
+        "control_objective": "Provide clear, understandable, and timely explanations for AI system decisions and operations."
+    },
+    {
+        "principle": "Transparency",
+        "objective": "Develop a system whose decision-making processes are understandable to developers, users, and stakeholders.",
+        "question": "Would individuals impacted by the AI system be able to understand how decisions affecting them were made? Are some users more likely to be confused or disadvantaged by lack of clarity?",
+        "risk": "[Transparency] - Opaque AI System Decisions",
+        "control": "[Transparency][Tech-2] Implement comprehensive audit logging and traceability mechanisms for all AI system actions and data flows.",
+        "control_objective": "Ensure comprehensive traceability and accountability in AI system operations by recording all relevant events."
+    },
+    {
+        "principle": "Accountability",
+        "objective": "Establish clear lines of ownership for the design, development, and approval of the AI system.",
+        "question": "If the system makes an error or causes harm, will affected individuals know who is responsible, and will there be a clear process for redress?",
+        "risk": "[Accountability] - Undefined Ownership and Responsibility for AI",
+        "control": "[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
+        "control_objective": "Clearly assign ownership and responsibility for AI system outputs, decisions, and errors by restricting access based on roles."
+    },
+    {
+        "principle": "Accountability",
+        "objective": "Establish clear lines of ownership for the design, development, and approval of the AI system.",
+        "question": "If the system makes an error or causes harm, will affected individuals know who is responsible, and will there be a clear process for redress?",
+        "risk": "[Accountability] - Undefined Ownership and Responsibility for AI",
+        "control": "[Accountability][Tech-2] Implement automated version control and lineage tracking for AI models, data, and code.",
+        "control_objective": "Provide clear traceability for AI system outputs and errors to specific development iterations and contributors."
+    },
+    {
+        "principle": "Safety",
+        "objective": "Design and build the AI system with integrated safety controls and fail-safe mechanisms.",
+        "question": "Could the AI system\u2019s failure, misuse, or malfunction result in physical or psychological harm to individuals or groups?",
+        "risk": "[Safety] - Unintended Harm from AI System Operation",
+        "control": "[Safety][Tech-1] Implement AI system monitoring with anomaly detection and automated fail-safe mechanisms.",
+        "control_objective": "Prevent harmful outcomes by detecting abnormal AI behavior and initiating safe states or human intervention."
+    },
+    {
+        "principle": "Safety",
+        "objective": "Design and build the AI system with integrated safety controls and fail-safe mechanisms.",
+        "question": "Could the AI system\u2019s failure, misuse, or malfunction result in physical or psychological harm to individuals or groups?",
+        "risk": "[Safety] - Unintended Harm from AI System Operation",
+        "control": "[Safety][Tech-2] Implement robust testing and validation frameworks for AI systems, including adversarial testing and stress testing.",
+        "control_objective": "Ensure the AI system is resilient to attacks, faults, and operates reliably in diverse conditions."
+    },
+    {
+        "principle": "Privacy",
+        "objective": "Engineer the system to protect personal data by design and by default.",
+        "question": "Could the system\u2019s handling of data infringe on the privacy, dignity, or confidentiality of individuals?",
+        "risk": "[Privacy] - Personal Data Breaches and Misuse",
+        "control": "[Privacy][Tech-1] Implement data anonymization and pseudonymization techniques during data preparation for AI training and processing.",
+        "control_objective": "Protect personal data by reducing or removing direct identifiers while retaining data utility for AI."
+    },
+    {
+        "principle": "Privacy",
+        "objective": "Engineer the system to protect personal data by design and by default.",
+        "question": "Could the system\u2019s handling of data infringe on the privacy, dignity, or confidentiality of individuals?",
+        "risk": "[Privacy] - Personal Data Breaches and Misuse",
+        "control": "[Privacy][Tech-2] Implement robust access controls and encryption for personal data used by AI systems.",
+        "control_objective": "Ensure confidentiality of personal data and prevent unauthorized access or processing by AI systems."
+    },
+    {
+        "principle": "Human Oversight",
+        "objective": "Design workflows that require human intervention for high-risk decisions and provide clear interfaces for interaction.",
+        "question": "Are individuals relying on this system protected by meaningful human oversight, especially in high-impact or error-prone scenarios?",
+        "risk": "[Human Oversight] - Lack of Appropriate Human Intervention in AI",
+        "control": "[Human Oversight][Tech-1] Implement \"human-in-the-loop\" mechanisms for high-risk AI decisions or anomalous behavior.",
+        "control_objective": "Ensure appropriate human involvement and intervention, especially for critical or uncertain AI system outputs."
+    },
+    {
+        "principle": "Human Oversight",
+        "objective": "Design workflows that require human intervention for high-risk decisions and provide clear interfaces for interaction.",
+        "question": "Are individuals relying on this system protected by meaningful human oversight, especially in high-impact or error-prone scenarios?",
+        "risk": "[Human Oversight] - Lack of Appropriate Human Intervention in AI",
+        "control": "[Human Oversight][Tech-2] Implement automated alerts and monitoring dashboards for AI system performance and deviation detection.",
+        "control_objective": "Proactively identify unexpected AI system behavior or performance degradation requiring human attention."
+    },
+    {
+        "principle": "Customer Needs",
+        "objective": "Develop an AI system that is aligned with documented user requirements and technical specifications.",
+        "question": "Could misunderstanding or misuse of the system by customers result in negative outcomes for individuals or third parties?",
+        "risk": "[Customer Needs & Expectations] - Misalignment of AI with Customer Needs",
+        "control": "[Customer Needs & Expectations][Tech-1] Implement AI-powered sentiment analysis and feedback collection tools to monitor customer satisfaction with AI systems.",
+        "control_objective": "Continuously assess and understand customer needs and expectations regarding AI system performance and experience."
+    },
+    {
+        "principle": "Customer Needs",
+        "objective": "Develop an AI system that is aligned with documented user requirements and technical specifications.",
+        "question": "Could misunderstanding or misuse of the system by customers result in negative outcomes for individuals or third parties?",
+        "risk": "[Customer Needs & Expectations] - Misalignment of AI with Customer Needs",
+        "control": "[Customer Needs & Expectations][Tech-2] Implement user experience (UX) analytics tools for AI interfaces to track user engagement and identify usability issues.",
+        "control_objective": "Ensure the AI system is intuitive, user-friendly, and meets customer expectations for ease of use and functionality."
+    },
+    {
+        "principle": "Supplier Alignment",
+        "objective": "Ensure all third-party components and data are selected and integrated according to organizational standards.",
+        "question": "Could failure or misconduct by third-party suppliers lead to outcomes that negatively affect individuals relying on the AI system?",
+        "risk": "[Supplier Alignment & Requirements] - Non-Compliance of Third-Party AI Components",
+        "control": "[Supplier Alignment & Requirements][Tech-1] Implement automated vulnerability scanning and security audits for third-party AI components and libraries.",
+        "control_objective": "Ensure that third-party AI components meet the organization's cybersecurity obligations and do not introduce vulnerabilities."
+    },
+    {
+        "principle": "Supplier Alignment",
+        "objective": "Ensure all third-party components and data are selected and integrated according to organizational standards.",
+        "question": "Could failure or misconduct by third-party suppliers lead to outcomes that negatively affect individuals relying on the AI system?",
+        "risk": "[Supplier Alignment & Requirements] - Non-Compliance of Third-Party AI Components",
+        "control": "[Supplier Alignment & Requirements][Tech-2] Implement technical due diligence processes including data provenance verification and bias audits for third-party AI data and models.",
+        "control_objective": "Ensure that third-party data and models align with responsible AI principles and do not introduce unintended biases or privacy risks."
+    }
+]
