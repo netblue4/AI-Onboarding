@@ -1008,7 +1008,7 @@
         "control_objective": "Minimise plugin-related vulnerabilities."
     },
     {
-        "princile": "EU AI Act Art 15",
+        "principle": "EU AI Act Art 15",
         "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
         "question": "Does the AI system depend on third-party libraries, tools, or models you haven\u2019t vetted?",
         "risk": "LLM05: Supply Chain Vulnerabilities",
