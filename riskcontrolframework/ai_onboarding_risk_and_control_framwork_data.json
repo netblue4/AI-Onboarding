@@ -777,12 +777,52 @@
         "question": "Could this system automate, reduce, or significantly alter existing job roles or responsibilities? If so, which groups are most affected?",
         "controls": [
           {
-            "control": "[Job Preservation][Tech-1] Implement AI impact assessment tools that simulate workforce shifts and identify roles at risk of significant automation.",
-            "control_objective": "Proactively identify and mitigate potential negative impacts of AI on job roles and support workforce adaptation."
+            "control": "[Job Preservation][Gov-1] Establish an AI Governance Committee. This cross-functional body should include representatives from HR, ethics, legal, business units, and employees to oversee AI strategy and its human impact.",
+            "control_objective": "To ensure that workforce impact is a central consideration in all AI-related decision-making and procurement processes."
           },
           {
-            "control": "[Job Preservation][Tech-2] Develop and deploy AI-powered tools that facilitate reskilling and upskilling for employees in AI-augmented roles.",
-            "control_objective": "Provide effective training and adaptation support for the workforce in response to AI integration."
+            "control": "[Job Preservation][Gov-2] Develop a formal Workforce Transition Policy. This policy should transparently outline the organization's commitment to reskilling, redeployment, and providing support for employees in roles affected by automation.",
+            "control_objective": "To build trust and provide clear, predictable guidelines for managing job role changes due to AI."
+          },
+          {
+            "control": "[Job Preservation][Gov-3] Mandate Phased AI Implementation. Introduce AI technologies in controlled, gradual phases rather than a large-scale, simultaneous rollout.",
+            "control_objective": "To allow the workforce and the organization time to adapt, learn, and adjust to new systems and processes, minimizing disruption."
+          },
+          {
+            "control": "[Job Preservation][HR-1] Conduct Regular Job Impact Analyses. Proactively and periodically analyze which roles will be automated, augmented, or created by new AI systems.",
+            "control_objective": "To create a continuous, data-driven understanding of workforce evolution and inform targeted reskilling and redeployment efforts."
+          },
+          {
+            "control": "[Job Preservation][HR-2] Implement a Role Redesign Program. Instead of just eliminating tasks, focus on redesigning jobs to leverage human skills like critical thinking, creativity, and emotional intelligence in collaboration with AI tools.",
+            "control_objective": "To create new, higher-value roles that augment human capabilities with AI, rather than simply replacing them."
+          },
+          {
+            "control": "[Job Preservation][HR-3] Establish an Internal Mobility & Redeployment Program. Create clear pathways, training plans, and support systems for employees to transition from at-risk roles to new or redesigned roles within the company.",
+            "control_objective": "To retain institutional knowledge and valued employees by prioritizing internal transfers over external hires for new roles."
+          },
+          {
+            "control": "[Job Preservation][HR-4] Provide Fair Severance and Outplacement Services. For roles that are unavoidably eliminated, offer comprehensive support including fair severance packages, career counseling, and job placement assistance.",
+            "control_objective": "To manage employee exits ethically and support the well-being and future careers of departing staff, protecting the employer's brand."
+          },
+          {
+            "control": "[Job Preservation][Tech-1] Implement AI impact assessment tools that simulate workforce shifts and identify roles at risk of significant automation.",
+            "control_objective": "To proactively identify and mitigate potential negative impacts of AI on job roles and support workforce adaptation."
+          },
+          {
+            "control": "[Job Preservation][Tech-2] Develop and deploy AI-powered platforms that create personalized learning paths to facilitate reskilling and upskilling for employees.",
+            "control_objective": "To provide scalable, effective, and individualized training and adaptation support for the workforce in response to AI integration."
+          },
+          {
+            "control": "[Job Preservation][Tech-3] Prioritize 'Human-in-the-Loop' (HITL) System Design. Ensure AI systems are designed to augment and assist human decision-making, not completely replace it, especially for complex or high-stakes tasks.",
+            "control_objective": "To maintain the value of human expertise and judgment while improving efficiency, creating a collaborative human-AI work environment."
+          },
+          {
+            "control": "[Job Preservation][Comms-1] Execute a Transparent Communication Plan. Clearly and consistently communicate the 'why' behind AI adoption, the expected impacts, the timeline, and the support systems available to all employees.",
+            "control_objective": "To reduce fear and uncertainty, build trust, and foster a culture of adaptability by keeping employees informed."
+          },
+          {
+            "control": "[Job Preservation][Comms-2] Establish Employee Feedback and Consultation Channels. Actively involve employees and their representatives (e.g., work councils, unions) in the planning and implementation process to gather input and address concerns.",
+            "control_objective": "To ensure the transition plan is practical, fair, and considers the on-the-ground realities of employees, thereby increasing buy-in."
           }
         ]
       }
@@ -825,26 +865,6 @@
           {
             "control": "LDD[4] -  Include data from different geographic and demographic regions.",
             "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "principle": "Transparency",
-    "objective": "Develop a system whose decision-making processes are understandable to developers, users, and stakeholders.",
-    "risks": [
-      {
-        "risk": "[Transparency] - Opaque AI System Decisions",
-        "question": "Would individuals impacted by the AI system be able to understand how decisions affecting them were made? Are some users more likely to be confused or disadvantaged by lack of clarity?",
-        "controls": [
-          {
-            "control": "[Transparency][Tech-1] Deploy explainable AI (XAI) tools to provide interpretable insights into complex AI model decisions.",
-            "control_objective": "Provide clear, understandable, and timely explanations for AI system decisions and operations."
-          },
-          {
-            "control": "[Transparency][Tech-2] Implement comprehensive audit logging and traceability mechanisms for all AI system actions and data flows.",
-            "control_objective": "Ensure comprehensive traceability and accountability in AI system operations by recording all relevant events."
           }
         ]
       }
