@@ -2,7 +2,8 @@
   {
     "principle": "EU AI Act Art 15",
     "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
-    "risks": [
+    "risks": 
+    [
     {
         "risk": "[Article 8] - Non-Compliance with High-Risk AI System Requirements",
         "question": "Is the AI system, or the product incorporating the AI system, subject to other EU regulations, and if so, how is compliance with all applicable regulations, including the AI Act, managed and documented?",
@@ -181,12 +182,13 @@
           }
         ]
       }
-          ]
+    ]
   },
   {
     "principle": "xxx",
     "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
-    "risks": [
+    "risks": 
+    [
       {
         "risk": "Inadequate Data & Privacy Protection Measures",
         "question": "Will this AI system process personal, confidential, or sensitive business data?",
@@ -646,7 +648,13 @@
             "control_objective": "To deploy comprehensive technical controls that enable real-time detection, analysis, and correction of AI system hallucinations, maintaining the integrity and reliability of AI models."
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "principle": "OWASP risks",
+    "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+    "risks": [
       {
         "risk": "LLM01 Prompt Injection",
         "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
