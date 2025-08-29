@@ -1,6 +1,6 @@
 [
   {
-    "principle": "Section 2: Requirements for High-Risk AI Systems",
+    "principle": "AI Act Section 2: Requirements for High-Risk AI Systems",
     "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
     "risks": 
     [
@@ -185,60 +185,10 @@
     ]
   },
   {
-    "principle": "AI system build and deployment",
-    "objective": "Secure building, training, packaging and deploying of AI systems.",
+    "principle": "AI system build",
+    "objective": "Secure building of AI systems.",
     "risks": 
     [
-      {
-        "risk": "Inadequate Data & Privacy Protection Measures",
-        "question": "Will this AI system process personal, confidential, or sensitive business data?",
-        "controls": [
-          {
-            "control": "PPM[1] -  Implement data anonymization and pseudonymization techniques during the pre-processing stage to remove or obfuscate personally identifiable information (PII) and sensitive data from proprietary datasets used for fine-tuning.",
-            "control_objective": "To protect the privacy of individuals by reducing the risk of re-identification and unauthorised access to sensitive personal data within the training datasets."
-          },
-          {
-            "control": "PPM[2] -  Establish data privacy policies and guidelines that define the criteria and methods for anonymization and pseudonymization, ensuring consistent and effective privacy protection across the organisation's datasets.",
-            "control_objective": "To provide a standardised framework for privacy reduction techniques, ensuring compliance with data protection regulations and ethical standards."
-          },
-          {
-            "control": "PPM[3] -  Conduct regular privacy impact assessments and audits to identify and address any potential privacy risks or vulnerabilities introduced during data collection, processing, or fine-tuning.",
-            "control_objective": "To continuously monitor and improve the effectiveness of privacy reduction measures, ensuring that the AI model is trained on data that adheres to privacy regulations and ethical standards."
-          },
-          {
-            "control": "DRP.01 Establish data risk profiles to better understand the specific security and privacy risks associated with the types of data managed by the organisation, such as:\na) Confidentiality rating 1, 2, and 3\nb) Integrity rating 1, 2, and 3\nc) Availability rating 1, 2, and 3",
-            "control_objective": "To categorise data based on its security and privacy risks to ensure appropriate protection measures."
-          },
-          {
-            "control": "DRP.02 Perform an IT risk assessment on each data risk profile, and assign proportionate data protection measures to it.",
-            "control_objective": "To evaluate and apply appropriate data protection strategies for each risk profile."
-          },
-          {
-            "control": "DRP.03 Define the legal and regulatory compliance requirements relevant to each data risk profile, considering regulations such as GDPR and HIPAA.",
-            "control_objective": "To ensure compliance with legal and regulatory standards for each type of data."
-          },
-          {
-            "control": "DRP.04 Define requirements relating to the incident breach notification responsibilities for each data risk profile.",
-            "control_objective": "To establish clear breach notification protocols for different types of data breaches."
-          },
-          {
-            "control": "DRP.05 Document Data risk profile mapping criteria to facilitate the consistent and correct mapping of software change to the most appropriate Data risk profile.",
-            "control_objective": "To establish clear criteria for accurately mapping system changes to relevant data risk profiles."
-          },
-          {
-            "control": "DRP.06 Periodically review and update data risk profiles to reflect changes in data types, emerging threats, and evolving regulatory requirements.",
-            "control_objective": "To Ensure that data risk profiles remain relevant and effective in the face of evolving data types, threats, and regulatory changes."
-          },
-          {
-            "control": "DRP.07 Develop training modules for DevSecOps teams on the application and implications of Data risk profiles, focusing on how to utilise them effectively in their workflows.",
-            "control_objective": "To educate DevSecOps teams on the importance and application of Data risk profiles."
-          },
-          {
-            "control": "DRP.08 Involve relevant stakeholders, such as legal, compliance, and data privacy teams, in the creation and refinement of data risk profiles to ensure comprehensive coverage of all risk aspects.",
-            "control_objective": "To develop well-rounded and comprehensive data risk profiles through multi-disciplinary collaboration."
-          }
-        ]
-      },
       {
         "risk": "Inadequate AI System architcture Protection Measures",
         "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
@@ -337,6 +287,157 @@
           }
         ]
       },
+      {
+        "risk": "Insecure AI Pipeline Infrastructure",
+        "question": "Does the process of developing, testing, or deploying this AI system rely on infrastructure you’re unsure is secure?",
+        "controls": [
+          {
+            "control": "PI[1] -  Establish a secure AI pipeline data feed process",
+            "control_objective": "To facilitate transparency and accountability into the AI pipeline data processing activities."
+          },
+          {
+            "control": "PI[2] -  Protect the AI pipeline infrastructure",
+            "control_objective": "To ensure that the AI pipeline operates smoothly and securely, preventing disruptions and unauthorised data exposure."
+          }
+        ]
+      },
+      {
+        "risk": "Exposure of Sensitive Data Through Federated Learning",
+        "question": "Will the AI system collaborate or learn from external datasets without centralizing data (e.g., via federated learning)?",
+        "controls": [
+          {
+            "control": "FL[1] -  Ensure a secure federated learning process",
+            "control_objective": "To ensure the secure handling of distributed sensitive data used in federated learning"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "principle": "AI system trainig",
+    "objective": "Secure training of AI systems.",
+    "risks": 
+    [
+      {
+        "risk": "Inadequate Data & Privacy Protection Measures",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "controls": [
+          {
+            "control": "PPM[1] -  Implement data anonymization and pseudonymization techniques during the pre-processing stage to remove or obfuscate personally identifiable information (PII) and sensitive data from proprietary datasets used for fine-tuning.",
+            "control_objective": "To protect the privacy of individuals by reducing the risk of re-identification and unauthorised access to sensitive personal data within the training datasets."
+          },
+          {
+            "control": "PPM[2] -  Establish data privacy policies and guidelines that define the criteria and methods for anonymization and pseudonymization, ensuring consistent and effective privacy protection across the organisation's datasets.",
+            "control_objective": "To provide a standardised framework for privacy reduction techniques, ensuring compliance with data protection regulations and ethical standards."
+          },
+          {
+            "control": "PPM[3] -  Conduct regular privacy impact assessments and audits to identify and address any potential privacy risks or vulnerabilities introduced during data collection, processing, or fine-tuning.",
+            "control_objective": "To continuously monitor and improve the effectiveness of privacy reduction measures, ensuring that the AI model is trained on data that adheres to privacy regulations and ethical standards."
+          },
+          {
+            "control": "DRP.01 Establish data risk profiles to better understand the specific security and privacy risks associated with the types of data managed by the organisation, such as:\na) Confidentiality rating 1, 2, and 3\nb) Integrity rating 1, 2, and 3\nc) Availability rating 1, 2, and 3",
+            "control_objective": "To categorise data based on its security and privacy risks to ensure appropriate protection measures."
+          },
+          {
+            "control": "DRP.02 Perform an IT risk assessment on each data risk profile, and assign proportionate data protection measures to it.",
+            "control_objective": "To evaluate and apply appropriate data protection strategies for each risk profile."
+          },
+          {
+            "control": "DRP.03 Define the legal and regulatory compliance requirements relevant to each data risk profile, considering regulations such as GDPR and HIPAA.",
+            "control_objective": "To ensure compliance with legal and regulatory standards for each type of data."
+          },
+          {
+            "control": "DRP.04 Define requirements relating to the incident breach notification responsibilities for each data risk profile.",
+            "control_objective": "To establish clear breach notification protocols for different types of data breaches."
+          },
+          {
+            "control": "DRP.05 Document Data risk profile mapping criteria to facilitate the consistent and correct mapping of software change to the most appropriate Data risk profile.",
+            "control_objective": "To establish clear criteria for accurately mapping system changes to relevant data risk profiles."
+          },
+          {
+            "control": "DRP.06 Periodically review and update data risk profiles to reflect changes in data types, emerging threats, and evolving regulatory requirements.",
+            "control_objective": "To Ensure that data risk profiles remain relevant and effective in the face of evolving data types, threats, and regulatory changes."
+          },
+          {
+            "control": "DRP.07 Develop training modules for DevSecOps teams on the application and implications of Data risk profiles, focusing on how to utilise them effectively in their workflows.",
+            "control_objective": "To educate DevSecOps teams on the importance and application of Data risk profiles."
+          },
+          {
+            "control": "DRP.08 Involve relevant stakeholders, such as legal, compliance, and data privacy teams, in the creation and refinement of data risk profiles to ensure comprehensive coverage of all risk aspects.",
+            "control_objective": "To develop well-rounded and comprehensive data risk profiles through multi-disciplinary collaboration."
+          }
+        ]
+      }{
+        "risk": "Uncontrolled Synthetic Data Usage",
+        "question": "Will synthetic (artificially generated) data be used in training or testing without clear documentation or controls?",
+        "controls": [
+          {
+            "control": "SD[1] -  Establish guidelines and criteria for data augmentation, including acceptable techniques, quality standards, and validation processes.",
+            "control_objective": "To ensure that data augmentation is performed consistently and effectively, while maintaining the integrity and relevance of the generated or augmented data."
+          },
+          {
+            "control": "SD[2] -  Maintain detailed records of all data augmentation or generation methods used, including parameters, algorithms, and the rationale behind their selection. Implement version control for these techniques to track changes and ensure reproducibility.",
+            "control_objective": "To ensure transparency, traceability, and auditability of data augmentation processes, allowing for the identification and correction of potential issues or biases introduced during augmentation."
+          },
+          {
+            "control": "SD[3] -  When generating synthetic data or augmenting existing data, employ privacy-preserving techniques (e.g., differential privacy, data masking) to protect sensitive information and ensure compliance with data protection regulations.",
+            "control_objective": "To safeguard the confidentiality and privacy of individuals while still allowing for the creation of diverse and representative training data."
+          }
+        ]
+      },
+      {
+        "risk": "Undetected Changes in Data Distribution",
+        "question": "Could shifts in customer behavior, market trends, or other inputs cause the AI to produce unexpected results over time?",
+        "controls": [
+          {
+            "control": "DD[1] -  Establish clear thresholds for data drift based on statistical measures (e.g., Kullback-Leibler divergence, Kolmogorov-Smirnov test) to determine when data changes are significant enough to warrant action.",
+            "control_objective": "To trigger alerts or initiate retraining procedures when data drift exceeds predefined thresholds, ensuring the model's accuracy remains reliable despite changes in data distribution."
+          }
+        ]
+      },
+      {
+        "risk": "Amplification of Biases",
+        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "controls": [
+          {
+            "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
+            "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
+          },
+          {
+            "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
+            "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
+          },
+          {
+            "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
+            "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
+          },
+          {
+            "control": "LDD[4] -  Include data from different geographic and demographic regions.",
+            "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
+          }
+        ]
+      },
+      {
+        "risk": "AI system hallucinations",
+        "question": "Will the AI generate content (text, images, etc.) that could be factually wrong but appear convincing?",
+        "controls": [
+          {
+            "control": "HA[1] -  Establish an AI system hallucination detection and mitigation process.",
+            "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for managing and mitigating AI system hallucinations, ensuring the accuracy and reliability of AI outputs."
+          },
+          {
+            "control": "HA[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations, ensuring the reliability and accuracy of AI outputs.",
+            "control_objective": "To deploy comprehensive technical controls that enable real-time detection, analysis, and correction of AI system hallucinations, maintaining the integrity and reliability of AI models."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "principle": "AI system package",
+    "objective": "Secure packaging of AI systems.",
+    "risks": 
+    [
       {
         "risk": "Insecure AI component Packaging",
         "question": "Are any components of the AI system be packaged in containers?",
@@ -438,127 +539,18 @@
             "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks."
           }
         ]
-      },
-      {
-        "risk": "Uncontrolled Synthetic Data Usage",
-        "question": "Will synthetic (artificially generated) data be used in training or testing without clear documentation or controls?",
-        "controls": [
-          {
-            "control": "SD[1] -  Establish guidelines and criteria for data augmentation, including acceptable techniques, quality standards, and validation processes.",
-            "control_objective": "To ensure that data augmentation is performed consistently and effectively, while maintaining the integrity and relevance of the generated or augmented data."
-          },
-          {
-            "control": "SD[2] -  Maintain detailed records of all data augmentation or generation methods used, including parameters, algorithms, and the rationale behind their selection. Implement version control for these techniques to track changes and ensure reproducibility.",
-            "control_objective": "To ensure transparency, traceability, and auditability of data augmentation processes, allowing for the identification and correction of potential issues or biases introduced during augmentation."
-          },
-          {
-            "control": "SD[3] -  When generating synthetic data or augmenting existing data, employ privacy-preserving techniques (e.g., differential privacy, data masking) to protect sensitive information and ensure compliance with data protection regulations.",
-            "control_objective": "To safeguard the confidentiality and privacy of individuals while still allowing for the creation of diverse and representative training data."
-          }
-        ]
-      },
-      {
-        "risk": "Undetected Changes in Data Distribution",
-        "question": "Could shifts in customer behavior, market trends, or other inputs cause the AI to produce unexpected results over time?",
-        "controls": [
-          {
-            "control": "DD[1] -  Establish clear thresholds for data drift based on statistical measures (e.g., Kullback-Leibler divergence, Kolmogorov-Smirnov test) to determine when data changes are significant enough to warrant action.",
-            "control_objective": "To trigger alerts or initiate retraining procedures when data drift exceeds predefined thresholds, ensuring the model's accuracy remains reliable despite changes in data distribution."
-          }
-        ]
-      },
-      {
-        "risk": "Insufficient Audit Trails and Logging",
-        "question": "Will you need to track who accessed the AI system, what it did, and when — for accountability or regulatory purposes?",
-        "controls": [
-          {
-            "control": "AT[1] -  Record detailed logs of all data pre-processing activities, including data cleaning, normalisation, transformation, and any outlier removal or imputation techniques applied. Include timestamps, user IDs, and descriptions of actions taken.",
-            "control_objective": "To enable traceability and reconstruction of the entire data pre-processing workflow, providing a clear audit trail for identifying any issues or anomalies that may arise during this phase."
-          },
-          {
-            "control": "AT[2] -  Store logs in a secure and tamper-proof manner, ensuring their integrity and availability for future audits or investigations.",
-            "control_objective": "To ensure the availability of audit logs for a sufficient period to allow for thorough analysis and investigation of potential security or compliance issues. Protect logs from unauthorised modification or deletion to maintain their evidentiary value."
-          }
-        ]
-      },
-      {
-        "risk": "Insecure Data Sharing and Transfer",
-        "question": "Will this AI system exchange data across teams, systems, or external vendors that may not have the same security controls?",
-        "controls": [
-          {
-            "control": "DT[1] -  Implement secure data transfer protocols and encryption mechanisms for proprietary datasets during collection, storage, and fine-tuning processes.",
-            "control_objective": "To protect the confidentiality and integrity of sensitive data throughout its lifecycle, preventing unauthorised access or tampering during data sharing and transfer activities. [PR.DS-02]"
-          },
-          {
-            "control": "DT[2] -  Establish data sharing agreements and protocols with internal and external stakeholders involved in the data collection and fine-tuning processes.",
-            "control_objective": "To define clear guidelines, roles, and responsibilities for secure data sharing, ensuring compliance with data protection regulations and ethical standards. [GV.SC-02, GV.SC-05]"
-          }
-        ]
-      },
-      {
-        "risk": "Insecure AI Pipeline Infrastructure",
-        "question": "Does the process of developing, testing, or deploying this AI system rely on infrastructure you’re unsure is secure?",
-        "controls": [
-          {
-            "control": "PI[1] -  Establish a secure AI pipeline data feed process",
-            "control_objective": "To facilitate transparency and accountability into the AI pipeline data processing activities."
-          },
-          {
-            "control": "PI[2] -  Protect the AI pipeline infrastructure",
-            "control_objective": "To ensure that the AI pipeline operates smoothly and securely, preventing disruptions and unauthorised data exposure."
-          }
-        ]
-      },
-      {
-        "risk": "Exposure of Sensitive Data Through Federated Learning",
-        "question": "Will the AI system collaborate or learn from external datasets without centralizing data (e.g., via federated learning)?",
-        "controls": [
-          {
-            "control": "FL[1] -  Ensure a secure federated learning process",
-            "control_objective": "To ensure the secure handling of distributed sensitive data used in federated learning"
-          }
-        ]
-      },
-      {
-        "risk": "Amplification of Biases",
-        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
-        "controls": [
-          {
-            "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
-            "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
-          },
-          {
-            "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
-            "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
-          },
-          {
-            "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
-            "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
-          },
-          {
-            "control": "LDD[4] -  Include data from different geographic and demographic regions.",
-            "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
-          }
-        ]
-      },
-      {
-        "risk": "AI system hallucinations",
-        "question": "Will the AI generate content (text, images, etc.) that could be factually wrong but appear convincing?",
-        "controls": [
-          {
-            "control": "HA[1] -  Establish an AI system hallucination detection and mitigation process.",
-            "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for managing and mitigating AI system hallucinations, ensuring the accuracy and reliability of AI outputs."
-          },
-          {
-            "control": "HA[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations, ensuring the reliability and accuracy of AI outputs.",
-            "control_objective": "To deploy comprehensive technical controls that enable real-time detection, analysis, and correction of AI system hallucinations, maintaining the integrity and reliability of AI models."
-          }
-        ]
       }
     ]
   },
   {
-    "principle": "Operational risks",
+    "principle": "AI system deployment",
+    "objective": "Secure deployment of AI systems.",
+    "risks": 
+    [
+    ]
+  },
+  {
+    "principle": "AI system operational resilience",
     "objective": "Integrate AI system into existing resilience mechanisms.",
     "risks": [
       {
@@ -658,9 +650,37 @@
     ]
   },
   {
-    "principle": "OWASP risks",
-    "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+    "principle": "AI system use",
+    "objective": "Secure use of AI systems.",
     "risks": [
+      {
+        "risk": "Insufficient Audit Trails and Logging",
+        "question": "Will you need to track who accessed the AI system, what it did, and when — for accountability or regulatory purposes?",
+        "controls": [
+          {
+            "control": "AT[1] -  Record detailed logs of all data pre-processing activities, including data cleaning, normalisation, transformation, and any outlier removal or imputation techniques applied. Include timestamps, user IDs, and descriptions of actions taken.",
+            "control_objective": "To enable traceability and reconstruction of the entire data pre-processing workflow, providing a clear audit trail for identifying any issues or anomalies that may arise during this phase."
+          },
+          {
+            "control": "AT[2] -  Store logs in a secure and tamper-proof manner, ensuring their integrity and availability for future audits or investigations.",
+            "control_objective": "To ensure the availability of audit logs for a sufficient period to allow for thorough analysis and investigation of potential security or compliance issues. Protect logs from unauthorised modification or deletion to maintain their evidentiary value."
+          }
+        ]
+      },
+      {
+        "risk": "Insecure Data Sharing and Transfer",
+        "question": "Will this AI system exchange data across teams, systems, or external vendors that may not have the same security controls?",
+        "controls": [
+          {
+            "control": "DT[1] -  Implement secure data transfer protocols and encryption mechanisms for proprietary datasets during collection, storage, and fine-tuning processes.",
+            "control_objective": "To protect the confidentiality and integrity of sensitive data throughout its lifecycle, preventing unauthorised access or tampering during data sharing and transfer activities. [PR.DS-02]"
+          },
+          {
+            "control": "DT[2] -  Establish data sharing agreements and protocols with internal and external stakeholders involved in the data collection and fine-tuning processes.",
+            "control_objective": "To define clear guidelines, roles, and responsibilities for secure data sharing, ensuring compliance with data protection regulations and ethical standards. [GV.SC-02, GV.SC-05]"
+          }
+        ]
+      },
       {
         "risk": "LLM01 Prompt Injection",
         "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
