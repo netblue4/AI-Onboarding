@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF--8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Onboarding Risk and Control Framework</title>
     <style>
@@ -19,6 +19,7 @@
         .principle-row:hover, .risk-row:hover, .control-row:hover { background-color: #d0e8fd; }
         .hidden { display: none; }
         .risk-cell { padding-left: 30px !important; }
+        .risk-question { font-weight: normal; font-style: italic; color: #333; margin-top: 5px; }
         .control-cell { padding-left: 60px !important; }
         .objective-cell { background-color: #ffffff; padding-left: 90px !important; font-weight: normal; }
         .objective-cell ul { margin: 0; padding-left: 20px; }
@@ -44,54 +45,37 @@
                 }
                 return response.json();
             })
-            .then(assessmentData => {
+            .then(structuredData => {
                 const table_body = document.getElementById('framework_table_body');
                 const close_button = document.getElementById('closeAllButton');
 
-                // 1. Group the flat data into a nested structure
-                const groupedData = assessmentData.reduce((acc, item) => {
-                    const principleKey = `${item.principle}: ${item.objective}`;
-                    if (!acc[principleKey]) {
-                        acc[principleKey] = {
-                            principle: item.principle,
-                            objective: item.objective,
-                            risks: {}
-                        };
-                    }
-                    if (!acc[principleKey].risks[item.risk]) {
-                        acc[principleKey].risks[item.risk] = [];
-                    }
-                    acc[principleKey].risks[item.risk].push({
-                        control: item.control,
-                        control_objective: item.control_objective
-                    });
-                    return acc;
-                }, {});
-
-                // 2. Dynamically build the table from the grouped data
-                Object.keys(groupedData).forEach((principleKey, p_idx) => {
-                    const principleGroup = groupedData[principleKey];
+                // Dynamically build the table from the new nested JSON structure
+                structuredData.forEach((principleItem, p_idx) => {
                     const principle_id = `p_${p_idx}`;
                     
                     // Principle Row (Level 1)
                     const principle_row = table_body.insertRow();
                     principle_row.className = 'principle-row';
                     principle_row.setAttribute('data-id', principle_id);
-                    principle_row.innerHTML = `<td colspan="2"><span class="expand-icon">+</span><strong>${principleGroup.principle}:</strong> ${principleGroup.objective}</td>`;
+                    principle_row.innerHTML = `<td colspan="2"><span class="expand-icon">+</span><strong>${principleItem.principle}:</strong> ${principleItem.objective}</td>`;
                     principle_row.addEventListener('click', () => toggle_visibility(principle_id));
 
-                    Object.keys(principleGroup.risks).forEach((riskText, r_idx) => {
+                    principleItem.risks.forEach((riskItem, r_idx) => {
                         const risk_id = `${principle_id}_r_${r_idx}`;
-                        const controls = principleGroup.risks[riskText];
 
                         // Risk Row (Level 2)
                         const risk_row = table_body.insertRow();
                         risk_row.className = `hidden risk-row parent-${principle_id}`;
                         risk_row.setAttribute('data-id', risk_id);
-                        risk_row.innerHTML = `<td class="risk-cell" colspan="2"><span class="expand-icon">+</span>${riskText}</td>`;
+                        // Display both the risk and its associated question
+                        risk_row.innerHTML = `<td class="risk-cell" colspan="2">
+                                                <span class="expand-icon">+</span>
+                                                <div>${riskItem.risk}</div>
+                                                <div class="risk-question">${riskItem.question}</div>
+                                              </td>`;
                         risk_row.addEventListener('click', (e) => { e.stopPropagation(); toggle_visibility(risk_id); });
 
-                        controls.forEach((control_item, c_idx) => {
+                        riskItem.controls.forEach((control_item, c_idx) => {
                             const control_id = `${risk_id}_c_${c_idx}`;
                             
                             // Control Row (Level 3)
