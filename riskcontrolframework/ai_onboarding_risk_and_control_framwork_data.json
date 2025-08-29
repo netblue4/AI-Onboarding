@@ -185,8 +185,8 @@
     ]
   },
   {
-    "principle": "xxx",
-    "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+    "principle": "AI system build and deployment",
+    "objective": "Secure building, training, packaging and deploying of AI systems.",
     "risks": 
     [
       {
@@ -559,7 +559,7 @@
   },
   {
     "principle": "Operational risks",
-    "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+    "objective": "Integrate AI system into existing resilience mechanisms.",
     "risks": [
       {
         "risk": "Insufficient Scalability Management",
