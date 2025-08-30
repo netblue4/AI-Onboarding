@@ -282,8 +282,8 @@
     ]
   },
   {
-    "principle": "AI system build",
-    "objective": "Secure building of AI systems.",
+    "principle": "AI Lifecycle Phase - Design and Development",
+    "objective": "Secure Design and Development of AI systems.",
     "risks": 
     [
       {
@@ -499,7 +499,7 @@
     ]
   },
   {
-    "principle": "AI system trainig",
+    "principle": "AI Lifecycle Phase - Trainig",
     "objective": "Secure training of AI systems.",
     "risks": 
     [
@@ -718,7 +718,7 @@
     ]
   },
   {
-    "principle": "AI system package",
+    "principle": "AI Lifecycle Phase - Package",
     "objective": "Secure packaging of AI systems.",
     "risks": 
     [
@@ -827,8 +827,8 @@
     ]
   },
   {
-    "principle": "AI system deployment and operational resilience",
-    "objective": "Integrate AI system into existing resilience mechanisms.",
+    "principle": "AI Lifecycle Phase - Deployment, Maintenance and Updates",
+    "objective": "Securly deploy AI system and integrate it into existing resilience mechanisms.",
     "risks": 
     [
       {
@@ -958,7 +958,7 @@
     ]
   },
   {
-    "principle": "AI system use",
+    "principle": "AI Lifecycle Phase - Use and Decommissioning",
     "objective": "Secure use of AI systems.",
     "risks": [
       {
@@ -1132,8 +1132,8 @@
     ]
   },
   {
-    "principle": "Job Preservation",
-    "objective": "Design the AI system to augment human roles where feasible and identify functions requiring workforce adaptation.",
+    "principle": "AI system impact on individuals or groups of individuals",
+    "objective": "Ensure your organization examines and documents how AI systems influence people and communities, factoring in privacy, security, and other risk domains.",
     "risks": [
       {
         "risk": "[Job Preservation] - Negative Workforce Impact",
@@ -1188,13 +1188,7 @@
             "control_objective": "To ensure the transition plan is practical, fair, and considers the on-the-ground realities of employees, thereby increasing buy-in."
           }
         ]
-      }
-    ]
-  },
-  {
-    "principle": "Fairness",
-    "objective": "Build and validate a model that demonstrates equitable performance across key demographic subgroups.",
-    "risks": [
+      },
       {
         "risk": "[Fairness] - Algorithmic Bias Leading to Unfair Outcomes",
         "question": "Could the AI system produce unequal outcomes or treatment across demographic groups? Are any groups at greater risk of harm or exclusion?",
@@ -1230,13 +1224,7 @@
             "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
           }
         ]
-      }
-    ]
-  },
-  {
-    "principle": "Accountability",
-    "objective": "Establish clear lines of ownership for the design, development, and approval of the AI system.",
-    "risks": [
+      },
       {
         "risk": "[Accountability] - Undefined Ownership and Responsibility for AI",
         "question": "If the system makes an error or causes harm, will affected individuals know who is responsible, and will there be a clear process for redress?",
