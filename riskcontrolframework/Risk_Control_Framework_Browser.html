@@ -57,7 +57,7 @@
                     const principle_row = table_body.insertRow();
                     principle_row.className = 'principle-row';
                     principle_row.setAttribute('data-id', principle_id);
-                    principle_row.innerHTML = `<td colspan="2"><span class="expand-icon">+</span><strong>${principleItem.principle}:</strong> ${principleItem.objective}</td>`;
+                    principle_row.innerHTML = `<td colspan="2"><span class="expand-icon">+</span><strong>${principleItem.principle}</strong></td>`; //:</strong> ${principleItem.objective}</td>`;
                     principle_row.addEventListener('click', () => toggle_visibility(principle_id));
 
                     principleItem.risks.forEach((riskItem, r_idx) => {
