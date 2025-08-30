@@ -1154,7 +1154,7 @@
     ]
   },
   {
-    "principle": "AI system impact on individuals or groups of individuals",
+    "principle": "ISO 42001:2023 Control 5.4 - AI system impact on individuals or groups of individuals",
     "objective": "Ensure your organization examines and documents how AI systems influence people and communities, factoring in privacy, security, and other risk domains.",
     "risks": [
       {
