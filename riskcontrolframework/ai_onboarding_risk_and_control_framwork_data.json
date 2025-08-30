@@ -1,5 +1,103 @@
 [
   {
+    "principle": "ISO 42001 Annex C.3 – Risk Sources",
+    "objective": "Build an AI system that aligning with AI ethics and “trustworthy AI” principles.",
+    "risks": 
+    [
+      {
+        "risk": "[C.3.1] - AI Failure in Complex Environments",
+        "question": "Will the AI system operate in a dynamic, unpredictable, or open-world environment where it may encounter unforeseen events, inputs, or conditions not fully represented in its training data (e.g., public roads, healthcare settings, smart cities)?",
+        "controls": [
+          {
+            "control": "[C.3.1][Mit-1][1] - Implement extensive scenario-based testing, using both simulations and real-world trials, to cover a wide range of potential operating conditions, including rare and edge cases.",
+            "control_objective": "To validate AI system robustness and reduce the likelihood of failure when encountering novel or unexpected situations in its operational environment."
+          },
+          {
+            "control": "[C.3.1][Mit-2][2] - Design and develop AI models using techniques that enhance robustness and generalization, such as domain randomization and uncertainty quantification, to better handle out-of-distribution inputs.",
+            "control_objective": "To ensure the AI model can perform reliably and predictably even when faced with noisy, variable, or previously unseen data."
+          },
+          {
+            "control": "[C.3.1][Mit-3][3] - Establish clear human-in-the-loop oversight mechanisms or automated fallback procedures (e.g., 'safe mode') that activate when the AI system encounters conditions outside its operational design domain or detects high uncertainty.",
+            "control_objective": "To ensure safe failure and prevent catastrophic outcomes when the AI system is operating beyond its tested capabilities."
+          },
+          {
+            "control": "[C.3.1][Mit-4][4] - Define and enforce specific operational design domains (ODD), such as geo-fencing or weather-fencing, to limit the AI system's deployment to environments where its performance has been verified.",
+            "control_objective": "To manage risk by constraining the AI's operation to predictable and validated environments, especially during initial deployment phases."
+          },
+          {
+            "control": "[C.3.1][Mit-5][5] - Implement a continuous monitoring and model update process to collect real-world performance data, identify novel scenarios or performance degradation, and retrain the AI system accordingly.",
+            "control_objective": "To ensure the AI system adapts to evolving environments and maintains its safety and effectiveness over its lifecycle."
+          }
+        ]
+       },
+      {
+        "risk": "[C.3.2] - Unidentified Bias, Errors, or Unfair Outcomes due to Lack of AI Transparency and Explainability",
+        "question": "Are there situations where the organization, its users, or affected individuals would need to understand the reasoning behind the AI system's output to ensure fairness, detect bias, debug errors, or comply with regulations?",
+        "controls": [
+          {
+            "control": "[C.3.2][Mit-1][1] - Prioritize the use of inherently interpretable models (e.g., decision trees, rule-based systems) for applications where explainability is a critical requirement.",
+            "control_objective": "To ensure that the AI system's decision-making logic is transparent and directly inspectable by design."
+          },
+          {
+            "control": "[C.3.2][Mit-2][2] - For complex 'black-box' models, implement post-hoc explanation tools (e.g., LIME, SHAP, saliency maps) to generate human-readable justifications for individual predictions or decisions.",
+            "control_objective": "To provide insight into the behavior of complex models, enabling debugging, validation, and trust-building without altering the model itself."
+          },
+          {
+            "control": "[C.3.2][Mit-3][3] - Create and maintain comprehensive documentation, such as model cards or datasheets, detailing the AI system's training data, intended use, performance metrics, and known limitations.",
+            "control_objective": "To foster trust and enable informed use by clearly communicating the system's capabilities and potential for bias to all stakeholders."
+          },
+          {
+            "control": "[C.3.2][Mit-4][4] - Establish a formal governance process, including human oversight committees or audit teams, to regularly review samples of AI decisions for fairness, consistency, and accuracy.",
+            "control_objective": "To provide an independent check on AI performance, identify unexplainable or undesirable behavior, and ensure accountability in high-impact applications."
+          },
+          {
+            "control": "[C.3.2][Mit-5][5] - Develop and provide clear, understandable, and context-appropriate explanations of AI-driven decisions to end-users or affected individuals.",
+            "control_objective": "To uphold procedural fairness, provide a basis for appeal or recourse, and maintain user trust in the AI system."
+          },
+          {
+            "control": "[C.3.2][Mit-6][6] - Integrate transparency and explainability as core requirements from the initial design phase of the AI lifecycle ('Responsible AI by Design'), influencing choices of algorithms and architecture.",
+            "control_objective": "To proactively build trustworthy AI systems by making explainability a foundational principle rather than an add-on."
+          }
+        ]
+       },
+       {
+        "risk": "[C.3.3] - Catastrophic Failure or Human Error due to an Inappropriate Level of AI Automation",
+        "question": "Does the AI system operate with a level of autonomy where its failures could lead to immediate, uncontrolled consequences without the possibility of timely human intervention (fully autonomous), or where human operators might become complacent and fail to properly oversee or correct the system (semi-autonomous)?",
+        "controls": [
+            {
+                "control": "[C.3.3][Mit-1][1] - Conduct a risk assessment to define and enforce clear boundaries for automation, distinguishing between tasks suitable for full AI autonomy and those requiring human-in-the-loop review and final decision-making.",
+                "control_objective": "To ensure that AI is only granted full autonomy over decisions that do not carry unacceptable risks, while retaining human judgment for sensitive, complex, or high-impact scenarios."
+            },
+            {
+                "control": "[C.3.3][Mit-2][2] - Implement human-centered design principles, including accessible and effective human override mechanisms (e.g., emergency stops) and systems that maintain operator situational awareness.",
+                "control_objective": "To provide a reliable manual fallback and ensure human operators can intervene effectively and safely when automation fails or encounters an unexpected situation."
+            },
+            {
+                "control": "[C.3.3][Mit-3][3] - Adopt a gradual approach to increasing AI autonomy, accompanied by exhaustive testing, simulation, and pilot programs at each level to validate safety and graceful failure (fail-safe) modes.",
+                "control_objective": "To manage risk by incrementally building confidence in the AI system's performance and safety measures before deploying higher levels of autonomy."
+            },
+            {
+                "control": "[C.3.3][Mit-4][4] - Develop and deliver specific training programs for human operators on the risks of automation bias, complacency, and the specific limitations of the AI system they oversee.",
+                "control_objective": "To maintain human vigilance and ensure operators remain engaged and prepared to effectively supervise, question, and intervene when interacting with semi-autonomous systems."
+            },
+            {
+                "control": "[C.3.3][Mit-5][5] - For fully autonomous systems, implement rigorous validation and safety engineering practices, such as formal verification, redundant systems, and real-time anomaly detection, to compensate for the absence of human oversight.",
+                "control_objective": "To achieve a high level of assurance in the safety and reliability of fully autonomous systems by building in technical fail-safes and cross-checks."
+            },
+            {
+                "control": "[C.3.3][Mit-6][6] - Establish a clear governance structure that assigns specific human accountability for the outcomes and ongoing monitoring of the AI system, regardless of its level of automation.",
+                "control_objective": "To ensure that a designated person or team is responsible for tracking AI performance and has the authority to intervene, adjust, or halt the system to prevent unsafe or unfair outcomes."
+            },
+            {
+                "control": "[C.3.3][Mit-7][7] - Ensure the AI system's design and level of automation comply with all relevant legal and regulatory frameworks that mandate human review or provide individuals with the right to contest automated decisions.",
+                "control_objective": "To mitigate legal and compliance risks by designing automation levels that respect legal requirements for human oversight and individual rights."
+            }
+        ]
+      },
+    =============================================
+    ]
+  },
+  {
     "principle": "AI Act - Section 2: Requirements for High-Risk AI Systems",
     "objective": "Build an AI system that meets specified levels of accuracy, robustness, and cybersecurity.",
     "risks": 
@@ -190,6 +288,104 @@
     "risks": 
     [
       {
+        "risk": "[C.3.6] - Flawed AI System Design and Development",
+        "question": "Was the AI system's design phase rushed, lacking input from diverse experts (like ethics, security, domain specialists), or was its testing limited to clean, non-real-world data?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-1] - Conduct comprehensive risk assessments, including Failure Modes and Effects Analysis (FMEA), during the initial design phase to identify and mitigate potential AI-specific failures, ethical biases, and security vulnerabilities.",
+            "control_objective": "To proactively embed safety, security, and fairness into the AI system's core architecture from the outset."
+          },
+          {
+            "control": "[C.3.6][BP-2] - Establish a cross-functional design and review team, including domain experts, ethicists, security specialists, and end-users, to ensure requirements are complete and potential impacts are understood from multiple perspectives.",
+            "control_objective": "To prevent design oversights and ensure the AI system is aligned with real-world contexts, ethical norms, and user needs."
+          },
+          {
+            "control": "[C.3.6][BP-3] - Implement a multi-stage testing and validation plan that uses real-world data, includes adversarial and integration testing, and verifies the AI's performance within the complete operational system.",
+            "control_objective": "To ensure the AI system is robust, reliable, and performs as expected when interacting with other systems and real-world data complexity."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.5] - Hardware Failure and Performance Degradation",
+        "question": "Does the AI system rely on physical hardware like sensors, processors, or actuators that could fail suddenly, wear out, or degrade over time, leading to inaccurate data or faulty execution of decisions?",
+        "controls": [
+          {
+            "control": "[C.3.5][HF-1] - Implement redundancy for critical hardware components, such as using multiple sensors, error-correcting code (ECC) memory, and redundant processors.",
+            "control_objective": "To ensure continuous and reliable operation by allowing the system to tolerate the failure of a single component."
+          },
+          {
+            "control": "[C.3.5][HF-2] - Establish a preventive maintenance and calibration schedule for hardware components that are prone to aging, drift, or wear-and-tear.",
+            "control_objective": "To proactively mitigate performance degradation and prevent failures by maintaining hardware within its operational specifications."
+          },
+          {
+            "control": "[C.3.5][HF-3] - Design the system to 'fail safe' or 'fail gracefully' in the event of a hardware malfunction, such as having an autonomous vehicle slow to a stop if a critical sensor fails.",
+            "control_objective": "To minimize harm and maintain a safe state when the AI system can no longer operate as intended due to hardware issues."
+          },
+          {
+            "control": "[C.3.5][HF-4] - Utilize diverse sensing modalities (e.g., fusing camera, LIDAR, and radar data) and cross-validate their inputs to detect anomalies or failures in a single sensor.",
+            "control_objective": "To create a more robust and complete perception of the environment that is not reliant on a single point of hardware failure."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.5] - Infrastructure, Power, and Connectivity Failures",
+        "question": "Is the AI system's continuous operation dependent on external infrastructure, such as a stable power supply, network connectivity, or cloud services, that could experience outages?",
+        "controls": [
+          {
+            "control": "[C.3.5][IP-1] - Implement redundant power sources, such as uninterruptible power supplies (UPS) or backup batteries, for critical AI systems.",
+            "control_objective": "To ensure operational continuity during power outages and allow for graceful shutdowns."
+          },
+          {
+            "control": "[C.3.5][IP-2] - For distributed or cloud-dependent AI systems, design for network resiliency with redundant connectivity paths or the ability to function in a degraded state during network outages.",
+            "control_objective": "To minimize disruption and maintain core functionality when network infrastructure fails."
+          },
+          {
+            "control": "[C.3.5][IP-3] - Implement comprehensive logging and alerting for hardware and infrastructure-related events, such as power fluctuations, network dropouts, or high temperatures.",
+            "control_objective": "To enable rapid detection of and response to infrastructure issues that could impact AI system performance or availability."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.5] - Model Incompatibility and Performance Shifts During Hardware Transfer",
+        "question": "Will the AI model be developed on one type of hardware (e.g., high-end lab GPUs) and then deployed on different, potentially less powerful or specialized hardware (e.g., an embedded AI chip)?",
+        "controls": [
+          {
+            "control": "[C.3.5][MT-1] - Conduct thorough validation and regression testing of the AI model on the exact target hardware platform before final deployment.",
+            "control_objective": "To verify that the model's performance, accuracy, and behavior remain acceptable after being ported to new hardware."
+          },
+          {
+            "control": "[C.3.5][MT-2] - When using model optimization techniques like quantization (e.g., converting from 32-bit to 8-bit precision), rigorously measure the impact on accuracy and test for new failure modes.",
+            "control_objective": "To ensure that efficiency gains from model optimization do not unacceptably compromise the model's reliability and correctness."
+          },
+          {
+            "control": "[C.3.5][MT-3] - Utilize hardware-aware training techniques (e.g., quantization-aware training) that simulate the constraints of the target hardware during the model development phase.",
+            "control_objective": "To proactively build models that are robust to the numerical precision and computational limitations of their deployment environment."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.5] - Exploitation of Hardware Security Vulnerabilities",
+        "question": "Could an attacker with physical or proximate access to the AI system's hardware exploit it through side-channels, fault injection, or supply chain tampering to steal the model or cause it to malfunction?",
+        "controls": [
+          {
+            "control": "[C.3.5][HS-1] - Employ hardware security hardening techniques such as using secure enclaves or Trusted Platform Modules (TPMs) to protect sensitive model parameters and cryptographic keys.",
+            "control_objective": "To create a trusted execution environment that isolates critical AI computations from potential software or hardware-level attacks."
+          },
+          {
+            "control": "[C.3.5][HS-2] - Implement countermeasures against side-channel attacks (e.g., electromagnetic shielding, power consumption noise) and fault injection attacks (e.g., voltage and clock monitoring).",
+            "control_objective": "To prevent attackers from inferring secrets or inducing miscalculations by observing the physical properties of the hardware."
+          },
+          {
+            "control": "[C.3.5][HS-3] - Source hardware components from reputable manufacturers and implement a secure supply chain process to mitigate the risk of hardware Trojans or other malicious modifications.",
+            "control_objective": "To ensure the integrity and trustworthiness of the underlying hardware foundation of the AI system."
+          },
+          {
+            "control": "[C.3.5][HS-4] - Enforce physical security measures for AI hardware, including tamper-detection mechanisms that can trigger alerts or erase sensitive data if the device is compromised.",
+            "control_objective": "To protect against unauthorized physical access, which is often a prerequisite for advanced hardware-level attacks."
+          }
+        ]
+      },
+      {
         "risk": "Inadequate AI System architcture Protection Measures",
         "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
         "controls": [
@@ -308,6 +504,116 @@
     "objective": "Secure training of AI systems.",
     "risks": 
     [
+      {
+        "risk": "[C.3.4] - Data Quality and Inherent Bias",
+        "question": "Will the AI system be trained on historical data that may contain inaccuracies, imbalances, or reflect societal biases, potentially leading to unfair or incorrect outcomes?",
+        "controls": [
+          {
+            "control": "[C.3.4][DQ-1] - Implement rigorous data governance, cleaning, and validation processes to ensure training data is accurate, complete, and representative of the deployment environment.",
+            "control_objective": "To minimize model errors and biases stemming from flawed or unrepresentative input data."
+          },
+          {
+            "control": "[C.3.4][DQ-2] - Conduct fairness and bias audits on datasets and model outputs across different demographic groups to identify and measure performance disparities.",
+            "control_objective": "To proactively detect and quantify potential discriminatory impacts of the AI system before and after deployment."
+          },
+          {
+            "control": "[C.3.4][DQ-3] - Apply bias mitigation techniques during data pre-processing or model training, such as data re-sampling, re-weighting, or algorithmic adjustments, to correct for identified biases.",
+            "control_objective": "To enhance fairness and promote equitable outcomes for all affected user groups."
+          },
+          {
+            "control": "[C.3.4][DQ-4] - Involve domain experts to review data features and ensure they do not inadvertently encode sensitive attributes or perpetuate historical biases.",
+            "control_objective": "To ensure the data used by the model is appropriate and aligned with fairness principles."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.4] - Flawed Training Process and Overfitting",
+        "question": "Is there a risk that the AI model will perform well on training data but fail in real-world scenarios because it has memorized noise instead of learning generalizable patterns?",
+        "controls": [
+          {
+            "control": "[C.3.4][TP-1] - Use extensive validation techniques, such as cross-validation and testing on out-of-sample stress scenarios, that go beyond simple train/test splits.",
+            "control_objective": "To accurately assess the model's ability to generalize to new, unseen data and perform robustly under a range of conditions."
+          },
+          {
+            "control": "[C.3.4][TP-2] - Conduct 'red team' exercises where an internal team deliberately tries to find edge cases, vulnerabilities, and scenarios where the model fails.",
+            "control_objective": "To proactively discover and address model weaknesses and blind spots before deployment."
+          },
+          {
+            "control": "[C.3.4][TP-3] - Ensure the model's training objective function is closely aligned with the actual business and operational goals to prevent the optimization of spurious or meaningless correlations.",
+            "control_objective": "To ensure the model learns useful patterns that are relevant to its intended purpose and real-world application."
+          },
+          {
+            "control": "[C.3.4][TP-4] - Employ robust model architectures and regularization techniques known to improve generalization and prevent overfitting.",
+            "control_objective": "To build more stable and reliable models that are less sensitive to statistical noise in the training data."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.4] - Vulnerability to Adversarial Evasion Attacks",
+        "question": "Could an adversary intentionally craft inputs to deceive the AI system at the time of prediction, causing it to make a wrong and potentially dangerous decision?",
+        "controls": [
+          {
+            "control": "[C.3.4][AA-1] - Incorporate adversarial training by exposing the model to crafted adversarial examples during the training phase to improve its resilience.",
+            "control_objective": "To build model robustness and make it less susceptible to slight, malicious perturbations in its input."
+          },
+          {
+            "control": "[C.3.4][AA-2] - Implement input sanitization and validation filters to detect and flag or reject inputs that exhibit characteristics of known adversarial patterns.",
+            "control_objective": "To create a first line of defense by identifying and blocking malicious inputs before they can be processed by the model."
+          },
+          {
+            "control": "[C.3.4][AA-3] - For critical systems, design fail-safe mechanisms that trigger a safe mode or alert a human operator when the model's prediction confidence is low or an input is anomalous.",
+            "control_objective": "To ensure system safety and prevent harmful outcomes even if an adversarial attack is successful or suspected."
+          },
+          {
+            "control": "[C.3.4][AA-4] - Conduct physical and digital security testing to simulate adversarial attacks under realistic conditions (e.g., testing vision systems with altered signs or objects).",
+            "control_objective": "To understand and mitigate the real-world vulnerabilities of the deployed AI system to adversarial manipulation."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.4] - Susceptibility to Data Poisoning Attacks",
+        "question": "Could an attacker maliciously influence the data used to train or retrain the AI system, deliberately teaching it to behave incorrectly or to create a backdoor?",
+        "controls": [
+          {
+            "control": "[C.3.4][DP-1] - Establish strong data provenance and validation controls to verify the source and integrity of all data used for model training and retraining.",
+            "control_objective": "To prevent unauthorized or corrupt data from being introduced into the model development pipeline."
+          },
+          {
+            "control": "[C.3.4][DP-2] - For systems that learn continuously from new data, implement anomaly detection on the incoming data stream to flag and isolate suspicious data points before they are used for training.",
+            "control_objective": "To protect online learning systems from real-time manipulation and poisoning attacks."
+          },
+          {
+            "control": "[C.3.4][DP-3] - Treat the training dataset as a critical information asset with strict access controls, versioning, and security measures to prevent unauthorized modification.",
+            "control_objective": "To secure the training pipeline at its source and maintain the integrity of the ground-truth data."
+          },
+          {
+            "control": "[C.3.4][DP-4] - Utilize poisoning-resistant or robust training algorithms that are specifically designed to be less influenced by a small fraction of malicious data points.",
+            "control_objective": "To reduce the impact of potential data poisoning attempts on the final model's integrity and behavior."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.4] - Performance Degradation due to Concept Drift",
+        "question": "Will the AI system operate in a dynamic environment where the statistical properties of the data can change over time, potentially causing the model's accuracy to degrade silently?",
+        "controls": [
+          {
+            "control": "[C.3.4][CD-1] - Implement a continuous MLOps monitoring system to track key model performance metrics (e.g., accuracy, error rate, prediction latency) in real-time post-deployment.",
+            "control_objective": "To provide immediate visibility into the model's effectiveness and detect performance degradation as it happens."
+          },
+          {
+            "control": "[C.3.4][CD-2] - Employ automated drift detection algorithms to compare the statistical distribution of live input data against the training data, with alerts triggered by significant divergence.",
+            "control_objective": "To proactively identify when the real-world environment has changed, indicating that the model may no longer be valid."
+          },
+          {
+            "control": "[C.3.4][CD-3] - Establish a formal process for periodic model retraining on more recent and relevant data, triggered either by detected drift, performance degradation, or a set schedule.",
+            "control_objective": "To ensure the AI model remains up-to-date and accurately reflects the current state of the operating environment."
+          },
+          {
+            "control": "[C.3.4][CD-4] - Maintain comprehensive version control for both models and datasets (MLOps) to enable traceability, reproducibility, and the ability to roll back to a previous model version if needed.",
+            "control_objective": "To manage the model lifecycle effectively and ensure operational stability and accountability."
+          }
+        ]
+      }
       {
         "risk": "Inadequate Data & Privacy Protection Measures",
         "question": "Will this AI system process personal, confidential, or sensitive business data?",
@@ -527,6 +833,42 @@
     "risks": 
     [
       {
+        "risk": "[C.3.6] - Mismanaged AI System Deployment and Transition",
+        "question": "Is the plan to deploy the AI system a 'big bang' launch without sufficient user training, a pilot phase, or a clear transition plan from the legacy system?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-4] - Develop and deliver comprehensive training programs for all users and operators on the AI system's capabilities, limitations, and proper operational procedures before deployment.",
+            "control_objective": "To minimize misuse, build user trust, and ensure the AI system is operated correctly and effectively."
+          },
+          {
+            "control": "[C.3.6][BP-5] - Implement a phased rollout or pilot program in a controlled environment to identify and resolve unforeseen issues before a full-scale, system-wide launch.",
+            "control_objective": "To reduce the risk of widespread disruption and failure by validating system performance in a live but limited setting."
+          },
+          {
+            "control": "[C.3.6][BP-6] - Establish a clear transition plan that includes running the new AI system in parallel with any legacy system to verify outputs and ensure a smooth handover without creating an operational gap.",
+            "control_objective": "To guarantee operational continuity and validate the new AI system's performance against established benchmarks before decommissioning the previous system."
+          }
+        ]
+      },
+      {
+        "risk": "[C.3.6] - Inadequate Post-Deployment Maintenance and Monitoring",
+        "question": "Once the AI system is live, is there a risk it will be treated with a 'set and forget' mentality, without a dedicated team or process for continuous performance monitoring and regular maintenance?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-7] - Assign clear ownership for the deployed AI system and implement a continuous monitoring framework with predefined KPIs (e.g., for accuracy, data drift, fairness) and automated alerts to detect performance degradation.",
+            "control_objective": "To ensure proactive oversight and rapid detection of issues, preventing the AI system from making flawed decisions over extended periods."
+          },
+          {
+            "control": "[C.3.6][BP-8] - Establish a formal maintenance schedule for the AI system, including periodic model retraining with new data, recalibration, and updates to adapt to changing operational environments.",
+            "control_objective": "To prevent model obsolescence and ensure the AI system remains accurate, relevant, and effective throughout its operational life."
+          },
+          {
+            "control": "[C.3.6][BP-9] - Implement a formal feedback loop for users to easily report issues, anomalies, or incorrect outputs, and ensure this feedback is systematically reviewed and used to improve the system.",
+            "control_objective": "To leverage end-user experience as a critical source for identifying subtle performance issues and driving continuous improvement."
+          }
+        ]
+      },
+      {
         "risk": "Insufficient Scalability Management",
         "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
         "controls": [
@@ -541,16 +883,20 @@
         ]
       },
       {
-        "risk": "Ineffective Change Management Practice",
-        "question": "Will this system evolve over time, and do you have a plan for tracking and approving changes?",
+        "risk": "[C.3.6] - Poor Management of AI System Evolution and Updates",
+        "question": "When the AI system is updated (e.g., retrained model, new features), are there formal processes for testing, documenting, and deploying these changes, including a plan to roll back if the update causes problems?",
         "controls": [
           {
-            "control": "CM[1] -  Implement a structured change management process for AI infrastructure and integrate it with existing organisational change management practices.",
-            "control_objective": "To ensure that all changes to the AI infrastructure are systematically reviewed, approved, and documented, thereby maintaining the stability, security, and performance of AI systems within the organisation."
+            "control": "[C.3.6][BP-10] - Enforce a strict change management process for all AI system updates, requiring thorough testing (e.g., A/B testing, shadow mode), impact analysis, and a documented rollback plan before deployment.",
+            "control_objective": "To prevent system degradation caused by faulty updates and ensure that changes improve, rather than harm, system performance and reliability."
           },
           {
-            "control": "CM[2] -  Enforce controls over all modifications to the AI infrastructure through technical change management measures.",
-            "control_objective": "To ensure that all changes to the AI infrastructure are properly managed, tested, and validated to prevent the introduction of vulnerabilities or disruptions, thereby ensuring the reliability and security of AI systems."
+            "control": "[C.3.6][BP-11] - Maintain comprehensive and up-to-date documentation for the AI system, including design rationale, model parameters, data sources, and a version history of all changes made.",
+            "control_objective": "To ensure knowledge continuity, facilitate troubleshooting, and support consistent and informed management of the AI system over time."
+          },
+          {
+            "control": "[C.3.6][BP-12] - Implement version control for all components of the AI system, including data, code, and models, to ensure traceability and the ability to rapidly revert to a previously stable version in case of an incident.",
+            "control_objective": "To provide a safety net against failed updates and enable quick recovery of system functionality."
           }
         ]
       },
@@ -765,7 +1111,25 @@
             "control_objective": "Tighten access and deployment controls."
           }
         ]
-      }
+      },
+      {
+        "risk": "[C.3.6] - Unsafe Decommissioning of AI Systems",
+        "question": "When this AI system is eventually retired, is there a formal plan to handle its data and models securely and to manage the transition to a replacement system without creating operational gaps?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-13] - Establish a formal decommissioning plan that specifies procedures for the secure archiving or certified destruction of the AI model and all associated data, in compliance with data retention policies and privacy regulations.",
+            "control_objective": "To prevent data breaches and the misuse of sensitive information or obsolete models after the system is retired."
+          },
+          {
+            "control": "[C.3.6][BP-14] - Ensure a managed transition when replacing an AI system by maintaining operational continuity, potentially through a period of overlap with the new system, to prevent any gaps in critical functionality.",
+            "control_objective": "To avoid creating vulnerabilities or disruptions to business processes during the transition from an old AI system to its replacement."
+          },
+          {
+            "control": "[C.3.6][BP-15] - Have an incident response plan for AI-related failures, including procedures for safe shutdown, reversion to manual processes, and clear communication to stakeholders.",
+            "control_objective": "To minimize harm and operational disruption when an AI incident occurs and ensure a structured recovery process."
+          }
+        ]
+      }    
     ]
   },
   {
@@ -885,26 +1249,6 @@
           {
             "control": "[Accountability][Tech-2] Implement automated version control and lineage tracking for AI models, data, and code.",
             "control_objective": "Provide clear traceability for AI system outputs and errors to specific development iterations and contributors."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "principle": "Human Oversight",
-    "objective": "Design workflows that require human intervention for high-risk decisions and provide clear interfaces for interaction.",
-    "risks": [
-      {
-        "risk": "[Human Oversight] - Lack of Appropriate Human Intervention in AI",
-        "question": "Are individuals relying on this system protected by meaningful human oversight, especially in high-impact or error-prone scenarios?",
-        "controls": [
-          {
-            "control": "[Human Oversight][Tech-1] Implement \"human-in-the-loop\" mechanisms for high-risk AI decisions or anomalous behavior.",
-            "control_objective": "Ensure appropriate human involvement and intervention, especially for critical or uncertain AI system outputs."
-          },
-          {
-            "control": "[Human Oversight][Tech-2] Implement automated alerts and monitoring dashboards for AI system performance and deviation detection.",
-            "control_objective": "Proactively identify unexpected AI system behavior or performance degradation requiring human attention."
           }
         ]
       }
