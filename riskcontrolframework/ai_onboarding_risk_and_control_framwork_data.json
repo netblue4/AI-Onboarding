@@ -499,10 +499,32 @@
     ]
   },
   {
-    "principle": "AI Lifecycle Phase - Trainig",
+    "principle": "AI Lifecycle Phase - Training",
     "objective": "Secure training of AI systems.",
     "risks": 
     [
+      {
+        "risk": "Amplification of Biases",
+        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "controls": [
+          {
+            "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
+            "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
+          },
+          {
+            "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
+            "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
+          },
+          {
+            "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
+            "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
+          },
+          {
+            "control": "LDD[4] -  Include data from different geographic and demographic regions.",
+            "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
+          }
+        ]
+      },
       {
         "risk": "[C.3.4] - Data Quality and Inherent Bias",
         "question": "Will the AI system be trained on historical data that may contain inaccuracies, imbalances, or reflect societal biases, potentially leading to unfair or incorrect outcomes?",
@@ -1190,52 +1212,158 @@
         ]
       },
       {
-        "risk": "[Fairness] - Algorithmic Bias Leading to Unfair Outcomes",
-        "question": "Could the AI system produce unequal outcomes or treatment across demographic groups? Are any groups at greater risk of harm or exclusion?",
+        "risk": "[ISO42001-5.4-Fairness] - Biased AI Outcomes and Unfair Decisions",
+        "question": "Does the organization actively assess and mitigate potential biases in its AI system to prevent unfair outcomes for different groups?",
         "controls": [
           {
-            "control": "[Fairness][Tech-1] Implement automated bias detection and mitigation tools during AI model development and testing.",
-            "control_objective": "Ensure consistent and equitable AI model performance across relevant demographic groups by identifying and correcting biases."
+            "control": "[ISO42001-5.4-Fairness][Par-1][1] - Regularly review and audit training data, model assumptions, and decision thresholds for potential sources of bias.",
+            "control_objective": "To proactively identify and understand biases embedded within the AI system's lifecycle."
           },
           {
-            "control": "[Fairness][Tech-2] Implement continuous monitoring systems for AI model outputs in production environments to detect and alert on emergent biases.",
-            "control_objective": "Proactively identify and address new or changing biases in deployed AI systems to maintain fair outcomes."
+            "control": "[ISO42001-5.4-Fairness][Par-2][2] - Implement and apply bias mitigation techniques, such as data rebalancing or re-sampling, when biases are detected.",
+            "control_objective": "To actively correct and reduce the impact of identified biases on the AI system's outputs, promoting equitable outcomes."
           }
         ]
       },
       {
-        "risk": "Amplification of Biases",
-        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "risk": "[ISO42001-5.4-Accountability] - Lack of Clear Responsibility for AI System Behavior",
+        "question": "Has the organization established clear roles and responsibilities for the governance, monitoring, and remediation of the AI system's actions and their consequences?",
         "controls": [
           {
-            "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
-            "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
+            "control": "[ISO42001-5.4-Accountability][Par-1][1] - Define and document clear lines of responsibility and ownership for the AI system's behavior and outcomes.",
+            "control_objective": "To ensure there is always a designated person or team accountable for the system's performance and impact."
           },
           {
-            "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
-            "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
+            "control": "[ISO42001-5.4-Accountability][Par-2][2] - Assign specific teams or roles to continuously monitor the AI system's outputs for performance and adverse events.",
+            "control_objective": "To enable prompt detection of and response to unintended or harmful system behavior."
           },
           {
-            "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
-            "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
-          },
-          {
-            "control": "LDD[4] -  Include data from different geographic and demographic regions.",
-            "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
+            "control": "[ISO42001-5.4-Accountability][Par-3][3] - Establish a formal process for addressing grievances and implementing corrective actions in response to adverse system events.",
+            "control_objective": "To provide effective recourse for impacted individuals and ensure timely remediation of system failures."
           }
         ]
       },
       {
-        "risk": "[Accountability] - Undefined Ownership and Responsibility for AI",
-        "question": "If the system makes an error or causes harm, will affected individuals know who is responsible, and will there be a clear process for redress?",
+        "risk": "[ISO42001-5.4-Transparency] - Opaque or Unexplainable AI Decisions",
+        "question": "Can the organization clearly explain how the AI system generates its outputs and communicate this in an understandable way to impacted stakeholders?",
         "controls": [
           {
-            "control": "[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
-            "control_objective": "Clearly assign ownership and responsibility for AI system outputs, decisions, and errors by restricting access based on roles."
+            "control": "[ISO42001-5.4-Transparency][Par-1][1] - Develop a communication strategy to clearly convey system processes and outputs to impacted stakeholders.",
+            "control_objective": "To ensure that information about the AI system's operations and decisions is accessible and understandable."
           },
           {
-            "control": "[Accountability][Tech-2] Implement automated version control and lineage tracking for AI models, data, and code.",
-            "control_objective": "Provide clear traceability for AI system outputs and errors to specific development iterations and contributors."
+            "control": "[ISO42001-5.4-Transparency][Par-2][2] - Implement explainable AI (XAI) techniques to provide understandable reasons and logic for the system's decisions.",
+            "control_objective": "To demystify the AI's decision-making process and build user trust and confidence."
+          },
+          {
+            "control": "[ISO42001-5.4-Transparency][Par-3][3] - Create channels for stakeholders to provide constructive feedback based on the explanations provided.",
+            "control_objective": "To leverage transparency as a tool for fostering trust and gathering valuable input for system improvement."
+          }
+        ]
+      },
+      {
+        "risk": "[ISO42001-5.4-Security-and-Privacy] - Compromise of AI Systems and Sensitive Data",
+        "question": "Has the organization implemented sufficient security and privacy measures to protect the AI system and the data it processes from unauthorized access, cyberattacks, and data breaches?",
+        "controls": [
+          {
+            "control": "[ISO42001-5.4-Security-and-Privacy][Par-1][1] - Implement robust defensive measures, including encryption, access controls, and continuous monitoring, to protect the AI system.",
+            "control_objective": "To prevent unauthorized access, tampering, and data breaches targeting the AI system and its components."
+          },
+          {
+            "control": "[ISO42001-5.4-Security-and-Privacy][Par-2][2] - Establish and enforce clear policies for the responsible handling and governance of personal data processed by the AI system.",
+            "control_objective": "To ensure that all personal data is managed responsibly, ethically, and in compliance with relevant regulations."
+          },
+          {
+            "control": "[ISO42001-5.4-Security-and-Privacy][Par-3][3] - Integrate privacy-by-design and privacy-by-default principles into the AI system's entire lifecycle.",
+            "control_objective": "To proactively embed privacy protections into the system architecture, minimizing privacy risks from the outset."
+          }
+        ]
+      },
+      {
+        "risk": "[ISO42001-5.4-SafetyAndHealth] - Physical or Psychological Harm to Individuals",
+        "question": "Has the organization assessed and mitigated the potential for the AI system to cause physical or psychological harm to users or other stakeholders?",
+        "controls": [
+          {
+            "control": "[ISO42001-5.4-SafetyAndHealth][Par-1][1] - Conduct comprehensive safety and health impact assessments prior to and during the AI system's deployment.",
+            "control_objective": "To proactively identify, evaluate, and document potential physical and psychological risks associated with the AI system."
+          },
+          {
+            "control": "[ISO42001-5.4-SafetyAndHealth][Par-2][2] - Implement robust safety protocols, fail-safes, and human oversight mechanisms, especially for AI-driven machinery or physical systems.",
+            "control_objective": "To prevent accidents and physical injury by ensuring the system can be safely controlled or shut down."
+          },
+          {
+            "control": "[ISO42001-5.4-SafetyAndHealth][Par-3][3] - Design AI decision-making processes to be fair and transparent, providing clear recourse mechanisms for outcomes that cause user distress.",
+            "control_objective": "To minimize the risk of psychological harm resulting from perceived unfairness, bias, or lack of control."
+          },
+          {
+            "control": "[ISO42001-5.4-SafetyAndHealth][Par-4][4] - Establish an incident response plan to address and learn from any safety or health-related events caused by the AI system.",
+            "control_objective": "To ensure timely mitigation of harm and continuous improvement of the system's safety features."
+          }
+        ]
+      },
+      {
+        "risk": "[ISO42001-5.4-FinancialConsequences] - Adverse Financial Consequences for Stakeholders",
+        "question": "Does the organization evaluate and manage the potential for the AI system to cause economic loss or unfair financial outcomes for individuals or itself?",
+        "controls": [
+          {
+            "control": "[ISO42001-5.4-FinancialConsequences][Par-1][1] - Perform a thorough financial impact analysis to model potential economic losses or gains for all affected stakeholders.",
+            "control_objective": "To understand and quantify the potential financial ramifications of the AI system's decisions and operations."
+          },
+          {
+            "control": "[ISO42001-5.4-FinancialConsequences][Par-2][2] - Regularly audit AI models used in financial decision-making (e.g., credit scoring, fraud detection) for accuracy, bias, and fairness.",
+            "control_objective": "To prevent discriminatory or erroneous financial harm and ensure equitable outcomes for individuals."
+          },
+          {
+            "control": "[ISO42001-5.4-FinancialConsequences][Par-3][3] - Implement and validate the accuracy of financial AI systems to minimize both false positives and false negatives that could lead to financial loss.",
+            "control_objective": "To ensure the system functions reliably without causing undue financial disruption or barring access to services."
+          },
+          {
+            "control": "[ISO42001-5.4-FinancialConsequences][Par-4][4] - Establish a clear and accessible process for individuals to appeal, seek redress, and receive correction for adverse financial decisions made by the AI system.",
+            "control_objective": "To provide a remedy for financial harm, correct system errors, and build stakeholder trust."
+          }
+        ]
+      },
+      {
+        "risk": "[ISO42001-5.4-Accessibility] - Exclusion of Individuals with Disabilities",
+        "question": "Is the AI system designed and developed to be accessible and usable by people with a wide range of abilities?",
+        "controls": [
+          {
+            "control": "[ISO42001-5.4-Accessibility][Par-1][1] - Integrate universal design principles and recognized accessibility standards (e.g., WCAG) into the AI system's design and development lifecycle.",
+            "control_objective": "To ensure usability for people with diverse abilities is a foundational requirement, not an afterthought."
+          },
+          {
+            "control": "[ISO42001-5.4-Accessibility][Par-2][2] - Implement specific accessibility features, such as adaptable user interfaces, alternative text, voice-assisted inputs, and compatibility with assistive technologies.",
+            "control_objective": "To provide an equitable and effective user experience for individuals with visual, auditory, motor, or cognitive impairments."
+          },
+          {
+            "control": "[ISO42001-5.4-Accessibility][Par-3][3] - Conduct regular accessibility testing with users who have disabilities to validate that features are effective and meet real-world needs.",
+            "control_objective": "To identify and remediate accessibility barriers based on direct user feedback and experience."
+          },
+          {
+            "control": "[ISO42001-5.4-Accessibility][Par-4][4] - Provide a clear, accessible channel for users to report accessibility issues and receive timely support.",
+            "control_objective": "To facilitate continuous improvement of the system's accessibility based on ongoing user engagement."
+          }
+        ]
+      },
+      {
+        "risk": "[ISO42001-5.4-HumanRights] - Infringement on Fundamental Human Rights",
+        "question": "Has the organization assessed and mitigated the risks that the AI system could infringe upon fundamental human rights, such as freedom of expression or freedom from discrimination?",
+        "controls": [
+          {
+            "control": "[ISO42001-5.4-HumanRights][Par-1][1] - Conduct a dedicated Human Rights Impact Assessment (HRIA) to identify and address potential adverse impacts on rights like privacy, non-discrimination, and freedom of expression.",
+            "control_objective": "To ensure the organization's duty to respect human rights is systematically embedded in the AI system's lifecycle."
+          },
+          {
+            "control": "[ISO42001-5.4-HumanRights][Par-2][2] - Implement technical and policy-based safeguards to prevent the AI system from enabling censorship, promoting systemic discrimination, or unduly restricting access to information.",
+            "control_objective": "To actively protect fundamental freedoms in the system's design and operation."
+          },
+          {
+            "control": "[ISO42001-5.4-HumanRights][Par-3][3] - Define and enforce an acceptable use policy that explicitly prohibits deploying the AI system in scenarios that are known to infringe on human rights.",
+            "control_objective": "To prevent intentional or unintentional misuse of the technology and ensure its ethical deployment."
+          },
+          {
+            "control": "[ISO42001-5.4-HumanRights][Par-4][4] - Establish an independent ethics oversight function or committee to review high-risk AI applications for human rights implications and provide governance.",
+            "control_objective": "To ensure accountability and provide an impartial forum for adjudicating complex human rights trade-offs."
           }
         ]
       }
