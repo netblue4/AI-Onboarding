@@ -612,7 +612,7 @@
             "control_objective": "To manage the model lifecycle effectively and ensure operational stability and accountability."
           }
         ]
-      }
+      },
       {
         "risk": "Inadequate Data & Privacy Protection Measures",
         "question": "Will this AI system process personal, confidential, or sensitive business data?",
