@@ -47,49 +47,49 @@
                 "FieldName": "(9.3) - Responsible AI Objectives Use - Performance and Fairness Monitoring",
                 "FieldLabel": "Performance Monitoring",
                 "FieldText": "To continuously monitor the AI system's performance and fairness in the live environment to promptly detect and address model drift or emergent biases.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.9.3 – Objectives for responsible use of AI system",
                 "FieldName": "(9.3) - Responsible AI Objectives Use - Human Oversight",
                 "FieldLabel": "Human Oversight",
                 "FieldText": "To ensure that all required human oversight and intervention procedures are consistently followed for AI-generated decisions, especially in high-risk scenarios.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.9.3 – Objectives for responsible use of AI system",
                 "FieldName": "(9.3) - Responsible AI Objectives Use - Adherence to Intended Use",
                 "FieldLabel": "Intended Use Adherence",
                 "FieldText": "To ensure the AI system is used strictly within its defined and approved scope, and to prevent its application in unauthorized or unintended contexts.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.9.3 – Objectives for responsible use of AI system",
                 "FieldName": "(9.3) - Responsible AI Objectives Use - Incident Management",
                 "FieldLabel": "Incident Management",
                 "FieldText": "To establish and maintain a responsive process for identifying, reporting, and remediating incidents or adverse outcomes resulting from the AI system's operation.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.9.3 – Objectives for responsible use of AI system",
                 "FieldName": "(9.3) - Responsible AI Objectives Use - Operational Transparency",
                 "FieldLabel": "Operational Transparency",
                 "FieldText": "To provide clear and timely communication to users and affected stakeholders about the AI system's presence, capabilities, and limitations during its operation.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.9.3 – Objectives for responsible use of AI system",
                 "FieldName": "(9.3) - Responsible AI Objectives Use - Data Management",
                 "FieldLabel": "Operational Data Management",
                 "FieldText": "To apply data protection and privacy principles to all data processed by the AI system in the production environment, in line with legal and policy requirements.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.9.3 – Objectives for responsible use of AI system",
                 "FieldName": "(9.3) - Responsible AI Objectives Use - System Maintenance",
                 "FieldLabel": "System Maintenance",
                 "FieldText": "To maintain the AI system through regular updates, security patches, and performance reviews, and to manage its eventual decommissioning responsibly.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             }
         ]
     },
@@ -850,63 +850,63 @@
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Human-Centric",
                 "FieldLabel": "Human-Centric",
                 "FieldText": "To design the AI system to support, assist, and augment human capabilities and decision-making processes, prioritizing human well-being and agency.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.6.1.2 – Objectives for responsible development of AI system",
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Transparency and Explainability",
                 "FieldLabel": "Transparency & Explainability",
                 "FieldText": "To ensure the AI system provides clear, understandable information about its purpose, processes, and decisions to all relevant stakeholders.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.6.1.2 – Objectives for responsible development of AI system",
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Human Oversight",
                 "FieldLabel": "Human Oversight",
                 "FieldText": "To implement meaningful human oversight mechanisms that allow for monitoring system performance, reviewing high-risk decisions, and intervening effectively when necessary.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.6.1.2 – Objectives for responsible development of AI system",
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Fairness and Non-discrimination",
                 "FieldLabel": "Fairness & Non-discrimination",
                 "FieldText": "To identify, assess, and mitigate biases in data and models throughout the AI lifecycle to prevent discriminatory or unjust outcomes for individuals or groups.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.6.1.2 – Objectives for responsible development of AI system",
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Accountability",
                 "FieldLabel": "Accountability",
                 "FieldText": "To establish a clear governance structure with defined roles and responsibilities for the AI system's outcomes, including accessible mechanisms for redress and remediation.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.6.1.2 – Objectives for responsible development of AI system",
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Safety and Robustness",
                 "FieldLabel": "Safety & Robustness",
                 "FieldText": "To ensure the AI system is resilient, operates reliably and safely under a variety of conditions, and minimizes the risk of unintended harm or failure.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.6.1.2 – Objectives for responsible development of AI system",
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Security",
                 "FieldLabel": "Security",
                 "FieldText": "To implement comprehensive security measures to protect the AI system, its models, and its data from unauthorized access, manipulation, and adversarial attacks.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.6.1.2 – Objectives for responsible development of AI system",
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Privacy",
                 "FieldLabel": "Privacy",
                 "FieldText": "To incorporate privacy-preserving techniques into the AI system's design to protect personal data throughout its lifecycle and ensure compliance with data protection regulations.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
                 "Control": "A.6.1.2 – Objectives for responsible development of AI system",
                 "FieldName": "(A.6.1.2, A.6.2.3) - Responsible AI Objectives Development - Sustainability",
                 "FieldLabel": "Sustainability",
                 "FieldText": "To measure and minimize the environmental impact of the AI system by optimizing computational resources and energy consumption during its training and operation.",
-                "FieldType": "Label"
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             }              
         ]
     },
