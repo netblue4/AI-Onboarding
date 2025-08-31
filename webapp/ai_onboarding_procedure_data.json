@@ -1295,7 +1295,6 @@
       }   
         ]
     },
-
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
@@ -1352,6 +1351,7 @@
             "control": "[Job Preservation][Comms-2] Establish Employee Feedback and Consultation Channels. Actively involve employees and their representatives (e.g., work councils, unions) in the planning and implementation process to gather input and address concerns.",
             "control_objective": "To ensure the transition plan is practical, fair, and considers the on-the-ground realities of employees, thereby increasing buy-in."
           }
+        ]
             }
         ]
     },
