@@ -257,7 +257,7 @@
         "WebFormTitle": "Conduct a detialed AI System Risk Impact Assessment",
         "Fields": [
             {
-                "Control": "5.4 – Assessing AI system impact on individuals or groups of individuals"
+                "Control": "5.4 – Assessing AI system impact on individuals or groups of individuals",
                 "FieldName": "(A.5.2, A.5.3, A.5.4, A.5.5) - EU AI Act Art 15||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
                 "FieldQuestionGroup": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
                 "FieldLabel": "goto link",
