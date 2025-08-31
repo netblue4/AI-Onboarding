@@ -20,7 +20,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // These options are standard for this type of compliance form.
     const radioGroupContainer = document.createElement('div');
     radioGroupContainer.className = 'radio-group-container options-after-header';
-    const options = ['Compliant', 'Not Compliant', 'Not Applicable'];
+    const options = ['Applicable', 'Not Applicable'];
     const selectedValue = capturedData[field.risk] ?? null; // Use field.risk as the key
 
     options.forEach((optionText, index) => {
@@ -60,10 +60,10 @@ function createRisk(field, capturedData, sanitizeForId) {
     icon.textContent = '▶'; // Start in collapsed state
     headerDiv.appendChild(icon);
 
-    const riskLabel = document.createElement('label');
-    riskLabel.textContent = field.risk.trim(); // The main risk title
-    riskLabel.className = 'label-bold';
-    headerDiv.appendChild(riskLabel);
+    const questionLabel = document.createElement('label');
+    questionLabel.textContent = field.question.trim(); // The main risk title
+    questionLabel.className = 'label-bold';
+    headerDiv.appendChild(questionLabel);
 
     fieldDiv.appendChild(headerDiv);
 
@@ -75,10 +75,10 @@ function createRisk(field, capturedData, sanitizeForId) {
     contentDiv.className = 'collapsible-content collapsed';
 
     // Add the primary question inside the collapsible area
-    const questionLabel = document.createElement('label');
-    questionLabel.textContent = field.question;
-    questionLabel.className = 'label-bold question-label';
-    contentDiv.appendChild(questionLabel);
+    const riskLabel = document.createElement('label');
+    riskLabel.textContent = field.question;
+    riskLabel.className = 'label-bold question-label';
+    contentDiv.appendChild(riskLabel);
     
     // Add separator
     const separator = document.createElement('hr');
