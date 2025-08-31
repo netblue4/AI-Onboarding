@@ -953,34 +953,53 @@
         "WebFormTitle": "Document verification and validation measures for the AI system and specify criteria for their use.",
         "Fields": [
             {
-                "FieldName": "(A.6.2.4) - Human-Centric",
-                "FieldLabel": "Human-Centric Verification",
-                "FieldText": "Describe the verification and validation measures (e.g., user acceptance testing, efficiency metrics, user feedback surveys) and the specific criteria used to confirm the AI system effectively supports human capabilities and well-being.",
-                "FieldType": "TextBox"
+                "Control": "A.6.2.4 – AI system verification and validation",
+                "FieldName": "(6.2.4) - Performance and Fairness Monitoring V&V",
+                "FieldLabel": "Performance Monitoring Verification",
+                "FieldText": "Verify the implementation of monitoring tools and dashboards. Test the system's ability to detect simulated performance degradation (e.g., accuracy drop >5%) and fairness metric violations (e.g., disparate impact ratio <0.8). Confirm that automated alerts are configured and successfully trigger notifications to the designated personnel.",
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
-                "FieldName": "(A.6.2.4) - Transparency and Explainability",
-                "FieldLabel": "Transparency Verification",
-                "FieldText": "Detail the verification and validation methods (e.g., user testing of explanation features, review by subject matter experts) and criteria used to ensure system outputs are understandable and interpretable by the intended audience.",
-                "FieldType": "TextBox"
+                "Control": "A.6.2.4 – AI system verification and validation",
+                "FieldName": "(6.2.4) - Human Oversight V&V",
+                "FieldLabel": "Human Oversight Validation",
+                "FieldText": "Review and approve the documented human oversight procedures. Validate that the user interface provides the necessary information and controls for a human to intervene, override, or stop the system's process. Conduct user acceptance testing (UAT) with designated overseers to confirm they can effectively perform their roles.",
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
-                "FieldName": "(A.6.2.4) - Human Oversight",
-                "FieldLabel": "Human Oversight Verification",
-                "FieldText": "Describe the measures and criteria used to verify that the human oversight mechanisms are effective. This should include how you validate that reviewers have the necessary information and tools to intervene (e.g., via simulated scenarios, usability testing of oversight interfaces).",
-                "FieldType": "TextBox"
+                "Control": "A.6.2.4 – AI system verification and validation",
+                "FieldName": "(6.2.4) - Adherence to Intended Use V&V",
+                "FieldLabel": "Intended Use Adherence Verification",
+                "FieldText": "Verify that the 'Intended Use' documentation is clear, complete, and accessible to all users. Test any implemented technical controls (e.g., access restrictions, input validation) designed to prevent use outside the defined scope. Confirm user training materials explicitly cover approved use cases and limitations.",
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
-                "FieldName": "(A.6.2.4) - Fairness and Non-Discrimination",
-                "FieldLabel": "Fairness & Non-Discrimination Verification",
-                "FieldText": "Detail the specific metrics (e.g., demographic parity, equalized odds) and statistical tests used to verify fairness across demographic subgroups. Specify the acceptable performance thresholds and provide evidence from your validation dataset.",
-                "FieldType": "TextBox"
+                "Control": "A.6.2.4 – AI system verification and validation",
+                "FieldName": "(6.2.4) - Incident Management V&V",
+                "FieldLabel": "Incident Management Validation",
+                "FieldText": "Verify that an AI-specific incident management plan exists. Conduct a tabletop exercise or simulation of a critical AI failure (e.g., major bias detection, system outage). Validate that reporting channels, escalation paths, and response roles function as documented and meet defined SLAs.",
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             },
             {
-                "FieldName": "(A.6.2.4) - Accuracy, Robustness, and Cybersecurity",
-                "FieldLabel": "Accuracy, Robustness & Security Verification",
-                "FieldText": "Describe the measures for verifying system performance. Specify the metrics and acceptance criteria for: \n1. Accuracy (e.g., precision, recall on a test set). \n2. Robustness (e.g., performance on adversarial examples, stress tests). \n3. Cybersecurity (e.g., results of penetration testing, vulnerability scans).",
-                "FieldType": "TextBox"
+                "Control": "A.6.2.4 – AI system verification and validation",
+                "FieldName": "(6.2.4) - Operational Transparency V&V",
+                "FieldLabel": "Operational Transparency Validation",
+                "FieldText": "Validate that all user interfaces clearly disclose that an AI system is in use. Review system-generated notifications and explanations for clarity, accuracy, and completeness. Verify that mechanisms for users to access more detailed information or provide feedback are implemented as specified in the requirements.",
+                "FieldType": "Option box with values:Applicable/Not Applicable"
+            },
+            {
+                "Control": "A.6.2.4 – AI system verification and validation",
+                "FieldName": "(6.2.4) - Data Management V&V",
+                "FieldLabel": "Operational Data Management Verification",
+                "FieldText": "Verify that data handling processes align with the Data Privacy Impact Assessment (DPIA). Conduct penetration testing and vulnerability scans on data storage and transmission channels. Validate that data minimization techniques (e.g., anonymization) are correctly implemented and that data retention policies are automatically enforced.",
+                "FieldType": "Option box with values:Applicable/Not Applicable"
+            },
+            {
+                "Control": "A.6.2.4 – AI system verification and validation",
+                "FieldName": "(6.2.4) - System Maintenance V&V",
+                "FieldLabel": "System Maintenance Plan Verification",
+                "FieldText": "Verify the existence of a comprehensive system maintenance plan, including schedules for performance reviews and security patching. Validate the documented procedure for model retraining and redeployment. Review and approve the decommissioning plan to ensure it addresses data archival/deletion and stakeholder communication.",
+                "FieldType": "Option box with values:Applicable/Not Applicable"
             }
         ]
     },
