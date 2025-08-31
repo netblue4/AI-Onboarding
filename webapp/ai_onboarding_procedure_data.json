@@ -254,35 +254,35 @@
             }
         ]
     },
-    "AI System Significance Questionnaire": {
-        "WebFormTitle": "Determine the AI System Significance",
+    "High-Risk AI Systems Questionnaire": {
+        "WebFormTitle": "Determine the AI System is High-Risk according to the AI Act.",
         "Fields": [
             {
-                "FieldName": "AI System Significance - Data Sensitivity & Privacy - Process, store, or interpret any sensitive data",
+                "FieldName": "High-Risk AI System: Data Sensitivity & Privacy - Process, store, or interpret any sensitive data",
                 "FieldLabel": "Process, store, or interpret any sensitive data",
                 "FieldText": "Will the AI system process, store, or interpret any sensitive data (e.g., personal health information (PHI), personally identifiable information (PII) beyond basic contact details, financial data, biometric data, protected class information, classified data)?",
                 "FieldType": "Option box with values:Yes/No"
             },
             {
-                "FieldName": "AI System Significance: Data Sensitivity & Privacy - Output directly or indirectly lead to decisions or actions that impact an individual's privacy rights",
+                "FieldName": "High-Risk AI System: Data Sensitivity & Privacy - Output directly or indirectly lead to decisions or actions that impact an individual's privacy rights",
                 "FieldLabel": "Individual's privacy rights",
                 "FieldText": "Will the AI system's output directly or indirectly lead to decisions or actions that impact an individual's privacy rights (e.g., surveillance, profiling for targeted advertising, monitoring of online behavior)?",
                 "FieldType": "Option box with values:Yes/No"
             },
             {
-                "FieldName": "AI System Significance - Critical Business Function & Impact - Calculations, make decisions, or provide recommendations that support a critical business function",
+                "FieldName": "High-Risk AI System: Critical Business Function & Impact - Calculations, make decisions, or provide recommendations that support a critical business function",
                 "FieldLabel": "Critical business function",
                 "FieldText": "Will the AI system perform calculations, make decisions, or provide recommendations that support a critical business function (e.g., fraud detection, credit scoring, medical diagnosis, infrastructure management, legal compliance, safety-critical operations)?",
                 "FieldType": "Option box with values:Yes/No"
             },
             {
-                "FieldName": "AI System Significance - Critical Business Function & Impact - Failure, error, or bias negitively impact organiation or individual",
+                "FieldName": "High-Risk AI System: Critical Business Function & Impact - Failure, error, or bias negitively impact organiation or individual",
                 "FieldLabel": "Risk exposure",
                 "FieldText": "Could a failure, error, or bias in the AI system's operation lead to significant financial loss, reputational damage, legal/regulatory penalties, or harm to individuals (e.g., physical harm, denial of services, unfair treatment)?",
                 "FieldType": "Option box with values:Yes/No"
             },
             {
-                "FieldName": "AI System Significance: AI system is Significant",
+                "FieldName": "High-Risk AI System: AI system is High-Risk",
                 "FieldLabel": "AI system is Significant",
                 "FieldText": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
                 "DecisionFieldType": "Option box with values:/Yes=\"Conduct a detialed AI System Risk Impact Assessment.\"/No=\"Conduct a AI System Risk Category Impact Assessment.\""
@@ -302,6 +302,14 @@
             }
         ]
     },
+    
+    "AI Act - Section 2: Requirements for High-Risk AI Systems": {
+        "WebFormTitle": "Define the security requirements for - High-Risk AI Systems.",
+        "Fields": [
+
+        ]
+    },
+    
     "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
         "WebFormTitle": "Define the security requirements for - Design and Development.",
         "Fields": [
@@ -341,29 +349,11 @@
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
             {
-                "Control": "5.4 – Assessing AI system impact on individuals or groups of individuals",
-                "FieldName": "(A.5.2, A.5.3, A.5.4, A.5.5) - EU AI Act Art 15||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
-                "FieldQuestionGroup": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
-                "FieldLabel": "goto link",
-                "FieldText": "https://netblue4.github.io/AI-Onboarding/riskcontrolframework/Risk_Control_Framework_Browser.html",
-                "FieldType": "Option box with values:Applicable/Not Applicable"
+
             }
         ]
     },
     
-    "(A.5.3) Detailed AI System Risk Impact Assessment": {
-        "WebFormTitle": "Conduct a detialed AI System Risk Impact Assessment",
-        "Fields": [
-            {
-                "Control": "5.4 – Assessing AI system impact on individuals or groups of individuals",
-                "FieldName": "(A.5.2, A.5.3, A.5.4, A.5.5) - EU AI Act Art 15||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
-                "FieldQuestionGroup": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
-                "FieldLabel": "goto link",
-                "FieldText": "https://netblue4.github.io/AI-Onboarding/riskcontrolframework/Risk_Control_Framework_Browser.html",
-                "FieldType": "Option box with values:Applicable/Not Applicable"
-            }
-        ]
-    },
     "(A.4.2) AI Systems Resources": {
         "WebFormTitle": "Define the complete inventory of all required resources.",
         "Fields": [
