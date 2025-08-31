@@ -177,7 +177,7 @@
                     const stepData = webappData[currentStepKey];
 
                     if (stepData && stepData.Fields) {
-                        capturedData[currentStepKey] = currentStepKey;
+                        capturedData[currentStepKey] = "Step: " & currentStepKey;
                         stepData.Fields.forEach(field => {
                             if (!field || !field.FieldName || field.FieldType === 'Auto generated number') return;
                             const sanitizedId = sanitizeForId(field.FieldName);
@@ -186,10 +186,10 @@
                                 if (inputElement.type === 'radio') {
                                      const checkedRadio = document.querySelector(`input[name="${sanitizedId}"]:checked`);
                                      if(checkedRadio) {
-                                         capturedData[field.FieldName] = checkedRadio.value;
+                                         capturedData[field.FieldName] = " - " & checkedRadio.value;
                                      }
                                 } else {
-                                    capturedData[field.FieldName] = inputElement.value;
+                                    capturedData[field.FieldName] = " - " & inputElement.value;
                                 }
                             }
                         });
