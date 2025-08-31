@@ -24,23 +24,24 @@ function createRisk(field, capturedData, sanitizeForId) {
     const selectedValue = capturedData[field.risk] ?? null; // Use field.risk as the key
 
     options.forEach((optionText, index) => {
+        const trimmedOption = optionText.trim();
         const optionId = `${sanitizedId}-${index}`;
 
         const radioInput = document.createElement('input');
         radioInput.type = 'radio';
         radioInput.id = sanitizedId; // Use unique ID for the input
         radioInput.name = sanitizedId; // Group buttons by the sanitized risk name
-        radioInput.value = optionText;
+        radioInput.value = trimmedOption;
         radioInput.required = true;
 
         // Pre-select the radio button if there's saved data
-        if (optionText === String(selectedValue).trim()) {
+        if (trimmedOption === String(selectedValue).trim()) {
             radioInput.checked = true;
         }
 
         const radioLabel = document.createElement('label');
         radioLabel.setAttribute('for', optionId);
-        radioLabel.textContent = optionText;
+        radioLabel.textContent = trimmedOption;
 
         const wrapper = document.createElement('div');
         wrapper.className = 'radio-option';
