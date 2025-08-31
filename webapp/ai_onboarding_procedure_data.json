@@ -200,54 +200,6 @@
             }
         ]
     },
-    "High-Risk AI Systems Questionnaire": {
-        "WebFormTitle": "Determine the AI System is High-Risk according to the AI Act.",
-        "Fields": [
-            {
-                "FieldName": "Process, store, or interpret any sensitive data",
-                "FieldLabel": "Process, store, or interpret any sensitive data",
-                "FieldText": "Will the AI system process, store, or interpret any sensitive data (e.g., personal health information (PHI), personally identifiable information (PII) beyond basic contact details, financial data, biometric data, protected class information, classified data)?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Output directly or indirectly lead to decisions or actions that impact an individual's privacy rights",
-                "FieldLabel": "Individual's privacy rights",
-                "FieldText": "Will the AI system's output directly or indirectly lead to decisions or actions that impact an individual's privacy rights (e.g., surveillance, profiling for targeted advertising, monitoring of online behavior)?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Calculations, make decisions, or provide recommendations that support a critical business function",
-                "FieldLabel": "Critical business function",
-                "FieldText": "Will the AI system perform calculations, make decisions, or provide recommendations that support a critical business function (e.g., fraud detection, credit scoring, medical diagnosis, infrastructure management, legal compliance, safety-critical operations)?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Failure, error, or bias negitively impact organiation or individual",
-                "FieldLabel": "Risk exposure",
-                "FieldText": "Could a failure, error, or bias in the AI system's operation lead to significant financial loss, reputational damage, legal/regulatory penalties, or harm to individuals (e.g., physical harm, denial of services, unfair treatment)?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "AI system is High-Risk",
-                "FieldLabel": "AI system is Significant",
-                "FieldText": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
-                "DecisionFieldType": "Option box with values:/Yes=\"Conduct a detialed AI System Risk Impact Assessment.\"/No=\"Conduct a AI System Risk Category Impact Assessment.\""
-            }
-        ]
-    },
-    "Decidion point": {
-        "WebFormTitle": "Define the AI system's Significance",
-        "Fields": [                        
-            {
-                "FieldName": "AI System Significance: AI system is Significant",
-                "FieldLabel": "FieldName = the field to interigate to determine the decision branch.",
-                "FieldText": "An AI system is considered 'Significant' and requires a more detailed risk assessment if:\n- Any single question in Section 1 (Data Sensitivity & Privacy) or Section 2 (Critical Business Function & Impact) is answered 'Yes'.\n- Three or more questions across all sections (excluding Section 1 and 2 if they triggered significance) are answered 'Yes'.\nIf the AI system is determined to be 'Significant', proceed with the detailed risk assessment. Otherwise, it can proceed with standard operational reviews.",
-                "FieldType": "Decision",
-                "YesTarget": "Conduct a detialed AI System Risk Impact Assessments",
-                "NoTarget": "Conduct a AI System Risk Category Impact Assessment"           
-            }
-        ]
-    },
     "AI Act - Section 2: Requirements for High-Risk AI Systems": {
         "WebFormTitle": "Define the security requirements for - High-Risk AI Systems.",
         "Fields": [
@@ -442,35 +394,905 @@
     "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
         "WebFormTitle": "Define the security requirements for - Design and Development.",
         "Fields": [
-
+          {
+            "FieldType": "risk",
+            "FieldName": "[C.3.6] - Flawed AI System Design and Development",
+            "question": "Was the AI system's design phase rushed, lacking input from diverse experts (like ethics, security, domain specialists), or was its testing limited to clean, non-real-world data?",
+            "controls": [
+              {
+                "control": "[C.3.6][BP-1] - Conduct comprehensive risk assessments, including Failure Modes and Effects Analysis (FMEA), during the initial design phase to identify and mitigate potential AI-specific failures, ethical biases, and security vulnerabilities.",
+                "control_objective": "To proactively embed safety, security, and fairness into the AI system's core architecture from the outset."
+              },
+              {
+                "control": "[C.3.6][BP-2] - Establish a cross-functional design and review team, including domain experts, ethicists, security specialists, and end-users, to ensure requirements are complete and potential impacts are understood from multiple perspectives.",
+                "control_objective": "To prevent design oversights and ensure the AI system is aligned with real-world contexts, ethical norms, and user needs."
+              },
+              {
+                "control": "[C.3.6][BP-3] - Implement a multi-stage testing and validation plan that uses real-world data, includes adversarial and integration testing, and verifies the AI's performance within the complete operational system.",
+                "control_objective": "To ensure the AI system is robust, reliable, and performs as expected when interacting with other systems and real-world data complexity."
+              }
+            ]
+          },
+          {
+            "FieldType": "risk",
+            "FieldName": "[C.3.5] - Hardware Failure and Performance Degradation",
+            "question": "Does the AI system rely on physical hardware like sensors, processors, or actuators that could fail suddenly, wear out, or degrade over time, leading to inaccurate data or faulty execution of decisions?",
+            "controls": [
+              {
+                "control": "[C.3.5][HF-1] - Implement redundancy for critical hardware components, such as using multiple sensors, error-correcting code (ECC) memory, and redundant processors.",
+                "control_objective": "To ensure continuous and reliable operation by allowing the system to tolerate the failure of a single component."
+              },
+              {
+                "control": "[C.3.5][HF-2] - Establish a preventive maintenance and calibration schedule for hardware components that are prone to aging, drift, or wear-and-tear.",
+                "control_objective": "To proactively mitigate performance degradation and prevent failures by maintaining hardware within its operational specifications."
+              },
+              {
+                "control": "[C.3.5][HF-3] - Design the system to 'fail safe' or 'fail gracefully' in the event of a hardware malfunction, such as having an autonomous vehicle slow to a stop if a critical sensor fails.",
+                "control_objective": "To minimize harm and maintain a safe state when the AI system can no longer operate as intended due to hardware issues."
+              },
+              {
+                "control": "[C.3.5][HF-4] - Utilize diverse sensing modalities (e.g., fusing camera, LIDAR, and radar data) and cross-validate their inputs to detect anomalies or failures in a single sensor.",
+                "control_objective": "To create a more robust and complete perception of the environment that is not reliant on a single point of hardware failure."
+              }
+            ]
+          },
+          {
+            "FieldType": "risk",
+            "FieldName": "[C.3.5] - Infrastructure, Power, and Connectivity Failures",
+            "question": "Is the AI system's continuous operation dependent on external infrastructure, such as a stable power supply, network connectivity, or cloud services, that could experience outages?",
+            "controls": [
+              {
+                "control": "[C.3.5][IP-1] - Implement redundant power sources, such as uninterruptible power supplies (UPS) or backup batteries, for critical AI systems.",
+                "control_objective": "To ensure operational continuity during power outages and allow for graceful shutdowns."
+              },
+              {
+                "control": "[C.3.5][IP-2] - For distributed or cloud-dependent AI systems, design for network resiliency with redundant connectivity paths or the ability to function in a degraded state during network outages.",
+                "control_objective": "To minimize disruption and maintain core functionality when network infrastructure fails."
+              },
+              {
+                "control": "[C.3.5][IP-3] - Implement comprehensive logging and alerting for hardware and infrastructure-related events, such as power fluctuations, network dropouts, or high temperatures.",
+                "control_objective": "To enable rapid detection of and response to infrastructure issues that could impact AI system performance or availability."
+              }
+            ]
+          },
+          {
+            "FieldType": "risk",
+            "FieldName": "[C.3.5] - Model Incompatibility and Performance Shifts During Hardware Transfer",
+            "question": "Will the AI model be developed on one type of hardware (e.g., high-end lab GPUs) and then deployed on different, potentially less powerful or specialized hardware (e.g., an embedded AI chip)?",
+            "controls": [
+              {
+                "control": "[C.3.5][MT-1] - Conduct thorough validation and regression testing of the AI model on the exact target hardware platform before final deployment.",
+                "control_objective": "To verify that the model's performance, accuracy, and behavior remain acceptable after being ported to new hardware."
+              },
+              {
+                "control": "[C.3.5][MT-2] - When using model optimization techniques like quantization (e.g., converting from 32-bit to 8-bit precision), rigorously measure the impact on accuracy and test for new failure modes.",
+                "control_objective": "To ensure that efficiency gains from model optimization do not unacceptably compromise the model's reliability and correctness."
+              },
+              {
+                "control": "[C.3.5][MT-3] - Utilize hardware-aware training techniques (e.g., quantization-aware training) that simulate the constraints of the target hardware during the model development phase.",
+                "control_objective": "To proactively build models that are robust to the numerical precision and computational limitations of their deployment environment."
+              }
+            ]
+          },
+          {
+            "FieldType": "risk",
+            "FieldName": "[C.3.5] - Exploitation of Hardware Security Vulnerabilities",
+            "question": "Could an attacker with physical or proximate access to the AI system's hardware exploit it through side-channels, fault injection, or supply chain tampering to steal the model or cause it to malfunction?",
+            "controls": [
+              {
+                "control": "[C.3.5][HS-1] - Employ hardware security hardening techniques such as using secure enclaves or Trusted Platform Modules (TPMs) to protect sensitive model parameters and cryptographic keys.",
+                "control_objective": "To create a trusted execution environment that isolates critical AI computations from potential software or hardware-level attacks."
+              },
+              {
+                "control": "[C.3.5][HS-2] - Implement countermeasures against side-channel attacks (e.g., electromagnetic shielding, power consumption noise) and fault injection attacks (e.g., voltage and clock monitoring).",
+                "control_objective": "To prevent attackers from inferring secrets or inducing miscalculations by observing the physical properties of the hardware."
+              },
+              {
+                "control": "[C.3.5][HS-3] - Source hardware components from reputable manufacturers and implement a secure supply chain process to mitigate the risk of hardware Trojans or other malicious modifications.",
+                "control_objective": "To ensure the integrity and trustworthiness of the underlying hardware foundation of the AI system."
+              },
+              {
+                "control": "[C.3.5][HS-4] - Enforce physical security measures for AI hardware, including tamper-detection mechanisms that can trigger alerts or erase sensitive data if the device is compromised.",
+                "control_objective": "To protect against unauthorized physical access, which is often a prerequisite for advanced hardware-level attacks."
+              }
+            ]
+          },
+          {
+            "FieldType": "risk",
+            "FieldName": "Inadequate AI System architcture Protection Measures",
+            "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
+            "controls": [
+              {
+                "control": "SATP.02 Create a Data Flow Diagram to visualise the AI system architecture profile, including:\na) System boundaries\nb) External entities that interact with the system\nc) Trust levels of these entities\nd) Data entry and exit points\ne) Internal components and their interaction with other components\nf) Where sensitive data is stored or processed\ng) The types of data the system handles",
+                "control_objective": "To map out and understand the flow of data within the AI system architectures, identifying potential security risks."
+              },
+              {
+                "control": "SATP.04 Incorporate mechanisms into the AI system architecture profile to protect the confidentiality of sensitive data, such as encryption, ACLs, secure data storage, and secure data transmission protocols.",
+                "control_objective": "To ensure the confidentiality of sensitive data within system architectures."
+              },
+              {
+                "control": "SATP.05 Incorporate mechanisms into the AI system architecture profile to protect the integrity of sensitive data, including hashing, referential integrity design, resource locking, and code signing.",
+                "control_objective": "To maintain the integrity of sensitive data within system architectures."
+              },
+              {
+                "control": "SATP.06 Incorporate mechanisms into the AI system architecture profile to ensure the availability of the system, including replication, failover, and scalability.",
+                "control_objective": "To maintain the availability of the system under various conditions and loads."
+              },
+              {
+                "control": "SATP.07 Incorporate mechanisms into the AI system architecture profile to authenticate the identity of users or entities, including passwords, smart cards, and biometric traits.",
+                "control_objective": "To authenticate users or entities reliably before granting access to the system."
+              },
+              {
+                "control": "SATP.08 Incorporate mechanisms into the AI system architecture profile to authorise granular level access to system resources, including RBAC, ABAC, MAC, MFA, and TBAC.",
+                "control_objective": "To control and restrict access to system resources based on roles, attributes, and other factors."
+              },
+              {
+                "control": "SATP.09 Incorporate mechanisms into the AI system architecture profile to enforce non-repudiation and record user actions and events, such as audit trails, authentication and authorisation logs, change management logs, DAM, and network traffic monitoring.",
+                "control_objective": "To ensure accountability and traceability of actions and events within the system."
+              },
+              {
+                "control": "SATP.10 Define the availability and performance-related requirements, such as recovery time and point objectives, and ensure these are met by the system architecture.",
+                "control_objective": "To establish and meet specific availability and performance targets for the system."
+              },
+              {
+                "control": "SATP.11 Establish key performance indicators (KPIs) and metrics to measure the effectiveness of the profile protection controls within the DevSecOps process.",
+                "control_objective": "To evaluate and enhance the effectiveness of system architecture protection controls."
+              },
+              {
+                "control": "SATP.12 Periodically review and update th AI system architecture profiles to adapt to new technologies, threats, and changes in the organisation's infrastructure.",
+                "control_objective": "To ensure that system architecture profiles remain relevant and effective in a dynamic technological and threat landscape."
+              },
+              {
+                "control": "SATP.13 Develop training modules for DevSecOps teams on the application and implications of AI system architecture profiles, focusing on how to utilise them effectively in their workflows.",
+                "control_objective": "To educate DevSecOps teams on the importance and application of system architecture profiles."
+              },
+              {
+                "control": "SATP.14 Document AI System architectural threat profile mapping criteria to map system changes to the most appropriate System architecture profile.",
+                "control_objective": "To standardise the process of mapping system changes to the relevant architecture profiles for consistent risk assessment."
+              },
+              {
+                "control": "ASVS-V1.2 Incorporate mechanisms into the AI system architecture profile to protect the Authentication Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the authentication processes and components."
+              },
+              {
+                "control": "ASVS-V1.4 Incorporate mechanisms into the AI system architecture profile to protect the Access Control Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the access control processes and components."
+              },
+              {
+                "control": "ASVS-V1.5 Incorporate mechanisms into the AI system architecture profile to protect the Input and Output Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the input and output processes and components."
+              },
+              {
+                "control": "ASVS-V1.6 Incorporate mechanisms into the AI system architecture profile to protect the Cryptographic Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the cryptographic processes and components."
+              },
+              {
+                "control": "ASVS-V1.7 Incorporate mechanisms into the AI system architecture profile to protect the Errors, Logging and Auditing Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to error handling, logging, and auditing."
+              },
+              {
+                "control": "ASVS-V1.8 Incorporate mechanisms into the AI system architecture profile to protect the Data Protection and Privacy Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to data protection and privacy."
+              },
+              {
+                "control": "ASVS-V1.9 Incorporate mechanisms into the AI system architecture profile to protect the Communications Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to communication."
+              },
+              {
+                "control": "ASVS-V1.10 Incorporate mechanisms into the AI system architecture profile to protect the Malicious Software Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard against malicious software."
+              },
+              {
+                "control": "ASVS-V1.11 Incorporate mechanisms into the AI system architecture profile to protect the Business Logic Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the business logic processes and components."
+              },
+              {
+                "control": "ASVS-V1.12 Incorporate mechanisms into the AI system architecture profile to protect the Secure File Upload Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to secure file uploads."
+              },
+              {
+                "control": "ASVS-V1.14 Incorporate mechanisms into the AI system architecture profile to protect the Configuration Architecture",
+                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the configuration processes and components."
+              }
+            ]
+          },
+          {
+            "FieldType": "risk",
+            "FieldName": "Insecure AI Pipeline Infrastructure",
+            "question": "Does the process of developing, testing, or deploying this AI system rely on infrastructure you’re unsure is secure?",
+            "controls": [
+              {
+                "control": "PI[1] -  Establish a secure AI pipeline data feed process",
+                "control_objective": "To facilitate transparency and accountability into the AI pipeline data processing activities."
+              },
+              {
+                "control": "PI[2] -  Protect the AI pipeline infrastructure",
+                "control_objective": "To ensure that the AI pipeline operates smoothly and securely, preventing disruptions and unauthorised data exposure."
+              }
+            ]
+          }
         ]
     },
 
     "(6.2.1) AI Lifecycle Phase requirements - Training": {
         "WebFormTitle": "Define the security requirements for - Training.",
         "Fields": [
-
+      {
+        "FieldType": "risk",
+        "FieldName": "Amplification of Biases",
+        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "controls": [
+          {
+            "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
+            "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
+          },
+          {
+            "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
+            "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
+          },
+          {
+            "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
+            "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
+          },
+          {
+            "control": "LDD[4] -  Include data from different geographic and demographic regions.",
+            "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.4] - Data Quality and Inherent Bias",
+        "question": "Will the AI system be trained on historical data that may contain inaccuracies, imbalances, or reflect societal biases, potentially leading to unfair or incorrect outcomes?",
+        "controls": [
+          {
+            "control": "[C.3.4][DQ-1] - Implement rigorous data governance, cleaning, and validation processes to ensure training data is accurate, complete, and representative of the deployment environment.",
+            "control_objective": "To minimize model errors and biases stemming from flawed or unrepresentative input data."
+          },
+          {
+            "control": "[C.3.4][DQ-2] - Conduct fairness and bias audits on datasets and model outputs across different demographic groups to identify and measure performance disparities.",
+            "control_objective": "To proactively detect and quantify potential discriminatory impacts of the AI system before and after deployment."
+          },
+          {
+            "control": "[C.3.4][DQ-3] - Apply bias mitigation techniques during data pre-processing or model training, such as data re-sampling, re-weighting, or algorithmic adjustments, to correct for identified biases.",
+            "control_objective": "To enhance fairness and promote equitable outcomes for all affected user groups."
+          },
+          {
+            "control": "[C.3.4][DQ-4] - Involve domain experts to review data features and ensure they do not inadvertently encode sensitive attributes or perpetuate historical biases.",
+            "control_objective": "To ensure the data used by the model is appropriate and aligned with fairness principles."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.4] - Flawed Training Process and Overfitting",
+        "question": "Is there a risk that the AI model will perform well on training data but fail in real-world scenarios because it has memorized noise instead of learning generalizable patterns?",
+        "controls": [
+          {
+            "control": "[C.3.4][TP-1] - Use extensive validation techniques, such as cross-validation and testing on out-of-sample stress scenarios, that go beyond simple train/test splits.",
+            "control_objective": "To accurately assess the model's ability to generalize to new, unseen data and perform robustly under a range of conditions."
+          },
+          {
+            "control": "[C.3.4][TP-2] - Conduct 'red team' exercises where an internal team deliberately tries to find edge cases, vulnerabilities, and scenarios where the model fails.",
+            "control_objective": "To proactively discover and address model weaknesses and blind spots before deployment."
+          },
+          {
+            "control": "[C.3.4][TP-3] - Ensure the model's training objective function is closely aligned with the actual business and operational goals to prevent the optimization of spurious or meaningless correlations.",
+            "control_objective": "To ensure the model learns useful patterns that are relevant to its intended purpose and real-world application."
+          },
+          {
+            "control": "[C.3.4][TP-4] - Employ robust model architectures and regularization techniques known to improve generalization and prevent overfitting.",
+            "control_objective": "To build more stable and reliable models that are less sensitive to statistical noise in the training data."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.4] - Vulnerability to Adversarial Evasion Attacks",
+        "question": "Could an adversary intentionally craft inputs to deceive the AI system at the time of prediction, causing it to make a wrong and potentially dangerous decision?",
+        "controls": [
+          {
+            "control": "[C.3.4][AA-1] - Incorporate adversarial training by exposing the model to crafted adversarial examples during the training phase to improve its resilience.",
+            "control_objective": "To build model robustness and make it less susceptible to slight, malicious perturbations in its input."
+          },
+          {
+            "control": "[C.3.4][AA-2] - Implement input sanitization and validation filters to detect and flag or reject inputs that exhibit characteristics of known adversarial patterns.",
+            "control_objective": "To create a first line of defense by identifying and blocking malicious inputs before they can be processed by the model."
+          },
+          {
+            "control": "[C.3.4][AA-3] - For critical systems, design fail-safe mechanisms that trigger a safe mode or alert a human operator when the model's prediction confidence is low or an input is anomalous.",
+            "control_objective": "To ensure system safety and prevent harmful outcomes even if an adversarial attack is successful or suspected."
+          },
+          {
+            "control": "[C.3.4][AA-4] - Conduct physical and digital security testing to simulate adversarial attacks under realistic conditions (e.g., testing vision systems with altered signs or objects).",
+            "control_objective": "To understand and mitigate the real-world vulnerabilities of the deployed AI system to adversarial manipulation."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.4] - Susceptibility to Data Poisoning Attacks",
+        "question": "Could an attacker maliciously influence the data used to train or retrain the AI system, deliberately teaching it to behave incorrectly or to create a backdoor?",
+        "controls": [
+          {
+            "control": "[C.3.4][DP-1] - Establish strong data provenance and validation controls to verify the source and integrity of all data used for model training and retraining.",
+            "control_objective": "To prevent unauthorized or corrupt data from being introduced into the model development pipeline."
+          },
+          {
+            "control": "[C.3.4][DP-2] - For systems that learn continuously from new data, implement anomaly detection on the incoming data stream to flag and isolate suspicious data points before they are used for training.",
+            "control_objective": "To protect online learning systems from real-time manipulation and poisoning attacks."
+          },
+          {
+            "control": "[C.3.4][DP-3] - Treat the training dataset as a critical information asset with strict access controls, versioning, and security measures to prevent unauthorized modification.",
+            "control_objective": "To secure the training pipeline at its source and maintain the integrity of the ground-truth data."
+          },
+          {
+            "control": "[C.3.4][DP-4] - Utilize poisoning-resistant or robust training algorithms that are specifically designed to be less influenced by a small fraction of malicious data points.",
+            "control_objective": "To reduce the impact of potential data poisoning attempts on the final model's integrity and behavior."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.4] - Performance Degradation due to Concept Drift",
+        "question": "Will the AI system operate in a dynamic environment where the statistical properties of the data can change over time, potentially causing the model's accuracy to degrade silently?",
+        "controls": [
+          {
+            "control": "[C.3.4][CD-1] - Implement a continuous MLOps monitoring system to track key model performance metrics (e.g., accuracy, error rate, prediction latency) in real-time post-deployment.",
+            "control_objective": "To provide immediate visibility into the model's effectiveness and detect performance degradation as it happens."
+          },
+          {
+            "control": "[C.3.4][CD-2] - Employ automated drift detection algorithms to compare the statistical distribution of live input data against the training data, with alerts triggered by significant divergence.",
+            "control_objective": "To proactively identify when the real-world environment has changed, indicating that the model may no longer be valid."
+          },
+          {
+            "control": "[C.3.4][CD-3] - Establish a formal process for periodic model retraining on more recent and relevant data, triggered either by detected drift, performance degradation, or a set schedule.",
+            "control_objective": "To ensure the AI model remains up-to-date and accurately reflects the current state of the operating environment."
+          },
+          {
+            "control": "[C.3.4][CD-4] - Maintain comprehensive version control for both models and datasets (MLOps) to enable traceability, reproducibility, and the ability to roll back to a previous model version if needed.",
+            "control_objective": "To manage the model lifecycle effectively and ensure operational stability and accountability."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Inadequate Data & Privacy Protection Measures",
+        "question": "Will this AI system process personal, confidential, or sensitive business data?",
+        "controls": [
+          {
+            "control": "PPM[1] -  Implement data anonymization and pseudonymization techniques during the pre-processing stage to remove or obfuscate personally identifiable information (PII) and sensitive data from proprietary datasets used for fine-tuning.",
+            "control_objective": "To protect the privacy of individuals by reducing the risk of re-identification and unauthorised access to sensitive personal data within the training datasets."
+          },
+          {
+            "control": "PPM[2] -  Establish data privacy policies and guidelines that define the criteria and methods for anonymization and pseudonymization, ensuring consistent and effective privacy protection across the organisation's datasets.",
+            "control_objective": "To provide a standardised framework for privacy reduction techniques, ensuring compliance with data protection regulations and ethical standards."
+          },
+          {
+            "control": "PPM[3] -  Conduct regular privacy impact assessments and audits to identify and address any potential privacy risks or vulnerabilities introduced during data collection, processing, or fine-tuning.",
+            "control_objective": "To continuously monitor and improve the effectiveness of privacy reduction measures, ensuring that the AI model is trained on data that adheres to privacy regulations and ethical standards."
+          },
+          {
+            "control": "DRP.01 Establish data risk profiles to better understand the specific security and privacy risks associated with the types of data managed by the organisation, such as:\na) Confidentiality rating 1, 2, and 3\nb) Integrity rating 1, 2, and 3\nc) Availability rating 1, 2, and 3",
+            "control_objective": "To categorise data based on its security and privacy risks to ensure appropriate protection measures."
+          },
+          {
+            "control": "DRP.02 Perform an IT risk assessment on each data risk profile, and assign proportionate data protection measures to it.",
+            "control_objective": "To evaluate and apply appropriate data protection strategies for each risk profile."
+          },
+          {
+            "control": "DRP.03 Define the legal and regulatory compliance requirements relevant to each data risk profile, considering regulations such as GDPR and HIPAA.",
+            "control_objective": "To ensure compliance with legal and regulatory standards for each type of data."
+          },
+          {
+            "control": "DRP.04 Define requirements relating to the incident breach notification responsibilities for each data risk profile.",
+            "control_objective": "To establish clear breach notification protocols for different types of data breaches."
+          },
+          {
+            "control": "DRP.05 Document Data risk profile mapping criteria to facilitate the consistent and correct mapping of software change to the most appropriate Data risk profile.",
+            "control_objective": "To establish clear criteria for accurately mapping system changes to relevant data risk profiles."
+          },
+          {
+            "control": "DRP.06 Periodically review and update data risk profiles to reflect changes in data types, emerging threats, and evolving regulatory requirements.",
+            "control_objective": "To Ensure that data risk profiles remain relevant and effective in the face of evolving data types, threats, and regulatory changes."
+          },
+          {
+            "control": "DRP.07 Develop training modules for DevSecOps teams on the application and implications of Data risk profiles, focusing on how to utilise them effectively in their workflows.",
+            "control_objective": "To educate DevSecOps teams on the importance and application of Data risk profiles."
+          },
+          {
+            "control": "DRP.08 Involve relevant stakeholders, such as legal, compliance, and data privacy teams, in the creation and refinement of data risk profiles to ensure comprehensive coverage of all risk aspects.",
+            "control_objective": "To develop well-rounded and comprehensive data risk profiles through multi-disciplinary collaboration."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Uncontrolled Synthetic Data Usage",
+        "question": "Will synthetic (artificially generated) data be used in training or testing without clear documentation or controls?",
+        "controls": [
+          {
+            "control": "SD[1] -  Establish guidelines and criteria for data augmentation, including acceptable techniques, quality standards, and validation processes.",
+            "control_objective": "To ensure that data augmentation is performed consistently and effectively, while maintaining the integrity and relevance of the generated or augmented data."
+          },
+          {
+            "control": "SD[2] -  Maintain detailed records of all data augmentation or generation methods used, including parameters, algorithms, and the rationale behind their selection. Implement version control for these techniques to track changes and ensure reproducibility.",
+            "control_objective": "To ensure transparency, traceability, and auditability of data augmentation processes, allowing for the identification and correction of potential issues or biases introduced during augmentation."
+          },
+          {
+            "control": "SD[3] -  When generating synthetic data or augmenting existing data, employ privacy-preserving techniques (e.g., differential privacy, data masking) to protect sensitive information and ensure compliance with data protection regulations.",
+            "control_objective": "To safeguard the confidentiality and privacy of individuals while still allowing for the creation of diverse and representative training data."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Undetected Changes in Data Distribution",
+        "question": "Could shifts in customer behavior, market trends, or other inputs cause the AI to produce unexpected results over time?",
+        "controls": [
+          {
+            "control": "DD[1] -  Establish clear thresholds for data drift based on statistical measures (e.g., Kullback-Leibler divergence, Kolmogorov-Smirnov test) to determine when data changes are significant enough to warrant action.",
+            "control_objective": "To trigger alerts or initiate retraining procedures when data drift exceeds predefined thresholds, ensuring the model's accuracy remains reliable despite changes in data distribution."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "AI system hallucinations",
+        "question": "Will the AI generate content (text, images, etc.) that could be factually wrong but appear convincing?",
+        "controls": [
+          {
+            "control": "HA[1] -  Establish an AI system hallucination detection and mitigation process.",
+            "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for managing and mitigating AI system hallucinations, ensuring the accuracy and reliability of AI outputs."
+          },
+          {
+            "control": "HA[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations, ensuring the reliability and accuracy of AI outputs.",
+            "control_objective": "To deploy comprehensive technical controls that enable real-time detection, analysis, and correction of AI system hallucinations, maintaining the integrity and reliability of AI models."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Exposure of Sensitive Data Through Federated Learning",
+        "question": "Will the AI system collaborate or learn from external datasets without centralizing data (e.g., via federated learning)?",
+        "controls": [
+          {
+            "control": "FL[1] -  Ensure a secure federated learning process",
+            "control_objective": "To ensure the secure handling of distributed sensitive data used in federated learning"
+          }
+        ]
+      }
         ]
     },
 
     "(6.2.1) AI Lifecycle Phase requirements - Package": {
         "WebFormTitle": "Define the security requirements for - Package.",
         "Fields": [
-
+      {
+        "FieldType": "risk",
+        "FieldName": "Insecure AI component Packaging",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "controls": [
+          {
+            "control": "PROTE.01 Ensure masking and anonymisation of sensitive or confidential data.",
+            "control_objective": "To protect sensitive data from unauthorised exposure during the packaging process."
+          },
+          {
+            "control": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
+            "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries."
+          },
+          {
+            "control": "PROTE.03 Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
+            "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images."
+          },
+          {
+            "control": "PROTE.04 Enforce read/write access control for registries containing proprietary or sensitive container images.",
+            "control_objective": "To restrict unauthorised access and modifications to container images stored in registries."
+          },
+          {
+            "control": "PROTE.05 Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
+            "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster."
+          },
+          {
+            "control": "PROTE.06 Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
+            "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security."
+          },
+          {
+            "control": "PROTE.07 Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
+            "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs."
+          },
+          {
+            "control": "PROTE.08 Establish stringent trust mechanisms for orchestrator nodes, including\na) secure introduction to the cluster\nb) persistent node identity\nc) inventory of nodes and their connectivity states\nd) resilience to individual node compromise\ne) mutual authentication of network connections with end-to-end encryption of intracluster traffic.",
+            "control_objective": "To build a secure and resilient orchestrator environment with trusted nodes and secure communications."
+          },
+          {
+            "control": "PROTE.09 Implement mechanisms for identifying Common Vulnerabilities and Exposures (CVEs) in the runtimes deployed.",
+            "control_objective": "To promptly identify and address known vulnerabilities in deployed runtimes, enhancing system security."
+          },
+          {
+            "control": "PROTE.10 Implement robust controls at network borders for monitoring and regulating egress network traffic originating from containers.",
+            "control_objective": "To control and monitor the outbound network traffic from containers, enhancing network security."
+          },
+          {
+            "control": "PROTE.11 Develop mechanisms to automatically enforce compliance requirements and, where applicable, prevent the execution of noncompliant container images.",
+            "control_objective": "To ensure that only compliant container images are deployed, maintaining a secure and regulated environment."
+          },
+          {
+            "control": "PROTE.12 Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
+            "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments."
+          },
+          {
+            "control": "PROTE.13 Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
+            "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks."
+          },
+          {
+            "control": "PROTE.14 Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
+            "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data."
+          },
+          {
+            "control": "PROTE.15 Implement mechanisms for continuous updating, centralised reporting, and monitoring of image compliance to identify weaknesses and risks.",
+            "control_objective": "To maintain up-to-date compliance and security status of container images, enabling proactive risk management."
+          },
+          {
+            "control": "PROTE.16 Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
+            "control_objective": "To safeguard the environment from untrusted or potentially harmful container images."
+          },
+          {
+            "control": "PROTE.17 Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
+            "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads."
+          },
+          {
+            "control": "PROTE.18 Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
+            "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment."
+          },
+          {
+            "control": "PROTE.19 Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
+            "control_objective": "To ensure the secure operation of APIs"
+          },
+          {
+            "control": "PROTE.20 Images should be configured to run as non-privileged users.",
+            "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment."
+          },
+          {
+            "control": "PROTE.21 Secrets should be stored outside of images and provided dynamically at runtime as needed.",
+            "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images."
+          },
+          {
+            "control": "PROTE.22 Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
+            "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation."
+          },
+          {
+            "control": "PROTE.23 Utilise built-in security features of your containerisation platform.",
+            "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications."
+          },
+          {
+            "control": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
+            "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks."
+          }
+        ]
+      }
         ]
     },
 
     "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates": {
         "WebFormTitle": "Define the security requirements for - Deployment, Maintenance and Updates.",
         "Fields": [
-
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.6] - Mismanaged AI System Deployment and Transition",
+        "question": "Is the plan to deploy the AI system a 'big bang' launch without sufficient user training, a pilot phase, or a clear transition plan from the legacy system?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-4] - Develop and deliver comprehensive training programs for all users and operators on the AI system's capabilities, limitations, and proper operational procedures before deployment.",
+            "control_objective": "To minimize misuse, build user trust, and ensure the AI system is operated correctly and effectively."
+          },
+          {
+            "control": "[C.3.6][BP-5] - Implement a phased rollout or pilot program in a controlled environment to identify and resolve unforeseen issues before a full-scale, system-wide launch.",
+            "control_objective": "To reduce the risk of widespread disruption and failure by validating system performance in a live but limited setting."
+          },
+          {
+            "control": "[C.3.6][BP-6] - Establish a clear transition plan that includes running the new AI system in parallel with any legacy system to verify outputs and ensure a smooth handover without creating an operational gap.",
+            "control_objective": "To guarantee operational continuity and validate the new AI system's performance against established benchmarks before decommissioning the previous system."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.6] - Inadequate Post-Deployment Maintenance and Monitoring",
+        "question": "Once the AI system is live, is there a risk it will be treated with a 'set and forget' mentality, without a dedicated team or process for continuous performance monitoring and regular maintenance?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-7] - Assign clear ownership for the deployed AI system and implement a continuous monitoring framework with predefined KPIs (e.g., for accuracy, data drift, fairness) and automated alerts to detect performance degradation.",
+            "control_objective": "To ensure proactive oversight and rapid detection of issues, preventing the AI system from making flawed decisions over extended periods."
+          },
+          {
+            "control": "[C.3.6][BP-8] - Establish a formal maintenance schedule for the AI system, including periodic model retraining with new data, recalibration, and updates to adapt to changing operational environments.",
+            "control_objective": "To prevent model obsolescence and ensure the AI system remains accurate, relevant, and effective throughout its operational life."
+          },
+          {
+            "control": "[C.3.6][BP-9] - Implement a formal feedback loop for users to easily report issues, anomalies, or incorrect outputs, and ensure this feedback is systematically reviewed and used to improve the system.",
+            "control_objective": "To leverage end-user experience as a critical source for identifying subtle performance issues and driving continuous improvement."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Insufficient Scalability Management",
+        "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
+        "controls": [
+          {
+            "control": "SC[1] -  Develop and implement a structured scalability management process for AI infrastructure to ensure efficient handling of increasing workloads and data volumes.",
+            "control_objective": "To ensure that the AI infrastructure can scale effectively and efficiently, meeting the growing demands of the organisation while maintaining performance, stability, and security."
+          },
+          {
+            "control": "SC[2] -  Deploy comprehensive technical measures to ensure the AI infrastructure can scale seamlessly to accommodate varying workloads and future growth.",
+            "control_objective": "To guarantee that the AI infrastructure is equipped with the necessary technical capabilities to support scalability, ensuring uninterrupted performance and resource availability as demands increase."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.6] - Poor Management of AI System Evolution and Updates",
+        "question": "When the AI system is updated (e.g., retrained model, new features), are there formal processes for testing, documenting, and deploying these changes, including a plan to roll back if the update causes problems?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-10] - Enforce a strict change management process for all AI system updates, requiring thorough testing (e.g., A/B testing, shadow mode), impact analysis, and a documented rollback plan before deployment.",
+            "control_objective": "To prevent system degradation caused by faulty updates and ensure that changes improve, rather than harm, system performance and reliability."
+          },
+          {
+            "control": "[C.3.6][BP-11] - Maintain comprehensive and up-to-date documentation for the AI system, including design rationale, model parameters, data sources, and a version history of all changes made.",
+            "control_objective": "To ensure knowledge continuity, facilitate troubleshooting, and support consistent and informed management of the AI system over time."
+          },
+          {
+            "control": "[C.3.6][BP-12] - Implement version control for all components of the AI system, including data, code, and models, to ensure traceability and the ability to rapidly revert to a previously stable version in case of an incident.",
+            "control_objective": "To provide a safety net against failed updates and enable quick recovery of system functionality."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Inadequate Disaster Recovery and Business Continuity Planning",
+        "question": "What would happen to your business process if this AI system suddenly stopped working?",
+        "controls": [
+          {
+            "control": "BU[1] -  Establish a comprehensive disaster recovery and business continuity planning process to ensure preparedness and resilience in the face of disruptions to AI infrastructure.",
+            "control_objective": "To develop and implement administrative controls that ensure the organisation is prepared for and can effectively respond to disruptions, thereby maintaining the continuity of AI operations and minimising downtime."
+          },
+          {
+            "control": "BU[2] -  Implement technical measures to support disaster recovery and business continuity, ensuring the resilience and availability of AI infrastructure.",
+            "control_objective": "To deploy comprehensive technical controls that enable rapid recovery and continuity of AI operations in the event of a disruption, minimising data loss and operational downtime."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Insufficient Performance Monitoring and Analysis",
+        "question": "Will the AI’s outputs need to be continuously monitored to ensure they stay accurate and relevant?",
+        "controls": [
+          {
+            "control": "PER[1] -  Establish a structured performance monitoring and analysis process to ensure continuous oversight and optimization of AI infrastructure performance.",
+            "control_objective": "To implement robust administrative controls that define roles, responsibilities, and procedures for performance monitoring and analysis, ensuring that performance issues are identified and addressed proactively."
+          },
+          {
+            "control": "PER[2] -  Implement advanced technical measures to ensure continuous and effective performance monitoring and analysis of AI infrastructure.",
+            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance, enabling prompt detection and resolution of performance issues to maintain optimal operation."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Inadequate Security Monitoring and Threat Detection",
+        "question": "Do you need visibility into whether this AI system is under attack or being misused?",
+        "controls": [
+          {
+            "control": "STM[1] -  Establish a security monitoring and threat detection process to ensure continuous oversight and protection of AI infrastructure.",
+            "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for effective security monitoring and threat detection, ensuring proactive identification and mitigation of security threats."
+          },
+          {
+            "control": "STM[2] -  Implement advanced technical measures to ensure continuous and effective security monitoring and threat detection within AI infrastructure.",
+            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into security threats and enable prompt detection and response to ensure the protection and integrity of AI systems."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Ineffective Incident Management",
+        "question": "Do you have a process in place if the AI system causes an issue (e.g., incorrect output, outage, or data leak)?",
+        "controls": [
+          {
+            "control": "IM[1] -  Establish an incident management capability to ensure effective detection, response, and mitigation of AI-related incidents.",
+            "control_objective": "To establish incident management processes that define roles, responsibilities, and procedures for managing AI-related incidents, ensuring timely and effective response to maintain AI system integrity and security."
+          },
+          {
+            "control": "IM[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations and other incidents, ensuring the reliability and accuracy of AI outputs.",
+            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance and security, enabling prompt detection and resolution of incidents to maintain optimal operation."
+          }
+        ]
+      }
         ]
     },
 
     "(6.2.1) AI Lifecycle Phase requirements - Use and Decommissioning": {
         "WebFormTitle": "Define the security requirements for - Use and Decommissioning.",
         "Fields": [
-
+      {
+        "FieldType": "risk",
+        "FieldName": "Insufficient Audit Trails and Logging",
+        "question": "Will you need to track who accessed the AI system, what it did, and when — for accountability or regulatory purposes?",
+        "controls": [
+          {
+            "control": "AT[1] -  Record detailed logs of all data pre-processing activities, including data cleaning, normalisation, transformation, and any outlier removal or imputation techniques applied. Include timestamps, user IDs, and descriptions of actions taken.",
+            "control_objective": "To enable traceability and reconstruction of the entire data pre-processing workflow, providing a clear audit trail for identifying any issues or anomalies that may arise during this phase."
+          },
+          {
+            "control": "AT[2] -  Store logs in a secure and tamper-proof manner, ensuring their integrity and availability for future audits or investigations.",
+            "control_objective": "To ensure the availability of audit logs for a sufficient period to allow for thorough analysis and investigation of potential security or compliance issues. Protect logs from unauthorised modification or deletion to maintain their evidentiary value."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Insecure Data Sharing and Transfer",
+        "question": "Will this AI system exchange data across teams, systems, or external vendors that may not have the same security controls?",
+        "controls": [
+          {
+            "control": "DT[1] -  Implement secure data transfer protocols and encryption mechanisms for proprietary datasets during collection, storage, and fine-tuning processes.",
+            "control_objective": "To protect the confidentiality and integrity of sensitive data throughout its lifecycle, preventing unauthorised access or tampering during data sharing and transfer activities. [PR.DS-02]"
+          },
+          {
+            "control": "DT[2] -  Establish data sharing agreements and protocols with internal and external stakeholders involved in the data collection and fine-tuning processes.",
+            "control_objective": "To define clear guidelines, roles, and responsibilities for secure data sharing, ensuring compliance with data protection regulations and ethical standards. [GV.SC-02, GV.SC-05]"
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Inadequate User Training and Awareness",
+        "question": "Will non-technical users rely on this AI — and have they been trained on its limitations and correct usage?",
+        "controls": [
+          {
+            "control": "[Art-9][Par-5][5c] -  Provide comprehensive information and training to AI system users within the organisation, considering their technical knowledge, experience, and education.",
+            "control_objective": "To ensure safe and responsible use of the adopted AI system by equipping users with necessary knowledge and skills."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "LLM01 Prompt Injection",
+        "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
+        "controls": [
+          {
+            "control": "[LLM01][1] - All user inputs within the UI must be validated to prevent the injection of malicious code.",
+            "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system."
+          },
+          {
+            "control": "[LLM01][2] - Implement input sanitization techniques to remove harmful characters from user inputs.",
+            "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI."
+          },
+          {
+            "control": "[LLM01][4] - Encrypt all sensitive data transmitted through APIs.",
+            "control_objective": "Protect sensitive data from unauthorised interception or tampering during communication through APIs."
+          },
+          {
+            "control": "[LLM01][5] - Enforce privilege control on LLM access to backend systems.",
+            "control_objective": "To restrict the LLM to the minimum level of access necessary, mitigating the risk of prompt injection leading to unauthorised operations."
+          },
+          {
+            "control": "[LLM01][8] - Treat the LLM as an untrusted component, ensuring user oversight over decision-making processes.",
+            "control_objective": "To treat the LLM as an untrusted component, ensuring user oversight over decision-making processes."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "LLM02 Insecure Output Handling",
+        "question": "Will the AI output be used in other systems, documents, or communications without being verified first?",
+        "controls": [
+          {
+            "control": "[LLM02][1] - Ensure that sensitive or IP data is not exposed in AI system outputs.",
+            "control_objective": "To mitigate the risk of insecure output handling by treating LLM-generated outputs as potentially untrusted."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "LLM04 Model Denial of Service",
+        "question": "Could this AI system be overwhelmed or misused in a way that impacts availability?",
+        "controls": [
+          {
+            "control": "[LLM04][3] - Enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe.",
+            "control_objective": "To control the rate of requests and prevent overwhelming the LLM with a high volume of concurrent requests."
+          },
+          {
+            "control": "[LLM04][4] - Limit the number of queued actions and the number of total actions in a system reacting to LLM responses.",
+            "control_objective": "To prevent the accumulation of excessive workload and ensure that the system can effectively process LLM responses without becoming overwhelmed."
+          },
+          {
+            "control": "[LLM04][5] - Continuously monitor the resource utilisation of the LLM to identify abnormal spikes or patterns that may indicate a DoS attack.",
+            "control_objective": "To detect and respond to anomalous resource usage patterns indicative of a denial of service attack on the LLM."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "LLM05: Supply Chain Vulnerabilities",
+        "question": "Does the AI system depend on third-party libraries, tools, or models you haven’t vetted?",
+        "controls": [
+          {
+            "control": "[LLM05][2] - Only use reputable plugins that have been tested for application requirements.",
+            "control_objective": "Minimise plugin-related vulnerabilities."
+          },
+          {
+            "control": "[LLM05][4] - Maintain an up-to-date inventory using a Software Bill of Materials (SBOM).",
+            "control_objective": "Track and manage components."
+          },
+          {
+            "control": "[LLM05][6] - Implement anomaly detection and adversarial robustness tests.",
+            "control_objective": "Detect tampering and poisoning."
+          },
+          {
+            "control": "[LLM05][7] - Implement sufficient monitoring and a robust patching policy.",
+            "control_objective": "Maintain system security and component currency."
+          },
+          {
+            "control": "[LLM05][8] - Regularly review and audit supplier security and access controls.",
+            "control_objective": "Verify supplier compliance and security."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "LLM08 Excessive Agency",
+        "question": "Will the AI be allowed to take actions or make decisions automatically on behalf of a person or system?",
+        "controls": [
+          {
+            "control": "[LLM08][4] - Limit the permissions that LLM plugins/tools are granted to other systems to the minimum necessary.",
+            "control_objective": "To restrict the scope of actions that LLM agents can perform on other systems, thereby minimising the potential for harmful activities."
+          },
+          {
+            "control": "[LLM08][5] - Track user authorization and security scope to ensure actions taken on behalf of a user are executed with the minimum privileges necessary.",
+            "control_objective": "To enforce proper user authentication and authorization, limiting the potential impact of actions performed by LLM agents."
+          },
+          {
+            "control": "[LLM08][8] - Log and monitor the activity of LLM plugins/tools and downstream systems to identify and respond to undesirable actions.",
+            "control_objective": "To detect and mitigate unauthorised or harmful activities by monitoring system activity and responding promptly to incidents."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "LLM10: Model Theft",
+        "question": "Is this AI system considered a valuable business asset — and could losing it expose intellectual property or trade secrets?",
+        "controls": [
+          {
+            "control": "[LLM10][4] - Restrict the LLMs access to network resources, internal services, and APIs.",
+            "control_objective": "Control what the LLM application has access to."
+          },
+          {
+            "control": "[LLM10][6] - Automate MLOps deployment with governance and tracking and approval workflows.",
+            "control_objective": "Tighten access and deployment controls."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.6] - Unsafe Decommissioning of AI Systems",
+        "question": "When this AI system is eventually retired, is there a formal plan to handle its data and models securely and to manage the transition to a replacement system without creating operational gaps?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-13] - Establish a formal decommissioning plan that specifies procedures for the secure archiving or certified destruction of the AI model and all associated data, in compliance with data retention policies and privacy regulations.",
+            "control_objective": "To prevent data breaches and the misuse of sensitive information or obsolete models after the system is retired."
+          },
+          {
+            "control": "[C.3.6][BP-14] - Ensure a managed transition when replacing an AI system by maintaining operational continuity, potentially through a period of overlap with the new system, to prevent any gaps in critical functionality.",
+            "control_objective": "To avoid creating vulnerabilities or disruptions to business processes during the transition from an old AI system to its replacement."
+          },
+          {
+            "control": "[C.3.6][BP-15] - Have an incident response plan for AI-related failures, including procedures for safe shutdown, reversion to manual processes, and clear communication to stakeholders.",
+            "control_objective": "To minimize harm and operational disruption when an AI incident occurs and ensure a structured recovery process."
+          }
+        ]
+      }   
         ]
     },
 
@@ -478,7 +1300,59 @@
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
             {
-
+      {
+        "FieldType": "risk",
+        "FieldName": "[Job Preservation] - Negative Workforce Impact",
+        "question": "Could this system automate, reduce, or significantly alter existing job roles or responsibilities? If so, which groups are most affected?",
+        "controls": [
+          {
+            "control": "[Job Preservation][Gov-1] Establish an AI Governance Committee. This cross-functional body should include representatives from HR, ethics, legal, business units, and employees to oversee AI strategy and its human impact.",
+            "control_objective": "To ensure that workforce impact is a central consideration in all AI-related decision-making and procurement processes."
+          },
+          {
+            "control": "[Job Preservation][Gov-2] Develop a formal Workforce Transition Policy. This policy should transparently outline the organization's commitment to reskilling, redeployment, and providing support for employees in roles affected by automation.",
+            "control_objective": "To build trust and provide clear, predictable guidelines for managing job role changes due to AI."
+          },
+          {
+            "control": "[Job Preservation][Gov-3] Mandate Phased AI Implementation. Introduce AI technologies in controlled, gradual phases rather than a large-scale, simultaneous rollout.",
+            "control_objective": "To allow the workforce and the organization time to adapt, learn, and adjust to new systems and processes, minimizing disruption."
+          },
+          {
+            "control": "[Job Preservation][HR-1] Conduct Regular Job Impact Analyses. Proactively and periodically analyze which roles will be automated, augmented, or created by new AI systems.",
+            "control_objective": "To create a continuous, data-driven understanding of workforce evolution and inform targeted reskilling and redeployment efforts."
+          },
+          {
+            "control": "[Job Preservation][HR-2] Implement a Role Redesign Program. Instead of just eliminating tasks, focus on redesigning jobs to leverage human skills like critical thinking, creativity, and emotional intelligence in collaboration with AI tools.",
+            "control_objective": "To create new, higher-value roles that augment human capabilities with AI, rather than simply replacing them."
+          },
+          {
+            "control": "[Job Preservation][HR-3] Establish an Internal Mobility & Redeployment Program. Create clear pathways, training plans, and support systems for employees to transition from at-risk roles to new or redesigned roles within the company.",
+            "control_objective": "To retain institutional knowledge and valued employees by prioritizing internal transfers over external hires for new roles."
+          },
+          {
+            "control": "[Job Preservation][HR-4] Provide Fair Severance and Outplacement Services. For roles that are unavoidably eliminated, offer comprehensive support including fair severance packages, career counseling, and job placement assistance.",
+            "control_objective": "To manage employee exits ethically and support the well-being and future careers of departing staff, protecting the employer's brand."
+          },
+          {
+            "control": "[Job Preservation][Tech-1] Implement AI impact assessment tools that simulate workforce shifts and identify roles at risk of significant automation.",
+            "control_objective": "To proactively identify and mitigate potential negative impacts of AI on job roles and support workforce adaptation."
+          },
+          {
+            "control": "[Job Preservation][Tech-2] Develop and deploy AI-powered platforms that create personalized learning paths to facilitate reskilling and upskilling for employees.",
+            "control_objective": "To provide scalable, effective, and individualized training and adaptation support for the workforce in response to AI integration."
+          },
+          {
+            "control": "[Job Preservation][Tech-3] Prioritize 'Human-in-the-Loop' (HITL) System Design. Ensure AI systems are designed to augment and assist human decision-making, not completely replace it, especially for complex or high-stakes tasks.",
+            "control_objective": "To maintain the value of human expertise and judgment while improving efficiency, creating a collaborative human-AI work environment."
+          },
+          {
+            "control": "[Job Preservation][Comms-1] Execute a Transparent Communication Plan. Clearly and consistently communicate the 'why' behind AI adoption, the expected impacts, the timeline, and the support systems available to all employees.",
+            "control_objective": "To reduce fear and uncertainty, build trust, and foster a culture of adaptability by keeping employees informed."
+          },
+          {
+            "control": "[Job Preservation][Comms-2] Establish Employee Feedback and Consultation Channels. Actively involve employees and their representatives (e.g., work councils, unions) in the planning and implementation process to gather input and address concerns.",
+            "control_objective": "To ensure the transition plan is practical, fair, and considers the on-the-ground realities of employees, thereby increasing buy-in."
+          }
             }
         ]
     },
