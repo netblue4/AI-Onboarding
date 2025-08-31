@@ -39,7 +39,7 @@
             }
         ]
     },
-    "(A.9.3) Objectives for Responsible and Ethical Use of AI Systems": {
+    /*"(A.9.3) Objectives for Responsible and Ethical Use of AI Systems": {
         "WebFormTitle": "Describe the Responsible and Ethical objectives to guide the use of AI systems.",
         "Fields": [    
             {
@@ -92,7 +92,7 @@
                 "FieldType": "Option box with values:Applicable/Not Applicable"
             }
         ]
-    },
+    },*/
      "(A.6.2.2) AI system's Functional Requirement": {
         "WebFormTitle": "Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
         "Fields": [       
