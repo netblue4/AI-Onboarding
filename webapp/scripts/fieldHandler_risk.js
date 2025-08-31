@@ -93,16 +93,17 @@ function createRisk(field, capturedData, sanitizeForId) {
             const controlContainer = document.createElement('div');
             controlContainer.className = 'control-item';
 
+            /*
             const controlLabel = document.createElement('label');
             controlLabel.textContent = 'Control:';
             controlLabel.className = 'label-bold-small';
             controlContainer.appendChild(controlLabel);
-
+            */
             const controlText = document.createElement('p');
             controlText.textContent = controlItem.control;
             controlText.className = 'control-text';
             controlContainer.appendChild(controlText);
-            
+            /*
             const objectiveLabel = document.createElement('label');
             objectiveLabel.textContent = 'Control Objective:';
             objectiveLabel.className = 'label-bold-small';
@@ -112,7 +113,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             objectiveText.textContent = controlItem.control_objective;
             objectiveText.className = 'objective-text';
             controlContainer.appendChild(objectiveText);
-
+            */
             contentDiv.appendChild(controlContainer);
         });
     }
