@@ -14,7 +14,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     fieldDiv.className = 'form-field';
 
     // Use the 'risk' text to create a unique and stable ID.
-    const sanitizedId = sanitizeForId(field.risk);
+    const sanitizedId = sanitizeForId(field.FieldName);
 
     // --- 1. Create Radio Button Group ---
     // These options are standard for this type of compliance form.
