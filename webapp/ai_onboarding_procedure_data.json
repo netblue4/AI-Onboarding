@@ -1300,7 +1300,6 @@
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
             {
-      {
         "FieldType": "risk",
         "FieldName": "[Job Preservation] - Negative Workforce Impact",
         "question": "Could this system automate, reduce, or significantly alter existing job roles or responsibilities? If so, which groups are most affected?",
