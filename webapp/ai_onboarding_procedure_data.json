@@ -308,6 +308,7 @@
         "Fields": [
             {
                 "FieldType": "risk",
+                "FieldName": "t1",
                 "risk": "[Article 8] - Non-Compliance with High-Risk AI System Requirements",
                 "question": "Is the AI system, or the product incorporating the AI system, subject to other EU regulations, and if so, how is compliance with all applicable regulations, including the AI Act, managed and documented?",
                 "controls": [
@@ -327,6 +328,7 @@
               },
               {
                 "FieldType": "risk",
+                "FieldName": "t1",
                 "risk": "[Article 9] - Inadequate or Ineffective Risk Management",
                 "question": "Does the organization have a documented and continuously updated risk management system for its high-risk AI systems that covers the entire lifecycle of the system?",
                 "controls": [
@@ -358,6 +360,7 @@
               },
               {
                 "FieldType": "risk",
+                "FieldName": "t1",
                 "risk": "[Article 10] - Poor Data Quality and Governance",
                 "question": "Are there appropriate data governance and management practices in place for the training, validation, and testing datasets used by the high-risk AI system to ensure they are relevant, representative, and free of errors and biases?",
                 "controls": [
@@ -385,6 +388,7 @@
              },
              {
                 "FieldType": "risk",
+                "FieldName": "t1",
                 "risk": "[Article 12] - Inadequate Traceability and Record-Keeping",
                 "question": "Does the organization need to trace the operational history of its high-risk AI system to investigate incidents, audit results, or ensure accountability?",
                 "controls": [
@@ -404,6 +408,7 @@
               },
               {
                 "FieldType": "risk",
+                "FieldName": "t1",
                 "risk": "[Article 13] - Lack of Transparency and Provision of Information to Users",
                 "question": "Will users of this AI system need to understand its capabilities, limitations, and the meaning of its outputs to use it safely and effectively?",
                 "controls": [
@@ -435,6 +440,7 @@
               },
               {
                 "FieldType": "risk",
+                "FieldName": "t1",
                 "risk": "[Article 14] - Ineffective or Insufficient Human Oversight",
                 "question": "Does the AI system operate in a way that requires human monitoring, intervention, or decision-making to prevent or mitigate risks to health, safety, or fundamental rights?",
                 "controls": [
@@ -466,6 +472,7 @@
               },
               {
                 "FieldType": "risk",
+                "FieldName": "t1",
                 "risk": "[Article 15] - Inadequate Accuracy, Robustness, and Cybersecurity",
                 "question": "Will poor AI performance (e.g., incorrect or unreliable outputs) cause business disruption, compliance issues, or customer dissatisfaction?",
                 "controls": [
