@@ -1,6 +1,6 @@
 [
   {
-    "principle": "ISO 42001 Annex C.3 – Risk Sources",
+    "principle": "ISO 42001: Annex C.3 – Risk Sources",
     "objective": "Build an AI system that aligning with AI ethics and “trustworthy AI” principles.",
     "risks": 
     [
@@ -282,7 +282,7 @@
     ]
   },
   {
-    "principle": "AI Lifecycle Phase - Design and Development",
+    "principle": "ISO 42001: Clause 8.2, 8.3 - AI Lifecycle Phase - Design and Development",
     "objective": "Secure Design and Development of AI systems.",
     "risks": 
     [
@@ -1154,7 +1154,7 @@
     ]
   },
   {
-    "principle": "ISO 42001:2023 Control 5.4 - AI system impact on individuals or groups of individuals",
+    "principle": "ISO 42001: Clause 8.4 - AI system impact on individuals or groups of individuals",
     "objective": "Ensure your organization examines and documents how AI systems influence people and communities, factoring in privacy, security, and other risk domains.",
     "risks": [
       {
