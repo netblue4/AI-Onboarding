@@ -78,7 +78,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // Add the primary question inside the collapsible area
     const riskLabel = document.createElement('label');
     riskLabel.textContent = field.FieldName;
-    riskLabel.className = 'label-bold question-label';
+    riskLabel.className = 'label-bold';
     contentDiv.appendChild(riskLabel);
     
     // Add separator
