@@ -177,6 +177,7 @@
                     const stepData = webappData[currentStepKey];
 
                     if (stepData && stepData.Fields) {
+                        capturedData[currentStepKey] = currentStepKey;
                         stepData.Fields.forEach(field => {
                             if (!field || !field.FieldName || field.FieldType === 'Auto generated number') return;
                             const sanitizedId = sanitizeForId(field.FieldName);
