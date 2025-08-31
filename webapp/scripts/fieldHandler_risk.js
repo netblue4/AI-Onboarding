@@ -21,7 +21,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     const radioGroupContainer = document.createElement('div');
     radioGroupContainer.className = 'radio-group-container options-after-header';
     const options = ['Applicable', 'Not Applicable'];
-    const selectedValue = capturedData[field.risk] ?? null; // Use field.risk as the key
+    const selectedValue = capturedData[field.FieldName] ?? null; // Use field.risk as the key
 
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
