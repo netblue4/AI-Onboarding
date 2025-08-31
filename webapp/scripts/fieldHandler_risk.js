@@ -28,7 +28,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 
         const radioInput = document.createElement('input');
         radioInput.type = 'radio';
-        radioInput.id = optionId; // Use unique ID for the input
+        radioInput.id = sanitizedId; // Use unique ID for the input
         radioInput.name = sanitizedId; // Group buttons by the sanitized risk name
         radioInput.value = optionText;
         radioInput.required = true;
