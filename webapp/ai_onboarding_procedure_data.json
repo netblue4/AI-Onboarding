@@ -111,8 +111,8 @@
                 "FieldType": "TextBox"
             },
             {
-               "Control": "6.2.2 – AI system requirements and specification",
-               "FieldName": "(A.6.2.2) - AI System Functional Requirement - Interaction Model",
+                "Control": "6.2.2 – AI system requirements and specification",
+                "FieldName": "(A.6.2.2) - AI System Functional Requirement - Interaction Model",
                 "FieldLabel": "Interaction Model",
                 "FieldText": "Will it run in the background, have a UI, API, etc.?",
                 "FieldType": "TextBox"
@@ -129,6 +129,55 @@
                 "FieldName": "(A.6.2.2) - AI System Functional Requirement - Compliance",
                 "FieldLabel": "Compliance",
                 "FieldText": "Are there regulations or policies it must follow? (e.g., GDPR, AI Act)",
+                "FieldType": "TextBox"
+            },
+            {
+                "Control": "6.2.2 – AI system requirements and specification",
+                "FieldName": "(A.6.2.2) - AI System Requirement - Performance and Fairness Monitoring",
+                "FieldLabel": "Performance and Fairness Monitoring",
+                "FieldText": "What are the requirements for monitoring the AI system's performance and fairness in the live environment to detect and address model drift or emergent biases?",
+                "FieldType": "TextBox"
+            },
+            {
+                "Control": "6.2.2 – AI system requirements and specification",
+                "FieldName": "(A.6.2.2) - AI System Requirement - Human Oversight",
+                "FieldLabel": "Human Oversight",
+                "FieldText": "Specify the requirements for human oversight and intervention procedures, especially for high-risk scenarios.",
+                "FieldType": "TextBox"
+            },
+            {
+                "Control": "6.2.2 – AI system requirements and specification",
+                "FieldName": "(A.6.2.2) - AI System Requirement - Intended Use Adherence",
+                "FieldLabel": "Intended Use Adherence",
+                "FieldText": "What technical or procedural controls are required to ensure the AI system is used strictly within its defined and approved scope?",
+                "FieldType": "TextBox"
+            },
+            {
+                "Control": "6.2.2 – AI system requirements and specification",
+                "FieldName": "(A.6.2.2) - AI System Requirement - Incident Management",
+                "FieldLabel": "Incident Management",
+                "FieldText": "What processes are required for identifying, reporting, and remediating incidents or adverse outcomes from the AI system's operation?",
+                "FieldType": "TextBox"
+            },
+            {
+                "Control": "6.2.2 – AI system requirements and specification",
+                "FieldName": "(A.6.2.2) - AI System Requirement - Operational Transparency",
+                "FieldLabel": "Operational Transparency",
+                "FieldText": "What are the requirements for communicating the AI system's presence, capabilities, and limitations to users and affected stakeholders?",
+                "FieldType": "TextBox"
+            },
+            {
+                "Control": "6.2.2 – AI system requirements and specification",
+                "FieldName": "(A.6.2.2) - AI System Requirement - Operational Data Management",
+                "FieldLabel": "Operational Data Management",
+                "FieldText": "Specify the data protection and privacy requirements for all data processed by the AI system in the production environment.",
+                "FieldType": "TextBox"
+            },
+            {
+                "Control": "6.2.2 – AI system requirements and specification",
+                "FieldName": "(A.6.2.2) - AI System Requirement - System Maintenance",
+                "FieldLabel": "System Maintenance",
+                "FieldText": "What are the requirements for system maintenance, including updates, security patches, performance reviews, and eventual decommissioning?",
                 "FieldType": "TextBox"
             }
         ]
@@ -253,6 +302,55 @@
             }
         ]
     },
+    "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
+        "WebFormTitle": "Define the security requirements for - Design and Development.",
+        "Fields": [
+
+        ]
+    },
+
+    "(6.2.1) AI Lifecycle Phase requirements - Training": {
+        "WebFormTitle": "Define the security requirements for - Training.",
+        "Fields": [
+
+        ]
+    },
+
+    "(6.2.1) AI Lifecycle Phase requirements - Package": {
+        "WebFormTitle": "Define the security requirements for - Package.",
+        "Fields": [
+
+        ]
+    },
+
+    "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates": {
+        "WebFormTitle": "Define the security requirements for - Deployment, Maintenance and Updates.",
+        "Fields": [
+
+        ]
+    },
+
+    "(6.2.1) AI Lifecycle Phase requirements - Use and Decommissioning": {
+        "WebFormTitle": "Define the security requirements for - Use and Decommissioning.",
+        "Fields": [
+
+        ]
+    },
+
+    "(5.4) Assessing AI system impact on individuals or groups of individuals": {
+        "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
+        "Fields": [
+            {
+                "Control": "5.4 – Assessing AI system impact on individuals or groups of individuals",
+                "FieldName": "(A.5.2, A.5.3, A.5.4, A.5.5) - EU AI Act Art 15||Risk - [Article 12] - Incomplete or Inconsistent Record-Keeping||Applicable Controls||[Art-12][Par-2][2] - Enable logging capabilities that record events related to risk identification, post-market monitoring, and operation monitoring of adopted AI systems.||[Accountability][Tech-1] Implement granular access control systems for AI development, deployment, and operational environments.",
+                "FieldQuestionGroup": "Will this AI system generate decisions, recommendations, or outputs that the business may need to reference or justify later (e.g., for compliance, auditing, or disputes)?",
+                "FieldLabel": "goto link",
+                "FieldText": "https://netblue4.github.io/AI-Onboarding/riskcontrolframework/Risk_Control_Framework_Browser.html",
+                "FieldType": "Option box with values:Applicable/Not Applicable"
+            }
+        ]
+    },
+    
     "(A.5.3) Detailed AI System Risk Impact Assessment": {
         "WebFormTitle": "Conduct a detialed AI System Risk Impact Assessment",
         "Fields": [
