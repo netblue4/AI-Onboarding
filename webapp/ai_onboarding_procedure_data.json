@@ -1,6 +1,6 @@
 {
     "(A.9.4) AI system's intended use and limitations": {
-        "WebFormTitle": "Document the AI system's intended use and limitations.",
+        "WebFormTitle": "Document the purpose, target users, and intended use cases of the AI system.",
         "Fields": [
             {
                 "Control": "A.9.4 – Intended use of the AI system",
@@ -40,7 +40,7 @@
         ]
     },
      "(A.6.2.2) AI system's Functional Requirement": {
-        "WebFormTitle": "Specify and document all requirements for new AI systems or for material enhancements to existing systems.",
+        "WebFormTitle": "Document all requirements for new AI systems or for material enhancements to existing systems.",
         "Fields": [       
             {
                 "Control": "6.2.2 – AI system requirements and specification",
@@ -129,7 +129,7 @@
         ]
     },
     "AI Act Prohibited Practices Assessment": {
-        "WebFormTitle": "Determine if the AI system is prohibited",
+        "WebFormTitle": "Determine if the AI system falls under prohibited practices according to the AI Act.",
         "Fields": [
             {
                 "FieldName": "Subliminal Manipulation",
@@ -201,7 +201,7 @@
         ]
     },
     "AI Act - Section 2: Requirements for High-Risk AI Systems": {
-        "WebFormTitle": "Define the security requirements for - High-Risk AI Systems.",
+        "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
         "Fields": [
             {
                 "FieldType": "risk",
@@ -392,7 +392,7 @@
     },
     
     "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
-        "WebFormTitle": "Define the security requirements for - Design and Development.",
+        "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
         "Fields": [
           {
             "FieldType": "risk",
@@ -615,7 +615,7 @@
     },
 
     "(6.2.1) AI Lifecycle Phase requirements - Training": {
-        "WebFormTitle": "Define the security requirements for - Training.",
+        "WebFormTitle": "Define the security requirements for lifecycle phase - Training.",
         "Fields": [
       {
         "FieldType": "risk",
@@ -866,7 +866,7 @@
     },
 
     "(6.2.1) AI Lifecycle Phase requirements - Package": {
-        "WebFormTitle": "Define the security requirements for - Package.",
+        "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
         "Fields": [
       {
         "FieldType": "risk",
@@ -975,7 +975,7 @@
     },
 
     "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates": {
-        "WebFormTitle": "Define the security requirements for - Deployment, Maintenance and Updates.",
+        "WebFormTitle": "Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates.",
         "Fields": [
       {
         "FieldType": "risk",
@@ -1402,7 +1402,7 @@
         ]
     },
     "(A.4.3) AI Systems Data Resources": {
-        "WebFormTitle": "Define the data resources used by the AI system",
+        "WebFormTitle": "Define the data resources used by the AI system.",
         "Fields": [
             {
                 "FieldName": "(A.4.2, A.4.3) - Dataset Name",
@@ -1479,7 +1479,7 @@
         ]
     },
     "(A.7.4) AI System Data Quality Requirements for Sensitive data": {
-        "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data",
+        "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data.",
         "Fields": [ 
             {
                 "FieldName": "(A.7.4) - Accuracy",
@@ -1520,7 +1520,7 @@
         ]
     },
     "(A.7.6) AI System Data Preparation Plan for Sensitive data": {
-        "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data",
+        "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data.",
         "Fields": [ 
             {
                 "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Masking",
