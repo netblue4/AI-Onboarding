@@ -200,6 +200,330 @@
             }
         ]
     },
+    "(5.4) Assessing AI system impact on individuals or groups of individuals": {
+        "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
+        "Fields": [
+            {
+        "FieldType": "risk",
+        "FieldName": "[Job Preservation] - Negative Workforce Impact",
+        "question": "Could this system automate, reduce, or significantly alter existing job roles or responsibilities? If so, which groups are most affected?",
+        "controls": [
+          {
+            "control": "[Job Preservation][Gov-1] Establish an AI Governance Committee. This cross-functional body should include representatives from HR, ethics, legal, business units, and employees to oversee AI strategy and its human impact.",
+            "control_objective": "To ensure that workforce impact is a central consideration in all AI-related decision-making and procurement processes."
+          },
+          {
+            "control": "[Job Preservation][Gov-2] Develop a formal Workforce Transition Policy. This policy should transparently outline the organization's commitment to reskilling, redeployment, and providing support for employees in roles affected by automation.",
+            "control_objective": "To build trust and provide clear, predictable guidelines for managing job role changes due to AI."
+          },
+          {
+            "control": "[Job Preservation][Gov-3] Mandate Phased AI Implementation. Introduce AI technologies in controlled, gradual phases rather than a large-scale, simultaneous rollout.",
+            "control_objective": "To allow the workforce and the organization time to adapt, learn, and adjust to new systems and processes, minimizing disruption."
+          },
+          {
+            "control": "[Job Preservation][HR-1] Conduct Regular Job Impact Analyses. Proactively and periodically analyze which roles will be automated, augmented, or created by new AI systems.",
+            "control_objective": "To create a continuous, data-driven understanding of workforce evolution and inform targeted reskilling and redeployment efforts."
+          },
+          {
+            "control": "[Job Preservation][HR-2] Implement a Role Redesign Program. Instead of just eliminating tasks, focus on redesigning jobs to leverage human skills like critical thinking, creativity, and emotional intelligence in collaboration with AI tools.",
+            "control_objective": "To create new, higher-value roles that augment human capabilities with AI, rather than simply replacing them."
+          },
+          {
+            "control": "[Job Preservation][HR-3] Establish an Internal Mobility & Redeployment Program. Create clear pathways, training plans, and support systems for employees to transition from at-risk roles to new or redesigned roles within the company.",
+            "control_objective": "To retain institutional knowledge and valued employees by prioritizing internal transfers over external hires for new roles."
+          },
+          {
+            "control": "[Job Preservation][HR-4] Provide Fair Severance and Outplacement Services. For roles that are unavoidably eliminated, offer comprehensive support including fair severance packages, career counseling, and job placement assistance.",
+            "control_objective": "To manage employee exits ethically and support the well-being and future careers of departing staff, protecting the employer's brand."
+          },
+          {
+            "control": "[Job Preservation][Tech-1] Implement AI impact assessment tools that simulate workforce shifts and identify roles at risk of significant automation.",
+            "control_objective": "To proactively identify and mitigate potential negative impacts of AI on job roles and support workforce adaptation."
+          },
+          {
+            "control": "[Job Preservation][Tech-2] Develop and deploy AI-powered platforms that create personalized learning paths to facilitate reskilling and upskilling for employees.",
+            "control_objective": "To provide scalable, effective, and individualized training and adaptation support for the workforce in response to AI integration."
+          },
+          {
+            "control": "[Job Preservation][Tech-3] Prioritize 'Human-in-the-Loop' (HITL) System Design. Ensure AI systems are designed to augment and assist human decision-making, not completely replace it, especially for complex or high-stakes tasks.",
+            "control_objective": "To maintain the value of human expertise and judgment while improving efficiency, creating a collaborative human-AI work environment."
+          },
+          {
+            "control": "[Job Preservation][Comms-1] Execute a Transparent Communication Plan. Clearly and consistently communicate the 'why' behind AI adoption, the expected impacts, the timeline, and the support systems available to all employees.",
+            "control_objective": "To reduce fear and uncertainty, build trust, and foster a culture of adaptability by keeping employees informed."
+          },
+          {
+            "control": "[Job Preservation][Comms-2] Establish Employee Feedback and Consultation Channels. Actively involve employees and their representatives (e.g., work councils, unions) in the planning and implementation process to gather input and address concerns.",
+            "control_objective": "To ensure the transition plan is practical, fair, and considers the on-the-ground realities of employees, thereby increasing buy-in."
+          }
+        ]
+            }
+        ]
+    },
+    "(A.4.4) AI Systems Software and Tooling Resources": {
+        "WebFormTitle": "Define the software and tools used by the AI system.",
+        "Fields": [
+            {
+                "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
+                "FieldLabel": "Tool Name and Version",
+                "FieldText": "Name of the software, library, or framework and Version number.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.4) - Category",
+                "FieldLabel": "",
+                "FieldText": "Category of the tool?",
+                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
+                "FieldLabel": "Purpose/Use Case in Project",
+                "FieldText": "Tooling Resources: How this tool will be used in the AI system's lifecycle.",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    "(A.4.5) AI Systems Computing Resources": {
+        "WebFormTitle": "Define the computing resources used by the AI system",
+        "Fields": [
+            {
+                "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
+                "FieldLabel": "Computing Resource Name and Version",
+                "FieldText": "Name of the software, library, or framework.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.5) - Category",
+                "FieldLabel": "",
+                "FieldText": "Category of the computing resource.",
+                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
+                "FieldLabel": "",
+                "FieldText": "Which part of the AI lifecycle does this resource supports?",
+                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
+            }
+        ]
+    },
+    "(A.4.3) AI Systems Data Resources": {
+        "WebFormTitle": "Define the data resources used by the AI system.",
+        "Fields": [
+            {
+                "FieldName": "(A.4.2, A.4.3) - Dataset Name",
+                "FieldLabel": "Dataset Name",
+                "FieldText": "Common or descriptive name of the dataset.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Description",
+                "FieldLabel": "Description",
+                "FieldText": "Brief overview of the dataset's content and general purpose.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
+                "FieldLabel": "",
+                "FieldText": "Where does the data originate from?",
+                "FieldType": "Dropdown box with values:/Internal database/Third-party vendor/Public repository/Synthetic generation"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Intended Use",
+                "FieldLabel": "",
+                "FieldText": "What is the specific purpose(s) of the data?",
+                "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Format",
+                "FieldLabel": "",
+                "FieldText": "What is the File format or storage system?",
+                "FieldType": "Dropdown box with values:/CSV/JSON/Parquet/SQL DB"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Data Labeling",
+                "FieldLabel": "",
+                "FieldText": "How is the Data Labeled?",
+                "FieldType": "Dropdown box with values:/Sensitive/Internal/Public"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
+                "FieldLabel": "",
+                "FieldText": "How will the Data be acquired and selected?",
+                "FieldType": "Dropdown box with values:/Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
+                "FieldLabel": "",
+                "FieldText": "What is the data Retention schedules based on legal and operational requirements?",
+                "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
+                "FieldLabel": "Secure Disposing",
+                "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Approximate Size",
+                "FieldLabel": "Approximate Size",
+                "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Access Method",
+                "FieldLabel": "",
+                "FieldText": "How will the data be accessed?",
+                "FieldType": "Dropdown box with values:/S3 bucket path/API endpoint/Database query/Shared drive"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
+                "FieldLabel": "Owner/Custodian",
+                "FieldText": "Person or team responsible for the data?",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    "(A.7.4) AI System Data Quality Requirements for Sensitive data": {
+        "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data.",
+        "Fields": [ 
+            {
+                "FieldName": "(A.7.4) - Accuracy",
+                "FieldLabel": "Accuracy",
+                "FieldText": "Specify the minimum acceptable accuracy level, defined as the percentage of data points that are correct when compared to a trusted source.",
+                "FieldType": "Dropdown box with values:/> 95%/> 50%/> 20%"
+            },
+            {
+                "FieldName": "(A.7.4) - Completeness",
+                "FieldLabel": "Completeness",
+                "FieldText": "Specify the required level of data completeness, ensuring that all necessary data fields are populated.",
+                "FieldType": "Dropdown box with values:/All critical information present/No nulls in essential fields/> 98% completeness for important fields"
+            },
+            {
+                "FieldName": "(A.7.4) - Consistency",
+                "FieldLabel": "Consistency",
+                "FieldText": "Define the requirement for data consistency, ensuring data is free from logical contradictions and maintains integrity across related datasets.",
+                "FieldType": "Dropdown box with values:/No contradictory information/No logical contradictions/< 1% inconsistency rate"
+            },
+            {
+                "FieldName": "(A.7.4) - Recency",
+                "FieldLabel": "Recency",
+                "FieldText": "Specify how frequently the data must be updated to be considered current for its intended use.",
+                "FieldType": "Dropdown box with values:/Real-time/Daily/Monthly/Yearly"
+            },
+            {
+                "FieldName": "(A.7.4) - Source Traceability",
+                "FieldLabel": "",
+                "FieldText": "Specify whether the origin and history (provenance) of the data can be fully traced and verified.",
+                "FieldType": "Option box with values:Yes/No"
+            },
+            {
+                "FieldName": "(A.7.4) - Versioning Applied",
+                "FieldLabel": "",
+                "FieldText": "Specify the system or method used to manage and track different versions of the dataset.",
+                "FieldType": "Dropdown box with values:/Git/DVC/Manual/Not Applicable"
+            }
+        ]
+    },
+    "(A.7.6) AI System Data Preparation Plan for Sensitive data": {
+        "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data.",
+        "Fields": [ 
+            {
+                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Masking",
+                "FieldLabel": "Masking",
+                "FieldText": "Replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Tokenization",
+                "FieldLabel": "Tokenization",
+                "FieldText": "Replace a sensitive data element with a non-sensitive equivalent, referred to as a \"token.\" The original data is stored in a secure vault.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Hashing",
+                "FieldLabel": "Hashing",
+                "FieldText": "Data Preparation Plan - Hashing||Use a cryptographic function to convert sensitive data into a fixed-size string of characters. It's a one-way process.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Generalization",
+                "FieldLabel": "Generalization",
+                "FieldText": "Reduce the precision of data. For example, changing a specific age ('34') to an age range ('30-40') or a full date of birth to just the year.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - Access Control & Governance - Data Segregation",
+                "FieldLabel": "Data Segregation",
+                "FieldText": "Create physically or logically separate data stores for sensitive information, with strict access controls.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - Access Control & Governance - Attribute-Based Access Control",
+                "FieldLabel": "Attribute-Based Access Control",
+                "FieldText": "Apply rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - Data Minimization - Feature Pruning",
+                "FieldLabel": "Feature Pruning",
+                "FieldText": "Remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - Data Minimization",
+                "FieldLabel": "Data Minimization",
+                "FieldText": "Remove records of individuals who have not given consent for their data to be used for AI training.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - Quality & Integrity (Post-Anonymization) - Integrity Checks",
+                "FieldLabel": "Integrity Checks",
+                "FieldText": "After de-identification, verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Handling Missing Values",
+                "FieldLabel": "Handling Missing Values",
+                "FieldText": "Remove empty or null fields, such as filling them with a mean/median/mode, or removing the row/column.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Correcting Inaccuracies",
+                "FieldLabel": "Correcting Inaccuracies",
+                "FieldText": "Identify and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000°C').",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            },
+            {
+                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Removing Duplicates",
+                "FieldLabel": "Removing Duplicates",
+                "FieldText": "Identify and deleting redundant records from the dataset.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+            }
+        ]
+    },
+    "(A.8.4) AI System Documentation and User Information": {
+        "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
+        "Fields": [
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
+                "FieldLabel": "Data Breach",
+                "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
+                "FieldLabel": "Model Misuse",
+                "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
+                "FieldLabel": "Model Failure",
+                "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
     "AI Act - Section 2: Requirements for High-Risk AI Systems": {
         "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
         "Fields": [
@@ -1293,330 +1617,6 @@
           }
         ]
       }   
-        ]
-    },
-    "(5.4) Assessing AI system impact on individuals or groups of individuals": {
-        "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
-        "Fields": [
-            {
-        "FieldType": "risk",
-        "FieldName": "[Job Preservation] - Negative Workforce Impact",
-        "question": "Could this system automate, reduce, or significantly alter existing job roles or responsibilities? If so, which groups are most affected?",
-        "controls": [
-          {
-            "control": "[Job Preservation][Gov-1] Establish an AI Governance Committee. This cross-functional body should include representatives from HR, ethics, legal, business units, and employees to oversee AI strategy and its human impact.",
-            "control_objective": "To ensure that workforce impact is a central consideration in all AI-related decision-making and procurement processes."
-          },
-          {
-            "control": "[Job Preservation][Gov-2] Develop a formal Workforce Transition Policy. This policy should transparently outline the organization's commitment to reskilling, redeployment, and providing support for employees in roles affected by automation.",
-            "control_objective": "To build trust and provide clear, predictable guidelines for managing job role changes due to AI."
-          },
-          {
-            "control": "[Job Preservation][Gov-3] Mandate Phased AI Implementation. Introduce AI technologies in controlled, gradual phases rather than a large-scale, simultaneous rollout.",
-            "control_objective": "To allow the workforce and the organization time to adapt, learn, and adjust to new systems and processes, minimizing disruption."
-          },
-          {
-            "control": "[Job Preservation][HR-1] Conduct Regular Job Impact Analyses. Proactively and periodically analyze which roles will be automated, augmented, or created by new AI systems.",
-            "control_objective": "To create a continuous, data-driven understanding of workforce evolution and inform targeted reskilling and redeployment efforts."
-          },
-          {
-            "control": "[Job Preservation][HR-2] Implement a Role Redesign Program. Instead of just eliminating tasks, focus on redesigning jobs to leverage human skills like critical thinking, creativity, and emotional intelligence in collaboration with AI tools.",
-            "control_objective": "To create new, higher-value roles that augment human capabilities with AI, rather than simply replacing them."
-          },
-          {
-            "control": "[Job Preservation][HR-3] Establish an Internal Mobility & Redeployment Program. Create clear pathways, training plans, and support systems for employees to transition from at-risk roles to new or redesigned roles within the company.",
-            "control_objective": "To retain institutional knowledge and valued employees by prioritizing internal transfers over external hires for new roles."
-          },
-          {
-            "control": "[Job Preservation][HR-4] Provide Fair Severance and Outplacement Services. For roles that are unavoidably eliminated, offer comprehensive support including fair severance packages, career counseling, and job placement assistance.",
-            "control_objective": "To manage employee exits ethically and support the well-being and future careers of departing staff, protecting the employer's brand."
-          },
-          {
-            "control": "[Job Preservation][Tech-1] Implement AI impact assessment tools that simulate workforce shifts and identify roles at risk of significant automation.",
-            "control_objective": "To proactively identify and mitigate potential negative impacts of AI on job roles and support workforce adaptation."
-          },
-          {
-            "control": "[Job Preservation][Tech-2] Develop and deploy AI-powered platforms that create personalized learning paths to facilitate reskilling and upskilling for employees.",
-            "control_objective": "To provide scalable, effective, and individualized training and adaptation support for the workforce in response to AI integration."
-          },
-          {
-            "control": "[Job Preservation][Tech-3] Prioritize 'Human-in-the-Loop' (HITL) System Design. Ensure AI systems are designed to augment and assist human decision-making, not completely replace it, especially for complex or high-stakes tasks.",
-            "control_objective": "To maintain the value of human expertise and judgment while improving efficiency, creating a collaborative human-AI work environment."
-          },
-          {
-            "control": "[Job Preservation][Comms-1] Execute a Transparent Communication Plan. Clearly and consistently communicate the 'why' behind AI adoption, the expected impacts, the timeline, and the support systems available to all employees.",
-            "control_objective": "To reduce fear and uncertainty, build trust, and foster a culture of adaptability by keeping employees informed."
-          },
-          {
-            "control": "[Job Preservation][Comms-2] Establish Employee Feedback and Consultation Channels. Actively involve employees and their representatives (e.g., work councils, unions) in the planning and implementation process to gather input and address concerns.",
-            "control_objective": "To ensure the transition plan is practical, fair, and considers the on-the-ground realities of employees, thereby increasing buy-in."
-          }
-        ]
-            }
-        ]
-    },
-    "(A.4.4) AI Systems Software and Tooling Resources": {
-        "WebFormTitle": "Define the software and tools used by the AI system.",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
-                "FieldLabel": "Tool Name and Version",
-                "FieldText": "Name of the software, library, or framework and Version number.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.4) - Category",
-                "FieldLabel": "",
-                "FieldText": "Category of the tool?",
-                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
-                "FieldLabel": "Purpose/Use Case in Project",
-                "FieldText": "Tooling Resources: How this tool will be used in the AI system's lifecycle.",
-                "FieldType": "TextBox"
-            }
-        ]
-    },
-    "(A.4.5) AI Systems Computing Resources": {
-        "WebFormTitle": "Define the computing resources used by the AI system",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
-                "FieldLabel": "Computing Resource Name and Version",
-                "FieldText": "Name of the software, library, or framework.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.5) - Category",
-                "FieldLabel": "",
-                "FieldText": "Category of the computing resource.",
-                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
-                "FieldLabel": "",
-                "FieldText": "Which part of the AI lifecycle does this resource supports?",
-                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
-            }
-        ]
-    },
-    "(A.4.3) AI Systems Data Resources": {
-        "WebFormTitle": "Define the data resources used by the AI system.",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.3) - Dataset Name",
-                "FieldLabel": "Dataset Name",
-                "FieldText": "Common or descriptive name of the dataset.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Description",
-                "FieldLabel": "Description",
-                "FieldText": "Brief overview of the dataset's content and general purpose.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
-                "FieldLabel": "",
-                "FieldText": "Where does the data originate from?",
-                "FieldType": "Dropdown box with values:/Internal database/Third-party vendor/Public repository/Synthetic generation"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Intended Use",
-                "FieldLabel": "",
-                "FieldText": "What is the specific purpose(s) of the data?",
-                "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Format",
-                "FieldLabel": "",
-                "FieldText": "What is the File format or storage system?",
-                "FieldType": "Dropdown box with values:/CSV/JSON/Parquet/SQL DB"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Data Labeling",
-                "FieldLabel": "",
-                "FieldText": "How is the Data Labeled?",
-                "FieldType": "Dropdown box with values:/Sensitive/Internal/Public"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
-                "FieldLabel": "",
-                "FieldText": "How will the Data be acquired and selected?",
-                "FieldType": "Dropdown box with values:/Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
-                "FieldLabel": "",
-                "FieldText": "What is the data Retention schedules based on legal and operational requirements?",
-                "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
-                "FieldLabel": "Secure Disposing",
-                "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Approximate Size",
-                "FieldLabel": "Approximate Size",
-                "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Access Method",
-                "FieldLabel": "",
-                "FieldText": "How will the data be accessed?",
-                "FieldType": "Dropdown box with values:/S3 bucket path/API endpoint/Database query/Shared drive"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
-                "FieldLabel": "Owner/Custodian",
-                "FieldText": "Person or team responsible for the data?",
-                "FieldType": "TextBox"
-            }
-        ]
-    },
-    "(A.7.4) AI System Data Quality Requirements for Sensitive data": {
-        "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data.",
-        "Fields": [ 
-            {
-                "FieldName": "(A.7.4) - Accuracy",
-                "FieldLabel": "Accuracy",
-                "FieldText": "Specify the minimum acceptable accuracy level, defined as the percentage of data points that are correct when compared to a trusted source.",
-                "FieldType": "Dropdown box with values:/> 95%/> 50%/> 20%"
-            },
-            {
-                "FieldName": "(A.7.4) - Completeness",
-                "FieldLabel": "Completeness",
-                "FieldText": "Specify the required level of data completeness, ensuring that all necessary data fields are populated.",
-                "FieldType": "Dropdown box with values:/All critical information present/No nulls in essential fields/> 98% completeness for important fields"
-            },
-            {
-                "FieldName": "(A.7.4) - Consistency",
-                "FieldLabel": "Consistency",
-                "FieldText": "Define the requirement for data consistency, ensuring data is free from logical contradictions and maintains integrity across related datasets.",
-                "FieldType": "Dropdown box with values:/No contradictory information/No logical contradictions/< 1% inconsistency rate"
-            },
-            {
-                "FieldName": "(A.7.4) - Recency",
-                "FieldLabel": "Recency",
-                "FieldText": "Specify how frequently the data must be updated to be considered current for its intended use.",
-                "FieldType": "Dropdown box with values:/Real-time/Daily/Monthly/Yearly"
-            },
-            {
-                "FieldName": "(A.7.4) - Source Traceability",
-                "FieldLabel": "",
-                "FieldText": "Specify whether the origin and history (provenance) of the data can be fully traced and verified.",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "(A.7.4) - Versioning Applied",
-                "FieldLabel": "",
-                "FieldText": "Specify the system or method used to manage and track different versions of the dataset.",
-                "FieldType": "Dropdown box with values:/Git/DVC/Manual/Not Applicable"
-            }
-        ]
-    },
-    "(A.7.6) AI System Data Preparation Plan for Sensitive data": {
-        "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data.",
-        "Fields": [ 
-            {
-                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Masking",
-                "FieldLabel": "Masking",
-                "FieldText": "Replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Tokenization",
-                "FieldLabel": "Tokenization",
-                "FieldText": "Replace a sensitive data element with a non-sensitive equivalent, referred to as a \"token.\" The original data is stored in a secure vault.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Hashing",
-                "FieldLabel": "Hashing",
-                "FieldText": "Data Preparation Plan - Hashing||Use a cryptographic function to convert sensitive data into a fixed-size string of characters. It's a one-way process.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Generalization",
-                "FieldLabel": "Generalization",
-                "FieldText": "Reduce the precision of data. For example, changing a specific age ('34') to an age range ('30-40') or a full date of birth to just the year.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Access Control & Governance - Data Segregation",
-                "FieldLabel": "Data Segregation",
-                "FieldText": "Create physically or logically separate data stores for sensitive information, with strict access controls.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Access Control & Governance - Attribute-Based Access Control",
-                "FieldLabel": "Attribute-Based Access Control",
-                "FieldText": "Apply rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Minimization - Feature Pruning",
-                "FieldLabel": "Feature Pruning",
-                "FieldText": "Remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Minimization",
-                "FieldLabel": "Data Minimization",
-                "FieldText": "Remove records of individuals who have not given consent for their data to be used for AI training.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Quality & Integrity (Post-Anonymization) - Integrity Checks",
-                "FieldLabel": "Integrity Checks",
-                "FieldText": "After de-identification, verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Handling Missing Values",
-                "FieldLabel": "Handling Missing Values",
-                "FieldText": "Remove empty or null fields, such as filling them with a mean/median/mode, or removing the row/column.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Correcting Inaccuracies",
-                "FieldLabel": "Correcting Inaccuracies",
-                "FieldText": "Identify and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000°C').",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Removing Duplicates",
-                "FieldLabel": "Removing Duplicates",
-                "FieldText": "Identify and deleting redundant records from the dataset.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            }
-        ]
-    },
-    "(A.8.4) AI System Documentation and User Information": {
-        "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
-        "Fields": [
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
-                "FieldLabel": "Data Breach",
-                "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
-                "FieldLabel": "Model Misuse",
-                "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
-                "FieldLabel": "Model Failure",
-                "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
-                "FieldType": "TextBox"
-            }
         ]
     },
     "(A.6.2.4) AI Systems verifications": {
