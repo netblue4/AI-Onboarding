@@ -1012,26 +1012,42 @@
         "Fields": [
       {
         "FieldType": "risk",
-        "FieldName": "Amplification of Biases",
-        "question": "Could decisions made by the AI unintentionally favor or disadvantage certain groups (e.g., based on age, location, etc.)?",
+        "FieldName": "Bias Measurement and Fairness in AI Systems",
+        "question": "Can adversarial machine learning techniques detect and mitigate subtle forms of bias in AI models, and are there adequate controls in place to ensure fairness and accountability?",
         "controls": [
           {
-            "control": "[Art-10][Par-2][2(f)] -  Examine data sets for possible biases that could affect health and safety, fundamental rights, or lead to discrimination.",
-            "control_objective": "Identify and mitigate biases to prevent negative impacts on individuals and ensure ethical AI system behaviour."
+            "control": "Maintain a Rationale Explanation Report that explains the importance of adversarial machine learning for measuring bias and its role in fairness and equity.",
+            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
           },
           {
-            "control": "[Art-10][Par-2][2(g)] -  Implement measures to detect, prevent, and mitigate possible biases identified.",
-            "control_objective": "Proactively manage biases to enhance the fairness and accuracy of the AI system."
+            "control": "Establish and maintain Bias Measurement Guidelines outlining how adversarial machine learning is used to measure bias in AI systems.",
+            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
           },
           {
-            "control": "LDD[3] -  Identify and collect data from a diverse range of sources to ensure that the AI model is exposed to a wide array of scenarios and potential biases.",
-            "control_objective": "Mitigate the risk of bias in the AI model by training it on a comprehensive and representative dataset."
-          },
-          {
-            "control": "LDD[4] -  Include data from different geographic and demographic regions.",
-            "control_objective": "Ensure the collection of data that reflects diverse geographic and demographic characteristics relevant to the organisation's operations."
+            "control": "Develop and maintain a Bias Mitigation Plan that details strategies and methods for addressing biases identified via adversarial machine learning.",
+            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
           }
-        ]
+        ],
+        "risk": "If adversarial machine learning procedures are poorly defined or implemented, hidden biases may persist, compromising AI fairness and leading to discriminatory outcomes."
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Bias Detection and Correction in Training Data",
+        "question": "Are there effective processes and procedures to detect, correct, and document biases within training data to ensure fair and non-discriminatory model predictions?",
+        "controls": [
+          {
+            "control": "Maintain a Rationale Explanation Report explaining the importance of bias detection and correction and its role in promoting fairness and equity in AI systems.",
+            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+          },
+          {
+            "control": "Establish and maintain Bias Detection Guidelines outlining the methodologies and tools used for identifying biases in AI models and decision-making processes.",
+            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+          },
+          {
+            "control": "Develop and maintain a Bias Mitigation Plan detailing the strategies and methods for addressing biases once detected.",
+            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+          }
+        ],
       },
       {
         "FieldType": "risk",
