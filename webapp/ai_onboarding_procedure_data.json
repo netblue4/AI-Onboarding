@@ -204,59 +204,130 @@
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
             {
-        "FieldType": "risk",
-        "FieldName": "[Job Preservation] - Negative Workforce Impact",
-        "question": "Could this system automate, reduce, or significantly alter existing job roles or responsibilities? If so, which groups are most affected?",
-        "controls": [
-          {
-            "control": "[Job Preservation][Gov-1] Establish an AI Governance Committee. This cross-functional body should include representatives from HR, ethics, legal, business units, and employees to oversee AI strategy and its human impact.",
-            "control_objective": "To ensure that workforce impact is a central consideration in all AI-related decision-making and procurement processes."
-          },
-          {
-            "control": "[Job Preservation][Gov-2] Develop a formal Workforce Transition Policy. This policy should transparently outline the organization's commitment to reskilling, redeployment, and providing support for employees in roles affected by automation.",
-            "control_objective": "To build trust and provide clear, predictable guidelines for managing job role changes due to AI."
-          },
-          {
-            "control": "[Job Preservation][Gov-3] Mandate Phased AI Implementation. Introduce AI technologies in controlled, gradual phases rather than a large-scale, simultaneous rollout.",
-            "control_objective": "To allow the workforce and the organization time to adapt, learn, and adjust to new systems and processes, minimizing disruption."
-          },
-          {
-            "control": "[Job Preservation][HR-1] Conduct Regular Job Impact Analyses. Proactively and periodically analyze which roles will be automated, augmented, or created by new AI systems.",
-            "control_objective": "To create a continuous, data-driven understanding of workforce evolution and inform targeted reskilling and redeployment efforts."
-          },
-          {
-            "control": "[Job Preservation][HR-2] Implement a Role Redesign Program. Instead of just eliminating tasks, focus on redesigning jobs to leverage human skills like critical thinking, creativity, and emotional intelligence in collaboration with AI tools.",
-            "control_objective": "To create new, higher-value roles that augment human capabilities with AI, rather than simply replacing them."
-          },
-          {
-            "control": "[Job Preservation][HR-3] Establish an Internal Mobility & Redeployment Program. Create clear pathways, training plans, and support systems for employees to transition from at-risk roles to new or redesigned roles within the company.",
-            "control_objective": "To retain institutional knowledge and valued employees by prioritizing internal transfers over external hires for new roles."
-          },
-          {
-            "control": "[Job Preservation][HR-4] Provide Fair Severance and Outplacement Services. For roles that are unavoidably eliminated, offer comprehensive support including fair severance packages, career counseling, and job placement assistance.",
-            "control_objective": "To manage employee exits ethically and support the well-being and future careers of departing staff, protecting the employer's brand."
-          },
-          {
-            "control": "[Job Preservation][Tech-1] Implement AI impact assessment tools that simulate workforce shifts and identify roles at risk of significant automation.",
-            "control_objective": "To proactively identify and mitigate potential negative impacts of AI on job roles and support workforce adaptation."
-          },
-          {
-            "control": "[Job Preservation][Tech-2] Develop and deploy AI-powered platforms that create personalized learning paths to facilitate reskilling and upskilling for employees.",
-            "control_objective": "To provide scalable, effective, and individualized training and adaptation support for the workforce in response to AI integration."
-          },
-          {
-            "control": "[Job Preservation][Tech-3] Prioritize 'Human-in-the-Loop' (HITL) System Design. Ensure AI systems are designed to augment and assist human decision-making, not completely replace it, especially for complex or high-stakes tasks.",
-            "control_objective": "To maintain the value of human expertise and judgment while improving efficiency, creating a collaborative human-AI work environment."
-          },
-          {
-            "control": "[Job Preservation][Comms-1] Execute a Transparent Communication Plan. Clearly and consistently communicate the 'why' behind AI adoption, the expected impacts, the timeline, and the support systems available to all employees.",
-            "control_objective": "To reduce fear and uncertainty, build trust, and foster a culture of adaptability by keeping employees informed."
-          },
-          {
-            "control": "[Job Preservation][Comms-2] Establish Employee Feedback and Consultation Channels. Actively involve employees and their representatives (e.g., work councils, unions) in the planning and implementation process to gather input and address concerns.",
-            "control_objective": "To ensure the transition plan is practical, fair, and considers the on-the-ground realities of employees, thereby increasing buy-in."
-          }
-        ]
+                {
+                    "FieldType": "risk",
+                    "FieldName": "[Data Privacy] - Unauthorized Access or Disclosure of Personal Data",
+                    "question": "Does the AI system process, store, or transmit personally identifiable information (PII) or sensitive personal data?",
+                    "controls": [
+                        {
+                            "control": "[Data Privacy Protocol Suite][DPP-1] **Establish a Data Privacy Protocol Suite** that defines the implementation of protocols and procedures to protect the privacy and confidentiality of data used by AI systems.",
+                            "control_objective": "The rationale for this control is to ensure compliance with data privacy regulations, maintain data security, and safeguard sensitive information."
+                        },
+                        {
+                            "control": "[Data Privacy Protocol Suite][DPP-2] **Mandate the use of tools for data encryption, anonymization, and access controls** for all sensitive data, and assign responsibility to data security teams and IT personnel.",
+                            "control_objective": "Implementing tools for data encryption, anonymization, and access controls, with responsibility on data security teams and IT personnel."
+                        },
+                        {
+                            "control": "[Data Privacy Protocol Suite][DPP-3] **Implement a comprehensive set of data privacy measures** including encryption, anonymization, and access management to protect all personal data from unauthorized access or use.",
+                            "control_objective": "A comprehensive set of data privacy measures including encryption, anonymization, and access management to protect personal data."
+                        },
+                        {
+                            "control": "[Data Privacy Protocol Suite][DPP-4] **Document the Data Privacy Protocol Suite's fairness explanation** to ensure protocols protect individual data rights and prevent privacy violations from inadvertently compromising fairness.",
+                            "control_objective": "Data Privacy Protocol Suite's fairness explanation would include comprehensive privacy protocols that protect individual data rights and ensure that AI systems do not inadvertently compromise fairness through privacy violations."
+                        },
+                        {
+                            "control": "[Data Privacy Protocol Suite][DPP-5] **Establish and enforce a comprehensive set of protocols and tools** to secure data privacy, including data encryption, anonymization techniques, stringent access controls, alongside staff training and regular security testing.",
+                            "control_objective": "The control requires the establishment of a comprehensive set of protocols and tools designed to secure data privacy. This includes enforcing data encryption, anonymization techniques, and stringent access controls, alongside staff training and regular security testing."
+                        },
+                        {
+                            "control": "[Data Privacy Protocol Suite][DPP-6] **Implement a comprehensive set of measures** to ensure the privacy and protection of data processed by AI systems, **aligning with applicable regulations and ethical standards.**",
+                            "control_objective": "Data Privacy Protocol Suite involves the implementation of a comprehensive set of protocols and measures to ensure the privacy and protection of data processed by AI systems, aligning with applicable regulations and ethical standards."
+                        }
+                    ]
+                },
+                {
+                    "FieldType": "risk",
+                    "FieldName": "[Environmental Impact] - Undocumented Environmental Harm (Carbon Footprint/E-Waste)",
+                    "question": "Does the AI system require high computational resources (training or deployment) that could lead to significant energy consumption or carbon emissions?",
+                    "controls": [
+                        {
+                            "control": "[AI EIA Protocol][EIA-1] **Develop and implement a protocol** to assess the environmental impact of AI systems and their operations throughout the life cycle to evaluate and mitigate environmental consequences.",
+                            "control_objective": "The rationale for this control is to evaluate and mitigate environmental consequences, such as energy consumption and carbon footprint, associated with AI technologies."
+                        },
+                        {
+                            "control": "[AI EIA Protocol][EIA-2] **Conduct a comprehensive evaluation of the environmental footprint** of AI systems, covering energy consumption, carbon footprint, data center operations, and end-of-life hardware handling, with responsibility assigned to environmental compliance teams.",
+                            "control_objective": "AI Environmental Impact Assessment Protocol: Evaluating the environmental footprint of AI systems, covering energy consumption, carbon footprint, data center operations, and end-of-life hardware handling. This responsibility lies with environmental compliance teams and sustainability officers."
+                        },
+                        {
+                            "control": "[AI EIA Protocol][EIA-3] **Establish and follow a documented procedure** to measure and address the environmental impact of AI systems, specifically including energy use, carbon emissions, and the sustainability of data center operations.",
+                            "control_objective": "A procedure to measure and address the environmental impact of AI systems, including energy use, carbon emissions, and the sustainability of data center operations."
+                        },
+                        {
+                            "control": "[AI EIA Protocol][EIA-4] **Document the environmental responsibility of the AI system** by ensuring that the impact on the environment is minimized and that sustainability is considered a component of fairness in the system's design.",
+                            "control_objective": "AI Environmental Impact Assessment Protocol's fairness explanation would encompass the environmental responsibility of AI systems, ensuring that the impact of AI technologies on the environment is minimized and that sustainability is considered a component of fairness."
+                        },
+                        {
+                            "control": "[AI EIA Protocol][EIA-5] **Require a comprehensive evaluation of the AI system's environmental impact** throughout its entire life cycle, focusing on mitigating negative environmental effects and encouraging the adoption of sustainable practices in AI.",
+                            "control_objective": "The AI Environmental Impact Assessment Protocol requires organizations to conduct a comprehensive evaluation of their AI systems' environmental impact throughout their entire life cycle. This includes assessing energy consumption, carbon footprint, data center operations impact, and the end-of-life handling of AI hardware. The objective is to mitigate negative environmental effects and encourage the adoption of sustainable practices in AI."
+                        },
+                        {
+                            "control": "[AI EIA Protocol][EIA-6] **Assess and manage the environmental impact** of AI systems throughout their life cycle to ensure long-term sustainability.",
+                            "control_objective": "The AI Environmental Impact Assessment Protocol control aims to assess and manage the environmental impact of AI systems throughout their life cycle."
+                        }
+                    ]
+                },
+                {
+                    "FieldType": "risk",
+                    "FieldName": "[Workforce Transition] - Unmanaged Job Role Evolution and Disruption",
+                    "question": "Will the AI system require significant changes to existing job roles, responsibilities, or skill requirements for any segment of the workforce?",
+                    "controls": [
+                        {
+                            "control": "[Workforce Transition Management][WTM-1] **Develop and implement a Workforce AI Transition Management strategy** to ensure a smooth transition, address potential impacts on employees, and provide support for upskilling and reskilling.",
+                            "control_objective": "The Workforce AI Transition Management control involves the development and implementation of a strategy to manage the transition of the workforce in response to the introduction of AI systems. The rationale for this control is to ensure a smooth transition, address potential impacts on employees, and provide support for upskilling and reskilling."
+                        },
+                        {
+                            "control": "[Workforce Transition Management][WTM-2] **Establish cross-functional responsibility** for workforce transition with HR departments and AI integration teams to manage training needs and job role evolutions.",
+                            "control_objective": "Workforce AI Transition Management: Managing the transition of the workforce as AI systems are integrated, addressing training needs and job role evolutions. This responsibility lies with HR departments and AI integration teams."
+                        },
+                        {
+                            "control": "[Workforce Transition Management][WTM-3] **Manage and facilitate the workforce transition** by proactively addressing necessary training and potential changes in job roles as AI systems are introduced.",
+                            "control_objective": "Manage and facilitate the workforce transition as AI systems are introduced by addressing necessary training and potential changes in job roles."
+                        },
+                        {
+                            "control": "[Workforce Transition Management][WTM-4] **Ensure the fair transition of the workforce** as AI systems are integrated, addressing concerns such as job displacement, training opportunities, and role evolution in an equitable manner.",
+                            "control_objective": "Workforce AI Transition Management ensures the fair transition of the workforce as AI systems are integrated, addressing concerns such as job displacement, training opportunities, and role evolution in a fair manner."
+                        },
+                        {
+                            "control": "[Workforce Transition Management][WTM-5] **Detail the strategic approach for workforce transitions**, focusing on maintaining safety and performance, describing tailored upskilling programs, job role adaptation processes, and measures to minimize disruption.",
+                            "control_objective": "The explanation should detail the strategic approach to managing workforce transitions as AI is integrated, focusing on maintaining safety and performance standards. It should describe how training programs are tailored to upskill employees, the processes for job role adaptations, and measures to minimize disruption while maximizing the potential of AI to enhance job roles."
+                        },
+                        {
+                            "control": "[Workforce Transition Management][WTM-6] **Assess and document the impact of the transition** on employees, ensuring they are equipped with necessary skills and understanding of their evolving roles in an AI-enhanced workplace.",
+                            "control_objective": "Workforce AI Transition Management involves managing the transition and transformation of the workforce as AI systems are integrated. This includes addressing training needs and adapting job roles to new technology. The impact explanation assesses how this control supports employees during the transition, ensuring they are equipped with necessary skills and understanding of their evolving roles in an AI-enhanced workplace."
+                        }
+                    ]
+                },
+                {
+                    "FieldType": "risk",
+                    "FieldName": "[Fairness & Equity] - Adverse Impact on Vulnerable Populations (including Children)",
+                    "question": "Does the AI system's use case, data, or output directly or indirectly affect groups that are legally protected, economically disadvantaged, or otherwise vulnerable (e.g., minors, persons with disabilities)?",
+                    "controls": [
+                        {
+                            "control": "[Protection of Vulnerable Populations][VULN-1] **Implement measures to safeguard vulnerable populations** from potential harms associated with AI deployment, addressing ethical considerations, ensuring fairness, and preventing discrimination or harm.",
+                            "control_objective": "The Protection of Vulnerable Populations in AI Deployment control involves implementing measures to safeguard vulnerable populations from potential harms associated with AI deployment. The rationale for this control is to address ethical considerations, ensure fairness, and prevent discrimination or harm to vulnerable individuals or groups in the deployment of AI systems."
+                        },
+                        {
+                            "control": "[Protection of Vulnerable Populations][VULN-2] **Integrate mechanisms within the AI system** to identify and mitigate adverse impacts on vulnerable groups, including children, with responsibility assigned to AI developers and risk management teams.",
+                            "control_objective": "Protection of Vulnerable Populations in AI Deployment: Implementing mechanisms in AI systems to identify and mitigate adverse impacts on vulnerable groups, including children. This responsibility is with AI developers and risk management teams."
+                        },
+                        {
+                            "control": "[Protection of Vulnerable Populations][VULN-3] **Incorporate specific measures** into the AI system design to recognize and mitigate possible negative effects on vulnerable populations, including children, throughout the risk management life cycle.",
+                            "control_objective": "Incorporate specific measures in AI systems to recognize and mitigate possible negative effects on vulnerable populations, including children, throughout the risk management life cycle."
+                        },
+                        {
+                            "control": "[Protection of Vulnerable Populations][VULN-4] **Mandate the identification and mitigation** of potential adverse impacts of AI systems on sensitive groups to ensure fairness in AI's societal impact.",
+                            "control_objective": "Protection of Vulnerable Populations in AI Deployment requires the identification and mitigation of potential adverse impacts of AI systems on sensitive groups, ensuring fairness in AI's societal impact."
+                        },
+                        {
+                            "control": "[Protection of Vulnerable Populations][VULN-5] **Document the mechanisms integrated into the AI system** to proactively identify and mitigate any adverse effects on vulnerable populations, detailing their design, testing, updating, and life-cycle maintenance processes.",
+                            "control_objective": "This explanation should include details on the mechanisms integrated into the AI system to proactively identify and mitigate any adverse effects on vulnerable populations, with an emphasis on how these mechanisms are designed, tested, and updated. It should also clarify the processes in place for ensuring these protections are maintained throughout the AI system's life cycle."
+                        },
+                        {
+                            "control": "[Protection of Vulnerable Populations][VULN-6] **Implement mechanisms** within AI systems to identify and mitigate potential adverse impacts, particularly on vulnerable groups or children, as an integral part of the risk management process to ensure ethical considerations and fairness.",
+                            "control_objective": "Protection of Vulnerable Populations in AI Deployment focuses on implementing mechanisms within AI systems to identify and mitigate potential adverse impacts, particularly on vulnerable groups or children. This control is integral in the risk management process to ensure ethical considerations and fairness in AI applications."
+                        }
+                    ]
+                } 
             }
         ]
     },
