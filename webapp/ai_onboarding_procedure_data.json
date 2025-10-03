@@ -203,7 +203,6 @@
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
-            {
                 {
                     "FieldType": "risk",
                     "FieldName": "[Data Privacy] - Unauthorized Access or Disclosure of Personal Data",
@@ -328,7 +327,6 @@
                         }
                     ]
                 } 
-            }
         ]
     },
     "(A.4.4) AI Systems Software and Tooling Resources": {
