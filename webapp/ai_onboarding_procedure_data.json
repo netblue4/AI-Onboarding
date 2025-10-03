@@ -1011,148 +1011,124 @@
         "WebFormTitle": "Define the security requirements for lifecycle phase - Training.",
         "Fields": [
          [
-                {
-                    "FieldType": "risk",
-                    "FieldName": "Failure to Develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models.",
-                    "question": "How can we ensure the effective Develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models.?",
-                    "controls": [
-                        {
-                            "control": "AF-BV-03 - 01: Maintain Rationale Explanation Report that provides A document explaining the importance of considering adversarial machine learning for bias measurement and its role in promoting fairness and equity in AI systems.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 02: Maintain Bias Measurement Guidelines that provides A set of guidelines outlining how adversarial machine learning is used to measure bias in AI systems.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 03: Maintain Bias Mitigation Plan that provides A plan detailing strategies and methods for addressing biases identified through adversarial machine learning.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 04: Maintain Adversarial Testing Plan that provides A document detailing the plan for adversarial testing to measure bias, including personnel roles.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 05: Maintain Bias Measurement Reports that provides Reports from adversarial tests that indicate levels of bias discovered.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 06: Maintain Bias Adjustment Records that provides Documentation of adjustments made to models in response to bias measurements.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 07: Development of a Bias Measurement Protocol that utilizes adversarial machine learning techniques. The protocol should detail how prompt engineering and adversarial models are used to uncover and measure bias in AI systems.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 08: Maintain Adversarial Testing Guidelines that provides Detailed instructions on how to conduct adversarial tests to uncover bias within AI models.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 09: Maintain Bias Measurement Reports that provides The findings from adversarial testing, including metrics and analyses, that indicate the presence and severity of biases.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 10: Maintain Adversarial Model Development Documentation that provides Technical documents that describe the creation and use of models designed to challenge and test the fairness of the primary AI system.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 11: Maintain Bias Measurement Report that provides A report that details findings from adversarial testing, highlighting potential biases and recommendations for improvement.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 12: Maintain Adversarial Test Suite that provides A collection of tools and tests designed for prompting AI systems in order to uncover biases.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        },
-                        {
-                            "control": "AF-BV-03 - 13: Maintain Model Response Analysis Documentation that provides Documentation of how the AI model responds to adversarial inputs, which can be indicative of bias.",
-                            "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
-                        }
-                    ]
-                },
-                {
-                    "FieldType": "risk",
-                    "FieldName": "Failure to Implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome.",
-                    "question": "How can we ensure the effective Implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome.?",
-                    "controls": [
-                        {
-                            "control": "AF-BV-04 - 01: Maintain Rationale Explanation Report that provides A document explaining the importance of bias detection and correction and its role in promoting fairness and equity in AI systems.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 02: Maintain Bias Detection Guidelines that provides Guidelines outlining the methodologies and tools used for identifying biases in AI models and decision-making processes.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 03: Maintain Bias Mitigation Plan that provides A plan detailing the strategies and methods for addressing biases once detected.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 04: Maintain Bias Detection Framework that provides A comprehensive framework detailing procedures for detecting biases and assigning responsibilities.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 05: Maintain Correction Implementation Logs that provides Logs that track the implementation of corrective actions.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 06: Maintain Fairness Audit Reports that provides Periodic reports assessing the fairness of the model post correction.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 07: A comprehensive Bias Detection and Correction Framework, including a description of the methodologies used to detect biases in the data, as well as the techniques employed to correct these biases before they affect the model’s predictions.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 08: Maintain Bias Detection and Correction Protocol that provides A comprehensive guide that outlines the steps to identify and mitigate bias in AI datasets.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 09: Maintain Training Data Audit Reports that provides Documents that record the findings of biases in training datasets, along with the steps taken to correct them.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 10: Maintain Corrective Action Plans that provides Strategic plans that specify the actions required to adjust biased data and improve model fairness.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 11: Maintain Bias Audit Report that provides A comprehensive document detailing detected biases in training data and subsequent corrections applied.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 12: Maintain Corrective Action Plan that provides A strategic plan outlining steps for rectifying identified biases, including data resampling or algorithmic adjustments.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        },
-                        {
-                            "control": "AF-BV-04 - 13: Maintain Fairness Metrics Dashboard that provides An interactive dashboard that monitors key fairness metrics over time, reflecting the impact of corrective measures.",
-                            "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
-                        }
-                    ]
-                }
-            ],
-      {
-        "FieldType": "risk",
-        "FieldName": "[C.3.4] - Data Quality and Inherent Bias",
-        "question": "Will the AI system be trained on historical data that may contain inaccuracies, imbalances, or reflect societal biases, potentially leading to unfair or incorrect outcomes?",
-        "controls": [
-          {
-            "control": "[C.3.4][DQ-1] - Implement rigorous data governance, cleaning, and validation processes to ensure training data is accurate, complete, and representative of the deployment environment.",
-            "control_objective": "To minimize model errors and biases stemming from flawed or unrepresentative input data."
-          },
-          {
-            "control": "[C.3.4][DQ-2] - Conduct fairness and bias audits on datasets and model outputs across different demographic groups to identify and measure performance disparities.",
-            "control_objective": "To proactively detect and quantify potential discriminatory impacts of the AI system before and after deployment."
-          },
-          {
-            "control": "[C.3.4][DQ-3] - Apply bias mitigation techniques during data pre-processing or model training, such as data re-sampling, re-weighting, or algorithmic adjustments, to correct for identified biases.",
-            "control_objective": "To enhance fairness and promote equitable outcomes for all affected user groups."
-          },
-          {
-            "control": "[C.3.4][DQ-4] - Involve domain experts to review data features and ensure they do not inadvertently encode sensitive attributes or perpetuate historical biases.",
-            "control_objective": "To ensure the data used by the model is appropriate and aligned with fairness principles."
-          }
-        ]
-      },
+            {
+                "FieldType": "risk",
+                "FieldName": "Failure to Develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models.",
+                "question": "How can we ensure the effective Develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models.?",
+                "controls": [
+                    {
+                        "control": "AF-BV-03 - 01: Maintain Rationale Explanation Report that provides A document explaining the importance of considering adversarial machine learning for bias measurement and its role in promoting fairness and equity in AI systems.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 02: Maintain Bias Measurement Guidelines that provides A set of guidelines outlining how adversarial machine learning is used to measure bias in AI systems.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 03: Maintain Bias Mitigation Plan that provides A plan detailing strategies and methods for addressing biases identified through adversarial machine learning.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 04: Maintain Adversarial Testing Plan that provides A document detailing the plan for adversarial testing to measure bias, including personnel roles.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 05: Maintain Bias Measurement Reports that provides Reports from adversarial tests that indicate levels of bias discovered.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 06: Maintain Bias Adjustment Records that provides Documentation of adjustments made to models in response to bias measurements.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 07: Development of a Bias Measurement Protocol that utilizes adversarial machine learning techniques. The protocol should detail how prompt engineering and adversarial models are used to uncover and measure bias in AI systems.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 08: Maintain Adversarial Testing Guidelines that provides Detailed instructions on how to conduct adversarial tests to uncover bias within AI models.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 09: Maintain Bias Measurement Reports that provides The findings from adversarial testing, including metrics and analyses, that indicate the presence and severity of biases.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 10: Maintain Adversarial Model Development Documentation that provides Technical documents that describe the creation and use of models designed to challenge and test the fairness of the primary AI system.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 11: Maintain Bias Measurement Report that provides A report that details findings from adversarial testing, highlighting potential biases and recommendations for improvement.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 12: Maintain Adversarial Test Suite that provides A collection of tools and tests designed for prompting AI systems in order to uncover biases.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    },
+                    {
+                        "control": "AF-BV-03 - 13: Maintain Model Response Analysis Documentation that provides Documentation of how the AI model responds to adversarial inputs, which can be indicative of bias.",
+                        "control_objective": "To develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models."
+                    }
+                ]
+            },
+            {
+                "FieldType": "risk",
+                "FieldName": "Failure to Implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome.",
+                "question": "How can we ensure the effective Implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome.?",
+                "controls": [
+                    {
+                        "control": "AF-BV-04 - 01: Maintain Rationale Explanation Report that provides A document explaining the importance of bias detection and correction and its role in promoting fairness and equity in AI systems.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 02: Maintain Bias Detection Guidelines that provides Guidelines outlining the methodologies and tools used for identifying biases in AI models and decision-making processes.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 03: Maintain Bias Mitigation Plan that provides A plan detailing the strategies and methods for addressing biases once detected.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 04: Maintain Bias Detection Framework that provides A comprehensive framework detailing procedures for detecting biases and assigning responsibilities.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 05: Maintain Correction Implementation Logs that provides Logs that track the implementation of corrective actions.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 06: Maintain Fairness Audit Reports that provides Periodic reports assessing the fairness of the model post correction.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 07: A comprehensive Bias Detection and Correction Framework, including a description of the methodologies used to detect biases in the data, as well as the techniques employed to correct these biases before they affect the model’s predictions.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 08: Maintain Bias Detection and Correction Protocol that provides A comprehensive guide that outlines the steps to identify and mitigate bias in AI datasets.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 09: Maintain Training Data Audit Reports that provides Documents that record the findings of biases in training datasets, along with the steps taken to correct them.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 10: Maintain Corrective Action Plans that provides Strategic plans that specify the actions required to adjust biased data and improve model fairness.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 11: Maintain Bias Audit Report that provides A comprehensive document detailing detected biases in training data and subsequent corrections applied.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 12: Maintain Corrective Action Plan that provides A strategic plan outlining steps for rectifying identified biases, including data resampling or algorithmic adjustments.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    },
+                    {
+                        "control": "AF-BV-04 - 13: Maintain Fairness Metrics Dashboard that provides An interactive dashboard that monitors key fairness metrics over time, reflecting the impact of corrective measures.",
+                        "control_objective": "To implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome."
+                    }
+                ]
+            },
       {
         "FieldType": "risk",
         "FieldName": "[C.3.4] - Flawed Training Process and Overfitting",
