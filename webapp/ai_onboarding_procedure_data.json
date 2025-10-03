@@ -933,222 +933,478 @@
         "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
         "Fields": [
           {
-            "FieldType": "risk",
-            "FieldName": "[C.3.6] - Flawed AI System Design and Development",
-            "question": "Was the AI system's design phase rushed, lacking input from diverse experts (like ethics, security, domain specialists), or was its testing limited to clean, non-real-world data?",
-            "controls": [
+    "FieldType": "risk",
+    "FieldName": "AI System Quality and Development Criteria",
+    "question": "Are the established quality criteria for AI system datasets sufficient, adaptable, and consistently applied to ensure the development of high-risk AI systems meets required quality standards across different market segments?",
+    "controls": [
+      {
+        "control": "SD-QS-01 - 01: Maintain a guide that outlines the **quality criteria** for AI system datasets.",
+        "control_objective": "To ensure high-risk AI systems adhere to established quality criteria for datasets.",
+        "risk": "Failure to develop high-risk AI systems that adhere to quality criteria due to undefined or undocumented dataset standards."
+      },
+      {
+        "control": "SD-QS-01 - 02: Maintain a **plan** detailing how AI systems will be adapted to meet different market segment requirements.",
+        "control_objective": "To ensure high-risk AI systems maintain dataset quality while allowing for **adaptability** based on the system's market segment or application.",
+        "risk": "Inability to deploy high-risk AI systems across various market segments because the system's quality criteria lack the necessary adaptability."
+      },
+      {
+        "control": "SD-QS-01 - 03: Establish a **protocol** for ensuring AI systems consistently meet the established quality criteria.",
+        "control_objective": "To ensure high-risk AI systems adhere to established quality criteria for datasets.",
+        "risk": "Release of AI systems that do not meet required quality standards due to the lack of a formal quality assurance protocol."
+      },
+      {
+        "control": "SD-QS-01 - 04: Maintain **detailed documentation** specifying the quality criteria for datasets used in AI system development.",
+        "control_objective": "To ensure high-risk AI systems adhere to established quality criteria for datasets.",
+        "risk": "Dataset quality inconsistencies caused by a lack of clear and detailed documentation of quality criteria."
+      },
+      {
+        "control": "SD-QS-01 - 05: Maintain **documentation** outlining how data quality criteria can be adapted based on the AI system's market segment or application.",
+        "control_objective": "To ensure high-risk AI systems maintain dataset quality while allowing for adaptability based on the system's market segment or application.",
+        "risk": "Mismatched data quality criteria for specific applications, resulting in system failures or suboptimal performance in target market segments."
+      },
+      {
+        "control": "SD-QS-01 - 06: Maintain a **Quality Management System (QMS) Document** tailored for AI development outlining the quality criteria and processes.",
+        "control_objective": "To ensure high-risk AI systems adhere to established quality criteria for datasets.",
+        "risk": "Non-compliance with internal and external quality standards due to the absence of an AI-specific Quality Management System."
+      },
+      {
+        "control": "SD-QS-01 - 07: Maintain a **Dataset Quality Assurance Report** detailing the measures taken to ensure datasets meet established criteria.",
+        "control_objective": "To ensure high-risk AI systems adhere to established quality criteria for datasets.",
+        "risk": "Unverified dataset quality due to a lack of formal reporting on quality assurance measures."
+      },
+      {
+        "control": "SD-QS-01 - 08: Maintain a **Market Segment Adaptability Analysis** showing how the system's quality criteria are customized for various applications.",
+        "control_objective": "To ensure high-risk AI systems maintain dataset quality while allowing for adaptability based on the system's market segment or application.",
+        "risk": "Poor system performance in new market segments because quality criteria customization was not formally analyzed and documented."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "AI System Safety and Compliance",
+    "question": "Is the enterprise consistently implementing regular safety and compliance checks across all AI systems, regardless of risk classification, to ensure adherence to minimum market safety standards?",
+    "controls": [
+      {
+        "control": "SD-AV-01 - 01: Establish a **procedure** for conducting regular safety checks on all AI systems.",
+        "control_objective": "To ensure enterprise AI systems meet minimum safety standards when released to the market by implementing regular safety and compliance checks.",
+        "risk": "Release of unsafe AI systems due to the lack of a formalized procedure for conducting safety checks."
+      },
+      {
+        "control": "SD-AV-01 - 02: Maintain a **checklist** of minimum safety standards that all AI systems must meet prior to release.",
+        "control_objective": "To ensure enterprise AI systems meet minimum safety standards when released to the market by implementing regular safety and compliance checks.",
+        "risk": "Failure to meet mandatory safety requirements due to the absence of a clear, comprehensive checklist of minimum safety standards."
+      },
+      {
+        "control": "SD-AV-01 - 03: Implement a **system** for reporting compliance with established safety standards.",
+        "control_objective": "To ensure enterprise AI systems meet minimum safety standards when released to the market by implementing regular safety and compliance checks.",
+        "risk": "Non-compliance risks remaining undetected due to the lack of a formal and reliable compliance reporting system."
+      },
+      {
+        "control": "SD-AV-01 - 04: Maintain **documentation** specifying the safety and compliance checks conducted for AI systems, including data-related aspects.",
+        "control_objective": "To ensure enterprise AI systems meet minimum safety standards when released to the market by implementing regular safety and compliance checks.",
+        "risk": "Inability to demonstrate due diligence in safety and compliance due to incomplete or absent documentation of checks performed."
+      },
+      {
+        "control": "SD-AV-01 - 05: Maintain **reports** detailing the outcomes of safety assessments, including data-related findings.",
+        "control_objective": "To ensure enterprise AI systems meet minimum safety standards when released to the market by implementing regular safety and compliance checks.",
+        "risk": "Unaddressed safety vulnerabilities arising from a failure to formally document and review safety assessment findings."
+      },
+      {
+        "control": "SD-AV-01 - 06: Maintain a **Universal Safety Standards Checklist** outlining the minimum safety criteria applicable to all AI systems.",
+        "control_objective": "To ensure enterprise AI systems meet minimum safety standards when released to the market by implementing regular safety and compliance checks.",
+        "risk": "Inconsistent application of safety standards across different AI systems due to a lack of a universal checklist."
+      },
+      {
+        "control": "SD-AV-01 - 07: Maintain a **Compliance Certification** for each system released, affirming its adherence to minimum safety standards.",
+        "control_objective": "To ensure enterprise AI systems meet minimum safety standards when released to the market by implementing regular safety and compliance checks.",
+        "risk": "Release of non-compliant systems without formal sign-off on safety adherence."
+      },
+      {
+        "control": "SD-AV-01 - 08: Maintain a **Premarket Safety Assessment Report** documenting the results of safety checks performed prior to release.",
+        "control_objective": "To ensure enterprise AI systems meet minimum safety standards when released to the market by implementing regular safety and compliance checks.",
+        "risk": "Release of systems without a premarket safety assessment, exposing the enterprise to unmitigated safety risks."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "AI System Security and Traceability",
+    "question": "Do high-risk AI systems have robust, state-of-the-art automatic event logging capabilities to ensure full traceability and effective postmarket security monitoring?",
+    "controls": [
+      {
+        "control": "SD-ST-01 - 01: Maintain **standards** for security design and event logging in high-risk AI systems.",
+        "control_objective": "To ensure high-risk AI systems have built-in automatic event logging capabilities and adhere to state-of-the-art logging standards.",
+        "risk": "Insecure or non-traceable AI systems due to the lack of formal design and logging standards."
+      },
+      {
+        "control": "SD-ST-01 - 02: Maintain a **guide** for the implementation of the event logging systems in AI systems.",
+        "control_objective": "To ensure high-risk AI systems have built-in automatic event logging capabilities and adhere to state-of-the-art logging standards.",
+        "risk": "Inconsistent or incorrect implementation of event logging across high-risk AI systems."
+      },
+      {
+        "control": "SD-ST-01 - 03: Maintain a **checklist** for ensuring compliance with security assessment and logging standards.",
+        "control_objective": "To ensure high-risk AI systems have built-in automatic event logging capabilities and adhere to state-of-the-art logging standards.",
+        "risk": "Failure to detect non-compliance with security and logging standards during the prelaunch assessment."
+      },
+      {
+        "control": "SD-ST-01 - 04: Maintain **documentation** specifying the design of automatic event logging capabilities, including the data elements to capture.",
+        "control_objective": "To ensure high-risk AI systems have built-in automatic event logging capabilities and adhere to state-of-the-art logging standards, capturing essential data for traceability and postmarket monitoring.",
+        "risk": "Incomplete or irrelevant data capture in event logs, hindering effective postmarket monitoring and traceability."
+      },
+      {
+        "control": "SD-ST-01 - 05: Maintain **records** of events captured by the system, including data elements for traceability and monitoring.",
+        "control_objective": "To ensure high-risk AI systems have built-in automatic event logging capabilities and adhere to state-of-the-art logging standards, capturing essential data for traceability and postmarket monitoring.",
+        "risk": "Inability to perform root cause analysis or track system behavior due to missing or corrupted event logs."
+      },
+      {
+        "control": "SD-ST-01 - 06: Maintain a **Logging Capability Design Document** outlining the event logging architecture and how it adheres to state-of-the-art standards.",
+        "control_objective": "To ensure high-risk AI systems have built-in automatic event logging capabilities and adhere to state-of-the-art logging standards.",
+        "risk": "Logging architecture that is not scalable or fails to meet modern security standards."
+      },
+      {
+        "control": "SD-ST-01 - 07: Maintain an **Event Log Report** that samples and demonstrates the data captured during system operations.",
+        "control_objective": "To ensure high-risk AI systems have built-in automatic event logging capabilities and adhere to state-of-the-art logging standards, capturing essential data for traceability and postmarket monitoring.",
+        "risk": "Undetected logging failures or data capture errors due to the lack of periodic sampling and review of event logs."
+      },
+      {
+        "control": "SD-ST-01 - 08: Maintain a **Prelaunch Logging Test Summary** to confirm the system's logging capabilities before market release.",
+        "control_objective": "To ensure high-risk AI systems have built-in automatic event logging capabilities and adhere to state-of-the-art logging standards.",
+        "risk": "Deploying a system with non-functional or untested logging capabilities, compromising postmarket monitoring and traceability."
+      }
+    ]
+  },
+                {
+        "FieldType": "risk",
+        "FieldName": "Failure to Detect AI System Risks During Prerelease Testing",
+        "question": "Are the national supervisory authority's mechanisms for organizing and overseeing prerelease testing of high-risk AI systems sufficient to ensure a comprehensive evaluation and effective risk mitigation?",
+        "controls": [
+            {
+                "control": "SD-ST-02 - 01: Maintain a procedure testing coordination procedure A procedure for coordinating prerelease testing of high-risk AI systems.",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            },
+            {
+                "control": "SD-ST-02 - 02: Establish guidelines testing parameter guidelines Guidelines for setting testing parameters.",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            },
+            {
+                "control": "SD-ST-02 - 03: Maintain a template comprehensive evaluation report template A template for documenting the evaluation of AI systems.",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            },
+            {
+                "control": "SD-ST-02 - 04: Maintain documentation testing oversight mechanism documentation Documentation outlining the mechanism for national supervisory authority oversight of high-risk AI system testing, including data-related aspects.",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            },
+            {
+                "control": "SD-ST-02 - 05: Maintain testing parameters Specifications for testing parameters, including data-related criteria.",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            },
+            {
+                "control": "SD-ST-02 - 06: Generate and maintain reports testing reports Reports generated as a result of the oversight and testing process, focusing on data-related findings.",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            },
+            {
+                "control": "SD-ST-02 - 07: Maintain a protocol supervisory authority testing protocol which defines the methodologies and standards for testing",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            },
+            {
+                "control": "SD-ST-02 - 08: Maintain a plan testing coordination plan that outlines the roles and responsibilities of the AI providers in the testing process",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            },
+            {
+                "control": "SD-ST-02 - 09: Maintain testing report which documents the outcomes and any recommendations",
+                "control_objective": "To ensure comprehensive and coordinated prerelease testing of high-risk AI systems by the national supervisory authority, setting robust testing parameters for effective evaluation."
+            }
+        ]
+    },
+    {
+        "FieldType": "risk",
+        "FieldName": "Model Intellectual Property Theft and Reverse Engineering",
+        "question": "Is the model code obfuscation adequate to effectively prevent unauthorized reverse engineering and protect the AI system's proprietary algorithms?",
+        "controls": [
+            {
+                "control": "SD-PC-01 - 01: Maintain the code obfuscation techniques guide code A guide detailing techniques for model code obfuscation.",
+                "control_objective": "To prevent unauthorized intellectual property theft and reverse engineering by attackers through robust model code obfuscation."
+            },
+            {
+                "control": "SD-PC-01 - 02: Maintain a record obfuscation implementation record A record of implementing code obfuscation in AI models.",
+                "control_objective": "To prevent unauthorized intellectual property theft and reverse engineering by attackers through robust model code obfuscation."
+            },
+            {
+                "control": "SD-PC-01 - 03: Maintain the code security training on  protection code Training materials for developers on code obfuscation techniques.",
+                "control_objective": "To prevent unauthorized intellectual property theft and reverse engineering by attackers through robust model code obfuscation."
+            },
+            {
+                "control": "SD-PC-01 - 04: Maintain a plan code obfuscation plan Documentation outlining the strategy and techniques used for obfuscating model code, including data protection considerations.",
+                "control_objective": "To prevent unauthorized intellectual property theft and reverse engineering by attackers through robust model code obfuscation."
+            },
+            {
+                "control": "SD-PC-01 - 05: Maintain the code obfuscated model code The actual obfuscated model code.",
+                "control_objective": "To prevent unauthorized intellectual property theft and reverse engineering by attackers through robust model code obfuscation."
+            },
+            {
+                "control": "SD-PC-01 - 06: Maintain a document obfuscation techniques document detailing the methods used to obfuscate the code",
+                "control_objective": "To prevent unauthorized intellectual property theft and reverse engineering by attackers through robust model code obfuscation."
+            },
+            {
+                "control": "SD-PC-01 - 07: Maintain the code obfuscated model base code which is the result of applying these techniques",
+                "control_objective": "To prevent unauthorized intellectual property theft and reverse engineering by attackers through robust model code obfuscation."
+            },
+            {
+                "control": "SD-PC-01 - 08: Maintain obfuscation efficacy report evaluating the strength of the obfuscation against reverse engineering attempts",
+                "control_objective": "To prevent unauthorized intellectual property theft and reverse engineering by attackers through robust model code obfuscation."
+            }
+        ]
+    },
+    {
+        "FieldType": "risk",
+        "FieldName": "Unauthorized Access and Cyberattack on Model Information",
+        "question": "Are the security measures for model information robust enough to prevent potential cyberattacks, unauthorized access, and ensure the integrity of the AI system?",
+        "controls": [
+            {
+                "control": "SD-MP-01 - 01: Maintain a protocol model information security protocol A protocol for securing model information.",
+                "control_objective": "To protect model information, including data and intellectual property, from potential cyberattacks and unauthorized access."
+            },
+            {
+                "control": "SD-MP-01 - 02: Maintain a record cybersecurity measures implementation record A record of implementing cybersecurity measures for model protection.",
+                "control_objective": "To protect model information, including data and intellectual property, from potential cyberattacks and unauthorized access."
+            },
+            {
+                "control": "SD-MP-01 - 03: Provide training information security  modules training Training materials for IT staff on securing model information.",
+                "control_objective": "To protect model information, including data and intellectual property, from potential cyberattacks and unauthorized access."
+            },
+            {
+                "control": "SD-MP-01 - 04: Maintain a plan model information security plan Documentation outlining the strategies and measures implemented to secure model information, including data-related security controls.",
+                "control_objective": "To protect model information, including data and intellectual property, from potential cyberattacks and unauthorized access."
+            },
+            {
+                "control": "SD-MP-01 - 05: Maintain security logs security logs Records of security-related events and activities related to model information.",
+                "control_objective": "To protect model information, including data and intellectual property, from potential cyberattacks and unauthorized access."
+            },
+            {
+                "control": "SD-MP-01 - 06: Maintain a plan model information security plan which documents the security measures in place",
+                "control_objective": "To protect model information, including data and intellectual property, from potential cyberattacks and unauthorized access."
+            },
+            {
+                "control": "SD-MP-01 - 07: Generate and maintain an audit report information security audit report which provides an analysis of the model's security posture",
+                "control_objective": "To protect model information, including data and intellectual property, from potential cyberattacks and unauthorized access."
+            },
+            {
+                "control": "SD-MP-01 - 08: Maintain a plan cybersecurity incident response plan which would also be essential to outline actions to take in case of a security breach",
+                "control_objective": "To protect model information, including data and intellectual property, from potential cyberattacks and unauthorized access."
+            }
+        ]
+    },
+            {
+        "FieldType": "risk",
+        "FieldName": "Compromise of AI System Integrity and Stability",
+        "question": "How can ai system integrity maintenance measures ensure the AI system's integrity, and are there sufficient controls to prevent compromise of ai system integrity and stability?",
+        "controls": [
+            {
+                "control": "SD-SR-01-01: Document and maintain integrity assurance protocol document: provides a step-by-step approach to maintaining integrity.",
+                "control_objective": "To maintain ai system integrity against adversarial attacks or operational changes."
+            },
+            {
+                "control": "SD-SR-01-02: Document and maintain technical safeguard specifications: outlining different countermeasures against specific types of adversarial attacks.",
+                "control_objective": "To maintain ai system integrity against adversarial attacks or operational changes."
+            },
+            {
+                "control": "SD-SR-01-03: Maintain a dynamic change ledger: records of all operational changes and their assessments.",
+                "control_objective": "To maintain ai system integrity against adversarial attacks or operational changes."
+            },
+            {
+                "control": "SD-SR-01-04: Ensure the existence of repository of system configurations: a version-controlled repository to track historical and current system states.",
+                "control_objective": "To maintain ai system integrity against adversarial attacks or operational changes."
+            }
+        ]
+    },
+    {
+        "FieldType": "risk",
+        "FieldName": "Input Manipulation and Membership Inference Attacks",
+        "question": "How can input validation & model obfuscation measures ensure the AI system's integrity, and are there sufficient controls to prevent input manipulation and membership inference attacks?",
+        "controls": [
+            {
+                "control": "SD-IM-01-01: Document and maintain input validation procedure guide: outlining the methods used to check and sanitize inputs.",
+                "control_objective": "To implement input validation to detect and prevent input manipulation attacks. use model obfuscation techniques to prevent membership inference attacks."
+            },
+            {
+                "control": "SD-IM-01-02: Document and maintain obfuscation technique report: detailing the specific approaches taken to obscure the ai model's data and operations.",
+                "control_objective": "To implement input validation to detect and prevent input manipulation attacks. use model obfuscation techniques to prevent membership inference attacks."
+            },
+            {
+                "control": "SD-IM-01-03: Maintain a input and model security log: record all validation and obfuscation activities.",
+                "control_objective": "To implement input validation to detect and prevent input manipulation attacks. use model obfuscation techniques to prevent membership inference attacks."
+            }
+        ]
+    },
+    {
+        "FieldType": "risk",
+        "FieldName": "Data Poisoning and Manipulative Attacks on Models",
+        "question": "How can data validation & use of robust models measures ensure the AI system's integrity, and are there sufficient controls to prevent data poisoning and manipulative attacks on models?",
+        "controls": [
+            {
+                "control": "SD-DI-01-01: Ensure the existence of data validation procedure: a procedure for validating and verifying training data.",
+                "control_objective": "To perform a thorough validation and verification of training data before using it to train the model. use robust models designed to withstand manipulative attacks."
+            },
+            {
+                "control": "SD-DI-01-02: Document and maintain robust model development guide: a guide for developing robust ai models resistant to attacks.",
+                "control_objective": "To perform a thorough validation and verification of training data before using it to train the model. use robust models designed to withstand manipulative attacks."
+            },
+            {
+                "control": "SD-DI-01-03: Establish and implement a data and model security training program: a training program for staff on data validation and robust model development.",
+                "control_objective": "To perform a thorough validation and verification of training data before using it to train the model. use robust models designed to withstand manipulative attacks."
+            },
+            {
+                "control": "SD-DI-01-04: Document and maintain data validation plan: documentation specifying the processes and criteria for validating training data, including data quality and security considerations.",
+                "control_objective": "To perform a thorough validation and verification of training data before using it to train the model. use robust models designed to withstand manipulative attacks."
+            },
+            {
+                "control": "SD-DI-01-05: Document and maintain model robustness assessment: documentation outlining the measures and techniques used to ensure the model's robustness against manipulative attacks.",
+                "control_objective": "To perform a thorough validation and verification of training data before using it to train the model. use robust models designed to withstand manipulative attacks."
+            },
+            {
+                "control": "SD-DI-01-06: Document and maintain data validation report: details the methods and results of the training data verification process.",
+                "control_objective": "To perform a thorough validation and verification of training data before using it to train the model. use robust models designed to withstand manipulative attacks."
+            },
+            {
+                "control": "SD-DI-01-07: Document and maintain robust model selection criteria document: outlining the standards and requirements that models must meet to be considered robust against attacks.",
+                "control_objective": "To perform a thorough validation and verification of training data before using it to train the model. use robust models designed to withstand manipulative attacks."
+            },
+            {
+                "control": "SD-DI-01-08: Maintain a training data integrity log: must also be maintained.",
+                "control_objective": "To perform a thorough validation and verification of training data before using it to train the model. use robust models designed to withstand manipulative attacks."
+            }
+        ]
+    },
               {
-                "control": "[C.3.6][BP-1] - Conduct comprehensive risk assessments, including Failure Modes and Effects Analysis (FMEA), during the initial design phase to identify and mitigate potential AI-specific failures, ethical biases, and security vulnerabilities.",
-                "control_objective": "To proactively embed safety, security, and fairness into the AI system's core architecture from the outset."
-              },
-              {
-                "control": "[C.3.6][BP-2] - Establish a cross-functional design and review team, including domain experts, ethicists, security specialists, and end-users, to ensure requirements are complete and potential impacts are understood from multiple perspectives.",
-                "control_objective": "To prevent design oversights and ensure the AI system is aligned with real-world contexts, ethical norms, and user needs."
-              },
-              {
-                "control": "[C.3.6][BP-3] - Implement a multi-stage testing and validation plan that uses real-world data, includes adversarial and integration testing, and verifies the AI's performance within the complete operational system.",
-                "control_objective": "To ensure the AI system is robust, reliable, and performs as expected when interacting with other systems and real-world data complexity."
-              }
-            ]
-          },
-          {
-            "FieldType": "risk",
-            "FieldName": "[C.3.5] - Hardware Failure and Performance Degradation",
-            "question": "Does the AI system rely on physical hardware like sensors, processors, or actuators that could fail suddenly, wear out, or degrade over time, leading to inaccurate data or faulty execution of decisions?",
-            "controls": [
-              {
-                "control": "[C.3.5][HF-1] - Implement redundancy for critical hardware components, such as using multiple sensors, error-correcting code (ECC) memory, and redundant processors.",
-                "control_objective": "To ensure continuous and reliable operation by allowing the system to tolerate the failure of a single component."
-              },
-              {
-                "control": "[C.3.5][HF-2] - Establish a preventive maintenance and calibration schedule for hardware components that are prone to aging, drift, or wear-and-tear.",
-                "control_objective": "To proactively mitigate performance degradation and prevent failures by maintaining hardware within its operational specifications."
-              },
-              {
-                "control": "[C.3.5][HF-3] - Design the system to 'fail safe' or 'fail gracefully' in the event of a hardware malfunction, such as having an autonomous vehicle slow to a stop if a critical sensor fails.",
-                "control_objective": "To minimize harm and maintain a safe state when the AI system can no longer operate as intended due to hardware issues."
-              },
-              {
-                "control": "[C.3.5][HF-4] - Utilize diverse sensing modalities (e.g., fusing camera, LIDAR, and radar data) and cross-validate their inputs to detect anomalies or failures in a single sensor.",
-                "control_objective": "To create a more robust and complete perception of the environment that is not reliant on a single point of hardware failure."
-              }
-            ]
-          },
-          {
-            "FieldType": "risk",
-            "FieldName": "[C.3.5] - Infrastructure, Power, and Connectivity Failures",
-            "question": "Is the AI system's continuous operation dependent on external infrastructure, such as a stable power supply, network connectivity, or cloud services, that could experience outages?",
-            "controls": [
-              {
-                "control": "[C.3.5][IP-1] - Implement redundant power sources, such as uninterruptible power supplies (UPS) or backup batteries, for critical AI systems.",
-                "control_objective": "To ensure operational continuity during power outages and allow for graceful shutdowns."
-              },
-              {
-                "control": "[C.3.5][IP-2] - For distributed or cloud-dependent AI systems, design for network resiliency with redundant connectivity paths or the ability to function in a degraded state during network outages.",
-                "control_objective": "To minimize disruption and maintain core functionality when network infrastructure fails."
-              },
-              {
-                "control": "[C.3.5][IP-3] - Implement comprehensive logging and alerting for hardware and infrastructure-related events, such as power fluctuations, network dropouts, or high temperatures.",
-                "control_objective": "To enable rapid detection of and response to infrastructure issues that could impact AI system performance or availability."
-              }
-            ]
-          },
-          {
-            "FieldType": "risk",
-            "FieldName": "[C.3.5] - Model Incompatibility and Performance Shifts During Hardware Transfer",
-            "question": "Will the AI model be developed on one type of hardware (e.g., high-end lab GPUs) and then deployed on different, potentially less powerful or specialized hardware (e.g., an embedded AI chip)?",
-            "controls": [
-              {
-                "control": "[C.3.5][MT-1] - Conduct thorough validation and regression testing of the AI model on the exact target hardware platform before final deployment.",
-                "control_objective": "To verify that the model's performance, accuracy, and behavior remain acceptable after being ported to new hardware."
-              },
-              {
-                "control": "[C.3.5][MT-2] - When using model optimization techniques like quantization (e.g., converting from 32-bit to 8-bit precision), rigorously measure the impact on accuracy and test for new failure modes.",
-                "control_objective": "To ensure that efficiency gains from model optimization do not unacceptably compromise the model's reliability and correctness."
-              },
-              {
-                "control": "[C.3.5][MT-3] - Utilize hardware-aware training techniques (e.g., quantization-aware training) that simulate the constraints of the target hardware during the model development phase.",
-                "control_objective": "To proactively build models that are robust to the numerical precision and computational limitations of their deployment environment."
-              }
-            ]
-          },
-          {
-            "FieldType": "risk",
-            "FieldName": "[C.3.5] - Exploitation of Hardware Security Vulnerabilities",
-            "question": "Could an attacker with physical or proximate access to the AI system's hardware exploit it through side-channels, fault injection, or supply chain tampering to steal the model or cause it to malfunction?",
-            "controls": [
-              {
-                "control": "[C.3.5][HS-1] - Employ hardware security hardening techniques such as using secure enclaves or Trusted Platform Modules (TPMs) to protect sensitive model parameters and cryptographic keys.",
-                "control_objective": "To create a trusted execution environment that isolates critical AI computations from potential software or hardware-level attacks."
-              },
-              {
-                "control": "[C.3.5][HS-2] - Implement countermeasures against side-channel attacks (e.g., electromagnetic shielding, power consumption noise) and fault injection attacks (e.g., voltage and clock monitoring).",
-                "control_objective": "To prevent attackers from inferring secrets or inducing miscalculations by observing the physical properties of the hardware."
-              },
-              {
-                "control": "[C.3.5][HS-3] - Source hardware components from reputable manufacturers and implement a secure supply chain process to mitigate the risk of hardware Trojans or other malicious modifications.",
-                "control_objective": "To ensure the integrity and trustworthiness of the underlying hardware foundation of the AI system."
-              },
-              {
-                "control": "[C.3.5][HS-4] - Enforce physical security measures for AI hardware, including tamper-detection mechanisms that can trigger alerts or erase sensitive data if the device is compromised.",
-                "control_objective": "To protect against unauthorized physical access, which is often a prerequisite for advanced hardware-level attacks."
-              }
-            ]
-          },
-          {
-            "FieldType": "risk",
-            "FieldName": "Inadequate AI System architcture Protection Measures",
-            "question": "Would a compromise or failure of the AI system disrupt a critical business process or expose data?",
-            "controls": [
-              {
-                "control": "SATP.02 Create a Data Flow Diagram to visualise the AI system architecture profile, including:\na) System boundaries\nb) External entities that interact with the system\nc) Trust levels of these entities\nd) Data entry and exit points\ne) Internal components and their interaction with other components\nf) Where sensitive data is stored or processed\ng) The types of data the system handles",
-                "control_objective": "To map out and understand the flow of data within the AI system architectures, identifying potential security risks."
-              },
-              {
-                "control": "SATP.04 Incorporate mechanisms into the AI system architecture profile to protect the confidentiality of sensitive data, such as encryption, ACLs, secure data storage, and secure data transmission protocols.",
-                "control_objective": "To ensure the confidentiality of sensitive data within system architectures."
-              },
-              {
-                "control": "SATP.05 Incorporate mechanisms into the AI system architecture profile to protect the integrity of sensitive data, including hashing, referential integrity design, resource locking, and code signing.",
-                "control_objective": "To maintain the integrity of sensitive data within system architectures."
-              },
-              {
-                "control": "SATP.06 Incorporate mechanisms into the AI system architecture profile to ensure the availability of the system, including replication, failover, and scalability.",
-                "control_objective": "To maintain the availability of the system under various conditions and loads."
-              },
-              {
-                "control": "SATP.07 Incorporate mechanisms into the AI system architecture profile to authenticate the identity of users or entities, including passwords, smart cards, and biometric traits.",
-                "control_objective": "To authenticate users or entities reliably before granting access to the system."
-              },
-              {
-                "control": "SATP.08 Incorporate mechanisms into the AI system architecture profile to authorise granular level access to system resources, including RBAC, ABAC, MAC, MFA, and TBAC.",
-                "control_objective": "To control and restrict access to system resources based on roles, attributes, and other factors."
-              },
-              {
-                "control": "SATP.09 Incorporate mechanisms into the AI system architecture profile to enforce non-repudiation and record user actions and events, such as audit trails, authentication and authorisation logs, change management logs, DAM, and network traffic monitoring.",
-                "control_objective": "To ensure accountability and traceability of actions and events within the system."
-              },
-              {
-                "control": "SATP.10 Define the availability and performance-related requirements, such as recovery time and point objectives, and ensure these are met by the system architecture.",
-                "control_objective": "To establish and meet specific availability and performance targets for the system."
-              },
-              {
-                "control": "SATP.11 Establish key performance indicators (KPIs) and metrics to measure the effectiveness of the profile protection controls within the DevSecOps process.",
-                "control_objective": "To evaluate and enhance the effectiveness of system architecture protection controls."
-              },
-              {
-                "control": "SATP.12 Periodically review and update th AI system architecture profiles to adapt to new technologies, threats, and changes in the organisation's infrastructure.",
-                "control_objective": "To ensure that system architecture profiles remain relevant and effective in a dynamic technological and threat landscape."
-              },
-              {
-                "control": "SATP.13 Develop training modules for DevSecOps teams on the application and implications of AI system architecture profiles, focusing on how to utilise them effectively in their workflows.",
-                "control_objective": "To educate DevSecOps teams on the importance and application of system architecture profiles."
-              },
-              {
-                "control": "SATP.14 Document AI System architectural threat profile mapping criteria to map system changes to the most appropriate System architecture profile.",
-                "control_objective": "To standardise the process of mapping system changes to the relevant architecture profiles for consistent risk assessment."
-              },
-              {
-                "control": "ASVS-V1.2 Incorporate mechanisms into the AI system architecture profile to protect the Authentication Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the authentication processes and components."
-              },
-              {
-                "control": "ASVS-V1.4 Incorporate mechanisms into the AI system architecture profile to protect the Access Control Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the access control processes and components."
-              },
-              {
-                "control": "ASVS-V1.5 Incorporate mechanisms into the AI system architecture profile to protect the Input and Output Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the input and output processes and components."
-              },
-              {
-                "control": "ASVS-V1.6 Incorporate mechanisms into the AI system architecture profile to protect the Cryptographic Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the cryptographic processes and components."
-              },
-              {
-                "control": "ASVS-V1.7 Incorporate mechanisms into the AI system architecture profile to protect the Errors, Logging and Auditing Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to error handling, logging, and auditing."
-              },
-              {
-                "control": "ASVS-V1.8 Incorporate mechanisms into the AI system architecture profile to protect the Data Protection and Privacy Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to data protection and privacy."
-              },
-              {
-                "control": "ASVS-V1.9 Incorporate mechanisms into the AI system architecture profile to protect the Communications Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to communication."
-              },
-              {
-                "control": "ASVS-V1.10 Incorporate mechanisms into the AI system architecture profile to protect the Malicious Software Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard against malicious software."
-              },
-              {
-                "control": "ASVS-V1.11 Incorporate mechanisms into the AI system architecture profile to protect the Business Logic Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the business logic processes and components."
-              },
-              {
-                "control": "ASVS-V1.12 Incorporate mechanisms into the AI system architecture profile to protect the Secure File Upload Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the processes and components related to secure file uploads."
-              },
-              {
-                "control": "ASVS-V1.14 Incorporate mechanisms into the AI system architecture profile to protect the Configuration Architecture",
-                "control_objective": "Ensure that the system architecture includes robust mechanisms to safeguard the configuration processes and components."
-              }
-            ]
-          },
-          {
-            "FieldType": "risk",
-            "FieldName": "Insecure AI Pipeline Infrastructure",
-            "question": "Does the process of developing, testing, or deploying this AI system rely on infrastructure you’re unsure is secure?",
-            "controls": [
-              {
-                "control": "PI[1] -  Establish a secure AI pipeline data feed process",
-                "control_objective": "To facilitate transparency and accountability into the AI pipeline data processing activities."
-              },
-              {
-                "control": "PI[2] -  Protect the AI pipeline infrastructure",
-                "control_objective": "To ensure that the AI pipeline operates smoothly and securely, preventing disruptions and unauthorised data exposure."
-              }
-            ]
-          }
+    "FieldType": "risk",
+    "FieldName": "Inadequate Testing and Undocumented AI System Errors",
+    "question": "Are the AI system's errors and limitations fully identified, documented, and mitigated through rigorous testing, including adversarial and stress testing?",
+    "controls": [
+      {
+        "control": "SD-EH-01 - 01: Maintain a **Testing Methodology Document** detailing the testing approach used for the AI system.",
+        "control_objective": "To establish and document a clear and comprehensive methodology for testing the AI system.",
+        "risk_name": "Failure to define a comprehensive and repeatable testing process."
+      },
+      {
+        "control": "SD-EH-01 - 02: Maintain a **Test Performance Report** documenting metrics and outcomes of all tests conducted.",
+        "control_objective": "To document and analyze the performance and outcomes of all AI system tests.",
+        "risk_name": "Inability to accurately assess the AI system's performance and identify failures."
+      },
+      {
+        "control": "SD-EH-01 - 03: Maintain **Adversarial and Stress Testing Guidelines** to govern the execution of these specific test types.",
+        "control_objective": "To ensure rigorous and systematic identification of system weaknesses through adversarial and stress testing.",
+        "risk_name": "Systemic weaknesses or vulnerabilities remaining undetected due to insufficient stress or adversarial testing."
+      },
+      {
+        "control": "SD-EH-01 - 04: Maintain a **Testing Methodology Guide** that outlines the approach and types of tests conducted on the data.",
+        "control_objective": "To provide a comprehensive guide on the types of data tests and their execution approach.",
+        "risk_name": "Misapplication of data testing techniques leading to unreliable results."
+      },
+      {
+        "control": "SD-EH-01 - 05: Maintain a **Testing Metrics and Performance Outcomes Report** detailing the criteria for success and the results of the data tests.",
+        "control_objective": "To systematically report on the success criteria and results of data-related testing metrics.",
+        "risk_name": "Lack of standardized performance metrics for data testing, hindering objective evaluation."
+      },
+      {
+        "control": "SD-EH-01 - 06: Maintain **Error and Limitation Documentation** that systematically records all issues uncovered during testing.",
+        "control_objective": "To create a systematic record of all identified errors and limitations in the AI system's data processing.",
+        "risk_name": "Critical system errors or limitations being missed or forgotten due to poor documentation."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "Malicious Data Input and Attack Prevention",
+    "question": "Is the AI system protected against malicious inputs and potential buffer overflow attacks through stringent input validation, and are the security measures effective?",
+    "controls": [
+      {
+        "control": "SD-AI-01 - 01: Maintain an **Input Validation Plan** that specifies the strategies and techniques for input validation, emphasizing data-related aspects.",
+        "control_objective": "To establish a documented strategy for preventing malicious data input through validation.",
+        "risk_name": "Inadequate or undefined input validation strategies, allowing malicious data to enter the system."
+      },
+      {
+        "control": "SD-AI-01 - 02: Maintain an **Input Validation Protocol Document** describing the technical safeguards and validation checks in place.",
+        "control_objective": "To establish and document the technical controls for input validation.",
+        "risk_name": "Failure of technical safeguards to effectively identify and block malicious inputs."
+      },
+      {
+        "control": "SD-AI-01 - 03: Maintain an **Input Validation Log** recording all input checks and any detected attempts at malicious data entry.",
+        "control_objective": "To log and track all input validation activity and attempted malicious data entries.",
+        "risk_name": "Undetected or unlogged malicious input attempts, masking active security threats."
+      },
+      {
+        "control": "SD-AI-01 - 04: Maintain a **Security Measures Effectiveness Report** summarizing the performance of the input validation system.",
+        "control_objective": "To periodically assess and report on the overall effectiveness of input validation security measures.",
+        "risk_name": "Security controls becoming outdated or ineffective over time without performance monitoring."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "Vulnerability to Physical Adversarial Objects",
+    "question": "Is the machine learning model sufficiently robust to detect and correctly handle physical adversarial objects in real-world operating environments?",
+    "controls": [
+      {
+        "control": "SD-HS-01 - 01: Maintain a **Physical Adversarial Object Detection Strategy** outlining how the models are trained to detect anomalies.",
+        "control_objective": "To define the strategic approach for training models to detect physical adversarial objects.",
+        "risk_name": "Failure to strategically prepare the model for physical-world adversarial attacks."
+      },
+      {
+        "control": "SD-HS-01 - 02: Maintain a **Detection Test Report** summarizing the models' response to various physical adversarial objects during testing.",
+        "control_objective": "To document and analyze the model's performance when faced with physical adversarial objects.",
+        "risk_name": "Models exhibiting unpredictable or incorrect behavior when encountering novel physical adversarial objects."
+      },
+      {
+        "control": "SD-HS-01 - 03: Maintain **Model Resilience Documentation** that records the model's robustness to physical adversarial objects.",
+        "control_objective": "To formally document the model's ability to resist and correctly handle physical adversarial objects.",
+        "risk_name": "Overestimation of model resilience leading to deployment in high-risk environments."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "Security Flaws in Model Interaction and Data Flow",
+    "question": "Are all data fed into the AI models subject to stringent input validation to prevent malicious inputs, and are potential system vulnerabilities effectively analyzed and addressed?",
+    "controls": [
+      {
+        "control": "SD-PI-01 - 01: Maintain an **Input Validation Protocol** detailing the criteria and methods for data validation at the point of model interaction.",
+        "control_objective": "To establish clear and documented procedures for validating all data before it interacts with the models.",
+        "risk_name": "Unvalidated data being fed directly into the model, leading to system corruption or malicious outcomes."
+      },
+      {
+        "control": "SD-PI-01 - 02: Maintain a **Model Interaction Security Report** documenting the effectiveness of input validation checks in preventing unwanted or harmful inputs.",
+        "control_objective": "To report on the performance and effectiveness of input validation checks at the model interaction layer.",
+        "risk_name": "Input validation checks proving ineffective against sophisticated or novel attack vectors."
+      },
+      {
+        "control": "SD-PI-01 - 03: Maintain a **System Vulnerability Analysis** assessing potential weak points in model interactions.",
+        "control_objective": "To proactively identify and analyze potential weak points and vulnerabilities in the model interaction process.",
+        "risk_name": "Unidentified system vulnerabilities being exploited for data exfiltration or model manipulation."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "Neural Network Input Manipulation and Unsanitized Data",
+    "question": "Are sufficient measures in place to validate and sanitize neural network inputs, and are the effectiveness of these measures consistently evaluated to prevent misleading or manipulated outputs?",
+    "controls": [
+      {
+        "control": "SD-PI-02 - 01: Maintain a **Neural Network Input Validation Procedure Guide** outlining the steps and techniques for input validation and sanitization.",
+        "control_objective": "To establish a formal procedure for validating and sanitizing all inputs to the neural network.",
+        "risk_name": "Inconsistent or ad-hoc input sanitization procedures leading to unreliable model behavior."
+      },
+      {
+        "control": "SD-PI-02 - 02: Maintain a **Neural Network Input Sanitization Log** documenting all instances of input checks and any actions taken to rectify problematic inputs.",
+        "control_objective": "To systematically log and track all validation and sanitization actions performed on neural network inputs.",
+        "risk_name": "Inability to audit or investigate past incidents due to poor logging of input sanitization activities."
+      },
+      {
+        "control": "SD-PI-02 - 03: Maintain a **Validation Techniques Effectiveness Report** to evaluate the success of the input validation methods used.",
+        "control_objective": "To periodically evaluate and report on the efficacy of the chosen neural network input validation techniques.",
+        "risk_name": "Reliance on ineffective or outdated input validation techniques, making the model vulnerable."
+      }
+    ]
+  }
         ]
     },
 
