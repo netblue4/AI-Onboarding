@@ -203,130 +203,119 @@
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
-                {
+              {
                     "FieldType": "risk",
-                    "FieldName": "[Data Privacy] - Unauthorized Access or Disclosure of Personal Data",
-                    "question": "Does the AI system process, store, or transmit personally identifiable information (PII) or sensitive personal data?",
+                    "FieldName": "Data Privacy and Protection in AI Systems",
+                    "question": "Are the implemented tools, policies, and training sufficient to ensure the privacy, confidentiality, and security of user data throughout AI system operation?",
                     "controls": [
-                        {
-                            "control": "[Data Privacy Protocol Suite][DPP-1] **Establish a Data Privacy Protocol Suite** that defines the implementation of protocols and procedures to protect the privacy and confidentiality of data used by AI systems.",
-                            "control_objective": "The rationale for this control is to ensure compliance with data privacy regulations, maintain data security, and safeguard sensitive information."
-                        },
-                        {
-                            "control": "[Data Privacy Protocol Suite][DPP-2] **Mandate the use of tools for data encryption, anonymization, and access controls** for all sensitive data, and assign responsibility to data security teams and IT personnel.",
-                            "control_objective": "Implementing tools for data encryption, anonymization, and access controls, with responsibility on data security teams and IT personnel."
-                        },
-                        {
-                            "control": "[Data Privacy Protocol Suite][DPP-3] **Implement a comprehensive set of data privacy measures** including encryption, anonymization, and access management to protect all personal data from unauthorized access or use.",
-                            "control_objective": "A comprehensive set of data privacy measures including encryption, anonymization, and access management to protect personal data."
-                        },
-                        {
-                            "control": "[Data Privacy Protocol Suite][DPP-4] **Document the Data Privacy Protocol Suite's fairness explanation** to ensure protocols protect individual data rights and prevent privacy violations from inadvertently compromising fairness.",
-                            "control_objective": "Data Privacy Protocol Suite's fairness explanation would include comprehensive privacy protocols that protect individual data rights and ensure that AI systems do not inadvertently compromise fairness through privacy violations."
-                        },
-                        {
-                            "control": "[Data Privacy Protocol Suite][DPP-5] **Establish and enforce a comprehensive set of protocols and tools** to secure data privacy, including data encryption, anonymization techniques, stringent access controls, alongside staff training and regular security testing.",
-                            "control_objective": "The control requires the establishment of a comprehensive set of protocols and tools designed to secure data privacy. This includes enforcing data encryption, anonymization techniques, and stringent access controls, alongside staff training and regular security testing."
-                        },
-                        {
-                            "control": "[Data Privacy Protocol Suite][DPP-6] **Implement a comprehensive set of measures** to ensure the privacy and protection of data processed by AI systems, **aligning with applicable regulations and ethical standards.**",
-                            "control_objective": "Data Privacy Protocol Suite involves the implementation of a comprehensive set of protocols and measures to ensure the privacy and protection of data processed by AI systems, aligning with applicable regulations and ethical standards."
-                        }
+                      {
+                        "control": "DP-DP-01 - 01: Maintain and update a Data Privacy Implementation Guide that prescribes encryption, anonymization, and access control measures.",
+                        "control_objective": "To ensure that strong privacy-preserving mechanisms are consistently implemented in AI systems."
+                      },
+                      {
+                        "control": "DP-DP-01 - 02: Develop and maintain Data Privacy Training Modules to educate personnel on privacy protection practices.",
+                        "control_objective": "To enhance personnel awareness and compliance with data privacy requirements."
+                      },
+                      {
+                        "control": "DP-DP-01 - 03: Produce a Data Privacy Compliance Report documenting compliance status and identifying gaps in privacy enforcement.",
+                        "control_objective": "To continuously monitor and validate compliance with privacy standards."
+                      },
+                      {
+                        "control": "DP-DP-01 - 04: Maintain official Data Privacy Policy Documents describing organizational commitments and policies.",
+                        "control_objective": "To establish organizational accountability for data protection."
+                      },
+                      {
+                        "control": "DP-DP-01 - 05: Keep staff training materials and records on data privacy practices.",
+                        "control_objective": "To provide auditable evidence of personnel training and compliance on privacy matters."
+                      },
+                      {
+                        "control": "DP-DP-01 - 06: Document results from penetration tests assessing privacy vulnerabilities.",
+                        "control_objective": "To validate that privacy protocols effectively resist breaches and intrusions."
+                      },
+                      {
+                        "control": "DP-DP-01 - 07: Produce Data Privacy Tools and Protocol Documentation for encryption, anonymization, and access controls.",
+                        "control_objective": "To ensure transparency and reproducibility of privacy safeguards."
+                      },
+                      {
+                        "control": "DP-DP-01 - 08: Maintain Data Access and Privacy Logs to track use of sensitive data.",
+                        "control_objective": "To detect and investigate any unauthorized access or misuse of personal data."
+                      }
                     ]
-                },
-                {
+                  },
+                  {
                     "FieldType": "risk",
-                    "FieldName": "[Environmental Impact] - Undocumented Environmental Harm (Carbon Footprint/E-Waste)",
-                    "question": "Does the AI system require high computational resources (training or deployment) that could lead to significant energy consumption or carbon emissions?",
+                    "FieldName": "Environmental Sustainability of AI Systems",
+                    "question": "Do AI systems incorporate proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts?",
                     "controls": [
-                        {
-                            "control": "[AI EIA Protocol][EIA-1] **Develop and implement a protocol** to assess the environmental impact of AI systems and their operations throughout the life cycle to evaluate and mitigate environmental consequences.",
-                            "control_objective": "The rationale for this control is to evaluate and mitigate environmental consequences, such as energy consumption and carbon footprint, associated with AI technologies."
-                        },
-                        {
-                            "control": "[AI EIA Protocol][EIA-2] **Conduct a comprehensive evaluation of the environmental footprint** of AI systems, covering energy consumption, carbon footprint, data center operations, and end-of-life hardware handling, with responsibility assigned to environmental compliance teams.",
-                            "control_objective": "AI Environmental Impact Assessment Protocol: Evaluating the environmental footprint of AI systems, covering energy consumption, carbon footprint, data center operations, and end-of-life hardware handling. This responsibility lies with environmental compliance teams and sustainability officers."
-                        },
-                        {
-                            "control": "[AI EIA Protocol][EIA-3] **Establish and follow a documented procedure** to measure and address the environmental impact of AI systems, specifically including energy use, carbon emissions, and the sustainability of data center operations.",
-                            "control_objective": "A procedure to measure and address the environmental impact of AI systems, including energy use, carbon emissions, and the sustainability of data center operations."
-                        },
-                        {
-                            "control": "[AI EIA Protocol][EIA-4] **Document the environmental responsibility of the AI system** by ensuring that the impact on the environment is minimized and that sustainability is considered a component of fairness in the system's design.",
-                            "control_objective": "AI Environmental Impact Assessment Protocol's fairness explanation would encompass the environmental responsibility of AI systems, ensuring that the impact of AI technologies on the environment is minimized and that sustainability is considered a component of fairness."
-                        },
-                        {
-                            "control": "[AI EIA Protocol][EIA-5] **Require a comprehensive evaluation of the AI system's environmental impact** throughout its entire life cycle, focusing on mitigating negative environmental effects and encouraging the adoption of sustainable practices in AI.",
-                            "control_objective": "The AI Environmental Impact Assessment Protocol requires organizations to conduct a comprehensive evaluation of their AI systems' environmental impact throughout their entire life cycle. This includes assessing energy consumption, carbon footprint, data center operations impact, and the end-of-life handling of AI hardware. The objective is to mitigate negative environmental effects and encourage the adoption of sustainable practices in AI."
-                        },
-                        {
-                            "control": "[AI EIA Protocol][EIA-6] **Assess and manage the environmental impact** of AI systems throughout their life cycle to ensure long-term sustainability.",
-                            "control_objective": "The AI Environmental Impact Assessment Protocol control aims to assess and manage the environmental impact of AI systems throughout their life cycle."
-                        }
+                      {
+                        "control": "EA-EI-01 - 01: Implement and update an Environmental Impact Assessment Protocol for AI systems.",
+                        "control_objective": "To systematically evaluate the ecological footprint of AI systems across their lifecycle."
+                      },
+                      {
+                        "control": "EA-EI-01 - 02: Maintain a Sustainability Implementation Guide that prescribes eco-friendly design and operation practices.",
+                        "control_objective": "To ensure integration of sustainable practices in AI development and deployment."
+                      },
+                      {
+                        "control": "EA-EI-01 - 03: Provide a Green Technology Training Program to educate stakeholders on sustainable AI technologies.",
+                        "control_objective": "To build organizational capacity for green development practices in AI."
+                      },
+                      {
+                        "control": "EA-EI-01 - 04: Maintain environmental impact assessment reports with findings on data center, algorithm, and hardware impacts.",
+                        "control_objective": "To measure and document the environmental risks associated with AI systems."
+                      },
+                      {
+                        "control": "EA-EI-01 - 05: Maintain energy-efficient computing policies and green data center use guidelines.",
+                        "control_objective": "To reduce energy consumption and promote efficient data center operations."
+                      },
+                      {
+                        "control": "EA-EI-01 - 06: Keep documentation on hardware recycling and disposal procedures.",
+                        "control_objective": "To ensure responsible management of AI hardware across its lifecycle."
+                      },
+                      {
+                        "control": "EA-EI-01 - 07: Document algorithm selection guidelines that factor in energy efficiency.",
+                        "control_objective": "To promote the use of algorithms that minimize resource consumption."
+                      },
+                      {
+                        "control": "EA-EI-01 - 08: Maintain data center sustainability certifications and energy consumption records.",
+                        "control_objective": "To provide independent verification of data center sustainability practices."
+                      }
                     ]
-                },
-                {
+                  },
+                  {
                     "FieldType": "risk",
-                    "FieldName": "[Workforce Transition] - Unmanaged Job Role Evolution and Disruption",
-                    "question": "Will the AI system require significant changes to existing job roles, responsibilities, or skill requirements for any segment of the workforce?",
+                    "FieldName": "Workforce Transition and Adaptation for AI Integration",
+                    "question": "Are workforce adaptation and training strategies sufficient to address risks from job role evolution due to AI adoption?",
                     "controls": [
-                        {
-                            "control": "[Workforce Transition Management][WTM-1] **Develop and implement a Workforce AI Transition Management strategy** to ensure a smooth transition, address potential impacts on employees, and provide support for upskilling and reskilling.",
-                            "control_objective": "The Workforce AI Transition Management control involves the development and implementation of a strategy to manage the transition of the workforce in response to the introduction of AI systems. The rationale for this control is to ensure a smooth transition, address potential impacts on employees, and provide support for upskilling and reskilling."
-                        },
-                        {
-                            "control": "[Workforce Transition Management][WTM-2] **Establish cross-functional responsibility** for workforce transition with HR departments and AI integration teams to manage training needs and job role evolutions.",
-                            "control_objective": "Workforce AI Transition Management: Managing the transition of the workforce as AI systems are integrated, addressing training needs and job role evolutions. This responsibility lies with HR departments and AI integration teams."
-                        },
-                        {
-                            "control": "[Workforce Transition Management][WTM-3] **Manage and facilitate the workforce transition** by proactively addressing necessary training and potential changes in job roles as AI systems are introduced.",
-                            "control_objective": "Manage and facilitate the workforce transition as AI systems are introduced by addressing necessary training and potential changes in job roles."
-                        },
-                        {
-                            "control": "[Workforce Transition Management][WTM-4] **Ensure the fair transition of the workforce** as AI systems are integrated, addressing concerns such as job displacement, training opportunities, and role evolution in an equitable manner.",
-                            "control_objective": "Workforce AI Transition Management ensures the fair transition of the workforce as AI systems are integrated, addressing concerns such as job displacement, training opportunities, and role evolution in a fair manner."
-                        },
-                        {
-                            "control": "[Workforce Transition Management][WTM-5] **Detail the strategic approach for workforce transitions**, focusing on maintaining safety and performance, describing tailored upskilling programs, job role adaptation processes, and measures to minimize disruption.",
-                            "control_objective": "The explanation should detail the strategic approach to managing workforce transitions as AI is integrated, focusing on maintaining safety and performance standards. It should describe how training programs are tailored to upskill employees, the processes for job role adaptations, and measures to minimize disruption while maximizing the potential of AI to enhance job roles."
-                        },
-                        {
-                            "control": "[Workforce Transition Management][WTM-6] **Assess and document the impact of the transition** on employees, ensuring they are equipped with necessary skills and understanding of their evolving roles in an AI-enhanced workplace.",
-                            "control_objective": "Workforce AI Transition Management involves managing the transition and transformation of the workforce as AI systems are integrated. This includes addressing training needs and adapting job roles to new technology. The impact explanation assesses how this control supports employees during the transition, ensuring they are equipped with necessary skills and understanding of their evolving roles in an AI-enhanced workplace."
-                        }
+                      {
+                        "control": "HI-WF-01 - 01: Maintain a Workforce Transition Plan detailing workforce transformation steps, timelines, and training requirements.",
+                        "control_objective": "To systematically manage workforce adaptation as AI is deployed."
+                      },
+                      {
+                        "control": "HI-WF-01 - 02: Provide an AI Training Program for employees developing skills in new AI-enabled roles.",
+                        "control_objective": "To equip staff with the competencies necessary for AI-era job responsibilities."
+                      },
+                      {
+                        "control": "HI-WF-01 - 03: Operate a Role Evolution Tracking System to monitor job function changes resulting from AI integration.",
+                        "control_objective": "To proactively manage and track workforce role evolution."
+                      },
+                      {
+                        "control": "HI-WF-01 - 04: Maintain a Training Needs Analysis to discover skills gaps arising from AI-enabled transformation.",
+                        "control_objective": "To continuously assess and respond to workforce reskilling needs."
+                      },
+                      {
+                        "control": "HI-WF-01 - 05: Implement a Role Evolution Framework for adapting career paths and support structures.",
+                        "control_objective": "To provide clarity and fairness in career transformation due to AI."
+                      },
+                      {
+                        "control": "HI-WF-01 - 06: Produce a Training Effectiveness Report measuring the success of workforce transition training programs.",
+                        "control_objective": "To evaluate whether training equips employees effectively for new AI roles."
+                      },
+                      {
+                        "control": "HI-WF-01 - 07: Prepare a Job Evolution Roadmap outlining projected role transformations.",
+                        "control_objective": "To anticipate and plan for role changes across the organization."
+                      }
                     ]
-                },
-                {
-                    "FieldType": "risk",
-                    "FieldName": "[Fairness & Equity] - Adverse Impact on Vulnerable Populations (including Children)",
-                    "question": "Does the AI system's use case, data, or output directly or indirectly affect groups that are legally protected, economically disadvantaged, or otherwise vulnerable (e.g., minors, persons with disabilities)?",
-                    "controls": [
-                        {
-                            "control": "[Protection of Vulnerable Populations][VULN-1] **Implement measures to safeguard vulnerable populations** from potential harms associated with AI deployment, addressing ethical considerations, ensuring fairness, and preventing discrimination or harm.",
-                            "control_objective": "The Protection of Vulnerable Populations in AI Deployment control involves implementing measures to safeguard vulnerable populations from potential harms associated with AI deployment. The rationale for this control is to address ethical considerations, ensure fairness, and prevent discrimination or harm to vulnerable individuals or groups in the deployment of AI systems."
-                        },
-                        {
-                            "control": "[Protection of Vulnerable Populations][VULN-2] **Integrate mechanisms within the AI system** to identify and mitigate adverse impacts on vulnerable groups, including children, with responsibility assigned to AI developers and risk management teams.",
-                            "control_objective": "Protection of Vulnerable Populations in AI Deployment: Implementing mechanisms in AI systems to identify and mitigate adverse impacts on vulnerable groups, including children. This responsibility is with AI developers and risk management teams."
-                        },
-                        {
-                            "control": "[Protection of Vulnerable Populations][VULN-3] **Incorporate specific measures** into the AI system design to recognize and mitigate possible negative effects on vulnerable populations, including children, throughout the risk management life cycle.",
-                            "control_objective": "Incorporate specific measures in AI systems to recognize and mitigate possible negative effects on vulnerable populations, including children, throughout the risk management life cycle."
-                        },
-                        {
-                            "control": "[Protection of Vulnerable Populations][VULN-4] **Mandate the identification and mitigation** of potential adverse impacts of AI systems on sensitive groups to ensure fairness in AI's societal impact.",
-                            "control_objective": "Protection of Vulnerable Populations in AI Deployment requires the identification and mitigation of potential adverse impacts of AI systems on sensitive groups, ensuring fairness in AI's societal impact."
-                        },
-                        {
-                            "control": "[Protection of Vulnerable Populations][VULN-5] **Document the mechanisms integrated into the AI system** to proactively identify and mitigate any adverse effects on vulnerable populations, detailing their design, testing, updating, and life-cycle maintenance processes.",
-                            "control_objective": "This explanation should include details on the mechanisms integrated into the AI system to proactively identify and mitigate any adverse effects on vulnerable populations, with an emphasis on how these mechanisms are designed, tested, and updated. It should also clarify the processes in place for ensuring these protections are maintained throughout the AI system's life cycle."
-                        },
-                        {
-                            "control": "[Protection of Vulnerable Populations][VULN-6] **Implement mechanisms** within AI systems to identify and mitigate potential adverse impacts, particularly on vulnerable groups or children, as an integral part of the risk management process to ensure ethical considerations and fairness.",
-                            "control_objective": "Protection of Vulnerable Populations in AI Deployment focuses on implementing mechanisms within AI systems to identify and mitigate potential adverse impacts, particularly on vulnerable groups or children. This control is integral in the risk management process to ensure ethical considerations and fairness in AI applications."
-                        }
-                    ]
-                } 
+                  } 
         ]
     },
     "(A.4.4) AI Systems Software and Tooling Resources": {
@@ -1131,25 +1120,73 @@
             },
       {
         "FieldType": "risk",
-        "FieldName": "[C.3.4] - Flawed Training Process and Overfitting",
+        "FieldName": "Flawed Training Process and Overfitting",
         "question": "Is there a risk that the AI model will perform well on training data but fail in real-world scenarios because it has memorized noise instead of learning generalizable patterns?",
         "controls": [
-          {
-            "control": "[C.3.4][TP-1] - Use extensive validation techniques, such as cross-validation and testing on out-of-sample stress scenarios, that go beyond simple train/test splits.",
-            "control_objective": "To accurately assess the model's ability to generalize to new, unseen data and perform robustly under a range of conditions."
-          },
-          {
-            "control": "[C.3.4][TP-2] - Conduct 'red team' exercises where an internal team deliberately tries to find edge cases, vulnerabilities, and scenarios where the model fails.",
-            "control_objective": "To proactively discover and address model weaknesses and blind spots before deployment."
-          },
-          {
-            "control": "[C.3.4][TP-3] - Ensure the model's training objective function is closely aligned with the actual business and operational goals to prevent the optimization of spurious or meaningless correlations.",
-            "control_objective": "To ensure the model learns useful patterns that are relevant to its intended purpose and real-world application."
-          },
-          {
-            "control": "[C.3.4][TP-4] - Employ robust model architectures and regularization techniques known to improve generalization and prevent overfitting.",
-            "control_objective": "To build more stable and reliable models that are less sensitive to statistical noise in the training data."
-          }
+            {
+                "control": "AL-MT-18 - 01: Maintain Regularization Techniques Document that provides A document outlining the specific regularization techniques used, such as L1, L2, dropout, or others and the reasons for their application.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 02: Maintain Overfitting Risk Assessment that provides A report that assesses the potential risk of overfitting in the model and explains how the chosen regularization techniques mitigate this risk.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 03: Maintain Model Performance Metrics that provides Detailed information on how the model's performance is monitored and improved through the application of regularization techniques.\\nRationale Document: A comprehensive nontechnical report that justifies the use of regularization techniques and their contribution to the AI system's objectives.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 04: Maintain Regularization Technique Guidelines that provides A comprehensive set of guidelines on how to apply regularization techniques correctly in the model training process.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 05: Maintain Model Training Records that provides Documentation of the model training process, including details on the regularization techniques used.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 06: Maintain Overfitting Prevention Audit Reports that provides Reports from audits that evaluate the effectiveness of the regularization techniques in preventing overfitting.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 07: Regularization Implementation Guide detailing the types of regularization techniques used, the scenarios for their application, and guidance on how to configure them to mitigate the risk of overfitting and poisoning.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 08: Maintain Overfitting Prevention Fairness Strategy that provides A strategy that includes regularization techniques to prevent overfitting while considering fairness.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 09: Maintain Regularization Impact on Model Fairness Report that provides A report on how regularization techniques like L1 and L2 impact the fairness of model outcomes.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 10: Maintain Overfitting Prevention Technique Fairness Certificates that provides Certificates that confirm the application of regularization techniques enhances the fairness of the AI system.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 11: Regularization Implementation Guide that outlines the regularization methods applied to the model.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 12: Overfitting Mitigation Report which documents the effect of regularization on model performance.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 13: Model Poisoning Prevention Strategy that details how regularization contributes to model security.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 14: Maintain Regularization Implementation Documentation that provides Detailed descriptions of the regularization techniques used, including technical specifics, implementation strategies, and rationales for their selection.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 15: Maintain Model Evaluation Reports that provides Documentation of model performance before and after applying regularization, highlighting changes in overfitting tendencies and model robustness.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            },
+            {
+                "control": "AL-MT-18 - 16: Maintain Security Assessment Reports that provides Analysis of the model's resilience to poisoning attacks post regularization implementation.",
+                "control_objective": "To add regularization techniques to prevent overfitting and model poisoning attacks."
+            }
         ]
       },
       {
