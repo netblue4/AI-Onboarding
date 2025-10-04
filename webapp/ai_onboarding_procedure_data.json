@@ -203,50 +203,275 @@
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
-            {
-                "FieldType": "risk",
-                "FieldName": "Data Privacy and Protection in AI Systems",
-                "question": "Are the implemented tools, policies, and training sufficient to ensure the privacy, confidentiality, and security of user data throughout AI system operation?",
-                "controls": [
-                  {
-                    "control": "DP-DP-01 - 01: Maintain and update a Data Privacy Implementation Guide that prescribes encryption, anonymization, and access control measures.",
-                    "control_objective": "To ensure that strong privacy-preserving mechanisms are consistently implemented in AI systems."
-                  },
-                  {
-                    "control": "DP-DP-01 - 02: Develop and maintain Data Privacy Training Modules to educate personnel on privacy protection practices.",
-                    "control_objective": "To enhance personnel awareness and compliance with data privacy requirements."
-                  },
-                  {
-                    "control": "DP-DP-01 - 03: Produce a Data Privacy Compliance Report documenting compliance status and identifying gaps in privacy enforcement.",
-                    "control_objective": "To continuously monitor and validate compliance with privacy standards."
-                  },
-                  {
-                    "control": "DP-DP-01 - 04: Maintain official Data Privacy Policy Documents describing organizational commitments and policies.",
-                    "control_objective": "To establish organizational accountability for data protection."
-                  },
-                  {
-                    "control": "DP-DP-01 - 05: Keep staff training materials and records on data privacy practices.",
-                    "control_objective": "To provide auditable evidence of personnel training and compliance on privacy matters."
-                  },
-                  {
-                    "control": "DP-DP-01 - 06: Document results from penetration tests assessing privacy vulnerabilities.",
-                    "control_objective": "To validate that privacy protocols effectively resist breaches and intrusions."
-                  },
-                  {
-                    "control": "DP-DP-01 - 07: Produce Data Privacy Tools and Protocol Documentation for encryption, anonymization, and access controls.",
-                    "control_objective": "To ensure transparency and reproducibility of privacy safeguards."
-                  },
-                  {
-                    "control": "DP-DP-01 - 08: Maintain Data Access and Privacy Logs to track use of sensitive data.",
-                    "control_objective": "To detect and investigate any unauthorized access or misuse of personal data."
-                  }
-                ]
-            }
-
-
-
-
-            
+                {
+    "FieldType": "risk",
+    "FieldName": "Data Privacy and Protection in AI Systems",
+    "question": "Are the implemented tools, policies, and training sufficient to ensure the privacy, confidentiality, and security of user data throughout AI system operation?",
+    "controls": [
+      {
+        "control": "DP-DP-01 - 01: Maintain and update a Data Privacy Implementation Guide that prescribes encryption, anonymization, and access control measures.",
+        "control_objective": "To ensure that strong privacy-preserving mechanisms are consistently implemented in AI systems."
+      },
+      {
+        "control": "DP-DP-01 - 02: Develop and maintain Data Privacy Training Modules to educate personnel on privacy protection practices.",
+        "control_objective": "To enhance personnel awareness and compliance with data privacy requirements."
+      },
+      {
+        "control": "DP-DP-01 - 03: Produce a Data Privacy Compliance Report documenting compliance status and identifying gaps in privacy enforcement.",
+        "control_objective": "To continuously monitor and validate compliance with privacy standards."
+      },
+      {
+        "control": "DP-DP-01 - 04: Maintain official Data Privacy Policy Documents describing organizational commitments and policies.",
+        "control_objective": "To establish organizational accountability for data protection."
+      },
+      {
+        "control": "DP-DP-01 - 05: Keep staff training materials and records on data privacy practices.",
+        "control_objective": "To provide auditable evidence of personnel training and compliance on privacy matters."
+      },
+      {
+        "control": "DP-DP-01 - 06: Document results from penetration tests assessing privacy vulnerabilities.",
+        "control_objective": "To validate that privacy protocols effectively resist breaches and intrusions."
+      },
+      {
+        "control": "DP-DP-01 - 07: Produce Data Privacy Tools and Protocol Documentation for encryption, anonymization, and access controls.",
+        "control_objective": "To ensure transparency and reproducibility of privacy safeguards."
+      },
+      {
+        "control": "DP-DP-01 - 08: Maintain Data Access and Privacy Logs to track use of sensitive data.",
+        "control_objective": "To detect and investigate any unauthorized access or misuse of personal data."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "Environmental Sustainability of AI Systems",
+    "question": "Do AI systems incorporate proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts?",
+    "controls": [
+      {
+        "control": "EA-EI-01 - 01: Implement and update an Environmental Impact Assessment Protocol for AI systems.",
+        "control_objective": "To systematically evaluate the ecological footprint of AI systems across their lifecycle."
+      },
+      {
+        "control": "EA-EI-01 - 02: Maintain a Sustainability Implementation Guide that prescribes eco-friendly design and operation practices.",
+        "control_objective": "To ensure integration of sustainable practices in AI development and deployment."
+      },
+      {
+        "control": "EA-EI-01 - 03: Provide a Green Technology Training Program to educate stakeholders on sustainable AI technologies.",
+        "control_objective": "To build organizational capacity for green development practices in AI."
+      },
+      {
+        "control": "EA-EI-01 - 04: Maintain environmental impact assessment reports with findings on data center, algorithm, and hardware impacts.",
+        "control_objective": "To measure and document the environmental risks associated with AI systems."
+      },
+      {
+        "control": "EA-EI-01 - 05: Maintain energy-efficient computing policies and green data center use guidelines.",
+        "control_objective": "To reduce energy consumption and promote efficient data center operations."
+      },
+      {
+        "control": "EA-EI-01 - 06: Keep documentation on hardware recycling and disposal procedures.",
+        "control_objective": "To ensure responsible management of AI hardware across its lifecycle."
+      },
+      {
+        "control": "EA-EI-01 - 07: Document algorithm selection guidelines that factor in energy efficiency.",
+        "control_objective": "To promote the use of algorithms that minimize resource consumption."
+      },
+      {
+        "control": "EA-EI-01 - 08: Maintain data center sustainability certifications and energy consumption records.",
+        "control_objective": "To provide independent verification of data center sustainability practices."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "Workforce Transition and Adaptation for AI Integration",
+    "question": "Are workforce adaptation and training strategies sufficient to address risks from job role evolution due to AI adoption?",
+    "controls": [
+      {
+        "control": "HI-WF-01 - 01: Maintain a Workforce Transition Plan detailing workforce transformation steps, timelines, and training requirements.",
+        "control_objective": "To systematically manage workforce adaptation as AI is deployed."
+      },
+      {
+        "control": "HI-WF-01 - 02: Provide an AI Training Program for employees developing skills in new AI-enabled roles.",
+        "control_objective": "To equip staff with the competencies necessary for AI-era job responsibilities."
+      },
+      {
+        "control": "HI-WF-01 - 03: Operate a Role Evolution Tracking System to monitor job function changes resulting from AI integration.",
+        "control_objective": "To proactively manage and track workforce role evolution."
+      },
+      {
+        "control": "HI-WF-01 - 04: Maintain a Training Needs Analysis to discover skills gaps arising from AI-enabled transformation.",
+        "control_objective": "To continuously assess and respond to workforce reskilling needs."
+      },
+      {
+        "control": "HI-WF-01 - 05: Implement a Role Evolution Framework for adapting career paths and support structures.",
+        "control_objective": "To provide clarity and fairness in career transformation due to AI."
+      },
+      {
+        "control": "HI-WF-01 - 06: Produce a Training Effectiveness Report measuring the success of workforce transition training programs.",
+        "control_objective": "To evaluate whether training equips employees effectively for new AI roles."
+      },
+      {
+        "control": "HI-WF-01 - 07: Prepare a Job Evolution Roadmap outlining projected role transformations.",
+        "control_objective": "To anticipate and plan for role changes across the organization."
+      }
+    ]
+  },
+              {
+    "FieldType": "risk",
+    "FieldName": "Protection of Vulnerable Populations in AI Deployment",
+    "question": "Are there adequate measures to ensure AI deployments do not unfairly impact or discriminate against vulnerable populations, and are controls in place to prevent unethical outcomes?",
+    "controls": [
+      {
+        "control": "RM-EI-01 - 01: Establish and maintain a Vulnerable Population Protection Plan documenting approaches to safeguard vulnerable groups in AI deployments.",
+        "control_objective": "To ensure that AI deployment includes effective measures to protect vulnerable populations from unfair discrimination or unethical considerations.",
+        "risk_name": "Unprotected vulnerable populations leading to discrimination in AI deployment."
+      },
+      {
+        "control": "RM-EI-01 - 02: Implement documented Impact Mitigation Strategies to reduce negative effects on vulnerable groups identified during AI system assessments.",
+        "control_objective": "To minimize the adverse impacts of AI systems on vulnerable populations through documented mitigation strategies.",
+        "risk_name": "Insufficient mitigation causing adverse effects on vulnerable groups."
+      },
+      {
+        "control": "RM-EI-01 - 03: Apply a Vulnerability Assessment Protocol to evaluate and address risks for vulnerable populations in AI system deployment.",
+        "control_objective": "To rigorously assess and manage vulnerabilities affecting sensitive groups in AI deployments.",
+        "risk_name": "Unassessed vulnerabilities leading to unnoticed risks for vulnerable populations."
+      },
+      {
+        "control": "RM-EI-01 - 04: Use a Vulnerability Impact Assessment Framework to formally analyze AI system effects on vulnerable communities.",
+        "control_objective": "To ensure systematic assessment of the impacts of AI systems on vulnerable populations.",
+        "risk_name": "Insufficient impact analysis resulting in harm to vulnerable groups."
+      },
+      {
+        "control": "RM-EI-01 - 05: Enforce Child Protection Protocols to safeguard children from harmful impacts of AI systems.",
+        "control_objective": "To protect minors from negative effects and risks posed by AI systems.",
+        "risk_name": "Lack of child protection in AI deployment."
+      },
+      {
+        "control": "RM-EI-01 - 06: Maintain Mitigation Strategy Documents detailing plans developed to address risks identified for vulnerable populations.",
+        "control_objective": "To document and implement comprehensive mitigation strategies for vulnerable groups exposed to AI risks.",
+        "risk_name": "Undocumented mitigation resulting in unmanaged risks."
+      },
+      {
+        "control": "RM-EI-01 - 07: Prepare a Vulnerable Populations Protection Plan including strategies and evidence of safeguarding efforts.",
+        "control_objective": "To ensure robust and transparent safeguarding approaches for vulnerable populations in AI implementation.",
+        "risk_name": "Deficient safeguarding strategy for vulnerable populations."
+      },
+      {
+        "control": "RM-EI-01 - 08: Document an Adverse Impact Mitigation Report that details actions taken to reduce negative outcomes for vulnerable groups.",
+        "control_objective": "To transparently record mitigation actions and outcomes related to vulnerable populations.",
+        "risk_name": "Omission of negative impact mitigation."
+      },
+      {
+        "control": "RM-EI-01 - 09: Develop an Impact Assessment Toolkit focused on identifying and assessing risks for vulnerable groups including children.",
+        "control_objective": "To provide actionable tools and procedures for identifying risks to vulnerable populations prior to AI system deployment.",
+        "risk_name": "Unidentified risks due to lack of assessment tools."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "High-Risk AI System Impact Assessment",
+    "question": "Are required fundamental rights impact assessments, mitigation plans, and system registrations being conducted and documented for high-risk AI systems?",
+    "controls": [
+      {
+        "control": "RM-AI-01 - 01: Maintain an Impact Assessment Report documenting the outcomes and procedures of fundamental rights impact assessments for AI systems.",
+        "control_objective": "To ensure all high-risk AI systems are rigorously assessed for their impact on fundamental rights before deployment.",
+        "risk_name": "Deployment of high-risk AI systems without fundamental rights assessment."
+      },
+      {
+        "control": "RM-AI-01 - 02: Prepare and maintain a Mitigation Plan Document outlining strategies to address risks discovered during impact assessments.",
+        "control_objective": "To document and execute effective mitigation strategies for risks associated with high-risk AI systems.",
+        "risk_name": "Lack of mitigation planning for high-risk AI systems."
+      },
+      {
+        "control": "RM-AI-01 - 03: Ensure System Registration in Public Database for all identified high-risk AI systems, including confirmation of registration.",
+        "control_objective": "To guarantee transparency and accountability by publicly registering high-risk AI systems.",
+        "risk_name": "Unregistered high-risk AI systems operating without oversight."
+      },
+      {
+        "control": "RM-AI-01 - 04: Generate a Fundamental Rights Impact Assessment Report that documents identified impacts on individual rights.",
+        "control_objective": "To enable compliance monitoring and protection of rights affected by AI deployment.",
+        "risk_name": "Insufficient documentation of rights impacts in high-risk AI systems."
+      },
+      {
+        "control": "RM-AI-01 - 05: Maintain a Risk Mitigation Plan identifying actions to address every risk found during the rights assessments.",
+        "control_objective": "To ensure continuous improvement and monitoring of mitigation actions for risks to individuals.",
+        "risk_name": "Risks remain unaddressed due to missing mitigation records."
+      },
+      {
+        "control": "RM-AI-01 - 06: Retain AI System Registration Proof that confirms listing in the designated high-risk public database.",
+        "control_objective": "To verify compliance with external registry and transparency requirements for high-risk AI systems.",
+        "risk_name": "AI systems risk evading public transparency without registry proof."
+      },
+      {
+        "control": "RM-AI-01 - 07: Provide a Fundamental Rights Impact Assessment Report for tracking assessment results and impacts.",
+        "control_objective": "To support regular review and monitoring of rights impacts over time.",
+        "risk_name": "Failure to track and monitor evolving rights impacts."
+      },
+      {
+        "control": "RM-AI-01 - 08: Maintain a Mitigation Strategy Document specifying actionable plans to address each identified risk.",
+        "control_objective": "To enable effective implementation and follow-up of mitigation actions.",
+        "risk_name": "Unimplemented or unaccounted-for mitigation strategies."
+      },
+      {
+        "control": "RM-AI-01 - 09: Secure a Registration Confirmation Receipt from the public database for all high-risk AI systems.",
+        "control_objective": "To document final registration status and facilitate auditability.",
+        "risk_name": "Lack of official audit trail for system registration."
+      }
+    ]
+  },
+  {
+    "FieldType": "risk",
+    "FieldName": "Predeployment Impact Assessment",
+    "question": "Are comprehensive predeployment assessments carried out for high-risk AI systems—including user, process, and environmental impact evaluations—and are controls in place for responsible deployment?",
+    "controls": [
+      {
+        "control": "RM-AI-02 - 01: Implement a documented Predeployment Assessment Procedure for evaluating high-risk AI impacts before deployment.",
+        "control_objective": "To ensure all high-risk AI systems undergo thorough predeployment impact evaluations.",
+        "risk_name": "Inadequate predeployment assessment for high-risk AI systems."
+      },
+      {
+        "control": "RM-AI-02 - 02: Utilize an Impact Evaluation Report Template to capture and structure assessment findings for each deployment.",
+        "control_objective": "To ensure consistent and comprehensive documentation of impact findings across all high-risk deployments.",
+        "risk_name": "Unstructured or incomplete recording of deployment impacts."
+      },
+      {
+        "control": "RM-AI-02 - 03: Deliver Risk Assessment Training Modules to teams involved in conducting predeployment risk evaluations.",
+        "control_objective": "To maintain skilled, well-trained teams able to identify and address deployment risks effectively.",
+        "risk_name": "Untrained personnel conducting critical risk assessments."
+      },
+      {
+        "control": "RM-AI-02 - 04: Create and maintain a Predeployment Assessment Report that documents detailed impact evaluation findings for each AI system prior to launch.",
+        "control_objective": "To establish a clear record of risks and impacts associated with each high-risk AI deployment.",
+        "risk_name": "Deployment of high-risk AI systems without detailed assessment records."
+      },
+      {
+        "control": "RM-AI-02 - 05: Conduct and document a User Impact Analysis to determine how AI systems may affect end users predeployment.",
+        "control_objective": "To identify and protect end users from negative consequences of AI implementation.",
+        "risk_name": "Unidentified user impacts leading to unintended harm."
+      },
+      {
+        "control": "RM-AI-02 - 06: Carry out an Environmental Impact Study prior to deployment to analyze potential effects of AI systems on surroundings.",
+        "control_objective": "To ensure all environmental risks are identified and addressed before AI system rollout.",
+        "risk_name": "Environmental consequences going unrecognized in AI deployments."
+      },
+      {
+        "control": "RM-AI-02 - 07: Prepare a Predeployment Impact Assessment Report containing technical and procedural findings for each high-risk AI system.",
+        "control_objective": "To enable stakeholders to understand, mitigate, and monitor risks associated with new deployments.",
+        "risk_name": "Stakeholders unprepared for deployment risks due to missing reports."
+      },
+      {
+        "control": "RM-AI-02 - 08: Maintain a Risk Mitigation Plan outlining concrete steps for managing predeployment risks identified in assessments.",
+        "control_objective": "To put effective controls in place ahead of each deployment for minimizing identified risks.",
+        "risk_name": "Deployment without actionable risk mitigation steps."
+      },
+      {
+        "control": "RM-AI-02 - 09: Document Environmental Impact Statements for each deployment as evidence of compliance and environmental evaluation.",
+        "control_objective": "To verify that all environmental concerns have been comprehensively evaluated and addressed.",
+        "risk_name": "Environmental risks remain unmanaged due to lack of documentation."
+      }
+    ]
+  }
         ]
     },
     "(A.4.4) AI Systems Software and Tooling Resources": {
@@ -1553,7 +1778,7 @@
         ]
       }
         ]
-            },
+            }
     "(6.2.1) AI Lifecycle Phase requirements - Package": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
         "Fields": [
