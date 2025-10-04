@@ -158,7 +158,8 @@
                 "FieldLabel": "Employees",
                 "FieldText": "Select Potential Negative Consequences:",
                 "FieldType": "Option box with values:Unfair/Discriminatory Outcomes: Biased decisions (e.g., loan denial, insurance rate) based on AI model bias./Lack of Human Recourse: Difficulty appealing or correcting automated decisions; no human contact point./Privacy Violations: Excessive collection or unauthorized use of personal and behavioral data./Job Displacement/Obsolescence: Loss of job or tasks due to automation, especially in lower-wage roles./Excessive Monitoring/Surveillance: AI-powered algorithmic management leading to constant performance tracking and control./Algorithmic Management Bias: Unfair task allocation, performance review, or promotion decisions based on flawed metrics./Lack of Explainability/Contestability: Inability for non-technical users to understand or challenge a decision with life-changing consequences."
-            },    
+            },  
+            
             {
                 "FieldType": "risk",
                 "FieldName": "Data Privacy and Protection in AI Systems",
