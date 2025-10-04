@@ -69,62 +69,6 @@
                 "FieldLabel": "Performance",
                 "FieldText": "Are there any SLA's associated with the AI system?",
                 "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Compliance",
-                "FieldLabel": "Compliance",
-                "FieldText": "Are there regulations or policies it must follow? (e.g., GDPR, AI Act)",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Performance and Fairness Monitoring",
-                "FieldLabel": "Performance and Fairness Monitoring",
-                "FieldText": "What are the requirements for monitoring the AI system's performance and fairness in the live environment to detect and address model drift or emergent biases?",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Human Oversight",
-                "FieldLabel": "Human Oversight",
-                "FieldText": "Specify the requirements for human oversight and intervention procedures, especially for high-risk scenarios.",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Intended Use Adherence",
-                "FieldLabel": "Intended Use Adherence",
-                "FieldText": "What technical or procedural controls are required to ensure the AI system is used strictly within its defined and approved scope?",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Incident Management",
-                "FieldLabel": "Incident Management",
-                "FieldText": "What processes are required for identifying, reporting, and remediating incidents or adverse outcomes from the AI system's operation?",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Operational Transparency",
-                "FieldLabel": "Operational Transparency",
-                "FieldText": "What are the requirements for communicating the AI system's presence, capabilities, and limitations to users and affected stakeholders?",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Operational Data Management",
-                "FieldLabel": "Operational Data Management",
-                "FieldText": "Specify the data protection and privacy requirements for all data processed by the AI system in the production environment.",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - System Maintenance",
-                "FieldLabel": "System Maintenance",
-                "FieldText": "What are the requirements for system maintenance, including updates, security patches, performance reviews, and eventual decommissioning?",
-                "FieldType": "TextBox"
             }
         ]
     },
@@ -203,46 +147,58 @@
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
-                {
-    "FieldType": "risk",
-    "FieldName": "Data Privacy and Protection in AI Systems",
-    "question": "Are the implemented tools, policies, and training sufficient to ensure the privacy, confidentiality, and security of user data throughout AI system operation?",
-    "controls": [
-      {
-        "control": "DP-DP-01 - 01: Maintain and update a Data Privacy Implementation Guide that prescribes encryption, anonymization, and access control measures.",
-        "control_objective": "To ensure that strong privacy-preserving mechanisms are consistently implemented in AI systems."
-      },
-      {
-        "control": "DP-DP-01 - 02: Develop and maintain Data Privacy Training Modules to educate personnel on privacy protection practices.",
-        "control_objective": "To enhance personnel awareness and compliance with data privacy requirements."
-      },
-      {
-        "control": "DP-DP-01 - 03: Produce a Data Privacy Compliance Report documenting compliance status and identifying gaps in privacy enforcement.",
-        "control_objective": "To continuously monitor and validate compliance with privacy standards."
-      },
-      {
-        "control": "DP-DP-01 - 04: Maintain official Data Privacy Policy Documents describing organizational commitments and policies.",
-        "control_objective": "To establish organizational accountability for data protection."
-      },
-      {
-        "control": "DP-DP-01 - 05: Keep staff training materials and records on data privacy practices.",
-        "control_objective": "To provide auditable evidence of personnel training and compliance on privacy matters."
-      },
-      {
-        "control": "DP-DP-01 - 06: Document results from penetration tests assessing privacy vulnerabilities.",
-        "control_objective": "To validate that privacy protocols effectively resist breaches and intrusions."
-      },
-      {
-        "control": "DP-DP-01 - 07: Produce Data Privacy Tools and Protocol Documentation for encryption, anonymization, and access controls.",
-        "control_objective": "To ensure transparency and reproducibility of privacy safeguards."
-      },
-      {
-        "control": "DP-DP-01 - 08: Maintain Data Access and Privacy Logs to track use of sensitive data.",
-        "control_objective": "To detect and investigate any unauthorized access or misuse of personal data."
-      }
-    ]
-  },
-  {
+           {
+                "FieldName": "AI system impact assessment - Employees - Benefits",
+                "FieldLabel": "Employees",
+                "FieldText": "Select Potential Benefits:",
+                "FieldType": "Option box with values:Faster Service/Troubleshooting: Quicker response times and efficient resolution of routine queries./Reduced Error Rate: Higher accuracy in automated processes (e.g., order processing, diagnosis)./Increased Efficiency/Productivity: Automation of mundane, repetitive, and time-consuming tasks./Personalized Training/Upskilling: AI platforms recommending tailored professional development to close skill gaps.//Better Decision-Making Tools: Access to faster, data-driven insights to support human decisions./Error Reduction: Reduction in human-driven errors in high-stakes decisions (e.g., medical diagnosis, legal assessment)."
+            },    
+           {
+                "FieldName": "AI system impact assessment - Employees - Negative consequences (harms)",
+                "FieldLabel": "Employees",
+                "FieldText": "Select Potential Negative Consequences:",
+                "FieldType": "Option box with values:Unfair/Discriminatory Outcomes: Biased decisions (e.g., loan denial, insurance rate) based on AI model bias./Lack of Human Recourse: Difficulty appealing or correcting automated decisions; no human contact point./Privacy Violations: Excessive collection or unauthorized use of personal and behavioral data./Job Displacement/Obsolescence: Loss of job or tasks due to automation, especially in lower-wage roles./Excessive Monitoring/Surveillance: AI-powered algorithmic management leading to constant performance tracking and control./Algorithmic Management Bias: Unfair task allocation, performance review, or promotion decisions based on flawed metrics./Lack of Explainability/Contestability: Inability for non-technical users to understand or challenge a decision with life-changing consequences."
+            },    
+            {
+                "FieldType": "risk",
+                "FieldName": "Data Privacy and Protection in AI Systems",
+                "question": "Are the implemented tools, policies, and training sufficient to ensure the privacy, confidentiality, and security of user data throughout AI system operation?",
+                "controls": [
+                      {
+                        "control": "DP-DP-01 - 01: Maintain and update a Data Privacy Implementation Guide that prescribes encryption, anonymization, and access control measures.",
+                        "control_objective": "To ensure that strong privacy-preserving mechanisms are consistently implemented in AI systems."
+                      },
+                      {
+                        "control": "DP-DP-01 - 02: Develop and maintain Data Privacy Training Modules to educate personnel on privacy protection practices.",
+                        "control_objective": "To enhance personnel awareness and compliance with data privacy requirements."
+                      },
+                      {
+                        "control": "DP-DP-01 - 03: Produce a Data Privacy Compliance Report documenting compliance status and identifying gaps in privacy enforcement.",
+                        "control_objective": "To continuously monitor and validate compliance with privacy standards."
+                      },
+                      {
+                        "control": "DP-DP-01 - 04: Maintain official Data Privacy Policy Documents describing organizational commitments and policies.",
+                        "control_objective": "To establish organizational accountability for data protection."
+                      },
+                      {
+                        "control": "DP-DP-01 - 05: Keep staff training materials and records on data privacy practices.",
+                        "control_objective": "To provide auditable evidence of personnel training and compliance on privacy matters."
+                      },
+                      {
+                        "control": "DP-DP-01 - 06: Document results from penetration tests assessing privacy vulnerabilities.",
+                        "control_objective": "To validate that privacy protocols effectively resist breaches and intrusions."
+                      },
+                      {
+                        "control": "DP-DP-01 - 07: Produce Data Privacy Tools and Protocol Documentation for encryption, anonymization, and access controls.",
+                        "control_objective": "To ensure transparency and reproducibility of privacy safeguards."
+                      },
+                      {
+                        "control": "DP-DP-01 - 08: Maintain Data Access and Privacy Logs to track use of sensitive data.",
+                        "control_objective": "To detect and investigate any unauthorized access or misuse of personal data."
+                      }
+                ]
+              },                        
+              {
     "FieldType": "risk",
     "FieldName": "Environmental Sustainability of AI Systems",
     "question": "Do AI systems incorporate proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts?",
