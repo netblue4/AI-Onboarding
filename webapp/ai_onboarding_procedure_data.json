@@ -1411,7 +1411,6 @@
     "(6.2.1) AI Lifecycle Phase requirements - Training": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Training.",
         "Fields": [
-         [
             {
                 "FieldType": "risk",
                 "FieldName": "Failure to Develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models.",
@@ -1778,7 +1777,7 @@
         ]
       }
         ]
-            }
+            },
     "(6.2.1) AI Lifecycle Phase requirements - Package": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
         "Fields": [
