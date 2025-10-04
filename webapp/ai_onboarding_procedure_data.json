@@ -144,6 +144,83 @@
             }
         ]
     },
+    "Pre-deployment Workforce Impact Assessment ": {
+        "WebFormTitle": "Pre-deployment Workforce Impact Assessment .",
+        "Fields": [
+  {
+    "FieldName": "HR-WIA-1.1-SystemName",
+    "FieldLabel": "AI System Name and Affected Processes",
+    "FieldText": "Provide the name of the AI system and list the specific business processes or departmental functions it will directly impact (e.g., 'Loan Approval Process in Retail Banking').",
+    "FieldType": "TextArea"
+  },
+  {
+    "FieldName": "HR-WIA-1.2-CoreAction",
+    "FieldLabel": "System's Core Action on Tasks",
+    "FieldText": "Identify the primary role of the AI relative to human workers.",
+    "FieldType": "Option box with values:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
+  },
+  {
+    "FieldName": "HR-WIA-2.1-AffectedRoles",
+    "FieldLabel": "Affected Job Roles",
+    "FieldText": "List all job titles whose daily tasks are anticipated to be altered by more than 20% due to the AI system.",
+    "FieldType": "TextArea"
+  },
+  {
+    "FieldName": "HR-WIA-2.2-AutomationTasks",
+    "FieldLabel": "Automated/Eliminated Tasks",
+    "FieldText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
+    "FieldType": "TextArea"
+  },
+  {
+    "FieldName": "HR-WIA-2.3-AugmentationTasks",
+    "FieldLabel": "Augmented/Enhanced Tasks",
+    "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
+    "FieldType": "TextArea"
+  },
+  {
+    "FieldName": "HR-WIA-2.4-NewRoles",
+    "FieldLabel": "Net-New Roles or Responsibilities Created",
+    "FieldText": "List any entirely new job titles or significant responsibilities required to manage, audit, or service the AI system (e.g., 'AI Data Auditor').",
+    "FieldType": "TextArea"
+  },
+  {
+    "FieldName": "HR-WIA-3.1-NewHardSkills",
+    "FieldLabel": "New Technical Skills Required",
+    "FieldText": "List the specific technical competencies employees must acquire (e.g., model output interpretation, prompt engineering, MLOps monitoring).",
+    "FieldType": "TextArea"
+  },
+  {
+    "FieldName": "HR-WIA-3.2-NewSoftSkills",
+    "FieldLabel": "New Human-Centric Skills Required",
+    "FieldText": "List the soft skills that will become more critical (e.g., critical thinking, complex communication, emotional intelligence).",
+    "FieldType": "TextArea"
+  },
+  {
+    "FieldName": "HR-WIA-3.3-SkillsGapMetric",
+    "FieldLabel": "Current Skills Gap (Estimated)",
+    "FieldText": "Provide the estimated percentage of the affected workforce that currently lacks the identified necessary skills (New Hard/Soft Skills).",
+    "FieldType": "TextBox (Numeric)"
+  },
+  {
+    "FieldName": "HR-WIA-4.1-MitigationPlan",
+    "FieldLabel": "Primary Mitigation Strategy for Displacement",
+    "FieldText": "If job displacement is identified, select the primary strategy for the affected workers.",
+    "FieldType": "Option box with values:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
+  },
+  {
+    "FieldName": "HR-WIA-4.2-TrainingProgram",
+    "FieldLabel": "Structured Re-skilling Program in Place",
+    "FieldText": "Is a funded and scheduled training program in place to address the identified skills gap (3.3) *prior to* full AI deployment?",
+    "FieldType": "Option box with values:Yes/No"
+  },
+  {
+    "FieldName": "HR-WIA-4.3-CommunicationStatus",
+    "FieldLabel": "Employee Communication Plan Status",
+    "FieldText": "Status of the formal plan to communicate changes and opportunities to affected employees.",
+    "FieldType": "Option box with values:Draft/Approved but not Executed/Executed (Ongoing)/Not Required"
+  }
+        ]
+    },
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
@@ -153,85 +230,64 @@
                     "FieldText": "Select Potential Benefits:",
                     "FieldType": "Option box with values:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
                 },
-            
-            {
+                {
                 "FieldType": "risk",
                 "FieldName": "Data Privacy and Protection in AI Systems",
-                "question": "Are the implemented tools, policies, and training sufficient to ensure the privacy, confidentiality, and security of user data throughout AI system operation?",
+                "question": "Does the AI system rely on data or indormation that could be used to identify individuals?",
                 "controls": [
                       {
-                        "control": "DP-DP-01 - 01: Maintain and update a Data Privacy Implementation Guide that prescribes encryption, anonymization, and access control measures.",
-                        "control_objective": "To ensure that strong privacy-preserving mechanisms are consistently implemented in AI systems."
+                        "control": "DP-SD-01 - 01: Implement and maintain automated encryption processes for all data at rest (storage) and in transit (network traffic).",
+                        "control_objective": "To ensure that data confidentiality is continuously maintained regardless of the data's state or location."
                       },
                       {
-                        "control": "DP-DP-01 - 02: Develop and maintain Data Privacy Training Modules to educate personnel on privacy protection practices.",
-                        "control_objective": "To enhance personnel awareness and compliance with data privacy requirements."
+                        "control": "DP-SD-01 - 02: Mandate the use of documented data anonymization or pseudonymization techniques for sensitive data used in training and testing environments.",
+                        "control_objective": "To minimize the exposure of Personally Identifiable Information (PII) while maintaining data utility for model development."
                       },
                       {
-                        "control": "DP-DP-01 - 03: Produce a Data Privacy Compliance Report documenting compliance status and identifying gaps in privacy enforcement.",
-                        "control_objective": "To continuously monitor and validate compliance with privacy standards."
+                        "control": "DP-SD-01 - 03: Enforce role-based access controls (RBAC) that restrict data access and system permissions based on the principle of least privilege.",
+                        "control_objective": "To prevent unauthorized access and limit data exposure strictly to personnel who require it for their assigned duties."
                       },
                       {
-                        "control": "DP-DP-01 - 04: Maintain official Data Privacy Policy Documents describing organizational commitments and policies.",
-                        "control_objective": "To establish organizational accountability for data protection."
+                        "control": "DP-SD-01 - 04: Integrate automated tools into the CI/CD pipeline to continuously scan code and configuration for data privacy compliance and security weaknesses.",
+                        "control_objective": "To shift security checks left, enabling the early detection and remediation of compliance violations during the development phase."
                       },
                       {
-                        "control": "DP-DP-01 - 05: Keep staff training materials and records on data privacy practices.",
-                        "control_objective": "To provide auditable evidence of personnel training and compliance on privacy matters."
+                        "control": "DP-SD-01 - 05: Participate in mandatory, scenario-based training that simulates real-world data handling and privacy incidents.",
+                        "control_objective": "To ensure that all personnel possess the practical skills necessary to identify and respond to data privacy and access control challenges effectively."
                       },
                       {
-                        "control": "DP-DP-01 - 06: Document results from penetration tests assessing privacy vulnerabilities.",
-                        "control_objective": "To validate that privacy protocols effectively resist breaches and intrusions."
-                      },
-                      {
-                        "control": "DP-DP-01 - 07: Produce Data Privacy Tools and Protocol Documentation for encryption, anonymization, and access controls.",
-                        "control_objective": "To ensure transparency and reproducibility of privacy safeguards."
-                      },
-                      {
-                        "control": "DP-DP-01 - 08: Maintain Data Access and Privacy Logs to track use of sensitive data.",
-                        "control_objective": "To detect and investigate any unauthorized access or misuse of personal data."
+                        "control": "DP-SD-01 - 06: Document and remediate all findings from periodic penetration tests and compliance audits related to data protection and access controls.",
+                        "control_objective": "To validate the effectiveness of implemented privacy controls against adversarial threats and assure external compliance requirements are met."
                       }
                 ]
-              },                        
+                },                        
               {
-    "FieldType": "risk",
-    "FieldName": "Environmental Sustainability of AI Systems",
-    "question": "Do AI systems incorporate proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts?",
-    "controls": [
-      {
-        "control": "EA-EI-01 - 01: Implement and update an Environmental Impact Assessment Protocol for AI systems.",
-        "control_objective": "To systematically evaluate the ecological footprint of AI systems across their lifecycle."
-      },
-      {
-        "control": "EA-EI-01 - 02: Maintain a Sustainability Implementation Guide that prescribes eco-friendly design and operation practices.",
-        "control_objective": "To ensure integration of sustainable practices in AI development and deployment."
-      },
-      {
-        "control": "EA-EI-01 - 03: Provide a Green Technology Training Program to educate stakeholders on sustainable AI technologies.",
-        "control_objective": "To build organizational capacity for green development practices in AI."
-      },
-      {
-        "control": "EA-EI-01 - 04: Maintain environmental impact assessment reports with findings on data center, algorithm, and hardware impacts.",
-        "control_objective": "To measure and document the environmental risks associated with AI systems."
-      },
-      {
-        "control": "EA-EI-01 - 05: Maintain energy-efficient computing policies and green data center use guidelines.",
-        "control_objective": "To reduce energy consumption and promote efficient data center operations."
-      },
-      {
-        "control": "EA-EI-01 - 06: Keep documentation on hardware recycling and disposal procedures.",
-        "control_objective": "To ensure responsible management of AI hardware across its lifecycle."
-      },
-      {
-        "control": "EA-EI-01 - 07: Document algorithm selection guidelines that factor in energy efficiency.",
-        "control_objective": "To promote the use of algorithms that minimize resource consumption."
-      },
-      {
-        "control": "EA-EI-01 - 08: Maintain data center sustainability certifications and energy consumption records.",
-        "control_objective": "To provide independent verification of data center sustainability practices."
-      }
-    ]
-  },
+                "FieldType": "risk",
+                "FieldName": "Environmental Sustainability of AI Systems",
+                "question": "Do AI systems incorporate proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts?",
+                "controls": [
+                      {
+                        "control": "ENV-LCM-01: Measure and document the total energy consumption and associated carbon emissions (Scope 2) for the AI system across the entire lifecycle, including training, inference, and fine-tuning phases.",
+                        "control_objective": "To quantify the direct environmental footprint and establish a baseline for performance against sustainability targets."
+                      },
+                      {
+                        "control": "ENV-ALG-02: Mandate the selection of energy-efficient model architectures and computational practices (e.g., model pruning, quantization) to reduce resource intensity during development and operation.",
+                        "control_objective": "To minimize computational demand and promote 'frugal AI' by integrating sustainability into the model design phase."
+                      },
+                      {
+                        "control": "ENV-INF-03: Require deployment of AI systems only on certified green data centers (or cloud regions) that rely on renewable energy sources and employ advanced, water-efficient cooling techniques.",
+                        "control_objective": "To reduce the indirect environmental impact (carbon emissions and water usage) associated with the underlying computing infrastructure."
+                      },
+                      {
+                        "control": "ENV-HW-04: Establish a protocol for the end-of-life management of AI-specific hardware (GPUs, specialized accelerators), ensuring responsible disposal, refurbishment, or certified recycling to minimize electronic waste (e-waste).",
+                        "control_objective": "To address the supply chain and hardware impact by promoting a circular economy approach for resource-intensive components."
+                      },
+                      {
+                        "control": "ENV-DEC-05: Integrate environmental assessment results (ENV-LCM-01) into the final Go/No-Go decision process for the AI system, ensuring that the environmental cost is weighed against the intended societal benefit.",
+                        "control_objective": "To embed environmental stewardship into strategic decision-making, ensuring the net effect of AI deployment on the planet is demonstrably positive."
+                      }
+                ]
+              },
   {
     "FieldType": "risk",
     "FieldName": "Workforce Transition and Adaptation for AI Integration",
