@@ -147,18 +147,55 @@
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
-           {
-                "FieldName": "AI system impact assessment - Employees - Benefits",
-                "FieldLabel": "Employees",
-                "FieldText": "Select Potential Benefits:",
-                "FieldType": "Option box with values:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
-            },    
-           {
-                "FieldName": "AI system impact assessment - Employees - Negative consequences (harms)",
-                "FieldLabel": "Employees",
-                "FieldText": "Select Potential Negative Consequences:",
-                "FieldType": "Option box with values:Unfair/Discriminatory Outcomes: Biased decisions (e.g., loan denial, insurance rate) based on AI model bias./Lack of Human Recourse: Difficulty appealing or correcting automated decisions; no human contact point./Privacy Violations: Excessive collection or unauthorized use of personal and behavioral data./Job Displacement/Obsolescence: Loss of job or tasks due to automation, especially in lower-wage roles./Excessive Monitoring/Surveillance: AI-powered algorithmic management leading to constant performance tracking and control./Algorithmic Management Bias: Unfair task allocation, performance review, or promotion decisions based on flawed metrics./Lack of Explainability/Contestability: Inability for non-technical users to understand or challenge a decision with life-changing consequences."
-            },  
+                {
+                    "FieldName": "AI system impact assessment - Employees - Benefits",
+                    "FieldLabel": "Employees",
+                    "FieldText": "Select Potential Benefits:",
+                    "FieldType": "Option box with values:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
+                },    
+                {
+                    "FieldName": "AI system impact assessment - Employees - Negative consequences (harms)",
+                    "FieldLabel": "Employees",
+                    "FieldText": "Select Potential Negative Consequences:",
+                    "FieldType": "Option box with values:Unfair/Discriminatory Outcomes: Biased decisions (e.g., loan denial, insurance rate) based on AI model bias./Lack of Human Recourse: Difficulty appealing or correcting automated decisions; no human contact point./Privacy Violations: Excessive collection or unauthorized use of personal and behavioral data./Job Displacement/Obsolescence: Loss of job or tasks due to automation, especially in lower-wage roles./Excessive Monitoring/Surveillance: AI-powered algorithmic management leading to constant performance tracking and control./Algorithmic Management Bias: Unfair task allocation, performance review, or promotion decisions based on flawed metrics./Lack of Explainability/Contestability: Inability for non-technical users to understand or challenge a decision with life-changing consequences."
+                },  
+                {
+                    "FieldName": "AI system impact assessment - Fairness and Bias",
+                    "FieldLabel": "Fairness and Bias",
+                    "FieldText": "Potential for the system to produce biased or discriminatory outcomes is assessed and documented.",    
+                    "FieldType": "Option box with values:Applicable/ Not Applicable"            
+                },  
+             {
+                "FieldName": "AI system impact assessment - Human Rights",
+                "FieldLabel": "Human Rights",
+                "FieldText": "Impacts on fundamental human rights (e.g., freedom from discrimination, privacy, life opportunities) are evaluated.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+              },
+              {
+                "FieldName": "AI system impact assessment - Safety & Health",
+                "FieldLabel": "Safety & Health",
+                "FieldText": "Potential for physical or psychological harm resulting from system usage or failure is assessed (e.g., stress, loss of life opportunity).",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+              },
+              {
+                "FieldName": "AI system impact assessment - Accountability",
+                "FieldLabel": "Accountability",
+                "FieldText": "Clear accountability structures are established to identify who is responsible for the AI system's actions and decisions.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+              },
+              {
+                "FieldName": "AI system impact assessment - Transparency & Explainability",
+                "FieldLabel": "Transparency & Explainability",
+                "FieldText": "The system's ability to provide understandable and sufficient information about its decisions to affected individuals is assessed.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+              },
+              {
+                "FieldName": "AI system impact assessment - Job Preservation",
+                "FieldLabel": "Job Preservation",
+                "FieldText": "Potential for the system to cause job displacement, de-skilling, or significant alteration of existing roles is assessed and documented, along with strategies for workforce management.",
+                "FieldType": "Option box with values:Applicable/ Not Applicable"
+              },
+
             
             {
                 "FieldType": "risk",
