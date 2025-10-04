@@ -151,7 +151,7 @@
                 "FieldName": "AI system impact assessment - Employees - Benefits",
                 "FieldLabel": "Employees",
                 "FieldText": "Select Potential Benefits:",
-                "FieldType": "Option box with values:Faster Service/Troubleshooting: Quicker response times and efficient resolution of routine queries./Reduced Error Rate: Higher accuracy in automated processes (e.g., order processing, diagnosis)./Increased Efficiency/Productivity: Automation of mundane, repetitive, and time-consuming tasks./Personalized Training/Upskilling: AI platforms recommending tailored professional development to close skill gaps.//Better Decision-Making Tools: Access to faster, data-driven insights to support human decisions./Error Reduction: Reduction in human-driven errors in high-stakes decisions (e.g., medical diagnosis, legal assessment)."
+                "FieldType": "Option box with values:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
             },    
            {
                 "FieldName": "AI system impact assessment - Employees - Negative consequences (harms)",
