@@ -233,7 +233,7 @@
                 {
                 "FieldType": "risk",
                 "FieldName": "Data Privacy and Protection in AI Systems",
-                "question": "Does the AI system rely on data or indormation that could be used to identify individuals?",
+                "question": "Does the AI system rely on data or information that could be used to identify individuals?",
                 "controls": [
                       {
                         "control": "DP-SD-01 - 01: Implement and maintain automated encryption processes for all data at rest (storage) and in transit (network traffic).",
@@ -935,7 +935,17 @@
               }
         ]
     },
-    
+    "(6.2.1) AI Lifecycle Phase requirements - Data collection": {
+        "WebFormTitle": "Define the data resources used by the AI system",
+        "Fields": [
+            {
+                "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
+                "FieldLabel": "Computing Resource Name and Version",
+                "FieldText": "Name of the software, library, or framework.",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
     "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
         "Fields": [
