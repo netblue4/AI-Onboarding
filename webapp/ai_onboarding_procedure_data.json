@@ -97,40 +97,39 @@
     			"controls": [
     				{
         				"control": "RM-EI-01 - 01: Establish and maintain a Vulnerable Population Protection Plan documenting approaches to safeguard vulnerable groups in AI deployments.",
-        				"control_objective": "To ensure that AI deployment includes effective measures to protect vulnerable populations from unfair discrimination or unethical considerations.",
-        				"risk_name": "Unprotected vulnerable populations leading to discrimination in AI deployment."
+        				"control_objective": "To ensure that AI deployment includes effective measures to protect vulnerable populations from unfair discrimination or unethical considerations."
               		},
               		{
         				"control": "RM-EI-01 - 02: Implement documented Impact Mitigation Strategies to reduce negative effects on vulnerable groups identified during AI system assessments.",
-        				"control_objective": "To minimize the adverse impacts of AI systems on vulnerable populations through documented mitigation strategies.",
+        				"control_objective": "To minimize the adverse impacts of AI systems on vulnerable populations through documented mitigation strategies."
               		},
               		{
         				"control": "RM-EI-01 - 03: Apply a Vulnerability Assessment Protocol to evaluate and address risks for vulnerable populations in AI system deployment.",
-        				"control_objective": "To rigorously assess and manage vulnerabilities affecting sensitive groups in AI deployments.",
+        				"control_objective": "To rigorously assess and manage vulnerabilities affecting sensitive groups in AI deployments."
               		},
               		{
         				"control": "RM-EI-01 - 04: Use a Vulnerability Impact Assessment Framework to formally analyze AI system effects on vulnerable communities.",
-        				"control_objective": "To ensure systematic assessment of the impacts of AI systems on vulnerable populations.",
+        				"control_objective": "To ensure systematic assessment of the impacts of AI systems on vulnerable populations."
               		},
               		{
         				"control": "RM-EI-01 - 05: Enforce Child Protection Protocols to safeguard children from harmful impacts of AI systems.",
-        				"control_objective": "To protect minors from negative effects and risks posed by AI systems.",
+        				"control_objective": "To protect minors from negative effects and risks posed by AI systems."
               		},
               		{
         				"control": "RM-EI-01 - 06: Maintain Mitigation Strategy Documents detailing plans developed to address risks identified for vulnerable populations.",
-        				"control_objective": "To document and implement comprehensive mitigation strategies for vulnerable groups exposed to AI risks.",
+        				"control_objective": "To document and implement comprehensive mitigation strategies for vulnerable groups exposed to AI risks."
               		},
               		{
         				"control": "RM-EI-01 - 07: Prepare a Vulnerable Populations Protection Plan including strategies and evidence of safeguarding efforts.",
-        				"control_objective": "To ensure robust and transparent safeguarding approaches for vulnerable populations in AI implementation.",
+        				"control_objective": "To ensure robust and transparent safeguarding approaches for vulnerable populations in AI implementation."
               		},
               		{
         				"control": "RM-EI-01 - 08: Document an Adverse Impact Mitigation Report that details actions taken to reduce negative outcomes for vulnerable groups.",
-        				"control_objective": "To transparently record mitigation actions and outcomes related to vulnerable populations.",
+        				"control_objective": "To transparently record mitigation actions and outcomes related to vulnerable populations."
               		},
               		{
         				"control": "RM-EI-01 - 09: Develop an Impact Assessment Toolkit focused on identifying and assessing risks for vulnerable groups including children.",
-        				"control_objective": "To provide actionable tools and procedures for identifying risks to vulnerable populations prior to AI system deployment.",
+        				"control_objective": "To provide actionable tools and procedures for identifying risks to vulnerable populations prior to AI system deployment."
               		}
     		]
   		}
@@ -296,28 +295,28 @@
     			"question": "Does the AI system process or use sensitive data?",
     			"controls": [
               		{
-        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source."
-        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
+        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
               		},
                		 {
-         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated."
-       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset.",
+         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
+       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
                		 },
                		 {
-        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets."
-        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets.",
+        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
+        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
               		  },
               		{
-        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**."
-        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision.",
+        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
+        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
                		 },
               		  {
-        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**."
-        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance).",
+        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
+        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
               		  },
               		  {
-         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions."
-       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications.",
+         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
+       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
                		 }
     			]
   			},        
@@ -327,28 +326,28 @@
     			"question": "Does the AI system process or use internal data?",
     			"controls": [
               		  {
-        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source."
-        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use.",
+        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
               		  },
               		  {
-        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**."
-        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting.",
+        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
+        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
               		  },
               		  {
-        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**."
-        				"control_objective": "To minimize errors and conflicting information within the internal dataset.",
+        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
+        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
               		  },
               		  {
-        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**."
-        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes.",
+        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
+        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
               		  },
               		  {
-        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**."
-        				"control_objective": "To establish a clear, documented understanding of the origin of internal data.",
+        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
+        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
               		  },
               		  {
-        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions."
-        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset.",
+        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
+        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
               		  }    			
  
     			]
