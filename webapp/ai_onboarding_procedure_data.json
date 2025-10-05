@@ -169,7 +169,6 @@
         ]
 },
 
-
     "(A.4.4) AI Systems Software and Tooling Resources": {
         "WebFormTitle": "Define the software and tools used by the AI system.",
         "Fields": [
@@ -288,11 +287,6 @@
         ]
     },
     
-    
-    
-    
-    
-    
     "(A.7.4) AI System Data Quality Requirements": {
         "WebFormTitle": "Define the AI system's Data Quality Requirements.",
         "Fields": [ 
@@ -361,117 +355,110 @@
   			}      
         ]
     },
-    
-    
-    
     "(A.7.6) AI System Data Preparation Plan": {
         "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data.",
         "Fields": [ 
-            {
-                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Masking",
-                "FieldLabel": "Masking",
-                "FieldText": "Replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Tokenization",
-                "FieldLabel": "Tokenization",
-                "FieldText": "Replace a sensitive data element with a non-sensitive equivalent, referred to as a \"token.\" The original data is stored in a secure vault.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Hashing",
-                "FieldLabel": "Hashing",
-                "FieldText": "Data Preparation Plan - Hashing||Use a cryptographic function to convert sensitive data into a fixed-size string of characters. It's a one-way process.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - De-identification & Anonymization - Generalization",
-                "FieldLabel": "Generalization",
-                "FieldText": "Reduce the precision of data. For example, changing a specific age ('34') to an age range ('30-40') or a full date of birth to just the year.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Access Control & Governance - Data Segregation",
-                "FieldLabel": "Data Segregation",
-                "FieldText": "Create physically or logically separate data stores for sensitive information, with strict access controls.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Access Control & Governance - Attribute-Based Access Control",
-                "FieldLabel": "Attribute-Based Access Control",
-                "FieldText": "Apply rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Minimization - Feature Pruning",
-                "FieldLabel": "Feature Pruning",
-                "FieldText": "Remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Minimization",
-                "FieldLabel": "Data Minimization",
-                "FieldText": "Remove records of individuals who have not given consent for their data to be used for AI training.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Quality & Integrity (Post-Anonymization) - Integrity Checks",
-                "FieldLabel": "Integrity Checks",
-                "FieldText": "After de-identification, verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Handling Missing Values",
-                "FieldLabel": "Handling Missing Values",
-                "FieldText": "Remove empty or null fields, such as filling them with a mean/median/mode, or removing the row/column.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Correcting Inaccuracies",
-                "FieldLabel": "Correcting Inaccuracies",
-                "FieldText": "Identify and fixing demonstrably incorrect data points (e.g., typos, out-of-range values like a temperature of '1000°C').",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            },
-            {
-                "FieldName": "(A.7.2, A.7.6) - Data Cleaning & Quality - Removing Duplicates",
-                "FieldLabel": "Removing Duplicates",
-                "FieldText": "Identify and deleting redundant records from the dataset.",
-                "FieldType": "Option box with values:Applicable/ Not Applicable"
-            }
+  			{
+    			"FieldType": "risk",
+    			"FieldName": "Sensitive data processing",
+    			"question": "Does the AI system process or use Sensitive data?",
+    			"controls": [
+              		  {
+        				"control": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
+        				"control_objective": "To limit the exposure of sensitive identifiers while retaining data utility for analysis or testing environments."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-02: Implement tokenization to replace a sensitive data element with a non-sensitive equivalent ('token'). The original data must be stored in a secure vault.",
+        				"control_objective": "To substitute sensitive values with surrogate non-sensitive values, thereby reducing the risk of a breach while preserving referential integrity."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-03: Use a cryptographic hashing function to convert sensitive data into a fixed-size string of characters.",
+        				"control_objective": "To ensure the integrity and verification of sensitive data in a one-way process, preventing the exposure of original values."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-04: Apply generalization to reduce the precision of data (e.g., changing a specific age to an age range or a full date of birth to just the year).",
+        				"control_objective": "To reduce the risk of re-identification by making individual sensitive data points less unique."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-05: Create physically or logically separate data stores for sensitive information, secured with strict access controls (Data Segregation).",
+        				"control_objective": "To minimize the scope of access and contain potential security breaches affecting sensitive information."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-06: Apply Attribute-Based Access Control (ABAC) rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
+        				"control_objective": "To enforce granular, dynamic access policies based on specific user and data characteristics."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-07: Perform Feature Pruning to remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
+        				"control_objective": "To adhere to the principle of data minimization by eliminating superfluous sensitive information."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-08: Remove records of individuals who have not given consent for their data to be used for AI training (Data Minimization).",
+        				"control_objective": "To ensure sensitive data processing complies with legal and ethical requirements regarding individual consent."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-09: Perform Integrity Checks after de-identification to verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
+        				"control_objective": "To ensure that de-identification methods do not compromise the data's utility or internal relationships required for analysis."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-10: Implement a strategy for Handling Missing Values, such as removing empty or null fields, filling them with a mean/median/mode, or removing the row/column.",
+        				"control_objective": "To improve the quality and robustness of the data prior to processing by managing gaps in the dataset systematically."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-11: Implement a process for Correcting Inaccuracies by identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values).",
+        				"control_objective": "To enhance the accuracy of the data by correcting known factual errors or anomalies."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-12: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
+        				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
+              		  } 			
+    			]
+  			},
+ 			{
+    			"FieldType": "risk",
+    			"FieldName": "Internal data processing",
+    			"question": "Does the AI system process or use internal data?",
+    			"controls": [
+              		  {
+        				"control": "DATA-INT-PRE-01: Implement masking to replace non-essential sensitive portions of data with a generic character (e.g., 'XXX-XX-1234' for internal IDs).",
+        				"control_objective": "To limit the exposure of non-essential identifiers while retaining utility for analysis or testing environments."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-02: Apply generalization to reduce the precision of data where necessary for internal reporting flexibility (e.g., changing a specific age to an age range).",
+        				"control_objective": "To simplify data points for better aggregation and basic analysis without focusing on individual uniqueness."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-03: Create logically separate data stores for high-priority internal information, secured with appropriate access controls (Data Segregation).",
+        				"control_objective": "To logically separate and manage access to high-value internal data assets."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-04: Apply Attribute-Based Access Control (ABAC) rules so that only authorized users (e.g., based on role, department) can access certain data fields.",
+        				"control_objective": "To enforce granular access policies based on the principle of least privilege."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-05: Perform Feature Pruning to remove any data fields or columns that are not necessary for the intended internal business process or model.",
+        				"control_objective": "To apply the principle of data minimization by eliminating superfluous information, reducing storage, and improving processing efficiency."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-06: Perform Integrity Checks after any data transformation to verify that internal relationships between fields remain intact.",
+        				"control_objective": "To ensure that data preparation methods do not compromise the data's utility or internal relationships required for analysis."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-07: Implement a strategy for Handling Missing Values, such as filling them with a mean/median/mode, or removing the row/column, based on documented methodology.",
+        				"control_objective": "To improve the quality and robustness of the data prior to processing by managing gaps in the dataset systematically."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-08: Implement a process for Correcting Inaccuracies by identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values).",
+        				"control_objective": "To enhance the accuracy of the data by correcting known factual errors or anomalies."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-09: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
+        				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
+              		  }	
+    			]
+  			}  			
         ]
     },
-    
-    
-    
-    
-    
-    
-    "(A.8.4) AI System Documentation and User Information": {
-        "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
-        "Fields": [
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
-                "FieldLabel": "Data Breach",
-                "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
-                "FieldLabel": "Model Misuse",
-                "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
-                "FieldLabel": "Model Failure",
-                "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
-                "FieldType": "TextBox"
-            }
-        ]
-    },
-    
-    
+ 
     "AI Act - Section 2: Requirements for High-Risk AI Systems": {
         "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
         "Fields": [
@@ -662,17 +649,6 @@
               }
         ]
     },
-    "(6.2.1) AI Lifecycle Phase requirements - Data collection": {
-        "WebFormTitle": "Define the data resources used by the AI system",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
-                "FieldLabel": "Computing Resource Name and Version",
-                "FieldText": "Name of the software, library, or framework.",
-                "FieldType": "TextBox"
-            }
-        ]
-    },
     "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
         "Fields": [
@@ -723,7 +699,7 @@
       }
     ]
   		 },
-  {
+  		  {
     "FieldType": "risk",
     "FieldName": "AI System Safety and Compliance",
     "question": "Is the enterprise consistently implementing regular safety and compliance checks across all AI systems, regardless of risk classification, to ensure adherence to minimum market safety standards?",
@@ -770,7 +746,7 @@
       }
     ]
   },
-  {
+          {
     "FieldType": "risk",
     "FieldName": "AI System Security and Traceability",
     "question": "Do high-risk AI systems have robust, state-of-the-art automatic event logging capabilities to ensure full traceability and effective postmarket security monitoring?",
@@ -817,7 +793,7 @@
       }
     ]
   },
-                {
+          {
         "FieldType": "risk",
         "FieldName": "Failure to Detect AI System Risks During Prerelease Testing",
         "question": "Are the national supervisory authority's mechanisms for organizing and overseeing prerelease testing of high-risk AI systems sufficient to ensure a comprehensive evaluation and effective risk mitigation?",
@@ -860,7 +836,7 @@
             }
         ]
     },
-    {
+          {
         "FieldType": "risk",
         "FieldName": "Model Intellectual Property Theft and Reverse Engineering",
         "question": "Is the model code obfuscation adequate to effectively prevent unauthorized reverse engineering and protect the AI system's proprietary algorithms?",
@@ -899,7 +875,7 @@
             }
         ]
     },
-    {
+          {
         "FieldType": "risk",
         "FieldName": "Unauthorized Access and Cyberattack on Model Information",
         "question": "Are the security measures for model information robust enough to prevent potential cyberattacks, unauthorized access, and ensure the integrity of the AI system?",
@@ -938,7 +914,7 @@
             }
         ]
     },
-            {
+          {
         "FieldType": "risk",
         "FieldName": "Compromise of AI System Integrity and Stability",
         "question": "How can ai system integrity maintenance measures ensure the AI system's integrity, and are there sufficient controls to prevent compromise of ai system integrity and stability?",
@@ -961,7 +937,7 @@
             }
         ]
     },
-    {
+          {
         "FieldType": "risk",
         "FieldName": "Input Manipulation and Membership Inference Attacks",
         "question": "How can input validation & model obfuscation measures ensure the AI system's integrity, and are there sufficient controls to prevent input manipulation and membership inference attacks?",
@@ -980,7 +956,7 @@
             }
         ]
     },
-    {
+          {
         "FieldType": "risk",
         "FieldName": "Data Poisoning and Manipulative Attacks on Models",
         "question": "How can data validation & use of robust models measures ensure the AI system's integrity, and are there sufficient controls to prevent data poisoning and manipulative attacks on models?",
@@ -1019,7 +995,7 @@
             }
         ]
     },
-              {
+          {
     "FieldType": "risk",
     "FieldName": "Inadequate Testing and Undocumented AI System Errors",
     "question": "Are the AI system's errors and limitations fully identified, documented, and mitigated through rigorous testing, including adversarial and stress testing?",
@@ -1056,7 +1032,7 @@
       }
     ]
   },
-  {
+          {
     "FieldType": "risk",
     "FieldName": "Malicious Data Input and Attack Prevention",
     "question": "Is the AI system protected against malicious inputs and potential buffer overflow attacks through stringent input validation, and are the security measures effective?",
@@ -1083,7 +1059,7 @@
       }
     ]
   },
-  {
+          {
     "FieldType": "risk",
     "FieldName": "Vulnerability to Physical Adversarial Objects",
     "question": "Is the machine learning model sufficiently robust to detect and correctly handle physical adversarial objects in real-world operating environments?",
@@ -1105,7 +1081,7 @@
       }
     ]
   },
-  {
+          {
     "FieldType": "risk",
     "FieldName": "Security Flaws in Model Interaction and Data Flow",
     "question": "Are all data fed into the AI models subject to stringent input validation to prevent malicious inputs, and are potential system vulnerabilities effectively analyzed and addressed?",
@@ -1127,7 +1103,7 @@
       }
     ]
   },
-  {
+          {
     "FieldType": "risk",
     "FieldName": "Neural Network Input Manipulation and Unsanitized Data",
     "question": "Are sufficient measures in place to validate and sanitize neural network inputs, and are the effectiveness of these measures consistently evaluated to prevent misleading or manipulated outputs?",
@@ -1154,7 +1130,7 @@
     "(6.2.1) AI Lifecycle Phase requirements - Training": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Training.",
         "Fields": [
-            {
+          {
                 "FieldType": "risk",
                 "FieldName": "Failure to Develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models.",
                 "question": "How can we ensure the effective Develop and implement adversarial machine learning approaches for measuring bias and discrimination, including prompt engineering and adversarial models.?",
@@ -1213,7 +1189,7 @@
                     }
                 ]
             },
-            {
+          {
                 "FieldType": "risk",
                 "FieldName": "Failure to Implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome.",
                 "question": "How can we ensure the effective Implement the identification and mitigation of biased processes and procedures to detect and correct biases in training data, ensuring fairness in model predictions and to document, analyze and follow up on unfairness that could result in a discriminatory outcome.?",
@@ -1272,7 +1248,7 @@
                     }
                 ]
             },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "Flawed Training Process and Overfitting",
         "question": "Is there a risk that the AI model will perform well on training data but fail in real-world scenarios because it has memorized noise instead of learning generalizable patterns?",
@@ -1343,7 +1319,7 @@
             }
         ]
       },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "[C.3.4] - Vulnerability to Adversarial Evasion Attacks",
         "question": "Could an adversary intentionally craft inputs to deceive the AI system at the time of prediction, causing it to make a wrong and potentially dangerous decision?",
@@ -1366,7 +1342,7 @@
           }
         ]
       },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "[C.3.4] - Susceptibility to Data Poisoning Attacks",
         "question": "Could an attacker maliciously influence the data used to train or retrain the AI system, deliberately teaching it to behave incorrectly or to create a backdoor?",
@@ -1389,7 +1365,7 @@
           }
         ]
       },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "[C.3.4] - Performance Degradation due to Concept Drift",
         "question": "Will the AI system operate in a dynamic environment where the statistical properties of the data can change over time, potentially causing the model's accuracy to degrade silently?",
@@ -1412,7 +1388,7 @@
           }
         ]
       },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "Inadequate Data & Privacy Protection Measures",
         "question": "Will this AI system process personal, confidential, or sensitive business data?",
@@ -1463,7 +1439,7 @@
           }
         ]
       },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "Uncontrolled Synthetic Data Usage",
         "question": "Will synthetic (artificially generated) data be used in training or testing without clear documentation or controls?",
@@ -1482,7 +1458,7 @@
           }
         ]
       },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "Undetected Changes in Data Distribution",
         "question": "Could shifts in customer behavior, market trends, or other inputs cause the AI to produce unexpected results over time?",
@@ -1493,7 +1469,7 @@
           }
         ]
       },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "AI system hallucinations",
         "question": "Will the AI generate content (text, images, etc.) that could be factually wrong but appear convincing?",
@@ -1508,7 +1484,7 @@
           }
         ]
       },
-      {
+          {
         "FieldType": "risk",
         "FieldName": "Exposure of Sensitive Data Through Federated Learning",
         "question": "Will the AI system collaborate or learn from external datasets without centralizing data (e.g., via federated learning)?",
@@ -2003,6 +1979,34 @@
             }
         ]
     },
+    
+       
+    "(A.8.4) AI System Documentation and User Information": {
+        "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
+        "Fields": [
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
+                "FieldLabel": "Data Breach",
+                "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
+                "FieldLabel": "Model Misuse",
+                "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
+                "FieldLabel": "Model Failure",
+                "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    
+    
+    
     "AI Systems approvals": {
         "WebFormTitle": "Document AI system approvals",
         "Fields": [
