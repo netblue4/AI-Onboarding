@@ -31,6 +31,12 @@
                 "FieldType": "TextBox"
             },       
             {
+                    "FieldName": "AI system impact assessment - Employees - Benefits",
+                    "FieldLabel": "Employees",
+                    "FieldText": "Select Potential Benefits:",
+                    "FieldType": "Option box with values:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
+            },
+            {
     			"Control": "A.9.4 – Intended use of the AI system",
     			"FieldName": "HR-WIA-2.3-AugmentationTasks",
     			"FieldLabel": "Augmented/Enhanced Tasks",
@@ -71,16 +77,61 @@
   
         ]
     },
+    "(A.4.4) AI Systems Software and Tooling Resources": {
+        "WebFormTitle": "Define the software and tools used by the AI system.",
+        "Fields": [
+            {
+                "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
+                "FieldLabel": "Tool Name and Version",
+                "FieldText": "Name of the software, library, or framework and Version number.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.4) - Category",
+                "FieldLabel": "",
+                "FieldText": "Category of the tool?",
+                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
+                "FieldLabel": "Purpose/Use Case in Project",
+                "FieldText": "Tooling Resources: How this tool will be used in the AI system's lifecycle.",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+    "(A.4.5) AI Systems Computing Resources": {
+        "WebFormTitle": "Define the computing resources used by the AI system",
+        "Fields": [
+            {
+                "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
+                "FieldLabel": "Computing Resource Name and Version",
+                "FieldText": "Name of the software, library, or framework.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.5) - Category",
+                "FieldLabel": "",
+                "FieldText": "Category of the computing resource.",
+                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
+                "FieldLabel": "",
+                "FieldText": "Which part of the AI lifecycle does this resource supports?",
+                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
+            }
+        ]
+    },
     
+    
+    
+    
+       
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
-                {
-                    "FieldName": "AI system impact assessment - Employees - Benefits",
-                    "FieldLabel": "Employees",
-                    "FieldText": "Select Potential Benefits:",
-                    "FieldType": "Option box with values:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
-                },
+,
                 {
                 "FieldType": "risk",
                 "FieldName": "Data Privacy and Protection in AI Systems",
@@ -332,52 +383,7 @@
   }
         ]
     },
-    "(A.4.4) AI Systems Software and Tooling Resources": {
-        "WebFormTitle": "Define the software and tools used by the AI system.",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
-                "FieldLabel": "Tool Name and Version",
-                "FieldText": "Name of the software, library, or framework and Version number.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.4) - Category",
-                "FieldLabel": "",
-                "FieldText": "Category of the tool?",
-                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
-                "FieldLabel": "Purpose/Use Case in Project",
-                "FieldText": "Tooling Resources: How this tool will be used in the AI system's lifecycle.",
-                "FieldType": "TextBox"
-            }
-        ]
-    },
-    "(A.4.5) AI Systems Computing Resources": {
-        "WebFormTitle": "Define the computing resources used by the AI system",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
-                "FieldLabel": "Computing Resource Name and Version",
-                "FieldText": "Name of the software, library, or framework.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.5) - Category",
-                "FieldLabel": "",
-                "FieldText": "Category of the computing resource.",
-                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
-                "FieldLabel": "",
-                "FieldText": "Which part of the AI lifecycle does this resource supports?",
-                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
-            }
-        ]
-    },
+
     "(A.4.3) AI Systems Data Resources": {
         "WebFormTitle": "Define the data resources used by the AI system.",
         "Fields": [
