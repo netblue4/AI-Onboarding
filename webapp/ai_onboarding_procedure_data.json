@@ -18,209 +18,60 @@
             },
             {
                 "Control": "A.9.4 – Intended use of the AI system",
-                "FieldName": "(A.9.4) - Target Users",
-                "FieldLabel": "",
-                "FieldText": "Who are the Target Users of the Ai system?",
-                "FieldType": "Dropdown box with values:/Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
-            },
-            {
-                "Control": "A.9.4 – Intended use of the AI system",
                 "FieldName": "(A.9.4) - Business Purpose",
                 "FieldLabel": "Business Purpose",
                 "FieldText": "What specific business problem or task does this system address?",
                 "FieldType": "TextBox"
-            },
+            },     
             {
                 "Control": "A.9.4 – Intended use of the AI system",
                 "FieldName": "(A.9.4) - Intended Use",
                 "FieldLabel": "Intended Use",
                 "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
                 "FieldType": "TextBox"
-            }
+            },       
+            {
+    			"Control": "A.9.4 – Intended use of the AI system",
+    			"FieldName": "HR-WIA-2.3-AugmentationTasks",
+    			"FieldLabel": "Augmented/Enhanced Tasks",
+    			"FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
+    			"FieldType": "TextBox"
+  			},         
+   			{
+    			"FieldName": "HR-WIA-1.2-CoreAction",
+    			"FieldLabel": "System's Core Action on Tasks",
+    			"FieldText": "Identify the primary role of the AI relative to human workers.",
+    			"FieldType": "Option box with values:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
+  			},  
+    			{
+    			"FieldName": "HR-WIA-2.2-AutomationTasks",
+    			"FieldLabel": "Automated/Eliminated Tasks",
+    			"FieldText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
+    			"FieldType": "TextBox"
+  			},
+  			{
+                "Control": "A.9.4 – Intended use of the AI system",
+                "FieldName": "(A.9.4) - Target Users",
+                "FieldLabel": "",
+    			"FieldText": "List all job titles whose daily tasks are anticipated to be altered by more than 20% due to the AI system.",
+                "FieldType": "Dropdown box with values:/Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
+            },    
+  			{
+  			    "FieldName": "HR-WIA-4.1-MitigationPlan",
+  			    "FieldLabel": "Primary Mitigation Strategy for Displacement",
+  			    "FieldText": "If job displacement is identified, select the primary strategy for the affected workers.",
+  			    "FieldType": "Option box with values:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
+    		},
+    		{
+    		    "FieldName": "HR-WIA-4.2-TrainingProgram",
+    		    "FieldLabel": "Structured Re-skilling Program in Place",
+    		    "FieldText": "Is a funded and scheduled training program in place to address the identified skills gap (3.3) *prior to* full AI deployment?",
+    		    "FieldType": "Option box with values:Yes/No"
+  		    }
+  
         ]
     },
-     "(A.6.2.2) AI system's Functional Requirement": {
-        "WebFormTitle": "Document all requirements for new AI systems or for material enhancements to existing systems.",
-        "Fields": [       
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Processing Logic",
-                "FieldLabel": "Processing Logic",
-                "FieldText": "What’s the core logic or model behavior expected?",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Outputs",
-                "FieldLabel": "Outputs",
-                "FieldText": "What outputs should the system produce?",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Interaction Model",
-                "FieldLabel": "Interaction Model",
-                "FieldText": "Will it run in the background, have a UI, API, etc.?",
-                "FieldType": "TextBox"
-            },
-            {
-                "Control": "6.2.2 – AI system requirements and specification",
-                "FieldName": "(A.6.2.2) - Performance",
-                "FieldLabel": "Performance",
-                "FieldText": "Are there any SLA's associated with the AI system?",
-                "FieldType": "TextBox"
-            }
-        ]
-    },
-    "AI Act Prohibited Practices Assessment": {
-        "WebFormTitle": "Determine if the AI system falls under prohibited practices according to the AI Act.",
-        "Fields": [
-            {
-                "FieldName": "Subliminal Manipulation",
-                "FieldLabel": "Subliminal Manipulation",
-                "FieldText": "Does the AI system deploy techniques beyond a person's consciousness to materially distort their behavior in a way that is likely to cause harm?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Exploitation of Vulnerabilities",
-                "FieldLabel": "Exploitation of Vulnerabilities",
-                "FieldText": "Does the AI system exploit vulnerabilities of a specific group (e.g., due to age, physical or mental disability, social or economic situation) to materially distort their behavior in a way likely to cause harm to that person or another?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Social Scoring",
-                "FieldLabel": "Social Scoring",
-                "FieldText": "Is the AI system used by public authorities for evaluating or classifying the trustworthiness of natural persons based on their social behavior or personal characteristics, leading to detrimental or unfavorable treatment?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Real-time Remote Biometric Identification",
-                "FieldLabel": "Biometric Identification",
-                "FieldText": "Is the AI system used by law enforcement for real-time remote biometric identification of natural persons in publicly accessible spaces? (Note: Very limited exceptions exist)",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Emotion Inference",
-                "FieldLabel": "Emotion Inference",
-                "FieldText": "Does the AI system infer emotions of natural persons in the context of workplaces or educational institutions?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Biometric Categorization",
-                "FieldLabel": "Biometric Categorization",
-                "FieldText": "Does the AI system use biometric data to categorize natural persons based on sensitive attributes like race, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Untargeted Scraping of Facial Images",
-                "FieldLabel": "Untargeted Scraping of Facial Images",
-                "FieldText": "Does the AI system involve untargeted scraping of facial images from the internet or CCTV footage to create or expand facial recognition databases?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "Risk Assessment of Criminal Offenses (Profiling)",
-                "FieldLabel": "Criminal Offenses (Profiling)",
-                "FieldText": "Does the AI system assess the risk of a natural person committing a criminal offense based solely on profiling or assessment of their personality traits or characteristics?",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "AI system is Prohibited",
-                "FieldLabel": "AI system is Prohibited",
-                "FieldText": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.||For a more detailed assessment, you can refer to the EU AI Act Compliance Checker: https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
-                "FieldType": "Option box with values:Yes/No"
-            }
-        ]
-    },
-    "Decision point": {
-        "WebFormTitle": "If the system is Prohibited then Exit else continue to next step.",
-        "Fields": [
-            {
-                "FieldName": "Prohibited Practices - AI system is Prohibited",
-                "FieldLabel": "FieldName = the field to interigate to determine the decision branch.",
-                "FieldText": "If the answer to any of these questions is \"Yes,\" the AI system may be prohibited under the AI Act.\nFor a more detailed assessment, you can refer to the EU AI Act Compliance Checker||https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/",
-                "FieldType": "Decision:Yes=Document AI system approvals/No=Determine the AI system's Data Sensitivity & Privacy impact",
-                "YesTarget": "Document AI system approvals",
-                "NoTarget": "Determine the AI System Significance"
-            }
-        ]
-    },
-    "Pre-deployment Workforce Impact Assessment ": {
-        "WebFormTitle": "Pre-deployment Workforce Impact Assessment .",
-        "Fields": [
-  {
-    "FieldName": "HR-WIA-1.1-SystemName",
-    "FieldLabel": "AI System Name and Affected Processes",
-    "FieldText": "Provide the name of the AI system and list the specific business processes or departmental functions it will directly impact (e.g., 'Loan Approval Process in Retail Banking').",
-    "FieldType": "TextArea"
-  },
-  {
-    "FieldName": "HR-WIA-1.2-CoreAction",
-    "FieldLabel": "System's Core Action on Tasks",
-    "FieldText": "Identify the primary role of the AI relative to human workers.",
-    "FieldType": "Option box with values:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
-  },
-  {
-    "FieldName": "HR-WIA-2.1-AffectedRoles",
-    "FieldLabel": "Affected Job Roles",
-    "FieldText": "List all job titles whose daily tasks are anticipated to be altered by more than 20% due to the AI system.",
-    "FieldType": "TextArea"
-  },
-  {
-    "FieldName": "HR-WIA-2.2-AutomationTasks",
-    "FieldLabel": "Automated/Eliminated Tasks",
-    "FieldText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
-    "FieldType": "TextArea"
-  },
-  {
-    "FieldName": "HR-WIA-2.3-AugmentationTasks",
-    "FieldLabel": "Augmented/Enhanced Tasks",
-    "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
-    "FieldType": "TextArea"
-  },
-  {
-    "FieldName": "HR-WIA-2.4-NewRoles",
-    "FieldLabel": "Net-New Roles or Responsibilities Created",
-    "FieldText": "List any entirely new job titles or significant responsibilities required to manage, audit, or service the AI system (e.g., 'AI Data Auditor').",
-    "FieldType": "TextArea"
-  },
-  {
-    "FieldName": "HR-WIA-3.1-NewHardSkills",
-    "FieldLabel": "New Technical Skills Required",
-    "FieldText": "List the specific technical competencies employees must acquire (e.g., model output interpretation, prompt engineering, MLOps monitoring).",
-    "FieldType": "TextArea"
-  },
-  {
-    "FieldName": "HR-WIA-3.2-NewSoftSkills",
-    "FieldLabel": "New Human-Centric Skills Required",
-    "FieldText": "List the soft skills that will become more critical (e.g., critical thinking, complex communication, emotional intelligence).",
-    "FieldType": "TextArea"
-  },
-  {
-    "FieldName": "HR-WIA-3.3-SkillsGapMetric",
-    "FieldLabel": "Current Skills Gap (Estimated)",
-    "FieldText": "Provide the estimated percentage of the affected workforce that currently lacks the identified necessary skills (New Hard/Soft Skills).",
-    "FieldType": "TextBox (Numeric)"
-  },
-  {
-    "FieldName": "HR-WIA-4.1-MitigationPlan",
-    "FieldLabel": "Primary Mitigation Strategy for Displacement",
-    "FieldText": "If job displacement is identified, select the primary strategy for the affected workers.",
-    "FieldType": "Option box with values:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
-  },
-  {
-    "FieldName": "HR-WIA-4.2-TrainingProgram",
-    "FieldLabel": "Structured Re-skilling Program in Place",
-    "FieldText": "Is a funded and scheduled training program in place to address the identified skills gap (3.3) *prior to* full AI deployment?",
-    "FieldType": "Option box with values:Yes/No"
-  },
-  {
-    "FieldName": "HR-WIA-4.3-CommunicationStatus",
-    "FieldLabel": "Employee Communication Plan Status",
-    "FieldText": "Status of the formal plan to communicate changes and opportunities to affected employees.",
-    "FieldType": "Option box with values:Draft/Approved but not Executed/Executed (Ongoing)/Not Required"
-  }
-        ]
-    },
+    
     "(5.4) Assessing AI system impact on individuals or groups of individuals": {
         "WebFormTitle": "Assess the AI system's impact on individuals or groups of individuals.",
         "Fields": [
@@ -1424,7 +1275,6 @@
   }
         ]
     },
-
     "(6.2.1) AI Lifecycle Phase requirements - Training": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Training.",
         "Fields": [
@@ -1903,7 +1753,6 @@
       }
         ]
     },
-
     "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates.",
         "Fields": [
@@ -2041,7 +1890,6 @@
       }
         ]
     },
-
     "(6.2.1) AI Lifecycle Phase requirements - Use and Decommissioning": {
         "WebFormTitle": "Define the security requirements for - Use and Decommissioning.",
         "Fields": [
