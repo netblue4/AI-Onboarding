@@ -216,8 +216,6 @@
             }
         ]
     },
-    
-
     "(A.4.3) AI Systems Data Resources": {
         "WebFormTitle": "Define the data resources used by the AI system.",
         "Fields": [
@@ -250,12 +248,6 @@
                 "FieldLabel": "",
                 "FieldText": "What is the File format or storage system?",
                 "FieldType": "Dropdown box with values:/CSV/JSON/Parquet/SQL DB"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Data Labeling",
-                "FieldLabel": "",
-                "FieldText": "How is the Data Labeled?",
-                "FieldType": "Dropdown box with values:/Sensitive/Internal/Public"
             },
             {
                 "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
@@ -295,48 +287,84 @@
             }
         ]
     },
-    "(A.7.4) AI System Data Quality Requirements for Sensitive data": {
-        "WebFormTitle": "Define the AI system's Data Quality Requirements for Sensitive data.",
+    
+    
+    
+    
+    
+    
+    "(A.7.4) AI System Data Quality Requirements": {
+        "WebFormTitle": "Define the AI system's Data Quality Requirements.",
         "Fields": [ 
-            {
-                "FieldName": "(A.7.4) - Accuracy",
-                "FieldLabel": "Accuracy",
-                "FieldText": "Specify the minimum acceptable accuracy level, defined as the percentage of data points that are correct when compared to a trusted source.",
-                "FieldType": "Dropdown box with values:/> 95%/> 50%/> 20%"
-            },
-            {
-                "FieldName": "(A.7.4) - Completeness",
-                "FieldLabel": "Completeness",
-                "FieldText": "Specify the required level of data completeness, ensuring that all necessary data fields are populated.",
-                "FieldType": "Dropdown box with values:/All critical information present/No nulls in essential fields/> 98% completeness for important fields"
-            },
-            {
-                "FieldName": "(A.7.4) - Consistency",
-                "FieldLabel": "Consistency",
-                "FieldText": "Define the requirement for data consistency, ensuring data is free from logical contradictions and maintains integrity across related datasets.",
-                "FieldType": "Dropdown box with values:/No contradictory information/No logical contradictions/< 1% inconsistency rate"
-            },
-            {
-                "FieldName": "(A.7.4) - Recency",
-                "FieldLabel": "Recency",
-                "FieldText": "Specify how frequently the data must be updated to be considered current for its intended use.",
-                "FieldType": "Dropdown box with values:/Real-time/Daily/Monthly/Yearly"
-            },
-            {
-                "FieldName": "(A.7.4) - Source Traceability",
-                "FieldLabel": "",
-                "FieldText": "Specify whether the origin and history (provenance) of the data can be fully traced and verified.",
-                "FieldType": "Option box with values:Yes/No"
-            },
-            {
-                "FieldName": "(A.7.4) - Versioning Applied",
-                "FieldLabel": "",
-                "FieldText": "Specify the system or method used to manage and track different versions of the dataset.",
-                "FieldType": "Dropdown box with values:/Git/DVC/Manual/Not Applicable"
-            }
+			{
+    			"FieldType": "risk",
+    			"FieldName": "Sensitive data processing",
+    			"question": "Does the AI system process or use sensitive data?",
+    			"controls": [
+              		{
+        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source."
+        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
+              		},
+               		 {
+         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated."
+       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset.",
+               		 },
+               		 {
+        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets."
+        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets.",
+              		  },
+              		{
+        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**."
+        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision.",
+               		 },
+              		  {
+        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**."
+        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance).",
+              		  },
+              		  {
+         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions."
+       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications.",
+               		 }
+    			]
+  			},        
+  			{
+    			"FieldType": "risk",
+    			"FieldName": "Internal data processing",
+    			"question": "Does the AI system process or use internal data?",
+    			"controls": [
+              		  {
+        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source."
+        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use.",
+              		  },
+              		  {
+        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**."
+        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting.",
+              		  },
+              		  {
+        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**."
+        				"control_objective": "To minimize errors and conflicting information within the internal dataset.",
+              		  },
+              		  {
+        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**."
+        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes.",
+              		  },
+              		  {
+        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**."
+        				"control_objective": "To establish a clear, documented understanding of the origin of internal data.",
+              		  },
+              		  {
+        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions."
+        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset.",
+              		  }    			
+ 
+    			]
+  			}      
         ]
     },
-    "(A.7.6) AI System Data Preparation Plan for Sensitive data": {
+    
+    
+    
+    "(A.7.6) AI System Data Preparation Plan": {
         "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data.",
         "Fields": [ 
             {
@@ -413,6 +441,12 @@
             }
         ]
     },
+    
+    
+    
+    
+    
+    
     "(A.8.4) AI System Documentation and User Information": {
         "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
         "Fields": [
@@ -436,6 +470,8 @@
             }
         ]
     },
+    
+    
     "AI Act - Section 2: Requirements for High-Risk AI Systems": {
         "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
         "Fields": [
@@ -641,18 +677,18 @@
         "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
         "Fields": [
           {
-    "FieldType": "risk",
-    "FieldName": "AI System Quality and Development Criteria",
-    "question": "Are the established quality criteria for AI system datasets sufficient, adaptable, and consistently applied to ensure the development of high-risk AI systems meets required quality standards across different market segments?",
-    "controls": [
+    			"FieldType": "risk",
+    			"FieldName": "AI System Quality and Development Criteria",
+    			"question": "Are the established quality criteria for AI system datasets sufficient, adaptable, and consistently applied to ensure the development of high-risk AI systems meets required quality standards across different market segments?",
+    			"controls": [
+      				{
+       		 			"control": "SD-QS-01 - 01: Maintain a guide that outlines the **quality criteria** for AI system datasets.",
+       		 			"control_objective": "To ensure high-risk AI systems adhere to established quality criteria for datasets.",
+       		 			"risk": "Failure to develop high-risk AI systems that adhere to quality criteria due to undefined or undocumented dataset standards."
+					},
       {
-        "control": "SD-QS-01 - 01: Maintain a guide that outlines the **quality criteria** for AI system datasets.",
-        "control_objective": "To ensure high-risk AI systems adhere to established quality criteria for datasets.",
-        "risk": "Failure to develop high-risk AI systems that adhere to quality criteria due to undefined or undocumented dataset standards."
-      },
-      {
-        "control": "SD-QS-01 - 02: Maintain a **plan** detailing how AI systems will be adapted to meet different market segment requirements.",
-        "control_objective": "To ensure high-risk AI systems maintain dataset quality while allowing for **adaptability** based on the system's market segment or application.",
+       		 			"control": "SD-QS-01 - 02: Maintain a **plan** detailing how AI systems will be adapted to meet different market segment requirements.",
+       		 			"control_objective": "To ensure high-risk AI systems maintain dataset quality while allowing for **adaptability** based on the system's market segment or application.",
         "risk": "Inability to deploy high-risk AI systems across various market segments because the system's quality criteria lack the necessary adaptability."
       },
       {
@@ -686,7 +722,7 @@
         "risk": "Poor system performance in new market segments because quality criteria customization was not formally analyzed and documented."
       }
     ]
-  },
+  		 },
   {
     "FieldType": "risk",
     "FieldName": "AI System Safety and Compliance",
