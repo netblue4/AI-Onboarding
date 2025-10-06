@@ -97,40 +97,39 @@
     			"controls": [
     				{
         				"control": "RM-EI-01 - 01: Establish and maintain a Vulnerable Population Protection Plan documenting approaches to safeguard vulnerable groups in AI deployments.",
-        				"control_objective": "To ensure that AI deployment includes effective measures to protect vulnerable populations from unfair discrimination or unethical considerations.",
-        				"risk_name": "Unprotected vulnerable populations leading to discrimination in AI deployment."
+        				"control_objective": "To ensure that AI deployment includes effective measures to protect vulnerable populations from unfair discrimination or unethical considerations."
               		},
               		{
         				"control": "RM-EI-01 - 02: Implement documented Impact Mitigation Strategies to reduce negative effects on vulnerable groups identified during AI system assessments.",
-        				"control_objective": "To minimize the adverse impacts of AI systems on vulnerable populations through documented mitigation strategies.",
+        				"control_objective": "To minimize the adverse impacts of AI systems on vulnerable populations through documented mitigation strategies."
               		},
               		{
         				"control": "RM-EI-01 - 03: Apply a Vulnerability Assessment Protocol to evaluate and address risks for vulnerable populations in AI system deployment.",
-        				"control_objective": "To rigorously assess and manage vulnerabilities affecting sensitive groups in AI deployments.",
+        				"control_objective": "To rigorously assess and manage vulnerabilities affecting sensitive groups in AI deployments."
               		},
               		{
         				"control": "RM-EI-01 - 04: Use a Vulnerability Impact Assessment Framework to formally analyze AI system effects on vulnerable communities.",
-        				"control_objective": "To ensure systematic assessment of the impacts of AI systems on vulnerable populations.",
+        				"control_objective": "To ensure systematic assessment of the impacts of AI systems on vulnerable populations."
               		},
               		{
         				"control": "RM-EI-01 - 05: Enforce Child Protection Protocols to safeguard children from harmful impacts of AI systems.",
-        				"control_objective": "To protect minors from negative effects and risks posed by AI systems.",
+        				"control_objective": "To protect minors from negative effects and risks posed by AI systems."
               		},
               		{
         				"control": "RM-EI-01 - 06: Maintain Mitigation Strategy Documents detailing plans developed to address risks identified for vulnerable populations.",
-        				"control_objective": "To document and implement comprehensive mitigation strategies for vulnerable groups exposed to AI risks.",
+        				"control_objective": "To document and implement comprehensive mitigation strategies for vulnerable groups exposed to AI risks."
               		},
               		{
         				"control": "RM-EI-01 - 07: Prepare a Vulnerable Populations Protection Plan including strategies and evidence of safeguarding efforts.",
-        				"control_objective": "To ensure robust and transparent safeguarding approaches for vulnerable populations in AI implementation.",
+        				"control_objective": "To ensure robust and transparent safeguarding approaches for vulnerable populations in AI implementation."
               		},
               		{
         				"control": "RM-EI-01 - 08: Document an Adverse Impact Mitigation Report that details actions taken to reduce negative outcomes for vulnerable groups.",
-        				"control_objective": "To transparently record mitigation actions and outcomes related to vulnerable populations.",
+        				"control_objective": "To transparently record mitigation actions and outcomes related to vulnerable populations."
               		},
               		{
         				"control": "RM-EI-01 - 09: Develop an Impact Assessment Toolkit focused on identifying and assessing risks for vulnerable groups including children.",
-        				"control_objective": "To provide actionable tools and procedures for identifying risks to vulnerable populations prior to AI system deployment.",
+        				"control_objective": "To provide actionable tools and procedures for identifying risks to vulnerable populations prior to AI system deployment."
               		}
     		]
   		}
