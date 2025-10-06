@@ -706,7 +706,7 @@
   		 },
          {
   			"FieldType": "risk",
-  			"FieldName": "Accountability in AI Systems",
+  			"FieldName": "Transparency and Explainability in AI Systems",
   			"question": "Are AI systems designed, developed to provide understandable and sufficient information about its decisions to affected individuals.",
    			"controls": [  	
    			    {
