@@ -296,28 +296,28 @@
     			"question": "Does the AI system process or use sensitive data?",
     			"controls": [
               		{
-        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source."
-        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
+        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
               		},
                		 {
-         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated."
-       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset.",
+         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
+       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
                		 },
                		 {
-        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets."
-        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets.",
+        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
+        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
               		  },
               		{
-        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**."
-        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision.",
+        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
+        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
                		 },
               		  {
-        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**."
-        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance).",
+        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
+        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
               		  },
               		  {
-         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions."
-       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications.",
+         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
+       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
                		 }
     			]
   			},        
@@ -327,28 +327,28 @@
     			"question": "Does the AI system process or use internal data?",
     			"controls": [
               		  {
-        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source."
-        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use.",
+        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
               		  },
               		  {
-        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**."
-        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting.",
+        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
+        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
               		  },
               		  {
-        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**."
-        				"control_objective": "To minimize errors and conflicting information within the internal dataset.",
+        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
+        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
               		  },
               		  {
-        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**."
-        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes.",
+        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
+        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
               		  },
               		  {
-        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**."
-        				"control_objective": "To establish a clear, documented understanding of the origin of internal data.",
+        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
+        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
               		  },
               		  {
-        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions."
-        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset.",
+        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
+        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
               		  }    			
  
     			]
@@ -707,7 +707,7 @@
          {
   			"FieldType": "risk",
   			"FieldName": "Transparency and Explainability in AI Systems",
-  			"question": "Are AI systems designed, developed to provide understandable and sufficient information about its decisions to affected individuals.",
+  			"question": "Are AI systems designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
    			"controls": [  	
    			    {
         				"control": "TRN-REQ-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
@@ -767,14 +767,69 @@
    			    }
    			]
   		 },	 
-  		 
-
-
-
-
-
-
-
+  		 {
+  			"FieldType": "risk",
+  			"FieldName": "Transparency and Explainability in AI Systems",
+  			"question": "Are AI system's designed and developed to prevent, withstand, and recover from disruptions that could impact its functionality and availability is assessed (e.g., cyber-attacks, infrastructure failures, data corruption).",
+   			"controls": [ 
+    			    {
+        				"control": "RES-RSK-01: Map and document the entire AI pipeline and its components to identify the system's attack surface and potential single points of failure.",
+        				"control_objective": "To create a comprehensive system overview that serves as the foundation for identifying vulnerabilities and understanding potential failure scenarios."
+    			    },
+    			    {
+        				"control": "RES-RSK-02: Document and analyze AI-specific threats, including Data Poisoning, Adversarial Attacks, Model Extraction, and Data/Model Drift.",
+        				"control_objective": "To expand risk assessment beyond traditional IT threats to include unique vulnerabilities inherent in machine learning systems."
+    			    },
+    			    {
+        				"control": "RES-RSK-03: Assess the business impact and likelihood of each identified threat and create a prioritized risk register to guide mitigation efforts.",
+        				"control_objective": "To ensure that resilience resources are focused on addressing the most critical and probable threats to the AI system's functionality."
+    			    },
+    			    {
+        				"control": "RES-DEV-01: Implement automated data validation and anomaly detection at the ingestion stage to identify and quarantine suspicious or corrupt data.",
+        				"control_objective": "To establish a first line of defense against data poisoning attacks and ensure the integrity of the data entering the training pipeline."
+    			    },
+    			    {
+        				"control": "RES-DEV-02: Apply model hardening techniques such as Adversarial Training and Input Sanitization at the inference endpoint to make the model more robust.",
+        				"control_objective": "To reduce the model's vulnerability to malicious inputs and prevent attackers from easily manipulating its predictions."
+    			    },
+    			    {
+        				"control": "RES-DEV-03: Define all system infrastructure as code (IaC) and subject it to version control and automated security scanning.",
+        				"control_objective": "To ensure that the underlying infrastructure is secure, reproducible, and can be rapidly rebuilt in a consistent manner after a failure."
+    			    },
+    			    {
+        				"control": "RES-OPS-01: Deploy inference services across multiple, geographically separate availability zones with automated load balancing and failover.",
+        				"control_objective": "To ensure high availability and withstand infrastructure failures by eliminating single points of failure in the hosting environment."
+    			    },
+    			    {
+        				"control": "RES-OPS-02: Implement and configure real-time monitoring and alerting for Data Drift, Model Performance Drift, and anomalous input patterns.",
+        				"control_objective": "To enable the rapid detection of both silent performance degradation and active security threats, moving from reactive to proactive system management."
+    			    },
+    			    {
+        				"control": "RES-REC-01: Create a fully automated CI/CD pipeline for the AI model to enable rapid, reliable redeployment from the model registry.",
+        				"control_objective": "To minimize downtime and ensure a fast recovery to a known good state in the event of model corruption or critical failure."
+    			    },
+    			    {
+        				"control": "RES-REC-02: Implement and regularly test automated backup and restoration procedures for all critical components, including training data, models, and configurations.",
+        				"control_objective": "To ensure data and system integrity can be restored after a catastrophic event, such as data corruption or infrastructure loss."
+    			    },
+    			    {
+        				"control": "RES-REC-03: Develop and maintain an AI-specific incident response playbook that details procedures and responsibilities for handling events like data poisoning or severe model drift.",
+        				"control_objective": "To provide clear, actionable guidance during a crisis, ensuring a swift, coordinated, and effective response to unique AI system failures."
+    			    },
+    			    {
+        				"control": "RES-TST-01: Schedule and conduct regular penetration tests that specifically target the AI model with simulated adversarial attacks (evasion, poisoning).",
+        				"control_objective": "To proactively identify and remediate vulnerabilities in the model's defenses before they can be exploited by malicious actors."
+    			    },
+    			    {
+        				"control": "RES-TST-02: Conduct controlled chaos engineering drills by intentionally injecting failures into the system to test automated failover and recovery mechanisms.",
+        				"control_objective": "To build confidence in the system's resilience by verifying that its automated recovery and redundancy features work as designed under real-world stress."
+    			    },
+    			    {
+        				"control": "RES-TST-03: Establish a formal process to review and update threat models, risk assessments, and response plans on at least an annual basis.",
+        				"control_objective": "To ensure the system's resilience strategy remains effective and relevant by adapting to new threats, technologies, and business contexts."
+    			    }   			
+   			]
+  		 }
         ]
     },
     
