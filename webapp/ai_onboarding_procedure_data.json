@@ -214,249 +214,7 @@
             }
         ]
     },
-    "(A.4.3) AI Systems Data Resources": {
-        "WebFormTitle": "Define the data resources used by the AI system.",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.3) - Dataset Name",
-                "FieldLabel": "Dataset Name",
-                "FieldText": "Common or descriptive name of the dataset.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Description",
-                "FieldLabel": "Description",
-                "FieldText": "Brief overview of the dataset's content and general purpose.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
-                "FieldLabel": "",
-                "FieldText": "Where does the data originate from?",
-                "FieldType": "Dropdown box with values:/Internal database/Third-party vendor/Public repository/Synthetic generation"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Intended Use",
-                "FieldLabel": "",
-                "FieldText": "What is the specific purpose(s) of the data?",
-                "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Format",
-                "FieldLabel": "",
-                "FieldText": "What is the File format or storage system?",
-                "FieldType": "Dropdown box with values:/CSV/JSON/Parquet/SQL DB"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
-                "FieldLabel": "",
-                "FieldText": "How will the Data be acquired and selected?",
-                "FieldType": "Dropdown box with values:/Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
-                "FieldLabel": "",
-                "FieldText": "What is the data Retention schedules based on legal and operational requirements?",
-                "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
-                "FieldLabel": "Secure Disposing",
-                "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Approximate Size",
-                "FieldLabel": "Approximate Size",
-                "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Access Method",
-                "FieldLabel": "",
-                "FieldText": "How will the data be accessed?",
-                "FieldType": "Dropdown box with values:/S3 bucket path/API endpoint/Database query/Shared drive"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
-                "FieldLabel": "Owner/Custodian",
-                "FieldText": "Person or team responsible for the data?",
-                "FieldType": "TextBox"
-            }
-        ]
-    },
-    
-    "(A.7.4) AI System Data Quality Requirements": {
-        "WebFormTitle": "Define the AI system's Data Quality Requirements.",
-        "Fields": [ 
-			{
-    			"FieldType": "risk",
-    			"FieldName": "Sensitive data processing",
-    			"question": "Does the AI system process or use sensitive data?",
-    			"controls": [
-              		{
-        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
-        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
-              		},
-               		 {
-         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
-       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
-               		 },
-               		 {
-        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
-        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
-              		  },
-              		{
-        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
-        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
-               		 },
-              		  {
-        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
-        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
-              		  },
-              		  {
-         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
-       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
-               		 }
-    			]
-  			},        
-  			{
-    			"FieldType": "risk",
-    			"FieldName": "Internal data processing",
-    			"question": "Does the AI system process or use internal data?",
-    			"controls": [
-              		  {
-        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
-        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
-              		  },
-              		  {
-        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
-        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
-              		  },
-              		  {
-        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
-        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
-              		  },
-              		  {
-        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
-        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
-              		  },
-              		  {
-        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
-        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
-              		  },
-              		  {
-        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
-        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
-              		  }    			
- 
-    			]
-  			}      
-        ]
-    },
-    "(A.7.6) AI System Data Preparation Plan": {
-        "WebFormTitle": "Define the AI system's Data Preparation Plan for Sensitive Data.",
-        "Fields": [ 
-  			{
-    			"FieldType": "risk",
-    			"FieldName": "Sensitive data processing",
-    			"question": "Does the AI system process or use Sensitive data?",
-    			"controls": [
-              		  {
-        				"control": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
-        				"control_objective": "To limit the exposure of sensitive identifiers while retaining data utility for analysis or testing environments."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-02: Implement tokenization to replace a sensitive data element with a non-sensitive equivalent ('token'). The original data must be stored in a secure vault.",
-        				"control_objective": "To substitute sensitive values with surrogate non-sensitive values, thereby reducing the risk of a breach while preserving referential integrity."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-03: Use a cryptographic hashing function to convert sensitive data into a fixed-size string of characters.",
-        				"control_objective": "To ensure the integrity and verification of sensitive data in a one-way process, preventing the exposure of original values."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-04: Apply generalization to reduce the precision of data (e.g., changing a specific age to an age range or a full date of birth to just the year).",
-        				"control_objective": "To reduce the risk of re-identification by making individual sensitive data points less unique."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-05: Create physically or logically separate data stores for sensitive information, secured with strict access controls (Data Segregation).",
-        				"control_objective": "To minimize the scope of access and contain potential security breaches affecting sensitive information."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-06: Apply Attribute-Based Access Control (ABAC) rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
-        				"control_objective": "To enforce granular, dynamic access policies based on specific user and data characteristics."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-07: Perform Feature Pruning to remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
-        				"control_objective": "To adhere to the principle of data minimization by eliminating superfluous sensitive information."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-08: Remove records of individuals who have not given consent for their data to be used for AI training (Data Minimization).",
-        				"control_objective": "To ensure sensitive data processing complies with legal and ethical requirements regarding individual consent."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-09: Perform Integrity Checks after de-identification to verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
-        				"control_objective": "To ensure that de-identification methods do not compromise the data's utility or internal relationships required for analysis."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-10: Implement a strategy for Handling Missing Values, such as removing empty or null fields, filling them with a mean/median/mode, or removing the row/column.",
-        				"control_objective": "To improve the quality and robustness of the data prior to processing by managing gaps in the dataset systematically."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-11: Implement a process for Correcting Inaccuracies by identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values).",
-        				"control_objective": "To enhance the accuracy of the data by correcting known factual errors or anomalies."
-              		  },
-              		  {
-        				"control": "DATA-SEN-PRE-12: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
-        				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
-              		  } 			
-    			]
-  			},
- 			{
-    			"FieldType": "risk",
-    			"FieldName": "Internal data processing",
-    			"question": "Does the AI system process or use internal data?",
-    			"controls": [
-              		  {
-        				"control": "DATA-INT-PRE-01: Implement masking to replace non-essential sensitive portions of data with a generic character (e.g., 'XXX-XX-1234' for internal IDs).",
-        				"control_objective": "To limit the exposure of non-essential identifiers while retaining utility for analysis or testing environments."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-02: Apply generalization to reduce the precision of data where necessary for internal reporting flexibility (e.g., changing a specific age to an age range).",
-        				"control_objective": "To simplify data points for better aggregation and basic analysis without focusing on individual uniqueness."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-03: Create logically separate data stores for high-priority internal information, secured with appropriate access controls (Data Segregation).",
-        				"control_objective": "To logically separate and manage access to high-value internal data assets."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-04: Apply Attribute-Based Access Control (ABAC) rules so that only authorized users (e.g., based on role, department) can access certain data fields.",
-        				"control_objective": "To enforce granular access policies based on the principle of least privilege."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-05: Perform Feature Pruning to remove any data fields or columns that are not necessary for the intended internal business process or model.",
-        				"control_objective": "To apply the principle of data minimization by eliminating superfluous information, reducing storage, and improving processing efficiency."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-06: Perform Integrity Checks after any data transformation to verify that internal relationships between fields remain intact.",
-        				"control_objective": "To ensure that data preparation methods do not compromise the data's utility or internal relationships required for analysis."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-07: Implement a strategy for Handling Missing Values, such as filling them with a mean/median/mode, or removing the row/column, based on documented methodology.",
-        				"control_objective": "To improve the quality and robustness of the data prior to processing by managing gaps in the dataset systematically."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-08: Implement a process for Correcting Inaccuracies by identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values).",
-        				"control_objective": "To enhance the accuracy of the data by correcting known factual errors or anomalies."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-09: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
-        				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
-              		  }	
-    			]
-  			}  			
-        ]
-    },
+
     "AI Act - Section 2: Requirements for High-Risk AI Systems": {
         "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
         "Fields": [
@@ -647,11 +405,6 @@
               }
         ]
     },
-    
-    
-    
-    
-    
     "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
         "Fields": [
@@ -834,14 +587,241 @@
     
     
     
-    "(6.2.1) AI Lifecycle Phase requirements - Knowledge Base Preparation and Integration": {
-        "WebFormTitle": "To process internal company documents into a specialized, machine-readable format, creating a searchable knowledge base that a generic LLM can use to answer user questions accurately and without internet access.",
+    "(A.4.3) AI Lifecycle Phase requirements - Knowledge Base Preparation and Integration": {
+        "WebFormTitle": "To process internal company documents into a specialized, machine-readable format.",
         "Fields": [
-          {
-  			"FieldType": "risk",
-  			"FieldName": "Knowledge Base Preparation and Integration",
-  			"question": "Are AI systems provided internal company documents in a specialized, machine-readable format, creating a searchable knowledge base that a generic LLM can use to answer user questions accurately and without internet access.?",
-   			"controls": [
+             {
+                "FieldName": "(A.4.2, A.4.3) - Dataset Name",
+                "FieldLabel": "Dataset Name",
+                "FieldText": "Common or descriptive name of the dataset.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Description",
+                "FieldLabel": "Description",
+                "FieldText": "Brief overview of the dataset's content and general purpose.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
+                "FieldLabel": "",
+                "FieldText": "Where does the data originate from?",
+                "FieldType": "Dropdown box with values:/Internal database/Third-party vendor/Public repository/Synthetic generation"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Intended Use",
+                "FieldLabel": "",
+                "FieldText": "What is the specific purpose(s) of the data?",
+                "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Format",
+                "FieldLabel": "",
+                "FieldText": "What is the File format or storage system?",
+                "FieldType": "Dropdown box with values:/CSV/JSON/Parquet/SQL DB"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
+                "FieldLabel": "",
+                "FieldText": "How will the Data be acquired and selected?",
+                "FieldType": "Dropdown box with values:/Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
+                "FieldLabel": "",
+                "FieldText": "What is the data Retention schedules based on legal and operational requirements?",
+                "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
+                "FieldLabel": "Secure Disposing",
+                "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Approximate Size",
+                "FieldLabel": "Approximate Size",
+                "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Access Method",
+                "FieldLabel": "",
+                "FieldText": "How will the data be accessed?",
+                "FieldType": "Dropdown box with values:/S3 bucket path/API endpoint/Database query/Shared drive"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
+                "FieldLabel": "Owner/Custodian",
+                "FieldText": "Person or team responsible for the data?",
+                "FieldType": "TextBox"
+            },       
+			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.4) - Sensitive Data qualtiy requirements",
+    			"question": "Data qualtiy requirements for sensitive data?",
+    			"controls": [
+              		{
+        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
+              		},
+               		 {
+         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
+       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
+               		 },
+               		 {
+        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
+        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
+              		  },
+              		{
+        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
+        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
+               		 },
+              		  {
+        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
+        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
+              		  },
+              		  {
+         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
+       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
+               		 }
+    			]
+  			},        
+   			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.4) - Internal data Data qualtiy requirements",
+    			"question": "Data quality requirements for internal data?",
+    			"controls": [
+              		  {
+        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
+              		  },
+              		  {
+        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
+        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
+              		  },
+              		  {
+        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
+        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
+              		  },
+              		  {
+        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
+        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
+              		  },
+              		  {
+        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
+        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
+              		  },
+              		  {
+        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
+        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
+              		  }    			
+ 
+    			]
+  			},   
+  			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.6) Sensitive Data Preparation Plan",
+    			"question": "Data Preparation Plan for Sensitive data?",
+    			"controls": [
+              		  {
+        				"control": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
+        				"control_objective": "To limit the exposure of sensitive identifiers while retaining data utility for analysis or testing environments."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-02: Implement tokenization to replace a sensitive data element with a non-sensitive equivalent ('token'). The original data must be stored in a secure vault.",
+        				"control_objective": "To substitute sensitive values with surrogate non-sensitive values, thereby reducing the risk of a breach while preserving referential integrity."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-03: Use a cryptographic hashing function to convert sensitive data into a fixed-size string of characters.",
+        				"control_objective": "To ensure the integrity and verification of sensitive data in a one-way process, preventing the exposure of original values."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-04: Apply generalization to reduce the precision of data (e.g., changing a specific age to an age range or a full date of birth to just the year).",
+        				"control_objective": "To reduce the risk of re-identification by making individual sensitive data points less unique."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-05: Create physically or logically separate data stores for sensitive information, secured with strict access controls (Data Segregation).",
+        				"control_objective": "To minimize the scope of access and contain potential security breaches affecting sensitive information."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-06: Apply Attribute-Based Access Control (ABAC) rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
+        				"control_objective": "To enforce granular, dynamic access policies based on specific user and data characteristics."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-07: Perform Feature Pruning to remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
+        				"control_objective": "To adhere to the principle of data minimization by eliminating superfluous sensitive information."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-08: Remove records of individuals who have not given consent for their data to be used for AI training (Data Minimization).",
+        				"control_objective": "To ensure sensitive data processing complies with legal and ethical requirements regarding individual consent."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-09: Perform Integrity Checks after de-identification to verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
+        				"control_objective": "To ensure that de-identification methods do not compromise the data's utility or internal relationships required for analysis."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-10: Implement a strategy for Handling Missing Values, such as removing empty or null fields, filling them with a mean/median/mode, or removing the row/column.",
+        				"control_objective": "To improve the quality and robustness of the data prior to processing by managing gaps in the dataset systematically."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-11: Implement a process for Correcting Inaccuracies by identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values).",
+        				"control_objective": "To enhance the accuracy of the data by correcting known factual errors or anomalies."
+              		  },
+              		  {
+        				"control": "DATA-SEN-PRE-12: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
+        				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
+              		  } 			
+    			]
+  			},
+ 			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.6) Internal Data Preparation Plan",
+    			"question": "Data Preparation Plan for internal data?",
+    			"controls": [
+              		  {
+        				"control": "DATA-INT-PRE-01: Implement masking to replace non-essential sensitive portions of data with a generic character (e.g., 'XXX-XX-1234' for internal IDs).",
+        				"control_objective": "To limit the exposure of non-essential identifiers while retaining utility for analysis or testing environments."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-02: Apply generalization to reduce the precision of data where necessary for internal reporting flexibility (e.g., changing a specific age to an age range).",
+        				"control_objective": "To simplify data points for better aggregation and basic analysis without focusing on individual uniqueness."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-03: Create logically separate data stores for high-priority internal information, secured with appropriate access controls (Data Segregation).",
+        				"control_objective": "To logically separate and manage access to high-value internal data assets."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-04: Apply Attribute-Based Access Control (ABAC) rules so that only authorized users (e.g., based on role, department) can access certain data fields.",
+        				"control_objective": "To enforce granular access policies based on the principle of least privilege."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-05: Perform Feature Pruning to remove any data fields or columns that are not necessary for the intended internal business process or model.",
+        				"control_objective": "To apply the principle of data minimization by eliminating superfluous information, reducing storage, and improving processing efficiency."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-06: Perform Integrity Checks after any data transformation to verify that internal relationships between fields remain intact.",
+        				"control_objective": "To ensure that data preparation methods do not compromise the data's utility or internal relationships required for analysis."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-07: Implement a strategy for Handling Missing Values, such as filling them with a mean/median/mode, or removing the row/column, based on documented methodology.",
+        				"control_objective": "To improve the quality and robustness of the data prior to processing by managing gaps in the dataset systematically."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-08: Implement a process for Correcting Inaccuracies by identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values).",
+        				"control_objective": "To enhance the accuracy of the data by correcting known factual errors or anomalies."
+              		  },
+              		  {
+        				"control": "DATA-INT-PRE-09: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
+        				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
+              		  }	
+    			]
+  			},    			     
+            {
+  			    "FieldType": "risk",
+  			    "FieldName": "Knowledge Base Preparation and Integration",
+  			    "question": "Are AI systems provided internal company documents in a specialized, machine-readable format, creating a searchable knowledge base that a generic LLM can use to answer user questions accurately and without internet access.?",
+  			    "controls": [
    			  {
         				"control": "RAG-PREP-01: Establish automated connections to internal data sources and extract raw content from various file formats (PDF, DOCX, HTML, etc.).",
         				"control_objective": "To ensure all required information is brought into the processing pipeline, forming the complete knowledge foundation for the AI system."
@@ -863,9 +843,13 @@
         				"control_objective": "To create a highly optimized and rapidly searchable index of the knowledge base, enabling real-time retrieval of relevant information at query time."
    			    }
    			]
-  		 }
+  		    }
         ]
     },
+    
+    
+    
+    
     "(6.2.1) AI Lifecycle Phase requirements - Package": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
         "Fields": [
