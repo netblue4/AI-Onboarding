@@ -150,6 +150,24 @@
                     const formStepDiv = document.createElement('div');
                     formStepDiv.className = 'form-step';
 
+
+
+                    if (!stepData.Objectives || stepData.Objectives.length === 0 || !stepData.Objectives[0].Objective) {
+                         formStepDiv.appendChild(createNoteField());
+                    } else {
+                        stepData.Objectives.forEach(objective => {
+                            if (!objective || !objective) return;
+                            const handler = getFieldHandler(field.FieldType);
+                            if (handler) {
+                                const fieldElement = handler(field, capturedData, sanitizeForId);
+                                formStepDiv.appendChild(fieldElement);
+                            }
+                        });
+                    }
+
+
+                    
+                    
                     if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
                          formStepDiv.appendChild(createNoteField());
                     } else {
