@@ -167,7 +167,6 @@
               }   		
         ]
 },
-
     "(A.4.4) AI Systems Software and Tooling Resources": {
         "WebFormTitle": "Define the software and tools used by the AI system.",
         "Fields": [
@@ -214,7 +213,6 @@
             }
         ]
     },
-
     "AI Act - Section 2: Requirements for High-Risk AI Systems": {
         "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
         "Fields": [
@@ -405,191 +403,53 @@
               }
         ]
     },
-    "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
-        "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
-        "Fields": [
-          {
-  			"FieldType": "risk",
-  			"FieldName": "Fairness and Bias in AI Systems",
-  			"question": "Are AI systems designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes for protected or vulnerable groups?",
-   			"controls": [
-    			    {
-        				"control": "DATA-CTX-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
-        				"control_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics."
-    			    },
-    			    {
-        				"control": "DATA-CTX-02: Identify and document the 'favorable outcome' variable and its values within the dataset (e.g., loan_approved = 1, hired = TRUE).",
-        				"control_objective": "To provide a clear, measurable target for performing historical bias analysis and calculating outcome rates across groups."
-    			    },
-    			    {
-        				"control": "DATA-CTX-03: List the protected attributes relevant to the system's context and jurisdiction (e.g., Gender, Age, Ethnicity, Disability per GDPR in Luxembourg).",
-        				"control_objective": "To define the specific demographic and sensitive groups against which all subsequent fairness and bias tests will be conducted."
-    			    },
-    			    {
-        				"control": "DATA-REP-01: For each protected attribute, calculate and visualize the distribution of individuals across all subgroups (e.g., bar charts showing counts for each gender).",
-        				"control_objective": "To quantify the demographic composition of the dataset and identify any underrepresentation of specific groups at a glance."
-    			    },
-    			    {
-        				"control": "DATA-REP-02: Compare the dataset's demographic proportions against relevant real-world population benchmarks (e.g., national census data, applicant pool statistics).",
-        				"control_objective": "To formally assess for representation bias by determining if the dataset is a skewed or accurate sample of the target population."
-    			    },
-    			    {
-        				"control": "DATA-HIST-01: Calculate and compare the rate of the 'favorable outcome' for each subgroup within a protected attribute (e.g., calculate the loan approval rate for males vs. females).",
-        				"control_objective": "To measure for historical bias by identifying disparities in past outcomes between different demographic groups recorded in the data."
-    			    },
-    			    {
-        				"control": "DATA-HIST-02: Apply a quantitative disparity threshold, such as the 'Four-Fifths (80%) Rule', to determine if the observed differences in outcome rates are statistically significant.",
-        				"control_objective": "To provide a concrete, defensible criterion for flagging potential discriminatory patterns and escalating them for review."
-    			    },
-    			    {
-        				"control": "DATA-PRX-01: Conduct a correlation analysis to identify non-protected features that are strong predictors of protected attributes (e.g., check correlation between zip code and ethnicity).",
-        				"control_objective": "To uncover hidden sources of bias by identifying proxy variables that could enable the model to discriminate even if protected attributes are removed."
-    			    },
-    			    {
-        				"control": "DATA-GOV-01: Compile all findings into a formal 'Dataset Bias Report' detailing representation biases, historical biases, and identified proxies.",
-        				"control_objective": "To create a comprehensive, auditable record of the fairness assessment, ensuring transparency and accountability for the data's state."
-    			    },
-    			    {
-        				"control": "DATA-GOV-02: Based on the report, select and document a clear mitigation strategy (e.g., collect more data, apply re-sampling/re-weighting, remove proxies, or formally accept the risk).",
-        				"control_objective": "To ensure that identified biases are not ignored and that a deliberate, documented action plan is put in place to address them before model development."
-    			    }
-    			
-    			]
-  		 },
-         {
-  			"FieldType": "risk",
-  			"FieldName": "Transparency and Explainability in AI Systems",
-  			"question": "Are AI systems designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
-   			"controls": [  	
-   			    {
-        				"control": "TRN-REQ-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
-        				"control_objective": "To ensure that explanations are tailored and appropriate for the technical understanding and informational needs of each distinct stakeholder group."
-   			    },
-   			    {
-        				"control": "TRN-REQ-02: For each identified audience, define and document the primary question the explanation needs to answer (e.g., debugging, business logic validation, or personal recourse).",
-        				"control_objective": "To focus the design of the explanation system on providing relevant, useful, and actionable information, rather than generic technical output."
-   			    },
-   			    {
-        				"control": "TRN-REQ-03: Conduct and document a review of legal and regulatory obligations for explainability, such as those related to GDPR in Luxembourg.",
-        				"control_objective": "To ensure the system's transparency features are designed to meet or exceed legal compliance requirements for user rights and information."
-   			    },
-   			    {
-        				"control": "TRN-TEC-01: Mandate the use of inherently interpretable models (e.g., Logistic Regression, Decision Trees) when they meet performance requirements.",
-        				"control_objective": "To reduce complexity and ambiguity by favoring models that are transparent by design, making the need for post-hoc explanation techniques secondary."
-   			    },
-   			    {
-        				"control": "TRN-TEC-02: For complex models, implement a global explanation technique (e.g., Feature Importance) to describe the model's overall behavior.",
-        				"control_objective": "To provide high-level transparency into the model's general logic, enabling business owners and auditors to validate its alignment with expectations."
-   			    },
-   			    {
-        				"control": "TRN-TEC-03: For complex models, implement a local explanation technique (e.g., SHAP or LIME) to explain individual predictions.",
-        				"control_objective": "To enable the system to provide specific reasons for each decision, which is essential for debugging, user trust, and fulfilling regulatory rights."
-   			    },
-   			    {
-        				"control": "TRN-IMP-01: Technically integrate selected XAI libraries (e.g., SHAP) into the prediction pipeline to generate explanations alongside decisions.",
-        				"control_objective": "To operationalize explainability, ensuring that the capability to generate an explanation is a core, reliable feature of the production system."
-   			    },
-   			    {
-        				"control": "TRN-IMP-02: Conduct a sanity check of generated explanations for a sample of test cases, reviewed by a domain expert to ensure they are plausible and logical.",
-        				"control_objective": "To validate that the explanation outputs are not just technically correct but also contextually meaningful and aligned with real-world knowledge."
-   			    },
-   			    {
-        				"control": "TRN-IMP-03: Test the stability of the explanation method to ensure that minor, irrelevant changes to an input do not produce disproportionately large changes in its explanation.",
-        				"control_objective": "To build trust in the explanation system by verifying that its outputs are robust and reliable."
-   			    },
-   			    {
-        				"control": "TRN-USR-01: Develop templates to translate raw technical explanation outputs (e.g., SHAP values) into clear, non-technical natural language for end-users.",
-        				"control_objective": "To make explanations accessible and understandable to a non-expert audience, fulfilling the primary goal of user-facing transparency."
-   			    },
-   			    {
-        				"control": "TRN-USR-02: For negative outcomes, design explanations to be actionable by including guidance or counterfactuals on what factors a user could potentially change.",
-        				"control_objective": "To empower affected individuals by providing them with not just a reason, but also a potential path for recourse or a better future outcome."
-   			    },
-   			    {
-        				"control": "TRN-USR-03: For internal dashboards and business users, create simple visualizations (e.g., bar charts) summarizing the key factors influencing a decision.",
-        				"control_objective": "To improve the speed and clarity of comprehension for internal stakeholders who need to understand model behavior quickly."
-   			    },
-   			    {
-        				"control": "TRN-GOV-01: Document the system's explanation capabilities, including the methods used and audiences served, in a dedicated section of the Model Card.",
-        				"control_objective": "To provide a central, standardized source of truth regarding the system's transparency features for governance and auditing purposes."
-   			    },
-   			    {
-        				"control": "TRN-GOV-02: Define and publish a formal process for end-users to request a detailed explanation for a decision, including timelines and responsible parties.",
-        				"control_objective": "To operationalize the right to explanation, ensuring that user requests are handled consistently, efficiently, and in compliance with policy and regulations."
-   			    }
-   			]
-  		 },	 
-  		 {
-  			"FieldType": "risk",
-  			"FieldName": "Transparency and Explainability in AI Systems",
-  			"question": "Are AI system's designed and developed to prevent, withstand, and recover from disruptions that could impact its functionality and availability is assessed (e.g., cyber-attacks, infrastructure failures, data corruption).",
-   			"controls": [ 
-    			    {
-        				"control": "RES-RSK-01: Map and document the entire AI pipeline and its components to identify the system's attack surface and potential single points of failure.",
-        				"control_objective": "To create a comprehensive system overview that serves as the foundation for identifying vulnerabilities and understanding potential failure scenarios."
-    			    },
-    			    {
-        				"control": "RES-RSK-02: Document and analyze AI-specific threats, including Data Poisoning, Adversarial Attacks, Model Extraction, and Data/Model Drift.",
-        				"control_objective": "To expand risk assessment beyond traditional IT threats to include unique vulnerabilities inherent in machine learning systems."
-    			    },
-    			    {
-        				"control": "RES-RSK-03: Assess the business impact and likelihood of each identified threat and create a prioritized risk register to guide mitigation efforts.",
-        				"control_objective": "To ensure that resilience resources are focused on addressing the most critical and probable threats to the AI system's functionality."
-    			    },
-    			    {
-        				"control": "RES-DEV-01: Implement automated data validation and anomaly detection at the ingestion stage to identify and quarantine suspicious or corrupt data.",
-        				"control_objective": "To establish a first line of defense against data poisoning attacks and ensure the integrity of the data entering the training pipeline."
-    			    },
-    			    {
-        				"control": "RES-DEV-02: Apply model hardening techniques such as Adversarial Training and Input Sanitization at the inference endpoint to make the model more robust.",
-        				"control_objective": "To reduce the model's vulnerability to malicious inputs and prevent attackers from easily manipulating its predictions."
-    			    },
-    			    {
-        				"control": "RES-DEV-03: Define all system infrastructure as code (IaC) and subject it to version control and automated security scanning.",
-        				"control_objective": "To ensure that the underlying infrastructure is secure, reproducible, and can be rapidly rebuilt in a consistent manner after a failure."
-    			    },
-    			    {
-        				"control": "RES-OPS-01: Deploy inference services across multiple, geographically separate availability zones with automated load balancing and failover.",
-        				"control_objective": "To ensure high availability and withstand infrastructure failures by eliminating single points of failure in the hosting environment."
-    			    },
-    			    {
-        				"control": "RES-OPS-02: Implement and configure real-time monitoring and alerting for Data Drift, Model Performance Drift, and anomalous input patterns.",
-        				"control_objective": "To enable the rapid detection of both silent performance degradation and active security threats, moving from reactive to proactive system management."
-    			    },
-    			    {
-        				"control": "RES-REC-01: Create a fully automated CI/CD pipeline for the AI model to enable rapid, reliable redeployment from the model registry.",
-        				"control_objective": "To minimize downtime and ensure a fast recovery to a known good state in the event of model corruption or critical failure."
-    			    },
-    			    {
-        				"control": "RES-REC-02: Implement and regularly test automated backup and restoration procedures for all critical components, including training data, models, and configurations.",
-        				"control_objective": "To ensure data and system integrity can be restored after a catastrophic event, such as data corruption or infrastructure loss."
-    			    },
-    			    {
-        				"control": "RES-REC-03: Develop and maintain an AI-specific incident response playbook that details procedures and responsibilities for handling events like data poisoning or severe model drift.",
-        				"control_objective": "To provide clear, actionable guidance during a crisis, ensuring a swift, coordinated, and effective response to unique AI system failures."
-    			    },
-    			    {
-        				"control": "RES-TST-01: Schedule and conduct regular penetration tests that specifically target the AI model with simulated adversarial attacks (evasion, poisoning).",
-        				"control_objective": "To proactively identify and remediate vulnerabilities in the model's defenses before they can be exploited by malicious actors."
-    			    },
-    			    {
-        				"control": "RES-TST-02: Conduct controlled chaos engineering drills by intentionally injecting failures into the system to test automated failover and recovery mechanisms.",
-        				"control_objective": "To build confidence in the system's resilience by verifying that its automated recovery and redundancy features work as designed under real-world stress."
-    			    },
-    			    {
-        				"control": "RES-TST-03: Establish a formal process to review and update threat models, risk assessments, and response plans on at least an annual basis.",
-        				"control_objective": "To ensure the system's resilience strategy remains effective and relevant by adapting to new threats, technologies, and business contexts."
-    			    }   			
-   			]
-  		 }
-        ]
-    },
     
     
     
-    "(A.4.3) AI Lifecycle Phase requirements - Knowledge Base Preparation and Integration": {
-        "WebFormTitle": "To process internal company documents into a specialized, machine-readable format.",
-        "Fields": [
+    "(A.4.3) AI Lifecycle Phase requirements - Data Collection": {
+        "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.
+						1. Data Integrity: This principle is about ensuring the information we use is the official "source of truth." It means we select data from authoritative systems and explicitly exclude unofficial sources like draft documents, personal notes, or unverified information. This ensures the AI's answers are not just relevant and current, but are based on correct, approved company data.
+						2. Data Relevance: This principle ensures that we only feed the AI information related to its designated function. Just as you wouldn't give a pilot a cookbook to fly a plane, we must prevent irrelevant data from polluting the AI's knowledge base. This step establishes a clear scope to keep the AI's answers focused, accurate, and helpful.
+						3. Data Currency: An AI's answers are only as reliable as the information it has learned from. This step establishes a process to ensure that only up-to-date, current documents are used, and that obsolete information is explicitly excluded. This prevents the AI from providing answers based on outdated policies, which could lead to significant business risks.
+						4. Data Compliance: This is a critical governance checkpoint to protect our company, employees, and customers. Before any data source is approved, it is reviewed to ensure it adheres to privacy laws (like GDPR) and our internal ethics policies. This prevents sensitive personal information or other inappropriate content from being included in the AI's knowledge base.",
+        "Fields": []
+    }, 
+    
+    
+    "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.": {
+        "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.
+						1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully "reading" the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact.
+						2. Thorough Cleaning: Documents often contain digital "noise" that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers.
+						3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete "paragraphs" or "ideas." This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on.",
+        "Fields": []
+    },     
+    
+    "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data": {
+        "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.
+        				1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format ("vectorized"), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit).
+						2. Data Integrity and Access Control: This establishes strict controls over who can add, modify, or delete information in the AI's knowledge base. It prevents both accidental corruption and malicious tampering (data poisoning) by ensuring only authorized personnel or automated processes can manage the data, with all actions logged for auditing.
+						3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption.",
+        "Fields": []
+    },   
+    
+    "(A.4.3) AI Lifecycle Phase requirements - User Query": {
+        "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs. 
+						1. Identity and Access: Establishes that the system must know who is making the request, which is the foundation for access control.
+						2. Data Integrity: Covers the need to inspect the incoming data itself for malicious content, such as prompt injection, code, or other attacks that could compromise the system.
+						3. Audibility and Non-repudiation: Creating an immutable record that proves a specific user performed a specific action, and they cannot later deny it. This is critical for security investigations and accountability.",
+        "Fields": []
+    },      
+       
+     "(A.4.3) AI Lifecycle Phase requirements - Secure Context Retrieval and Prompt Augmentation": {
+        "WebFormTitle": "To uphold core data security principles by enforcing access controls, ensuring the integrity of the prompt through sanitization, and applying the principle of least privilege before providing context to the LLM.
+						1. Access Controls: This ensures the system acts like a responsible librarian, checking a user's library card (their permissions) before retrieving any information. It guarantees that the AI can only pull answers from documents and data that the specific user is actually authorized to view, preventing a junior employee from accessing confidential executive files.
+						2. Prompt Integrity and Sanitization: This is a protective measure for the AI itself. The system inspects all the information it retrieves before showing it to the Large Language Model. This step filters out any hidden malicious instructions or confusing data that could be used to trick or hijack the AI, ensuring the integrity of the final prompt.
+						3. Principle of Least Privilege: This is a need-to-know security measure. Even if a retrieved document contains a lot of information (e.g., a person's project status, salary, and home address), this step ensures that only the absolute minimum data required to answer the user's specific question is provided to the AI. This dramatically reduces the risk of accidentally exposing sensitive information.",
+        "Fields": []
+        },      
+       
+    "(A.4.3) AI Lifecycle Phase requirements - data collection": {
+        "WebFormTitle": "To uphold core data security principles by enforcing access controls, ensuring the integrity of the prompt through sanitization, and applying the principle of least privilege before providing context to the LLM.",
              {
                 "FieldName": "(A.4.2, A.4.3) - Dataset Name",
                 "FieldLabel": "Dataset Name",
@@ -847,8 +707,185 @@
         ]
     },
     
-    
-    
+    "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
+        "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
+        "Fields": [
+          {
+  			"FieldType": "risk",
+  			"FieldName": "Fairness and Bias in AI Systems",
+  			"question": "Are AI systems designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes for protected or vulnerable groups?",
+   			"controls": [
+    			    {
+        				"control": "DATA-CTX-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
+        				"control_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics."
+    			    },
+    			    {
+        				"control": "DATA-CTX-02: Identify and document the 'favorable outcome' variable and its values within the dataset (e.g., loan_approved = 1, hired = TRUE).",
+        				"control_objective": "To provide a clear, measurable target for performing historical bias analysis and calculating outcome rates across groups."
+    			    },
+    			    {
+        				"control": "DATA-CTX-03: List the protected attributes relevant to the system's context and jurisdiction (e.g., Gender, Age, Ethnicity, Disability per GDPR in Luxembourg).",
+        				"control_objective": "To define the specific demographic and sensitive groups against which all subsequent fairness and bias tests will be conducted."
+    			    },
+    			    {
+        				"control": "DATA-REP-01: For each protected attribute, calculate and visualize the distribution of individuals across all subgroups (e.g., bar charts showing counts for each gender).",
+        				"control_objective": "To quantify the demographic composition of the dataset and identify any underrepresentation of specific groups at a glance."
+    			    },
+    			    {
+        				"control": "DATA-REP-02: Compare the dataset's demographic proportions against relevant real-world population benchmarks (e.g., national census data, applicant pool statistics).",
+        				"control_objective": "To formally assess for representation bias by determining if the dataset is a skewed or accurate sample of the target population."
+    			    },
+    			    {
+        				"control": "DATA-HIST-01: Calculate and compare the rate of the 'favorable outcome' for each subgroup within a protected attribute (e.g., calculate the loan approval rate for males vs. females).",
+        				"control_objective": "To measure for historical bias by identifying disparities in past outcomes between different demographic groups recorded in the data."
+    			    },
+    			    {
+        				"control": "DATA-HIST-02: Apply a quantitative disparity threshold, such as the 'Four-Fifths (80%) Rule', to determine if the observed differences in outcome rates are statistically significant.",
+        				"control_objective": "To provide a concrete, defensible criterion for flagging potential discriminatory patterns and escalating them for review."
+    			    },
+    			    {
+        				"control": "DATA-PRX-01: Conduct a correlation analysis to identify non-protected features that are strong predictors of protected attributes (e.g., check correlation between zip code and ethnicity).",
+        				"control_objective": "To uncover hidden sources of bias by identifying proxy variables that could enable the model to discriminate even if protected attributes are removed."
+    			    },
+    			    {
+        				"control": "DATA-GOV-01: Compile all findings into a formal 'Dataset Bias Report' detailing representation biases, historical biases, and identified proxies.",
+        				"control_objective": "To create a comprehensive, auditable record of the fairness assessment, ensuring transparency and accountability for the data's state."
+    			    },
+    			    {
+        				"control": "DATA-GOV-02: Based on the report, select and document a clear mitigation strategy (e.g., collect more data, apply re-sampling/re-weighting, remove proxies, or formally accept the risk).",
+        				"control_objective": "To ensure that identified biases are not ignored and that a deliberate, documented action plan is put in place to address them before model development."
+    			    }
+    			
+    			]
+  		 },
+         {
+  			"FieldType": "risk",
+  			"FieldName": "Transparency and Explainability in AI Systems",
+  			"question": "Are AI systems designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
+   			"controls": [  	
+   			    {
+        				"control": "TRN-REQ-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
+        				"control_objective": "To ensure that explanations are tailored and appropriate for the technical understanding and informational needs of each distinct stakeholder group."
+   			    },
+   			    {
+        				"control": "TRN-REQ-02: For each identified audience, define and document the primary question the explanation needs to answer (e.g., debugging, business logic validation, or personal recourse).",
+        				"control_objective": "To focus the design of the explanation system on providing relevant, useful, and actionable information, rather than generic technical output."
+   			    },
+   			    {
+        				"control": "TRN-REQ-03: Conduct and document a review of legal and regulatory obligations for explainability, such as those related to GDPR in Luxembourg.",
+        				"control_objective": "To ensure the system's transparency features are designed to meet or exceed legal compliance requirements for user rights and information."
+   			    },
+   			    {
+        				"control": "TRN-TEC-01: Mandate the use of inherently interpretable models (e.g., Logistic Regression, Decision Trees) when they meet performance requirements.",
+        				"control_objective": "To reduce complexity and ambiguity by favoring models that are transparent by design, making the need for post-hoc explanation techniques secondary."
+   			    },
+   			    {
+        				"control": "TRN-TEC-02: For complex models, implement a global explanation technique (e.g., Feature Importance) to describe the model's overall behavior.",
+        				"control_objective": "To provide high-level transparency into the model's general logic, enabling business owners and auditors to validate its alignment with expectations."
+   			    },
+   			    {
+        				"control": "TRN-TEC-03: For complex models, implement a local explanation technique (e.g., SHAP or LIME) to explain individual predictions.",
+        				"control_objective": "To enable the system to provide specific reasons for each decision, which is essential for debugging, user trust, and fulfilling regulatory rights."
+   			    },
+   			    {
+        				"control": "TRN-IMP-01: Technically integrate selected XAI libraries (e.g., SHAP) into the prediction pipeline to generate explanations alongside decisions.",
+        				"control_objective": "To operationalize explainability, ensuring that the capability to generate an explanation is a core, reliable feature of the production system."
+   			    },
+   			    {
+        				"control": "TRN-IMP-02: Conduct a sanity check of generated explanations for a sample of test cases, reviewed by a domain expert to ensure they are plausible and logical.",
+        				"control_objective": "To validate that the explanation outputs are not just technically correct but also contextually meaningful and aligned with real-world knowledge."
+   			    },
+   			    {
+        				"control": "TRN-IMP-03: Test the stability of the explanation method to ensure that minor, irrelevant changes to an input do not produce disproportionately large changes in its explanation.",
+        				"control_objective": "To build trust in the explanation system by verifying that its outputs are robust and reliable."
+   			    },
+   			    {
+        				"control": "TRN-USR-01: Develop templates to translate raw technical explanation outputs (e.g., SHAP values) into clear, non-technical natural language for end-users.",
+        				"control_objective": "To make explanations accessible and understandable to a non-expert audience, fulfilling the primary goal of user-facing transparency."
+   			    },
+   			    {
+        				"control": "TRN-USR-02: For negative outcomes, design explanations to be actionable by including guidance or counterfactuals on what factors a user could potentially change.",
+        				"control_objective": "To empower affected individuals by providing them with not just a reason, but also a potential path for recourse or a better future outcome."
+   			    },
+   			    {
+        				"control": "TRN-USR-03: For internal dashboards and business users, create simple visualizations (e.g., bar charts) summarizing the key factors influencing a decision.",
+        				"control_objective": "To improve the speed and clarity of comprehension for internal stakeholders who need to understand model behavior quickly."
+   			    },
+   			    {
+        				"control": "TRN-GOV-01: Document the system's explanation capabilities, including the methods used and audiences served, in a dedicated section of the Model Card.",
+        				"control_objective": "To provide a central, standardized source of truth regarding the system's transparency features for governance and auditing purposes."
+   			    },
+   			    {
+        				"control": "TRN-GOV-02: Define and publish a formal process for end-users to request a detailed explanation for a decision, including timelines and responsible parties.",
+        				"control_objective": "To operationalize the right to explanation, ensuring that user requests are handled consistently, efficiently, and in compliance with policy and regulations."
+   			    }
+   			]
+  		 },	 
+  		 {
+  			"FieldType": "risk",
+  			"FieldName": "Transparency and Explainability in AI Systems",
+  			"question": "Are AI system's designed and developed to prevent, withstand, and recover from disruptions that could impact its functionality and availability is assessed (e.g., cyber-attacks, infrastructure failures, data corruption).",
+   			"controls": [ 
+    			    {
+        				"control": "RES-RSK-01: Map and document the entire AI pipeline and its components to identify the system's attack surface and potential single points of failure.",
+        				"control_objective": "To create a comprehensive system overview that serves as the foundation for identifying vulnerabilities and understanding potential failure scenarios."
+    			    },
+    			    {
+        				"control": "RES-RSK-02: Document and analyze AI-specific threats, including Data Poisoning, Adversarial Attacks, Model Extraction, and Data/Model Drift.",
+        				"control_objective": "To expand risk assessment beyond traditional IT threats to include unique vulnerabilities inherent in machine learning systems."
+    			    },
+    			    {
+        				"control": "RES-RSK-03: Assess the business impact and likelihood of each identified threat and create a prioritized risk register to guide mitigation efforts.",
+        				"control_objective": "To ensure that resilience resources are focused on addressing the most critical and probable threats to the AI system's functionality."
+    			    },
+    			    {
+        				"control": "RES-DEV-01: Implement automated data validation and anomaly detection at the ingestion stage to identify and quarantine suspicious or corrupt data.",
+        				"control_objective": "To establish a first line of defense against data poisoning attacks and ensure the integrity of the data entering the training pipeline."
+    			    },
+    			    {
+        				"control": "RES-DEV-02: Apply model hardening techniques such as Adversarial Training and Input Sanitization at the inference endpoint to make the model more robust.",
+        				"control_objective": "To reduce the model's vulnerability to malicious inputs and prevent attackers from easily manipulating its predictions."
+    			    },
+    			    {
+        				"control": "RES-DEV-03: Define all system infrastructure as code (IaC) and subject it to version control and automated security scanning.",
+        				"control_objective": "To ensure that the underlying infrastructure is secure, reproducible, and can be rapidly rebuilt in a consistent manner after a failure."
+    			    },
+    			    {
+        				"control": "RES-OPS-01: Deploy inference services across multiple, geographically separate availability zones with automated load balancing and failover.",
+        				"control_objective": "To ensure high availability and withstand infrastructure failures by eliminating single points of failure in the hosting environment."
+    			    },
+    			    {
+        				"control": "RES-OPS-02: Implement and configure real-time monitoring and alerting for Data Drift, Model Performance Drift, and anomalous input patterns.",
+        				"control_objective": "To enable the rapid detection of both silent performance degradation and active security threats, moving from reactive to proactive system management."
+    			    },
+    			    {
+        				"control": "RES-REC-01: Create a fully automated CI/CD pipeline for the AI model to enable rapid, reliable redeployment from the model registry.",
+        				"control_objective": "To minimize downtime and ensure a fast recovery to a known good state in the event of model corruption or critical failure."
+    			    },
+    			    {
+        				"control": "RES-REC-02: Implement and regularly test automated backup and restoration procedures for all critical components, including training data, models, and configurations.",
+        				"control_objective": "To ensure data and system integrity can be restored after a catastrophic event, such as data corruption or infrastructure loss."
+    			    },
+    			    {
+        				"control": "RES-REC-03: Develop and maintain an AI-specific incident response playbook that details procedures and responsibilities for handling events like data poisoning or severe model drift.",
+        				"control_objective": "To provide clear, actionable guidance during a crisis, ensuring a swift, coordinated, and effective response to unique AI system failures."
+    			    },
+    			    {
+        				"control": "RES-TST-01: Schedule and conduct regular penetration tests that specifically target the AI model with simulated adversarial attacks (evasion, poisoning).",
+        				"control_objective": "To proactively identify and remediate vulnerabilities in the model's defenses before they can be exploited by malicious actors."
+    			    },
+    			    {
+        				"control": "RES-TST-02: Conduct controlled chaos engineering drills by intentionally injecting failures into the system to test automated failover and recovery mechanisms.",
+        				"control_objective": "To build confidence in the system's resilience by verifying that its automated recovery and redundancy features work as designed under real-world stress."
+    			    },
+    			    {
+        				"control": "RES-TST-03: Establish a formal process to review and update threat models, risk assessments, and response plans on at least an annual basis.",
+        				"control_objective": "To ensure the system's resilience strategy remains effective and relevant by adapting to new threats, technologies, and business contexts."
+    			    }   			
+   			]
+  		 }
+        ]
+    },
     
     "(6.2.1) AI Lifecycle Phase requirements - Package": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
