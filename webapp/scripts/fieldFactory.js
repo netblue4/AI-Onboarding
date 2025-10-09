@@ -12,6 +12,7 @@ function getFieldHandler(fieldType) {
         'TextBox': createTextBox,
         'Label':createDisabledLabel,
         'risk':createRisk,
+        'objective':createObjective,
     };
 
     if (exactMatchHandlers[fieldType]) {
