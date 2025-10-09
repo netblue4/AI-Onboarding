@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+tive<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -157,16 +157,14 @@
                     } else {
                         stepData.Objectives.forEach(objective => {
                             if (!objective || !objective) return;
-                            const handler = getFieldHandler(field.FieldType);
+                            const handler = getFieldHandler('objective');
                             if (handler) {
-                                const fieldElement = handler(field, capturedData, sanitizeForId);
+                                const fieldElement = handler(objective);
                                 formStepDiv.appendChild(fieldElement);
                             }
                         });
                     }
 
-
-                    
                     
                     if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
                          formStepDiv.appendChild(createNoteField());
