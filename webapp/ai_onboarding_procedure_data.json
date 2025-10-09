@@ -407,50 +407,9 @@
     
     
     "(A.4.3) AI Lifecycle Phase requirements - Data Collection": {
-        "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.
-						1. Data Integrity: This principle is about ensuring the information we use is the official "source of truth." It means we select data from authoritative systems and explicitly exclude unofficial sources like draft documents, personal notes, or unverified information. This ensures the AI's answers are not just relevant and current, but are based on correct, approved company data.
-						2. Data Relevance: This principle ensures that we only feed the AI information related to its designated function. Just as you wouldn't give a pilot a cookbook to fly a plane, we must prevent irrelevant data from polluting the AI's knowledge base. This step establishes a clear scope to keep the AI's answers focused, accurate, and helpful.
-						3. Data Currency: An AI's answers are only as reliable as the information it has learned from. This step establishes a process to ensure that only up-to-date, current documents are used, and that obsolete information is explicitly excluded. This prevents the AI from providing answers based on outdated policies, which could lead to significant business risks.
-						4. Data Compliance: This is a critical governance checkpoint to protect our company, employees, and customers. Before any data source is approved, it is reviewed to ensure it adheres to privacy laws (like GDPR) and our internal ethics policies. This prevents sensitive personal information or other inappropriate content from being included in the AI's knowledge base.",
-        "Fields": []
-    }, 
-    
-    
-    "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.": {
-        "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.
-						1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully "reading" the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact.
-						2. Thorough Cleaning: Documents often contain digital "noise" that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers.
-						3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete "paragraphs" or "ideas." This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on.",
-        "Fields": []
-    },     
-    
-    "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data": {
-        "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.
-        				1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format ("vectorized"), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit).
-						2. Data Integrity and Access Control: This establishes strict controls over who can add, modify, or delete information in the AI's knowledge base. It prevents both accidental corruption and malicious tampering (data poisoning) by ensuring only authorized personnel or automated processes can manage the data, with all actions logged for auditing.
-						3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption.",
-        "Fields": []
-    },   
-    
-    "(A.4.3) AI Lifecycle Phase requirements - User Query": {
-        "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs. 
-						1. Identity and Access: Establishes that the system must know who is making the request, which is the foundation for access control.
-						2. Data Integrity: Covers the need to inspect the incoming data itself for malicious content, such as prompt injection, code, or other attacks that could compromise the system.
-						3. Audibility and Non-repudiation: Creating an immutable record that proves a specific user performed a specific action, and they cannot later deny it. This is critical for security investigations and accountability.",
-        "Fields": []
-    },      
-       
-     "(A.4.3) AI Lifecycle Phase requirements - Secure Context Retrieval and Prompt Augmentation": {
-        "WebFormTitle": "To uphold core data security principles by enforcing access controls, ensuring the integrity of the prompt through sanitization, and applying the principle of least privilege before providing context to the LLM.
-						1. Access Controls: This ensures the system acts like a responsible librarian, checking a user's library card (their permissions) before retrieving any information. It guarantees that the AI can only pull answers from documents and data that the specific user is actually authorized to view, preventing a junior employee from accessing confidential executive files.
-						2. Prompt Integrity and Sanitization: This is a protective measure for the AI itself. The system inspects all the information it retrieves before showing it to the Large Language Model. This step filters out any hidden malicious instructions or confusing data that could be used to trick or hijack the AI, ensuring the integrity of the final prompt.
-						3. Principle of Least Privilege: This is a need-to-know security measure. Even if a retrieved document contains a lot of information (e.g., a person's project status, salary, and home address), this step ensures that only the absolute minimum data required to answer the user's specific question is provided to the AI. This dramatically reduces the risk of accidentally exposing sensitive information.",
-        "Fields": []
-        },      
-       
-    "(A.4.3) AI Lifecycle Phase requirements - data collection": {
-        "WebFormTitle": "To uphold core data security principles by enforcing access controls, ensuring the integrity of the prompt through sanitization, and applying the principle of least privilege before providing context to the LLM.",
-             {
+        "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.\n1. Data Integrity: This principle is about ensuring the information we use is the official source of truth. It means we select data from authoritative systems and explicitly exclude unofficial sources like draft documents, personal notes, or unverified information. This ensures the AI's answers are not just relevant and current, but are based on correct, approved company data.\n2. Data Relevance: This principle ensures that we only feed the AI information related to its designated function. Just as you wouldn't give a pilot a cookbook to fly a plane, we must prevent irrelevant data from polluting the AI's knowledge base. This step establishes a clear scope to keep the AI's answers focused, accurate, and helpful.\n3. Data Currency: An AI's answers are only as reliable as the information it has learned from. This step establishes a process to ensure that only up-to-date, current documents are used, and that obsolete information is explicitly excluded. This prevents the AI from providing answers based on outdated policies, which could lead to significant business risks.\n4. Data Compliance: This is a critical governance checkpoint to protect our company, employees, and customers. Before any data source is approved, it is reviewed to ensure it adheres to privacy laws (like GDPR) and our internal ethics policies. This prevents sensitive personal information or other inappropriate content from being included in the AI's knowledge base.",
+        "Fields": [
+            {
                 "FieldName": "(A.4.2, A.4.3) - Dataset Name",
                 "FieldLabel": "Dataset Name",
                 "FieldText": "Common or descriptive name of the dataset.",
@@ -704,10 +663,40 @@
    			    }
    			]
   		    }
-        ]
-    },
+  		 ]
+    }, 
     
-    "(6.2.1) AI Lifecycle Phase requirements - Design and Development": {
+    "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.": {
+        "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.\n1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact.\n2. Thorough Cleaning: Documents often contain digital noise that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers.\n3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete paragraphs or ideas. This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on.",
+        "Fields": []
+    },     
+    
+    "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data": {
+        "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.\n1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format (vectorized), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit).\n2. Data Integrity and Access Control: This establishes strict controls over who can add, modify, or delete information in the AI's knowledge base. It prevents both accidental corruption and malicious tampering (data poisoning) by ensuring only authorized personnel or automated processes can manage the data, with all actions logged for auditing.\n3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption.",
+        "Fields": []
+    },   
+    
+    "(A.4.3) AI Lifecycle Phase requirements - User Query": {
+        "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs. \n1. Identity and Access: Establishes that the system must know who is making the request, which is the foundation for access control.\n2. Data Integrity: Covers the need to inspect the incoming data itself for malicious content, such as prompt injection, code, or other attacks that could compromise the system.\n3. Audibility and Non-repudiation: Creating an immutable record that proves a specific user performed a specific action, and they cannot later deny it. This is critical for security investigations and accountability.",
+        "Fields": []
+    },      
+       
+    "(A.4.3) AI Lifecycle Phase requirements - Secure Context Retrieval and Prompt Augmentation": {
+        "WebFormTitle": "To uphold core data security principles by enforcing access controls, ensuring the integrity of the prompt through sanitization, and applying the principle of least privilege before providing context to the LLM.\n1. Access Controls: This ensures the system acts like a responsible librarian, checking a user's library card (their permissions) before retrieving any information. It guarantees that the AI can only pull answers from documents and data that the specific user is actually authorized to view, preventing a junior employee from accessing confidential executive files.\n2. Prompt Integrity and Sanitization: This is a protective measure for the AI itself. The system inspects all the information it retrieves before showing it to the Large Language Model. This step filters out any hidden malicious instructions or confusing data that could be used to trick or hijack the AI, ensuring the integrity of the final prompt.\n3. Principle of Least Privilege: This is a need-to-know security measure. Even if a retrieved document contains a lot of information (e.g., a person's project status, salary, and home address), this step ensures that only the absolute minimum data required to answer the user's specific question is provided to the AI. This dramatically reduces the risk of accidentally exposing sensitive information.",
+        "Fields": []
+    },      
+     
+    "(A.4.3) AI Lifecycle Phase requirements - Secure Generation and Response Delivery": {
+        "WebFormTitle": "To uphold the principles of responsible and trustworthy AI generation by applying content safety guardrails, filtering all model outputs to prevent sensitive data leakage, and delivering a final, verifiable answer with citations.\n1. Content Safety Guardrails: This is the AI's code of conduct. We have safety measures in place to ensure the model's response, even when based on factual data, is helpful, professional, and free of biased or inappropriate content. These guardrails ensure the AI's output aligns with our company values.\n2. Filtering to Prevent Data Leakage: This is the final security checkpoint before an answer reaches the user. The system automatically scans the AI's generated text to ensure it hasn't accidentally included any sensitive information (like personal data or confidential numbers) that might have been present in the source documents. It acts as a final privacy filter.\n3. Delivering a Verifiable Answer: To build user trust, the AI doesn't just provide an answer—it shows its work. Every response is delivered with clear references or citations pointing back to the original source document(s) used. This allows users to verify the information for themselves and have confidence that the answer is based on approved, internal facts.",
+        "Fields": []
+    },  
+        
+    "(A.4.3) AI Lifecycle Phase requirements - Secure Logging and Monitoring": {
+        "WebFormTitle": "To uphold the principles of AI transparency, accountability, and continuous improvement by implementing a comprehensive logging system that securely captures all interaction data, enabling performance monitoring, quality assurance, and detailed audits.\n1. System Performance and Reliability: This is about keeping the AI healthy and efficient. By logging every interaction, we can measure key metrics like response times and success rates. This data is essential for our technical teams to identify performance bottlenecks, troubleshoot errors, and ensure the system remains reliable and responsive for all users.\n2. Transparency and Explainability: To trust the AI, we must be able to understand its thought process. This logging system functions like an airplane's black box, securely recording the user's question, the specific information the AI retrieved to form its answer, and the final response given. This is critical for investigating any incorrect answers and for explaining the AI's decision-making process to auditors or stakeholders.\n3. Fairness and Quality Assurance: This is our primary mechanism for ensuring the AI remains accurate, fair, and safe over time. By analyzing the logged data, we can proactively monitor for potential biases, detect instances where the AI may be hallucinating (straying from the provided facts), and gather the insights needed to continuously improve the quality and safety of the system.",
+        "Fields": []
+    },  
+                 
+    "(6.2.1) AI Lifecycle Phase requirements - Component Design and Development": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
         "Fields": [
           {
@@ -886,8 +875,7 @@
   		 }
         ]
     },
-    
-    "(6.2.1) AI Lifecycle Phase requirements - Package": {
+    "(6.2.1) AI Lifecycle Phase requirements - Component Package": {
         "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
         "Fields": [
       {
