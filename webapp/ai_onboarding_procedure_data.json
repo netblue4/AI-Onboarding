@@ -480,7 +480,81 @@
                 "FieldLabel": "Owner/Custodian",
                 "FieldText": "Person or team responsible for the data?",
                 "FieldType": "TextBox"
-            },        
+            }
+  		 ]
+    }, 
+    
+    "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.": {
+        "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
+		"Objectives": [
+				{"Objective" : "1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact."},
+				{"Objective" : "2. Thorough Cleaning: Documents often contain digital noise that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers."},
+				{"Objective" : "3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete paragraphs or ideas. This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on."}
+        ],
+        "Fields": [
+			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.4) - Sensitive Data quality requirements",
+    			"question": "Data quality requirements for sensitive data?",
+    			"controls": [
+              		{
+        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
+              		},
+               		 {
+         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
+       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
+               		 },
+               		 {
+        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
+        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
+              		  },
+              		{
+        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
+        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
+               		 },
+              		  {
+        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
+        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
+              		  },
+              		  {
+         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
+       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
+               		 }
+    			]
+  			},        
+   			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.4) - Internal data Data quality requirements",
+    			"question": "Data quality requirements for internal data?",
+    			"controls": [
+              		  {
+        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
+              		  },
+              		  {
+        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
+        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
+              		  },
+              		  {
+        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
+        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
+              		  },
+              		  {
+        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
+        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
+              		  },
+              		  {
+        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
+        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
+              		  },
+              		  {
+        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
+        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
+              		  }    			
+ 
+    			]
+  			},        
   			{
     			"FieldType": "risk",
     			"FieldName": "(A.7.6) Sensitive Data Preparation Plan",
@@ -578,83 +652,50 @@
         				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
               		  }	
     			]
-  			}
-  		 ]
-    }, 
-    
-    "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.": {
-        "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
-		"Objectives": [
-				{"Objective" : "1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact."},
-				{"Objective" : "2. Thorough Cleaning: Documents often contain digital noise that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers."},
-				{"Objective" : "3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete paragraphs or ideas. This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on."}
-        ],
-        "Fields": [
-			{
-    			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Sensitive Data quality requirements",
-    			"question": "Data quality requirements for sensitive data?",
-    			"controls": [
-              		{
-        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
-        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
-              		},
-               		 {
-         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
-       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
-               		 },
-               		 {
-        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
-        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
-              		  },
-              		{
-        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
-        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
-               		 },
-              		  {
-        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
-        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
-              		  },
-              		  {
-         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
-       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
-               		 }
-    			]
-  			},        
-   			{
-    			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Internal data Data quality requirements",
-    			"question": "Data quality requirements for internal data?",
-    			"controls": [
-              		  {
-        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
-        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
-              		  },
-              		  {
-        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
-        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
-              		  },
-              		  {
-        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
-        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
-              		  },
-              		  {
-        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
-        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
-              		  },
-              		  {
-        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
-        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
-              		  },
-              		  {
-        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
-        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
-              		  }    			
- 
-    			]
   			},
-  			
-  			     
+  			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.6) Data Quality Test Plan",
+    			"question": "Data Quality Test Plan to ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
+    			"controls": [
+    			     {
+        				"control": "BBT-EXT-ACC-01: Establish a 'golden dataset' by manually and accurately extracting all critical data points from a representative sample of 10-20 source documents of varying types (PDF, DOCX, etc.).",
+        				"control_objective": "To create a verified, ground-truth benchmark against which the automated extraction process's accuracy can be quantitatively measured, directly testing for control DATA-SEN-01."
+              		  },
+              		  {
+        				"control": "BBT-EXT-ACC-02: Process the sample documents through the automated pipeline and programmatically compare the extracted text against the corresponding 'golden dataset', calculating the data point accuracy percentage.",
+        				"control_objective": "To validate that the extraction process meets the specified >95% accuracy threshold (DATA-SEN-01) and to identify specific failure modes (e.g., issues with tables, complex layouts)."
+              		  },
+              		  {
+        				"control": "BBT-EXT-COM-01: For a sample of documents, compare the total word/character count of the source file against the total count of the extracted and cleaned text. Flag any document with a deviation greater than a set threshold (e.g., 15%).",
+        				"control_objective": "To perform a high-level check for major data loss, such as missed pages or entire sections, ensuring the process meets the completeness requirement of DATA-SEN-02."
+              		  },
+              		  {
+        				"control": "BBT-EXT-COM-02: Define and test for 'non-splittable entities' (e.g., a person's full name and title, a complete address, a single table row). Verify that the chunking mechanism does not break these entities across multiple, separate chunks.",
+        				"control_objective": "To ensure the chunking process preserves the semantic integrity of the data, preventing the creation of incomplete or misleading fragments and upholding the completeness rule (DATA-SEN-02)."
+              		  },
+              		  {
+        				"control": "BBT-EXT-CON-01: Identify documents in the source data that contain known, intentional contradictions. Process these documents and verify that the extracted chunks accurately reflect the original contradictions without introducing new ones.",
+        				"control_objective": "To confirm that the extraction and chunking process does not introduce new errors or artifacts that could be misinterpreted as data contradictions, thereby testing the integrity preservation required by DATA-SEN-03."
+              		  },
+              		  {
+        				"control": "BBT-EXT-TIM-01: Introduce a new document or an updated version of an existing document into the source data collection. Measure the end-to-end processing time until its corresponding chunks are generated and ready for embedding.",
+        				"control_objective": "To empirically test the data pipeline's latency and validate that it meets the timeliness requirements defined in DATA-SEN-04 for maintaining a real-time system."
+              		  },
+              		  {
+        				"control": "BBT-EXT-PRO-01: From the output of the vectorization pipeline, select a random sample of 50 text chunks. For each chunk, verify the presence and correctness of its metadata, including source filename, document version, and page number.",
+        				"control_objective": "To ensure that every piece of processed data maintains a verifiable link to its origin, satisfying the full provenance tracing requirement of DATA-SEN-05."
+              		  },
+              		  {
+        				"control": "BBT-EXT-PRO-02: Using only the metadata from a sampled chunk, perform a reverse lookup to retrieve the original source document and confirm the chunk's content matches the content at the specified location (e.g., page 5, paragraph 2).",
+        				"control_objective": "To validate the functional reliability of the provenance metadata, ensuring it is not just present but accurate and useful for auditing and verification as per DATA-SEN-05."
+              		  },
+              		  {
+        				"control": "BBT-EXT-VER-01: Perform a test data rollback. Check out a previous version of a source document from the version control system (e.g., Git/DVC), run it through the pipeline, and verify that the output chunks exactly match the state of that older version.",
+        				"control_objective": "To confirm that the version control system is properly integrated and that the data processing pipeline can reliably reproduce outputs from any given historical version of the data, fulfilling control DATA-SEN-06."
+              		  }
+    			]
+  			}     
         ]
     },     
     
