@@ -52,7 +52,7 @@
   			}  
         ]
     },
-    "Workforce Transition and Adaptation for AI Integration": {
+    "(A.5.2, A.5.3) Workforce Transition and Adaptation for AI Integration": {
         "WebFormTitle": "Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption.",
         "Fields": [
    			{
@@ -87,7 +87,7 @@
   		    }  		    
         ]
     },
-    "Protection of Vulnerable Populations in AI Deployment": {
+    "(A.5.2, A.5.3, A.5.4) Protection of Vulnerable Populations in AI Deployment": {
         "WebFormTitle": "Define adequate measures to ensure AI deployments do not unfairly impact or discriminate against vulnerable populations, and are controls in place to prevent unethical outcomes.",
         "Fields": [
 			{
@@ -135,7 +135,7 @@
   		}
     ]
 },
- 	"Environmental Sustainability of AI Systems": {
+ 	"(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems": {
         "WebFormTitle": "Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts.",
         "Fields": [
               {
@@ -592,8 +592,8 @@
         "Fields": [
 			{
     			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Sensitive Data qualtiy requirements",
-    			"question": "Data qualtiy requirements for sensitive data?",
+    			"FieldName": "(A.7.4) - Sensitive Data quality requirements",
+    			"question": "Data quality requirements for sensitive data?",
     			"controls": [
               		{
         				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
@@ -623,7 +623,7 @@
   			},        
    			{
     			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Internal data Data qualtiy requirements",
+    			"FieldName": "(A.7.4) - Internal data Data quality requirements",
     			"question": "Data quality requirements for internal data?",
     			"controls": [
               		  {
@@ -653,6 +653,7 @@
  
     			]
   			},
+  			
   			     
         ]
     },     
