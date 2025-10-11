@@ -153,10 +153,7 @@
                     formStepDiv.className = 'form-step';
 
 
-
-                    if (!stepData.Objectives || stepData.Objectives.length === 0 || !stepData.Objectives[0].Objective) {
-                         formStepDiv.appendChild(createNoteField());
-                    } else {
+                    if (stepData.Objectives && stepData.Objectives.length > 0) {
                         stepData.Objectives.forEach(objective => {
                             if (!objective || !objective) return;
                             const handler = getFieldHandler('objective');
@@ -165,7 +162,7 @@
                                 formStepDiv.appendChild(fieldElement);
                             }
                         });
-                    }
+                    };
 
                     
                     if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
