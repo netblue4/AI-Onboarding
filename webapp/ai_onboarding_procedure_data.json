@@ -480,70 +480,7 @@
                 "FieldLabel": "Owner/Custodian",
                 "FieldText": "Person or team responsible for the data?",
                 "FieldType": "TextBox"
-            },       
-			{
-    			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Sensitive Data qualtiy requirements",
-    			"question": "Data qualtiy requirements for sensitive data?",
-    			"controls": [
-              		{
-        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
-        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
-              		},
-               		 {
-         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
-       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
-               		 },
-               		 {
-        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
-        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
-              		  },
-              		{
-        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
-        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
-               		 },
-              		  {
-        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
-        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
-              		  },
-              		  {
-         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
-       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
-               		 }
-    			]
-  			},        
-   			{
-    			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Internal data Data qualtiy requirements",
-    			"question": "Data quality requirements for internal data?",
-    			"controls": [
-              		  {
-        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
-        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
-              		  },
-              		  {
-        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
-        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
-              		  },
-              		  {
-        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
-        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
-              		  },
-              		  {
-        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
-        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
-              		  },
-              		  {
-        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
-        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
-              		  },
-              		  {
-        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
-        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
-              		  }    			
- 
-    			]
-  			},   
+            },        
   			{
     			"FieldType": "risk",
     			"FieldName": "(A.7.6) Sensitive Data Preparation Plan",
@@ -641,34 +578,7 @@
         				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
               		  }	
     			]
-  			},    			     
-            {
-  			    "FieldType": "risk",
-  			    "FieldName": "Knowledge Base Preparation and Integration",
-  			    "question": "Are AI systems provided internal company documents in a specialized, machine-readable format, creating a searchable knowledge base that a generic LLM can use to answer user questions accurately and without internet access.?",
-  			    "controls": [
-   			  {
-        				"control": "RAG-PREP-01: Establish automated connections to internal data sources and extract raw content from various file formats (PDF, DOCX, HTML, etc.).",
-        				"control_objective": "To ensure all required information is brought into the processing pipeline, forming the complete knowledge foundation for the AI system."
-   			    },
-   			    {
-        				"control": "RAG-PREP-02: Clean extracted raw text by removing irrelevant artifacts (e.g., HTML tags, document headers/footers) and performing OCR on scanned documents.",
-        				"control_objective": "To improve the quality and reliability of the AI's final answers by providing clean, high-fidelity source text for processing."
-   			    },
-   			    {
-        				"control": "RAG-PREP-03: Implement a strategy to break down large documents into smaller, semantically coherent text chunks (e.g., paragraphs, sections).",
-        				"control_objective": "To prepare the data for efficient retrieval and to fit within the model's context window, ensuring only the most relevant information is used to answer a query."
-   			    },
-   			    {
-        				"control": "RAG-PREP-04: Use an embedding model to convert all text chunks into numerical vector embeddings that represent their semantic meaning.",
-        				"control_objective": "To enable semantic search capabilities, allowing the system to retrieve information based on conceptual meaning rather than just keyword matching."
-   			    },
-   			    {
-        				"control": "RAG-PREP-05: Store all generated vector embeddings and their corresponding text chunks in a specialized Vector Database.",
-        				"control_objective": "To create a highly optimized and rapidly searchable index of the knowledge base, enabling real-time retrieval of relevant information at query time."
-   			    }
-   			]
-  		    }
+  			}
   		 ]
     }, 
     
@@ -679,7 +589,72 @@
 				{"Objective" : "2. Thorough Cleaning: Documents often contain digital noise that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers."},
 				{"Objective" : "3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete paragraphs or ideas. This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on."}
         ],
-        "Fields": []
+        "Fields": [
+			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.4) - Sensitive Data qualtiy requirements",
+    			"question": "Data qualtiy requirements for sensitive data?",
+    			"controls": [
+              		{
+        				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
+              		},
+               		 {
+         				"control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
+       					"control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
+               		 },
+               		 {
+        				"control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
+        				"control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
+              		  },
+              		{
+        				"control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
+        				"control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
+               		 },
+              		  {
+        				"control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
+        				"control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
+              		  },
+              		  {
+         				"control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
+       					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
+               		 }
+    			]
+  			},        
+   			{
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.4) - Internal data Data qualtiy requirements",
+    			"question": "Data quality requirements for internal data?",
+    			"controls": [
+              		  {
+        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
+        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
+              		  },
+              		  {
+        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
+        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
+              		  },
+              		  {
+        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
+        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
+              		  },
+              		  {
+        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
+        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
+              		  },
+              		  {
+        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
+        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
+              		  },
+              		  {
+        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
+        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
+              		  }    			
+ 
+    			]
+  			},
+  			     
+        ]
     },     
     
     "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data": {
