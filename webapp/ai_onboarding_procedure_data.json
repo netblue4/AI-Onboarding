@@ -1,5 +1,5 @@
 {
-   "Phase 1": [
+	"Phase AI system information": [
   	{
     	"StepName": "(A.9.4) AI system's intended use and limitations",
         "WebFormTitle": "Document the purpose, target users, and intended use cases of the AI system.",
@@ -55,6 +55,57 @@
         ]
     },
     {
+    	"StepName":"(A.4.4) AI Systems Software and Tooling Resources",
+        "WebFormTitle": "Define the software and tools used by the AI system.",
+        "Fields": [
+            {
+                "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
+                "FieldLabel": "Tool Name and Version",
+                "FieldText": "Name of the software, library, or framework and Version number.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.4) - Category",
+                "FieldLabel": "",
+                "FieldText": "Category of the tool?",
+                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
+                "FieldLabel": "Purpose/Use Case in Project",
+                "FieldText": "Tooling Resources: How this tool will be used in the AI system's lifecycle.",
+                "FieldType": "TextBox"
+            }
+        ]
+    },
+  	{
+    	"StepName": "(A.4.5) AI Systems Computing Resources",
+        "WebFormTitle": "Define the computing resources used by the AI system",
+        "Fields": [
+            {
+                "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
+                "FieldLabel": "Computing Resource Name and Version",
+                "FieldText": "Name of the software, library, or framework.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.5) - Category",
+                "FieldLabel": "",
+                "FieldText": "Category of the computing resource.",
+                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+            },
+            {
+                "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
+                "FieldLabel": "",
+                "FieldText": "Which part of the AI lifecycle does this resource supports?",
+                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
+            }
+        ]
+    }
+    ],
+    
+	"Phase Impact assessments": [
+    {
     	"StepName": "(A.5.2, A.5.3) Workforce Transition and Adaptation for AI Integration",
         "WebFormTitle": "Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption.",
         "Fields": [
@@ -89,11 +140,8 @@
     			"FieldType": "TextBox"
   		    }  		    
         ]
-    }
-    ],
-    
-   "Phase 2": [
-  	{
+    },
+    {
     	"StepName": "(A.5.2, A.5.3, A.5.4) Protection of Vulnerable Populations in AI Deployment",
         "WebFormTitle": "Define adequate measures to ensure AI deployments do not unfairly impact or discriminate against vulnerable populations, and are controls in place to prevent unethical outcomes.",
         "Fields": [
@@ -175,54 +223,6 @@
               }   		
         ]
 	},
-  	{
-    	"StepName":"(A.4.4) AI Systems Software and Tooling Resources",
-        "WebFormTitle": "Define the software and tools used by the AI system.",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
-                "FieldLabel": "Tool Name and Version",
-                "FieldText": "Name of the software, library, or framework and Version number.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.4) - Category",
-                "FieldLabel": "",
-                "FieldText": "Category of the tool?",
-                "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
-                "FieldLabel": "Purpose/Use Case in Project",
-                "FieldText": "Tooling Resources: How this tool will be used in the AI system's lifecycle.",
-                "FieldType": "TextBox"
-            }
-        ]
-    },
-  	{
-    	"StepName": "(A.4.5) AI Systems Computing Resources",
-        "WebFormTitle": "Define the computing resources used by the AI system",
-        "Fields": [
-            {
-                "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
-                "FieldLabel": "Computing Resource Name and Version",
-                "FieldText": "Name of the software, library, or framework.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.5) - Category",
-                "FieldLabel": "",
-                "FieldText": "Category of the computing resource.",
-                "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
-            },
-            {
-                "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
-                "FieldLabel": "",
-                "FieldText": "Which part of the AI lifecycle does this resource supports?",
-                "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
-            }
-        ]
-    },
   	{
     	"StepName":"AI Act - Section 2: Requirements for High-Risk AI Systems",
         "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
@@ -416,7 +416,7 @@
     }
     ],
     
-    "Phase 3": [
+	"Phase Secure Infrustructure": [
   	{
     	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Internal Data Sources",
         "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
@@ -520,6 +520,16 @@
   		 ]
     }, 
   	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data",
+        "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
+		"Objectives": [
+				{"Objective" : "1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format (vectorized), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit)."},
+				{"Objective" : "2. Data Integrity and Access Control: This establishes strict controls over who can add, modify, or delete information in the AI's knowledge base. It prevents both accidental corruption and malicious tampering (data poisoning) by ensuring only authorized personnel or automated processes can manage the data, with all actions logged for auditing."},
+				{"Objective" : "3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption."}
+        ],
+        "Fields": []
+    },
+  	{
     	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.",
         "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
 		"Objectives": [
@@ -561,7 +571,7 @@
   			},        
    			{
     			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Internal data Data quality requirements",
+    			"FieldName": "(A.7.4) - Internal Data quality requirements",
     			"question": "If internal data used by the system is inaccurate, incomplete, or inconsistent, could it lead to significant negative consequences (e.g., incorrect decisions, financial loss, regulatory fines, or harm to individuals)?",
     			"controls": [
               		  {
@@ -688,117 +698,18 @@
         				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
               		  }	
     			]
-  			},
-  			{
-    			"FieldType": "risk",
-    			"FieldName": "(A.7.6) Data Quality Test Plan",
-    			"question": "Data Quality Test Plan to ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
-    			"controls": [
-    			     {
-        				"control": "BBT-EXT-ACC-01: Establish a 'golden dataset' by manually and accurately extracting all critical data points from a representative sample of 10-20 source documents of varying types (PDF, DOCX, etc.).",
-        				"control_objective": "To create a verified, ground-truth benchmark against which the automated extraction process's accuracy can be quantitatively measured, directly testing for control DATA-SEN-01."
-              		  },
-              		  {
-        				"control": "BBT-EXT-ACC-02: Process the sample documents through the automated pipeline and programmatically compare the extracted text against the corresponding 'golden dataset', calculating the data point accuracy percentage.",
-        				"control_objective": "To validate that the extraction process meets the specified >95% accuracy threshold (DATA-SEN-01) and to identify specific failure modes (e.g., issues with tables, complex layouts)."
-              		  },
-              		  {
-        				"control": "BBT-EXT-COM-01: For a sample of documents, compare the total word/character count of the source file against the total count of the extracted and cleaned text. Flag any document with a deviation greater than a set threshold (e.g., 15%).",
-        				"control_objective": "To perform a high-level check for major data loss, such as missed pages or entire sections, ensuring the process meets the completeness requirement of DATA-SEN-02."
-              		  },
-              		  {
-        				"control": "BBT-EXT-COM-02: Define and test for 'non-splittable entities' (e.g., a person's full name and title, a complete address, a single table row). Verify that the chunking mechanism does not break these entities across multiple, separate chunks.",
-        				"control_objective": "To ensure the chunking process preserves the semantic integrity of the data, preventing the creation of incomplete or misleading fragments and upholding the completeness rule (DATA-SEN-02)."
-              		  },
-              		  {
-        				"control": "BBT-EXT-CON-01: Identify documents in the source data that contain known, intentional contradictions. Process these documents and verify that the extracted chunks accurately reflect the original contradictions without introducing new ones.",
-        				"control_objective": "To confirm that the extraction and chunking process does not introduce new errors or artifacts that could be misinterpreted as data contradictions, thereby testing the integrity preservation required by DATA-SEN-03."
-              		  },
-              		  {
-        				"control": "BBT-EXT-TIM-01: Introduce a new document or an updated version of an existing document into the source data collection. Measure the end-to-end processing time until its corresponding chunks are generated and ready for embedding.",
-        				"control_objective": "To empirically test the data pipeline's latency and validate that it meets the timeliness requirements defined in DATA-SEN-04 for maintaining a real-time system."
-              		  },
-              		  {
-        				"control": "BBT-EXT-PRO-01: From the output of the vectorization pipeline, select a random sample of 50 text chunks. For each chunk, verify the presence and correctness of its metadata, including source filename, document version, and page number.",
-        				"control_objective": "To ensure that every piece of processed data maintains a verifiable link to its origin, satisfying the full provenance tracing requirement of DATA-SEN-05."
-              		  },
-              		  {
-        				"control": "BBT-EXT-PRO-02: Using only the metadata from a sampled chunk, perform a reverse lookup to retrieve the original source document and confirm the chunk's content matches the content at the specified location (e.g., page 5, paragraph 2).",
-        				"control_objective": "To validate the functional reliability of the provenance metadata, ensuring it is not just present but accurate and useful for auditing and verification as per DATA-SEN-05."
-              		  },
-              		  {
-        				"control": "BBT-EXT-VER-01: Perform a test data rollback. Check out a previous version of a source document from the version control system (e.g., Git/DVC), run it through the pipeline, and verify that the output chunks exactly match the state of that older version.",
-        				"control_objective": "To confirm that the version control system is properly integrated and that the data processing pipeline can reliably reproduce outputs from any given historical version of the data, fulfilling control DATA-SEN-06."
-              		  }
-    			]
-  			}     
+  			}  
         ]
-    }
-    ],  
-    
-  "Phase 4": [
-  	{
-    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data",
-        "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
-		"Objectives": [
-				{"Objective" : "1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format (vectorized), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit)."},
-				{"Objective" : "2. Data Integrity and Access Control: This establishes strict controls over who can add, modify, or delete information in the AI's knowledge base. It prevents both accidental corruption and malicious tampering (data poisoning) by ensuring only authorized personnel or automated processes can manage the data, with all actions logged for auditing."},
-				{"Objective" : "3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption."}
-        ],
-        "Fields": []
     },
-    {  
-    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - User Query",
-        "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
-		"Objectives": [
-				{"Objective" : "1. Identity and Access: Establishes that the system must know who is making the request, which is the foundation for access control."},
-				{"Objective" : "2. Data Integrity: Covers the need to inspect the incoming data itself for malicious content, such as prompt injection, code, or other attacks that could compromise the system."},
-				{"Objective" : "3. Audibility and Non-repudiation: Creating an immutable record that proves a specific user performed a specific action, and they cannot later deny it. This is critical for security investigations and accountability."}
-        ],
-        "Fields": []
-    }
-  ],       
-       
-  "Phase 5": [
   	{
-    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Context Retrieval and Prompt Augmentation",
-        "WebFormTitle": "To uphold core data security principles by enforcing access controls, ensuring the integrity of the prompt through sanitization, and applying the principle of least privilege before providing context to the LLM.",
-		"Objectives": [
-				{"Objective" : "1. Access Controls: This ensures the system acts like a responsible librarian, checking a user's library card (their permissions) before retrieving any information. It guarantees that the AI can only pull answers from documents and data that the specific user is actually authorized to view, preventing a junior employee from accessing confidential executive files."},
-				{"Objective" : "2. Prompt Integrity and Sanitization: This is a protective measure for the AI itself. The system inspects all the information it retrieves before showing it to the Large Language Model. This step filters out any hidden malicious instructions or confusing data that could be used to trick or hijack the AI, ensuring the integrity of the final prompt."},
-				{"Objective" : "3. Principle of Least Privilege: This is a need-to-know security measure. Even if a retrieved document contains a lot of information (e.g., a person's project status, salary, and home address), this step ensures that only the absolute minimum data required to answer the user's specific question is provided to the AI. This dramatically reduces the risk of accidentally exposing sensitive information."}
-        ],
-        "Fields": []
-    },          
-  	{
-    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Generation and Response Delivery",
-        "WebFormTitle": "To uphold the principles of responsible and trustworthy AI generation by applying content safety guardrails, filtering all model outputs to prevent sensitive data leakage, and delivering a final, verifiable answer with citations.",
-		"Objectives": [
-				{"Objective" : "1. Content Safety Guardrails: This is the AI's code of conduct. We have safety measures in place to ensure the model's response, even when based on factual data, is helpful, professional, and free of biased or inappropriate content. These guardrails ensure the AI's output aligns with our company values."},
-				{"Objective" : "2. Filtering to Prevent Data Leakage: This is the final security checkpoint before an answer reaches the user. The system automatically scans the AI's generated text to ensure it hasn't accidentally included any sensitive information (like personal data or confidential numbers) that might have been present in the source documents. It acts as a final privacy filter."},
-				{"Objective" : "3. Delivering a Verifiable Answer: To build user trust, the AI doesn't just provide an answer—it shows its work. Every response is delivered with clear references or citations pointing back to the original source document(s) used. This allows users to verify the information for themselves and have confidence that the answer is based on approved, internal facts."}
-        ],
-        "Fields": []
-    },  
-  	{
-    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Logging and Monitoring",
-        "WebFormTitle": "To uphold the principles of AI transparency, accountability, and continuous improvement by implementing a comprehensive logging system that securely captures all interaction data, enabling performance monitoring, quality assurance, and detailed audits.",
-		"Objectives": [
-				{"Objective" : "1. System Performance and Reliability: This is about keeping the AI healthy and efficient. By logging every interaction, we can measure key metrics like response times and success rates. This data is essential for our technical teams to identify performance bottlenecks, troubleshoot errors, and ensure the system remains reliable and responsive for all users."},
-				{"Objective" : "2. Transparency and Explainability: To trust the AI, we must be able to understand its thought process. This logging system functions like an airplane's black box, securely recording the user's question, the specific information the AI retrieved to form its answer, and the final response given. This is critical for investigating any incorrect answers and for explaining the AI's decision-making process to auditors or stakeholders."},
-				{"Objective" : "3. Fairness and Quality Assurance: This is our primary mechanism for ensuring the AI remains accurate, fair, and safe over time. By analyzing the logged data, we can proactively monitor for potential biases, detect instances where the AI may be hallucinating (straying from the provided facts), and gather the insights needed to continuously improve the quality and safety of the system."}
-        ],
-        "Fields": []
-    },  
-  	{
-    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Component Design and Development",
-        "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
+    	"StepName": "Test Plans",
+        "WebFormTitle": "Test Plans",
         "Fields": [
           {
-  			"FieldType": "risk",
-  			"FieldName": "Fairness and Bias in AI Systems",
-  			"question": "Are AI systems designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes for protected or vulnerable groups?",
-   			"controls": [
+    			"FieldType": "risk",
+    			"FieldName": "Fairness and Bias in AI Systems",
+    			"question": "Are AI systems designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes for protected or vulnerable groups?",
+    			"controls": [
     			    {
         				"control": "DATA-CTX-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
         				"control_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics."
@@ -843,10 +754,10 @@
     			]
   		 },
          {
-  			"FieldType": "risk",
-  			"FieldName": "Transparency and Explainability in AI Systems",
-  			"question": "Are AI systems designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
-   			"controls": [  	
+    			"FieldType": "risk",
+    			"FieldName": "Transparency and Explainability in AI Systems",
+    			"question": "Are AI systems designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
+    			"controls": [  	
    			    {
         				"control": "TRN-REQ-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
         				"control_objective": "To ensure that explanations are tailored and appropriate for the technical understanding and informational needs of each distinct stakeholder group."
@@ -904,71 +815,93 @@
         				"control_objective": "To operationalize the right to explanation, ensuring that user requests are handled consistently, efficiently, and in compliance with policy and regulations."
    			    }
    			]
-  		 },	 
-  		 {
-  			"FieldType": "risk",
-  			"FieldName": "Transparency and Explainability in AI Systems",
-  			"question": "Are AI system's designed and developed to prevent, withstand, and recover from disruptions that could impact its functionality and availability is assessed (e.g., cyber-attacks, infrastructure failures, data corruption).",
-   			"controls": [ 
-    			    {
-        				"control": "RES-RSK-01: Map and document the entire AI pipeline and its components to identify the system's attack surface and potential single points of failure.",
-        				"control_objective": "To create a comprehensive system overview that serves as the foundation for identifying vulnerabilities and understanding potential failure scenarios."
-    			    },
-    			    {
-        				"control": "RES-RSK-02: Document and analyze AI-specific threats, including Data Poisoning, Adversarial Attacks, Model Extraction, and Data/Model Drift.",
-        				"control_objective": "To expand risk assessment beyond traditional IT threats to include unique vulnerabilities inherent in machine learning systems."
-    			    },
-    			    {
-        				"control": "RES-RSK-03: Assess the business impact and likelihood of each identified threat and create a prioritized risk register to guide mitigation efforts.",
-        				"control_objective": "To ensure that resilience resources are focused on addressing the most critical and probable threats to the AI system's functionality."
-    			    },
-    			    {
-        				"control": "RES-DEV-01: Implement automated data validation and anomaly detection at the ingestion stage to identify and quarantine suspicious or corrupt data.",
-        				"control_objective": "To establish a first line of defense against data poisoning attacks and ensure the integrity of the data entering the training pipeline."
-    			    },
-    			    {
-        				"control": "RES-DEV-02: Apply model hardening techniques such as Adversarial Training and Input Sanitization at the inference endpoint to make the model more robust.",
-        				"control_objective": "To reduce the model's vulnerability to malicious inputs and prevent attackers from easily manipulating its predictions."
-    			    },
-    			    {
-        				"control": "RES-DEV-03: Define all system infrastructure as code (IaC) and subject it to version control and automated security scanning.",
-        				"control_objective": "To ensure that the underlying infrastructure is secure, reproducible, and can be rapidly rebuilt in a consistent manner after a failure."
-    			    },
-    			    {
-        				"control": "RES-OPS-01: Deploy inference services across multiple, geographically separate availability zones with automated load balancing and failover.",
-        				"control_objective": "To ensure high availability and withstand infrastructure failures by eliminating single points of failure in the hosting environment."
-    			    },
-    			    {
-        				"control": "RES-OPS-02: Implement and configure real-time monitoring and alerting for Data Drift, Model Performance Drift, and anomalous input patterns.",
-        				"control_objective": "To enable the rapid detection of both silent performance degradation and active security threats, moving from reactive to proactive system management."
-    			    },
-    			    {
-        				"control": "RES-REC-01: Create a fully automated CI/CD pipeline for the AI model to enable rapid, reliable redeployment from the model registry.",
-        				"control_objective": "To minimize downtime and ensure a fast recovery to a known good state in the event of model corruption or critical failure."
-    			    },
-    			    {
-        				"control": "RES-REC-02: Implement and regularly test automated backup and restoration procedures for all critical components, including training data, models, and configurations.",
-        				"control_objective": "To ensure data and system integrity can be restored after a catastrophic event, such as data corruption or infrastructure loss."
-    			    },
-    			    {
-        				"control": "RES-REC-03: Develop and maintain an AI-specific incident response playbook that details procedures and responsibilities for handling events like data poisoning or severe model drift.",
-        				"control_objective": "To provide clear, actionable guidance during a crisis, ensuring a swift, coordinated, and effective response to unique AI system failures."
-    			    },
-    			    {
-        				"control": "RES-TST-01: Schedule and conduct regular penetration tests that specifically target the AI model with simulated adversarial attacks (evasion, poisoning).",
-        				"control_objective": "To proactively identify and remediate vulnerabilities in the model's defenses before they can be exploited by malicious actors."
-    			    },
-    			    {
-        				"control": "RES-TST-02: Conduct controlled chaos engineering drills by intentionally injecting failures into the system to test automated failover and recovery mechanisms.",
-        				"control_objective": "To build confidence in the system's resilience by verifying that its automated recovery and redundancy features work as designed under real-world stress."
-    			    },
-    			    {
-        				"control": "RES-TST-03: Establish a formal process to review and update threat models, risk assessments, and response plans on at least an annual basis.",
-        				"control_objective": "To ensure the system's resilience strategy remains effective and relevant by adapting to new threats, technologies, and business contexts."
-    			    }   			
-   			]
-  		 }
+  		 },
+    	 {
+    			"FieldType": "risk",
+    			"FieldName": "(A.7.6) Data Quality Test Plan",
+    			"question": "Data Quality Test Plan to ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
+    			"controls": [
+    			     {
+        				"control": "BBT-EXT-ACC-01: Establish a 'golden dataset' by manually and accurately extracting all critical data points from a representative sample of 10-20 source documents of varying types (PDF, DOCX, etc.).",
+        				"control_objective": "To create a verified, ground-truth benchmark against which the automated extraction process's accuracy can be quantitatively measured, directly testing for control DATA-SEN-01."
+              		  },
+              		  {
+        				"control": "BBT-EXT-ACC-02: Process the sample documents through the automated pipeline and programmatically compare the extracted text against the corresponding 'golden dataset', calculating the data point accuracy percentage.",
+        				"control_objective": "To validate that the extraction process meets the specified >95% accuracy threshold (DATA-SEN-01) and to identify specific failure modes (e.g., issues with tables, complex layouts)."
+              		  },
+              		  {
+        				"control": "BBT-EXT-COM-01: For a sample of documents, compare the total word/character count of the source file against the total count of the extracted and cleaned text. Flag any document with a deviation greater than a set threshold (e.g., 15%).",
+        				"control_objective": "To perform a high-level check for major data loss, such as missed pages or entire sections, ensuring the process meets the completeness requirement of DATA-SEN-02."
+              		  },
+              		  {
+        				"control": "BBT-EXT-COM-02: Define and test for 'non-splittable entities' (e.g., a person's full name and title, a complete address, a single table row). Verify that the chunking mechanism does not break these entities across multiple, separate chunks.",
+        				"control_objective": "To ensure the chunking process preserves the semantic integrity of the data, preventing the creation of incomplete or misleading fragments and upholding the completeness rule (DATA-SEN-02)."
+              		  },
+              		  {
+        				"control": "BBT-EXT-CON-01: Identify documents in the source data that contain known, intentional contradictions. Process these documents and verify that the extracted chunks accurately reflect the original contradictions without introducing new ones.",
+        				"control_objective": "To confirm that the extraction and chunking process does not introduce new errors or artifacts that could be misinterpreted as data contradictions, thereby testing the integrity preservation required by DATA-SEN-03."
+              		  },
+              		  {
+        				"control": "BBT-EXT-TIM-01: Introduce a new document or an updated version of an existing document into the source data collection. Measure the end-to-end processing time until its corresponding chunks are generated and ready for embedding.",
+        				"control_objective": "To empirically test the data pipeline's latency and validate that it meets the timeliness requirements defined in DATA-SEN-04 for maintaining a real-time system."
+              		  },
+              		  {
+        				"control": "BBT-EXT-PRO-01: From the output of the vectorization pipeline, select a random sample of 50 text chunks. For each chunk, verify the presence and correctness of its metadata, including source filename, document version, and page number.",
+        				"control_objective": "To ensure that every piece of processed data maintains a verifiable link to its origin, satisfying the full provenance tracing requirement of DATA-SEN-05."
+              		  },
+              		  {
+        				"control": "BBT-EXT-PRO-02: Using only the metadata from a sampled chunk, perform a reverse lookup to retrieve the original source document and confirm the chunk's content matches the content at the specified location (e.g., page 5, paragraph 2).",
+        				"control_objective": "To validate the functional reliability of the provenance metadata, ensuring it is not just present but accurate and useful for auditing and verification as per DATA-SEN-05."
+              		  },
+              		  {
+        				"control": "BBT-EXT-VER-01: Perform a test data rollback. Check out a previous version of a source document from the version control system (e.g., Git/DVC), run it through the pipeline, and verify that the output chunks exactly match the state of that older version.",
+        				"control_objective": "To confirm that the version control system is properly integrated and that the data processing pipeline can reliably reproduce outputs from any given historical version of the data, fulfilling control DATA-SEN-06."
+              		  }
+    			]
+  			}   
         ]
+    }
+    ],  
+    
+	"Phase ????": [
+
+	],        
+	
+	
+	"Phase Real-time Data Processing": [
+    	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Context Retrieval and Prompt Augmentation",
+        "WebFormTitle": "To uphold core data security principles by enforcing access controls, ensuring the integrity of the prompt through sanitization, and applying the principle of least privilege before providing context to the LLM.",
+		"Objectives": [
+				{"Objective" : "1. Access Controls: This ensures the system acts like a responsible librarian, checking a user's library card (their permissions) before retrieving any information. It guarantees that the AI can only pull answers from documents and data that the specific user is actually authorized to view, preventing a junior employee from accessing confidential executive files."},
+				{"Objective" : "2. Prompt Integrity and Sanitization: This is a protective measure for the AI itself. The system inspects all the information it retrieves before showing it to the Large Language Model. This step filters out any hidden malicious instructions or confusing data that could be used to trick or hijack the AI, ensuring the integrity of the final prompt."},
+				{"Objective" : "3. Principle of Least Privilege: This is a need-to-know security measure. Even if a retrieved document contains a lot of information (e.g., a person's project status, salary, and home address), this step ensures that only the absolute minimum data required to answer the user's specific question is provided to the AI. This dramatically reduces the risk of accidentally exposing sensitive information."}
+        ],
+        "Fields": []
+    },          
+  		{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Generation and Response Delivery",
+        "WebFormTitle": "To uphold the principles of responsible and trustworthy AI generation by applying content safety guardrails, filtering all model outputs to prevent sensitive data leakage, and delivering a final, verifiable answer with citations.",
+		"Objectives": [
+				{"Objective" : "1. Content Safety Guardrails: This is the AI's code of conduct. We have safety measures in place to ensure the model's response, even when based on factual data, is helpful, professional, and free of biased or inappropriate content. These guardrails ensure the AI's output aligns with our company values."},
+				{"Objective" : "2. Filtering to Prevent Data Leakage: This is the final security checkpoint before an answer reaches the user. The system automatically scans the AI's generated text to ensure it hasn't accidentally included any sensitive information (like personal data or confidential numbers) that might have been present in the source documents. It acts as a final privacy filter."},
+				{"Objective" : "3. Delivering a Verifiable Answer: To build user trust, the AI doesn't just provide an answer—it shows its work. Every response is delivered with clear references or citations pointing back to the original source document(s) used. This allows users to verify the information for themselves and have confidence that the answer is based on approved, internal facts."}
+        ],
+        "Fields": []
+    }
+  ],   
+  
+       
+  "Phase Development": [
+    {  
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - User Query",
+        "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
+		"Objectives": [
+				{"Objective" : "1. Identity and Access: Establishes that the system must know who is making the request, which is the foundation for access control."},
+				{"Objective" : "2. Data Integrity: Covers the need to inspect the incoming data itself for malicious content, such as prompt injection, code, or other attacks that could compromise the system."},
+				{"Objective" : "3. Audibility and Non-repudiation: Creating an immutable record that proves a specific user performed a specific action, and they cannot later deny it. This is critical for security investigations and accountability."}
+        ],
+        "Fields": []
     },
   	{
     	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Component Package",
@@ -1074,144 +1007,6 @@
           {
             "control": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
             "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks."
-          }
-        ]
-      }
-        ]
-    },
-  	{
-    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates",
-        "WebFormTitle": "Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates.",
-        "Fields": [
-      {
-        "FieldType": "risk",
-        "FieldName": "[C.3.6] - Mismanaged AI System Deployment and Transition",
-        "question": "Is the plan to deploy the AI system a 'big bang' launch without sufficient user training, a pilot phase, or a clear transition plan from the legacy system?",
-        "controls": [
-          {
-            "control": "[C.3.6][BP-4] - Develop and deliver comprehensive training programs for all users and operators on the AI system's capabilities, limitations, and proper operational procedures before deployment.",
-            "control_objective": "To minimize misuse, build user trust, and ensure the AI system is operated correctly and effectively."
-          },
-          {
-            "control": "[C.3.6][BP-5] - Implement a phased rollout or pilot program in a controlled environment to identify and resolve unforeseen issues before a full-scale, system-wide launch.",
-            "control_objective": "To reduce the risk of widespread disruption and failure by validating system performance in a live but limited setting."
-          },
-          {
-            "control": "[C.3.6][BP-6] - Establish a clear transition plan that includes running the new AI system in parallel with any legacy system to verify outputs and ensure a smooth handover without creating an operational gap.",
-            "control_objective": "To guarantee operational continuity and validate the new AI system's performance against established benchmarks before decommissioning the previous system."
-          }
-        ]
-      },
-      {
-        "FieldType": "risk",
-        "FieldName": "[C.3.6] - Inadequate Post-Deployment Maintenance and Monitoring",
-        "question": "Once the AI system is live, is there a risk it will be treated with a 'set and forget' mentality, without a dedicated team or process for continuous performance monitoring and regular maintenance?",
-        "controls": [
-          {
-            "control": "[C.3.6][BP-7] - Assign clear ownership for the deployed AI system and implement a continuous monitoring framework with predefined KPIs (e.g., for accuracy, data drift, fairness) and automated alerts to detect performance degradation.",
-            "control_objective": "To ensure proactive oversight and rapid detection of issues, preventing the AI system from making flawed decisions over extended periods."
-          },
-          {
-            "control": "[C.3.6][BP-8] - Establish a formal maintenance schedule for the AI system, including periodic model retraining with new data, recalibration, and updates to adapt to changing operational environments.",
-            "control_objective": "To prevent model obsolescence and ensure the AI system remains accurate, relevant, and effective throughout its operational life."
-          },
-          {
-            "control": "[C.3.6][BP-9] - Implement a formal feedback loop for users to easily report issues, anomalies, or incorrect outputs, and ensure this feedback is systematically reviewed and used to improve the system.",
-            "control_objective": "To leverage end-user experience as a critical source for identifying subtle performance issues and driving continuous improvement."
-          }
-        ]
-      },
-      {
-        "FieldType": "risk",
-        "FieldName": "Insufficient Scalability Management",
-        "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
-        "controls": [
-          {
-            "control": "SC[1] -  Develop and implement a structured scalability management process for AI infrastructure to ensure efficient handling of increasing workloads and data volumes.",
-            "control_objective": "To ensure that the AI infrastructure can scale effectively and efficiently, meeting the growing demands of the organisation while maintaining performance, stability, and security."
-          },
-          {
-            "control": "SC[2] -  Deploy comprehensive technical measures to ensure the AI infrastructure can scale seamlessly to accommodate varying workloads and future growth.",
-            "control_objective": "To guarantee that the AI infrastructure is equipped with the necessary technical capabilities to support scalability, ensuring uninterrupted performance and resource availability as demands increase."
-          }
-        ]
-      },
-      {
-        "FieldType": "risk",
-        "FieldName": "[C.3.6] - Poor Management of AI System Evolution and Updates",
-        "question": "When the AI system is updated (e.g., retrained model, new features), are there formal processes for testing, documenting, and deploying these changes, including a plan to roll back if the update causes problems?",
-        "controls": [
-          {
-            "control": "[C.3.6][BP-10] - Enforce a strict change management process for all AI system updates, requiring thorough testing (e.g., A/B testing, shadow mode), impact analysis, and a documented rollback plan before deployment.",
-            "control_objective": "To prevent system degradation caused by faulty updates and ensure that changes improve, rather than harm, system performance and reliability."
-          },
-          {
-            "control": "[C.3.6][BP-11] - Maintain comprehensive and up-to-date documentation for the AI system, including design rationale, model parameters, data sources, and a version history of all changes made.",
-            "control_objective": "To ensure knowledge continuity, facilitate troubleshooting, and support consistent and informed management of the AI system over time."
-          },
-          {
-            "control": "[C.3.6][BP-12] - Implement version control for all components of the AI system, including data, code, and models, to ensure traceability and the ability to rapidly revert to a previously stable version in case of an incident.",
-            "control_objective": "To provide a safety net against failed updates and enable quick recovery of system functionality."
-          }
-        ]
-      },
-      {
-        "FieldType": "risk",
-        "FieldName": "Inadequate Disaster Recovery and Business Continuity Planning",
-        "question": "What would happen to your business process if this AI system suddenly stopped working?",
-        "controls": [
-          {
-            "control": "BU[1] -  Establish a comprehensive disaster recovery and business continuity planning process to ensure preparedness and resilience in the face of disruptions to AI infrastructure.",
-            "control_objective": "To develop and implement administrative controls that ensure the organisation is prepared for and can effectively respond to disruptions, thereby maintaining the continuity of AI operations and minimising downtime."
-          },
-          {
-            "control": "BU[2] -  Implement technical measures to support disaster recovery and business continuity, ensuring the resilience and availability of AI infrastructure.",
-            "control_objective": "To deploy comprehensive technical controls that enable rapid recovery and continuity of AI operations in the event of a disruption, minimising data loss and operational downtime."
-          }
-        ]
-      },
-      {
-        "FieldType": "risk",
-        "FieldName": "Insufficient Performance Monitoring and Analysis",
-        "question": "Will the AI’s outputs need to be continuously monitored to ensure they stay accurate and relevant?",
-        "controls": [
-          {
-            "control": "PER[1] -  Establish a structured performance monitoring and analysis process to ensure continuous oversight and optimization of AI infrastructure performance.",
-            "control_objective": "To implement robust administrative controls that define roles, responsibilities, and procedures for performance monitoring and analysis, ensuring that performance issues are identified and addressed proactively."
-          },
-          {
-            "control": "PER[2] -  Implement advanced technical measures to ensure continuous and effective performance monitoring and analysis of AI infrastructure.",
-            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance, enabling prompt detection and resolution of performance issues to maintain optimal operation."
-          }
-        ]
-      },
-      {
-        "FieldType": "risk",
-        "FieldName": "Inadequate Security Monitoring and Threat Detection",
-        "question": "Do you need visibility into whether this AI system is under attack or being misused?",
-        "controls": [
-          {
-            "control": "STM[1] -  Establish a security monitoring and threat detection process to ensure continuous oversight and protection of AI infrastructure.",
-            "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for effective security monitoring and threat detection, ensuring proactive identification and mitigation of security threats."
-          },
-          {
-            "control": "STM[2] -  Implement advanced technical measures to ensure continuous and effective security monitoring and threat detection within AI infrastructure.",
-            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into security threats and enable prompt detection and response to ensure the protection and integrity of AI systems."
-          }
-        ]
-      },
-      {
-        "FieldType": "risk",
-        "FieldName": "Ineffective Incident Management",
-        "question": "Do you have a process in place if the AI system causes an issue (e.g., incorrect output, outage, or data leak)?",
-        "controls": [
-          {
-            "control": "IM[1] -  Establish an incident management capability to ensure effective detection, response, and mitigation of AI-related incidents.",
-            "control_objective": "To establish incident management processes that define roles, responsibilities, and procedures for managing AI-related incidents, ensuring timely and effective response to maintain AI system integrity and security."
-          },
-          {
-            "control": "IM[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations and other incidents, ensuring the reliability and accuracy of AI outputs.",
-            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance and security, enabling prompt detection and resolution of incidents to maintain optimal operation."
           }
         ]
       }
@@ -1401,6 +1196,33 @@
       }   
         ]
     },
+   	{
+    	"StepName": "(A.8.4) AI System Documentation and User Information",
+        "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
+        "Fields": [
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
+                "FieldLabel": "Data Breach",
+                "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
+                "FieldLabel": "Model Misuse",
+                "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
+                "FieldType": "TextBox"
+            },
+            {
+                "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
+                "FieldLabel": "Model Failure",
+                "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
+                "FieldType": "TextBox"
+            }
+        ]
+    }
+    ],
+    
+   	"Phase Post deployment verification": [
   	{
     	"StepName": "(A.6.2.4) AI Systems verifications",
         "WebFormTitle": "Document verification and validation measures for the AI system and specify criteria for their use.",
@@ -1455,32 +1277,160 @@
                 "FieldType": "Option box with values:Applicable/Not Applicable"
             }
         ]
+    }
+	],    
+    
+    
+	"Phase Operations": [
+  	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Logging and Monitoring",
+        "WebFormTitle": "To uphold the principles of AI transparency, accountability, and continuous improvement by implementing a comprehensive logging system that securely captures all interaction data, enabling performance monitoring, quality assurance, and detailed audits.",
+		"Objectives": [
+				{"Objective" : "1. System Performance and Reliability: This is about keeping the AI healthy and efficient. By logging every interaction, we can measure key metrics like response times and success rates. This data is essential for our technical teams to identify performance bottlenecks, troubleshoot errors, and ensure the system remains reliable and responsive for all users."},
+				{"Objective" : "2. Transparency and Explainability: To trust the AI, we must be able to understand its thought process. This logging system functions like an airplane's black box, securely recording the user's question, the specific information the AI retrieved to form its answer, and the final response given. This is critical for investigating any incorrect answers and for explaining the AI's decision-making process to auditors or stakeholders."},
+				{"Objective" : "3. Fairness and Quality Assurance: This is our primary mechanism for ensuring the AI remains accurate, fair, and safe over time. By analyzing the logged data, we can proactively monitor for potential biases, detect instances where the AI may be hallucinating (straying from the provided facts), and gather the insights needed to continuously improve the quality and safety of the system."}
+        ],
+        "Fields": []
     },
-   	{
-    	"StepName": "(A.8.4) AI System Documentation and User Information",
-        "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
+  	{
+    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates",
+        "WebFormTitle": "Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates.",
         "Fields": [
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
-                "FieldLabel": "Data Breach",
-                "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
-                "FieldLabel": "Model Misuse",
-                "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
-                "FieldType": "TextBox"
-            },
-            {
-                "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
-                "FieldLabel": "Model Failure",
-                "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
-                "FieldType": "TextBox"
-            }
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.6] - Mismanaged AI System Deployment and Transition",
+        "question": "Is the plan to deploy the AI system a 'big bang' launch without sufficient user training, a pilot phase, or a clear transition plan from the legacy system?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-4] - Develop and deliver comprehensive training programs for all users and operators on the AI system's capabilities, limitations, and proper operational procedures before deployment.",
+            "control_objective": "To minimize misuse, build user trust, and ensure the AI system is operated correctly and effectively."
+          },
+          {
+            "control": "[C.3.6][BP-5] - Implement a phased rollout or pilot program in a controlled environment to identify and resolve unforeseen issues before a full-scale, system-wide launch.",
+            "control_objective": "To reduce the risk of widespread disruption and failure by validating system performance in a live but limited setting."
+          },
+          {
+            "control": "[C.3.6][BP-6] - Establish a clear transition plan that includes running the new AI system in parallel with any legacy system to verify outputs and ensure a smooth handover without creating an operational gap.",
+            "control_objective": "To guarantee operational continuity and validate the new AI system's performance against established benchmarks before decommissioning the previous system."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.6] - Inadequate Post-Deployment Maintenance and Monitoring",
+        "question": "Once the AI system is live, is there a risk it will be treated with a 'set and forget' mentality, without a dedicated team or process for continuous performance monitoring and regular maintenance?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-7] - Assign clear ownership for the deployed AI system and implement a continuous monitoring framework with predefined KPIs (e.g., for accuracy, data drift, fairness) and automated alerts to detect performance degradation.",
+            "control_objective": "To ensure proactive oversight and rapid detection of issues, preventing the AI system from making flawed decisions over extended periods."
+          },
+          {
+            "control": "[C.3.6][BP-8] - Establish a formal maintenance schedule for the AI system, including periodic model retraining with new data, recalibration, and updates to adapt to changing operational environments.",
+            "control_objective": "To prevent model obsolescence and ensure the AI system remains accurate, relevant, and effective throughout its operational life."
+          },
+          {
+            "control": "[C.3.6][BP-9] - Implement a formal feedback loop for users to easily report issues, anomalies, or incorrect outputs, and ensure this feedback is systematically reviewed and used to improve the system.",
+            "control_objective": "To leverage end-user experience as a critical source for identifying subtle performance issues and driving continuous improvement."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Insufficient Scalability Management",
+        "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
+        "controls": [
+          {
+            "control": "SC[1] -  Develop and implement a structured scalability management process for AI infrastructure to ensure efficient handling of increasing workloads and data volumes.",
+            "control_objective": "To ensure that the AI infrastructure can scale effectively and efficiently, meeting the growing demands of the organisation while maintaining performance, stability, and security."
+          },
+          {
+            "control": "SC[2] -  Deploy comprehensive technical measures to ensure the AI infrastructure can scale seamlessly to accommodate varying workloads and future growth.",
+            "control_objective": "To guarantee that the AI infrastructure is equipped with the necessary technical capabilities to support scalability, ensuring uninterrupted performance and resource availability as demands increase."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "[C.3.6] - Poor Management of AI System Evolution and Updates",
+        "question": "When the AI system is updated (e.g., retrained model, new features), are there formal processes for testing, documenting, and deploying these changes, including a plan to roll back if the update causes problems?",
+        "controls": [
+          {
+            "control": "[C.3.6][BP-10] - Enforce a strict change management process for all AI system updates, requiring thorough testing (e.g., A/B testing, shadow mode), impact analysis, and a documented rollback plan before deployment.",
+            "control_objective": "To prevent system degradation caused by faulty updates and ensure that changes improve, rather than harm, system performance and reliability."
+          },
+          {
+            "control": "[C.3.6][BP-11] - Maintain comprehensive and up-to-date documentation for the AI system, including design rationale, model parameters, data sources, and a version history of all changes made.",
+            "control_objective": "To ensure knowledge continuity, facilitate troubleshooting, and support consistent and informed management of the AI system over time."
+          },
+          {
+            "control": "[C.3.6][BP-12] - Implement version control for all components of the AI system, including data, code, and models, to ensure traceability and the ability to rapidly revert to a previously stable version in case of an incident.",
+            "control_objective": "To provide a safety net against failed updates and enable quick recovery of system functionality."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Inadequate Disaster Recovery and Business Continuity Planning",
+        "question": "What would happen to your business process if this AI system suddenly stopped working?",
+        "controls": [
+          {
+            "control": "BU[1] -  Establish a comprehensive disaster recovery and business continuity planning process to ensure preparedness and resilience in the face of disruptions to AI infrastructure.",
+            "control_objective": "To develop and implement administrative controls that ensure the organisation is prepared for and can effectively respond to disruptions, thereby maintaining the continuity of AI operations and minimising downtime."
+          },
+          {
+            "control": "BU[2] -  Implement technical measures to support disaster recovery and business continuity, ensuring the resilience and availability of AI infrastructure.",
+            "control_objective": "To deploy comprehensive technical controls that enable rapid recovery and continuity of AI operations in the event of a disruption, minimising data loss and operational downtime."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Insufficient Performance Monitoring and Analysis",
+        "question": "Will the AI’s outputs need to be continuously monitored to ensure they stay accurate and relevant?",
+        "controls": [
+          {
+            "control": "PER[1] -  Establish a structured performance monitoring and analysis process to ensure continuous oversight and optimization of AI infrastructure performance.",
+            "control_objective": "To implement robust administrative controls that define roles, responsibilities, and procedures for performance monitoring and analysis, ensuring that performance issues are identified and addressed proactively."
+          },
+          {
+            "control": "PER[2] -  Implement advanced technical measures to ensure continuous and effective performance monitoring and analysis of AI infrastructure.",
+            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance, enabling prompt detection and resolution of performance issues to maintain optimal operation."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Inadequate Security Monitoring and Threat Detection",
+        "question": "Do you need visibility into whether this AI system is under attack or being misused?",
+        "controls": [
+          {
+            "control": "STM[1] -  Establish a security monitoring and threat detection process to ensure continuous oversight and protection of AI infrastructure.",
+            "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for effective security monitoring and threat detection, ensuring proactive identification and mitigation of security threats."
+          },
+          {
+            "control": "STM[2] -  Implement advanced technical measures to ensure continuous and effective security monitoring and threat detection within AI infrastructure.",
+            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into security threats and enable prompt detection and response to ensure the protection and integrity of AI systems."
+          }
+        ]
+      },
+      {
+        "FieldType": "risk",
+        "FieldName": "Ineffective Incident Management",
+        "question": "Do you have a process in place if the AI system causes an issue (e.g., incorrect output, outage, or data leak)?",
+        "controls": [
+          {
+            "control": "IM[1] -  Establish an incident management capability to ensure effective detection, response, and mitigation of AI-related incidents.",
+            "control_objective": "To establish incident management processes that define roles, responsibilities, and procedures for managing AI-related incidents, ensuring timely and effective response to maintain AI system integrity and security."
+          },
+          {
+            "control": "IM[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations and other incidents, ensuring the reliability and accuracy of AI outputs.",
+            "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance and security, enabling prompt detection and resolution of incidents to maintain optimal operation."
+          }
+        ]
+      }
         ]
     }
-    ],
+	],  
     
    "Phase 6": [
   	{
