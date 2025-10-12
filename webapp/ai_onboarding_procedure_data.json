@@ -812,7 +812,7 @@
       "Fields": []
     },
     {
-      "StepName": "Connecting Internal Data to the Processing Pipeline",
+      "StepName": "Connecting Internal Data <-> the Processing Pipeline",
       "WebFormTitle": "To ensure the secure and confidential transfer of all proprietary data from internal sources into the data processing pipeline by enforcing strong encryption for all data in transit.",
       "Objectives": [
         {
@@ -831,7 +831,7 @@
   "Phase ????": [],
   "Phase Real-time Data Processing": [
     {
-      "StepName": "(A.4.3) AI Lifecycle Phase requirements - User Interface",
+      "StepName": "User Interface",
       "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
       "Objectives": [
         {
@@ -844,104 +844,7 @@
           "Objective": "3. Audibility and Non-repudiation: Creating an immutable record that proves a specific user performed a specific action, and they cannot later deny it. This is critical for security investigations and accountability."
         }
       ],
-      "Fields": []
-    },
-    {
-      "StepName": "(A.4.3) AI Lifecycle Phase requirements - RAG Orchestrator",
-      "WebFormTitle": "To ensure the secure and appropriate handling of user queries and retrieved data by enforcing strict access controls and mitigating complex inference-based attacks.",
-      "Objectives": [
-        {
-          "Objective": "1. Secure Workflow Management: The orchestrator acts as the central logic unit, managing the entire RAG process from receiving a user's query to retrieving data and generating a final, context-aware response."
-        },
-        {
-          "Objective": "2. Access Control Enforcement: It must rigorously check a user's permissions *before* retrieving data from the knowledge base. This is the most critical function to prevent access control bypasses, where a user could otherwise access confidential information beyond their privilege level."
-        },
-        {
-          "Objective": "3. Inference Attack Mitigation: The system must be designed to detect and counter inference attacks, where a user attempts to piece together sensitive information by asking numerous simple, seemingly harmless questions. This involves monitoring query patterns and applying appropriate safeguards."
-        }
-      ],
-      "Fields": []
-    },
-    {
-      "StepName": "(B.1.1) AI System Interactions - User Interface to RAG Orchestrator",
-      "WebFormTitle": "To ensure that all queries and responses between the user interface and the RAG orchestrator are subject to strict, user-specific access control enforcement, preventing unauthorized data disclosure.",
-      "Objectives": [
-        {
-          "Objective": "1. Enforce Access Control: The primary vulnerability is the failure to apply a user's specific permissions. This objective is to validate that the orchestrator, despite its high-level privileges, strictly filters all knowledge base queries and results according to the individual user's access rights."
-        },
-        {
-          "Objective": "2. Prevent Data Leakage: Directly addresses the risk of a major data breach by ensuring that sensitive documents retrieved by the orchestrator are never passed back to an unauthorized user through the communication channel."
-        },
-        {
-          "Objective": "3. Secure Communication Channel: To protect the integrity and confidentiality of the raw question and the final answer as they are transmitted between the user interface and the orchestrator, preventing interception or tampering."
-        }
-      ],
-      "Fields": []
-    },
-    {
-      "StepName": "(A.4.6) AI Lifecycle Phase requirements - Retrieval",
-      "WebFormTitle": "To ensure the retrieval process precisely fetches relevant information from the vector database while preventing the unintentional over-fetching of collateral sensitive data.",
-      "Objectives": [
-        {
-          "Objective": "1. Focused Retrieval: To query the vector database with the user's vectorized question to find and return only the most relevant text chunks from the indexed knowledge base."
-        },
-        {
-          "Objective": "2. Data Minimization: To mitigate the primary risk of unintentionally over-fetching sensitive data (e.g., PII like addresses or phone numbers) that may be included in a retrieved chunk alongside the intended information."
-        },
-        {
-          "Objective": "3. Prevent Downstream Exposure: To ensure 'collateral' sensitive data is not passed on to the LLM, thereby reducing the high risk of it being exposed in the final generated answer."
-        }
-      ],
-      "Fields": []
-    },
-    {
-      "StepName": "(A.4.7) AI Lifecycle Phase requirements - Generation",
-      "WebFormTitle": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data.",
-      "Objectives": [
-        {
-          "Objective": "1. Augmented Prompt Construction: To combine the user's question with the retrieved text chunks into a single, comprehensive 'augmented prompt' and send it to the LLM for final answer generation."
-        },
-        {
-          "Objective": "2. Mitigate Prompt Injection: To defend against vulnerabilities where a malicious instruction hidden in the user's query or retrieved data could hijack the LLM, causing it to perform unintended actions."
-        },
-        {
-          "Objective": "3. Prevent Data Leakage: To ensure the LLM does not include sensitive PII or confidential notes from the provided context in its final answer, thus preventing inadvertent exposure of private information."
-        }
-      ],
-      "Fields": []
-    }
-  ],
-  "Phase Development": [
-    {
-      "StepName": "(6.2.1) AI Lifecycle Phase requirements - Use and Decommissioning",
-      "WebFormTitle": "Define the security requirements for - Use and Decommissioning.",
       "Fields": [
-        {
-          "FieldType": "risk",
-          "FieldName": "Insufficient Audit Trails and Logging",
-          "question": "Will you need to track who accessed the AI system, what it did, and when — for accountability or regulatory purposes?",
-          "controls": [
-            {
-              "control": "AT[1] -  Record detailed logs of all data pre-processing activities, including data cleaning, normalisation, transformation, and any outlier removal or imputation techniques applied. Include timestamps, user IDs, and descriptions of actions taken.",
-              "control_objective": "To enable traceability and reconstruction of the entire data pre-processing workflow, providing a clear audit trail for identifying any issues or anomalies that may arise during this phase."
-            },
-            {
-              "control": "AT[2] -  Store logs in a secure and tamper-proof manner, ensuring their integrity and availability for future audits or investigations.",
-              "control_objective": "To ensure the availability of audit logs for a sufficient period to allow for thorough analysis and investigation of potential security or compliance issues. Protect logs from unauthorised modification or deletion to maintain their evidentiary value."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "Inadequate User Training and Awareness",
-          "question": "Will non-technical users rely on this AI — and have they been trained on its limitations and correct usage?",
-          "controls": [
-            {
-              "control": "[Art-9][Par-5][5c] -  Provide comprehensive information and training to AI system users within the organisation, considering their technical knowledge, experience, and education.",
-              "control_objective": "To ensure safe and responsible use of the adopted AI system by equipping users with necessary knowledge and skills."
-            }
-          ]
-        },
         {
           "FieldType": "risk",
           "FieldName": "LLM01 Prompt Injection",
@@ -1025,7 +928,24 @@
               "control_objective": "Verify supplier compliance and security."
             }
           ]
+        }     
+      ]
+    },
+    {
+      "StepName": "RAG Orchestrator",
+      "WebFormTitle": "To ensure the secure and appropriate handling of user queries and retrieved data by enforcing strict access controls and mitigating complex inference-based attacks.",
+      "Objectives": [
+        {
+          "Objective": "1. Secure Workflow Management: The orchestrator acts as the central logic unit, managing the entire RAG process from receiving a user's query to retrieving data and generating a final, context-aware response."
         },
+        {
+          "Objective": "2. Access Control Enforcement: It must rigorously check a user's permissions *before* retrieving data from the knowledge base. This is the most critical function to prevent access control bypasses, where a user could otherwise access confidential information beyond their privilege level."
+        },
+        {
+          "Objective": "3. Inference Attack Mitigation: The system must be designed to detect and counter inference attacks, where a user attempts to piece together sensitive information by asking numerous simple, seemingly harmless questions. This involves monitoring query patterns and applying appropriate safeguards."
+        }
+      ],
+      "Fields": [
         {
           "FieldType": "risk",
           "FieldName": "LLM08 Excessive Agency",
@@ -1044,7 +964,21 @@
               "control_objective": "To detect and mitigate unauthorised or harmful activities by monitoring system activity and responding promptly to incidents."
             }
           ]
+        }      
+      ]
+    },
+    {
+      "StepName": "Generic LLM",
+      "WebFormTitle": "To enforce strict operational security for the self-hosted LLM by isolating its network access and implementing governed MLOps deployment workflows.",
+      "Objectives": [
+        {
+          "Objective": "1. Resource Isolation: To contain the LLM's operational environment by strictly controlling and restricting its access to all network resources, internal services, and APIs, preventing it from performing unauthorized actions."
         },
+        {
+          "Objective": "2. Governed Deployment: To ensure model integrity and security by implementing automated MLOps deployment pipelines that include robust governance, tracking, and formal approval workflows for all changes."
+        }
+      ],
+      "Fields": [
         {
           "FieldType": "risk",
           "FieldName": "LLM10: Model Theft",
@@ -1059,51 +993,72 @@
               "control_objective": "Tighten access and deployment controls."
             }
           ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "[C.3.6] - Unsafe Decommissioning of AI Systems",
-          "question": "When this AI system is eventually retired, is there a formal plan to handle its data and models securely and to manage the transition to a replacement system without creating operational gaps?",
-          "controls": [
-            {
-              "control": "[C.3.6][BP-13] - Establish a formal decommissioning plan that specifies procedures for the secure archiving or certified destruction of the AI model and all associated data, in compliance with data retention policies and privacy regulations.",
-              "control_objective": "To prevent data breaches and the misuse of sensitive information or obsolete models after the system is retired."
-            },
-            {
-              "control": "[C.3.6][BP-14] - Ensure a managed transition when replacing an AI system by maintaining operational continuity, potentially through a period of overlap with the new system, to prevent any gaps in critical functionality.",
-              "control_objective": "To avoid creating vulnerabilities or disruptions to business processes during the transition from an old AI system to its replacement."
-            },
-            {
-              "control": "[C.3.6][BP-15] - Have an incident response plan for AI-related failures, including procedures for safe shutdown, reversion to manual processes, and clear communication to stakeholders.",
-              "control_objective": "To minimize harm and operational disruption when an AI incident occurs and ensure a structured recovery process."
-            }
-          ]
-        }
+        }      
       ]
     },
     {
-      "StepName": "(A.8.4) AI System Documentation and User Information",
-      "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
-      "Fields": [
+      "StepName": "User Interface <->  RAG Orchestrator",
+      "WebFormTitle": "To ensure that all queries and responses between the user interface and the RAG orchestrator are subject to strict, user-specific access control enforcement, preventing unauthorized data disclosure.",
+      "Objectives": [
         {
-          "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
-          "FieldLabel": "Data Breach",
-          "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
-          "FieldType": "TextBox"
+          "Objective": "1. Enforce Access Control: The primary vulnerability is the failure to apply a user's specific permissions. This objective is to validate that the orchestrator, despite its high-level privileges, strictly filters all knowledge base queries and results according to the individual user's access rights."
         },
         {
-          "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
-          "FieldLabel": "Model Misuse",
-          "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
-          "FieldType": "TextBox"
+          "Objective": "2. Prevent Data Leakage: Directly addresses the risk of a major data breach by ensuring that sensitive documents retrieved by the orchestrator are never passed back to an unauthorized user through the communication channel."
         },
         {
-          "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
-          "FieldLabel": "Model Failure",
-          "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
-          "FieldType": "TextBox"
+          "Objective": "3. Secure Communication Channel: To protect the integrity and confidentiality of the raw question and the final answer as they are transmitted between the user interface and the orchestrator, preventing interception or tampering."
         }
-      ]
+      ],
+      "Fields": []
+    },
+	{
+      "StepName": "RAG Orchestrator <->  Vector Database (Retrieval)",
+      "WebFormTitle": "To retrieve relevant text chunks from the knowledge base in response to a user query while mitigating the risk of unintentionally over-fetching and exposing sensitive data.",
+      "Objectives": [
+        {
+            "Objective": "1. Contextual Retrieval: To query the vector database with the user's vectorized input to find and return the most semantically relevant information needed to generate an accurate answer."
+        },
+        {
+            "Objective": "2. Mitigate Data Over-fetching: To address the primary risk of retrieving document chunks that contain the answer but also include collateral sensitive data, such as Personally Identifiable Information (PII)."
+        },
+        {
+            "Objective": "3. Prevent Sensitive Data Exposure: To ensure that unintentionally retrieved confidential details are not passed on to the LLM, thus preventing their potential exposure in the final generated answer."
+        }
+      ],
+      "Fields": []
+	},
+	{
+    "StepName": "RAG Orchestrator <-> Generic LLM (Augmented Prompt & LLM Call)",
+    "WebFormTitle": "To generate a coherent, fact-based answer by sending a context-rich prompt to the LLM while mitigating risks of prompt injection and sensitive data leakage.",
+    "Objectives": [
+        {
+            "Objective": "1. Prompt Augmentation: To combine the user's original question with the retrieved text chunks to create a single, comprehensive 'augmented prompt' for the LLM."
+        },
+        {
+            "Objective": "2. Mitigate Prompt Injection: To defend against malicious instructions hidden within the user's query or retrieved data that could hijack the LLM and cause it to perform unintended actions."
+        },
+        {
+            "Objective": "3. Prevent Data Leakage: To ensure the LLM does not inadvertently include sensitive PII or other confidential information from the context in its final answer, preventing the exposure of private data."
+        }
+      ],
+      "Fields": []
+	},
+    {
+      "StepName": "(A.4.7) AI Lifecycle Phase requirements - Generation",
+      "WebFormTitle": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data.",
+      "Objectives": [
+        {
+          "Objective": "1. Augmented Prompt Construction: To combine the user's question with the retrieved text chunks into a single, comprehensive 'augmented prompt' and send it to the LLM for final answer generation."
+        },
+        {
+          "Objective": "2. Mitigate Prompt Injection: To defend against vulnerabilities where a malicious instruction hidden in the user's query or retrieved data could hijack the LLM, causing it to perform unintended actions."
+        },
+        {
+          "Objective": "3. Prevent Data Leakage: To ensure the LLM does not include sensitive PII or confidential notes from the provided context in its final answer, thus preventing inadvertent exposure of private information."
+        }
+      ],
+      "Fields": []
     }
   ],
   "Phase Packaging": [
@@ -1213,6 +1168,83 @@
               "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks."
             }
           ]
+        }
+      ]
+    }
+  ],
+  "Phase Deployment": [
+    {
+      "StepName": "(6.2.1) AI Lifecycle Phase requirements - Deployment",
+      "WebFormTitle": "Define the security requirements for - Deployment.",
+      "Fields": [
+        {
+          "FieldType": "risk",
+          "FieldName": "Insufficient Audit Trails and Logging",
+          "question": "Will you need to track who accessed the AI system, what it did, and when — for accountability or regulatory purposes?",
+          "controls": [
+            {
+              "control": "AT[1] -  Record detailed logs of all data pre-processing activities, including data cleaning, normalisation, transformation, and any outlier removal or imputation techniques applied. Include timestamps, user IDs, and descriptions of actions taken.",
+              "control_objective": "To enable traceability and reconstruction of the entire data pre-processing workflow, providing a clear audit trail for identifying any issues or anomalies that may arise during this phase."
+            },
+            {
+              "control": "AT[2] -  Store logs in a secure and tamper-proof manner, ensuring their integrity and availability for future audits or investigations.",
+              "control_objective": "To ensure the availability of audit logs for a sufficient period to allow for thorough analysis and investigation of potential security or compliance issues. Protect logs from unauthorised modification or deletion to maintain their evidentiary value."
+            }
+          ]
+        },
+        {
+          "FieldType": "risk",
+          "FieldName": "Inadequate User Training and Awareness",
+          "question": "Will non-technical users rely on this AI — and have they been trained on its limitations and correct usage?",
+          "controls": [
+            {
+              "control": "[Art-9][Par-5][5c] -  Provide comprehensive information and training to AI system users within the organisation, considering their technical knowledge, experience, and education.",
+              "control_objective": "To ensure safe and responsible use of the adopted AI system by equipping users with necessary knowledge and skills."
+            }
+          ]
+        },
+        {
+          "FieldType": "risk",
+          "FieldName": "[C.3.6] - Unsafe Decommissioning of AI Systems",
+          "question": "When this AI system is eventually retired, is there a formal plan to handle its data and models securely and to manage the transition to a replacement system without creating operational gaps?",
+          "controls": [
+            {
+              "control": "[C.3.6][BP-13] - Establish a formal decommissioning plan that specifies procedures for the secure archiving or certified destruction of the AI model and all associated data, in compliance with data retention policies and privacy regulations.",
+              "control_objective": "To prevent data breaches and the misuse of sensitive information or obsolete models after the system is retired."
+            },
+            {
+              "control": "[C.3.6][BP-14] - Ensure a managed transition when replacing an AI system by maintaining operational continuity, potentially through a period of overlap with the new system, to prevent any gaps in critical functionality.",
+              "control_objective": "To avoid creating vulnerabilities or disruptions to business processes during the transition from an old AI system to its replacement."
+            },
+            {
+              "control": "[C.3.6][BP-15] - Have an incident response plan for AI-related failures, including procedures for safe shutdown, reversion to manual processes, and clear communication to stakeholders.",
+              "control_objective": "To minimize harm and operational disruption when an AI incident occurs and ensure a structured recovery process."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "(A.8.4) AI System Documentation and User Information",
+      "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
+      "Fields": [
+        {
+          "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
+          "FieldLabel": "Data Breach",
+          "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
+          "FieldType": "TextBox"
+        },
+        {
+          "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
+          "FieldLabel": "Model Misuse",
+          "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
+          "FieldType": "TextBox"
+        },
+        {
+          "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
+          "FieldLabel": "Model Failure",
+          "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
+          "FieldType": "TextBox"
         }
       ]
     }
