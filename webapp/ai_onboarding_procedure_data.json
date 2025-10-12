@@ -1,5 +1,7 @@
 {
-    "(A.9.4) AI system's intended use and limitations": {
+   "Phase 1": [
+  	{
+    	"StepName": "(A.9.4) AI system's intended use and limitations",
         "WebFormTitle": "Document the purpose, target users, and intended use cases of the AI system.",
         "Fields": [
             {
@@ -52,7 +54,8 @@
   			}  
         ]
     },
-    "(A.5.2, A.5.3) Workforce Transition and Adaptation for AI Integration": {
+    {
+    	"StepName": "(A.5.2, A.5.3) Workforce Transition and Adaptation for AI Integration",
         "WebFormTitle": "Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption.",
         "Fields": [
    			{
@@ -86,8 +89,12 @@
     			"FieldType": "TextBox"
   		    }  		    
         ]
-    },
-    "(A.5.2, A.5.3, A.5.4) Protection of Vulnerable Populations in AI Deployment": {
+    }
+    ],
+    
+   "Phase 2": [
+  	{
+    	"StepName": "(A.5.2, A.5.3, A.5.4) Protection of Vulnerable Populations in AI Deployment",
         "WebFormTitle": "Define adequate measures to ensure AI deployments do not unfairly impact or discriminate against vulnerable populations, and are controls in place to prevent unethical outcomes.",
         "Fields": [
 			{
@@ -134,8 +141,9 @@
     		]
   		}
     ]
-},
- 	"(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems": {
+	},
+  	{
+    	"StepName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
         "WebFormTitle": "Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts.",
         "Fields": [
               {
@@ -166,8 +174,9 @@
                 ]
               }   		
         ]
-},
-    "(A.4.4) AI Systems Software and Tooling Resources": {
+	},
+  	{
+    	"StepName":"(A.4.4) AI Systems Software and Tooling Resources",
         "WebFormTitle": "Define the software and tools used by the AI system.",
         "Fields": [
             {
@@ -190,7 +199,8 @@
             }
         ]
     },
-    "(A.4.5) AI Systems Computing Resources": {
+  	{
+    	"StepName": "(A.4.5) AI Systems Computing Resources",
         "WebFormTitle": "Define the computing resources used by the AI system",
         "Fields": [
             {
@@ -213,7 +223,8 @@
             }
         ]
     },
-    "AI Act - Section 2: Requirements for High-Risk AI Systems": {
+  	{
+    	"StepName":"AI Act - Section 2: Requirements for High-Risk AI Systems",
         "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
         "Fields": [
             {
@@ -402,11 +413,12 @@
                 ]
               }
         ]
-    },
+    }
+    ],
     
-    
-    
-    "(A.4.3) AI Lifecycle Phase requirements - Data Collection": {
+    "Phase 3": [
+  	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Internal Data Sources",
         "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
 		"Objectives": [
 				{"Objective" : "1. Data Integrity: This principle is about ensuring the information we use is the official source of truth. It means we select data from authoritative systems and explicitly exclude unofficial sources like draft documents, personal notes, or unverified information. This ensures the AI's answers are not just relevant and current, but are based on correct, approved company data."},
@@ -480,11 +492,35 @@
                 "FieldLabel": "Owner/Custodian",
                 "FieldText": "Person or team responsible for the data?",
                 "FieldType": "TextBox"
-            }
+            },
+            {
+    			"FieldType": "risk",
+    			"FieldName": "Malicious Data Ingestion (Data Poisoning & Indirect Prompt Injection)",
+    			"RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
+    			"question": "Does the AI system ingest data from internal sources (like wikis, shared drives, or databases) where a number of users have permission to create or edit content?",
+    			"controls": [
+              		{
+        				"control": "DATA-INT-01: Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
+        				"control_objective": "To prevent unauthorized users from introducing malicious or erroneous content at the source, directly mitigating risks of intentional Data Poisoning."
+              		},
+              		{
+        				"control": "DATA-INT-02: Enforce mandatory version control with detailed audit logs on all source data repositories. All changes, additions, and deletions must be attributable to a specific user and timestamp.",
+        				"control_objective": "To ensure a complete, auditable history of all changes to the knowledge base's source data, enabling rapid detection of unauthorized modifications and rollback to a last-known-good state."
+              		},
+              		{
+        				"control": "DATA-INT-03: Establish a mandatory content approval workflow for the addition or significant modification of documents in designated high-sensitivity data sources before they are ingested by the AI system.",
+        				"control_objective": "To create a formal human-in-the-loop verification gate that ensures the authenticity and appropriateness of critical information, providing a strong defense against both deliberate Data Poisoning and unintentional quality issues."
+              		},
+              		{
+        				"control": "DATA-INT-04: Ensure every data chunk processed and stored in the vector database retains immutable metadata linking it directly to its source document, version, and author.",
+        				"control_objective": "To maintain full data provenance, enabling users and administrators to verify the source of any information provided by the AI and to facilitate the targeted removal of compromised data if a poisoning incident is discovered."
+    }
+    			]			
+            }			
   		 ]
     }, 
-    
-    "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.": {
+  	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.",
         "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
 		"Objectives": [
 				{"Objective" : "1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact."},
@@ -495,7 +531,7 @@
 			{
     			"FieldType": "risk",
     			"FieldName": "(A.7.4) - Sensitive Data quality requirements",
-    			"question": "Data quality requirements for sensitive data?",
+    			"question": "If sensitive data used by the system is inaccurate, incomplete, or inconsistent, could it lead to significant negative consequences (e.g., incorrect decisions, financial loss, regulatory fines, or harm to individuals)?",
     			"controls": [
               		{
         				"control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
@@ -526,7 +562,7 @@
    			{
     			"FieldType": "risk",
     			"FieldName": "(A.7.4) - Internal data Data quality requirements",
-    			"question": "Data quality requirements for internal data?",
+    			"question": "If internal data used by the system is inaccurate, incomplete, or inconsistent, could it lead to significant negative consequences (e.g., incorrect decisions, financial loss, regulatory fines, or harm to individuals)?",
     			"controls": [
               		  {
         				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
@@ -558,7 +594,7 @@
   			{
     			"FieldType": "risk",
     			"FieldName": "(A.7.6) Sensitive Data Preparation Plan",
-    			"question": "Data Preparation Plan for Sensitive data?",
+    			"question": "Will the raw sensitive data require multiple steps—such as cleaning, extraction, transformation, or anonymization—before it is in a safe, compliant, and usable state for the AI system?",
     			"controls": [
               		  {
         				"control": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
@@ -613,7 +649,7 @@
  			{
     			"FieldType": "risk",
     			"FieldName": "(A.7.6) Internal Data Preparation Plan",
-    			"question": "Data Preparation Plan for internal data?",
+    			"question": "Will the raw internal data require multiple steps—such as cleaning, extraction, transformation, or anonymization—before it is in a safe, compliant, and usable state for the AI system?",
     			"controls": [
               		  {
         				"control": "DATA-INT-PRE-01: Implement masking to replace non-essential sensitive portions of data with a generic character (e.g., 'XXX-XX-1234' for internal IDs).",
@@ -697,9 +733,12 @@
     			]
   			}     
         ]
-    },     
+    }
+    ],  
     
-    "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data": {
+  "Phase 4": [
+  	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data",
         "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
 		"Objectives": [
 				{"Objective" : "1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format (vectorized), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit)."},
@@ -707,9 +746,9 @@
 				{"Objective" : "3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption."}
         ],
         "Fields": []
-    },   
-    
-    "(A.4.3) AI Lifecycle Phase requirements - User Query": {
+    },
+    {  
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - User Query",
         "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
 		"Objectives": [
 				{"Objective" : "1. Identity and Access: Establishes that the system must know who is making the request, which is the foundation for access control."},
@@ -717,9 +756,12 @@
 				{"Objective" : "3. Audibility and Non-repudiation: Creating an immutable record that proves a specific user performed a specific action, and they cannot later deny it. This is critical for security investigations and accountability."}
         ],
         "Fields": []
-    },      
+    }
+  ],       
        
-    "(A.4.3) AI Lifecycle Phase requirements - Secure Context Retrieval and Prompt Augmentation": {
+  "Phase 5": [
+  	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Context Retrieval and Prompt Augmentation",
         "WebFormTitle": "To uphold core data security principles by enforcing access controls, ensuring the integrity of the prompt through sanitization, and applying the principle of least privilege before providing context to the LLM.",
 		"Objectives": [
 				{"Objective" : "1. Access Controls: This ensures the system acts like a responsible librarian, checking a user's library card (their permissions) before retrieving any information. It guarantees that the AI can only pull answers from documents and data that the specific user is actually authorized to view, preventing a junior employee from accessing confidential executive files."},
@@ -727,9 +769,9 @@
 				{"Objective" : "3. Principle of Least Privilege: This is a need-to-know security measure. Even if a retrieved document contains a lot of information (e.g., a person's project status, salary, and home address), this step ensures that only the absolute minimum data required to answer the user's specific question is provided to the AI. This dramatically reduces the risk of accidentally exposing sensitive information."}
         ],
         "Fields": []
-    },      
-     
-    "(A.4.3) AI Lifecycle Phase requirements - Secure Generation and Response Delivery": {
+    },          
+  	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Generation and Response Delivery",
         "WebFormTitle": "To uphold the principles of responsible and trustworthy AI generation by applying content safety guardrails, filtering all model outputs to prevent sensitive data leakage, and delivering a final, verifiable answer with citations.",
 		"Objectives": [
 				{"Objective" : "1. Content Safety Guardrails: This is the AI's code of conduct. We have safety measures in place to ensure the model's response, even when based on factual data, is helpful, professional, and free of biased or inappropriate content. These guardrails ensure the AI's output aligns with our company values."},
@@ -738,8 +780,8 @@
         ],
         "Fields": []
     },  
-        
-    "(A.4.3) AI Lifecycle Phase requirements - Secure Logging and Monitoring": {
+  	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Logging and Monitoring",
         "WebFormTitle": "To uphold the principles of AI transparency, accountability, and continuous improvement by implementing a comprehensive logging system that securely captures all interaction data, enabling performance monitoring, quality assurance, and detailed audits.",
 		"Objectives": [
 				{"Objective" : "1. System Performance and Reliability: This is about keeping the AI healthy and efficient. By logging every interaction, we can measure key metrics like response times and success rates. This data is essential for our technical teams to identify performance bottlenecks, troubleshoot errors, and ensure the system remains reliable and responsive for all users."},
@@ -748,8 +790,8 @@
         ],
         "Fields": []
     },  
-                 
-    "(6.2.1) AI Lifecycle Phase requirements - Component Design and Development": {
+  	{
+    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Component Design and Development",
         "WebFormTitle": "Define the security requirements for lifecycle phase - Design and Development.",
         "Fields": [
           {
@@ -928,7 +970,8 @@
   		 }
         ]
     },
-    "(6.2.1) AI Lifecycle Phase requirements - Component Package": {
+  	{
+    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Component Package",
         "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
         "Fields": [
       {
@@ -1036,7 +1079,8 @@
       }
         ]
     },
-    "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates": {
+  	{
+    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates",
         "WebFormTitle": "Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates.",
         "Fields": [
       {
@@ -1173,7 +1217,8 @@
       }
         ]
     },
-    "(6.2.1) AI Lifecycle Phase requirements - Use and Decommissioning": {
+  	{
+    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Use and Decommissioning",
         "WebFormTitle": "Define the security requirements for - Use and Decommissioning.",
         "Fields": [
       {
@@ -1356,7 +1401,8 @@
       }   
         ]
     },
-    "(A.6.2.4) AI Systems verifications": {
+  	{
+    	"StepName": "(A.6.2.4) AI Systems verifications",
         "WebFormTitle": "Document verification and validation measures for the AI system and specify criteria for their use.",
         "Fields": [
             {
@@ -1410,9 +1456,8 @@
             }
         ]
     },
-    
-       
-    "(A.8.4) AI System Documentation and User Information": {
+   	{
+    	"StepName": "(A.8.4) AI System Documentation and User Information",
         "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
         "Fields": [
             {
@@ -1434,11 +1479,12 @@
                 "FieldType": "TextBox"
             }
         ]
-    },
+    }
+    ],
     
-    
-    
-    "AI Systems approvals": {
+   "Phase 6": [
+  	{
+    	"StepName": "AI Systems approvals",
         "WebFormTitle": "Document AI system approvals",
         "Fields": [
             {
@@ -1490,5 +1536,7 @@
                 "FieldType": "Option box with values:Yes/No"
             }
         ]
+    
     }
+    ]
 }
