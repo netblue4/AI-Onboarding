@@ -141,88 +141,97 @@
   		    }  		    
         ]
     },
-    {
-    	"StepName": "(A.5.2, A.5.3, A.5.4) Protection of Vulnerable Populations in AI Deployment",
-        "WebFormTitle": "Define adequate measures to ensure AI deployments do not unfairly impact or discriminate against vulnerable populations, and are controls in place to prevent unethical outcomes.",
-        "Fields": [
-			{
-    			"FieldType": "risk",
-    			"FieldName": "Protection of Vulnerable Populations in AI Deployment",
-    			"question": "Are there adequate measures to ensure AI deployments do not unfairly impact or discriminate against vulnerable populations, and are controls in place to prevent unethical outcomes?",
-    			"controls": [
-    				{
-        				"control": "RM-EI-01 - 01: Establish and maintain a Vulnerable Population Protection Plan documenting approaches to safeguard vulnerable groups in AI deployments.",
-        				"control_objective": "To ensure that AI deployment includes effective measures to protect vulnerable populations from unfair discrimination or unethical considerations."
-              		},
-              		{
-        				"control": "RM-EI-01 - 02: Implement documented Impact Mitigation Strategies to reduce negative effects on vulnerable groups identified during AI system assessments.",
-        				"control_objective": "To minimize the adverse impacts of AI systems on vulnerable populations through documented mitigation strategies."
-              		},
-              		{
-        				"control": "RM-EI-01 - 03: Apply a Vulnerability Assessment Protocol to evaluate and address risks for vulnerable populations in AI system deployment.",
-        				"control_objective": "To rigorously assess and manage vulnerabilities affecting sensitive groups in AI deployments."
-              		},
-              		{
-        				"control": "RM-EI-01 - 04: Use a Vulnerability Impact Assessment Framework to formally analyze AI system effects on vulnerable communities.",
-        				"control_objective": "To ensure systematic assessment of the impacts of AI systems on vulnerable populations."
-              		},
-              		{
-        				"control": "RM-EI-01 - 05: Enforce Child Protection Protocols to safeguard children from harmful impacts of AI systems.",
-        				"control_objective": "To protect minors from negative effects and risks posed by AI systems."
-              		},
-              		{
-        				"control": "RM-EI-01 - 06: Maintain Mitigation Strategy Documents detailing plans developed to address risks identified for vulnerable populations.",
-        				"control_objective": "To document and implement comprehensive mitigation strategies for vulnerable groups exposed to AI risks."
-              		},
-              		{
-        				"control": "RM-EI-01 - 07: Prepare a Vulnerable Populations Protection Plan including strategies and evidence of safeguarding efforts.",
-        				"control_objective": "To ensure robust and transparent safeguarding approaches for vulnerable populations in AI implementation."
-              		},
-              		{
-        				"control": "RM-EI-01 - 08: Document an Adverse Impact Mitigation Report that details actions taken to reduce negative outcomes for vulnerable groups.",
-        				"control_objective": "To transparently record mitigation actions and outcomes related to vulnerable populations."
-              		},
-              		{
-        				"control": "RM-EI-01 - 09: Develop an Impact Assessment Toolkit focused on identifying and assessing risks for vulnerable groups including children.",
-        				"control_objective": "To provide actionable tools and procedures for identifying risks to vulnerable populations prior to AI system deployment."
-              		}
-    		]
-  		}
+{
+    "StepName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
+    "WebFormTitle": "Define and evaluate the AI system's impacts, risks, and mitigation strategies specific to vulnerable populations affected by deployment.",
+    "Fields": [
+        {
+            "FieldName": "VP-IMP-1.1-PopulationType",
+            "FieldLabel": "Type of Vulnerable Population",
+            "FieldText": "Select and describe the at-risk group(s) impacted by the AI system (e.g., children, elderly, persons with disabilities, economically disadvantaged).",
+            "FieldType": "Option box with values:Not Applicable/Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
+        },
+        {
+            "FieldName": "VP-IMP-2.1-ImpactType",
+            "FieldLabel": "Nature of Potential Impact",
+            "FieldText": "Describe the specific ways the AI system could negatively or positively affect the vulnerable population identified.",
+            "FieldType": "TextBox"
+        },
+        {
+            "FieldName": "VP-IMP-2.2-SeverityAssessment",
+            "FieldLabel": "Impact Severity Level",
+            "FieldText": "Rate the severity of identified impacts (brief justification required).",
+            "FieldType": "Option box with values:Low/Medium/High"
+        },
+        {
+            "FieldName": "VP-IMP-3.1-MitigationStrategy",
+            "FieldLabel": "Primary Mitigation Strategy",
+            "FieldText": "Describe the main strategy chosen to prevent or reduce negative impacts for the vulnerable population.",
+            "FieldType": "Option box with values:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
+        },
+        {
+            "FieldName": "VP-IMP-4.1-StakeholderInclusion",
+            "FieldLabel": "Consultation with Affected Groups",
+            "FieldText": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
+            "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
+        },
+        {
+            "FieldName": "VP-IMP-3.2-MitigationEffectiveness",
+            "FieldLabel": "Post-Deployment Monitoring Plan",
+            "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and the frequency of review.",
+            "FieldType": "TextBox"
+        },
+
     ]
-	},
-  	{
-    	"StepName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
-        "WebFormTitle": "Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts.",
-        "Fields": [
-              {
-                "FieldType": "risk",
-                "FieldName": "Environmental Sustainability of AI Systems",
-                "question": "Do AI systems incorporate proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts?",
-                "controls": [
-                      {
-                        "control": "ENV-LCM-01: Measure and document the total energy consumption and associated carbon emissions (Scope 2) for the AI system across the entire lifecycle, including training, inference, and fine-tuning phases.",
-                        "control_objective": "To quantify the direct environmental footprint and establish a baseline for performance against sustainability targets."
-                      },
-                      {
-                        "control": "ENV-ALG-02: Mandate the selection of energy-efficient model architectures and computational practices (e.g., model pruning, quantization) to reduce resource intensity during development and operation.",
-                        "control_objective": "To minimize computational demand and promote 'frugal AI' by integrating sustainability into the model design phase."
-                      },
-                      {
-                        "control": "ENV-INF-03: Require deployment of AI systems only on certified green data centers (or cloud regions) that rely on renewable energy sources and employ advanced, water-efficient cooling techniques.",
-                        "control_objective": "To reduce the indirect environmental impact (carbon emissions and water usage) associated with the underlying computing infrastructure."
-                      },
-                      {
-                        "control": "ENV-HW-04: Establish a protocol for the end-of-life management of AI-specific hardware (GPUs, specialized accelerators), ensuring responsible disposal, refurbishment, or certified recycling to minimize electronic waste (e-waste).",
-                        "control_objective": "To address the supply chain and hardware impact by promoting a circular economy approach for resource-intensive components."
-                      },
-                      {
-                        "control": "ENV-DEC-05: Integrate environmental assessment results (ENV-LCM-01) into the final Go/No-Go decision process for the AI system, ensuring that the environmental cost is weighed against the intended societal benefit.",
-                        "control_objective": "To embed environmental stewardship into strategic decision-making, ensuring the net effect of AI deployment on the planet is demonstrably positive."
-                      }
-                ]
-              }   		
-        ]
-	},
+},
+{
+    "StepName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
+    "WebFormTitle": "Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts.",
+    "Fields": [
+        {
+            "FieldName": "ENV-IA-1.1-EnergySource",
+            "FieldLabel": "Primary Energy Source for AI Operations",
+            "FieldText": "Specify the primary source of electricity for the data centers used for training and deployment of the AI system.",
+            "FieldType": "Option box with values:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
+        },
+        {
+            "FieldName": "ENV-IA-2.1-ConsumptionMetrics",
+            "FieldLabel": "Energy Consumption & Carbon Footprint Estimation",
+            "FieldText": "Describe the methodology and provide the estimated energy consumption (e.g., in kWh) and carbon footprint (e.g., in tons of CO2e) for the system's lifecycle (training, validation, and deployment).",
+            "FieldType": "TextBox"
+        },
+        {
+            "FieldName": "ENV-IA-3.1-HardwareEOL",
+            "FieldLabel": "Hardware End-of-Life (EOL) Management Plan",
+            "FieldText": "Select the primary strategy for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
+            "FieldType": "Option box with values:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
+        },
+        {
+            "FieldName": "ENV-IA-4.1-EfficiencyMeasures",
+            "FieldLabel": "Primary Sustainability Practices or Mitigations",
+            "FieldText": "Describe or select main strategies for minimizing negative environmental impacts (e.g., renewable energy, model optimization, e-waste management).",
+            "FieldType": "Option box with values:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
+        },
+        {
+            "FieldName": "ENV-IA-4.2-ImpactLevel",
+            "FieldLabel": "Level of Environmental Impact",
+            "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
+            "FieldType": "Option box with values:Negligible/Low/Medium/High"
+        }        
+        {
+            "FieldName": "ENV-IA-5.1-PositiveContribution",
+            "FieldLabel": "Contribution to Environmental Sustainability Goals",
+            "FieldText": "Does the AI system's intended application directly contribute to positive environmental outcomes (e.g., climate change modeling, energy grid optimization, biodiversity monitoring)? If yes, please describe.",
+            "FieldType": "TextBox"
+        },
+        {
+            "FieldName": "ENV-IA-6.1-MonitoringReview",
+            "FieldLabel": "Environmental Impact Monitoring and Review",
+            "FieldText": "Describe the process and frequency for monitoring and reviewing the environmental performance metrics of the AI system over its lifecycle.",
+            "FieldType": "TextBox"
+        }
+    ]
+},
   	{
     	"StepName":"AI Act - Section 2: Requirements for High-Risk AI Systems",
         "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
