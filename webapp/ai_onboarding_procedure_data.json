@@ -913,115 +913,6 @@
         "Fields": []
     },
   	{
-    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Component Package",
-        "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
-        "Fields": [
-      {
-        "FieldType": "risk",
-        "FieldName": "Insecure AI component Packaging",
-        "question": "Are any components of the AI system be packaged in containers?",
-        "controls": [
-          {
-            "control": "PROTE.01 Ensure masking and anonymisation of sensitive or confidential data.",
-            "control_objective": "To protect sensitive data from unauthorised exposure during the packaging process."
-          },
-          {
-            "control": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
-            "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries."
-          },
-          {
-            "control": "PROTE.03 Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
-            "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images."
-          },
-          {
-            "control": "PROTE.04 Enforce read/write access control for registries containing proprietary or sensitive container images.",
-            "control_objective": "To restrict unauthorised access and modifications to container images stored in registries."
-          },
-          {
-            "control": "PROTE.05 Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
-            "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster."
-          },
-          {
-            "control": "PROTE.06 Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
-            "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security."
-          },
-          {
-            "control": "PROTE.07 Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
-            "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs."
-          },
-          {
-            "control": "PROTE.08 Establish stringent trust mechanisms for orchestrator nodes, including\na) secure introduction to the cluster\nb) persistent node identity\nc) inventory of nodes and their connectivity states\nd) resilience to individual node compromise\ne) mutual authentication of network connections with end-to-end encryption of intracluster traffic.",
-            "control_objective": "To build a secure and resilient orchestrator environment with trusted nodes and secure communications."
-          },
-          {
-            "control": "PROTE.09 Implement mechanisms for identifying Common Vulnerabilities and Exposures (CVEs) in the runtimes deployed.",
-            "control_objective": "To promptly identify and address known vulnerabilities in deployed runtimes, enhancing system security."
-          },
-          {
-            "control": "PROTE.10 Implement robust controls at network borders for monitoring and regulating egress network traffic originating from containers.",
-            "control_objective": "To control and monitor the outbound network traffic from containers, enhancing network security."
-          },
-          {
-            "control": "PROTE.11 Develop mechanisms to automatically enforce compliance requirements and, where applicable, prevent the execution of noncompliant container images.",
-            "control_objective": "To ensure that only compliant container images are deployed, maintaining a secure and regulated environment."
-          },
-          {
-            "control": "PROTE.12 Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
-            "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments."
-          },
-          {
-            "control": "PROTE.13 Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
-            "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks."
-          },
-          {
-            "control": "PROTE.14 Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
-            "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data."
-          },
-          {
-            "control": "PROTE.15 Implement mechanisms for continuous updating, centralised reporting, and monitoring of image compliance to identify weaknesses and risks.",
-            "control_objective": "To maintain up-to-date compliance and security status of container images, enabling proactive risk management."
-          },
-          {
-            "control": "PROTE.16 Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
-            "control_objective": "To safeguard the environment from untrusted or potentially harmful container images."
-          },
-          {
-            "control": "PROTE.17 Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
-            "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads."
-          },
-          {
-            "control": "PROTE.18 Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
-            "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment."
-          },
-          {
-            "control": "PROTE.19 Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
-            "control_objective": "To ensure the secure operation of APIs"
-          },
-          {
-            "control": "PROTE.20 Images should be configured to run as non-privileged users.",
-            "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment."
-          },
-          {
-            "control": "PROTE.21 Secrets should be stored outside of images and provided dynamically at runtime as needed.",
-            "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images."
-          },
-          {
-            "control": "PROTE.22 Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
-            "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation."
-          },
-          {
-            "control": "PROTE.23 Utilise built-in security features of your containerisation platform.",
-            "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications."
-          },
-          {
-            "control": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
-            "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks."
-          }
-        ]
-      }
-        ]
-    },
-  	{
     	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Use and Decommissioning",
         "WebFormTitle": "Define the security requirements for - Use and Decommissioning.",
         "Fields": [
@@ -1230,6 +1121,118 @@
         ]
     }
     ],
+    
+   "Phase Packaging": [
+  	{
+    	"StepName": "(6.2.1) AI Lifecycle Phase requirements - Component Package",
+        "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
+        "Fields": [
+      {
+        "FieldType": "risk",
+        "FieldName": "Insecure AI component Packaging",
+        "question": "Are any components of the AI system be packaged in containers?",
+        "controls": [
+          {
+            "control": "PROTE.01 Ensure masking and anonymisation of sensitive or confidential data.",
+            "control_objective": "To protect sensitive data from unauthorised exposure during the packaging process."
+          },
+          {
+            "control": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
+            "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries."
+          },
+          {
+            "control": "PROTE.03 Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
+            "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images."
+          },
+          {
+            "control": "PROTE.04 Enforce read/write access control for registries containing proprietary or sensitive container images.",
+            "control_objective": "To restrict unauthorised access and modifications to container images stored in registries."
+          },
+          {
+            "control": "PROTE.05 Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
+            "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster."
+          },
+          {
+            "control": "PROTE.06 Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
+            "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security."
+          },
+          {
+            "control": "PROTE.07 Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
+            "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs."
+          },
+          {
+            "control": "PROTE.08 Establish stringent trust mechanisms for orchestrator nodes, including\na) secure introduction to the cluster\nb) persistent node identity\nc) inventory of nodes and their connectivity states\nd) resilience to individual node compromise\ne) mutual authentication of network connections with end-to-end encryption of intracluster traffic.",
+            "control_objective": "To build a secure and resilient orchestrator environment with trusted nodes and secure communications."
+          },
+          {
+            "control": "PROTE.09 Implement mechanisms for identifying Common Vulnerabilities and Exposures (CVEs) in the runtimes deployed.",
+            "control_objective": "To promptly identify and address known vulnerabilities in deployed runtimes, enhancing system security."
+          },
+          {
+            "control": "PROTE.10 Implement robust controls at network borders for monitoring and regulating egress network traffic originating from containers.",
+            "control_objective": "To control and monitor the outbound network traffic from containers, enhancing network security."
+          },
+          {
+            "control": "PROTE.11 Develop mechanisms to automatically enforce compliance requirements and, where applicable, prevent the execution of noncompliant container images.",
+            "control_objective": "To ensure that only compliant container images are deployed, maintaining a secure and regulated environment."
+          },
+          {
+            "control": "PROTE.12 Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
+            "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments."
+          },
+          {
+            "control": "PROTE.13 Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
+            "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks."
+          },
+          {
+            "control": "PROTE.14 Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
+            "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data."
+          },
+          {
+            "control": "PROTE.15 Implement mechanisms for continuous updating, centralised reporting, and monitoring of image compliance to identify weaknesses and risks.",
+            "control_objective": "To maintain up-to-date compliance and security status of container images, enabling proactive risk management."
+          },
+          {
+            "control": "PROTE.16 Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
+            "control_objective": "To safeguard the environment from untrusted or potentially harmful container images."
+          },
+          {
+            "control": "PROTE.17 Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
+            "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads."
+          },
+          {
+            "control": "PROTE.18 Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
+            "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment."
+          },
+          {
+            "control": "PROTE.19 Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
+            "control_objective": "To ensure the secure operation of APIs"
+          },
+          {
+            "control": "PROTE.20 Images should be configured to run as non-privileged users.",
+            "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment."
+          },
+          {
+            "control": "PROTE.21 Secrets should be stored outside of images and provided dynamically at runtime as needed.",
+            "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images."
+          },
+          {
+            "control": "PROTE.22 Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
+            "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation."
+          },
+          {
+            "control": "PROTE.23 Utilise built-in security features of your containerisation platform.",
+            "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications."
+          },
+          {
+            "control": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
+            "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks."
+          }
+        ]
+      }
+        ]
+    }
+	], 
     
    	"Phase Post deployment verification": [
   	{
