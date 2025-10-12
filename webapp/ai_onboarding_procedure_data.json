@@ -425,9 +425,9 @@
     }
     ],
     
-	"Phase Secure Infrustructure": [
-  	{
-    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Internal Data Sources",
+	"Phase - Knowledge Base Preparation (Offline or Real-Time)": [
+  		{
+    	"StepName": "Internal Data Sources",
         "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
 		"Objectives": [
 				{"Objective" : "1. Data Integrity: This principle is about ensuring the information we use is the official source of truth. It means we select data from authoritative systems and explicitly exclude unofficial sources like draft documents, personal notes, or unverified information. This ensures the AI's answers are not just relevant and current, but are based on correct, approved company data."},
@@ -525,31 +525,10 @@
         				"control_objective": "To maintain full data provenance, enabling users and administrators to verify the source of any information provided by the AI and to facilitate the targeted removal of compromised data if a poisoning incident is discovered."
     }
     			]			
-            }			
-  		 ]
-    }, 
-  	{
-    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data",
-        "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
-		"Objectives": [
-				{"Objective" : "1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format (vectorized), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit)."},
-				{"Objective" : "2. Data Integrity and Access Control: This establishes strict controls over who can add, modify, or delete information in the AI's knowledge base. It prevents both accidental corruption and malicious tampering (data poisoning) by ensuring only authorized personnel or automated processes can manage the data, with all actions logged for auditing."},
-				{"Objective" : "3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption."}
-        ],
-        "Fields": []
-    },
-  	{
-    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Vectorise proprietary data.",
-        "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
-		"Objectives": [
-				{"Objective" : "1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact."},
-				{"Objective" : "2. Thorough Cleaning: Documents often contain digital noise that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers."},
-				{"Objective" : "3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete paragraphs or ideas. This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on."}
-        ],
-        "Fields": [
+            },
 			{
     			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Sensitive Data quality requirements",
+    			"FieldName": "(A.7.4) - Data quality requirements",
     			"question": "If sensitive data used by the system is inaccurate, incomplete, or inconsistent, could it lead to significant negative consequences (e.g., incorrect decisions, financial loss, regulatory fines, or harm to individuals)?",
     			"controls": [
               		{
@@ -577,39 +556,7 @@
        					"control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
                		 }
     			]
-  			},        
-   			{
-    			"FieldType": "risk",
-    			"FieldName": "(A.7.4) - Internal Data quality requirements",
-    			"question": "If internal data used by the system is inaccurate, incomplete, or inconsistent, could it lead to significant negative consequences (e.g., incorrect decisions, financial loss, regulatory fines, or harm to individuals)?",
-    			"controls": [
-              		  {
-        				"control": "DATA-INT - 01: The accuracy level for internal data must be **> 50%** of data points correct when compared to a trusted source.",
-        				"control_objective": "To ensure internal data is generally reliable and minimally fit for operational use."
-              		  },
-              		  {
-        				"control": "DATA-INT - 02: Internal data must have **No nulls in essential fields**.",
-        				"control_objective": "To guarantee the presence of fundamental data points necessary for business function and reporting."
-              		  },
-              		  {
-        				"control": "DATA-INT - 03: Internal data must have **No logical contradictions**.",
-        				"control_objective": "To minimize errors and conflicting information within the internal dataset."
-              		  },
-              		  {
-        				"control": "TDATA-INT - 04: he internal data must be updated at least **Daily**.",
-        				"control_objective": "To ensure internal data is updated frequently enough to support timely business processes."
-              		  },
-              		  {
-        				"control": "DATA-INT - 05: The internal data's provenance **should be known but full verification is not strictly required**.",
-        				"control_objective": "To establish a clear, documented understanding of the origin of internal data."
-              		  },
-              		  {
-        				"control": "DATA-INT - 06: A system like **Manual** tracking, or preferably DVC/Git, is required for managing and tracking internal data versions.",
-        				"control_objective": "To provide a basic ability to audit and revert changes to the internal dataset."
-              		  }    			
- 
-    			]
-  			},        
+  			},             
   			{
     			"FieldType": "risk",
     			"FieldName": "(A.7.6) Sensitive Data Preparation Plan",
@@ -664,55 +611,19 @@
         				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
               		  } 			
     			]
-  			},
- 			{
-    			"FieldType": "risk",
-    			"FieldName": "(A.7.6) Internal Data Preparation Plan",
-    			"question": "Will the raw internal data require multiple steps—such as cleaning, extraction, transformation, or anonymization—before it is in a safe, compliant, and usable state for the AI system?",
-    			"controls": [
-              		  {
-        				"control": "DATA-INT-PRE-01: Implement masking to replace non-essential sensitive portions of data with a generic character (e.g., 'XXX-XX-1234' for internal IDs).",
-        				"control_objective": "To limit the exposure of non-essential identifiers while retaining utility for analysis or testing environments."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-02: Apply generalization to reduce the precision of data where necessary for internal reporting flexibility (e.g., changing a specific age to an age range).",
-        				"control_objective": "To simplify data points for better aggregation and basic analysis without focusing on individual uniqueness."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-03: Create logically separate data stores for high-priority internal information, secured with appropriate access controls (Data Segregation).",
-        				"control_objective": "To logically separate and manage access to high-value internal data assets."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-04: Apply Attribute-Based Access Control (ABAC) rules so that only authorized users (e.g., based on role, department) can access certain data fields.",
-        				"control_objective": "To enforce granular access policies based on the principle of least privilege."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-05: Perform Feature Pruning to remove any data fields or columns that are not necessary for the intended internal business process or model.",
-        				"control_objective": "To apply the principle of data minimization by eliminating superfluous information, reducing storage, and improving processing efficiency."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-06: Perform Integrity Checks after any data transformation to verify that internal relationships between fields remain intact.",
-        				"control_objective": "To ensure that data preparation methods do not compromise the data's utility or internal relationships required for analysis."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-07: Implement a strategy for Handling Missing Values, such as filling them with a mean/median/mode, or removing the row/column, based on documented methodology.",
-        				"control_objective": "To improve the quality and robustness of the data prior to processing by managing gaps in the dataset systematically."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-08: Implement a process for Correcting Inaccuracies by identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values).",
-        				"control_objective": "To enhance the accuracy of the data by correcting known factual errors or anomalies."
-              		  },
-              		  {
-        				"control": "DATA-INT-PRE-09: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
-        				"control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
-              		  }	
-    			]
-  			}  
-        ]
-    },
-  	{
-    	"StepName": "Test Plans",
-        "WebFormTitle": "Test Plans",
+  			}            			
+  		 ]
+    	}, 
+      	{
+    	"StepName": "Data Processing Pipeline (Vectorise proprietary data)",
+        "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
+		"Objectives": [
+				{"Objective" : "1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact."},
+				{"Objective" : "2. Thorough Cleaning: Documents often contain digital noise that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers."},
+				{"Objective" : "3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete paragraphs or ideas. This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on."},
+				{"Objective" : "4. Fairness and Bias: AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory."},
+				{"Objective" : "4. Transparency and Explainability: Are AI are systems designed, developed and tested to provide understandable and sufficient information about its decisions."}
+        ],
         "Fields": [
           {
     			"FieldType": "risk",
@@ -869,6 +780,16 @@
     			]
   			}   
         ]
+    },
+  	{
+    	"StepName": "(A.4.3) AI Lifecycle Phase requirements - Indexing and storing companiy's proprietary data",
+        "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
+		"Objectives": [
+				{"Objective" : "1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format (vectorized), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit)."},
+				{"Objective" : "2. Data Integrity and Access Control: This establishes strict controls over who can add, modify, or delete information in the AI's knowledge base. It prevents both accidental corruption and malicious tampering (data poisoning) by ensuring only authorized personnel or automated processes can manage the data, with all actions logged for auditing."},
+				{"Objective" : "3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption."}
+        ],
+        "Fields": []
     }
     ],  
     
