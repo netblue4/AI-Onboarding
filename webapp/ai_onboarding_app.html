@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Onboarding Procedure</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .phase-header {
+            font-weight: bold;
+            color: #555;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            padding-left: 10px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
    <div class="steps-container">
@@ -60,40 +71,56 @@
                 const progressText = document.getElementById('progress-text');
                 const stepContainer = document.getElementById('step-container');
 
-                // --- MODIFICATIONS FOR NEW JSON STRUCTURE ---
-                // 1. Convert the phase-based object into an array of step objects.
-                const procedureDataArray = Object.values(webappData);
-                // 2. Create an array of step names from the new data array for the UI.
+                // --- MODIFICATIONS FOR NEW JSON STRUCTURE (PHASE WITH ARRAY OF STEPS) ---
+                // 1. Get all the step arrays from each phase using Object.values().
+                // 2. Use .flat() to merge the arrays of steps into a single, flat array.
+                const procedureDataArray = Object.values(webappData).flat();
+                // 3. Create an array of step names for progress tracking. This logic remains the same.
                 const procedureSteps = procedureDataArray.map(step => step.StepName);
                 // --- END MODIFICATIONS ---
 
                 const capturedData = {};
                 let currentStepIndex = 0;
 
-                // This function now makes each step item clickable.
+                // --- MODIFIED FUNCTION ---
+                // This function now renders phase headers before listing the steps.
                 function renderProcedureSteps() {
-                    stepContainer.innerHTML = ''; 
-                    procedureSteps.forEach((stepText, index) => {
-                        const stepDiv = document.createElement('div');
-                        stepDiv.className = 'step-item';
-                        stepDiv.id = `step-item-${index}`;
+                    stepContainer.innerHTML = '';
+                    let globalStepIndex = 0; // Keep track of the absolute step index
 
-                        const iconSpan = document.createElement('span');
-                        iconSpan.className = 'icon';
-                        stepDiv.appendChild(iconSpan);
+                    // Iterate over the original data to get phase names
+                    for (const [phaseName, stepsInPhase] of Object.entries(webappData)) {
+                        // Create and append a header for the phase
+                        const phaseHeader = document.createElement('div');
+                        phaseHeader.className = 'phase-header';
+                        phaseHeader.textContent = phaseName;
+                        stepContainer.appendChild(phaseHeader);
 
-                        const textSpan = document.createElement('span');
-                        textSpan.textContent = stepText;
-                        stepDiv.appendChild(textSpan);
-                        
-                        // Add click event listener to each step
-                        stepDiv.addEventListener('click', () => {
-                            currentStepIndex = index;
-                            renderCurrentStep();
+                        // Iterate over the steps within this phase
+                        stepsInPhase.forEach(step => {
+                            const stepDiv = document.createElement('div');
+                            stepDiv.className = 'step-item';
+                            stepDiv.id = `step-item-${globalStepIndex}`;
+
+                            const iconSpan = document.createElement('span');
+                            iconSpan.className = 'icon';
+                            stepDiv.appendChild(iconSpan);
+
+                            const textSpan = document.createElement('span');
+                            textSpan.textContent = step.StepName;
+                            stepDiv.appendChild(textSpan);
+                            
+                            // Use a captured variable for the index in the event listener
+                            const stepIndexToNavigate = globalStepIndex;
+                            stepDiv.addEventListener('click', () => {
+                                currentStepIndex = stepIndexToNavigate;
+                                renderCurrentStep();
+                            });
+
+                            stepContainer.appendChild(stepDiv);
+                            globalStepIndex++; // Increment for the next step
                         });
-
-                        stepContainer.appendChild(stepDiv);
-                    });
+                    }
                 }
 
                 function updateStepHighlight() {
@@ -135,8 +162,7 @@
                     updateProgressBar();
                     updateStepHighlight();
                     
-                    // --- MODIFICATION FOR NEW JSON STRUCTURE ---
-                    // Access the current step's data directly from the array.
+                    // Access the current step's data directly from the flattened array.
                     const stepData = procedureDataArray[currentStepIndex];
 
                     if (!stepData) {
@@ -192,8 +218,7 @@
 
                 nextBtn.addEventListener('click', () => {
                     const currentStepKey = procedureSteps[currentStepIndex];
-                    // --- MODIFICATION FOR NEW JSON STRUCTURE ---
-                    // Access the current step's data directly from the array.
+                    // Access the current step's data directly from the flattened array.
                     const stepData = procedureDataArray[currentStepIndex];
 
                     if (stepData && stepData.Fields) {
