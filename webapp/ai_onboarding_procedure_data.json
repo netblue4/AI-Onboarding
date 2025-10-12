@@ -217,7 +217,7 @@
             "FieldLabel": "Level of Environmental Impact",
             "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
             "FieldType": "Option box with values:Negligible/Low/Medium/High"
-        }        
+        },        
         {
             "FieldName": "ENV-IA-5.1-PositiveContribution",
             "FieldLabel": "Contribution to Environmental Sustainability Goals",
