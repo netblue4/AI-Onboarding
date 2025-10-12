@@ -796,7 +796,7 @@
       ]
     },
     {
-      "StepName": "Indexing and storing companiy's proprietary data",
+      "StepName": "Indexing and storing company's proprietary data",
       "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
       "Objectives": [
         {
