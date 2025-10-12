@@ -993,7 +993,37 @@
               "control_objective": "Tighten access and deployment controls."
             }
           ]
-        }      
+        },
+        {
+          "FieldType": "risk",
+          "FieldName": "AI01: Model Drift",
+          "question": "Is there a process to monitor the model's performance in production and retrain it when performance degrades due to changing data patterns?",
+          "controls": [
+            {
+              "control": "[AI01][1] - Implement continuous monitoring of model performance metrics and data drift detection.",
+              "control_objective": "Detect performance degradation and shifts in data distribution."
+            },
+            {
+              "control": "[AI01][2] - Establish a retraining pipeline to regularly update the model with new, relevant data.",
+              "control_objective": "Maintain model relevance and accuracy over time."
+            }
+  		  ]
+		},
+		{
+          "FieldType": "risk",
+          "FieldName": "AI02: Hallucination",
+          "question": "Does the AI application generate factual content, and are there mechanisms to verify its accuracy before it's used or presented to users?",
+          "controls": [
+          	{
+              "control": "[AI02][1] - Implement grounding techniques, such as Retrieval-Augmented Generation (RAG), to provide the model with verifiable, context-specific information.",
+              "control_objective": "Ensure model outputs are based on factual data."
+            },
+            {
+              "control": "[AI02][2] - Incorporate post-generation fact-checking and validation steps to verify the accuracy of the generated content.",
+              "control_objective": "Validate and filter out factually incorrect outputs."
+            }
+		  ]
+		}     
       ]
     },
     {
