@@ -15,7 +15,6 @@
             <div id="progress-text"></div>
         </div>
        <h1 id="steps-title">Steps</h1>
-       <!-- This container will be populated by JavaScript -->
        <div id="step-container"></div>
    </div>
     
@@ -61,11 +60,16 @@
                 const progressText = document.getElementById('progress-text');
                 const stepContainer = document.getElementById('step-container');
 
+                // --- MODIFICATIONS FOR NEW JSON STRUCTURE ---
+                // 1. Convert the phase-based object into an array of step objects.
+                const procedureDataArray = Object.values(webappData);
+                // 2. Create an array of step names from the new data array for the UI.
+                const procedureSteps = procedureDataArray.map(step => step.StepName);
+                // --- END MODIFICATIONS ---
+
                 const capturedData = {};
-                const procedureSteps = Object.keys(webappData);
                 let currentStepIndex = 0;
 
-                // --- MODIFIED FUNCTION ---
                 // This function now makes each step item clickable.
                 function renderProcedureSteps() {
                     stepContainer.innerHTML = ''; 
@@ -82,11 +86,9 @@
                         textSpan.textContent = stepText;
                         stepDiv.appendChild(textSpan);
                         
-                        // --- Add click event listener to each step ---
+                        // Add click event listener to each step
                         stepDiv.addEventListener('click', () => {
-                            // 1. Update the currentStepIndex to the clicked step's index
                             currentStepIndex = index;
-                            // 2. Call renderCurrentStep() to display the new step's content
                             renderCurrentStep();
                         });
 
@@ -125,7 +127,7 @@
                     if (currentStepIndex < totalSteps) {
                         progressText.textContent = `Step ${currentStepIndex + 1} of ${totalSteps}`;
                     }
-                    const progressPercentage = ((currentStepIndex) / (totalSteps - 1)) * 100;
+                    const progressPercentage = totalSteps > 1 ? ((currentStepIndex) / (totalSteps - 1)) * 100 : 100;
                     progressBar.style.width = progressPercentage + '%';
                 }
 
@@ -133,8 +135,9 @@
                     updateProgressBar();
                     updateStepHighlight();
                     
-                    const stepKey = procedureSteps[currentStepIndex];
-                    const stepData = webappData[stepKey];
+                    // --- MODIFICATION FOR NEW JSON STRUCTURE ---
+                    // Access the current step's data directly from the array.
+                    const stepData = procedureDataArray[currentStepIndex];
 
                     if (!stepData) {
                         mainTitle.textContent = "Error";
@@ -189,7 +192,9 @@
 
                 nextBtn.addEventListener('click', () => {
                     const currentStepKey = procedureSteps[currentStepIndex];
-                    const stepData = webappData[currentStepKey];
+                    // --- MODIFICATION FOR NEW JSON STRUCTURE ---
+                    // Access the current step's data directly from the array.
+                    const stepData = procedureDataArray[currentStepIndex];
 
                     if (stepData && stepData.Fields) {
                         capturedData['Step: ' + currentStepIndex] = currentStepKey;
