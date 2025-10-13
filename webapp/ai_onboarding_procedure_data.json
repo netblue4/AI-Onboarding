@@ -60,7 +60,7 @@
         {
           "FieldName": "(A.4.2, A.4.4) - Category",
           "FieldLabel": "",
-          "FieldText": "Categories of the tools?",
+          "FieldText": "Tool Categories",
           "FieldType": "MultiSeclect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
         },
         {
@@ -84,7 +84,7 @@
         {
           "FieldName": "(A.4.2, A.4.5) - Category",
           "FieldLabel": "",
-          "FieldText": "Category of the computing resource.",
+          "FieldText": "Category of the computing resource",
           "FieldType": "MultiSeclect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
         },
         {
@@ -105,13 +105,13 @@
           "Control": "A.9.4 – Intended use of the AI system",
           "FieldName": "(A.9.4) - Target Users",
           "FieldLabel": "",
-          "FieldText": "List all job titles whose daily tasks are anticipated to be altered by more than 20% due to the AI system.",
+          "FieldText": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
           "FieldType": "MultiSeclect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
         },
         {
           "FieldName": "HR-WIA-1.2-CoreAction",
           "FieldLabel": "",
-          "FieldText": "Identify the primary roles of the AI system relative to human workers.",
+          "FieldText": "Identify the primary roles of the AI system relative to human workers",
           "FieldType": "MultiSeclect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
         },
         {
@@ -123,7 +123,7 @@
         {
           "FieldName": "HR-WIA-4.1-MitigationPlan",
           "FieldLabel": "Primary Mitigation Strategy for Displacement",
-          "FieldText": "If job displacement is identified, select the primary strategies for the affected workers.",
+          "FieldText": "If job displacement is identified, select the primary strategies for the affected workers",
           "FieldType": "MultiSelect:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
         },
         {
@@ -147,31 +147,31 @@
         {
           "FieldName": "VP-IMP-1.1-PopulationType",
           "FieldLabel": "",
-          "FieldText": "Select the at-risk group(s) impacted by the AI system.",
+          "FieldText": "Select the at-risk group(s) impacted by the AI system",
           "FieldType": "Option box with values:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
         },
         {
           "FieldName": "VP-IMP-2.1-ImpactType",
-          "FieldLabel": "",
+          "FieldLabel": "Negitive or positive impacts",
           "FieldText": "Describe the specific ways the AI system could negatively or positively affect the vulnerable population identified.",
           "FieldType": "TextBox"
         },
         {
           "FieldName": "VP-IMP-2.2-SeverityAssessment",
           "FieldLabel": "",
-          "FieldText": "Rate the severity of identified impacts.",
+          "FieldText": "Rate the severity of identified impacts",
           "FieldType": "Dropdown box with values:/Low/Medium/High"
         },
         {
           "FieldName": "VP-IMP-2.3-SeverityAssessment",
           "FieldLabel": "",
-          "FieldText": "Describe the severity of identified impacts.",
+          "FieldText": "Describe the severity of identified impacts",
           "FieldType": "TextBox"
         },		  
         {
           "FieldName": "VP-IMP-3.1-MitigationStrategy",
           "FieldLabel": "",
-          "FieldText": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population.",
+          "FieldText": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population",
           "FieldType": "MultiSelect:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
         },
         {
@@ -531,22 +531,26 @@
           "RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
           "question": "Does the AI system ingest data from internal sources (like wikis, shared drives, or databases) where a number of users have permission to create or edit content?",
           "controls": [
-            {
-              "control": "DATA-INT-01: Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
-              "control_objective": "To prevent unauthorized users from introducing malicious or erroneous content at the source, directly mitigating risks of intentional Data Poisoning."
-            },
-            {
-              "control": "DATA-INT-02: Enforce mandatory version control with detailed audit logs on all source data repositories. All changes, additions, and deletions must be attributable to a specific user and timestamp.",
-              "control_objective": "To ensure a complete, auditable history of all changes to the knowledge base's source data, enabling rapid detection of unauthorized modifications and rollback to a last-known-good state."
-            },
-            {
-              "control": "DATA-INT-03: Establish a mandatory content approval workflow for the addition or significant modification of documents in designated high-sensitivity data sources before they are ingested by the AI system.",
-              "control_objective": "To create a formal human-in-the-loop verification gate that ensures the authenticity and appropriateness of critical information, providing a strong defense against both deliberate Data Poisoning and unintentional quality issues."
-            },
-            {
-              "control": "DATA-INT-04: Ensure every data chunk processed and stored in the vector database retains immutable metadata linking it directly to its source document, version, and author.",
-              "control_objective": "To maintain full data provenance, enabling users and administrators to verify the source of any information provided by the AI and to facilitate the targeted removal of compromised data if a poisoning incident is discovered."
-            }
+    {
+        "control": "DATA-INT-01: Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
+        "control_objective": "To prevent unauthorized users from introducing malicious or erroneous content at the source, directly mitigating risks of intentional Data Poisoning.",
+        "control_evidence": "A documented list of user roles and their assigned permissions for the data repository; screenshots or configuration exports from the system's access control panel demonstrating the principle of least privilege; and records of periodic access reviews."
+    },
+    {
+        "control": "DATA-INT-02: Enforce mandatory version control with detailed audit logs on all source data repositories. All changes, additions, and deletions must be attributable to a specific user and timestamp.",
+        "control_objective": "To ensure a complete, auditable history of all changes to the knowledge base's source data, enabling rapid detection of unauthorized modifications and rollback to a last-known-good state.",
+        "control_evidence": "Screenshots of the version control system's settings demonstrating that versioning is active, and a sample commit/change history log showing a clear attribution of changes to a specific user, timestamp, and a description of the change."
+    },
+    {
+        "control": "DATA-INT-03: Establish a mandatory content approval workflow for the addition or significant modification of documents in designated high-sensitivity data sources before they are ingested by the AI system.",
+        "control_objective": "To create a formal human-in-the-loop verification gate that ensures the authenticity and appropriateness of critical information, providing a strong defense against both deliberate Data Poisoning and unintentional quality issues.",
+        "control_evidence": "Documentation of the content approval process including designated approvers, and sample evidence such as a completed Pull Request with mandatory reviewer approvals, or a change management ticket (e.g., in Jira) with a logged approval signature."
+    },
+    {
+        "control": "DATA-INT-04: Ensure every data chunk processed and stored in the vector database retains immutable metadata linking it directly to its source document, version, and author.",
+        "control_objective": "To maintain full data provenance, enabling users and administrators to verify the source of any information provided by the AI and to facilitate the targeted removal of compromised data if a poisoning incident is discovered.",
+        "control_evidence": "A sample query output from the vector database displaying a data chunk alongside its associated metadata fields (e.g., source_document_name, version_id, ingestion_timestamp), and a code snippet from the data ingestion pipeline explicitly demonstrating how this metadata is extracted and attached."
+    }
           ]
         },
         {
