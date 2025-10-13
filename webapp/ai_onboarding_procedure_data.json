@@ -60,20 +60,20 @@
       "Fields": [
         {
           "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
-          "FieldLabel": "Tool Name and Version",
-          "FieldText": "Name of the software, library, or framework and Version number.",
+          "FieldLabel": "Tools Name and Version",
+          "FieldText": "Name of the software, libraries, or frameworks and their Version numbers.",
           "FieldType": "TextBox"
         },
         {
           "FieldName": "(A.4.2, A.4.4) - Category",
           "FieldLabel": "",
-          "FieldText": "Category of the tool?",
-          "FieldType": "Dropdown box with values:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+          "FieldText": "Categories of the tools?",
+          "FieldType": "MultiSeclect:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
         },
         {
           "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
           "FieldLabel": "Purpose/Use Case in Project",
-          "FieldText": "Tooling Resources: How this tool will be used in the AI system's lifecycle.",
+          "FieldText": "How these tools will be used in the AI system's lifecycle.",
           "FieldType": "TextBox"
         }
       ]
@@ -85,20 +85,20 @@
         {
           "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
           "FieldLabel": "Computing Resource Name and Version",
-          "FieldText": "Name of the software, library, or framework.",
+          "FieldText": "Names of the computing resources used.",
           "FieldType": "TextBox"
         },
         {
           "FieldName": "(A.4.2, A.4.5) - Category",
           "FieldLabel": "",
           "FieldText": "Category of the computing resource.",
-          "FieldType": "Dropdown box with values:/Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+          "FieldType": "MultiSeclect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
         },
         {
           "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
           "FieldLabel": "",
-          "FieldText": "Which part of the AI lifecycle does this resource supports?",
-          "FieldType": "Dropdown box with values:/Development/Training/Testing/Staging/Production/Monitoring"
+          "FieldText": "Which parts of the AI lifecycle do these resource supports?",
+          "FieldType": "MultiSeclect:Development/Training/Testing/Staging/Production/Monitoring"
         }
       ]
     }
@@ -111,8 +111,8 @@
         {
           "FieldName": "HR-WIA-1.2-CoreAction",
           "FieldLabel": "System's Core Action on Tasks",
-          "FieldText": "Identify the primary role of the AI relative to human workers.",
-          "FieldType": "Option box with values:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
+          "FieldText": "Identify the primary roles of the AI relative to human workers.",
+          "FieldType": "MultiSeclect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
         },
         {
           "FieldName": "HR-WIA-2.2-AutomationTasks",
@@ -123,19 +123,19 @@
         {
           "FieldName": "HR-WIA-4.1-MitigationPlan",
           "FieldLabel": "Primary Mitigation Strategy for Displacement",
-          "FieldText": "If job displacement is identified, select the primary strategy for the affected workers.",
-          "FieldType": "Option box with values:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
+          "FieldText": "If job displacement is identified, select the primary strategies for the affected workers.",
+          "FieldType": "MultiSelect:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
         },
         {
           "FieldName": "HR-WIA-4.2-TrainingProgram",
           "FieldLabel": "Structured Re-skilling Program in Place",
-          "FieldText": "Describe the primary strategy to address the affected workers.",
+          "FieldText": "Describe the primary strategies to address the affected workers.",
           "FieldType": "TextBox"
         },
         {
           "FieldName": "HR-WIA-4.2-TrainingProgram",
           "FieldLabel": "Structured Re-skilling Program Effectiveness",
-          "FieldText": "Describe the Training Effectiveness measures to evaluate the success of the primary strategy to address the affected workers.",
+          "FieldText": "Describe the Training Effectiveness measures to evaluate the success of the primary strategies to address the affected workers.",
           "FieldType": "TextBox"
         }
       ]
@@ -160,13 +160,13 @@
           "FieldName": "VP-IMP-2.2-SeverityAssessment",
           "FieldLabel": "Impact Severity Level",
           "FieldText": "Rate the severity of identified impacts (brief justification required).",
-          "FieldType": "Option box with values:Low/Medium/High"
+          "FieldType": "Dropdown box with values:Low/Medium/High"
         },
         {
           "FieldName": "VP-IMP-3.1-MitigationStrategy",
           "FieldLabel": "Primary Mitigation Strategy",
-          "FieldText": "Describe the main strategy chosen to prevent or reduce negative impacts for the vulnerable population.",
-          "FieldType": "Option box with values:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
+          "FieldText": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population.",
+          "FieldType": "MultiSelect:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
         },
         {
           "FieldName": "VP-IMP-4.1-StakeholderInclusion",
@@ -189,8 +189,8 @@
         {
           "FieldName": "ENV-IA-1.1-EnergySource",
           "FieldLabel": "Primary Energy Source for AI Operations",
-          "FieldText": "Specify the primary source of electricity for the data centers used for training and deployment of the AI system.",
-          "FieldType": "Option box with values:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
+          "FieldText": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
+          "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
         },
         {
           "FieldName": "ENV-IA-2.1-ConsumptionMetrics",
@@ -201,20 +201,20 @@
         {
           "FieldName": "ENV-IA-3.1-HardwareEOL",
           "FieldLabel": "Hardware End-of-Life (EOL) Management Plan",
-          "FieldText": "Select the primary strategy for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
-          "FieldType": "Option box with values:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
+          "FieldText": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
+          "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
         },
         {
           "FieldName": "ENV-IA-4.1-EfficiencyMeasures",
           "FieldLabel": "Primary Sustainability Practices or Mitigations",
           "FieldText": "Describe or select main strategies for minimizing negative environmental impacts (e.g., renewable energy, model optimization, e-waste management).",
-          "FieldType": "Option box with values:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
+          "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
         },
         {
           "FieldName": "ENV-IA-4.2-ImpactLevel",
           "FieldLabel": "Level of Environmental Impact",
           "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
-          "FieldType": "Option box with values:Negligible/Low/Medium/High"
+          "FieldType": "Dropdown box with values:Negligible/Low/Medium/High"
         },
         {
           "FieldName": "ENV-IA-5.1-PositiveContribution",
@@ -457,7 +457,7 @@
           "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
           "FieldLabel": "",
           "FieldText": "Where does the data originate from?",
-          "FieldType": "Dropdown box with values:/Internal database/Third-party vendor/Public repository/Synthetic generation"
+          "FieldType": "MultiSelect:/Internal database/Third-party vendor/Public repository/Synthetic generation"
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Intended Use",
@@ -469,13 +469,13 @@
           "FieldName": "(A.4.2, A.4.3) - Format",
           "FieldLabel": "",
           "FieldText": "What is the File format or storage system?",
-          "FieldType": "Dropdown box with values:/CSV/JSON/Parquet/SQL DB"
+          "FieldType": "MultiSelect:/CSV/JSON/Parquet/SQL DB"
         },
         {
           "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
           "FieldLabel": "",
           "FieldText": "How will the Data be acquired and selected?",
-          "FieldType": "Dropdown box with values:/Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
+          "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
@@ -499,7 +499,7 @@
           "FieldName": "(A.4.2, A.4.3) - Access Method",
           "FieldLabel": "",
           "FieldText": "How will the data be accessed?",
-          "FieldType": "Dropdown box with values:/S3 bucket path/API endpoint/Database query/Shared drive"
+          "FieldType": "MultiSelect:/S3 bucket path/API endpoint/Database query/Shared drive"
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
