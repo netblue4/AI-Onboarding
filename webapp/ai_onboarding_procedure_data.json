@@ -33,15 +33,8 @@
           "FieldType": "TextBox"
         },
         {
-          "Control": "A.9.4 – Intended use of the AI system",
-          "FieldName": "(A.9.4) - Target Users",
-          "FieldLabel": "",
-          "FieldText": "List all job titles whose daily tasks are anticipated to be altered by more than 20% due to the AI system.",
-          "FieldType": "MultiSeclect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
-        },
-        {
           "FieldName": "AI system impact assessment - Employees - Benefits",
-          "FieldLabel": "Employees",
+          "FieldLabel": "",
           "FieldText": "Select Potential Benefits:",
           "FieldType": "MultiSeclect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
         },
@@ -68,7 +61,7 @@
           "FieldName": "(A.4.2, A.4.4) - Category",
           "FieldLabel": "",
           "FieldText": "Categories of the tools?",
-          "FieldType": "MultiSeclect:/Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+          "FieldType": "MultiSeclect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
         },
         {
           "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
@@ -109,6 +102,13 @@
       "WebFormTitle": "Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption.",
       "Fields": [
         {
+          "Control": "A.9.4 – Intended use of the AI system",
+          "FieldName": "(A.9.4) - Target Users",
+          "FieldLabel": "",
+          "FieldText": "List all job titles whose daily tasks are anticipated to be altered by more than 20% due to the AI system.",
+          "FieldType": "MultiSeclect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
+        },
+        {
           "FieldName": "HR-WIA-1.2-CoreAction",
           "FieldLabel": "System's Core Action on Tasks",
           "FieldText": "Identify the primary roles of the AI relative to human workers.",
@@ -148,7 +148,7 @@
           "FieldName": "VP-IMP-1.1-PopulationType",
           "FieldLabel": "Type of Vulnerable Population",
           "FieldText": "Select and describe the at-risk group(s) impacted by the AI system (e.g., children, elderly, persons with disabilities, economically disadvantaged).",
-          "FieldType": "Option box with values:Not Applicable/Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
+          "FieldType": "Option box with values:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
         },
         {
           "FieldName": "VP-IMP-2.1-ImpactType",
@@ -160,7 +160,7 @@
           "FieldName": "VP-IMP-2.2-SeverityAssessment",
           "FieldLabel": "Impact Severity Level",
           "FieldText": "Rate the severity of identified impacts (brief justification required).",
-          "FieldType": "Dropdown box with values:Low/Medium/High"
+          "FieldType": "Dropdown box with values:/Low/Medium/High"
         },
         {
           "FieldName": "VP-IMP-3.1-MitigationStrategy",
@@ -214,7 +214,7 @@
           "FieldName": "ENV-IA-4.2-ImpactLevel",
           "FieldLabel": "Level of Environmental Impact",
           "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
-          "FieldType": "Dropdown box with values:Negligible/Low/Medium/High"
+          "FieldType": "Dropdown box with values:/Low/Medium/High"
         },
         {
           "FieldName": "ENV-IA-5.1-PositiveContribution",
