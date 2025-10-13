@@ -211,6 +211,23 @@ button:hover {
     overflow-y: auto; /* Add a vertical scrollbar only when needed */
     padding-bottom: 20px; /* Add some space at the bottom */
 }
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox-option input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+}
+        
+.checkbox-option label {
+    margin-bottom: 0; 
+}
+  
 .step-item {
     padding: 10px 15px;
     margin-bottom: 8px;
