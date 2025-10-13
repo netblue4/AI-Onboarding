@@ -13,6 +13,7 @@ function getFieldHandler(fieldType) {
         'Label':createDisabledLabel,
         'risk':createRisk,
         'objective':createObjective,
+        'multiselect':createMultiSelect,
     };
     
     if (exactMatchHandlers[fieldType]) {
@@ -23,7 +24,6 @@ function getFieldHandler(fieldType) {
     if (fieldType.startsWith('Dropdown box with values')) return createDropdown;
     if (fieldType.startsWith('Option box with values')) return createOptionBox;
     if (fieldType.startsWith('Decision')) return createDecisionField;
-    if (fieldType.toLowerCase().startsWith('multiselect')) return createMultiSelect;
 
     return null; // No handler found
 }
