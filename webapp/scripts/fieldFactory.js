@@ -23,7 +23,7 @@ function getFieldHandler(fieldType) {
     if (fieldType.startsWith('Dropdown box with values')) return createDropdown;
     if (fieldType.startsWith('Option box with values')) return createOptionBox;
     if (fieldType.startsWith('Decision')) return createDecisionField;
-    if (fieldType.startsWith('multiselect')) return createMultiSelect;
+    if (fieldType.startsWith('MultiSeclect')) return createMultiSelect;
 
     return null; // No handler found
 }
