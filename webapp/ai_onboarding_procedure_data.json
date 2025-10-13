@@ -110,8 +110,8 @@
         },
         {
           "FieldName": "HR-WIA-1.2-CoreAction",
-          "FieldLabel": "System's Core Action on Tasks",
-          "FieldText": "Identify the primary roles of the AI relative to human workers.",
+          "FieldLabel": "",
+          "FieldText": "Identify the primary roles of the AI system relative to human workers.",
           "FieldType": "MultiSeclect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
         },
         {
@@ -146,34 +146,46 @@
       "Fields": [
         {
           "FieldName": "VP-IMP-1.1-PopulationType",
-          "FieldLabel": "Type of Vulnerable Population",
-          "FieldText": "Select and describe the at-risk group(s) impacted by the AI system (e.g., children, elderly, persons with disabilities, economically disadvantaged).",
+          "FieldLabel": "",
+          "FieldText": "Select the at-risk group(s) impacted by the AI system.",
           "FieldType": "Option box with values:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
         },
         {
           "FieldName": "VP-IMP-2.1-ImpactType",
-          "FieldLabel": "Nature of Potential Impact",
+          "FieldLabel": "",
           "FieldText": "Describe the specific ways the AI system could negatively or positively affect the vulnerable population identified.",
           "FieldType": "TextBox"
         },
         {
           "FieldName": "VP-IMP-2.2-SeverityAssessment",
-          "FieldLabel": "Impact Severity Level",
-          "FieldText": "Rate the severity of identified impacts (brief justification required).",
+          "FieldLabel": "",
+          "FieldText": "Rate the severity of identified impacts.",
           "FieldType": "Dropdown box with values:/Low/Medium/High"
         },
         {
+          "FieldName": "VP-IMP-2.3-SeverityAssessment",
+          "FieldLabel": "",
+          "FieldText": "Describe the severity of identified impacts.",
+          "FieldType": "TextBox"
+        },		  
+        {
           "FieldName": "VP-IMP-3.1-MitigationStrategy",
-          "FieldLabel": "Primary Mitigation Strategy",
+          "FieldLabel": "",
           "FieldText": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population.",
           "FieldType": "MultiSelect:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
         },
         {
           "FieldName": "VP-IMP-4.1-StakeholderInclusion",
-          "FieldLabel": "Consultation with Affected Groups",
+          "FieldLabel": "Consultation",
           "FieldText": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
           "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
         },
+        {
+          "FieldName": "VP-IMP-4.2-SeverityAssessment",
+          "FieldLabel": "Impact Description",
+          "FieldText": "Describe the severity of identified impacts.",
+          "FieldType": "TextBox"
+        },		  
         {
           "FieldName": "VP-IMP-3.2-MitigationEffectiveness",
           "FieldLabel": "Post-Deployment Monitoring Plan",
@@ -188,7 +200,7 @@
       "Fields": [
         {
           "FieldName": "ENV-IA-1.1-EnergySource",
-          "FieldLabel": "Primary Energy Source for AI Operations",
+          "FieldLabel": "",
           "FieldText": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
           "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
         },
@@ -200,14 +212,14 @@
         },
         {
           "FieldName": "ENV-IA-3.1-HardwareEOL",
-          "FieldLabel": "Hardware End-of-Life (EOL) Management Plan",
+          "FieldLabel": "",
           "FieldText": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
           "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
         },
         {
           "FieldName": "ENV-IA-4.1-EfficiencyMeasures",
-          "FieldLabel": "Primary Sustainability Practices or Mitigations",
-          "FieldText": "Describe or select main strategies for minimizing negative environmental impacts (e.g., renewable energy, model optimization, e-waste management).",
+          "FieldLabel": "",
+          "FieldText": "Select main strategies for minimizing negative environmental impacts.",
           "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
         },
         {
@@ -216,6 +228,12 @@
           "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
           "FieldType": "Dropdown box with values:/Low/Medium/High"
         },
+        {
+          "FieldName": "VP-IMP-2.3-SeverityAssessment",
+          "FieldLabel": "Describe the Environmental Impact",
+          "FieldText": "Describe the degree of environmental burden/benefit.",
+          "FieldType": "TextBox"
+        },		  
         {
           "FieldName": "ENV-IA-5.1-PositiveContribution",
           "FieldLabel": "Contribution to Environmental Sustainability Goals",
