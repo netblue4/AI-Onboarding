@@ -200,9 +200,17 @@ button:hover {
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Make the container take the full viewport height */
     margin-right: 20px; /* Adds a 20px space below the container */
 }
 
+#step-container {
+    flex: 1; /* Allow this element to grow and fill available space */
+    overflow-y: auto; /* Add a vertical scrollbar only when needed */
+    padding-bottom: 20px; /* Add some space at the bottom */
+}
 .step-item {
     padding: 10px 15px;
     margin-bottom: 8px;
