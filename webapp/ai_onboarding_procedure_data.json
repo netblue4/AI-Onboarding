@@ -37,13 +37,13 @@
           "FieldName": "(A.9.4) - Target Users",
           "FieldLabel": "",
           "FieldText": "List all job titles whose daily tasks are anticipated to be altered by more than 20% due to the AI system.",
-          "FieldType": "MultiSeclect:NA/Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
+          "FieldType": "MultiSeclect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
         },
         {
           "FieldName": "AI system impact assessment - Employees - Benefits",
           "FieldLabel": "Employees",
           "FieldText": "Select Potential Benefits:",
-          "FieldType": "MultiSeclect:NA/Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
+          "FieldType": "MultiSeclect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
         },
         {
           "Control": "A.9.4 – Intended use of the AI system",
