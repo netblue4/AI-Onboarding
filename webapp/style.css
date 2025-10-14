@@ -60,21 +60,39 @@ body {
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
 }
+/* --- Step 1: Define the shared font styles for all elements --- */
 .form-field label,
 .form-field input[type="text"],
 .form-field select,
-.form-field textarea {
+.form-field textarea,
+.form-field p {
     font-size: 0.9rem;
-    font-weight: 200; /* Note: 100 is very thin, '400' or 'normal' is standard */
+    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
+}
+
+/* --- Step 2: Define styles ONLY for the form input elements --- */
+.form-field input[type="text"],
+.form-field select,
+.form-field textarea {
     width: 100%;
     padding: 0.45rem; 
     border-radius: 4px;
-     /* height: 2.7rem;    Force a specific height for a single line feel */
 }
+
+/* --- Step 3: Define styles ONLY for labels (if you want padding, etc.) --- */
 .form-field label {
+    padding: 0.45rem;
     display: block;
     margin-bottom: 0.5rem;
 }
+
+/* --- Step 4: Define styles ONLY for paragraphs (if you want padding, etc.) --- */
+.form-field p {
+    padding: 0.45rem;
+    /* You might want to adjust line-height for better readability */
+    line-height: 1.5; 
+}
+
 .label-bold{
     font-size: 0.9rem;
     font-weight: 300; /* Note: 100 is very thin, '400' or 'normal' is standard */
@@ -189,10 +207,10 @@ button:hover {
  */
 .collapsible-content {
     /* Set your desired max height here. I've kept the 600px from your code. */
-    max-height: 600px; 
+    //max-height: 600px; 
     
     /* This correctly enables the vertical scrollbar when content is taller than max-height. */
-    overflow-y: auto; 
+    //overflow-y: auto; 
     
     /* REMOVED: "overflow: hidden;" was here, which was causing the issue. */
 
