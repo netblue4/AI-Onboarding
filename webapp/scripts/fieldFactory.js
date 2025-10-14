@@ -13,7 +13,7 @@ function getFieldHandler(fieldType) {
         'Label':createDisabledLabel,
         'risk':createRisk,
         'objective':createObjective,
-        'testplan':createTestPlan,
+        'plan':createPlan,
     };
     
     if (exactMatchHandlers[fieldType]) {

@@ -8,7 +8,7 @@
  * @param {function} sanitizeForId - A utility function to create a safe string for use as an HTML ID.
  * @returns {HTMLElement} The fully constructed div element for the form field.
  */
-function createTestPlan(field, capturedData, sanitizeForId) {
+function createPlan(field, capturedData, sanitizeForId) {
     // Main container for the entire field
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
@@ -24,10 +24,10 @@ function createTestPlan(field, capturedData, sanitizeForId) {
     icon.textContent = '▶'; // Start in collapsed state
     headerDiv.appendChild(icon);
 
-    const testPlanFieldNameLabel = document.createElement('label');
-    testPlanFieldNameLabel.textContent = field.FieldName.trim(); // The main risk title
-    testPlanFieldNameLabel.className = 'label-bold';
-    headerDiv.appendChild(testPlanFieldNameLabel);
+    const planFieldNameLabel = document.createElement('label');
+    planFieldNameLabel.textContent = field.FieldName.trim(); // The main risk title
+    planFieldNameLabel.className = 'label-bold';
+    headerDiv.appendChild(planFieldNameLabel);
 
     fieldDiv.appendChild(headerDiv);
 
@@ -38,14 +38,14 @@ function createTestPlan(field, capturedData, sanitizeForId) {
 
 
  /**
- * Test Criteria.
+ * Plan Criteria.
  */
 
     // Add the criteria label  inside the collapsible area
-    const testPlanCriteriaLabel = document.createElement('label');
-    testPlanCriteriaLabel.textContent = "Test Criteria";
-    testPlanCriteriaLabel.className = 'label-bold';
-    contentDiv.appendChild(testPlanCriteriaLabel);
+    const planCriteriaLabel = document.createElement('label');
+    planCriteriaLabel.textContent = "Criteria";
+    planCriteriaLabel.className = 'label-bold';
+    contentDiv.appendChild(planCriteriaLabel);
     
     // Add separator
     const separator = document.createElement('hr');
@@ -57,8 +57,8 @@ function createTestPlan(field, capturedData, sanitizeForId) {
     const criteriaDiv = document.createElement('div');  
 
 
-    if (field.TestCriteria && Array.isArray(field.TestCriteria)) {
-        field.TestCriteria.forEach(criteriaItem => {
+    if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
+        field.PlanCriteria.forEach(criteriaItem => {
             const criteriaContainer = document.createElement('div');
 
             const criteriaText = document.createElement('p');
@@ -77,14 +77,14 @@ function createTestPlan(field, capturedData, sanitizeForId) {
     
 
  /**
- * Test steps.
+ * Plan steps.
  */
 
     // Add the criteria label  inside the collapsible area
-    const testPlanStepsLabel = document.createElement('label');
-    testPlanStepsLabel.textContent = "Test Steps";
-    testPlanStepsLabel.className = 'label-bold';
-    contentDiv.appendChild(testPlanStepsLabel);
+    const planStepsLabel = document.createElement('label');
+    planlanStepsLabel.textContent = "Steps";
+    planlanStepsLabel.className = 'label-bold';
+    contentDiv.appendChild(planlanStepsLabel);
 
     // Add separator
     const separatorStep = document.createElement('hr');
@@ -93,21 +93,21 @@ function createTestPlan(field, capturedData, sanitizeForId) {
 
 
     // Crreate the criteria  div
-    const testStepsDiv = document.createElement('div');  
+    const planStepsDiv = document.createElement('div');  
 
 
-    if (field.TestSteps && Array.isArray(field.TestSteps)) {
-        field.TestSteps.forEach(stepItem => {
+    if (field.PlanSteps && Array.isArray(field.PlanSteps)) {
+        field.PlanSteps.forEach(stepItem => {
             const stepContainer = document.createElement('div');
 
             const stepText = document.createElement('p');
             stepText.textContent = stepItem.step;
             stepContainer.appendChild(stepText);
  
-            testStepsDiv.appendChild(stepContainer);
+            planStepsDiv.appendChild(stepContainer);
         });
     }
-    contentDiv.appendChild(testStepsDiv);
+    contentDiv.appendChild(planStepsDiv);
 
 
     

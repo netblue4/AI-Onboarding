@@ -577,157 +577,157 @@
       ],
       "Fields": [
         {
-          "FieldType": "risk",
+          "FieldType": "plan",
           "FieldName": "(A.7.6) Sensitive Data Preparation Plan",
-          "question": "Will the raw sensitive data require multiple steps—such as cleaning, extraction, transformation, or anonymization—before it is in a safe, compliant, and usable state for the AI system?",
-          "controls": [
+          "PlanObjective": "Ensure that raw sensitive data is anonymised before it is used by the AI system?",
+          "PlanSteps": [
   {
-    "control": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
-    "control_objective": "To limit the exposure of sensitive identifiers while retaining data utility for analysis or testing environments.",
+    "step": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
+    "step_objective": "To limit the exposure of sensitive identifiers while retaining data utility for analysis or testing environments.",
     "control_evidence": "A sample of the dataset before and after the masking transformation is applied."
   },
   {
-    "control": "DATA-SEN-PRE-02: Implement tokenization to replace a sensitive data element with a non-sensitive equivalent ('token'). The original data must be stored in a secure vault.",
-    "control_objective": "To substitute sensitive values with surrogate non-sensitive values, thereby reducing the risk of a breach while preserving referential integrity.",
+    "step": "DATA-SEN-PRE-02: Implement tokenization to replace a sensitive data element with a non-sensitive equivalent ('token'). The original data must be stored in a secure vault.",
+    "step_objective": "To substitute sensitive values with surrogate non-sensitive values, thereby reducing the risk of a breach while preserving referential integrity.",
     "control_evidence": "A data sample demonstrating the replacement of sensitive data with tokens."
   },
   {
-    "control": "DATA-SEN-PRE-03: Use a cryptographic hashing function to convert sensitive data into a fixed-size string of characters.",
-    "control_objective": "To ensure the integrity and verification of sensitive data in a one-way process, preventing the exposure of original values.",
+    "step": "DATA-SEN-PRE-03: Use a cryptographic hashing function to convert sensitive data into a fixed-size string of characters.",
+    "step_objective": "To ensure the integrity and verification of sensitive data in a one-way process, preventing the exposure of original values.",
     "control_evidence": "Code snippet or module demonstrating the use of a standard, salted cryptographic hashing function (e.g., SHA-256). The data schema or dictionary indicating which fields are hashed."
   },
   {
-    "control": "DATA-SEN-PRE-04: Apply generalization to reduce the precision of data (e.g., changing a specific age to an age range or a full date of birth to just the year).",
-    "control_objective": "To reduce the risk of re-identification by making individual sensitive data points less unique.",
+    "step": "DATA-SEN-PRE-04: Apply generalization to reduce the precision of data (e.g., changing a specific age to an age range or a full date of birth to just the year).",
+    "step_objective": "To reduce the risk of re-identification by making individual sensitive data points less unique.",
     "control_evidence": "A comparative data sample showing the data before and after generalization."
   },
   {
-    "control": "DATA-SEN-PRE-07: Perform Feature Pruning to remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
-    "control_objective": "To adhere to the principle of data minimization by eliminating superfluous sensitive information.",
+    "step": "DATA-SEN-PRE-07: Perform Feature Pruning to remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
+    "step_objective": "To adhere to the principle of data minimization by eliminating superfluous sensitive information.",
     "control_evidence": "The data processing script showing the removal of specified columns."
   },
   {
-    "control": "DATA-SEN-PRE-12: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
-    "control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records.",
+    "step": "DATA-SEN-PRE-12: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
+    "step_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records.",
     "control_evidence": "A comparative data sample showing the data before and after Removing Duplicates."
   }
           ]
         },
         {
-          "FieldType": "risk",
+          "FieldType": "plan",
           "FieldName": "Fairness and Bias in AI Systems",
-          "question": "Are AI systems designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes for protected or vulnerable groups?",
-          "controls": [
+          "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
+          "PlanSteps": [
             {
-              "control": "DATA-CTX-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
-              "control_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics."
+              "step": "DATA-CTX-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
+              "step_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics."
             },
             {
-              "control": "DATA-CTX-02: Identify and document the 'favorable outcome' variable and its values within the dataset (e.g., loan_approved = 1, hired = TRUE).",
-              "control_objective": "To provide a clear, measurable target for performing historical bias analysis and calculating outcome rates across groups."
+              "step": "DATA-CTX-02: Identify and document the 'favorable outcome' variable and its values within the dataset (e.g., loan_approved = 1, hired = TRUE).",
+              "step_objective": "To provide a clear, measurable target for performing historical bias analysis and calculating outcome rates across groups."
             },
             {
-              "control": "DATA-CTX-03: List the protected attributes relevant to the system's context and jurisdiction (e.g., Gender, Age, Ethnicity, Disability per GDPR in Luxembourg).",
-              "control_objective": "To define the specific demographic and sensitive groups against which all subsequent fairness and bias tests will be conducted."
+              "step": "DATA-CTX-03: List the protected attributes relevant to the system's context and jurisdiction (e.g., Gender, Age, Ethnicity, Disability per GDPR in Luxembourg).",
+              "step_objective": "To define the specific demographic and sensitive groups against which all subsequent fairness and bias tests will be conducted."
             },
             {
-              "control": "DATA-REP-01: For each protected attribute, calculate and visualize the distribution of individuals across all subgroups (e.g., bar charts showing counts for each gender).",
-              "control_objective": "To quantify the demographic composition of the dataset and identify any underrepresentation of specific groups at a glance."
+              "step": "DATA-REP-01: For each protected attribute, calculate and visualize the distribution of individuals across all subgroups (e.g., bar charts showing counts for each gender).",
+              "step_objective": "To quantify the demographic composition of the dataset and identify any underrepresentation of specific groups at a glance."
             },
             {
-              "control": "DATA-REP-02: Compare the dataset's demographic proportions against relevant real-world population benchmarks (e.g., national census data, applicant pool statistics).",
-              "control_objective": "To formally assess for representation bias by determining if the dataset is a skewed or accurate sample of the target population."
+              "step": "DATA-REP-02: Compare the dataset's demographic proportions against relevant real-world population benchmarks (e.g., national census data, applicant pool statistics).",
+              "step_objective": "To formally assess for representation bias by determining if the dataset is a skewed or accurate sample of the target population."
             },
             {
-              "control": "DATA-HIST-01: Calculate and compare the rate of the 'favorable outcome' for each subgroup within a protected attribute (e.g., calculate the loan approval rate for males vs. females).",
-              "control_objective": "To measure for historical bias by identifying disparities in past outcomes between different demographic groups recorded in the data."
+              "step": "DATA-HIST-01: Calculate and compare the rate of the 'favorable outcome' for each subgroup within a protected attribute (e.g., calculate the loan approval rate for males vs. females).",
+              "step_objective": "To measure for historical bias by identifying disparities in past outcomes between different demographic groups recorded in the data."
             },
             {
-              "control": "DATA-HIST-02: Apply a quantitative disparity threshold, such as the 'Four-Fifths (80%) Rule', to determine if the observed differences in outcome rates are statistically significant.",
-              "control_objective": "To provide a concrete, defensible criterion for flagging potential discriminatory patterns and escalating them for review."
+              "step": "DATA-HIST-02: Apply a quantitative disparity threshold, such as the 'Four-Fifths (80%) Rule', to determine if the observed differences in outcome rates are statistically significant.",
+              "step_objective": "To provide a concrete, defensible criterion for flagging potential discriminatory patterns and escalating them for review."
             },
             {
-              "control": "DATA-PRX-01: Conduct a correlation analysis to identify non-protected features that are strong predictors of protected attributes (e.g., check correlation between zip code and ethnicity).",
-              "control_objective": "To uncover hidden sources of bias by identifying proxy variables that could enable the model to discriminate even if protected attributes are removed."
+              "step": "DATA-PRX-01: Conduct a correlation analysis to identify non-protected features that are strong predictors of protected attributes (e.g., check correlation between zip code and ethnicity).",
+              "step_objective": "To uncover hidden sources of bias by identifying proxy variables that could enable the model to discriminate even if protected attributes are removed."
             },
             {
-              "control": "DATA-GOV-01: Compile all findings into a formal 'Dataset Bias Report' detailing representation biases, historical biases, and identified proxies.",
-              "control_objective": "To create a comprehensive, auditable record of the fairness assessment, ensuring transparency and accountability for the data's state."
+              "step": "DATA-GOV-01: Compile all findings into a formal 'Dataset Bias Report' detailing representation biases, historical biases, and identified proxies.",
+              "step_objective": "To create a comprehensive, auditable record of the fairness assessment, ensuring transparency and accountability for the data's state."
             },
             {
-              "control": "DATA-GOV-02: Based on the report, select and document a clear mitigation strategy (e.g., collect more data, apply re-sampling/re-weighting, remove proxies, or formally accept the risk).",
-              "control_objective": "To ensure that identified biases are not ignored and that a deliberate, documented action plan is put in place to address them before model development."
+              "step": "DATA-GOV-02: Based on the report, select and document a clear mitigation strategy (e.g., collect more data, apply re-sampling/re-weighting, remove proxies, or formally accept the risk).",
+              "step_objective": "To ensure that identified biases are not ignored and that a deliberate, documented action plan is put in place to address them before model development."
             }
           ]
         },
         {
-          "FieldType": "risk",
+          "FieldType": "plan",
           "FieldName": "Transparency and Explainability in AI Systems",
-          "question": "Are AI systems designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
-          "controls": [
+          "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
+          "PlanSteps": [
             {
-              "control": "TRN-REQ-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
-              "control_objective": "To ensure that explanations are tailored and appropriate for the technical understanding and informational needs of each distinct stakeholder group."
+              "step": "TRN-REQ-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
+              "step_objective": "To ensure that explanations are tailored and appropriate for the technical understanding and informational needs of each distinct stakeholder group."
             },
             {
-              "control": "TRN-REQ-02: For each identified audience, define and document the primary question the explanation needs to answer (e.g., debugging, business logic validation, or personal recourse).",
-              "control_objective": "To focus the design of the explanation system on providing relevant, useful, and actionable information, rather than generic technical output."
+              "step": "TRN-REQ-02: For each identified audience, define and document the primary question the explanation needs to answer (e.g., debugging, business logic validation, or personal recourse).",
+              "step_objective": "To focus the design of the explanation system on providing relevant, useful, and actionable information, rather than generic technical output."
             },
             {
-              "control": "TRN-REQ-03: Conduct and document a review of legal and regulatory obligations for explainability, such as those related to GDPR in Luxembourg.",
-              "control_objective": "To ensure the system's transparency features are designed to meet or exceed legal compliance requirements for user rights and information."
+              "step": "TRN-REQ-03: Conduct and document a review of legal and regulatory obligations for explainability, such as those related to GDPR in Luxembourg.",
+              "step_objective": "To ensure the system's transparency features are designed to meet or exceed legal compliance requirements for user rights and information."
             },
             {
-              "control": "TRN-TEC-01: Mandate the use of inherently interpretable models (e.g., Logistic Regression, Decision Trees) when they meet performance requirements.",
-              "control_objective": "To reduce complexity and ambiguity by favoring models that are transparent by design, making the need for post-hoc explanation techniques secondary."
+              "step": "TRN-TEC-01: Mandate the use of inherently interpretable models (e.g., Logistic Regression, Decision Trees) when they meet performance requirements.",
+              "step_objective": "To reduce complexity and ambiguity by favoring models that are transparent by design, making the need for post-hoc explanation techniques secondary."
             },
             {
-              "control": "TRN-TEC-02: For complex models, implement a global explanation technique (e.g., Feature Importance) to describe the model's overall behavior.",
-              "control_objective": "To provide high-level transparency into the model's general logic, enabling business owners and auditors to validate its alignment with expectations."
+              "step": "TRN-TEC-02: For complex models, implement a global explanation technique (e.g., Feature Importance) to describe the model's overall behavior.",
+              "step_objective": "To provide high-level transparency into the model's general logic, enabling business owners and auditors to validate its alignment with expectations."
             },
             {
-              "control": "TRN-TEC-03: For complex models, implement a local explanation technique (e.g., SHAP or LIME) to explain individual predictions.",
-              "control_objective": "To enable the system to provide specific reasons for each decision, which is essential for debugging, user trust, and fulfilling regulatory rights."
+              "step": "TRN-TEC-03: For complex models, implement a local explanation technique (e.g., SHAP or LIME) to explain individual predictions.",
+              "step_objective": "To enable the system to provide specific reasons for each decision, which is essential for debugging, user trust, and fulfilling regulatory rights."
             },
             {
-              "control": "TRN-IMP-01: Technically integrate selected XAI libraries (e.g., SHAP) into the prediction pipeline to generate explanations alongside decisions.",
-              "control_objective": "To operationalize explainability, ensuring that the capability to generate an explanation is a core, reliable feature of the production system."
+              "step": "TRN-IMP-01: Technically integrate selected XAI libraries (e.g., SHAP) into the prediction pipeline to generate explanations alongside decisions.",
+              "step_objective": "To operationalize explainability, ensuring that the capability to generate an explanation is a core, reliable feature of the production system."
             },
             {
-              "control": "TRN-IMP-02: Conduct a sanity check of generated explanations for a sample of test cases, reviewed by a domain expert to ensure they are plausible and logical.",
-              "control_objective": "To validate that the explanation outputs are not just technically correct but also contextually meaningful and aligned with real-world knowledge."
+              "step": "TRN-IMP-02: Conduct a sanity check of generated explanations for a sample of test cases, reviewed by a domain expert to ensure they are plausible and logical.",
+              "step_objective": "To validate that the explanation outputs are not just technically correct but also contextually meaningful and aligned with real-world knowledge."
             },
             {
-              "control": "TRN-IMP-03: Test the stability of the explanation method to ensure that minor, irrelevant changes to an input do not produce disproportionately large changes in its explanation.",
-              "control_objective": "To build trust in the explanation system by verifying that its outputs are robust and reliable."
+              "step": "TRN-IMP-03: Test the stability of the explanation method to ensure that minor, irrelevant changes to an input do not produce disproportionately large changes in its explanation.",
+              "step_objective": "To build trust in the explanation system by verifying that its outputs are robust and reliable."
             },
             {
-              "control": "TRN-USR-01: Develop templates to translate raw technical explanation outputs (e.g., SHAP values) into clear, non-technical natural language for end-users.",
-              "control_objective": "To make explanations accessible and understandable to a non-expert audience, fulfilling the primary goal of user-facing transparency."
+              "step": "TRN-USR-01: Develop templates to translate raw technical explanation outputs (e.g., SHAP values) into clear, non-technical natural language for end-users.",
+              "step_objective": "To make explanations accessible and understandable to a non-expert audience, fulfilling the primary goal of user-facing transparency."
             },
             {
-              "control": "TRN-USR-02: For negative outcomes, design explanations to be actionable by including guidance or counterfactuals on what factors a user could potentially change.",
-              "control_objective": "To empower affected individuals by providing them with not just a reason, but also a potential path for recourse or a better future outcome."
+              "step": "TRN-USR-02: For negative outcomes, design explanations to be actionable by including guidance or counterfactuals on what factors a user could potentially change.",
+              "step_objective": "To empower affected individuals by providing them with not just a reason, but also a potential path for recourse or a better future outcome."
             },
             {
-              "control": "TRN-USR-03: For internal dashboards and business users, create simple visualizations (e.g., bar charts) summarizing the key factors influencing a decision.",
-              "control_objective": "To improve the speed and clarity of comprehension for internal stakeholders who need to understand model behavior quickly."
+              "step": "TRN-USR-03: For internal dashboards and business users, create simple visualizations (e.g., bar charts) summarizing the key factors influencing a decision.",
+              "step_objective": "To improve the speed and clarity of comprehension for internal stakeholders who need to understand model behavior quickly."
             },
             {
-              "control": "TRN-GOV-01: Document the system's explanation capabilities, including the methods used and audiences served, in a dedicated section of the Model Card.",
-              "control_objective": "To provide a central, standardized source of truth regarding the system's transparency features for governance and auditing purposes."
+              "step": "TRN-GOV-01: Document the system's explanation capabilities, including the methods used and audiences served, in a dedicated section of the Model Card.",
+              "step_objective": "To provide a central, standardized source of truth regarding the system's transparency features for governance and auditing purposes."
             },
             {
-              "control": "TRN-GOV-02: Define and publish a formal process for end-users to request a detailed explanation for a decision, including timelines and responsible parties.",
-              "control_objective": "To operationalize the right to explanation, ensuring that user requests are handled consistently, efficiently, and in compliance with policy and regulations."
+              "step": "TRN-GOV-02: Define and publish a formal process for end-users to request a detailed explanation for a decision, including timelines and responsible parties.",
+              "step_objective": "To operationalize the right to explanation, ensuring that user requests are handled consistently, efficiently, and in compliance with policy and regulations."
             }
           ]
         },
         {
-          "FieldType": "testplan",
+          "FieldType": "plan",
           "FieldName": "(A.7.4) (A.7.6) - Data quality requirements & Test Plan",
-          "TestObjective": "Data Quality Test Plan to ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
-          "TestCriteria": [
+          "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
+          "PlanCriteria": [
             {
               "criteria": "DATA-SEN - 01: The accuracy level for sensitive data must be > 95% of data points correct when compared to a trusted source.",
               "control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
@@ -759,7 +759,7 @@
               "criteria_evidence": "A link to the version control repository (e.g., Git, DVC). A review of the repository's commit history demonstrating consistent and meaningful commits for data changes. A README file or documentation outlining the branching and tagging strategy for data versions."
             }
           ],
-          "TestSteps": [
+          "PlanSteps": [
             {
               "step": "BBT-EXT-ACC-01: Establish a 'golden dataset' by manually and accurately extracting all critical data points from a representative sample of 10-20 source documents of varying types (PDF, DOCX, etc.).",
               "step_objective": "To create a verified, ground-truth benchmark against which the automated extraction process's accuracy can be quantitatively measured, directly testing for control DATA-SEN-01."
