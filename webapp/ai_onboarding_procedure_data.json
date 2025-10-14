@@ -578,63 +578,39 @@
       "Fields": [
         {
           "FieldType": "risk",
-          "FieldName": "(A.7.4) - Data quality requirements",
-          "question": "If sensitive data used by the system is inaccurate, incomplete, or inconsistent, could it lead to significant negative consequences (e.g., incorrect decisions, financial loss, regulatory fines, or harm to individuals)?",
-          "controls": []
-        },
-        {
-          "FieldType": "risk",
           "FieldName": "(A.7.6) Sensitive Data Preparation Plan",
           "question": "Will the raw sensitive data require multiple steps—such as cleaning, extraction, transformation, or anonymization—before it is in a safe, compliant, and usable state for the AI system?",
           "controls": [
-            {
-              "control": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
-              "control_objective": "To limit the exposure of sensitive identifiers while retaining data utility for analysis or testing environments."
-            },
-            {
-              "control": "DATA-SEN-PRE-02: Implement tokenization to replace a sensitive data element with a non-sensitive equivalent ('token'). The original data must be stored in a secure vault.",
-              "control_objective": "To substitute sensitive values with surrogate non-sensitive values, thereby reducing the risk of a breach while preserving referential integrity."
-            },
-            {
-              "control": "DATA-SEN-PRE-03: Use a cryptographic hashing function to convert sensitive data into a fixed-size string of characters.",
-              "control_objective": "To ensure the integrity and verification of sensitive data in a one-way process, preventing the exposure of original values."
-            },
-            {
-              "control": "DATA-SEN-PRE-04: Apply generalization to reduce the precision of data (e.g., changing a specific age to an age range or a full date of birth to just the year).",
-              "control_objective": "To reduce the risk of re-identification by making individual sensitive data points less unique."
-            },
-            {
-              "control": "DATA-SEN-PRE-05: Create physically or logically separate data stores for sensitive information, secured with strict access controls (Data Segregation).",
-              "control_objective": "To minimize the scope of access and contain potential security breaches affecting sensitive information."
-            },
-            {
-              "control": "DATA-SEN-PRE-06: Apply Attribute-Based Access Control (ABAC) rules so that only users with specific attributes (e.g., role, department) can access certain data fields.",
-              "control_objective": "To enforce granular, dynamic access policies based on specific user and data characteristics."
-            },
-            {
-              "control": "DATA-SEN-PRE-07: Perform Feature Pruning to remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
-              "control_objective": "To adhere to the principle of data minimization by eliminating superfluous sensitive information."
-            },
-            {
-              "control": "DATA-SEN-PRE-08: Remove records of individuals who have not given consent for their data to be used for AI training (Data Minimization).",
-              "control_objective": "To ensure sensitive data processing complies with legal and ethical requirements regarding individual consent."
-            },
-            {
-              "control": "DATA-SEN-PRE-09: Perform Integrity Checks after de-identification to verify that relationships between anonymized fields (e.g., a tokenized user ID and their records) remain intact.",
-              "control_objective": "To ensure that de-identification methods do not compromise the data's utility or internal relationships required for analysis."
-            },
-            {
-              "control": "DATA-SEN-PRE-10: Implement a strategy for Handling Missing Values, such as removing empty or null fields, filling them with a mean/median/mode, or removing the row/column.",
-              "control_objective": "To improve the quality and robustness of the data prior to processing by managing gaps in the dataset systematically."
-            },
-            {
-              "control": "DATA-SEN-PRE-11: Implement a process for Correcting Inaccuracies by identifying and fixing demonstrably incorrect data points (e.g., typos, out-of-range values).",
-              "control_objective": "To enhance the accuracy of the data by correcting known factual errors or anomalies."
-            },
-            {
-              "control": "DATA-SEN-PRE-12: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
-              "control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records."
-            }
+  {
+    "control": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
+    "control_objective": "To limit the exposure of sensitive identifiers while retaining data utility for analysis or testing environments.",
+    "control_evidence": "A sample of the dataset before and after the masking transformation is applied."
+  },
+  {
+    "control": "DATA-SEN-PRE-02: Implement tokenization to replace a sensitive data element with a non-sensitive equivalent ('token'). The original data must be stored in a secure vault.",
+    "control_objective": "To substitute sensitive values with surrogate non-sensitive values, thereby reducing the risk of a breach while preserving referential integrity.",
+    "control_evidence": "A data sample demonstrating the replacement of sensitive data with tokens."
+  },
+  {
+    "control": "DATA-SEN-PRE-03: Use a cryptographic hashing function to convert sensitive data into a fixed-size string of characters.",
+    "control_objective": "To ensure the integrity and verification of sensitive data in a one-way process, preventing the exposure of original values.",
+    "control_evidence": "Code snippet or module demonstrating the use of a standard, salted cryptographic hashing function (e.g., SHA-256). The data schema or dictionary indicating which fields are hashed."
+  },
+  {
+    "control": "DATA-SEN-PRE-04: Apply generalization to reduce the precision of data (e.g., changing a specific age to an age range or a full date of birth to just the year).",
+    "control_objective": "To reduce the risk of re-identification by making individual sensitive data points less unique.",
+    "control_evidence": "A comparative data sample showing the data before and after generalization."
+  },
+  {
+    "control": "DATA-SEN-PRE-07: Perform Feature Pruning to remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
+    "control_objective": "To adhere to the principle of data minimization by eliminating superfluous sensitive information.",
+    "control_evidence": "The data processing script showing the removal of specified columns."
+  },
+  {
+    "control": "DATA-SEN-PRE-12: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
+    "control_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records.",
+    "control_evidence": "A comparative data sample showing the data before and after Removing Duplicates."
+  }
           ]
         },
         {
@@ -753,9 +729,9 @@
           "TestObjective": "Data Quality Test Plan to ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
           "TestCriteria": [
             {
-              "Criteria": "DATA-SEN - 01: The accuracy level for sensitive data must be > 95% of data points correct when compared to a trusted source.",
-              "Criteria_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
-              "Criteria_evidence": "A data quality report or test results from a validation script showing an accuracy score of > 95%. Documentation of the validation methodology, including the definition of the 'trusted source'. The validation script itself should be available for review."
+              "criteria": "DATA-SEN - 01: The accuracy level for sensitive data must be > 95% of data points correct when compared to a trusted source.",
+              "control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
+              "criteria_evidence": "A data quality report or test results from a validation script showing an accuracy score of > 95%. Documentation of the validation methodology, including the definition of the 'trusted source'. The validation script itself should be available for review."
             },
             {
               "criteria": "DATA-SEN - 02: Sensitive data must have All critical information present and all necessary data fields populated.",
