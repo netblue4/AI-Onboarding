@@ -89,13 +89,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 
     // --- 3. Iterate and Display Controls ---
     // Crreate the control collapsible div
-    const controlsDiv = document.createElement('div');
-    controlsDiv.className = 'collapsible-content collapsed';
-    // Add the click listener to the controlContainer to toggle the content visibility
-    controlsDiv.addEventListener('click', () => {
-        const isCollapsed = controlsDiv.classList.toggle('collapsed');
-        icon.textContent = isCollapsed ? '▶' : '▼';
-    });    
+    const controlsDiv = document.createElement('div');  
     // Crreate label for the control collapsible div
     const controlLabel = document.createElement('label');
     controlLabel.textContent = 'Controls';
