@@ -60,7 +60,7 @@
         {
           "FieldName": "(A.4.2, A.4.4) - Category",
           "FieldLabel": "",
-          "FieldText": "Tool Categories",
+          "FieldText": "Select Tool Categories",
           "FieldType": "MultiSeclect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
         },
         {
@@ -176,7 +176,7 @@
         },
         {
           "FieldName": "VP-IMP-4.1-StakeholderInclusion",
-          "FieldLabel": "Consultation",
+          "FieldLabel": "",
           "FieldText": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
           "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
         },
@@ -479,8 +479,8 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Intended Use",
-          "FieldLabel": "",
-          "FieldText": "What is the specific purpose(s) of the data?",
+          "FieldLabel": "What is the specific purpose(s) of the data?",
+          "FieldText": "",
           "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
         },
         {
