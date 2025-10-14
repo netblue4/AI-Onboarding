@@ -182,27 +182,43 @@ button:hover {
     margin-left: 28px; 
 }
 
-/* The wrapper for the content that will be hidden or shown */
+
+/*
+ * The wrapper for the content that will be hidden or shown.
+ * This is the style for the OPEN/EXPANDED state.
+ */
 .collapsible-content {
-    max-height: 500px; /* Set your desired max height here */
-    overflow-y: auto;  /* Add scrollbar only when needed */
-    padding: 15px;     /* Add some internal spacing */
-    padding-right: 10px; /* Space to avoid text hitting the scrollbar */
+    /* Set your desired max height here. I've kept the 600px from your code. */
+    max-height: 600px; 
+    
+    /* This correctly enables the vertical scrollbar when content is taller than max-height. */
+    overflow-y: auto; 
+    
+    /* REMOVED: "overflow: hidden;" was here, which was causing the issue. */
+
+    padding: 15px;
+    padding-right: 10px;
     margin-left: 5px;
     border-left: 1px solid #e0e0e0;
-    overflow: hidden;
-    transition: max-height 0.35s ease-in-out;
-    max-height: 600px;
+    transition: all 0.35s ease-in-out; /* 'all' provides a smoother transition for padding/border */
 }
 
-/* The state when content is collapsed (hidden) */
+/*
+ * The state when content is COLLAPSED (hidden).
+ */
 .collapsible-content.collapsed {
     max-height: 0;
     border-left-color: transparent;
-    padding-top: 0;    /* Remove padding for a clean collapse */
-    padding-bottom: 0; /* Remove padding for a clean collapse */
-    overflow: hidden;  /* Crucial: Hide the content and scrollbar completely */
+    padding-top: 0;
+    padding-bottom: 0;
+
+    /* This is CRUCIAL here to hide the content completely when collapsed. */
+    overflow: hidden; 
 }
+
+
+
+
 
 /* General styling for elements inside the collapsible area */
 .collapsible-content .label-bold,
