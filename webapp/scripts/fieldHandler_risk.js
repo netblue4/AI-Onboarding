@@ -95,7 +95,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // Crreate the controls  div
     const controlsDiv = document.createElement('div');  
     // Create label for the controls div
-    const controlLabel = document.createElement('label');
+    const controlLabel = document.createElement('p');
     controlLabel.textContent = 'Controls';
     controlLabel.className = 'label-bold';
     contentDiv.appendChild(controlLabel);
@@ -121,7 +121,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // Crreate the Evidence  div
     const evidenceDiv = document.createElement('div');  
     // Create label for the evidenc div
-    const evidenceLabel = document.createElement('label');
+    const evidenceLabel = document.createElement('p');
     evidenceLabel.textContent = 'Evidence required';
     evidenceLabel.className = 'label-bold';
     contentDiv.appendChild(evidenceLabel);
