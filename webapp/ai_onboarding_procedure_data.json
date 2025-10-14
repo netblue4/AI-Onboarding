@@ -36,7 +36,7 @@
           "FieldName": "AI system impact assessment - Employees - Benefits",
           "FieldLabel": "",
           "FieldText": "Select Potential Benefits:",
-          "FieldType": "MultiSeclect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
+          "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
         },
         {
           "Control": "A.9.4 – Intended use of the AI system",
@@ -61,7 +61,7 @@
           "FieldName": "(A.4.2, A.4.4) - Category",
           "FieldLabel": "",
           "FieldText": "Select Tool Categories",
-          "FieldType": "MultiSeclect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+          "FieldType": "MultiSelect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
         },
         {
           "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
@@ -85,13 +85,13 @@
           "FieldName": "(A.4.2, A.4.5) - Category",
           "FieldLabel": "",
           "FieldText": "Category of the computing resource",
-          "FieldType": "MultiSeclect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+          "FieldType": "MultiSelect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
         },
         {
           "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
           "FieldLabel": "",
           "FieldText": "Which parts of the AI lifecycle do these resource supports?",
-          "FieldType": "MultiSeclect:Development/Training/Testing/Staging/Production/Monitoring"
+          "FieldType": "MultiSelect:Development/Training/Testing/Staging/Production/Monitoring"
         }
       ]
     }
@@ -106,13 +106,13 @@
           "FieldName": "(A.9.4) - Target Users",
           "FieldLabel": "",
           "FieldText": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
-          "FieldType": "MultiSeclect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
+          "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
         },
         {
           "FieldName": "HR-WIA-1.2-CoreAction",
           "FieldLabel": "",
           "FieldText": "Identify the primary roles of the AI system relative to human workers",
-          "FieldType": "MultiSeclect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
+          "FieldType": "MultiSelect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
         },
         {
           "FieldName": "HR-WIA-2.2-AutomationTasks",
