@@ -107,6 +107,10 @@ function createRisk(field, capturedData, sanitizeForId) {
             const controlText = document.createElement('p');
             controlText.textContent = controlItem.control;
             controlContainer.appendChild(controlText);
+            
+            const input = document.createElement('textarea');
+    		input.value = controlItem.control_evidence;
+    		controlContainer.appendChild(input);
  
             controlsDiv.appendChild(controlContainer);
         });
@@ -116,7 +120,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 
 
 
-
+/*
     // --- 4. Iterate and Display Evidence ---
     // Crreate the Evidence  div
     const evidenceDiv = document.createElement('div');  
@@ -138,7 +142,7 @@ function createRisk(field, capturedData, sanitizeForId) {
         });
     }
     contentDiv.appendChild(evidenceDiv);
-
+*/
     
 
 
