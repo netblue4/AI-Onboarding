@@ -59,8 +59,8 @@
         },
         {
           "FieldName": "(A.4.2, A.4.4) - Category",
-          "FieldLabel": "",
-          "FieldText": "Select Tool Categories",
+          "FieldLabel": "Select Tool Categories",
+          "FieldText": "",
           "FieldType": "MultiSelect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
         },
         {
@@ -83,14 +83,14 @@
         },
         {
           "FieldName": "(A.4.2, A.4.5) - Category",
-          "FieldLabel": "",
-          "FieldText": "Category of the computing resource",
+          "FieldLabel": "Category of the computing resource",
+          "FieldText": "",
           "FieldType": "MultiSelect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
         },
         {
           "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
-          "FieldLabel": "",
-          "FieldText": "Which parts of the AI lifecycle do these resource supports?",
+          "FieldLabel": "Which parts of the AI lifecycle do these resource supports?",
+          "FieldText": "",
           "FieldType": "MultiSelect:Development/Training/Testing/Staging/Production/Monitoring"
         }
       ]
@@ -104,14 +104,14 @@
         {
           "Control": "A.9.4 – Intended use of the AI system",
           "FieldName": "(A.9.4) - Target Users",
-          "FieldLabel": "",
-          "FieldText": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
+          "FieldLabel": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
+          "FieldText": "",
           "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
         },
         {
           "FieldName": "HR-WIA-1.2-CoreAction",
-          "FieldLabel": "",
-          "FieldText": "Identify the primary roles of the AI system relative to human workers",
+          "FieldLabel": "Identify the primary roles of the AI system relative to human workers",
+          "FieldText": "",
           "FieldType": "MultiSelect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
         },
         {
@@ -146,8 +146,8 @@
       "Fields": [
         {
           "FieldName": "VP-IMP-1.1-PopulationType",
-          "FieldLabel": "",
-          "FieldText": "Select the at-risk group(s) impacted by the AI system",
+          "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
+          "FieldText": "",
           "FieldType": "Option box with values:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
         },
         {
@@ -158,14 +158,14 @@
         },
         {
           "FieldName": "VP-IMP-2.2-SeverityAssessment",
-          "FieldLabel": "",
-          "FieldText": "Rate the severity of identified impacts",
+          "FieldLabel": "Rate the severity of identified impacts",
+          "FieldText": "",
           "FieldType": "Dropdown box with values:/Low/Medium/High"
         },
         {
           "FieldName": "VP-IMP-2.3-SeverityAssessment",
-          "FieldLabel": "",
-          "FieldText": "Describe the severity of identified impacts",
+          "FieldLabel": "Describe the severity of identified impacts",
+          "FieldText": "",
           "FieldType": "TextBox"
         },
         {
@@ -176,8 +176,8 @@
         },
         {
           "FieldName": "VP-IMP-4.1-StakeholderInclusion",
-          "FieldLabel": "",
-          "FieldText": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
+          "FieldLabel": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
+          "FieldText": "",
           "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
         },
         {
@@ -200,8 +200,8 @@
       "Fields": [
         {
           "FieldName": "ENV-IA-1.1-EnergySource",
-          "FieldLabel": "",
-          "FieldText": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
+          "FieldLabel": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
+          "FieldText": "",
           "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
         },
         {
@@ -212,14 +212,14 @@
         },
         {
           "FieldName": "ENV-IA-3.1-HardwareEOL",
-          "FieldLabel": "",
-          "FieldText": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
+          "FieldLabel": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
+          "FieldText": "",
           "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
         },
         {
           "FieldName": "ENV-IA-4.1-EfficiencyMeasures",
-          "FieldLabel": "",
-          "FieldText": "Select main strategies for minimizing negative environmental impacts.",
+          "FieldLabel": "Select main strategies for minimizing negative environmental impacts.",
+          "FieldText": "",
           "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
         },
         {
@@ -473,8 +473,8 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
-          "FieldLabel": "",
-          "FieldText": "Where does the data originate from?",
+          "FieldLabel": "Where does the data originate from?",
+          "FieldText": "",
           "FieldType": "MultiSelect:/Internal database/Third-party vendor/Public repository/Synthetic generation"
         },
         {
@@ -485,20 +485,20 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Format",
-          "FieldLabel": "",
-          "FieldText": "What is the File format or storage system?",
+          "FieldLabel": "What is the File format or storage system?",
+          "FieldText": "",
           "FieldType": "MultiSelect:/CSV/JSON/Parquet/SQL DB"
         },
         {
           "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
-          "FieldLabel": "",
-          "FieldText": "How will the Data be acquired and selected?",
+          "FieldLabel": "How will the Data be acquired and selected?",
+          "FieldText": "",
           "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
-          "FieldLabel": "",
-          "FieldText": "What is the data Retention schedules based on legal and operational requirements?",
+          "FieldLabel": "What is the data Retention schedules based on legal and operational requirements?",
+          "FieldText": "",
           "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
         },
         {
@@ -515,8 +515,8 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Access Method",
-          "FieldLabel": "",
-          "FieldText": "How will the data be accessed?",
+          "FieldLabel": "How will the data be accessed?",
+          "FieldText": "",
           "FieldType": "MultiSelect:/S3 bucket path/API endpoint/Database query/Shared drive"
         },
         {
@@ -626,7 +626,7 @@
         },
         {
           "FieldType": "plan",
-          "FieldName": "Fairness and Bias in AI Systems",
+          "FieldName": "Fairness and Bias in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
           "PlanCriteria": [
             {
@@ -700,7 +700,7 @@
         },
         {
           "FieldType": "plan",
-          "FieldName": "Transparency and Explainability in AI Systems",
+          "FieldName": "Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
           "PlanCriteria": [
             {
