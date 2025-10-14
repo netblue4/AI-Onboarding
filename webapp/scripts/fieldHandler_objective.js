@@ -38,7 +38,7 @@ function createObjective(objectives) {
 
 
     if (objectives && Array.isArray(objectives)) {
-        objectives.Objective.forEach(objectiveItem => {
+        objectives.forEach(objectiveItem => {
     		// --- 2. Add the Objective Content ---
     		// This is the original content from your function, now placed inside the collapsible area.
     		const span = document.createElement('span');
