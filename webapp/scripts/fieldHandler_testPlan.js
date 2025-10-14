@@ -82,7 +82,7 @@ function createTestPlan(field, capturedData, sanitizeForId) {
 
     // Add the criteria label  inside the collapsible area
     const testPlanStepsLabel = document.createElement('label');
-    testPlanStepsLabel.textContent = "Test Steps"";
+    testPlanStepsLabel.textContent = "Test Steps";
     testPlanStepsLabel.className = 'label-bold';
     contentDiv.appendChild(testPlanStepsLabel);
 
