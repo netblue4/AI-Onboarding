@@ -93,7 +93,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // Create label for the controls div
     const controlLabel = document.createElement('label');
     controlLabel.textContent = 'Controls';
-    controlLabel.className = 'objective-text';
+    controlLabel.className = 'label-bold';
     contentDiv.appendChild(controlLabel);
 
     if (field.controls && Array.isArray(field.controls)) {
@@ -102,7 +102,6 @@ function createRisk(field, capturedData, sanitizeForId) {
 
             const controlText = document.createElement('p');
             controlText.textContent = controlItem.control;
-            controlText.className = 'label-bold-small';
             controlContainer.appendChild(controlText);
  
             controlsDiv.appendChild(controlContainer);
@@ -120,7 +119,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // Create label for the evidenc div
     const evidenceLabel = document.createElement('label');
     evidenceLabel.textContent = 'Evidence required';
-    evidenceLabel.className = 'objective-text';
+    evidenceLabel.className = 'label-bold';
     contentDiv.appendChild(evidenceLabel);
 
     if (field.controls && Array.isArray(field.controls)) {
@@ -129,7 +128,6 @@ function createRisk(field, capturedData, sanitizeForId) {
 
             const evidenceText = document.createElement('p');
             evidenceText.textContent = controlItem.control_evidence;
-            evidenceText.className = 'label-bold-small';
             evidenceContainer.appendChild(evidenceText);
  
             evidenceDiv.appendChild(evidenceContainer);
