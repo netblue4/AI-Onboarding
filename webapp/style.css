@@ -77,7 +77,7 @@ body {
     width: 100%;
     padding: 0.45rem; 
     border-radius: 4px;
-    border: 1px solid #007BFF;
+    border: 1px solid #eee;
 }
 
 /* --- Step 3: Define styles ONLY for labels (if you want padding, etc.) --- */
@@ -113,6 +113,8 @@ body {
      /* height: 2.7rem;    Force a specific height for a single line feel 
 }*/
  .form-field .auto-generated-label {
+    font-size: 0.9rem;
+    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
     font-style: italic;
     color: #555;
     background-color: #eee;
