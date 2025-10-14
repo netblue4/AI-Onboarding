@@ -82,9 +82,9 @@ function createPlan(field, capturedData, sanitizeForId) {
 
     // Add the criteria label  inside the collapsible area
     const planStepsLabel = document.createElement('label');
-    planlanStepsLabel.textContent = "Steps";
-    planlanStepsLabel.className = 'label-bold';
-    contentDiv.appendChild(planlanStepsLabel);
+    planStepsLabel.textContent = "Steps";
+    planStepsLabel.className = 'label-bold';
+    contentDiv.appendChild(planStepsLabel);
 
     // Add separator
     const separatorStep = document.createElement('hr');
