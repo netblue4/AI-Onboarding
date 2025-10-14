@@ -71,15 +71,11 @@ body {
     border-radius: 4px;
      /* height: 2.7rem;    Force a specific height for a single line feel */
 }
-.form-field textarea {
-    box-sizing: border-box;
-	border: 1px solid #007BFF;
-}
 .form-field label {
     display: block;
     margin-bottom: 0.5rem;
 }
-.form-field .label-bold{
+.label-bold{
     font-size: 0.9rem;
     font-weight: 300; /* Note: 100 is very thin, '400' or 'normal' is standard */
     width: 100%;
