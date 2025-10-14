@@ -53,7 +53,11 @@
     },
     {
       "StepName": "(A.4.4) AI Systems Software and Tooling Resources",
-      "WebFormTitle": "Define the software and tools used by the AI system.",
+            "Objectives": [
+        {
+          "Objective":"Define the software and tools used by the AI system."
+          }
+          ],
       "Fields": [
         {
           "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
@@ -77,7 +81,9 @@
     },
     {
       "StepName": "(A.4.5) AI Systems Computing Resources",
-      "WebFormTitle": "Define the computing resources used by the AI system",
+            "Objectives": [
+        {
+          "Objective": "Define the computing resources used by the AI system"}],
       "Fields": [
         {
           "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
@@ -103,7 +109,9 @@
   "Phase Impact assessments": [
     {
       "StepName": "(A.5.2, A.5.3) Workforce Transition and Adaptation for AI Integration",
-      "WebFormTitle": "Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption.",
+            "Objectives": [
+        {
+          "Objective":"Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption."}],
       "Fields": [
         {
           "Control": "A.9.4 – Intended use of the AI system",
@@ -146,7 +154,9 @@
     },
     {
       "StepName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
-      "WebFormTitle": "Define and evaluate the AI system's impacts, risks, and mitigation strategies specific to vulnerable populations affected by deployment.",
+            "Objectives": [
+        {
+          "Objective":"Define and evaluate the AI system's impacts, risks, and mitigation strategies specific to vulnerable populations affected by deployment."}],
       "Fields": [
         {
           "FieldName": "VP-IMP-1.1-PopulationType",
@@ -200,7 +210,9 @@
     },
     {
       "StepName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
-      "WebFormTitle": "Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts.",
+            "Objectives": [
+        {
+          "Objective":"Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts."}],
       "Fields": [
         {
           "FieldName": "ENV-IA-1.1-EnergySource",
@@ -254,7 +266,9 @@
     },
     {
       "StepName": "AI Act - Section 2: Requirements for High-Risk AI Systems",
-      "WebFormTitle": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems.",
+            "Objectives": [
+        {
+          "Objective":"If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems."}],
       "Fields": [
         {
           "FieldType": "risk",
@@ -1168,7 +1182,9 @@
   "Phase Packaging": [
     {
       "StepName": "(6.2.1) AI Lifecycle Phase requirements - Component Package",
-      "WebFormTitle": "Define the security requirements for lifecycle phase - Package.",
+            "Objectives": [
+        {
+          "Objective":"Define the security requirements for lifecycle phase - Package."}],
       "Fields": [
         {
           "FieldType": "risk",
@@ -1279,7 +1295,9 @@
   "Phase Deployment": [
     {
       "StepName": "(6.2.1) AI Lifecycle Phase requirements - Deployment",
-      "WebFormTitle": "Define the security requirements for - Deployment.",
+            "Objectives": [
+        {
+          "Objective":"Define the security requirements for - Deployment."}],
       "Fields": [
         {
           "FieldType": "risk",
@@ -1330,7 +1348,9 @@
     },
     {
       "StepName": "(A.8.4) AI System Documentation and User Information",
-      "WebFormTitle": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties.",
+            "Objectives": [
+        {
+          "Objective":"Define and document the information, reporting, and incident communication plan for all internal and external interested parties."}],
       "Fields": [
         {
           "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
@@ -1356,7 +1376,9 @@
   "Phase Post deployment verification": [
     {
       "StepName": "(A.6.2.4) AI Systems verifications",
-      "WebFormTitle": "Document verification and validation measures for the AI system and specify criteria for their use.",
+            "Objectives": [
+        {
+          "Objective":"Document verification and validation measures for the AI system and specify criteria for their use."}],
       "Fields": [
         {
           "Control": "A.6.2.4 – AI system verification and validation",
@@ -1413,7 +1435,9 @@
   "Phase Operations": [
     {
       "StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Logging and Monitoring",
-      "WebFormTitle": "To uphold the principles of AI transparency, accountability, and continuous improvement by implementing a comprehensive logging system that securely captures all interaction data, enabling performance monitoring, quality assurance, and detailed audits.",
+            "Objectives": [
+        {
+          "Objective":"To uphold the principles of AI transparency, accountability, and continuous improvement by implementing a comprehensive logging system that securely captures all interaction data, enabling performance monitoring, quality assurance, and detailed audits."}],
       "Objectives": [
         {
           "Objective": "1. System Performance and Reliability: This is about keeping the AI healthy and efficient. By logging every interaction, we can measure key metrics like response times and success rates. This data is essential for our technical teams to identify performance bottlenecks, troubleshoot errors, and ensure the system remains reliable and responsive for all users."
@@ -1429,7 +1453,9 @@
     },
     {
       "StepName": "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates",
-      "WebFormTitle": "Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates.",
+            "Objectives": [
+        {
+          "Objective":"Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates."}],
       "Fields": [
         {
           "FieldType": "risk",
@@ -1569,7 +1595,9 @@
   "Phase 6": [
     {
       "StepName": "AI Systems approvals",
-      "WebFormTitle": "Document AI system approvals",
+            "Objectives": [
+        {
+          "Objective":"Document AI system approvals"}],
       "Fields": [
         {
           "FieldName": "AI System Security Approver",
