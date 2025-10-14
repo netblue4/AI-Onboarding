@@ -558,30 +558,36 @@
           "FieldName": "(A.7.4) - Data quality requirements",
           "question": "If sensitive data used by the system is inaccurate, incomplete, or inconsistent, could it lead to significant negative consequences (e.g., incorrect decisions, financial loss, regulatory fines, or harm to individuals)?",
           "controls": [
-            {
-              "control": "DATA-SEN - 01: The accuracy level for sensitive data must be **> 95%** of data points correct when compared to a trusted source.",
-              "control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making."
-            },
-            {
-              "control": "DATA-SEN - 02: Sensitive data must have **All critical information present** and all necessary data fields populated.",
-              "control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset."
-            },
-            {
-              "control": "DATA-SEN - 03: Sensitive data must have **No contradictory information** and maintain integrity across related datasets.",
-              "control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets."
-            },
-            {
-              "control": "DATA-SEN - 04: Sensitive data must be maintained in **Real-time**.",
-              "control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision."
-            },
-            {
-              "control": "DATA-SEN - 04: : The sensitive data's provenance **must be fully traced and verified**.",
-              "control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance)."
-            },
-            {
-              "control": "DATA-SEN - 06: A robust version control system like **Git** or **DVC** must be applied to manage and track sensitive data versions.",
-              "control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications."
-            }
+  {
+    "control": "DATA-SEN - 01: The accuracy level for sensitive data must be > 95% of data points correct when compared to a trusted source.",
+    "control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
+    "control_evidence": "A data quality report or test results from a validation script showing an accuracy score of > 95%. Documentation of the validation methodology, including the definition of the 'trusted source'. The validation script itself should be available for review."
+  },
+  {
+    "control": "DATA-SEN - 02: Sensitive data must have All critical information present and all necessary data fields populated.",
+    "control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset.",
+    "control_evidence": "A data schema or data dictionary defining all critical and necessary data fields. A data profiling report or log from an automated script that verifies completeness, showing zero null or empty values in the designated critical fields."
+  },
+  {
+    "control": "DATA-SEN - 03: Sensitive data must have No contradictory information and maintain integrity across related datasets.",
+    "control_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets.",
+    "control_evidence": "Documentation of integrity rules and constraints applied to the data. Test results from validation scripts or database constraints (e.g., unit tests, SQL queries) that check for contradictions, with logs showing zero violations found."
+  },
+  {
+    "control": "DATA-SEN - 04: Sensitive data must be maintained in Real-time.",
+    "control_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision.",
+    "control_evidence": "System logs or monitoring dashboard metrics (e.g., from Kafka, Grafana, or a data pipeline tool) showing timestamps of data ingestion and processing. A Service Level Agreement (SLA) document defining the maximum acceptable latency, with monitoring reports confirming compliance."
+  },
+  {
+    "control": "DATA-SEN - 05: The sensitive data's provenance must be fully traced and verified.",
+    "control_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance).",
+    "control_evidence": "A data lineage graph or document that maps the data flow from its origin to its final state. Immutable logs (e.g., from a blockchain or write-once log system) that record all transformations, including timestamps and the identity of the process or user performing the change."
+  },
+  {
+    "control": "DATA-SEN - 06: A robust version control system like Git or DVC must be applied to manage and track sensitive data versions.",
+    "control_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications.",
+    "control_evidence": "A link to the version control repository (e.g., Git, DVC). A review of the repository's commit history demonstrating consistent and meaningful commits for data changes. A README file or documentation outlining the branching and tagging strategy for data versions."
+  }
           ]
         },
         {
