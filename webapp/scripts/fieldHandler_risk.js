@@ -74,9 +74,9 @@ function createRisk(field, capturedData, sanitizeForId) {
     // Create the collapsible container for the detailed information
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
-    contentDiv.style.maxHeight = '500px'; // Adjust this pixel value as needed for your layout
-    contentDiv.style.overflowY = 'auto';   // Add a vertical scrollbar only when content overflows
-    contentDiv.style.paddingRight = '10px'; // Add padding to prevent text from touching the scrollbar
+    //contentDiv.style.maxHeight = '500px'; // Adjust this pixel value as needed for your layout
+    //contentDiv.style.overflowY = 'auto';   // Add a vertical scrollbar only when content overflows
+    //contentDiv.style.paddingRight = '10px'; // Add padding to prevent text from touching the scrollbar
 
 
     // Add the primary question inside the collapsible area
