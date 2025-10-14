@@ -2,7 +2,11 @@
   "Phase AI system information": [
     {
       "StepName": "(A.9.4) AI system's intended use and limitations",
-      "WebFormTitle": "Document the purpose, target users, and intended use cases of the AI system.",
+      "Objectives": [
+        {
+          "Objective":"Document the purpose, target users, and intended use cases of the AI system."
+          }
+          ],
       "Fields": [
         {
           "Control": "A.9.4 – Intended use of the AI system",
@@ -475,7 +479,7 @@
           "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
           "FieldLabel": "Where does the data originate from?",
           "FieldText": "",
-          "FieldType": "MultiSelect:/Internal database/Third-party vendor/Public repository/Synthetic generation"
+          "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Intended Use",
@@ -487,7 +491,7 @@
           "FieldName": "(A.4.2, A.4.3) - Format",
           "FieldLabel": "What is the File format or storage system?",
           "FieldText": "",
-          "FieldType": "MultiSelect:/CSV/JSON/Parquet/SQL DB"
+          "FieldType": "MultiSelect:CSV/JSON/Parquet/SQL DB"
         },
         {
           "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
@@ -517,7 +521,7 @@
           "FieldName": "(A.4.2, A.4.3) - Access Method",
           "FieldLabel": "How will the data be accessed?",
           "FieldText": "",
-          "FieldType": "MultiSelect:/S3 bucket path/API endpoint/Database query/Shared drive"
+          "FieldType": "MultiSelect:S3 bucket path/API endpoint/Database query/Shared drive"
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
