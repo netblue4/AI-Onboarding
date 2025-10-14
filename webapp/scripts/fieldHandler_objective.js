@@ -43,7 +43,7 @@ function createObjective(objectives) {
     		// This is the original content from your function, now placed inside the collapsible area.
     		const span = document.createElement('span');
     		span.className = 'auto-generated-label';
-    		span.textContent = Objective; // The full objective text
+    		span.textContent = objectiveItem; // The full objective text
     		contentDiv.appendChild(span);
         });
     }
