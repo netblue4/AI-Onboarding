@@ -132,7 +132,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             const evidenceText = document.createElement('p');
             evidenceText.textContent = controlItem.control_evidence;
             evidenceText.className = 'label-bold-small';
-            controlContainer.appendChild(evidenceText);
+            evidenceContainer.appendChild(evidenceText);
  
             evidenceDiv.appendChild(evidenceContainer);
         });
