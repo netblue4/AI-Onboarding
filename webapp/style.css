@@ -69,11 +69,11 @@ body {
     width: 100%;
     padding: 0.45rem; 
     border-radius: 4px;
-    box-sizing: border-box;
      /* height: 2.7rem;    Force a specific height for a single line feel */
 }
 .form-field textarea {
-    border: 1px solid #007BFF;
+    box-sizing: border-box;
+	border: 1px solid #007BFF;
 }
 .form-field label {
     display: block;
@@ -84,11 +84,7 @@ body {
     font-weight: 300; /* Note: 100 is very thin, '400' or 'normal' is standard */
     width: 100%;
     padding: 0.45rem; 
-    border: 1px solid #007BFF;
     border-radius: 4px;
-    box-sizing: border-box;
-    display: block;
-    margin-bottom: 0.5rem;
 }
 
 /* .form-field input[type="text"],
