@@ -92,8 +92,8 @@ function createRisk(field, capturedData, sanitizeForId) {
     const controlsDiv = document.createElement('div');
     controlsDiv.className = 'collapsible-content collapsed';
     // Add the click listener to the controlContainer to toggle the content visibility
-    controlContainer.addEventListener('click', () => {
-        const isCollapsed = controlContainer.classList.toggle('collapsed');
+    controlsDiv.addEventListener('click', () => {
+        const isCollapsed = controlsDiv.classList.toggle('collapsed');
         icon.textContent = isCollapsed ? '▶' : '▼';
     });    
     // Crreate label for the control collapsible div
