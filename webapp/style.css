@@ -56,7 +56,9 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 .form-field {
-    margin-bottom: 1.25rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
 }
 .form-field label,
 .form-field input[type="text"],
@@ -64,14 +66,6 @@ body {
 .form-field textarea {
     font-size: 0.9rem;
     font-weight: 200; /* Note: 100 is very thin, '400' or 'normal' is standard */
-}
-.form-field label {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-.form-field input[type="text"],
-.form-field select,
-.form-field textarea {
     width: 100%;
     padding: 0.45rem; 
     border: 1px solid #007BFF;
@@ -79,6 +73,32 @@ body {
     box-sizing: border-box;
      /* height: 2.7rem;    Force a specific height for a single line feel */
 }
+.form-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.form-field .label-bold{
+    font-size: 0.9rem;
+    font-weight: 300; /* Note: 100 is very thin, '400' or 'normal' is standard */
+    width: 100%;
+    padding: 0.45rem; 
+    border: 1px solid #007BFF;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* .form-field input[type="text"],
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    padding: 0.45rem; 
+    border: 1px solid #007BFF;
+    border-radius: 4px;
+    box-sizing: border-box;
+     /* height: 2.7rem;    Force a specific height for a single line feel 
+}*/
  .form-field .auto-generated-label {
     font-style: italic;
     color: #555;
@@ -87,10 +107,15 @@ body {
     border-radius: 4px;
     display: block;
 }
-.radio-option {
+ .form-field .radio-option {
   display: flex;
   align-items: flex-start;
   gap: 8px; /* Adjust the space between the button and label as needed */
+}
+.control-separator {
+  border: none;
+  height: 2px;
+  background-color: #007BFF
 }
 /* --- Buttons Styles --- */
 button {
@@ -137,12 +162,7 @@ button:hover {
     color: #007BFF;
     white-space: nowrap; /* Prevent text from wrapping */
 }
-/* Styles for the collapsible container */
-.form-field {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-}
+
 
 /* The clickable header area */
 .collapsible-header {
