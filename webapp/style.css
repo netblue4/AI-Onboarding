@@ -184,7 +184,10 @@ button:hover {
 
 /* The wrapper for the content that will be hidden or shown */
 .collapsible-content {
-    padding-left: 25px;
+    max-height: 500px; /* Set your desired max height here */
+    overflow-y: auto;  /* Add scrollbar only when needed */
+    padding: 15px;     /* Add some internal spacing */
+    padding-right: 10px; /* Space to avoid text hitting the scrollbar */
     margin-left: 5px;
     border-left: 1px solid #e0e0e0;
     overflow: hidden;
@@ -196,6 +199,9 @@ button:hover {
 .collapsible-content.collapsed {
     max-height: 0;
     border-left-color: transparent;
+    padding-top: 0;    /* Remove padding for a clean collapse */
+    padding-bottom: 0; /* Remove padding for a clean collapse */
+    overflow: hidden;  /* Crucial: Hide the content and scrollbar completely */
 }
 
 /* General styling for elements inside the collapsible area */
@@ -205,6 +211,14 @@ button:hover {
     margin-bottom: 8px;
     margin-top: 8px;
 }
+
+
+
+
+
+
+
+
 
 /* --- Styles for the procedure step progress display --- */
 
