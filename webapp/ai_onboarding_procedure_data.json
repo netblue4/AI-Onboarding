@@ -38,8 +38,8 @@
         },
         {
           "FieldName": "AI system impact assessment - Employees - Benefits",
-          "FieldLabel": "",
-          "FieldText": "Select Potential Benefits:",
+          "FieldLabel": "Select Potential Benefits",
+          "FieldText": "",
           "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
         },
         {
@@ -184,8 +184,8 @@
         },
         {
           "FieldName": "VP-IMP-3.1-MitigationStrategy",
-          "FieldLabel": "",
-          "FieldText": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population",
+          "FieldLabel": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population",
+          "FieldText": "",
           "FieldType": "MultiSelect:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
         },
         {

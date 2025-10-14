@@ -25,7 +25,7 @@ function createObjective(objectives) {
 
     // Add a title to the header
     const titleLabel = document.createElement('label');
-    titleLabel.textContent = "Objective"; // This will be the clickable title
+    titleLabel.textContent = "Objective\s"; // This will be the clickable title
     titleLabel.className = 'label-bold';
     headerDiv.appendChild(titleLabel);
 
