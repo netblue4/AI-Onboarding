@@ -88,12 +88,12 @@ function createRisk(field, capturedData, sanitizeForId) {
 
 
     // --- 3. Iterate and Display Controls ---
-    // Crreate the control collapsible div
+    // Crreate the controls  div
     const controlsDiv = document.createElement('div');  
-    // Crreate label for the control collapsible div
+    // Create label for the controls div
     const controlLabel = document.createElement('label');
     controlLabel.textContent = 'Controls';
-    controlLabel.className = 'label-bold-small';
+    controlLabel.className = 'objective-text';
     contentDiv.appendChild(controlLabel);
 
     if (field.controls && Array.isArray(field.controls)) {
@@ -101,31 +101,48 @@ function createRisk(field, capturedData, sanitizeForId) {
             const controlContainer = document.createElement('div');
             controlContainer.className = 'control-item';
 
-            /*
-            const controlLabel = document.createElement('label');
-            controlLabel.textContent = 'Control:';
-            controlLabel.className = 'label-bold-small';
-            controlContainer.appendChild(controlLabel);
-            */
             const controlText = document.createElement('p');
             controlText.textContent = controlItem.control;
-            controlText.className = 'objective-text';
+            controlText.className = 'label-bold-small';
             controlContainer.appendChild(controlText);
-            /*
-            const objectiveLabel = document.createElement('label');
-            objectiveLabel.textContent = 'Control Objective:';
-            objectiveLabel.className = 'label-bold-small';
-            controlContainer.appendChild(objectiveLabel);
-            
-            const objectiveText = document.createElement('p');
-            objectiveText.textContent = controlItem.control_objective;
-            objectiveText.className = 'objective-text';
-            controlContainer.appendChild(objectiveText);
-            */
+ 
             controlsDiv.appendChild(controlContainer);
         });
     }
     contentDiv.appendChild(controlsDiv);
+
+
+
+
+
+    // --- 4. Iterate and Display Evidence ---
+    // Crreate the Evidence  div
+    const evidenceDiv = document.createElement('div');  
+    // Create label for the evidenc div
+    const evidenceLabel = document.createElement('label');
+    evidenceLabel.textContent = 'Evidence required';
+    evidenceLabel.className = 'objective-text';
+    contentDiv.appendChild(evidenceLabel);
+
+    if (field.controls && Array.isArray(field.controls)) {
+        field.controls.forEach(controlItem => {
+            const evidenceContainer = document.createElement('div');
+            evidenceContainer.className = 'control-item';
+
+            const evidenceText = document.createElement('p');
+            evidenceText.textContent = controlItem.control_evidence;
+            evidenceText.className = 'label-bold-small';
+            controlContainer.appendChild(evidenceText);
+ 
+            evidenceDiv.appendChild(evidenceContainer);
+        });
+    }
+    contentDiv.appendChild(evidenceDiv);
+
+    
+
+
+    
     fieldDiv.appendChild(contentDiv);
 
     // Add the click listener to the header to toggle the content visibility
