@@ -6,7 +6,7 @@
  * It is expected to have a property `Objective` with the text to display.
  * @returns {HTMLElement} The fully constructed div element for the collapsible objective.
  */
-function createObjective(objective) {
+function createObjective(objectives) {
     // --- 1. Build the Collapsible Structure ---
 
     // Main container for the entire field
@@ -35,12 +35,19 @@ function createObjective(objective) {
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
 
-    // --- 2. Add the Objective Content ---
-    // This is the original content from your function, now placed inside the collapsible area.
-    const span = document.createElement('span');
-    span.className = 'auto-generated-label';
-    span.textContent = objective.Objective; // The full objective text
-    contentDiv.appendChild(span);
+
+
+    if (objectives && Array.isArray(objectives)) {
+        objectives.Objective.forEach(objectiveItem => {
+    		// --- 2. Add the Objective Content ---
+    		// This is the original content from your function, now placed inside the collapsible area.
+    		const span = document.createElement('span');
+    		span.className = 'auto-generated-label';
+    		span.textContent = Objective; // The full objective text
+    		contentDiv.appendChild(span);
+        });
+    }
+
 
     fieldDiv.appendChild(contentDiv);
 
