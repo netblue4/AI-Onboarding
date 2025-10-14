@@ -579,84 +579,122 @@
         {
           "FieldType": "plan",
           "FieldName": "(A.7.6) Sensitive Data Preparation Plan",
-          "PlanObjective": "Ensure that raw sensitive data is anonymised before it is used by the AI system?",
+          "PlanObjective": "Ensure that raw sensitive data is anonymised before it is used by the AI system.",
+          "PlanCriteria": [
+            {
+              "criteria": "ANON-PSEUD - 01: Direct personal identifiers must be pseudonymized using established techniques such as masking, tokenization, or hashing.",
+              "control_objective": "To obscure or replace sensitive data elements in a reversible or non-reversible way, preventing direct identification of individuals while preserving data utility.",
+              "criteria_evidence": "Data processing scripts or configuration files demonstrating the application of pseudonymization techniques. A comparative data sample showing data before and after the transformations, with sensitive fields appropriately masked, tokenized, or hashed."
+            },
+            {
+              "criteria": "ANON-MIN - 01: The principle of data minimization must be applied by reducing data precision and removing unnecessary features.",
+              "control_objective": "To reduce the risk of re-identification and adhere to data privacy principles by ensuring only essential data with the minimum required level of detail is processed.",
+              "criteria_evidence": "The data schema for the final processed dataset, confirming the absence of pruned columns. A comparative data sample showing data before and after generalization has been applied to relevant fields."
+            },
+            {
+              "criteria": "ANON-INT - 01: The dataset must be free of duplicate records to ensure its integrity and quality.",
+              "control_objective": "To prevent data skew, improve processing efficiency, and ensure that each data point is unique, leading to a more reliable and clean dataset for the AI system.",
+              "criteria_evidence": "Logs or reports from the data preparation script that quantify the number of duplicate records identified and removed. A data sample demonstrating the dataset before and after the de-duplication process."
+            }
+          ],
           "PlanSteps": [
-  {
-    "step": "DATA-SEN-PRE-01: Implement masking to replace parts of sensitive data with a generic character (e.g., 'XXX-XX-1234' for a Social Security Number).",
-    "step_objective": "To limit the exposure of sensitive identifiers while retaining data utility for analysis or testing environments.",
-    "control_evidence": "A sample of the dataset before and after the masking transformation is applied."
-  },
-  {
-    "step": "DATA-SEN-PRE-02: Implement tokenization to replace a sensitive data element with a non-sensitive equivalent ('token'). The original data must be stored in a secure vault.",
-    "step_objective": "To substitute sensitive values with surrogate non-sensitive values, thereby reducing the risk of a breach while preserving referential integrity.",
-    "control_evidence": "A data sample demonstrating the replacement of sensitive data with tokens."
-  },
-  {
-    "step": "DATA-SEN-PRE-03: Use a cryptographic hashing function to convert sensitive data into a fixed-size string of characters.",
-    "step_objective": "To ensure the integrity and verification of sensitive data in a one-way process, preventing the exposure of original values.",
-    "control_evidence": "Code snippet or module demonstrating the use of a standard, salted cryptographic hashing function (e.g., SHA-256). The data schema or dictionary indicating which fields are hashed."
-  },
-  {
-    "step": "DATA-SEN-PRE-04: Apply generalization to reduce the precision of data (e.g., changing a specific age to an age range or a full date of birth to just the year).",
-    "step_objective": "To reduce the risk of re-identification by making individual sensitive data points less unique.",
-    "control_evidence": "A comparative data sample showing the data before and after generalization."
-  },
-  {
-    "step": "DATA-SEN-PRE-07: Perform Feature Pruning to remove any data fields or columns that are not strictly necessary for the AI model's purpose.",
-    "step_objective": "To adhere to the principle of data minimization by eliminating superfluous sensitive information.",
-    "control_evidence": "The data processing script showing the removal of specified columns."
-  },
-  {
-    "step": "DATA-SEN-PRE-12: Implement a method for Removing Duplicates by identifying and deleting redundant records from the dataset.",
-    "step_objective": "To prevent data skewing and ensure the dataset is clean by eliminating redundant records.",
-    "control_evidence": "A comparative data sample showing the data before and after Removing Duplicates."
-  }
+            {
+              "step": "ANON-PSEUD-TEST-01: Apply masking to a sample of raw data and verify that sensitive identifiers are correctly obscured with generic characters.",
+              "step_objective": "To confirm that the masking technique is correctly implemented to limit the exposure of sensitive identifiers, fulfilling a component of criterion ANON-PSEUD-01."
+            },
+            {
+              "step": "ANON-PSEUD-TEST-02: Apply tokenization to a sample of raw data and verify that sensitive elements are replaced with non-sensitive tokens.",
+              "step_objective": "To validate that tokenization effectively substitutes sensitive values, reducing risk while meeting the requirements of criterion ANON-PSEUD-01."
+            },
+            {
+              "step": "ANON-PSEUD-TEST-03: Apply a salted cryptographic hash function (e.g., SHA-256) to a sensitive field and verify that the output is a fixed-size, irreversible string.",
+              "step_objective": "To ensure that data is protected using a one-way cryptographic method, satisfying the hashing requirement of criterion ANON-PSEUD-01."
+            },
+            {
+              "step": "ANON-MIN-TEST-01: Apply generalization to a sample of data (e.g., age, date) and verify that the precision is correctly reduced to a less specific category (e.g., age range, year).",
+              "step_objective": "To test that generalization is effectively reducing the risk of re-identification, providing evidence for criterion ANON-MIN-01."
+            },
+            {
+              "step": "ANON-MIN-TEST-02: Execute the feature pruning script and verify that the specified non-essential columns are removed from the output dataset.",
+              "step_objective": "To confirm adherence to the data minimization principle by eliminating superfluous data, as required by criterion ANON-MIN-01."
+            },
+            {
+              "step": "ANON-INT-TEST-01: Process a sample dataset containing known duplicates and verify that the de-duplication script correctly identifies and removes the redundant records.",
+              "step_objective": "To validate the effectiveness of the de-duplication process, ensuring the final dataset meets the integrity standard of criterion ANON-INT-01."
+            }
           ]
         },
         {
           "FieldType": "plan",
           "FieldName": "Fairness and Bias in AI Systems",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
+          "PlanCriteria": [
+            {
+              "criteria": "FAIR-CTX - 01: The context for fairness analysis, including the system's purpose, favorable outcomes, and protected attributes, must be clearly defined and documented.",
+              "control_objective": "To establish a clear and unambiguous framework for all subsequent fairness assessments, ensuring that tests are relevant to the system's specific use case.",
+              "criteria_evidence": "A signed-off document specifying: 1. The AI system's intended purpose. 2. The definition of the 'favorable outcome' variable. 3. A comprehensive list of protected attributes relevant to the legal jurisdiction (e.g., GDPR in Luxembourg)."
+            },
+            {
+              "criteria": "FAIR-REP - 01: The dataset's demographic composition must be representative of the target real-world population.",
+              "control_objective": "To identify and mitigate representation bias, ensuring that the dataset does not systematically under- or over-represent certain demographic groups.",
+              "criteria_evidence": "A data profiling report that includes: 1. Visualizations (e.g., bar charts) of the distribution of all subgroups for each protected attribute. 2. A comparative analysis of these distributions against external population benchmarks (e.g., census data, applicant pool statistics)."
+            },
+            {
+              "criteria": "FAIR-HIST - 01: The dataset must not exhibit significant statistical disparities in historical outcomes between protected groups.",
+              "control_objective": "To prevent the AI model from learning and amplifying past discriminatory patterns present in the training data.",
+              "criteria_evidence": "A historical bias analysis report demonstrating: 1. Calculation of favorable outcome rates for all subgroups. 2. Application of a statistical disparity test (e.g., the Four-Fifths Rule), with results showing that no subgroup's outcome rate is less than 80% of the most favorable group's rate."
+            },
+            {
+              "criteria": "FAIR-PRX - 01: Features that could act as proxies for protected attributes must be identified, analyzed, and documented.",
+              "control_objective": "To prevent indirect discrimination by ensuring the model does not rely on non-protected features that are highly correlated with sensitive attributes.",
+              "criteria_evidence": "A correlation analysis report (e.g., correlation matrix, feature importance analysis) that identifies features highly correlated with protected attributes. A documented decision for the inclusion or exclusion of each identified proxy."
+            },
+            {
+              "criteria": "FAIR-GOV - 01: A formal governance process must be in place to report on and mitigate identified fairness risks.",
+              "control_objective": "To ensure accountability and a structured, auditable response to any fairness issues discovered in the dataset before model development.",
+              "criteria_evidence": "1. A formal 'Dataset Bias Report' summarizing all findings from the context, representation, historical, and proxy analyses. 2. A documented and approved mitigation plan outlining the actions to be taken (e.g., re-sampling, re-weighting, risk acceptance)."
+            }
+          ],
           "PlanSteps": [
             {
-              "step": "DATA-CTX-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
-              "step_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics."
+              "step": "FAIR-CTX-TEST-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
+              "step_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics, as required by FAIR-CTX-01."
             },
             {
-              "step": "DATA-CTX-02: Identify and document the 'favorable outcome' variable and its values within the dataset (e.g., loan_approved = 1, hired = TRUE).",
-              "step_objective": "To provide a clear, measurable target for performing historical bias analysis and calculating outcome rates across groups."
+              "step": "FAIR-CTX-TEST-02: Identify and document the 'favorable outcome' variable and its values within the dataset (e.g., loan_approved = 1, hired = TRUE).",
+              "step_objective": "To provide a clear, measurable target for performing historical bias analysis and calculating outcome rates across groups, fulfilling a key part of criterion FAIR-CTX-01."
             },
             {
-              "step": "DATA-CTX-03: List the protected attributes relevant to the system's context and jurisdiction (e.g., Gender, Age, Ethnicity, Disability per GDPR in Luxembourg).",
-              "step_objective": "To define the specific demographic and sensitive groups against which all subsequent fairness and bias tests will be conducted."
+              "step": "FAIR-CTX-TEST-03: List the protected attributes relevant to the system's context and jurisdiction (e.g., Gender, Age, Ethnicity, Disability per GDPR in Luxembourg).",
+              "step_objective": "To define the specific demographic and sensitive groups against which all subsequent fairness and bias tests will be conducted, completing the requirements for FAIR-CTX-01."
             },
             {
-              "step": "DATA-REP-01: For each protected attribute, calculate and visualize the distribution of individuals across all subgroups (e.g., bar charts showing counts for each gender).",
-              "step_objective": "To quantify the demographic composition of the dataset and identify any underrepresentation of specific groups at a glance."
+              "step": "FAIR-REP-TEST-01: For each protected attribute, calculate and visualize the distribution of individuals across all subgroups (e.g., bar charts showing counts for each gender).",
+              "step_objective": "To quantify the demographic composition of the dataset and identify any underrepresentation, directly testing for criterion FAIR-REP-01."
             },
             {
-              "step": "DATA-REP-02: Compare the dataset's demographic proportions against relevant real-world population benchmarks (e.g., national census data, applicant pool statistics).",
-              "step_objective": "To formally assess for representation bias by determining if the dataset is a skewed or accurate sample of the target population."
+              "step": "FAIR-REP-TEST-02: Compare the dataset's demographic proportions against relevant real-world population benchmarks (e.g., national census data, applicant pool statistics).",
+              "step_objective": "To formally assess for representation bias by determining if the dataset is a skewed or accurate sample of the target population, providing the core evidence for FAIR-REP-01."
             },
             {
-              "step": "DATA-HIST-01: Calculate and compare the rate of the 'favorable outcome' for each subgroup within a protected attribute (e.g., calculate the loan approval rate for males vs. females).",
-              "step_objective": "To measure for historical bias by identifying disparities in past outcomes between different demographic groups recorded in the data."
+              "step": "FAIR-HIST-TEST-01: Calculate and compare the rate of the 'favorable outcome' for each subgroup within a protected attribute (e.g., calculate the loan approval rate for males vs. females).",
+              "step_objective": "To measure for historical bias by identifying disparities in past outcomes, which is the first step in validating criterion FAIR-HIST-01."
             },
             {
-              "step": "DATA-HIST-02: Apply a quantitative disparity threshold, such as the 'Four-Fifths (80%) Rule', to determine if the observed differences in outcome rates are statistically significant.",
-              "step_objective": "To provide a concrete, defensible criterion for flagging potential discriminatory patterns and escalating them for review."
+              "step": "FAIR-HIST-TEST-02: Apply a quantitative disparity threshold, such as the 'Four-Fifths (80%) Rule', to determine if the observed differences in outcome rates are statistically significant.",
+              "step_objective": "To provide a concrete, defensible method for confirming that the dataset meets the disparity requirements of criterion FAIR-HIST-01."
             },
             {
-              "step": "DATA-PRX-01: Conduct a correlation analysis to identify non-protected features that are strong predictors of protected attributes (e.g., check correlation between zip code and ethnicity).",
-              "step_objective": "To uncover hidden sources of bias by identifying proxy variables that could enable the model to discriminate even if protected attributes are removed."
+              "step": "FAIR-PRX-TEST-01: Conduct a correlation analysis to identify non-protected features that are strong predictors of protected attributes (e.g., check correlation between zip code and ethnicity).",
+              "step_objective": "To uncover hidden sources of bias by identifying proxy variables, thereby generating the required analysis report for criterion FAIR-PRX-01."
             },
             {
-              "step": "DATA-GOV-01: Compile all findings into a formal 'Dataset Bias Report' detailing representation biases, historical biases, and identified proxies.",
-              "step_objective": "To create a comprehensive, auditable record of the fairness assessment, ensuring transparency and accountability for the data's state."
+              "step": "FAIR-GOV-TEST-01: Compile all findings into a formal 'Dataset Bias Report' detailing representation biases, historical biases, and identified proxies.",
+              "step_objective": "To create a comprehensive, auditable record of the fairness assessment, producing the primary piece of evidence required by FAIR-GOV-01."
             },
             {
-              "step": "DATA-GOV-02: Based on the report, select and document a clear mitigation strategy (e.g., collect more data, apply re-sampling/re-weighting, remove proxies, or formally accept the risk).",
-              "step_objective": "To ensure that identified biases are not ignored and that a deliberate, documented action plan is put in place to address them before model development."
+              "step": "FAIR-GOV-TEST-02: Based on the report, select and document a clear mitigation strategy (e.g., collect more data, apply re-sampling/re-weighting, remove proxies, or formally accept the risk).",
+              "step_objective": "To ensure that identified biases are not ignored and that a deliberate, documented action plan is put in place, fulfilling the mitigation plan requirement of FAIR-GOV-01."
             }
           ]
         },
@@ -664,62 +702,89 @@
           "FieldType": "plan",
           "FieldName": "Transparency and Explainability in AI Systems",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
+          "PlanCriteria": [
+            {
+              "criteria": "TRN-DEF - 01: Explainability requirements, including audiences, their specific needs, and legal obligations, must be formally defined and documented.",
+              "control_objective": "To establish a clear, stakeholder-aligned foundation for the design and implementation of the explanation system, ensuring it is fit-for-purpose and compliant.",
+              "criteria_evidence": "A signed-off 'Explainability Requirements Document' that specifies: 1. A list of all identified audiences (e.g., end-users, developers). 2. The core questions each audience needs answered. 3. A review of applicable legal obligations (e.g., GDPR)."
+            },
+            {
+              "criteria": "TRN-TECH - 01: Appropriate explanation techniques must be selected and implemented to cover both global model behavior and local, individual predictions.",
+              "control_objective": "To ensure the system has the technical capability to generate explanations that address the full spectrum of stakeholder needs, from high-level validation to individual case analysis.",
+              "criteria_evidence": "System architecture diagrams and documentation that specify: 1. The rationale for model selection (interpretable vs. complex). 2. The chosen global explanation technique (e.g., Feature Importance). 3. The chosen local explanation technique (e.g., SHAP, LIME)."
+            },
+            {
+              "criteria": "TRN-VAL - 01: The implemented explanation system must be technically robust, plausible, and stable.",
+              "control_objective": "To ensure that the generated explanations are reliable, accurate, and trustworthy, preventing misleading or nonsensical outputs.",
+              "criteria_evidence": "Validation test reports including: 1. Evidence of successful integration into the prediction pipeline. 2. A log of domain expert reviews confirming the plausibility of sample explanations. 3. Results from stability tests showing consistent explanations for minor input variations."
+            },
+            {
+              "criteria": "TRN-COM - 01: Technical explanation outputs must be translated into formats that are understandable, accessible, and actionable for each target audience.",
+              "control_objective": "To bridge the gap between complex model outputs and user comprehension, thereby achieving true transparency and empowering users.",
+              "criteria_evidence": "A 'Communication & UI/UX Design' document containing: 1. Natural language templates for end-user explanations. 2. Designs for actionable or counterfactual explanations. 3. Mockups or screenshots of visualizations for internal dashboards."
+            },
+            {
+              "criteria": "TRN-GOV - 01: Formal governance, including clear documentation and user-facing processes, must be established for the system's explainability features.",
+              "control_objective": "To ensure accountability, operationalize the right to explanation, and maintain a transparent and auditable record of the system's capabilities.",
+              "criteria_evidence": "1. A completed Model Card with a dedicated 'Explainability' section. 2. A publicly documented and accessible process for users to request and receive explanations for decisions that affect them."
+            }
+          ],
           "PlanSteps": [
             {
-              "step": "TRN-REQ-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
-              "step_objective": "To ensure that explanations are tailored and appropriate for the technical understanding and informational needs of each distinct stakeholder group."
+              "step": "TRN-DEF-TEST-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
+              "step_objective": "To gather the necessary inputs for the 'Explainability Requirements Document' and satisfy a core component of criterion TRN-DEF-01."
             },
             {
-              "step": "TRN-REQ-02: For each identified audience, define and document the primary question the explanation needs to answer (e.g., debugging, business logic validation, or personal recourse).",
-              "step_objective": "To focus the design of the explanation system on providing relevant, useful, and actionable information, rather than generic technical output."
+              "step": "TRN-DEF-TEST-02: For each identified audience, define and document the primary question the explanation needs to answer (e.g., debugging, business logic validation, or personal recourse).",
+              "step_objective": "To ensure explanations are relevant and useful, fulfilling the audience needs analysis required by criterion TRN-DEF-01."
             },
             {
-              "step": "TRN-REQ-03: Conduct and document a review of legal and regulatory obligations for explainability, such as those related to GDPR in Luxembourg.",
-              "step_objective": "To ensure the system's transparency features are designed to meet or exceed legal compliance requirements for user rights and information."
+              "step": "TRN-DEF-TEST-03: Conduct and document a review of legal and regulatory obligations for explainability, such as those related to GDPR in Luxembourg.",
+              "step_objective": "To verify that the system's transparency features are designed for legal compliance, as mandated by criterion TRN-DEF-01."
             },
             {
-              "step": "TRN-TEC-01: Mandate the use of inherently interpretable models (e.g., Logistic Regression, Decision Trees) when they meet performance requirements.",
-              "step_objective": "To reduce complexity and ambiguity by favoring models that are transparent by design, making the need for post-hoc explanation techniques secondary."
+              "step": "TRN-TECH-TEST-01: For a given use case, justify the choice of model type (interpretable vs. complex) based on performance and transparency trade-offs.",
+              "step_objective": "To test that the model selection process aligns with the principle of using the simplest effective model, as outlined in criterion TRN-TECH-01."
             },
             {
-              "step": "TRN-TEC-02: For complex models, implement a global explanation technique (e.g., Feature Importance) to describe the model's overall behavior.",
-              "step_objective": "To provide high-level transparency into the model's general logic, enabling business owners and auditors to validate its alignment with expectations."
+              "step": "TRN-TECH-TEST-02: For a complex model, generate and review a global explanation report (e.g., a feature importance plot) and verify it is produced correctly.",
+              "step_objective": "To confirm the implementation of a global explanation technique, providing evidence for criterion TRN-TECH-01."
             },
             {
-              "step": "TRN-TEC-03: For complex models, implement a local explanation technique (e.g., SHAP or LIME) to explain individual predictions.",
-              "step_objective": "To enable the system to provide specific reasons for each decision, which is essential for debugging, user trust, and fulfilling regulatory rights."
+              "step": "TRN-TECH-TEST-03: For a complex model, generate a local explanation (e.g., a SHAP force plot) for a specific prediction and confirm its output.",
+              "step_objective": "To confirm the implementation of a local explanation technique, providing evidence for criterion TRN-TECH-01."
             },
             {
-              "step": "TRN-IMP-01: Technically integrate selected XAI libraries (e.g., SHAP) into the prediction pipeline to generate explanations alongside decisions.",
-              "step_objective": "To operationalize explainability, ensuring that the capability to generate an explanation is a core, reliable feature of the production system."
+              "step": "TRN-VAL-TEST-01: Run an end-to-end test of the prediction pipeline and verify that an explanation artifact is generated and stored alongside every prediction.",
+              "step_objective": "To validate the technical integration of the XAI library, providing evidence for the robustness requirement of TRN-VAL-01."
             },
             {
-              "step": "TRN-IMP-02: Conduct a sanity check of generated explanations for a sample of test cases, reviewed by a domain expert to ensure they are plausible and logical.",
-              "step_objective": "To validate that the explanation outputs are not just technically correct but also contextually meaningful and aligned with real-world knowledge."
+              "step": "TRN-VAL-TEST-02: Submit a sample of 10-20 explanations to a domain expert for review and collect their signed approval that the explanations are logical and plausible.",
+              "step_objective": "To test the contextual meaningfulness of the explanations, fulfilling the plausibility requirement of criterion TRN-VAL-01."
             },
             {
-              "step": "TRN-IMP-03: Test the stability of the explanation method to ensure that minor, irrelevant changes to an input do not produce disproportionately large changes in its explanation.",
-              "step_objective": "To build trust in the explanation system by verifying that its outputs are robust and reliable."
+              "step": "TRN-VAL-TEST-03: Create two near-identical input samples with only minor, irrelevant variations. Generate explanations for both and verify that the resulting explanations are highly similar.",
+              "step_objective": "To empirically test the output's robustness, fulfilling the stability requirement of criterion TRN-VAL-01."
             },
             {
-              "step": "TRN-USR-01: Develop templates to translate raw technical explanation outputs (e.g., SHAP values) into clear, non-technical natural language for end-users.",
-              "step_objective": "To make explanations accessible and understandable to a non-expert audience, fulfilling the primary goal of user-facing transparency."
+              "step": "TRN-COM-TEST-01: Take a raw SHAP value output and process it through the natural language template. Verify the output is grammatically correct and easy to understand for a non-technical user.",
+              "step_objective": "To test the effectiveness of the translation layer, providing evidence for the user-facing communication criterion TRN-COM-01."
             },
             {
-              "step": "TRN-USR-02: For negative outcomes, design explanations to be actionable by including guidance or counterfactuals on what factors a user could potentially change.",
-              "step_objective": "To empower affected individuals by providing them with not just a reason, but also a potential path for recourse or a better future outcome."
+              "step": "TRN-COM-TEST-02: For a simulated negative outcome (e.g., loan rejection), verify that the generated explanation includes actionable guidance or a counterfactual.",
+              "step_objective": "To confirm that explanations are designed to empower users, directly testing a key component of criterion TRN-COM-01."
             },
             {
-              "step": "TRN-USR-03: For internal dashboards and business users, create simple visualizations (e.g., bar charts) summarizing the key factors influencing a decision.",
-              "step_objective": "To improve the speed and clarity of comprehension for internal stakeholders who need to understand model behavior quickly."
+              "step": "TRN-COM-TEST-03: Generate an explanation for a business user and verify it is displayed as a simple, clear visualization on the internal dashboard.",
+              "step_objective": "To ensure explanations for internal stakeholders are effective and easy to interpret, as required by criterion TRN-COM-01."
             },
             {
-              "step": "TRN-GOV-01: Document the system's explanation capabilities, including the methods used and audiences served, in a dedicated section of the Model Card.",
-              "step_objective": "To provide a central, standardized source of truth regarding the system's transparency features for governance and auditing purposes."
+              "step": "TRN-GOV-TEST-01: Review the project's Model Card and confirm the presence and completeness of the 'Explainability' section.",
+              "step_objective": "To audit the formal documentation and ensure it meets the governance standards set by criterion TRN-GOV-01."
             },
             {
-              "step": "TRN-GOV-02: Define and publish a formal process for end-users to request a detailed explanation for a decision, including timelines and responsible parties.",
-              "step_objective": "To operationalize the right to explanation, ensuring that user requests are handled consistently, efficiently, and in compliance with policy and regulations."
+              "step": "TRN-GOV-TEST-02: Follow the published user process to request an explanation. Verify that the request is logged and handled according to the documented procedure and timelines.",
+              "step_objective": "To perform an end-to-end test of the operational process, confirming compliance with criterion TRN-GOV-01."
             }
           ]
         },
