@@ -77,6 +77,7 @@ body {
     width: 100%;
     padding: 0.45rem; 
     border-radius: 4px;
+    border: 1px solid #007BFF;
 }
 
 /* --- Step 3: Define styles ONLY for labels (if you want padding, etc.) --- */

@@ -109,7 +109,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             controlContainer.appendChild(controlText);
             
             const input = document.createElement('textarea');
-    		input.value = controlItem.control_evidence;
+    		input.placeholder = controlItem.control_evidence;
     		controlContainer.appendChild(input);
  
             controlsDiv.appendChild(controlContainer);
