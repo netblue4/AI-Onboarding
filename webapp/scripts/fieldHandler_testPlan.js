@@ -87,9 +87,9 @@ function createTestPlan(field, capturedData, sanitizeForId) {
     contentDiv.appendChild(testPlanStepsLabel);
 
     // Add separator
-    const separator = document.createElement('hr');
-    separator.className = 'control-separator';
-    contentDiv.appendChild(separator);
+    const separatorStep = document.createElement('hr');
+    separatorStep.className = 'control-separator';
+    contentDiv.appendChild(separatorStep);
 
 
     // Crreate the criteria  div
