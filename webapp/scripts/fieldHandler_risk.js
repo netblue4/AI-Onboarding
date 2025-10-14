@@ -88,6 +88,15 @@ function createRisk(field, capturedData, sanitizeForId) {
 
 
     // --- 3. Iterate and Display Controls ---
+    // Crreate the control collapsible div
+    const controlsDiv = document.createElement('div');
+    controlsDiv.className = 'collapsible-content collapsed';
+
+    const controlLabel = document.createElement('label');
+    controlLabel.textContent = 'Controls';
+    controlLabel.className = 'label-bold-small';
+    contentDiv.appendChild(controlLabel);
+
     if (field.controls && Array.isArray(field.controls)) {
         field.controls.forEach(controlItem => {
             const controlContainer = document.createElement('div');
@@ -114,15 +123,21 @@ function createRisk(field, capturedData, sanitizeForId) {
             objectiveText.className = 'objective-text';
             controlContainer.appendChild(objectiveText);
             */
-            contentDiv.appendChild(controlContainer);
+            controlsDiv.appendChild(controlContainer);
         });
     }
-
+    contentDiv.appendChild(controlsDiv);
     fieldDiv.appendChild(contentDiv);
 
     // Add the click listener to the header to toggle the content visibility
     headerDiv.addEventListener('click', () => {
         const isCollapsed = contentDiv.classList.toggle('collapsed');
+        icon.textContent = isCollapsed ? '▶' : '▼';
+    });
+
+    // Add the click listener to the controlContainer to toggle the content visibility
+    controlContainer.addEventListener('click', () => {
+        const isCollapsed = controlContainer.classList.toggle('collapsed');
         icon.textContent = isCollapsed ? '▶' : '▼';
     });
 
