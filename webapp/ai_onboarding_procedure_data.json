@@ -52,7 +52,7 @@
       ]
     },
     {
-      "StepName": "(A.4.4) AI Systems Software and Tooling Resources",
+      "StepName": "(A.4.2, A.4.4) AI Systems Software and Tooling Resources",
             "Objectives": [
         {
           "Objective":"Define the software and tools used by the AI system."
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "StepName": "(A.4.5) AI Systems Computing Resources",
+      "StepName": "(A.4.2, A.4.5) AI Systems Computing Resources",
             "Objectives": [
         {
           "Objective": "Define the computing resources used by the AI system"}],
@@ -108,7 +108,7 @@
   ],
   "Phase Impact assessments": [
     {
-      "StepName": "(A.5.2, A.5.3) Workforce Transition and Adaptation for AI Integration",
+      "StepName": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
             "Objectives": [
         {
           "Objective":"Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption."}],
@@ -154,7 +154,7 @@
     },
     {
       "StepName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
-            "Objectives": [
+      "Objectives": [
         {
           "Objective":"Define and evaluate the AI system's impacts, risks, and mitigation strategies specific to vulnerable populations affected by deployment."}],
       "Fields": [
