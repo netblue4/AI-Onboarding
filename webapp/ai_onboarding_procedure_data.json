@@ -458,7 +458,7 @@
       ]
     }
   ],
-  "Phase - Knowledge Base Preparation (Offline or Real-Time)": [
+  "Phase - Knowledge Base Creation (Offline or Real-Time Data Processing)": [
     {
       "StepName": "Internal Data Sources",
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
@@ -917,7 +917,7 @@
     }
   ],
   "Phase ????": [],
-  "Phase Real-time Data Processing": [
+  "Phase Chat With Your Document (Real-Time Data Processing)": [
     {
       "StepName": "User Interface",
       "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
