@@ -1,7 +1,7 @@
 {
   "Phase AI system information": [
     {
-      "StepName": "(A.9.4) AI system's intended use and limitations",
+      "StepName": "x(A.9.4) AI system's intended use and limitations",
       "Objectives": [
         {
           "Objective": "Document the purpose, target users, and intended use cases of the AI system."
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "StepName": "(A.4.2, A.4.4) AI Systems Software and Tooling Resources",
+      "StepName": "x(A.4.2, A.4.4) AI Systems Software and Tooling Resources",
       "Objectives": [
         {
           "Objective": "Define the software and tools used by the AI system."
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "StepName": "(A.4.2, A.4.5) AI Systems Computing Resources",
+      "StepName": "x(A.4.2, A.4.5) AI Systems Computing Resources",
       "Objectives": [
         {
           "Objective": "Define the computing resources used by the AI system"
@@ -110,7 +110,7 @@
   ],
   "Phase Impact assessments": [
     {
-      "StepName": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
+      "StepName": "x(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
       "Objectives": [
         {
           "Objective": "Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption."
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "StepName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
+      "StepName": "x(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
       "Objectives": [
         {
           "Objective": "Define and evaluate the AI system's impacts, risks, and mitigation strategies specific to vulnerable populations affected by deployment."
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "StepName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
+      "StepName": "x(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
       "Objectives": [
         {
           "Objective": "Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts."
@@ -470,7 +470,7 @@
   ],
   "Phase - Knowledge Base Creation (Offline or Real-Time Data Processing)": [
     {
-      "StepName": "Internal Data Sources",
+      "StepName": "xInternal Data Sources",
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
       "Objectives": [
         {
@@ -584,7 +584,7 @@
       ]
     },
     {
-      "StepName": "Data Processing Pipeline (Vectorise proprietary data)",
+      "StepName": "xData Processing Pipeline (Vectorise proprietary data)",
       "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
       "Objectives": [
         {
@@ -1150,7 +1150,7 @@
   ],
   "Phase Deployment": [
     {
-      "StepName": "(A.6.2.5) AI Lifecycle Phase requirements - Deployment",
+      "StepName": "x(A.6.2.5) AI Lifecycle Phase requirements - Deployment",
       "WebFormTitle": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation.",
       "Objectives": [
         {
