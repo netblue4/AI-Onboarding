@@ -4,9 +4,9 @@
       "StepName": "(A.9.4) AI system's intended use and limitations",
       "Objectives": [
         {
-          "Objective":"Document the purpose, target users, and intended use cases of the AI system."
-          }
-          ],
+          "Objective": "Document the purpose, target users, and intended use cases of the AI system."
+        }
+      ],
       "Fields": [
         {
           "Control": "A.9.4 – Intended use of the AI system",
@@ -53,11 +53,11 @@
     },
     {
       "StepName": "(A.4.2, A.4.4) AI Systems Software and Tooling Resources",
-            "Objectives": [
+      "Objectives": [
         {
-          "Objective":"Define the software and tools used by the AI system."
-          }
-          ],
+          "Objective": "Define the software and tools used by the AI system."
+        }
+      ],
       "Fields": [
         {
           "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
@@ -81,9 +81,11 @@
     },
     {
       "StepName": "(A.4.2, A.4.5) AI Systems Computing Resources",
-            "Objectives": [
+      "Objectives": [
         {
-          "Objective": "Define the computing resources used by the AI system"}],
+          "Objective": "Define the computing resources used by the AI system"
+        }
+      ],
       "Fields": [
         {
           "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
@@ -109,9 +111,11 @@
   "Phase Impact assessments": [
     {
       "StepName": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
-            "Objectives": [
+      "Objectives": [
         {
-          "Objective":"Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption."}],
+          "Objective": "Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption."
+        }
+      ],
       "Fields": [
         {
           "Control": "A.9.4 – Intended use of the AI system",
@@ -156,7 +160,9 @@
       "StepName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
       "Objectives": [
         {
-          "Objective":"Define and evaluate the AI system's impacts, risks, and mitigation strategies specific to vulnerable populations affected by deployment."}],
+          "Objective": "Define and evaluate the AI system's impacts, risks, and mitigation strategies specific to vulnerable populations affected by deployment."
+        }
+      ],
       "Fields": [
         {
           "FieldName": "VP-IMP-1.1-PopulationType",
@@ -210,9 +216,11 @@
     },
     {
       "StepName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
-            "Objectives": [
+      "Objectives": [
         {
-          "Objective":"Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts."}],
+          "Objective": "Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts."
+        }
+      ],
       "Fields": [
         {
           "FieldName": "ENV-IA-1.1-EnergySource",
@@ -266,9 +274,11 @@
     },
     {
       "StepName": "AI Act - Section 2: Requirements for High-Risk AI Systems",
-            "Objectives": [
+      "Objectives": [
         {
-          "Objective":"If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems."}],
+          "Objective": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems."
+        }
+      ],
       "Fields": [
         {
           "FieldType": "risk",
@@ -508,7 +518,7 @@
           "FieldType": "MultiSelect:CSV/JSON/Parquet/SQL DB"
         },
         {
-          "FieldName": "(A.4.2, A.4.3, A.7.3,A.7.2) - Acquisition of data",
+          "FieldName": "(A.4.2, A.4.3, A.7.3, A.7.2) - Acquisition of data",
           "FieldLabel": "How will the Data be acquired and selected?",
           "FieldText": "",
           "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
@@ -644,7 +654,7 @@
         },
         {
           "FieldType": "plan",
-          "FieldName": "Fairness and Bias in AI Systems Test Plan",
+          "FieldName": "(A.7.4) Fairness and Bias in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
           "PlanCriteria": [
             {
@@ -718,7 +728,7 @@
         },
         {
           "FieldType": "plan",
-          "FieldName": "Transparency and Explainability in AI Systems Test Plan",
+          "FieldName": "(A.7.4) Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
           "PlanCriteria": [
             {
@@ -808,7 +818,7 @@
         },
         {
           "FieldType": "plan",
-          "FieldName": "(A.7.4) (A.7.6) - Data quality requirements & Test Plan",
+          "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
           "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
           "PlanCriteria": [
             {
@@ -940,23 +950,18 @@
           "controls": [
             {
               "control": "[LLM01][1] - All user inputs within the UI must be validated to prevent the injection of malicious code.",
-              "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system."
+              "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system.",
+              "control_evidence": "Unit test results demonstrating the rejection of malicious payloads (e.g., XSS, command injection strings)."
             },
             {
               "control": "[LLM01][2] - Implement input sanitization techniques to remove harmful characters from user inputs.",
-              "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI."
+              "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI.",
+              "control_evidence": "Code snippets showing the use of a sanitization library or function. Test cases with logs that display the 'before' and 'after' state of user inputs containing harmful characters."
             },
             {
               "control": "[LLM01][4] - Encrypt all sensitive data transmitted through APIs.",
-              "control_objective": "Protect sensitive data from unauthorised interception or tampering during communication through APIs."
-            },
-            {
-              "control": "[LLM01][5] - Enforce privilege control on LLM access to backend systems.",
-              "control_objective": "To restrict the LLM to the minimum level of access necessary, mitigating the risk of prompt injection leading to unauthorised operations."
-            },
-            {
-              "control": "[LLM01][8] - Treat the LLM as an untrusted component, ensuring user oversight over decision-making processes.",
-              "control_objective": "To treat the LLM as an untrusted component, ensuring user oversight over decision-making processes."
+              "control_objective": "Protect sensitive data from unauthorised interception or tampering during communication through APIs.",
+              "control_evidence": "Web server or API gateway configuration files enforcing TLS 1.2 or higher. A report from an external security scanner (e.g., Qualys SSL Labs) confirming a strong HTTPS implementation."
             }
           ]
         },
@@ -967,7 +972,8 @@
           "controls": [
             {
               "control": "[LLM02][1] - Ensure that sensitive or IP data is not exposed in AI system outputs.",
-              "control_objective": "To mitigate the risk of insecure output handling by treating LLM-generated outputs as potentially untrusted."
+              "control_objective": "To mitigate the risk of insecure output handling by treating LLM-generated outputs as potentially untrusted.",
+              "control_evidence": "Implementation of an output filtering or sanitization layer that scans the LLM's response for sensitive data patterns (e.g., using regex or a DLP service) before it is sent to the user or downstream systems. Test results demonstrating that the filter successfully redacts or blocks known sensitive information or intellectual property."
             }
           ]
         },
@@ -978,15 +984,18 @@
           "controls": [
             {
               "control": "[LLM04][3] - Enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe.",
-              "control_objective": "To control the rate of requests and prevent overwhelming the LLM with a high volume of concurrent requests."
+              "control_objective": "To control the rate of requests and prevent overwhelming the LLM with a high volume of concurrent requests.",
+              "control_evidence": "Screenshots of the API gateway configuration, relevant code snippets defining the rate limits, or test results showing that requests are blocked after the limit is exceeded."
             },
             {
               "control": "[LLM04][4] - Limit the number of queued actions and the number of total actions in a system reacting to LLM responses.",
-              "control_objective": "To prevent the accumulation of excessive workload and ensure that the system can effectively process LLM responses without becoming overwhelmed."
+              "control_objective": "To prevent the accumulation of excessive workload and ensure that the system can effectively process LLM responses without becoming overwhelmed.",
+              "control_evidence": "Configuration files from the task queue system (e.g., Celery, RabbitMQ), application code setting queue size or concurrency limits, or architectural diagrams illustrating these constraints."
             },
             {
               "control": "[LLM04][5] - Continuously monitor the resource utilisation of the LLM to identify abnormal spikes or patterns that may indicate a DoS attack.",
-              "control_objective": "To detect and respond to anomalous resource usage patterns indicative of a denial of service attack on the LLM."
+              "control_objective": "To detect and respond to anomalous resource usage patterns indicative of a denial of service attack on the LLM.",
+              "control_evidence": "Screenshots from the monitoring dashboard (e.g., Grafana, Datadog) showing resource utilisation graphs, copies of the alert configurations for abnormal spikes, and the incident response procedure for such alerts."
             }
           ]
         },
@@ -997,23 +1006,18 @@
           "controls": [
             {
               "control": "[LLM05][2] - Only use reputable plugins that have been tested for application requirements.",
-              "control_objective": "Minimise plugin-related vulnerabilities."
+              "control_objective": "Minimise plugin-related vulnerabilities.",
+              "control_evidence": "A documented plugin vetting process, test results from plugin security assessments, and a list of approved plugins."
             },
             {
               "control": "[LLM05][4] - Maintain an up-to-date inventory using a Software Bill of Materials (SBOM).",
-              "control_objective": "Track and manage components."
-            },
-            {
-              "control": "[LLM05][6] - Implement anomaly detection and adversarial robustness tests.",
-              "control_objective": "Detect tampering and poisoning."
+              "control_objective": "Track and manage components.",
+              "control_evidence": "The current SBOM document for the application, evidence of a process for regularly updating the SBOM, and change logs."
             },
             {
               "control": "[LLM05][7] - Implement sufficient monitoring and a robust patching policy.",
-              "control_objective": "Maintain system security and component currency."
-            },
-            {
-              "control": "[LLM05][8] - Regularly review and audit supplier security and access controls.",
-              "control_objective": "Verify supplier compliance and security."
+              "control_objective": "Maintain system security and component currency.",
+              "control_evidence": "The documented patching policy, vulnerability scan reports, and change management records demonstrating timely patch application."
             }
           ]
         }
@@ -1021,7 +1025,7 @@
     },
     {
       "StepName": "RAG Orchestrator",
-      "WebFormTitle": "To ensure the secure and appropriate handling of user queries and retrieved data by enforcing strict access controls and mitigating complex inference-based attacks.",
+      "WebFormTitle": "To ensure the secure and appropriate handling of user queries and retrieved data by enforcing strict access controls, mitigating complex inference-based attacks, and maintaining a detailed audit trail for accountability and non-repudiation.",
       "Objectives": [
         {
           "Objective": "1. Secure Workflow Management: The orchestrator acts as the central logic unit, managing the entire RAG process from receiving a user's query to retrieving data and generating a final, context-aware response."
@@ -1031,25 +1035,36 @@
         },
         {
           "Objective": "3. Inference Attack Mitigation: The system must be designed to detect and counter inference attacks, where a user attempts to piece together sensitive information by asking numerous simple, seemingly harmless questions. This involves monitoring query patterns and applying appropriate safeguards."
+        },
+        {
+          "Objective": "4. Audit and Accountability: To create an immutable record of all interactions, including user queries, data access events, and generated responses. This establishes a comprehensive audit trail critical for security monitoring, forensic analysis, and ensuring non-repudiation."
         }
       ],
       "Fields": [
         {
           "FieldType": "risk",
-          "FieldName": "LLM08 Excessive Agency",
-          "question": "Will the AI be allowed to take actions or make decisions automatically on behalf of a person or system?",
+          "FieldName": "Insufficient Audit Trails and Logging",
+          "question": "Will you need to track who accessed the AI system, what it did, and when — for accountability or regulatory purposes?",
           "controls": [
             {
-              "control": "[LLM08][4] - Limit the permissions that LLM plugins/tools are granted to other systems to the minimum necessary.",
-              "control_objective": "To restrict the scope of actions that LLM agents can perform on other systems, thereby minimising the potential for harmful activities."
+              "control": "[RAG-ORCH][1] - The orchestrator must integrate with the Identity and Access Management (IAM) system to retrieve user permissions and enforce data access policies *before* querying the vector database or knowledge base.",
+              "control_objective": "To prevent unauthorized data access by ensuring a user's privileges are validated at the point of orchestration, before any data retrieval operation is initiated.",
+              "control_evidence": "Sequence diagram showing the IAM check in the RAG workflow. Code review demonstrating the API call to the IAM system and the conditional logic that blocks unauthorized queries. Integration test results showing that queries from users with insufficient permissions are denied access to specific documents."
             },
             {
-              "control": "[LLM08][5] - Track user authorization and security scope to ensure actions taken on behalf of a user are executed with the minimum privileges necessary.",
-              "control_objective": "To enforce proper user authentication and authorization, limiting the potential impact of actions performed by LLM agents."
+              "control": "[RAG-ORCH][2] - Implement query velocity and complexity monitoring within the orchestrator. The system must flag or block users exhibiting anomalous query patterns (e.g., high-frequency, low-semantic-variance queries) indicative of an inference attack.",
+              "control_objective": "To detect and mitigate attempts to reconstruct sensitive information by analyzing patterns of user queries over time.",
+              "control_evidence": "Configuration files defining thresholds for rate limiting and query complexity. Logs from a security test showing a simulated inference attack being detected and the user's session being flagged or throttled. A runbook detailing the response procedure for a flagged account."
             },
             {
-              "control": "[LLM08][8] - Log and monitor the activity of LLM plugins/tools and downstream systems to identify and respond to undesirable actions.",
-              "control_objective": "To detect and mitigate unauthorised or harmful activities by monitoring system activity and responding promptly to incidents."
+              "control": "[RAG-ORCH][3] - The orchestrator must generate structured, immutable audit logs for every user interaction. Logs must include a unique transaction ID, user identifier, timestamp, the full user query, the IDs of the documents retrieved from the knowledge base, and the final LLM-generated response.",
+              "control_objective": "To create a complete and reliable trail of activity for security forensics, accountability, and non-repudiation, ensuring all critical stages of the RAG process are recorded.",
+              "control_evidence": "Sample of the structured audit log (e.g., in JSON format) showing all required fields are populated. Architecture diagram illustrating the logging pipeline to a secure, write-once storage system (e.g., AWS CloudWatch Logs with object lock). Penetration test report confirming that logs cannot be tampered with or deleted by unauthorized users."
+            },
+            {
+              "control": "[RAG-ORCH][4] - The orchestrator's state transitions and data handling between components (User Query -> Vector DB -> LLM) must be defined within a secure, isolated service. All inter-component communication must use authenticated and encrypted channels (e.g., mTLS).",
+              "control_objective": "To protect the integrity and confidentiality of data as it moves through the RAG pipeline and prevent attackers from manipulating the workflow logic.",
+              "control_evidence": "Network architecture diagram showing mTLS enforced between microservices. Infrastructure-as-code (e.g., Terraform, Kubernetes YAML) configuration files specifying the network policies and secret management for certificates. Vulnerability scan reports for the orchestrator service container and its dependencies."
             }
           ]
         }
@@ -1066,53 +1081,7 @@
           "Objective": "2. Governed Deployment: To ensure model integrity and security by implementing automated MLOps deployment pipelines that include robust governance, tracking, and formal approval workflows for all changes."
         }
       ],
-      "Fields": [
-        {
-          "FieldType": "risk",
-          "FieldName": "LLM10: Model Theft",
-          "question": "Is this AI system considered a valuable business asset — and could losing it expose intellectual property or trade secrets?",
-          "controls": [
-            {
-              "control": "[LLM10][4] - Restrict the LLMs access to network resources, internal services, and APIs.",
-              "control_objective": "Control what the LLM application has access to."
-            },
-            {
-              "control": "[LLM10][6] - Automate MLOps deployment with governance and tracking and approval workflows.",
-              "control_objective": "Tighten access and deployment controls."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "AI01: Model Drift",
-          "question": "Is there a process to monitor the model's performance in production and retrain it when performance degrades due to changing data patterns?",
-          "controls": [
-            {
-              "control": "[AI01][1] - Implement continuous monitoring of model performance metrics and data drift detection.",
-              "control_objective": "Detect performance degradation and shifts in data distribution."
-            },
-            {
-              "control": "[AI01][2] - Establish a retraining pipeline to regularly update the model with new, relevant data.",
-              "control_objective": "Maintain model relevance and accuracy over time."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "AI02: Hallucination",
-          "question": "Does the AI application generate factual content, and are there mechanisms to verify its accuracy before it's used or presented to users?",
-          "controls": [
-            {
-              "control": "[AI02][1] - Implement grounding techniques, such as Retrieval-Augmented Generation (RAG), to provide the model with verifiable, context-specific information.",
-              "control_objective": "Ensure model outputs are based on factual data."
-            },
-            {
-              "control": "[AI02][2] - Incorporate post-generation fact-checking and validation steps to verify the accuracy of the generated content.",
-              "control_objective": "Validate and filter out factually incorrect outputs."
-            }
-          ]
-        }
-      ]
+      "Fields": []
     },
     {
       "StepName": "User Interface <->  RAG Orchestrator",
@@ -1179,12 +1148,21 @@
       "Fields": []
     }
   ],
-  "Phase Packaging": [
+  "Phase Deployment": [
     {
-      "StepName": "(6.2.1) AI Lifecycle Phase requirements - Component Package",
-            "Objectives": [
+      "StepName": "(A.6.2.5) AI Lifecycle Phase requirements - Deployment",
+      "WebFormTitle": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation.",
+      "Objectives": [
         {
-          "Objective":"Define the security requirements for lifecycle phase - Package."}],
+          "Objective": "1. Deployment Planning: To formalize the deployment strategy by documenting the complete process, including timelines, resource allocation, technical steps, and rollback procedures, ensuring a predictable and controlled rollout."
+        },
+        {
+          "Objective": "2. Prerequisite Verification: To confirm that the AI system meets all established technical, security, ethical, and performance benchmarks through rigorous pre-deployment testing and validation, preventing the release of a non-compliant or unstable system."
+        },
+        {
+          "Objective": "3. Secure Packaging: To guarantee the integrity and security of the deployable artifacts by ensuring that all components, particularly container images, are built from trusted sources, scanned for vulnerabilities, and hardened before deployment."
+        }
+      ],
       "Fields": [
         {
           "FieldType": "risk",
@@ -1192,155 +1170,142 @@
           "question": "Are any components of the AI system be packaged in containers?",
           "controls": [
             {
-              "control": "PROTE.01 Ensure masking and anonymisation of sensitive or confidential data.",
-              "control_objective": "To protect sensitive data from unauthorised exposure during the packaging process."
-            },
-            {
               "control": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
-              "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries."
+              "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries.",
+              "control_evidence": "Configuration files for development tools, orchestrators (e.g., Kubernetes), and container runtimes demonstrating the use of TLS-encrypted connections (e.g., registry URLs starting with 'https://')."
             },
             {
               "control": "PROTE.03 Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
-              "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images."
+              "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images.",
+              "control_evidence": "Configuration of the automated pruning job (e.g., a CronJob manifest) and execution logs showing that vulnerable or old images have been successfully removed."
             },
             {
               "control": "PROTE.04 Enforce read/write access control for registries containing proprietary or sensitive container images.",
-              "control_objective": "To restrict unauthorised access and modifications to container images stored in registries."
+              "control_objective": "To restrict unauthorised access and modifications to container images stored in registries.",
+              "control_evidence": "Screenshots or configuration exports of the registry's Role-Based Access Control (RBAC) settings, showing defined user roles and their permissions for specific repositories."
             },
             {
               "control": "PROTE.05 Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
-              "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster."
+              "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster.",
+              "control_evidence": "Identity Provider (IdP) configuration showing MFA is enforced for the cluster administrator group, and the orchestrator's authentication configuration file pointing to the SSO provider (e.g., OIDC or SAML settings)."
             },
             {
               "control": "PROTE.06 Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
-              "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security."
+              "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security.",
+              "control_evidence": "Copies of network policy manifests (e.g., Kubernetes 'NetworkPolicy' YAML files) or firewall rules that define and enforce network segmentation."
             },
             {
               "control": "PROTE.07 Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
-              "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs."
-            },
-            {
-              "control": "PROTE.08 Establish stringent trust mechanisms for orchestrator nodes, including\na) secure introduction to the cluster\nb) persistent node identity\nc) inventory of nodes and their connectivity states\nd) resilience to individual node compromise\ne) mutual authentication of network connections with end-to-end encryption of intracluster traffic.",
-              "control_objective": "To build a secure and resilient orchestrator environment with trusted nodes and secure communications."
-            },
-            {
-              "control": "PROTE.09 Implement mechanisms for identifying Common Vulnerabilities and Exposures (CVEs) in the runtimes deployed.",
-              "control_objective": "To promptly identify and address known vulnerabilities in deployed runtimes, enhancing system security."
-            },
-            {
-              "control": "PROTE.10 Implement robust controls at network borders for monitoring and regulating egress network traffic originating from containers.",
-              "control_objective": "To control and monitor the outbound network traffic from containers, enhancing network security."
-            },
-            {
-              "control": "PROTE.11 Develop mechanisms to automatically enforce compliance requirements and, where applicable, prevent the execution of noncompliant container images.",
-              "control_objective": "To ensure that only compliant container images are deployed, maintaining a secure and regulated environment."
+              "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs.",
+              "control_evidence": "Orchestrator deployment configurations (e.g., YAML files) showing the use of node selectors, taints, and tolerations to restrict pods to specific nodes."
             },
             {
               "control": "PROTE.12 Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
-              "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments."
+              "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments.",
+              "control_evidence": "Patch management reports, host configuration files showing a minimal OS install (e.g., CIS hardened image), disabled services, and read-only file system settings. A Software Bill of Materials (SBOM) for the host OS."
             },
             {
               "control": "PROTE.13 Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
-              "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks."
+              "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks.",
+              "control_evidence": "Host inventory documentation or orchestrator node labels and taints that dedicate specific hosts exclusively to containerised workloads."
             },
             {
               "control": "PROTE.14 Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
-              "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data."
-            },
-            {
-              "control": "PROTE.15 Implement mechanisms for continuous updating, centralised reporting, and monitoring of image compliance to identify weaknesses and risks.",
-              "control_objective": "To maintain up-to-date compliance and security status of container images, enabling proactive risk management."
+              "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data.",
+              "control_evidence": "Pod security policies or admission controller configurations that enforce restrictions on hostPath volumes. Deployment manifests showing the container 'securityContext' is configured with minimal permissions."
             },
             {
               "control": "PROTE.16 Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
-              "control_objective": "To safeguard the environment from untrusted or potentially harmful container images."
+              "control_objective": "To safeguard the environment from untrusted or potentially harmful container images.",
+              "control_evidence": "Configuration of an admission controller (e.g., OPA Gatekeeper, Kyverno) that implements a policy to only allow images from an approved list of registries."
             },
             {
               "control": "PROTE.17 Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
-              "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads."
+              "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads.",
+              "control_evidence": "Network policy manifests (e.g., Kubernetes 'NetworkPolicy') or service mesh configurations (e.g., Istio 'AuthorizationPolicy') that define granular ingress and egress rules for pods."
             },
             {
               "control": "PROTE.18 Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
-              "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment."
+              "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment.",
+              "control_evidence": "Deployment manifests showing the container's root file system is set to read-only ('readOnlyRootFilesystem: true'). CI/CD pipeline configuration demonstrating that changes are deployed by building and shipping a new image."
             },
             {
               "control": "PROTE.19 Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
-              "control_objective": "To ensure the secure operation of APIs"
+              "control_objective": "To ensure the secure operation of APIs",
+              "control_evidence": "API gateway configuration files or screenshots demonstrating the enforcement of authentication, authorisation (e.g., access control lists), and rate-limiting policies."
             },
             {
               "control": "PROTE.20 Images should be configured to run as non-privileged users.",
-              "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment."
+              "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment.",
+              "control_evidence": "The 'Dockerfile' showing the 'USER' instruction is used. The deployment manifest showing the 'securityContext' specifies 'runAsNonRoot: true' and a non-zero 'runAsUser' ID."
             },
             {
               "control": "PROTE.21 Secrets should be stored outside of images and provided dynamically at runtime as needed.",
-              "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images."
+              "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images.",
+              "control_evidence": "Review of the 'Dockerfile' to confirm no secrets are present. Orchestrator manifests showing that secrets are mounted from a secure source (e.g., Kubernetes Secrets, HashiCorp Vault) at runtime."
             },
             {
               "control": "PROTE.22 Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
-              "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation."
+              "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation.",
+              "control_evidence": "Host-level AppArmor or SELinux profiles. Container-level pod security standards or custom admission controller policies that restrict privileged operations."
             },
             {
               "control": "PROTE.23 Utilise built-in security features of your containerisation platform.",
-              "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications."
+              "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications.",
+              "control_evidence": "A document or report detailing the enabled platform-specific security features, such as Kubernetes Pod Security Standards, Security Contexts, and RBAC configurations."
             },
             {
               "control": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
-              "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks."
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "Phase Deployment": [
-    {
-      "StepName": "(6.2.1) AI Lifecycle Phase requirements - Deployment",
-            "Objectives": [
-        {
-          "Objective":"Define the security requirements for - Deployment."}],
-      "Fields": [
-        {
-          "FieldType": "risk",
-          "FieldName": "Insufficient Audit Trails and Logging",
-          "question": "Will you need to track who accessed the AI system, what it did, and when — for accountability or regulatory purposes?",
-          "controls": [
-            {
-              "control": "AT[1] -  Record detailed logs of all data pre-processing activities, including data cleaning, normalisation, transformation, and any outlier removal or imputation techniques applied. Include timestamps, user IDs, and descriptions of actions taken.",
-              "control_objective": "To enable traceability and reconstruction of the entire data pre-processing workflow, providing a clear audit trail for identifying any issues or anomalies that may arise during this phase."
-            },
-            {
-              "control": "AT[2] -  Store logs in a secure and tamper-proof manner, ensuring their integrity and availability for future audits or investigations.",
-              "control_objective": "To ensure the availability of audit logs for a sufficient period to allow for thorough analysis and investigation of potential security or compliance issues. Protect logs from unauthorised modification or deletion to maintain their evidentiary value."
+              "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks.",
+              "control_evidence": "Deployment manifests (e.g., Kubernetes pod spec) showing that CPU and memory requests and limits are defined for all containers."
             }
           ]
         },
         {
-          "FieldType": "risk",
-          "FieldName": "Inadequate User Training and Awareness",
-          "question": "Will non-technical users rely on this AI — and have they been trained on its limitations and correct usage?",
-          "controls": [
+          "FieldType": "plan",
+          "FieldName": "(A.12.1.2, A.14.2.5) - Performance & Load Test Plan",
+          "PlanObjective": "To validate that the AI system meets its defined non-functional requirements for performance, stability, and scalability under realistic load conditions.",
+          "PlanCriteria": [
             {
-              "control": "[Art-9][Par-5][5c] -  Provide comprehensive information and training to AI system users within the organisation, considering their technical knowledge, experience, and education.",
-              "control_objective": "To ensure safe and responsible use of the adopted AI system by equipping users with necessary knowledge and skills."
+              "criteria": "PERF-TEST-01: The system's average API response time must remain below [e.g., 200ms] and the 95th percentile response time below [e.g., 500ms] during peak load simulation.",
+              "control_objective": "To ensure a responsive user experience during high-traffic periods.",
+              "criteria_evidence": "The final load test report containing time-series graphs of P50 and P95 latency metrics, demonstrating compliance with the defined Non-Functional Requirements (NFRs)."
+            },
+            {
+              "criteria": "PERF-TEST-02: The system's server-side error rate must not exceed [e.g., 0.1%] of total requests during the peak load test.",
+              "control_objective": "To confirm system stability and prevent service degradation under stress.",
+              "criteria_evidence": "A summary table in the load test report showing the total number of requests, the number of failed requests, and a calculated error rate below the defined threshold."
+            },
+            {
+              "criteria": "PERF-TEST-03: CPU and memory utilization for all system components must remain below a sustainable threshold (e.g., 80% average) without memory leaks throughout the duration of the load test.",
+              "control_objective": "To ensure the system has adequate resource capacity and operates efficiently without risk of crashing due to resource exhaustion.",
+              "criteria_evidence": "Monitoring dashboard screenshots (e.g., from Grafana, Datadog) or exported metrics showing CPU and memory usage over the test duration, confirming they stay within the acceptable range."
             }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "[C.3.6] - Unsafe Decommissioning of AI Systems",
-          "question": "When this AI system is eventually retired, is there a formal plan to handle its data and models securely and to manage the transition to a replacement system without creating operational gaps?",
-          "controls": [
+          ],
+          "PlanSteps": [
             {
-              "control": "[C.3.6][BP-13] - Establish a formal decommissioning plan that specifies procedures for the secure archiving or certified destruction of the AI model and all associated data, in compliance with data retention policies and privacy regulations.",
-              "control_objective": "To prevent data breaches and the misuse of sensitive information or obsolete models after the system is retired."
+              "step": "PLT-EXEC-01: Define and document specific Non-Functional Requirements (NFRs) for performance, including target response times (P50, P95), maximum acceptable error rate, and resource utilization thresholds.",
+              "step_objective": "To establish clear, quantitative success criteria for the load tests, directly informing the benchmarks needed to pass criteria PERF-TEST-01, 02, and 03."
             },
             {
-              "control": "[C.3.6][BP-14] - Ensure a managed transition when replacing an AI system by maintaining operational continuity, potentially through a period of overlap with the new system, to prevent any gaps in critical functionality.",
-              "control_objective": "To avoid creating vulnerabilities or disruptions to business processes during the transition from an old AI system to its replacement."
+              "step": "PLT-EXEC-02: Develop automated test scripts using a load testing tool (e.g., JMeter, k6, Gatling) to simulate realistic user workflows and data processing volumes, creating profiles for baseline, peak, and stress load.",
+              "step_objective": "To create a repeatable and accurate simulation of real-world user traffic, ensuring the test conditions are valid for assessing system performance."
             },
             {
-              "control": "[C.3.6][BP-15] - Have an incident response plan for AI-related failures, including procedures for safe shutdown, reversion to manual processes, and clear communication to stakeholders.",
-              "control_objective": "To minimize harm and operational disruption when an AI incident occurs and ensure a structured recovery process."
+              "step": "PLT-EXEC-03: Provision a dedicated, production-like test environment and configure monitoring tools to capture key performance indicators (KPIs) including latency, error rates, CPU, and memory usage for all services.",
+              "step_objective": "To ensure that test results are accurate and representative of production performance, and that all necessary data is collected for analysis."
+            },
+            {
+              "step": "PLT-EXEC-04: Execute the load test profiles against the test environment, starting with a baseline and gradually ramping up to peak and stress levels, while actively monitoring system health.",
+              "step_objective": "To systematically apply stress to the system in a controlled manner to gather performance data across different load scenarios."
+            },
+            {
+              "step": "PLT-EXEC-05: Aggregate and analyze the collected metrics, comparing the results against the predefined NFRs. Identify any performance bottlenecks or components that fail to meet the criteria.",
+              "step_objective": "To quantitatively evaluate the system's performance against the success criteria (PERF-TEST-01, 02, 03) and pinpoint areas for optimization."
+            },
+            {
+              "step": "PLT-EXEC-06: Compile a comprehensive load testing report summarizing the methodology, NFRs, test results (including graphs and tables), and a final conclusion on whether the system passed the performance benchmarks.",
+              "step_objective": "To produce the final piece of evidence required by all criteria, providing a clear record of the test outcomes for stakeholder review and approval."
             }
           ]
         }
@@ -1348,9 +1313,11 @@
     },
     {
       "StepName": "(A.8.4) AI System Documentation and User Information",
-            "Objectives": [
+      "Objectives": [
         {
-          "Objective":"Define and document the information, reporting, and incident communication plan for all internal and external interested parties."}],
+          "Objective": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties."
+        }
+      ],
       "Fields": [
         {
           "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
@@ -1376,55 +1343,57 @@
   "Phase Post deployment verification": [
     {
       "StepName": "(A.6.2.4) AI Systems verifications",
-            "Objectives": [
+      "Objectives": [
         {
-          "Objective":"Document verification and validation measures for the AI system and specify criteria for their use."}],
+          "Objective": "Document verification and validation measures for the AI system and specify criteria for their use."
+        }
+      ],
       "Fields": [
         {
           "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(6.2.4) - Performance and Fairness Monitoring V&V",
+          "FieldName": "(A.6.2.4) - Performance and Fairness Monitoring V&V",
           "FieldLabel": "Performance Monitoring Verification",
           "FieldText": "Verify the implementation of monitoring tools and dashboards. Test the system's ability to detect simulated performance degradation (e.g., accuracy drop >5%) and fairness metric violations (e.g., disparate impact ratio <0.8). Confirm that automated alerts are configured and successfully trigger notifications to the designated personnel.",
           "FieldType": "Option box with values:Applicable/Not Applicable"
         },
         {
           "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(6.2.4) - Human Oversight V&V",
+          "FieldName": "(A.6.2.4) - Human Oversight V&V",
           "FieldLabel": "Human Oversight Validation",
           "FieldText": "Review and approve the documented human oversight procedures. Validate that the user interface provides the necessary information and controls for a human to intervene, override, or stop the system's process. Conduct user acceptance testing (UAT) with designated overseers to confirm they can effectively perform their roles.",
           "FieldType": "Option box with values:Applicable/Not Applicable"
         },
         {
           "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(6.2.4) - Adherence to Intended Use V&V",
+          "FieldName": "(A.6.2.4) - Adherence to Intended Use V&V",
           "FieldLabel": "Intended Use Adherence Verification",
           "FieldText": "Verify that the 'Intended Use' documentation is clear, complete, and accessible to all users. Test any implemented technical controls (e.g., access restrictions, input validation) designed to prevent use outside the defined scope. Confirm user training materials explicitly cover approved use cases and limitations.",
           "FieldType": "Option box with values:Applicable/Not Applicable"
         },
         {
           "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(6.2.4) - Incident Management V&V",
+          "FieldName": "(A.6.2.4) - Incident Management V&V",
           "FieldLabel": "Incident Management Validation",
           "FieldText": "Verify that an AI-specific incident management plan exists. Conduct a tabletop exercise or simulation of a critical AI failure (e.g., major bias detection, system outage). Validate that reporting channels, escalation paths, and response roles function as documented and meet defined SLAs.",
           "FieldType": "Option box with values:Applicable/Not Applicable"
         },
         {
           "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(6.2.4) - Operational Transparency V&V",
+          "FieldName": "(A.6.2.4) - Operational Transparency V&V",
           "FieldLabel": "Operational Transparency Validation",
           "FieldText": "Validate that all user interfaces clearly disclose that an AI system is in use. Review system-generated notifications and explanations for clarity, accuracy, and completeness. Verify that mechanisms for users to access more detailed information or provide feedback are implemented as specified in the requirements.",
           "FieldType": "Option box with values:Applicable/Not Applicable"
         },
         {
           "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(6.2.4) - Data Management V&V",
+          "FieldName": "(A.6.2.4) - Data Management V&V",
           "FieldLabel": "Operational Data Management Verification",
           "FieldText": "Verify that data handling processes align with the Data Privacy Impact Assessment (DPIA). Conduct penetration testing and vulnerability scans on data storage and transmission channels. Validate that data minimization techniques (e.g., anonymization) are correctly implemented and that data retention policies are automatically enforced.",
           "FieldType": "Option box with values:Applicable/Not Applicable"
         },
         {
           "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(6.2.4) - System Maintenance V&V",
+          "FieldName": "(A.6.2.4) - System Maintenance V&V",
           "FieldLabel": "System Maintenance Plan Verification",
           "FieldText": "Verify the existence of a comprehensive system maintenance plan, including schedules for performance reviews and security patching. Validate the documented procedure for model retraining and redeployment. Review and approve the decommissioning plan to ensure it addresses data archival/deletion and stakeholder communication.",
           "FieldType": "Option box with values:Applicable/Not Applicable"
@@ -1435,9 +1404,6 @@
   "Phase Operations": [
     {
       "StepName": "(A.4.3) AI Lifecycle Phase requirements - Secure Logging and Monitoring",
-            "Objectives": [
-        {
-          "Objective":"To uphold the principles of AI transparency, accountability, and continuous improvement by implementing a comprehensive logging system that securely captures all interaction data, enabling performance monitoring, quality assurance, and detailed audits."}],
       "Objectives": [
         {
           "Objective": "1. System Performance and Reliability: This is about keeping the AI healthy and efficient. By logging every interaction, we can measure key metrics like response times and success rates. This data is essential for our technical teams to identify performance bottlenecks, troubleshoot errors, and ensure the system remains reliable and responsive for all users."
@@ -1452,10 +1418,12 @@
       "Fields": []
     },
     {
-      "StepName": "(6.2.1) AI Lifecycle Phase requirements - Deployment, Maintenance and Updates",
-            "Objectives": [
+      "StepName": "(A.6.2.6) AI Lifecycle Phase requirements - Operation and Monitoring",
+      "Objectives": [
         {
-          "Objective":"Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates."}],
+          "Objective": "Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates."
+        }
+      ],
       "Fields": [
         {
           "FieldType": "risk",
@@ -1595,9 +1563,11 @@
   "Phase 6": [
     {
       "StepName": "AI Systems approvals",
-            "Objectives": [
+      "Objectives": [
         {
-          "Objective":"Document AI system approvals"}],
+          "Objective": "Stakeholder Approval and Governance: To obtain formal sign-off from all relevant stakeholders, confirming that the deployment plan is sound and all prerequisites have been satisfied, thereby providing a clear governance gate and accountability for the deployment decision."
+        }
+      ],
       "Fields": [
         {
           "FieldName": "AI System Security Approver",
