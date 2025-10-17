@@ -305,7 +305,41 @@
           "FieldType": "TextBox"
         }
       ]
-    },
+    }
+  ],
+  "Phase AI Act": [
+	{
+	  "StepName": "EU AI Act: Prohibited AI Practices Assessment",
+	  "Objectives": [
+		{
+		  "Objective": "To determine if the AI system's intended purpose constitutes a prohibited practice under the EU AI Act."
+		}
+	  ],
+	  "Fields": [
+		{
+		  "FieldName": "EU-AI-ACT-PROHIBITED-ASSESSMENT",
+		  "FieldLabel": "Will the AI system be used for any of the following prohibited purposes?",
+		  "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
+		  "FieldType": "MultiSelect:Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)"
+		}
+	  ]
+	},
+	{
+	  "StepName": "EU AI Act: High-Risk System Classification",
+	  "Objectives": [
+		{
+		  "Objective": "To classify the AI system's risk level by assessing its intended purpose against the high-risk categories defined in the EU AI Act."
+		}
+	  ],
+	  "Fields": [
+		{
+		  "FieldName": "EU-AI-ACT-HIGH-RISK-ASSESSMENT",
+		  "FieldLabel": "Will the AI system be used for any of the following purposes?",
+		  "FieldText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
+		  "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings"
+		}
+	  ]
+	},
     {
       "StepName": "AI Act - Section 2: Requirements for High-Risk AI Systems",
       "Objectives": [
@@ -794,7 +828,6 @@
       "Fields": []
     }
   ],
-  "Phase ????": [],
   "Phase Chat With Your Document (Real-Time Data Processing)": [
     {
       "StepName": "User Interface",
