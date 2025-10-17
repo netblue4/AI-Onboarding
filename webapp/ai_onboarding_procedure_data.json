@@ -651,245 +651,6 @@
               "step_objective": "To validate the effectiveness of the de-duplication process, ensuring the final dataset meets the integrity standard of criterion ANON-INT-01."
             }
           ]
-        },
-        {
-          "FieldType": "plan",
-          "FieldName": "(A.7.4) Fairness and Bias in AI Systems Test Plan",
-          "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
-          "PlanCriteria": [
-            {
-              "criteria": "FAIR-CTX - 01: The context for fairness analysis, including the system's purpose, favorable outcomes, and protected attributes, must be clearly defined and documented.",
-              "control_objective": "To establish a clear and unambiguous framework for all subsequent fairness assessments, ensuring that tests are relevant to the system's specific use case.",
-              "criteria_evidence": "A signed-off document specifying: 1. The AI system's intended purpose. 2. The definition of the 'favorable outcome' variable. 3. A comprehensive list of protected attributes relevant to the legal jurisdiction (e.g., GDPR in Luxembourg)."
-            },
-            {
-              "criteria": "FAIR-REP - 01: The dataset's demographic composition must be representative of the target real-world population.",
-              "control_objective": "To identify and mitigate representation bias, ensuring that the dataset does not systematically under- or over-represent certain demographic groups.",
-              "criteria_evidence": "A data profiling report that includes: 1. Visualizations (e.g., bar charts) of the distribution of all subgroups for each protected attribute. 2. A comparative analysis of these distributions against external population benchmarks (e.g., census data, applicant pool statistics)."
-            },
-            {
-              "criteria": "FAIR-HIST - 01: The dataset must not exhibit significant statistical disparities in historical outcomes between protected groups.",
-              "control_objective": "To prevent the AI model from learning and amplifying past discriminatory patterns present in the training data.",
-              "criteria_evidence": "A historical bias analysis report demonstrating: 1. Calculation of favorable outcome rates for all subgroups. 2. Application of a statistical disparity test (e.g., the Four-Fifths Rule), with results showing that no subgroup's outcome rate is less than 80% of the most favorable group's rate."
-            },
-            {
-              "criteria": "FAIR-PRX - 01: Features that could act as proxies for protected attributes must be identified, analyzed, and documented.",
-              "control_objective": "To prevent indirect discrimination by ensuring the model does not rely on non-protected features that are highly correlated with sensitive attributes.",
-              "criteria_evidence": "A correlation analysis report (e.g., correlation matrix, feature importance analysis) that identifies features highly correlated with protected attributes. A documented decision for the inclusion or exclusion of each identified proxy."
-            },
-            {
-              "criteria": "FAIR-GOV - 01: A formal governance process must be in place to report on and mitigate identified fairness risks.",
-              "control_objective": "To ensure accountability and a structured, auditable response to any fairness issues discovered in the dataset before model development.",
-              "criteria_evidence": "1. A formal 'Dataset Bias Report' summarizing all findings from the context, representation, historical, and proxy analyses. 2. A documented and approved mitigation plan outlining the actions to be taken (e.g., re-sampling, re-weighting, risk acceptance)."
-            }
-          ],
-          "PlanSteps": [
-            {
-              "step": "FAIR-CTX-TEST-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
-              "step_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics, as required by FAIR-CTX-01."
-            },
-            {
-              "step": "FAIR-CTX-TEST-02: Identify and document the 'favorable outcome' variable and its values within the dataset (e.g., loan_approved = 1, hired = TRUE).",
-              "step_objective": "To provide a clear, measurable target for performing historical bias analysis and calculating outcome rates across groups, fulfilling a key part of criterion FAIR-CTX-01."
-            },
-            {
-              "step": "FAIR-CTX-TEST-03: List the protected attributes relevant to the system's context and jurisdiction (e.g., Gender, Age, Ethnicity, Disability per GDPR in Luxembourg).",
-              "step_objective": "To define the specific demographic and sensitive groups against which all subsequent fairness and bias tests will be conducted, completing the requirements for FAIR-CTX-01."
-            },
-            {
-              "step": "FAIR-REP-TEST-01: For each protected attribute, calculate and visualize the distribution of individuals across all subgroups (e.g., bar charts showing counts for each gender).",
-              "step_objective": "To quantify the demographic composition of the dataset and identify any underrepresentation, directly testing for criterion FAIR-REP-01."
-            },
-            {
-              "step": "FAIR-REP-TEST-02: Compare the dataset's demographic proportions against relevant real-world population benchmarks (e.g., national census data, applicant pool statistics).",
-              "step_objective": "To formally assess for representation bias by determining if the dataset is a skewed or accurate sample of the target population, providing the core evidence for FAIR-REP-01."
-            },
-            {
-              "step": "FAIR-HIST-TEST-01: Calculate and compare the rate of the 'favorable outcome' for each subgroup within a protected attribute (e.g., calculate the loan approval rate for males vs. females).",
-              "step_objective": "To measure for historical bias by identifying disparities in past outcomes, which is the first step in validating criterion FAIR-HIST-01."
-            },
-            {
-              "step": "FAIR-HIST-TEST-02: Apply a quantitative disparity threshold, such as the 'Four-Fifths (80%) Rule', to determine if the observed differences in outcome rates are statistically significant.",
-              "step_objective": "To provide a concrete, defensible method for confirming that the dataset meets the disparity requirements of criterion FAIR-HIST-01."
-            },
-            {
-              "step": "FAIR-PRX-TEST-01: Conduct a correlation analysis to identify non-protected features that are strong predictors of protected attributes (e.g., check correlation between zip code and ethnicity).",
-              "step_objective": "To uncover hidden sources of bias by identifying proxy variables, thereby generating the required analysis report for criterion FAIR-PRX-01."
-            },
-            {
-              "step": "FAIR-GOV-TEST-01: Compile all findings into a formal 'Dataset Bias Report' detailing representation biases, historical biases, and identified proxies.",
-              "step_objective": "To create a comprehensive, auditable record of the fairness assessment, producing the primary piece of evidence required by FAIR-GOV-01."
-            },
-            {
-              "step": "FAIR-GOV-TEST-02: Based on the report, select and document a clear mitigation strategy (e.g., collect more data, apply re-sampling/re-weighting, remove proxies, or formally accept the risk).",
-              "step_objective": "To ensure that identified biases are not ignored and that a deliberate, documented action plan is put in place, fulfilling the mitigation plan requirement of FAIR-GOV-01."
-            }
-          ]
-        },
-        {
-          "FieldType": "plan",
-          "FieldName": "(A.7.4) Transparency and Explainability in AI Systems Test Plan",
-          "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
-          "PlanCriteria": [
-            {
-              "criteria": "TRN-DEF - 01: Explainability requirements, including audiences, their specific needs, and legal obligations, must be formally defined and documented.",
-              "control_objective": "To establish a clear, stakeholder-aligned foundation for the design and implementation of the explanation system, ensuring it is fit-for-purpose and compliant.",
-              "criteria_evidence": "A signed-off 'Explainability Requirements Document' that specifies: 1. A list of all identified audiences (e.g., end-users, developers). 2. The core questions each audience needs answered. 3. A review of applicable legal obligations (e.g., GDPR)."
-            },
-            {
-              "criteria": "TRN-TECH - 01: Appropriate explanation techniques must be selected and implemented to cover both global model behavior and local, individual predictions.",
-              "control_objective": "To ensure the system has the technical capability to generate explanations that address the full spectrum of stakeholder needs, from high-level validation to individual case analysis.",
-              "criteria_evidence": "System architecture diagrams and documentation that specify: 1. The rationale for model selection (interpretable vs. complex). 2. The chosen global explanation technique (e.g., Feature Importance). 3. The chosen local explanation technique (e.g., SHAP, LIME)."
-            },
-            {
-              "criteria": "TRN-VAL - 01: The implemented explanation system must be technically robust, plausible, and stable.",
-              "control_objective": "To ensure that the generated explanations are reliable, accurate, and trustworthy, preventing misleading or nonsensical outputs.",
-              "criteria_evidence": "Validation test reports including: 1. Evidence of successful integration into the prediction pipeline. 2. A log of domain expert reviews confirming the plausibility of sample explanations. 3. Results from stability tests showing consistent explanations for minor input variations."
-            },
-            {
-              "criteria": "TRN-COM - 01: Technical explanation outputs must be translated into formats that are understandable, accessible, and actionable for each target audience.",
-              "control_objective": "To bridge the gap between complex model outputs and user comprehension, thereby achieving true transparency and empowering users.",
-              "criteria_evidence": "A 'Communication & UI/UX Design' document containing: 1. Natural language templates for end-user explanations. 2. Designs for actionable or counterfactual explanations. 3. Mockups or screenshots of visualizations for internal dashboards."
-            },
-            {
-              "criteria": "TRN-GOV - 01: Formal governance, including clear documentation and user-facing processes, must be established for the system's explainability features.",
-              "control_objective": "To ensure accountability, operationalize the right to explanation, and maintain a transparent and auditable record of the system's capabilities.",
-              "criteria_evidence": "1. A completed Model Card with a dedicated 'Explainability' section. 2. A publicly documented and accessible process for users to request and receive explanations for decisions that affect them."
-            }
-          ],
-          "PlanSteps": [
-            {
-              "step": "TRN-DEF-TEST-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
-              "step_objective": "To gather the necessary inputs for the 'Explainability Requirements Document' and satisfy a core component of criterion TRN-DEF-01."
-            },
-            {
-              "step": "TRN-DEF-TEST-02: For each identified audience, define and document the primary question the explanation needs to answer (e.g., debugging, business logic validation, or personal recourse).",
-              "step_objective": "To ensure explanations are relevant and useful, fulfilling the audience needs analysis required by criterion TRN-DEF-01."
-            },
-            {
-              "step": "TRN-DEF-TEST-03: Conduct and document a review of legal and regulatory obligations for explainability, such as those related to GDPR in Luxembourg.",
-              "step_objective": "To verify that the system's transparency features are designed for legal compliance, as mandated by criterion TRN-DEF-01."
-            },
-            {
-              "step": "TRN-TECH-TEST-01: For a given use case, justify the choice of model type (interpretable vs. complex) based on performance and transparency trade-offs.",
-              "step_objective": "To test that the model selection process aligns with the principle of using the simplest effective model, as outlined in criterion TRN-TECH-01."
-            },
-            {
-              "step": "TRN-TECH-TEST-02: For a complex model, generate and review a global explanation report (e.g., a feature importance plot) and verify it is produced correctly.",
-              "step_objective": "To confirm the implementation of a global explanation technique, providing evidence for criterion TRN-TECH-01."
-            },
-            {
-              "step": "TRN-TECH-TEST-03: For a complex model, generate a local explanation (e.g., a SHAP force plot) for a specific prediction and confirm its output.",
-              "step_objective": "To confirm the implementation of a local explanation technique, providing evidence for criterion TRN-TECH-01."
-            },
-            {
-              "step": "TRN-VAL-TEST-01: Run an end-to-end test of the prediction pipeline and verify that an explanation artifact is generated and stored alongside every prediction.",
-              "step_objective": "To validate the technical integration of the XAI library, providing evidence for the robustness requirement of TRN-VAL-01."
-            },
-            {
-              "step": "TRN-VAL-TEST-02: Submit a sample of 10-20 explanations to a domain expert for review and collect their signed approval that the explanations are logical and plausible.",
-              "step_objective": "To test the contextual meaningfulness of the explanations, fulfilling the plausibility requirement of criterion TRN-VAL-01."
-            },
-            {
-              "step": "TRN-VAL-TEST-03: Create two near-identical input samples with only minor, irrelevant variations. Generate explanations for both and verify that the resulting explanations are highly similar.",
-              "step_objective": "To empirically test the output's robustness, fulfilling the stability requirement of criterion TRN-VAL-01."
-            },
-            {
-              "step": "TRN-COM-TEST-01: Take a raw SHAP value output and process it through the natural language template. Verify the output is grammatically correct and easy to understand for a non-technical user.",
-              "step_objective": "To test the effectiveness of the translation layer, providing evidence for the user-facing communication criterion TRN-COM-01."
-            },
-            {
-              "step": "TRN-COM-TEST-02: For a simulated negative outcome (e.g., loan rejection), verify that the generated explanation includes actionable guidance or a counterfactual.",
-              "step_objective": "To confirm that explanations are designed to empower users, directly testing a key component of criterion TRN-COM-01."
-            },
-            {
-              "step": "TRN-COM-TEST-03: Generate an explanation for a business user and verify it is displayed as a simple, clear visualization on the internal dashboard.",
-              "step_objective": "To ensure explanations for internal stakeholders are effective and easy to interpret, as required by criterion TRN-COM-01."
-            },
-            {
-              "step": "TRN-GOV-TEST-01: Review the project's Model Card and confirm the presence and completeness of the 'Explainability' section.",
-              "step_objective": "To audit the formal documentation and ensure it meets the governance standards set by criterion TRN-GOV-01."
-            },
-            {
-              "step": "TRN-GOV-TEST-02: Follow the published user process to request an explanation. Verify that the request is logged and handled according to the documented procedure and timelines.",
-              "step_objective": "To perform an end-to-end test of the operational process, confirming compliance with criterion TRN-GOV-01."
-            }
-          ]
-        },
-        {
-          "FieldType": "plan",
-          "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
-          "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
-          "PlanCriteria": [
-            {
-              "criteria": "DATA-SEN - 01: The accuracy level for sensitive data must be > 95% of data points correct when compared to a trusted source.",
-              "control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
-              "criteria_evidence": "A data quality report or test results from a validation script showing an accuracy score of > 95%. Documentation of the validation methodology, including the definition of the 'trusted source'. The validation script itself should be available for review."
-            },
-            {
-              "criteria": "DATA-SEN - 02: Sensitive data must have All critical information present and all necessary data fields populated.",
-              "control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset.",
-              "criteria_evidence": "A data schema or data dictionary defining all critical and necessary data fields. A data profiling report or log from an automated script that verifies completeness, showing zero null or empty values in the designated critical fields."
-            },
-            {
-              "criteria": "DATA-SEN - 03: Sensitive data must have No contradictory information and maintain integrity across related datasets.",
-              "criteria_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets.",
-              "criteria_evidence": "Documentation of integrity rules and constraints applied to the data. Test results from validation scripts or database constraints (e.g., unit tests, SQL queries) that check for contradictions, with logs showing zero violations found."
-            },
-            {
-              "criteria": "DATA-SEN - 04: Sensitive data must be maintained in Real-time.",
-              "criteria_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision.",
-              "criteria_evidence": "System logs or monitoring dashboard metrics (e.g., from Kafka, Grafana, or a data pipeline tool) showing timestamps of data ingestion and processing. A Service Level Agreement (SLA) document defining the maximum acceptable latency, with monitoring reports confirming compliance."
-            },
-            {
-              "criteria": "DATA-SEN - 05: The sensitive data's provenance must be fully traced and verified.",
-              "criteria_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance).",
-              "criteria_evidence": "A data lineage graph or document that maps the data flow from its origin to its final state. Immutable logs (e.g., from a blockchain or write-once log system) that record all transformations, including timestamps and the identity of the process or user performing the change."
-            },
-            {
-              "criteria": "DATA-SEN - 06: A robust version control system like Git or DVC must be applied to manage and track sensitive data versions.",
-              "criteria_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications.",
-              "criteria_evidence": "A link to the version control repository (e.g., Git, DVC). A review of the repository's commit history demonstrating consistent and meaningful commits for data changes. A README file or documentation outlining the branching and tagging strategy for data versions."
-            }
-          ],
-          "PlanSteps": [
-            {
-              "step": "BBT-EXT-ACC-01: Establish a 'golden dataset' by manually and accurately extracting all critical data points from a representative sample of 10-20 source documents of varying types (PDF, DOCX, etc.).",
-              "step_objective": "To create a verified, ground-truth benchmark against which the automated extraction process's accuracy can be quantitatively measured, directly testing for control DATA-SEN-01."
-            },
-            {
-              "step": "BBT-EXT-ACC-02: Process the sample documents through the automated pipeline and programmatically compare the extracted text against the corresponding 'golden dataset', calculating the data point accuracy percentage.",
-              "step_objective": "To validate that the extraction process meets the specified >95% accuracy threshold (DATA-SEN-01) and to identify specific failure modes (e.g., issues with tables, complex layouts)."
-            },
-            {
-              "step": "BBT-EXT-COM-01: For a sample of documents, compare the total word/character count of the source file against the total count of the extracted and cleaned text. Flag any document with a deviation greater than a set threshold (e.g., 15%).",
-              "step_objective": "To perform a high-level check for major data loss, such as missed pages or entire sections, ensuring the process meets the completeness requirement of DATA-SEN-02."
-            },
-            {
-              "step": "BBT-EXT-COM-02: Define and test for 'non-splittable entities' (e.g., a person's full name and title, a complete address, a single table row). Verify that the chunking mechanism does not break these entities across multiple, separate chunks.",
-              "step_objective": "To ensure the chunking process preserves the semantic integrity of the data, preventing the creation of incomplete or misleading fragments and upholding the completeness rule (DATA-SEN-02)."
-            },
-            {
-              "step": "BBT-EXT-CON-01: Identify documents in the source data that contain known, intentional contradictions. Process these documents and verify that the extracted chunks accurately reflect the original contradictions without introducing new ones.",
-              "step_objective": "To confirm that the extraction and chunking process does not introduce new errors or artifacts that could be misinterpreted as data contradictions, thereby testing the integrity preservation required by DATA-SEN-03."
-            },
-            {
-              "step": "BBT-EXT-TIM-01: Introduce a new document or an updated version of an existing document into the source data collection. Measure the end-to-end processing time until its corresponding chunks are generated and ready for embedding.",
-              "step_objective": "To empirically test the data pipeline's latency and validate that it meets the timeliness requirements defined in DATA-SEN-04 for maintaining a real-time system."
-            },
-            {
-              "step": "BBT-EXT-PRO-01: From the output of the vectorization pipeline, select a random sample of 50 text chunks. For each chunk, verify the presence and correctness of its metadata, including source filename, document version, and page number.",
-              "step_objective": "To ensure that every piece of processed data maintains a verifiable link to its origin, satisfying the full provenance tracing requirement of DATA-SEN-05."
-            },
-            {
-              "step": "BBT-EXT-PRO-02: Using only the metadata from a sampled chunk, perform a reverse lookup to retrieve the original source document and confirm the chunk's content matches the content at the specified location (e.g., page 5, paragraph 2).",
-              "step_objective": "To validate the functional reliability of the provenance metadata, ensuring it is not just present but accurate and useful for auditing and verification as per DATA-SEN-05."
-            },
-            {
-              "step": "BBT-EXT-VER-01: Perform a test data rollback. Check out a previous version of a source document from the version control system (e.g., Git/DVC), run it through the pipeline, and verify that the output chunks exactly match the state of that older version.",
-              "step_objective": "To confirm that the version control system is properly integrated and that the data processing pipeline can reliably reproduce outputs from any given historical version of the data, fulfilling control DATA-SEN-06."
-            }
-          ]
         }
       ]
     },
@@ -1260,7 +1021,47 @@
               "control_evidence": "Deployment manifests (e.g., Kubernetes pod spec) showing that CPU and memory requests and limits are defined for all containers."
             }
           ]
+        }
+      ]
+    },
+    {
+      "StepName": "(A.8.4) AI System Documentation and User Information",
+      "Objectives": [
+        {
+          "Objective": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties."
+        }
+      ],
+      "Fields": [
+        {
+          "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
+          "FieldLabel": "Data Breach",
+          "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
+          "FieldType": "TextBox"
         },
+        {
+          "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
+          "FieldLabel": "Model Misuse",
+          "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
+          "FieldType": "TextBox"
+        },
+        {
+          "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
+          "FieldLabel": "Model Failure",
+          "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
+          "FieldType": "TextBox"
+        }
+      ]
+    }
+  ],
+  "Phase Post deployment verification": [
+    {
+      "StepName": "x(A.6.2.4) AI Systems verifications",
+      "Objectives": [
+        {
+          "Objective": "Document verification and validation measures for the AI system and specify criteria for their use."
+        }
+      ],
+      "Fields": [
         {
           "FieldType": "plan",
           "FieldName": "(A.12.1.2, A.14.2.5) - Performance & Load Test Plan",
@@ -1308,96 +1109,246 @@
               "step_objective": "To produce the final piece of evidence required by all criteria, providing a clear record of the test outcomes for stakeholder review and approval."
             }
           ]
-        }
-      ]
-    },
-    {
-      "StepName": "(A.8.4) AI System Documentation and User Information",
-      "Objectives": [
-        {
-          "Objective": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties."
-        }
-      ],
-      "Fields": [
-        {
-          "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
-          "FieldLabel": "Data Breach",
-          "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
-          "FieldType": "TextBox"
         },
         {
-          "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
-          "FieldLabel": "Model Misuse",
-          "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
-          "FieldType": "TextBox"
+          "FieldType": "plan",
+          "FieldName": "(A.7.4) Fairness and Bias in AI Systems Test Plan",
+          "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
+          "PlanCriteria": [
+            {
+              "criteria": "FAIR-CTX - 01: The context for fairness analysis, including the system's purpose, favorable outcomes, and protected attributes, must be clearly defined and documented.",
+              "control_objective": "To establish a clear and unambiguous framework for all subsequent fairness assessments, ensuring that tests are relevant to the system's specific use case.",
+              "criteria_evidence": "A signed-off document specifying: 1. The AI system's intended purpose. 2. The definition of the 'favorable outcome' variable. 3. A comprehensive list of protected attributes relevant to the legal jurisdiction (e.g., GDPR in Luxembourg)."
+            },
+            {
+              "criteria": "FAIR-REP - 01: The dataset's demographic composition must be representative of the target real-world population.",
+              "control_objective": "To identify and mitigate representation bias, ensuring that the dataset does not systematically under- or over-represent certain demographic groups.",
+              "criteria_evidence": "A data profiling report that includes: 1. Visualizations (e.g., bar charts) of the distribution of all subgroups for each protected attribute. 2. A comparative analysis of these distributions against external population benchmarks (e.g., census data, applicant pool statistics)."
+            },
+            {
+              "criteria": "FAIR-HIST - 01: The dataset must not exhibit significant statistical disparities in historical outcomes between protected groups.",
+              "control_objective": "To prevent the AI model from learning and amplifying past discriminatory patterns present in the training data.",
+              "criteria_evidence": "A historical bias analysis report demonstrating: 1. Calculation of favorable outcome rates for all subgroups. 2. Application of a statistical disparity test (e.g., the Four-Fifths Rule), with results showing that no subgroup's outcome rate is less than 80% of the most favorable group's rate."
+            },
+            {
+              "criteria": "FAIR-PRX - 01: Features that could act as proxies for protected attributes must be identified, analyzed, and documented.",
+              "control_objective": "To prevent indirect discrimination by ensuring the model does not rely on non-protected features that are highly correlated with sensitive attributes.",
+              "criteria_evidence": "A correlation analysis report (e.g., correlation matrix, feature importance analysis) that identifies features highly correlated with protected attributes. A documented decision for the inclusion or exclusion of each identified proxy."
+            },
+            {
+              "criteria": "FAIR-GOV - 01: A formal governance process must be in place to report on and mitigate identified fairness risks.",
+              "control_objective": "To ensure accountability and a structured, auditable response to any fairness issues discovered in the dataset before model development.",
+              "criteria_evidence": "1. A formal 'Dataset Bias Report' summarizing all findings from the context, representation, historical, and proxy analyses. 2. A documented and approved mitigation plan outlining the actions to be taken (e.g., re-sampling, re-weighting, risk acceptance)."
+            }
+          ],
+          "PlanSteps": [
+            {
+              "step": "FAIR-CTX-TEST-01: Document the intended purpose and operational context of the dataset (e.g., screening job applicants, predicting loan defaults).",
+              "step_objective": "To establish the specific fairness context, which dictates the relevance of different biases and informs the selection of appropriate fairness metrics, as required by FAIR-CTX-01."
+            },
+            {
+              "step": "FAIR-CTX-TEST-02: Identify and document the 'favorable outcome' variable and its values within the dataset (e.g., loan_approved = 1, hired = TRUE).",
+              "step_objective": "To provide a clear, measurable target for performing historical bias analysis and calculating outcome rates across groups, fulfilling a key part of criterion FAIR-CTX-01."
+            },
+            {
+              "step": "FAIR-CTX-TEST-03: List the protected attributes relevant to the system's context and jurisdiction (e.g., Gender, Age, Ethnicity, Disability per GDPR in Luxembourg).",
+              "step_objective": "To define the specific demographic and sensitive groups against which all subsequent fairness and bias tests will be conducted, completing the requirements for FAIR-CTX-01."
+            },
+            {
+              "step": "FAIR-REP-TEST-01: For each protected attribute, calculate and visualize the distribution of individuals across all subgroups (e.g., bar charts showing counts for each gender).",
+              "step_objective": "To quantify the demographic composition of the dataset and identify any underrepresentation, directly testing for criterion FAIR-REP-01."
+            },
+            {
+              "step": "FAIR-REP-TEST-02: Compare the dataset's demographic proportions against relevant real-world population benchmarks (e.g., national census data, applicant pool statistics).",
+              "step_objective": "To formally assess for representation bias by determining if the dataset is a skewed or accurate sample of the target population, providing the core evidence for FAIR-REP-01."
+            },
+            {
+              "step": "FAIR-HIST-TEST-01: Calculate and compare the rate of the 'favorable outcome' for each subgroup within a protected attribute (e.g., calculate the loan approval rate for males vs. females).",
+              "step_objective": "To measure for historical bias by identifying disparities in past outcomes, which is the first step in validating criterion FAIR-HIST-01."
+            },
+            {
+              "step": "FAIR-HIST-TEST-02: Apply a quantitative disparity threshold, such as the 'Four-Fifths (80%) Rule', to determine if the observed differences in outcome rates are statistically significant.",
+              "step_objective": "To provide a concrete, defensible method for confirming that the dataset meets the disparity requirements of criterion FAIR-HIST-01."
+            },
+            {
+              "step": "FAIR-PRX-TEST-01: Conduct a correlation analysis to identify non-protected features that are strong predictors of protected attributes (e.g., check correlation between zip code and ethnicity).",
+              "step_objective": "To uncover hidden sources of bias by identifying proxy variables, thereby generating the required analysis report for criterion FAIR-PRX-01."
+            },
+            {
+              "step": "FAIR-GOV-TEST-01: Compile all findings into a formal 'Dataset Bias Report' detailing representation biases, historical biases, and identified proxies.",
+              "step_objective": "To create a comprehensive, auditable record of the fairness assessment, producing the primary piece of evidence required by FAIR-GOV-01."
+            },
+            {
+              "step": "FAIR-GOV-TEST-02: Based on the report, select and document a clear mitigation strategy (e.g., collect more data, apply re-sampling/re-weighting, remove proxies, or formally accept the risk).",
+              "step_objective": "To ensure that identified biases are not ignored and that a deliberate, documented action plan is put in place, fulfilling the mitigation plan requirement of FAIR-GOV-01."
+            }
+          ]
         },
         {
-          "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
-          "FieldLabel": "Model Failure",
-          "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
-          "FieldType": "TextBox"
-        }
-      ]
-    }
-  ],
-  "Phase Post deployment verification": [
-    {
-      "StepName": "(A.6.2.4) AI Systems verifications",
-      "Objectives": [
-        {
-          "Objective": "Document verification and validation measures for the AI system and specify criteria for their use."
-        }
-      ],
-      "Fields": [
-        {
-          "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(A.6.2.4) - Performance and Fairness Monitoring V&V",
-          "FieldLabel": "Performance Monitoring Verification",
-          "FieldText": "Verify the implementation of monitoring tools and dashboards. Test the system's ability to detect simulated performance degradation (e.g., accuracy drop >5%) and fairness metric violations (e.g., disparate impact ratio <0.8). Confirm that automated alerts are configured and successfully trigger notifications to the designated personnel.",
-          "FieldType": "Option box with values:Applicable/Not Applicable"
+          "FieldType": "plan",
+          "FieldName": "(A.7.4) Transparency and Explainability in AI Systems Test Plan",
+          "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
+          "PlanCriteria": [
+            {
+              "criteria": "TRN-DEF - 01: Explainability requirements, including audiences, their specific needs, and legal obligations, must be formally defined and documented.",
+              "control_objective": "To establish a clear, stakeholder-aligned foundation for the design and implementation of the explanation system, ensuring it is fit-for-purpose and compliant.",
+              "criteria_evidence": "A signed-off 'Explainability Requirements Document' that specifies: 1. A list of all identified audiences (e.g., end-users, developers). 2. The core questions each audience needs answered. 3. A review of applicable legal obligations (e.g., GDPR)."
+            },
+            {
+              "criteria": "TRN-TECH - 01: Appropriate explanation techniques must be selected and implemented to cover both global model behavior and local, individual predictions.",
+              "control_objective": "To ensure the system has the technical capability to generate explanations that address the full spectrum of stakeholder needs, from high-level validation to individual case analysis.",
+              "criteria_evidence": "System architecture diagrams and documentation that specify: 1. The rationale for model selection (interpretable vs. complex). 2. The chosen global explanation technique (e.g., Feature Importance). 3. The chosen local explanation technique (e.g., SHAP, LIME)."
+            },
+            {
+              "criteria": "TRN-VAL - 01: The implemented explanation system must be technically robust, plausible, and stable.",
+              "control_objective": "To ensure that the generated explanations are reliable, accurate, and trustworthy, preventing misleading or nonsensical outputs.",
+              "criteria_evidence": "Validation test reports including: 1. Evidence of successful integration into the prediction pipeline. 2. A log of domain expert reviews confirming the plausibility of sample explanations. 3. Results from stability tests showing consistent explanations for minor input variations."
+            },
+            {
+              "criteria": "TRN-COM - 01: Technical explanation outputs must be translated into formats that are understandable, accessible, and actionable for each target audience.",
+              "control_objective": "To bridge the gap between complex model outputs and user comprehension, thereby achieving true transparency and empowering users.",
+              "criteria_evidence": "A 'Communication & UI/UX Design' document containing: 1. Natural language templates for end-user explanations. 2. Designs for actionable or counterfactual explanations. 3. Mockups or screenshots of visualizations for internal dashboards."
+            },
+            {
+              "criteria": "TRN-GOV - 01: Formal governance, including clear documentation and user-facing processes, must be established for the system's explainability features.",
+              "control_objective": "To ensure accountability, operationalize the right to explanation, and maintain a transparent and auditable record of the system's capabilities.",
+              "criteria_evidence": "1. A completed Model Card with a dedicated 'Explainability' section. 2. A publicly documented and accessible process for users to request and receive explanations for decisions that affect them."
+            }
+          ],
+          "PlanSteps": [
+            {
+              "step": "TRN-DEF-TEST-01: Identify and document all audiences for explanations, categorizing them into groups such as Developers/Auditors, Business Owners, and Affected End-Users.",
+              "step_objective": "To gather the necessary inputs for the 'Explainability Requirements Document' and satisfy a core component of criterion TRN-DEF-01."
+            },
+            {
+              "step": "TRN-DEF-TEST-02: For each identified audience, define and document the primary question the explanation needs to answer (e.g., debugging, business logic validation, or personal recourse).",
+              "step_objective": "To ensure explanations are relevant and useful, fulfilling the audience needs analysis required by criterion TRN-DEF-01."
+            },
+            {
+              "step": "TRN-DEF-TEST-03: Conduct and document a review of legal and regulatory obligations for explainability, such as those related to GDPR in Luxembourg.",
+              "step_objective": "To verify that the system's transparency features are designed for legal compliance, as mandated by criterion TRN-DEF-01."
+            },
+            {
+              "step": "TRN-TECH-TEST-01: For a given use case, justify the choice of model type (interpretable vs. complex) based on performance and transparency trade-offs.",
+              "step_objective": "To test that the model selection process aligns with the principle of using the simplest effective model, as outlined in criterion TRN-TECH-01."
+            },
+            {
+              "step": "TRN-TECH-TEST-02: For a complex model, generate and review a global explanation report (e.g., a feature importance plot) and verify it is produced correctly.",
+              "step_objective": "To confirm the implementation of a global explanation technique, providing evidence for criterion TRN-TECH-01."
+            },
+            {
+              "step": "TRN-TECH-TEST-03: For a complex model, generate a local explanation (e.g., a SHAP force plot) for a specific prediction and confirm its output.",
+              "step_objective": "To confirm the implementation of a local explanation technique, providing evidence for criterion TRN-TECH-01."
+            },
+            {
+              "step": "TRN-VAL-TEST-01: Run an end-to-end test of the prediction pipeline and verify that an explanation artifact is generated and stored alongside every prediction.",
+              "step_objective": "To validate the technical integration of the XAI library, providing evidence for the robustness requirement of TRN-VAL-01."
+            },
+            {
+              "step": "TRN-VAL-TEST-02: Submit a sample of 10-20 explanations to a domain expert for review and collect their signed approval that the explanations are logical and plausible.",
+              "step_objective": "To test the contextual meaningfulness of the explanations, fulfilling the plausibility requirement of criterion TRN-VAL-01."
+            },
+            {
+              "step": "TRN-VAL-TEST-03: Create two near-identical input samples with only minor, irrelevant variations. Generate explanations for both and verify that the resulting explanations are highly similar.",
+              "step_objective": "To empirically test the output's robustness, fulfilling the stability requirement of criterion TRN-VAL-01."
+            },
+            {
+              "step": "TRN-COM-TEST-01: Take a raw SHAP value output and process it through the natural language template. Verify the output is grammatically correct and easy to understand for a non-technical user.",
+              "step_objective": "To test the effectiveness of the translation layer, providing evidence for the user-facing communication criterion TRN-COM-01."
+            },
+            {
+              "step": "TRN-COM-TEST-02: For a simulated negative outcome (e.g., loan rejection), verify that the generated explanation includes actionable guidance or a counterfactual.",
+              "step_objective": "To confirm that explanations are designed to empower users, directly testing a key component of criterion TRN-COM-01."
+            },
+            {
+              "step": "TRN-COM-TEST-03: Generate an explanation for a business user and verify it is displayed as a simple, clear visualization on the internal dashboard.",
+              "step_objective": "To ensure explanations for internal stakeholders are effective and easy to interpret, as required by criterion TRN-COM-01."
+            },
+            {
+              "step": "TRN-GOV-TEST-01: Review the project's Model Card and confirm the presence and completeness of the 'Explainability' section.",
+              "step_objective": "To audit the formal documentation and ensure it meets the governance standards set by criterion TRN-GOV-01."
+            },
+            {
+              "step": "TRN-GOV-TEST-02: Follow the published user process to request an explanation. Verify that the request is logged and handled according to the documented procedure and timelines.",
+              "step_objective": "To perform an end-to-end test of the operational process, confirming compliance with criterion TRN-GOV-01."
+            }
+          ]
         },
         {
-          "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(A.6.2.4) - Human Oversight V&V",
-          "FieldLabel": "Human Oversight Validation",
-          "FieldText": "Review and approve the documented human oversight procedures. Validate that the user interface provides the necessary information and controls for a human to intervene, override, or stop the system's process. Conduct user acceptance testing (UAT) with designated overseers to confirm they can effectively perform their roles.",
-          "FieldType": "Option box with values:Applicable/Not Applicable"
-        },
-        {
-          "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(A.6.2.4) - Adherence to Intended Use V&V",
-          "FieldLabel": "Intended Use Adherence Verification",
-          "FieldText": "Verify that the 'Intended Use' documentation is clear, complete, and accessible to all users. Test any implemented technical controls (e.g., access restrictions, input validation) designed to prevent use outside the defined scope. Confirm user training materials explicitly cover approved use cases and limitations.",
-          "FieldType": "Option box with values:Applicable/Not Applicable"
-        },
-        {
-          "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(A.6.2.4) - Incident Management V&V",
-          "FieldLabel": "Incident Management Validation",
-          "FieldText": "Verify that an AI-specific incident management plan exists. Conduct a tabletop exercise or simulation of a critical AI failure (e.g., major bias detection, system outage). Validate that reporting channels, escalation paths, and response roles function as documented and meet defined SLAs.",
-          "FieldType": "Option box with values:Applicable/Not Applicable"
-        },
-        {
-          "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(A.6.2.4) - Operational Transparency V&V",
-          "FieldLabel": "Operational Transparency Validation",
-          "FieldText": "Validate that all user interfaces clearly disclose that an AI system is in use. Review system-generated notifications and explanations for clarity, accuracy, and completeness. Verify that mechanisms for users to access more detailed information or provide feedback are implemented as specified in the requirements.",
-          "FieldType": "Option box with values:Applicable/Not Applicable"
-        },
-        {
-          "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(A.6.2.4) - Data Management V&V",
-          "FieldLabel": "Operational Data Management Verification",
-          "FieldText": "Verify that data handling processes align with the Data Privacy Impact Assessment (DPIA). Conduct penetration testing and vulnerability scans on data storage and transmission channels. Validate that data minimization techniques (e.g., anonymization) are correctly implemented and that data retention policies are automatically enforced.",
-          "FieldType": "Option box with values:Applicable/Not Applicable"
-        },
-        {
-          "Control": "A.6.2.4 – AI system verification and validation",
-          "FieldName": "(A.6.2.4) - System Maintenance V&V",
-          "FieldLabel": "System Maintenance Plan Verification",
-          "FieldText": "Verify the existence of a comprehensive system maintenance plan, including schedules for performance reviews and security patching. Validate the documented procedure for model retraining and redeployment. Review and approve the decommissioning plan to ensure it addresses data archival/deletion and stakeholder communication.",
-          "FieldType": "Option box with values:Applicable/Not Applicable"
-        }
+          "FieldType": "plan",
+          "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
+          "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
+          "PlanCriteria": [
+            {
+              "criteria": "DATA-SEN - 01: The accuracy level for sensitive data must be > 95% of data points correct when compared to a trusted source.",
+              "control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
+              "criteria_evidence": "A data quality report or test results from a validation script showing an accuracy score of > 95%. Documentation of the validation methodology, including the definition of the 'trusted source'. The validation script itself should be available for review."
+            },
+            {
+              "criteria": "DATA-SEN - 02: Sensitive data must have All critical information present and all necessary data fields populated.",
+              "control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset.",
+              "criteria_evidence": "A data schema or data dictionary defining all critical and necessary data fields. A data profiling report or log from an automated script that verifies completeness, showing zero null or empty values in the designated critical fields."
+            },
+            {
+              "criteria": "DATA-SEN - 03: Sensitive data must have No contradictory information and maintain integrity across related datasets.",
+              "criteria_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets.",
+              "criteria_evidence": "Documentation of integrity rules and constraints applied to the data. Test results from validation scripts or database constraints (e.g., unit tests, SQL queries) that check for contradictions, with logs showing zero violations found."
+            },
+            {
+              "criteria": "DATA-SEN - 04: Sensitive data must be maintained in Real-time.",
+              "criteria_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision.",
+              "criteria_evidence": "System logs or monitoring dashboard metrics (e.g., from Kafka, Grafana, or a data pipeline tool) showing timestamps of data ingestion and processing. A Service Level Agreement (SLA) document defining the maximum acceptable latency, with monitoring reports confirming compliance."
+            },
+            {
+              "criteria": "DATA-SEN - 05: The sensitive data's provenance must be fully traced and verified.",
+              "criteria_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance).",
+              "criteria_evidence": "A data lineage graph or document that maps the data flow from its origin to its final state. Immutable logs (e.g., from a blockchain or write-once log system) that record all transformations, including timestamps and the identity of the process or user performing the change."
+            },
+            {
+              "criteria": "DATA-SEN - 06: A robust version control system like Git or DVC must be applied to manage and track sensitive data versions.",
+              "criteria_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications.",
+              "criteria_evidence": "A link to the version control repository (e.g., Git, DVC). A review of the repository's commit history demonstrating consistent and meaningful commits for data changes. A README file or documentation outlining the branching and tagging strategy for data versions."
+            }
+          ],
+          "PlanSteps": [
+            {
+              "step": "BBT-EXT-ACC-01: Establish a 'golden dataset' by manually and accurately extracting all critical data points from a representative sample of 10-20 source documents of varying types (PDF, DOCX, etc.).",
+              "step_objective": "To create a verified, ground-truth benchmark against which the automated extraction process's accuracy can be quantitatively measured, directly testing for control DATA-SEN-01."
+            },
+            {
+              "step": "BBT-EXT-ACC-02: Process the sample documents through the automated pipeline and programmatically compare the extracted text against the corresponding 'golden dataset', calculating the data point accuracy percentage.",
+              "step_objective": "To validate that the extraction process meets the specified >95% accuracy threshold (DATA-SEN-01) and to identify specific failure modes (e.g., issues with tables, complex layouts)."
+            },
+            {
+              "step": "BBT-EXT-COM-01: For a sample of documents, compare the total word/character count of the source file against the total count of the extracted and cleaned text. Flag any document with a deviation greater than a set threshold (e.g., 15%).",
+              "step_objective": "To perform a high-level check for major data loss, such as missed pages or entire sections, ensuring the process meets the completeness requirement of DATA-SEN-02."
+            },
+            {
+              "step": "BBT-EXT-COM-02: Define and test for 'non-splittable entities' (e.g., a person's full name and title, a complete address, a single table row). Verify that the chunking mechanism does not break these entities across multiple, separate chunks.",
+              "step_objective": "To ensure the chunking process preserves the semantic integrity of the data, preventing the creation of incomplete or misleading fragments and upholding the completeness rule (DATA-SEN-02)."
+            },
+            {
+              "step": "BBT-EXT-CON-01: Identify documents in the source data that contain known, intentional contradictions. Process these documents and verify that the extracted chunks accurately reflect the original contradictions without introducing new ones.",
+              "step_objective": "To confirm that the extraction and chunking process does not introduce new errors or artifacts that could be misinterpreted as data contradictions, thereby testing the integrity preservation required by DATA-SEN-03."
+            },
+            {
+              "step": "BBT-EXT-TIM-01: Introduce a new document or an updated version of an existing document into the source data collection. Measure the end-to-end processing time until its corresponding chunks are generated and ready for embedding.",
+              "step_objective": "To empirically test the data pipeline's latency and validate that it meets the timeliness requirements defined in DATA-SEN-04 for maintaining a real-time system."
+            },
+            {
+              "step": "BBT-EXT-PRO-01: From the output of the vectorization pipeline, select a random sample of 50 text chunks. For each chunk, verify the presence and correctness of its metadata, including source filename, document version, and page number.",
+              "step_objective": "To ensure that every piece of processed data maintains a verifiable link to its origin, satisfying the full provenance tracing requirement of DATA-SEN-05."
+            },
+            {
+              "step": "BBT-EXT-PRO-02: Using only the metadata from a sampled chunk, perform a reverse lookup to retrieve the original source document and confirm the chunk's content matches the content at the specified location (e.g., page 5, paragraph 2).",
+              "step_objective": "To validate the functional reliability of the provenance metadata, ensuring it is not just present but accurate and useful for auditing and verification as per DATA-SEN-05."
+            },
+            {
+              "step": "BBT-EXT-VER-01: Perform a test data rollback. Check out a previous version of a source document from the version control system (e.g., Git/DVC), run it through the pipeline, and verify that the output chunks exactly match the state of that older version.",
+              "step_objective": "To confirm that the version control system is properly integrated and that the data processing pipeline can reliably reproduce outputs from any given historical version of the data, fulfilling control DATA-SEN-06."
+            }
+          ]
+        }        
       ]
     }
   ],
