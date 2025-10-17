@@ -48,28 +48,27 @@
           "FieldLabel": "Augmented/Enhanced Tasks",
           "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
           "FieldType": "TextBox"
-        }
+        },
+{
+  "FieldName": "(A.9.3) AI system intended use - Permitted User Prompt Categories",
+  "FieldLabel": "Select the permitted categories of Use prompts for the AI System",
+  "FieldText": "",
+  "FieldType": "MultiSelect:Information Retrieval and Q&A/Document Summarization/Content Creation and Drafting/Policy and Procedure Guidance/Onboarding and Training Support/Technical Support and Troubleshooting/Data Analysis and Extraction"
+},
+{
+  "FieldName": "(A.9.3) AI system intended use - Known Prohibited Uses",
+  "FieldLabel": "Select the Known Prohibited Uses for the AI System",
+  "FieldText": "Specify which of these prohibited applications the AI system must be prevented from performing, in line with the EU AI Act. This is a critical step to ensure compliance and responsible use.",
+  "FieldType": "MultiSelect:Manipulative or Subliminal Techniques Causing Harm/Exploitation of Vulnerabilities (e.g., age, disability)/General-Purpose Social Scoring/Predictive Policing Based Solely on Profiling/Untargeted Scraping of Facial Images for Databases/Emotion Recognition in Workplace or Education/Biometric Categorization Using Sensitive Data (e.g., race, religion)/'Real-Time' Remote Biometric ID in Public Spaces"
+},
+{
+  "FieldName": "AI system intended use - Intended User Profile",
+  "FieldLabel": "Select the Intended User Profiles for the AI System",
+  "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
+  "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
+}        
       ]
     },
-    {
-      "StepName": "(A.9.3) Objectives for responsible use of AI system",
-      "WebFormTitle": "To establish and document the guiding principles for the ethical, fair, and responsible operation of the AI system.",
-      "Objectives": [
-        {
-          "Objective": "1. Human Agency and Oversight: To ensure that the AI system is used to augment, not replace, human judgment. All high-stakes decisions suggested by the AI must be subject to meaningful human review and approval before taking effect."
-        },
-        {
-          "Objective": "2. Fair and Equitable Application: To commit to using the AI system in a manner that prevents discriminatory outcomes. The system's application must be monitored to ensure it is applied equitably across all relevant demographic groups and contexts."
-        },
-        {
-          "Objective": "3. Purpose Limitation: To guarantee that the AI system is used strictly for its defined and documented intended purpose. This principle prohibits using the system or its data for any secondary, unvalidated, or unapproved applications."
-        },
-        {
-          "Objective": "4. Accountability and Recourse: To maintain a clear and auditable trail of the system's use, ensuring there is a designated person accountable for its outcomes and a transparent process for affected individuals to challenge decisions and seek recourse."
-        }
-    ],
-    "Fields": []
-	},
     {
       "StepName": "x(A.4.2, A.4.4) AI Systems Software and Tooling Resources",
       "Objectives": [
@@ -607,19 +606,13 @@
       "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
       "Objectives": [
         {
-          "Objective": "1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact."
+          "Objective": "ToDo: 1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact."
         },
         {
           "Objective": "2. Thorough Cleaning: Documents often contain digital noise that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers."
         },
         {
           "Objective": "3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete paragraphs or ideas. This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on."
-        },
-        {
-          "Objective": "4. Fairness and Bias: AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory."
-        },
-        {
-          "Objective": "5. Transparency and Explainability: Are AI are systems designed, developed and tested to provide understandable and sufficient information about its decisions."
         }
       ],
       "Fields": [
@@ -670,9 +663,84 @@
               "step_objective": "To validate the effectiveness of the de-duplication process, ensuring the final dataset meets the integrity standard of criterion ANON-INT-01."
             }
           ]
+        },
+        {
+          "FieldType": "plan",
+          "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
+          "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
+          "PlanCriteria": [
+            {
+              "criteria": "DATA-SEN - 01: The accuracy level for sensitive data must be > 95% of data points correct when compared to a trusted source.",
+              "control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
+              "criteria_evidence": "A data quality report or test results from a validation script showing an accuracy score of > 95%. Documentation of the validation methodology, including the definition of the 'trusted source'. The validation script itself should be available for review."
+            },
+            {
+              "criteria": "DATA-SEN - 02: Sensitive data must have All critical information present and all necessary data fields populated.",
+              "control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset.",
+              "criteria_evidence": "A data schema or data dictionary defining all critical and necessary data fields. A data profiling report or log from an automated script that verifies completeness, showing zero null or empty values in the designated critical fields."
+            },
+            {
+              "criteria": "DATA-SEN - 03: Sensitive data must have No contradictory information and maintain integrity across related datasets.",
+              "criteria_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets.",
+              "criteria_evidence": "Documentation of integrity rules and constraints applied to the data. Test results from validation scripts or database constraints (e.g., unit tests, SQL queries) that check for contradictions, with logs showing zero violations found."
+            },
+            {
+              "criteria": "DATA-SEN - 04: Sensitive data must be maintained in Real-time.",
+              "criteria_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision.",
+              "criteria_evidence": "System logs or monitoring dashboard metrics (e.g., from Kafka, Grafana, or a data pipeline tool) showing timestamps of data ingestion and processing. A Service Level Agreement (SLA) document defining the maximum acceptable latency, with monitoring reports confirming compliance."
+            },
+            {
+              "criteria": "DATA-SEN - 05: The sensitive data's provenance must be fully traced and verified.",
+              "criteria_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance).",
+              "criteria_evidence": "A data lineage graph or document that maps the data flow from its origin to its final state. Immutable logs (e.g., from a blockchain or write-once log system) that record all transformations, including timestamps and the identity of the process or user performing the change."
+            },
+            {
+              "criteria": "DATA-SEN - 06: A robust version control system like Git or DVC must be applied to manage and track sensitive data versions.",
+              "criteria_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications.",
+              "criteria_evidence": "A link to the version control repository (e.g., Git, DVC). A review of the repository's commit history demonstrating consistent and meaningful commits for data changes. A README file or documentation outlining the branching and tagging strategy for data versions."
+            }
+          ],
+          "PlanSteps": [
+            {
+              "step": "BBT-EXT-ACC-01: Establish a 'golden dataset' by manually and accurately extracting all critical data points from a representative sample of 10-20 source documents of varying types (PDF, DOCX, etc.).",
+              "step_objective": "To create a verified, ground-truth benchmark against which the automated extraction process's accuracy can be quantitatively measured, directly testing for control DATA-SEN-01."
+            },
+            {
+              "step": "BBT-EXT-ACC-02: Process the sample documents through the automated pipeline and programmatically compare the extracted text against the corresponding 'golden dataset', calculating the data point accuracy percentage.",
+              "step_objective": "To validate that the extraction process meets the specified >95% accuracy threshold (DATA-SEN-01) and to identify specific failure modes (e.g., issues with tables, complex layouts)."
+            },
+            {
+              "step": "BBT-EXT-COM-01: For a sample of documents, compare the total word/character count of the source file against the total count of the extracted and cleaned text. Flag any document with a deviation greater than a set threshold (e.g., 15%).",
+              "step_objective": "To perform a high-level check for major data loss, such as missed pages or entire sections, ensuring the process meets the completeness requirement of DATA-SEN-02."
+            },
+            {
+              "step": "BBT-EXT-COM-02: Define and test for 'non-splittable entities' (e.g., a person's full name and title, a complete address, a single table row). Verify that the chunking mechanism does not break these entities across multiple, separate chunks.",
+              "step_objective": "To ensure the chunking process preserves the semantic integrity of the data, preventing the creation of incomplete or misleading fragments and upholding the completeness rule (DATA-SEN-02)."
+            },
+            {
+              "step": "BBT-EXT-CON-01: Identify documents in the source data that contain known, intentional contradictions. Process these documents and verify that the extracted chunks accurately reflect the original contradictions without introducing new ones.",
+              "step_objective": "To confirm that the extraction and chunking process does not introduce new errors or artifacts that could be misinterpreted as data contradictions, thereby testing the integrity preservation required by DATA-SEN-03."
+            },
+            {
+              "step": "BBT-EXT-TIM-01: Introduce a new document or an updated version of an existing document into the source data collection. Measure the end-to-end processing time until its corresponding chunks are generated and ready for embedding.",
+              "step_objective": "To empirically test the data pipeline's latency and validate that it meets the timeliness requirements defined in DATA-SEN-04 for maintaining a real-time system."
+            },
+            {
+              "step": "BBT-EXT-PRO-01: From the output of the vectorization pipeline, select a random sample of 50 text chunks. For each chunk, verify the presence and correctness of its metadata, including source filename, document version, and page number.",
+              "step_objective": "To ensure that every piece of processed data maintains a verifiable link to its origin, satisfying the full provenance tracing requirement of DATA-SEN-05."
+            },
+            {
+              "step": "BBT-EXT-PRO-02: Using only the metadata from a sampled chunk, perform a reverse lookup to retrieve the original source document and confirm the chunk's content matches the content at the specified location (e.g., page 5, paragraph 2).",
+              "step_objective": "To validate the functional reliability of the provenance metadata, ensuring it is not just present but accurate and useful for auditing and verification as per DATA-SEN-05."
+            },
+            {
+              "step": "BBT-EXT-VER-01: Perform a test data rollback. Check out a previous version of a source document from the version control system (e.g., Git/DVC), run it through the pipeline, and verify that the output chunks exactly match the state of that older version.",
+              "step_objective": "To confirm that the version control system is properly integrated and that the data processing pipeline can reliably reproduce outputs from any given historical version of the data, fulfilling control DATA-SEN-06."
+            }
+          ]
         }
-      ]
-    },
+  ]
+},
     {
       "StepName": "Indexing and storing company's proprietary data",
       "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
@@ -846,9 +914,37 @@
               "control_objective": "To protect the integrity and confidentiality of data as it moves through the RAG pipeline and prevent attackers from manipulating the workflow logic.",
               "control_evidence": "Network architecture diagram showing mTLS enforced between microservices. Infrastructure-as-code (e.g., Terraform, Kubernetes YAML) configuration files specifying the network policies and secret management for certificates. Vulnerability scan reports for the orchestrator service container and its dependencies."
             }
-          ]
-        }
-      ]
+        ]
+    },
+{
+  "FieldType": "risk",
+  "FieldName": "[RAG-ORCH-01] - Failure to Enforce Permitted User Prompt Categories",
+  "RiskDescription": "The risk that the RAG Orchestrator processes user prompts that do not align with the pre-defined, permitted categories (e.g., Q&A, Summarization). This can lead the orchestrator to misinterpret user intent, retrieve irrelevant documents, and generate unreliable or non-compliant responses, fundamentally undermining the system's intended use.",
+  "question": "Does the RAG Orchestrator have a specific, built-in mechanism to classify incoming user prompts against the permitted categories and reject those that do not match?",
+  "controls": [
+    {
+      "control": "[RAG-PC-01] - Implement a Prompt Classification Module: The RAG Orchestrator must include a pre-processing module that classifies the intent of every incoming user prompt into one of the pre-defined, permitted categories. Prompts that cannot be classified or are classified as out-of-scope must be rejected before the retrieval step.",
+      "control_objective": "To create a robust, intelligent gatekeeper within the RAG Orchestrator that ensures only user prompts matching the system's approved functionalities are ever processed.",
+      "control_evidence": "A code snippet or documentation of the classification logic (e.g., using a smaller classification model, keyword heuristics, or an LLM call); a copy of the configuration linking this module to the 'Permitted User Prompt Categories' defined in the initial procedure step; and system logs showing both successful classifications and rejections of out-of-category prompts."
+    },
+    {
+      "control": "[RAG-PC-02] - Configure Category-Specific System Prompts: The RAG Orchestrator's prompt templating engine must be capable of dynamically adjusting the system prompt based on the classified category, reinforcing the specific task to the LLM.",
+      "control_objective": "To improve the accuracy and relevance of the LLM's response by providing it with context-specific instructions tailored to the user's classified intent (e.g., 'You are a helpful assistant. Summarize the following document...').",
+      "control_evidence": "A copy of the RAG Orchestrator's configuration file showing the different prompt templates for each category; and logs from the orchestrator demonstrating that the correct system prompt was selected based on a classified user query."
+    },
+    {
+      "control": "[RAG-PC-04] - Implement Prohibited Terms Monitoring: The RAG Orchestrator must include a monitoring component that inspects user queries for keywords from a configurable blacklist of prohibited terms (e.g., 'performance review,' 'salary,' 'disciplinary action'). Matches must be logged with user and session details for later review.",
+      "control_objective": "To create a critical audit trail for attempted misuse of the system, providing the necessary data for user retraining, incident response, and continuous improvement of the prompt classification module.",
+      "control_evidence": "A copy of the configuration file defining the blacklist of prohibited terms; and a sample of the monitoring logs or a screenshot from the monitoring dashboard showing a user query that was successfully flagged for containing a prohibited term."
+    },
+    {
+      "control": "[RAG-PC-03] - Provide Category-Aware UI Directives via API: The RAG Orchestrator's API must include fields in its response that inform the User Interface of the classified prompt category, enabling the UI to provide dynamic, context-aware guidance.",
+      "control_objective": "To create a feedback loop where the orchestrator's classification actively guides the user, reinforcing the system's capabilities and improving the user experience.",
+      "control_evidence": "A copy of the RAG Orchestrator's API documentation showing the fields for the classified category; and a sample JSON response from the API containing a classified category (e.g., 'category': 'Document Summarization')."
+    }
+  ]
+}         
+       ]
     },
     {
       "StepName": "Generic LLM",
@@ -1094,11 +1190,20 @@
   "Phase Post deployment verification": [
     {
       "StepName": "x(A.6.2.4) AI Systems verifications",
-      "Objectives": [
-        {
-          "Objective": "Document verification and validation measures for the AI system and specify criteria for their use."
-        }
-      ],
+"Objectives": [
+    {
+      "Objective": "1. Overall System Validation: To execute a formal suite of verification and validation tests that ensure the AI system meets all pre-defined technical, ethical, and operational requirements before deployment."
+    },
+    {
+      "Objective": "2. Performance and Stability Verification: To validate that the AI system is robust, stable, and scalable under realistic load conditions by executing the 'Performance & Load Test Plan'."
+    },
+    {
+      "Objective": "3. Responsible AI Compliance: To verify that the system operates ethically by confirming adherence to fairness, bias, transparency, and explainability standards through the 'Fairness and Bias' and 'Transparency and Explainability' test plans."
+    },
+    {
+      "Objective": "4. Operational Integrity and Safety: To ensure the system can be used safely and correctly by validating its technical guardrails against misuse through the 'Purpose Limitation and Prompt Category Enforcement Test Plan'."
+    }
+  ],
       "Fields": [
         {
           "FieldType": "plan",
@@ -1246,11 +1351,6 @@
               "criteria": "TRN-COM - 01: Technical explanation outputs must be translated into formats that are understandable, accessible, and actionable for each target audience.",
               "control_objective": "To bridge the gap between complex model outputs and user comprehension, thereby achieving true transparency and empowering users.",
               "criteria_evidence": "A 'Communication & UI/UX Design' document containing: 1. Natural language templates for end-user explanations. 2. Designs for actionable or counterfactual explanations. 3. Mockups or screenshots of visualizations for internal dashboards."
-            },
-            {
-              "criteria": "TRN-GOV - 01: Formal governance, including clear documentation and user-facing processes, must be established for the system's explainability features.",
-              "control_objective": "To ensure accountability, operationalize the right to explanation, and maintain a transparent and auditable record of the system's capabilities.",
-              "criteria_evidence": "1. A completed Model Card with a dedicated 'Explainability' section. 2. A publicly documented and accessible process for users to request and receive explanations for decisions that affect them."
             }
           ],
           "PlanSteps": [
@@ -1312,81 +1412,59 @@
             }
           ]
         },
-        {
-          "FieldType": "plan",
-          "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
-          "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
-          "PlanCriteria": [
-            {
-              "criteria": "DATA-SEN - 01: The accuracy level for sensitive data must be > 95% of data points correct when compared to a trusted source.",
-              "control_objective": "To ensure that sensitive data is reliable, precise, and fit for high-stakes decision-making.",
-              "criteria_evidence": "A data quality report or test results from a validation script showing an accuracy score of > 95%. Documentation of the validation methodology, including the definition of the 'trusted source'. The validation script itself should be available for review."
-            },
-            {
-              "criteria": "DATA-SEN - 02: Sensitive data must have All critical information present and all necessary data fields populated.",
-              "control_objective": "To guarantee that all necessary information required for analysis and operations is present in the sensitive dataset.",
-              "criteria_evidence": "A data schema or data dictionary defining all critical and necessary data fields. A data profiling report or log from an automated script that verifies completeness, showing zero null or empty values in the designated critical fields."
-            },
-            {
-              "criteria": "DATA-SEN - 03: Sensitive data must have No contradictory information and maintain integrity across related datasets.",
-              "criteria_objective": "To maintain the integrity and trustworthiness of sensitive data by eliminating logical contradictions across related datasets.",
-              "criteria_evidence": "Documentation of integrity rules and constraints applied to the data. Test results from validation scripts or database constraints (e.g., unit tests, SQL queries) that check for contradictions, with logs showing zero violations found."
-            },
-            {
-              "criteria": "DATA-SEN - 04: Sensitive data must be maintained in Real-time.",
-              "criteria_objective": "To ensure that sensitive data is timely and current for its intended use, especially in contexts requiring immediate action or decision.",
-              "criteria_evidence": "System logs or monitoring dashboard metrics (e.g., from Kafka, Grafana, or a data pipeline tool) showing timestamps of data ingestion and processing. A Service Level Agreement (SLA) document defining the maximum acceptable latency, with monitoring reports confirming compliance."
-            },
-            {
-              "criteria": "DATA-SEN - 05: The sensitive data's provenance must be fully traced and verified.",
-              "criteria_objective": "To enable full auditing and verification by maintaining a complete, unalterable record of the sensitive data's origin and history (provenance).",
-              "criteria_evidence": "A data lineage graph or document that maps the data flow from its origin to its final state. Immutable logs (e.g., from a blockchain or write-once log system) that record all transformations, including timestamps and the identity of the process or user performing the change."
-            },
-            {
-              "criteria": "DATA-SEN - 06: A robust version control system like Git or DVC must be applied to manage and track sensitive data versions.",
-              "criteria_objective": "To ensure that changes to sensitive data are tracked, auditable, and reversible, protecting against unauthorized or erroneous modifications.",
-              "criteria_evidence": "A link to the version control repository (e.g., Git, DVC). A review of the repository's commit history demonstrating consistent and meaningful commits for data changes. A README file or documentation outlining the branching and tagging strategy for data versions."
-            }
-          ],
-          "PlanSteps": [
-            {
-              "step": "BBT-EXT-ACC-01: Establish a 'golden dataset' by manually and accurately extracting all critical data points from a representative sample of 10-20 source documents of varying types (PDF, DOCX, etc.).",
-              "step_objective": "To create a verified, ground-truth benchmark against which the automated extraction process's accuracy can be quantitatively measured, directly testing for control DATA-SEN-01."
-            },
-            {
-              "step": "BBT-EXT-ACC-02: Process the sample documents through the automated pipeline and programmatically compare the extracted text against the corresponding 'golden dataset', calculating the data point accuracy percentage.",
-              "step_objective": "To validate that the extraction process meets the specified >95% accuracy threshold (DATA-SEN-01) and to identify specific failure modes (e.g., issues with tables, complex layouts)."
-            },
-            {
-              "step": "BBT-EXT-COM-01: For a sample of documents, compare the total word/character count of the source file against the total count of the extracted and cleaned text. Flag any document with a deviation greater than a set threshold (e.g., 15%).",
-              "step_objective": "To perform a high-level check for major data loss, such as missed pages or entire sections, ensuring the process meets the completeness requirement of DATA-SEN-02."
-            },
-            {
-              "step": "BBT-EXT-COM-02: Define and test for 'non-splittable entities' (e.g., a person's full name and title, a complete address, a single table row). Verify that the chunking mechanism does not break these entities across multiple, separate chunks.",
-              "step_objective": "To ensure the chunking process preserves the semantic integrity of the data, preventing the creation of incomplete or misleading fragments and upholding the completeness rule (DATA-SEN-02)."
-            },
-            {
-              "step": "BBT-EXT-CON-01: Identify documents in the source data that contain known, intentional contradictions. Process these documents and verify that the extracted chunks accurately reflect the original contradictions without introducing new ones.",
-              "step_objective": "To confirm that the extraction and chunking process does not introduce new errors or artifacts that could be misinterpreted as data contradictions, thereby testing the integrity preservation required by DATA-SEN-03."
-            },
-            {
-              "step": "BBT-EXT-TIM-01: Introduce a new document or an updated version of an existing document into the source data collection. Measure the end-to-end processing time until its corresponding chunks are generated and ready for embedding.",
-              "step_objective": "To empirically test the data pipeline's latency and validate that it meets the timeliness requirements defined in DATA-SEN-04 for maintaining a real-time system."
-            },
-            {
-              "step": "BBT-EXT-PRO-01: From the output of the vectorization pipeline, select a random sample of 50 text chunks. For each chunk, verify the presence and correctness of its metadata, including source filename, document version, and page number.",
-              "step_objective": "To ensure that every piece of processed data maintains a verifiable link to its origin, satisfying the full provenance tracing requirement of DATA-SEN-05."
-            },
-            {
-              "step": "BBT-EXT-PRO-02: Using only the metadata from a sampled chunk, perform a reverse lookup to retrieve the original source document and confirm the chunk's content matches the content at the specified location (e.g., page 5, paragraph 2).",
-              "step_objective": "To validate the functional reliability of the provenance metadata, ensuring it is not just present but accurate and useful for auditing and verification as per DATA-SEN-05."
-            },
-            {
-              "step": "BBT-EXT-VER-01: Perform a test data rollback. Check out a previous version of a source document from the version control system (e.g., Git/DVC), run it through the pipeline, and verify that the output chunks exactly match the state of that older version.",
-              "step_objective": "To confirm that the version control system is properly integrated and that the data processing pipeline can reliably reproduce outputs from any given historical version of the data, fulfilling control DATA-SEN-06."
-            }
-          ]
-        }        
+{
+  "FieldType": "plan",
+  "FieldName": "(A.9.4) - Purpose Limitation and Prompt Category Enforcement Test Plan",
+  "PlanObjective": "To test and validate that the RAG Orchestrator's technical controls are effective in enforcing the AI system's documented intended use by correctly classifying user prompts, rejecting out-of-scope requests, and monitoring for prohibited terms.",
+  "PlanCriteria": [
+    {
+      "criteria": "[PL-TEST-01]: The RAG Orchestrator's Prompt Classification Module must accurately classify user prompts and reject any that are out-of-scope before the retrieval step.",
+      "control_objective": "To create a robust, intelligent gatekeeper within the RAG Orchestrator that ensures only user prompts matching the system's approved functionalities are ever processed.",
+      "criteria_evidence": "System logs showing both successful classifications for in-scope prompts and explicit rejections for a variety of out-of-category prompts."
+    },
+    {
+      "criteria": "[PL-TEST-02]: The RAG Orchestrator's prompt templating engine must dynamically select the correct category-specific system prompt based on the classified user intent.",
+      "control_objective": "To improve the accuracy and relevance of the LLM's response by providing it with context-specific instructions tailored to the user's classified intent.",
+      "criteria_evidence": "Logs from the RAG Orchestrator demonstrating that the correct system prompt template (e.g., 'Summarization' template) was selected and applied based on the classified user query."
+    },
+    {
+        "criteria": "[PL-TEST-03]: The RAG Orchestrator must log any user query containing a term from the prohibited terms blacklist.",
+        "control_objective": "To create a critical audit trail for attempted misuse of the system, providing the necessary data for user retraining and incident response.",
+        "criteria_evidence": "A screenshot from the monitoring dashboard or a sample from the monitoring logs showing that a user query containing a prohibited term was successfully flagged."
+    },
+    {
+      "criteria": "[PL-TEST-04]: The RAG Orchestrator's API response must include the correct category-aware UI directives for consumption by the front-end.",
+      "control_objective": "To create a feedback loop where the orchestrator's classification actively guides the user, reinforcing the system's capabilities and improving the user experience.",
+      "criteria_evidence": "A sample JSON response from the API containing the correct classified category (e.g., 'category': 'Document Summarization') for a given user prompt."
+    }
+  ],
+  "PlanSteps": [
+    {
+      "step": "PL-EXEC-01: Develop a test suite of at least 20 user prompts, including a mix of prompts that clearly fall within each permitted category and several prompts that are deliberately out-of-scope or ambiguous.",
+      "step_objective": "To create a comprehensive set of test cases to validate the accuracy and robustness of the Prompt Classification Module as required by criterion [PL-TEST-01]."
+    },
+    {
+      "step": "PL-EXEC-02: Execute the test suite against the RAG Orchestrator endpoint and analyze the system logs to verify that all in-scope prompts were correctly classified and all out-of-scope prompts were rejected with the appropriate error message.",
+      "step_objective": "To empirically test and gather the evidence needed to confirm that the Prompt Classification Module meets the success criteria defined in [PL-TEST-01]."
+    },
+    {
+      "step": "PL-EXEC-03: For each successfully classified prompt from the test suite, review the RAG Orchestrator's detailed logs to confirm that the corresponding category-specific system prompt template was selected and applied.",
+      "step_objective": "To gather the log-based evidence required to validate that the dynamic prompt templating engine is functioning as specified in criterion [PL-TEST-02]."
+    },
+    {
+      "step": "PL-EXEC-04: Submit a series of prompts that each contain a different term from the prohibited terms blacklist (e.g., 'salary', 'performance review').",
+      "step_objective": "To create test events that specifically trigger the monitoring control and allow for the validation of criterion [PL-TEST-03]."
+    },
+    {
+        "step": "PL-EXEC-05: Review the monitoring dashboard and system logs to confirm that each prompt submitted in the previous step was successfully flagged and logged with the correct user and session details.",
+        "step_objective": "To collect the necessary screenshot and log evidence to prove that the Prohibited Terms Monitoring control is operational as required by [PL-TEST-03]."
+    },
+    {
+      "step": "PL-EXEC-06: For each permitted category, submit a valid prompt and capture the full API JSON response from the RAG Orchestrator. Inspect the response to verify that the 'category' field accurately reflects the prompt's intent.",
+      "step_objective": "To confirm that the orchestrator correctly communicates context to the front-end, thereby gathering the evidence needed to satisfy criterion [PL-TEST-04]."
+    }
+  ]
+}               
       ]
     }
   ],
