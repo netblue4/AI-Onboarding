@@ -1,7 +1,7 @@
 {
   "Phase AI system information": [
     {
-      "StepName": "x(A.9.4) AI system's intended use and limitations",
+      "StepName": "(A.9.4) AI system's intended use and limitations",
       "Objectives": [
         {
           "Objective": "Document the purpose, target users, and intended use cases of the AI system."
@@ -48,25 +48,41 @@
           "FieldLabel": "Augmented/Enhanced Tasks",
           "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
           "FieldType": "TextBox"
+        }
+      ]
+    },
+    {
+      "StepName": "(A.9.3) AI system's Objectives for Responsible Use",
+      "Objectives": [
+        {
+          "Objective": "1. Establish Clear Operational Boundaries: To formally document the precise scope of the AI system by defining what it is built to do (Permitted Prompt Categories), what it must never be used for (Known Prohibited Uses), and who is authorized to use it (Intended User Profile)."
         },
-{
-  "FieldName": "(A.9.3) AI system intended use - Permitted User Prompt Categories",
-  "FieldLabel": "Select the permitted categories of Use prompts for the AI System",
-  "FieldText": "",
-  "FieldType": "MultiSelect:Information Retrieval and Q&A/Document Summarization/Content Creation and Drafting/Policy and Procedure Guidance/Onboarding and Training Support/Technical Support and Troubleshooting/Data Analysis and Extraction"
-},
-{
-  "FieldName": "(A.9.3) AI system intended use - Known Prohibited Uses",
-  "FieldLabel": "Select the Known Prohibited Uses for the AI System",
-  "FieldText": "Specify which of these prohibited applications the AI system must be prevented from performing, in line with the EU AI Act. This is a critical step to ensure compliance and responsible use.",
-  "FieldType": "MultiSelect:Manipulative or Subliminal Techniques Causing Harm/Exploitation of Vulnerabilities (e.g., age, disability)/General-Purpose Social Scoring/Predictive Policing Based Solely on Profiling/Untargeted Scraping of Facial Images for Databases/Emotion Recognition in Workplace or Education/Biometric Categorization Using Sensitive Data (e.g., race, religion)/'Real-Time' Remote Biometric ID in Public Spaces"
-},
-{
-  "FieldName": "AI system intended use - Intended User Profile",
-  "FieldLabel": "Select the Intended User Profiles for the AI System",
-  "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
-  "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
-}        
+        {
+          "Objective": "2. Ensure Safety and Regulatory Compliance: To proactively mitigate risks and ensure compliance with regulations like the EU AI Act by explicitly identifying and forbidding high-risk or prohibited applications from the outset."
+        },
+        {
+          "Objective": "3. Promote Effective and Authorized Use: To ensure the system is used effectively and safely by restricting its operation to trained, authorized users and guiding them towards the specific, validated use cases for which the system was designed."
+        }
+      ],
+      "Fields": [
+        {
+          "FieldName": "AI system intended use - Permitted User Prompt Categories",
+          "FieldLabel": "Select the permitted categories of Use prompts for the AI System",
+          "FieldText": "",
+          "FieldType": "MultiSelect:Information Retrieval and Q&A/Document Summarization/Content Creation and Drafting/Policy and Procedure Guidance/Onboarding and Training Support/Technical Support and Troubleshooting/Data Analysis and Extraction"
+        },
+        {
+          "FieldName": "AI system intended use - Known Prohibited Uses",
+          "FieldLabel": "Select the Known Prohibited Uses for the AI System",
+          "FieldText": "Specify which of these prohibited applications the AI system must be prevented from performing, in line with the EU AI Act. This is a critical step to ensure compliance and responsible use.",
+          "FieldType": "MultiSelect:None/Manipulative or Subliminal Techniques Causing Harm/Exploitation of Vulnerabilities (e.g., age, disability)/General-Purpose Social Scoring/Predictive Policing Based Solely on Profiling/Untargeted Scraping of Facial Images for Databases/Emotion Recognition in Workplace or Education/Biometric Categorization Using Sensitive Data (e.g., race, religion)/'Real-Time' Remote Biometric ID in Public Spaces"
+        },
+        {
+          "FieldName": "AI system intended use - Intended User Profile",
+          "FieldLabel": "Select the Intended User Profiles for the AI System",
+          "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
+          "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
+        }
       ]
     },
     {
@@ -739,8 +755,8 @@
             }
           ]
         }
-  ]
-},
+      ]
+    },
     {
       "StepName": "Indexing and storing company's proprietary data",
       "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
@@ -914,37 +930,37 @@
               "control_objective": "To protect the integrity and confidentiality of data as it moves through the RAG pipeline and prevent attackers from manipulating the workflow logic.",
               "control_evidence": "Network architecture diagram showing mTLS enforced between microservices. Infrastructure-as-code (e.g., Terraform, Kubernetes YAML) configuration files specifying the network policies and secret management for certificates. Vulnerability scan reports for the orchestrator service container and its dependencies."
             }
-        ]
-    },
-{
-  "FieldType": "risk",
-  "FieldName": "[RAG-ORCH-01] - Failure to Enforce Permitted User Prompt Categories",
-  "RiskDescription": "The risk that the RAG Orchestrator processes user prompts that do not align with the pre-defined, permitted categories (e.g., Q&A, Summarization). This can lead the orchestrator to misinterpret user intent, retrieve irrelevant documents, and generate unreliable or non-compliant responses, fundamentally undermining the system's intended use.",
-  "question": "Does the RAG Orchestrator have a specific, built-in mechanism to classify incoming user prompts against the permitted categories and reject those that do not match?",
-  "controls": [
-    {
-      "control": "[RAG-PC-01] - Implement a Prompt Classification Module: The RAG Orchestrator must include a pre-processing module that classifies the intent of every incoming user prompt into one of the pre-defined, permitted categories. Prompts that cannot be classified or are classified as out-of-scope must be rejected before the retrieval step.",
-      "control_objective": "To create a robust, intelligent gatekeeper within the RAG Orchestrator that ensures only user prompts matching the system's approved functionalities are ever processed.",
-      "control_evidence": "A code snippet or documentation of the classification logic (e.g., using a smaller classification model, keyword heuristics, or an LLM call); a copy of the configuration linking this module to the 'Permitted User Prompt Categories' defined in the initial procedure step; and system logs showing both successful classifications and rejections of out-of-category prompts."
-    },
-    {
-      "control": "[RAG-PC-02] - Configure Category-Specific System Prompts: The RAG Orchestrator's prompt templating engine must be capable of dynamically adjusting the system prompt based on the classified category, reinforcing the specific task to the LLM.",
-      "control_objective": "To improve the accuracy and relevance of the LLM's response by providing it with context-specific instructions tailored to the user's classified intent (e.g., 'You are a helpful assistant. Summarize the following document...').",
-      "control_evidence": "A copy of the RAG Orchestrator's configuration file showing the different prompt templates for each category; and logs from the orchestrator demonstrating that the correct system prompt was selected based on a classified user query."
-    },
-    {
-      "control": "[RAG-PC-04] - Implement Prohibited Terms Monitoring: The RAG Orchestrator must include a monitoring component that inspects user queries for keywords from a configurable blacklist of prohibited terms (e.g., 'performance review,' 'salary,' 'disciplinary action'). Matches must be logged with user and session details for later review.",
-      "control_objective": "To create a critical audit trail for attempted misuse of the system, providing the necessary data for user retraining, incident response, and continuous improvement of the prompt classification module.",
-      "control_evidence": "A copy of the configuration file defining the blacklist of prohibited terms; and a sample of the monitoring logs or a screenshot from the monitoring dashboard showing a user query that was successfully flagged for containing a prohibited term."
-    },
-    {
-      "control": "[RAG-PC-03] - Provide Category-Aware UI Directives via API: The RAG Orchestrator's API must include fields in its response that inform the User Interface of the classified prompt category, enabling the UI to provide dynamic, context-aware guidance.",
-      "control_objective": "To create a feedback loop where the orchestrator's classification actively guides the user, reinforcing the system's capabilities and improving the user experience.",
-      "control_evidence": "A copy of the RAG Orchestrator's API documentation showing the fields for the classified category; and a sample JSON response from the API containing a classified category (e.g., 'category': 'Document Summarization')."
-    }
-  ]
-}         
-       ]
+          ]
+        },
+        {
+          "FieldType": "risk",
+          "FieldName": "[RAG-ORCH-01] - Failure to Enforce Permitted User Prompt Categories",
+          "RiskDescription": "The risk that the RAG Orchestrator processes user prompts that do not align with the pre-defined, permitted categories (e.g., Q&A, Summarization). This can lead the orchestrator to misinterpret user intent, retrieve irrelevant documents, and generate unreliable or non-compliant responses, fundamentally undermining the system's intended use.",
+          "question": "Does the RAG Orchestrator have a specific, built-in mechanism to classify incoming user prompts against the permitted categories and reject those that do not match?",
+          "controls": [
+            {
+              "control": "[RAG-PC-01] - Implement a Prompt Classification Module: The RAG Orchestrator must include a pre-processing module that classifies the intent of every incoming user prompt into one of the pre-defined, permitted categories. Prompts that cannot be classified or are classified as out-of-scope must be rejected before the retrieval step.",
+              "control_objective": "To create a robust, intelligent gatekeeper within the RAG Orchestrator that ensures only user prompts matching the system's approved functionalities are ever processed.",
+              "control_evidence": "A code snippet or documentation of the classification logic (e.g., using a smaller classification model, keyword heuristics, or an LLM call); a copy of the configuration linking this module to the 'Permitted User Prompt Categories' defined in the initial procedure step; and system logs showing both successful classifications and rejections of out-of-category prompts."
+            },
+            {
+              "control": "[RAG-PC-02] - Configure Category-Specific System Prompts: The RAG Orchestrator's prompt templating engine must be capable of dynamically adjusting the system prompt based on the classified category, reinforcing the specific task to the LLM.",
+              "control_objective": "To improve the accuracy and relevance of the LLM's response by providing it with context-specific instructions tailored to the user's classified intent (e.g., 'You are a helpful assistant. Summarize the following document...').",
+              "control_evidence": "A copy of the RAG Orchestrator's configuration file showing the different prompt templates for each category; and logs from the orchestrator demonstrating that the correct system prompt was selected based on a classified user query."
+            },
+            {
+              "control": "[RAG-PC-04] - Implement Prohibited Terms Monitoring: The RAG Orchestrator must include a monitoring component that inspects user queries for keywords from a configurable blacklist of prohibited terms (e.g., 'performance review,' 'salary,' 'disciplinary action'). Matches must be logged with user and session details for later review.",
+              "control_objective": "To create a critical audit trail for attempted misuse of the system, providing the necessary data for user retraining, incident response, and continuous improvement of the prompt classification module.",
+              "control_evidence": "A copy of the configuration file defining the blacklist of prohibited terms; and a sample of the monitoring logs or a screenshot from the monitoring dashboard showing a user query that was successfully flagged for containing a prohibited term."
+            },
+            {
+              "control": "[RAG-PC-03] - Provide Category-Aware UI Directives via API: The RAG Orchestrator's API must include fields in its response that inform the User Interface of the classified prompt category, enabling the UI to provide dynamic, context-aware guidance.",
+              "control_objective": "To create a feedback loop where the orchestrator's classification actively guides the user, reinforcing the system's capabilities and improving the user experience.",
+              "control_evidence": "A copy of the RAG Orchestrator's API documentation showing the fields for the classified category; and a sample JSON response from the API containing a classified category (e.g., 'category': 'Document Summarization')."
+            }
+          ]
+        }
+      ]
     },
     {
       "StepName": "Generic LLM",
@@ -1183,27 +1199,27 @@
         {
           "Objective": "4. Communication of User Responsibilities: To clearly communicate the 'Objectives for responsible use' to all users, ensuring they understand their role and accountability in operating the system ethically and in accordance with its intended purpose."
         }
-    ],
-    "Fields": []
-	}
+      ],
+      "Fields": []
+    }
   ],
   "Phase Post deployment verification": [
     {
-      "StepName": "x(A.6.2.4) AI Systems verifications",
-"Objectives": [
-    {
-      "Objective": "1. Overall System Validation: To execute a formal suite of verification and validation tests that ensure the AI system meets all pre-defined technical, ethical, and operational requirements before deployment."
-    },
-    {
-      "Objective": "2. Performance and Stability Verification: To validate that the AI system is robust, stable, and scalable under realistic load conditions by executing the 'Performance & Load Test Plan'."
-    },
-    {
-      "Objective": "3. Responsible AI Compliance: To verify that the system operates ethically by confirming adherence to fairness, bias, transparency, and explainability standards through the 'Fairness and Bias' and 'Transparency and Explainability' test plans."
-    },
-    {
-      "Objective": "4. Operational Integrity and Safety: To ensure the system can be used safely and correctly by validating its technical guardrails against misuse through the 'Purpose Limitation and Prompt Category Enforcement Test Plan'."
-    }
-  ],
+      "StepName": "(A.6.2.4) AI Systems verifications",
+      "Objectives": [
+        {
+          "Objective": "1. Overall System Validation: To execute a formal suite of verification and validation tests that ensure the AI system meets all pre-defined technical, ethical, and operational requirements before deployment."
+        },
+        {
+          "Objective": "2. Performance and Stability Verification: To validate that the AI system is robust, stable, and scalable under realistic load conditions by executing the 'Performance & Load Test Plan'."
+        },
+        {
+          "Objective": "3. Responsible AI Compliance: To verify that the system operates ethically by confirming adherence to fairness, bias, transparency, and explainability standards through the 'Fairness and Bias' and 'Transparency and Explainability' test plans."
+        },
+        {
+          "Objective": "4. Operational Integrity and Safety: To ensure the system can be used safely and correctly by validating its technical guardrails against misuse through the 'Purpose Limitation and Prompt Category Enforcement Test Plan'."
+        }
+      ],
       "Fields": [
         {
           "FieldType": "plan",
@@ -1412,59 +1428,59 @@
             }
           ]
         },
-{
-  "FieldType": "plan",
-  "FieldName": "(A.9.4) - Purpose Limitation and Prompt Category Enforcement Test Plan",
-  "PlanObjective": "To test and validate that the RAG Orchestrator's technical controls are effective in enforcing the AI system's documented intended use by correctly classifying user prompts, rejecting out-of-scope requests, and monitoring for prohibited terms.",
-  "PlanCriteria": [
-    {
-      "criteria": "[PL-TEST-01]: The RAG Orchestrator's Prompt Classification Module must accurately classify user prompts and reject any that are out-of-scope before the retrieval step.",
-      "control_objective": "To create a robust, intelligent gatekeeper within the RAG Orchestrator that ensures only user prompts matching the system's approved functionalities are ever processed.",
-      "criteria_evidence": "System logs showing both successful classifications for in-scope prompts and explicit rejections for a variety of out-of-category prompts."
-    },
-    {
-      "criteria": "[PL-TEST-02]: The RAG Orchestrator's prompt templating engine must dynamically select the correct category-specific system prompt based on the classified user intent.",
-      "control_objective": "To improve the accuracy and relevance of the LLM's response by providing it with context-specific instructions tailored to the user's classified intent.",
-      "criteria_evidence": "Logs from the RAG Orchestrator demonstrating that the correct system prompt template (e.g., 'Summarization' template) was selected and applied based on the classified user query."
-    },
-    {
-        "criteria": "[PL-TEST-03]: The RAG Orchestrator must log any user query containing a term from the prohibited terms blacklist.",
-        "control_objective": "To create a critical audit trail for attempted misuse of the system, providing the necessary data for user retraining and incident response.",
-        "criteria_evidence": "A screenshot from the monitoring dashboard or a sample from the monitoring logs showing that a user query containing a prohibited term was successfully flagged."
-    },
-    {
-      "criteria": "[PL-TEST-04]: The RAG Orchestrator's API response must include the correct category-aware UI directives for consumption by the front-end.",
-      "control_objective": "To create a feedback loop where the orchestrator's classification actively guides the user, reinforcing the system's capabilities and improving the user experience.",
-      "criteria_evidence": "A sample JSON response from the API containing the correct classified category (e.g., 'category': 'Document Summarization') for a given user prompt."
-    }
-  ],
-  "PlanSteps": [
-    {
-      "step": "PL-EXEC-01: Develop a test suite of at least 20 user prompts, including a mix of prompts that clearly fall within each permitted category and several prompts that are deliberately out-of-scope or ambiguous.",
-      "step_objective": "To create a comprehensive set of test cases to validate the accuracy and robustness of the Prompt Classification Module as required by criterion [PL-TEST-01]."
-    },
-    {
-      "step": "PL-EXEC-02: Execute the test suite against the RAG Orchestrator endpoint and analyze the system logs to verify that all in-scope prompts were correctly classified and all out-of-scope prompts were rejected with the appropriate error message.",
-      "step_objective": "To empirically test and gather the evidence needed to confirm that the Prompt Classification Module meets the success criteria defined in [PL-TEST-01]."
-    },
-    {
-      "step": "PL-EXEC-03: For each successfully classified prompt from the test suite, review the RAG Orchestrator's detailed logs to confirm that the corresponding category-specific system prompt template was selected and applied.",
-      "step_objective": "To gather the log-based evidence required to validate that the dynamic prompt templating engine is functioning as specified in criterion [PL-TEST-02]."
-    },
-    {
-      "step": "PL-EXEC-04: Submit a series of prompts that each contain a different term from the prohibited terms blacklist (e.g., 'salary', 'performance review').",
-      "step_objective": "To create test events that specifically trigger the monitoring control and allow for the validation of criterion [PL-TEST-03]."
-    },
-    {
-        "step": "PL-EXEC-05: Review the monitoring dashboard and system logs to confirm that each prompt submitted in the previous step was successfully flagged and logged with the correct user and session details.",
-        "step_objective": "To collect the necessary screenshot and log evidence to prove that the Prohibited Terms Monitoring control is operational as required by [PL-TEST-03]."
-    },
-    {
-      "step": "PL-EXEC-06: For each permitted category, submit a valid prompt and capture the full API JSON response from the RAG Orchestrator. Inspect the response to verify that the 'category' field accurately reflects the prompt's intent.",
-      "step_objective": "To confirm that the orchestrator correctly communicates context to the front-end, thereby gathering the evidence needed to satisfy criterion [PL-TEST-04]."
-    }
-  ]
-}               
+        {
+          "FieldType": "plan",
+          "FieldName": "(A.9.4) - Purpose Limitation and Prompt Category Enforcement Test Plan",
+          "PlanObjective": "To test and validate that the RAG Orchestrator's technical controls are effective in enforcing the AI system's documented intended use by correctly classifying user prompts, rejecting out-of-scope requests, and monitoring for prohibited terms.",
+          "PlanCriteria": [
+            {
+              "criteria": "[PL-TEST-01]: The RAG Orchestrator's Prompt Classification Module must accurately classify user prompts and reject any that are out-of-scope before the retrieval step.",
+              "control_objective": "To create a robust, intelligent gatekeeper within the RAG Orchestrator that ensures only user prompts matching the system's approved functionalities are ever processed.",
+              "criteria_evidence": "System logs showing both successful classifications for in-scope prompts and explicit rejections for a variety of out-of-category prompts."
+            },
+            {
+              "criteria": "[PL-TEST-02]: The RAG Orchestrator's prompt templating engine must dynamically select the correct category-specific system prompt based on the classified user intent.",
+              "control_objective": "To improve the accuracy and relevance of the LLM's response by providing it with context-specific instructions tailored to the user's classified intent.",
+              "criteria_evidence": "Logs from the RAG Orchestrator demonstrating that the correct system prompt template (e.g., 'Summarization' template) was selected and applied based on the classified user query."
+            },
+            {
+              "criteria": "[PL-TEST-03]: The RAG Orchestrator must log any user query containing a term from the prohibited terms blacklist.",
+              "control_objective": "To create a critical audit trail for attempted misuse of the system, providing the necessary data for user retraining and incident response.",
+              "criteria_evidence": "A screenshot from the monitoring dashboard or a sample from the monitoring logs showing that a user query containing a prohibited term was successfully flagged."
+            },
+            {
+              "criteria": "[PL-TEST-04]: The RAG Orchestrator's API response must include the correct category-aware UI directives for consumption by the front-end.",
+              "control_objective": "To create a feedback loop where the orchestrator's classification actively guides the user, reinforcing the system's capabilities and improving the user experience.",
+              "criteria_evidence": "A sample JSON response from the API containing the correct classified category (e.g., 'category': 'Document Summarization') for a given user prompt."
+            }
+          ],
+          "PlanSteps": [
+            {
+              "step": "PL-EXEC-01: Develop a test suite of at least 20 user prompts, including a mix of prompts that clearly fall within each permitted category and several prompts that are deliberately out-of-scope or ambiguous.",
+              "step_objective": "To create a comprehensive set of test cases to validate the accuracy and robustness of the Prompt Classification Module as required by criterion [PL-TEST-01]."
+            },
+            {
+              "step": "PL-EXEC-02: Execute the test suite against the RAG Orchestrator endpoint and analyze the system logs to verify that all in-scope prompts were correctly classified and all out-of-scope prompts were rejected with the appropriate error message.",
+              "step_objective": "To empirically test and gather the evidence needed to confirm that the Prompt Classification Module meets the success criteria defined in [PL-TEST-01]."
+            },
+            {
+              "step": "PL-EXEC-03: For each successfully classified prompt from the test suite, review the RAG Orchestrator's detailed logs to confirm that the corresponding category-specific system prompt template was selected and applied.",
+              "step_objective": "To gather the log-based evidence required to validate that the dynamic prompt templating engine is functioning as specified in criterion [PL-TEST-02]."
+            },
+            {
+              "step": "PL-EXEC-04: Submit a series of prompts that each contain a different term from the prohibited terms blacklist (e.g., 'salary', 'performance review').",
+              "step_objective": "To create test events that specifically trigger the monitoring control and allow for the validation of criterion [PL-TEST-03]."
+            },
+            {
+              "step": "PL-EXEC-05: Review the monitoring dashboard and system logs to confirm that each prompt submitted in the previous step was successfully flagged and logged with the correct user and session details.",
+              "step_objective": "To collect the necessary screenshot and log evidence to prove that the Prohibited Terms Monitoring control is operational as required by [PL-TEST-03]."
+            },
+            {
+              "step": "PL-EXEC-06: For each permitted category, submit a valid prompt and capture the full API JSON response from the RAG Orchestrator. Inspect the response to verify that the 'category' field accurately reflects the prompt's intent.",
+              "step_objective": "To confirm that the orchestrator correctly communicates context to the front-end, thereby gathering the evidence needed to satisfy criterion [PL-TEST-04]."
+            }
+          ]
+        }
       ]
     }
   ],
