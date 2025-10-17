@@ -67,15 +67,15 @@
       "Fields": [
         {
           "FieldName": "AI system intended use - Permitted User Prompt Categories Whitelist Definition",
-		  "FieldLabel": "Reference: Whitelist Key Phrases for Permitted Categories",
-		  "FieldText": "This is the reference list of key phrases that helps define the scope for the RAG Orchestrator's classification module. The module will be trained to recognize prompts similar to these examples for each permitted category.",
-		  "FieldType": "MultiSelect:Information Retrieval and Q&A:what is,who is,where can I find,tell me about,explain the,what are the details on/Document Summarization:summarize this,give me the key points,tl;dr,provide a summary of,what are the main takeaways,create an abstract for/Content Creation and Drafting:draft an email about,write a paragraph on,create a marketing blurb for,help me write,generate a draft of,compose a message about/Policy and Procedure Guidance:what is the policy for,how do I request,what is the procedure for,explain the process of,guide me through the steps for/Onboarding and Training Support:how do I set up,what training do I need for,explain the onboarding process,guide for new hires,help me learn about/Technical Support and Troubleshooting:how to fix,I'm getting an error,troubleshoot this issue,what does this error mean,help me with this technical problem/Data Analysis and Extraction:extract all the names from,what is the total of,find the average of,pull the data for,list all the dates in,analyze the trends in"
+		  "FieldLabel": "Whitelist Key Phrases for Permitted User Prompt Categories",
+		  "FieldText": "This is the reference list of key phrases that will be allowed by the RAG Orchestrator. The RAG Orchestrator will be trained to recognize prompts similar to these examples.",
+		  "FieldType": "MultiSelect:Information Retrieval and Q&A:what is, who is, where can I find, tell me about, explain the, what are the details on/Document Summarization:summarize this, give me the key points, tl;dr, provide a summary of, what are the main takeaways, create an abstract for/Content Creation and Drafting:draft an email about, write a paragraph on, create a marketing blurb for, help me write, generate a draft of, compose a message about/Policy and Procedure Guidance:what is the policy for, how do I request, what is the procedure for, explain the process of, guide me through the steps for/Onboarding and Training Support:how do I set up, what training do I need for, explain the onboarding process, guide for new hires, help me learn about/Technical Support and Troubleshooting:how to fix, I'm getting an error, troubleshoot this issue, what does this error mean, help me with this technical problem/Data Analysis and Extraction:extract all the names from, what is the total of, find the average of, pull the data for, list all the dates in, analyze the trends in"
         },
         {
 		  "FieldName": "AI system intended use - Prohibited Uses Blacklist Definition",
-		  "FieldLabel": "Reference: Blacklist Key Phrases for Prohibited Uses",
-		  "FieldText": "This is the reference list of key phrases that will be blocked by the RAG Orchestrator if the corresponding 'Prohibited Use' is selected above.",
-		  "FieldType": "MultiSelect:None/Manipulative or Subliminal Techniques Causing Harm:influence my decision,make me buy,change my mind,secretly persuade,subliminal message,hidden command,trick me into,deceive me/Exploitation of Vulnerabilities (e.g., age, disability):target children with ads,exploit elderly,convince a disabled person,addictive game for kids,target financially desperate,exploit vulnerability/General-Purpose Social Scoring:calculate social score,rate my behavior,trustworthiness score,classify people's value,social credit system,evaluate a person based on/Predictive Policing Based Solely on Profiling:predict who will commit a crime,crime risk assessment for a person,profile potential criminals,likelihood of reoffending,predict recidivism/Untargeted Scraping of Facial Images for Databases:scrape faces from internet,create facial recognition database,find all images of a person online,collect CCTV footage for faces,build a face dataset/Emotion Recognition in Workplace or Education:analyze employee emotions,detect student mood,tell me if my team is happy,monitor engagement with emotion,read facial expressions for performance/Biometric Categorization Using Sensitive Data (e.g., race, religion):guess race from photo,determine political opinion from text,infer religious beliefs,categorize by sexual orientation,deduce sex life/'Real-Time' Remote Biometric ID in Public Spaces:live facial recognition,track people in real-time with cameras,identify everyone in this crowd,public camera identification,real-time biometric tracking"
+		  "FieldLabel": "Blacklist Key Phrases for Prohibited User Prompt Categories",
+		  "FieldText": "This is a reference list of key phrases that will be blocked by the RAG Orchestrator. AI systems that support these key phrases are prohibited by the AI act.",
+		  "FieldType": "MultiSelect:Manipulative or Subliminal Techniques Causing Harm:influence my decision, make me buy, change my mind, secretly persuade, subliminal message, hidden command, trick me into, deceive me/Exploitation of Vulnerabilities (e.g., age, disability):target children with ads, exploit elderly, convince a disabled person, addictive game for kids, target financially desperate, exploit vulnerability/General-Purpose Social Scoring:calculate social score, rate my behavior, trustworthiness score, classify people's value, social credit system, evaluate a person based on/Predictive Policing Based Solely on Profiling:predict who will commit a crime, crime risk assessment for a person, profile potential criminals, likelihood of reoffending, predict recidivism/Untargeted Scraping of Facial Images for Databases:scrape faces from internet, create facial recognition database, find all images of a person online, collect CCTV footage for faces, build a face dataset/Emotion Recognition in Workplace or Education:analyze employee emotions, detect student mood, tell me if my team is happy, monitor engagement with emotion, read facial expressions for performance/Biometric Categorization Using Sensitive Data (e.g., race, religion):guess race from photo, determine political opinion from text, infer religious beliefs, categorize by sexual orientation, deduce sex life/'Real-Time' Remote Biometric ID in Public Spaces:live facial recognition, track people in real-time with cameras, identify everyone in this crowd, public camera identification, real-time biometric tracking"
         },
         {
           "FieldName": "AI system intended use - Intended User Profile",
@@ -522,14 +522,14 @@
       ],
       "Fields": [
         {
-          "FieldName": "(A.4.2, A.4.3) - Dataset Name",
-          "FieldLabel": "Dataset Name",
-          "FieldText": "Common or descriptive name of the dataset.",
+          "FieldName": "(A.4.2, A.4.3) - Dataset Repository",
+          "FieldLabel": "Dataset Repository",
+          "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
           "FieldType": "TextBox"
         },
         {
-          "FieldName": "(A.4.2, A.4.3) - Description",
-          "FieldLabel": "Description",
+          "FieldName": "(A.4.2, A.4.3) - Dataset Description",
+          "FieldLabel": "Dataset Description",
           "FieldText": "Brief overview of the dataset's content and general purpose.",
           "FieldType": "TextBox"
         },
@@ -546,16 +546,10 @@
           "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
         },
         {
-          "FieldName": "(A.4.2, A.4.3) - Format",
-          "FieldLabel": "What is the File format or storage system?",
-          "FieldText": "",
-          "FieldType": "MultiSelect:CSV/JSON/Parquet/SQL DB"
-        },
-        {
           "FieldName": "(A.4.2, A.4.3, A.7.3, A.7.2) - Acquisition of data",
           "FieldLabel": "How will the Data be acquired and selected?",
           "FieldText": "",
-          "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources/methods/Other (requires specific documentation)"
+          "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
@@ -563,6 +557,12 @@
           "FieldText": "",
           "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
         },
+        {
+          "FieldName": "(A.4.2, A.4.3) - Refresh Schedules",
+          "FieldLabel": "How often does the data need to be refreshed?",
+          "FieldText": "",
+          "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
+        },        
         {
           "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
           "FieldLabel": "Secure Disposing",
@@ -576,45 +576,49 @@
           "FieldType": "TextBox"
         },
         {
-          "FieldName": "(A.4.2, A.4.3) - Access Method",
-          "FieldLabel": "How will the data be accessed?",
-          "FieldText": "",
-          "FieldType": "MultiSelect:S3 bucket path/API endpoint/Database query/Shared drive"
-        },
-        {
           "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
           "FieldLabel": "Owner/Custodian",
-          "FieldText": "Person or team responsible for the data?",
+          "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
           "FieldType": "TextBox"
         },
-        {
-          "FieldType": "risk",
-          "FieldName": "Malicious Data Ingestion (Data Poisoning & Indirect Prompt Injection)",
-          "RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
-          "question": "Does the AI system ingest data from internal sources (like wikis, shared drives, or databases) where a number of users have permission to create or edit content?",
-          "controls": [
-            {
-              "control": "DATA-INT-01: Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
-              "control_objective": "To prevent unauthorized users from introducing malicious or erroneous content at the source, directly mitigating risks of intentional Data Poisoning.",
-              "control_evidence": "A documented list of user roles and their assigned permissions for the data repository; screenshots or configuration exports from the system's access control panel demonstrating the principle of least privilege; and records of periodic access reviews."
-            },
-            {
-              "control": "DATA-INT-02: Enforce mandatory version control with detailed audit logs on all source data repositories. All changes, additions, and deletions must be attributable to a specific user and timestamp.",
-              "control_objective": "To ensure a complete, auditable history of all changes to the knowledge base's source data, enabling rapid detection of unauthorized modifications and rollback to a last-known-good state.",
-              "control_evidence": "Screenshots of the version control system's settings demonstrating that versioning is active, and a sample commit/change history log showing a clear attribution of changes to a specific user, timestamp, and a description of the change."
-            },
-            {
-              "control": "DATA-INT-03: Establish a mandatory content approval workflow for the addition or significant modification of documents in designated high-sensitivity data sources before they are ingested by the AI system.",
-              "control_objective": "To create a formal human-in-the-loop verification gate that ensures the authenticity and appropriateness of critical information, providing a strong defense against both deliberate Data Poisoning and unintentional quality issues.",
-              "control_evidence": "Documentation of the content approval process including designated approvers, and sample evidence such as a completed Pull Request with mandatory reviewer approvals, or a change management ticket (e.g., in Jira) with a logged approval signature."
-            },
-            {
-              "control": "DATA-INT-04: Ensure every data chunk processed and stored in the vector database retains immutable metadata linking it directly to its source document, version, and author.",
-              "control_objective": "To maintain full data provenance, enabling users and administrators to verify the source of any information provided by the AI and to facilitate the targeted removal of compromised data if a poisoning incident is discovered.",
-              "control_evidence": "A sample query output from the vector database displaying a data chunk alongside its associated metadata fields (e.g., source_document_name, version_id, ingestion_timestamp), and a code snippet from the data ingestion pipeline explicitly demonstrating how this metadata is extracted and attached."
-            }
-          ]
-        }
+		{
+		  "FieldType": "risk",
+		  "FieldName": "Malicious Data Ingestion (Data Poisoning & Indirect Prompt Injection)",
+		  "RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
+		  "question": "Does the AI system ingest data from internal sources (like wikis, shared drives, or databases) where a number of users have permission to create or edit content?",
+		  "controls": [
+			{
+			  "control": "[DATA-INT-01] - Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
+			  "control_objective": "To prevent unauthorized users from introducing malicious or erroneous content at the source, directly mitigating risks of intentional Data Poisoning.",
+			  "control_evidence": "A documented list of user roles and their assigned permissions for the data repository; screenshots or configuration exports from the system's access control panel demonstrating the principle of least privilege; and records of periodic access reviews."
+			},
+			{
+			  "control": "[DATA-INT-02] - Enforce mandatory version control with detailed audit logs on all source data repositories. All changes, additions, and deletions must be attributable to a specific user and timestamp.",
+			  "control_objective": "To ensure a complete, auditable history of all changes to the knowledge base's source data, enabling rapid detection of unauthorized modifications and rollback to a last-known-good state.",
+			  "control_evidence": "Screenshots of the version control system's settings demonstrating that versioning is active, and a sample commit/change history log showing a clear attribution of changes to a specific user, timestamp, and a description of the change."
+			},
+			{
+			  "control": "[DATA-INT-03] - Establish a mandatory content approval workflow for the addition or significant modification of documents in designated high-sensitivity data sources before they are ingested by the AI system.",
+			  "control_objective": "To create a formal human-in-the-loop verification gate that ensures the authenticity and appropriateness of critical information, providing a strong defense against both deliberate Data Poisoning and unintentional quality issues.",
+			  "control_evidence": "Documentation of the content approval process including designated approvers, and sample evidence such as a completed Pull Request with mandatory reviewer approvals, or a change management ticket (e.g., in Jira) with a logged approval signature."
+			},
+			{
+			  "control": "[DATA-INT-04] - Ensure every data chunk processed and stored in the vector database retains immutable metadata linking it directly to its source document, version, and author.",
+			  "control_objective": "To maintain full data provenance, enabling users and administrators to verify the source of any information provided by the AI and to facilitate the targeted removal of compromised data if a poisoning incident is discovered.",
+			  "control_evidence": "A sample query output from the vector database displaying a data chunk alongside its associated metadata fields (e.g., source_document_name, version_id, ingestion_timestamp), and a code snippet from the data ingestion pipeline explicitly demonstrating how this metadata is extracted and attached."
+			},
+			{
+			  "control": "[DATA-INT-05] - During the 'Text Extraction & Cleaning' phase of the Data Processing Pipeline, implement a sanitization step that identifies and neutralizes or strips potential prompt injection payloads before the text is sent for embedding.",
+			  "control_objective": "To create an automated defense layer that actively blocks malicious instructions from ever entering the vector knowledge base, protecting the LLM from being hijacked by poisoned source data.",
+			  "control_evidence": "Code review of the data processing script showing the sanitization function or library in use (e.g., using regular expressions or a dedicated library like Rebuff). Unit test results demonstrating that known prompt injection strings are successfully identified and removed from a sample document."
+			},
+			{
+			  "control": "[DATA-INT-06] - The RAG Orchestrator must be configured to include citations or direct links back to the source documents (leveraging the metadata from control DATA-INT-04) within every response generated by the LLM.",
+			  "control_objective": "To empower users to verify the AI's claims and sources, thereby reducing the impact of successful data poisoning by making false information easily identifiable and auditable.",
+			  "control_evidence": "Screenshots or logs of the final user-facing response clearly showing embedded citations or links. A code snippet from the RAG Orchestrator demonstrating how the source metadata from the retrieved chunks is formatted and appended to the final LLM response."
+			}
+		  ]
+		}
       ]
     },
     {
@@ -1508,138 +1512,141 @@
         }
       ],
       "Fields": [
-        {
-          "FieldType": "risk",
-          "FieldName": "[C.3.6] - Mismanaged AI System Deployment and Transition",
-          "question": "Is the plan to deploy the AI system a 'big bang' launch without sufficient user training, a pilot phase, or a clear transition plan from the legacy system?",
-          "controls": [
-            {
-              "control": "[C.3.6][BP-4] - Develop and deliver comprehensive training programs for all users and operators on the AI system's capabilities, limitations, and proper operational procedures before deployment.",
-              "control_objective": "To minimize misuse, build user trust, and ensure the AI system is operated correctly and effectively."
-            },
-            {
-              "control": "[C.3.6][BP-5] - Implement a phased rollout or pilot program in a controlled environment to identify and resolve unforeseen issues before a full-scale, system-wide launch.",
-              "control_objective": "To reduce the risk of widespread disruption and failure by validating system performance in a live but limited setting."
-            },
-            {
-              "control": "[C.3.6][BP-6] - Establish a clear transition plan that includes running the new AI system in parallel with any legacy system to verify outputs and ensure a smooth handover without creating an operational gap.",
-              "control_objective": "To guarantee operational continuity and validate the new AI system's performance against established benchmarks before decommissioning the previous system."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "[C.3.6] - Inadequate Post-Deployment Maintenance and Monitoring",
-          "question": "Once the AI system is live, is there a risk it will be treated with a 'set and forget' mentality, without a dedicated team or process for continuous performance monitoring and regular maintenance?",
-          "controls": [
-            {
-              "control": "[C.3.6][BP-7] - Assign clear ownership for the deployed AI system and implement a continuous monitoring framework with predefined KPIs (e.g., for accuracy, data drift, fairness) and automated alerts to detect performance degradation.",
-              "control_objective": "To ensure proactive oversight and rapid detection of issues, preventing the AI system from making flawed decisions over extended periods."
-            },
-            {
-              "control": "[C.3.6][BP-8] - Establish a formal maintenance schedule for the AI system, including periodic model retraining with new data, recalibration, and updates to adapt to changing operational environments.",
-              "control_objective": "To prevent model obsolescence and ensure the AI system remains accurate, relevant, and effective throughout its operational life."
-            },
-            {
-              "control": "[C.3.6][BP-9] - Implement a formal feedback loop for users to easily report issues, anomalies, or incorrect outputs, and ensure this feedback is systematically reviewed and used to improve the system.",
-              "control_objective": "To leverage end-user experience as a critical source for identifying subtle performance issues and driving continuous improvement."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "Insufficient Scalability Management",
-          "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
-          "controls": [
-            {
-              "control": "SC[1] -  Develop and implement a structured scalability management process for AI infrastructure to ensure efficient handling of increasing workloads and data volumes.",
-              "control_objective": "To ensure that the AI infrastructure can scale effectively and efficiently, meeting the growing demands of the organisation while maintaining performance, stability, and security."
-            },
-            {
-              "control": "SC[2] -  Deploy comprehensive technical measures to ensure the AI infrastructure can scale seamlessly to accommodate varying workloads and future growth.",
-              "control_objective": "To guarantee that the AI infrastructure is equipped with the necessary technical capabilities to support scalability, ensuring uninterrupted performance and resource availability as demands increase."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "[C.3.6] - Poor Management of AI System Evolution and Updates",
-          "question": "When the AI system is updated (e.g., retrained model, new features), are there formal processes for testing, documenting, and deploying these changes, including a plan to roll back if the update causes problems?",
-          "controls": [
-            {
-              "control": "[C.3.6][BP-10] - Enforce a strict change management process for all AI system updates, requiring thorough testing (e.g., A/B testing, shadow mode), impact analysis, and a documented rollback plan before deployment.",
-              "control_objective": "To prevent system degradation caused by faulty updates and ensure that changes improve, rather than harm, system performance and reliability."
-            },
-            {
-              "control": "[C.3.6][BP-11] - Maintain comprehensive and up-to-date documentation for the AI system, including design rationale, model parameters, data sources, and a version history of all changes made.",
-              "control_objective": "To ensure knowledge continuity, facilitate troubleshooting, and support consistent and informed management of the AI system over time."
-            },
-            {
-              "control": "[C.3.6][BP-12] - Implement version control for all components of the AI system, including data, code, and models, to ensure traceability and the ability to rapidly revert to a previously stable version in case of an incident.",
-              "control_objective": "To provide a safety net against failed updates and enable quick recovery of system functionality."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "Inadequate Disaster Recovery and Business Continuity Planning",
-          "question": "What would happen to your business process if this AI system suddenly stopped working?",
-          "controls": [
-            {
-              "control": "BU[1] -  Establish a comprehensive disaster recovery and business continuity planning process to ensure preparedness and resilience in the face of disruptions to AI infrastructure.",
-              "control_objective": "To develop and implement administrative controls that ensure the organisation is prepared for and can effectively respond to disruptions, thereby maintaining the continuity of AI operations and minimising downtime."
-            },
-            {
-              "control": "BU[2] -  Implement technical measures to support disaster recovery and business continuity, ensuring the resilience and availability of AI infrastructure.",
-              "control_objective": "To deploy comprehensive technical controls that enable rapid recovery and continuity of AI operations in the event of a disruption, minimising data loss and operational downtime."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "Insufficient Performance Monitoring and Analysis",
-          "question": "Will the AI’s outputs need to be continuously monitored to ensure they stay accurate and relevant?",
-          "controls": [
-            {
-              "control": "PER[1] -  Establish a structured performance monitoring and analysis process to ensure continuous oversight and optimization of AI infrastructure performance.",
-              "control_objective": "To implement robust administrative controls that define roles, responsibilities, and procedures for performance monitoring and analysis, ensuring that performance issues are identified and addressed proactively."
-            },
-            {
-              "control": "PER[2] -  Implement advanced technical measures to ensure continuous and effective performance monitoring and analysis of AI infrastructure.",
-              "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance, enabling prompt detection and resolution of performance issues to maintain optimal operation."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "Inadequate Security Monitoring and Threat Detection",
-          "question": "Do you need visibility into whether this AI system is under attack or being misused?",
-          "controls": [
-            {
-              "control": "STM[1] -  Establish a security monitoring and threat detection process to ensure continuous oversight and protection of AI infrastructure.",
-              "control_objective": "To implement robust administrative controls that define roles, responsibilities, policies, and procedures for effective security monitoring and threat detection, ensuring proactive identification and mitigation of security threats."
-            },
-            {
-              "control": "STM[2] -  Implement advanced technical measures to ensure continuous and effective security monitoring and threat detection within AI infrastructure.",
-              "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into security threats and enable prompt detection and response to ensure the protection and integrity of AI systems."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "Ineffective Incident Management",
-          "question": "Do you have a process in place if the AI system causes an issue (e.g., incorrect output, outage, or data leak)?",
-          "controls": [
-            {
-              "control": "IM[1] -  Establish an incident management capability to ensure effective detection, response, and mitigation of AI-related incidents.",
-              "control_objective": "To establish incident management processes that define roles, responsibilities, and procedures for managing AI-related incidents, ensuring timely and effective response to maintain AI system integrity and security."
-            },
-            {
-              "control": "IM[2] -  Implement advanced technical measures to detect, prevent, and mitigate AI system hallucinations and other incidents, ensuring the reliability and accuracy of AI outputs.",
-              "control_objective": "To deploy comprehensive technical controls that provide real-time visibility into AI system performance and security, enabling prompt detection and resolution of incidents to maintain optimal operation."
-            }
-          ]
-        }
+		{
+		  "FieldType": "risk",
+		  "FieldName": "Insufficient Scalability Management",
+		  "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
+		  "controls": [
+			{
+			  "control": "[SC][1] - Implement separate horizontal auto-scaling mechanisms for the RAG Orchestrator (CPU-bound) and the privately-hosted LLM inference service (GPU-bound). Scaling policies for each should be based on relevant metrics (e.g., request latency for the orchestrator, GPU utilization for the LLM).",
+			  "control_objective": "To independently scale the logic and generation components of the system, ensuring that a bottleneck in one does not unnecessarily consume costly resources in the other.",
+			  "control_evidence": "Two distinct Infrastructure-as-Code (IaC) configurations (e.g., separate Kubernetes HPAs or Terraform auto-scaling groups). Load test results demonstrating that orchestrator and LLM instances scale independently under different load patterns. Monitoring dashboards showing separate scaling events."
+			},
+			{
+			  "control": "[SC][2] - Architect the RAG Orchestrator and the LLM inference endpoints as stateless services. Any state required for multi-turn conversations must be managed by the User Interface or externalized to a scalable cache, not held in-memory on the backend instances.",
+			  "control_objective": "To enable seamless load balancing and instant failover across all backend components, ensuring that any instance can process any incoming request without being dependent on local session data.",
+			  "control_evidence": "System architecture diagram showing stateless services and external state stores. Code review of the orchestrator and LLM service handlers confirming the absence of in-memory session storage. High-availability test report showing user sessions persist after forced restarts of multiple service instances."
+			},
+			{
+			  "control": "[SC][3] - Ensure the Permanent Index (vector database) is deployed on an architecture that supports horizontal scaling to handle high query throughput. This should be achieved by scaling out the number of nodes/pods or by implementing index sharding.",
+			  "control_objective": "To prevent the vector search operation from becoming a performance bottleneck as the number of concurrent users and the size of the knowledge base grow.",
+			  "control_evidence": "Vector database configuration files (e.g., Helm charts, cloud service settings) showing sharding or replica settings. Performance benchmarks demonstrating query latency remains stable as the query load increases. A documented procedure for scaling the vector database cluster."
+			},
+			{
+			  "control": "[SC][4] - Design the asynchronous Data Processing Pipeline using a queue-based architecture (e.g., RabbitMQ, SQS). This decouples the initial vectorization of proprietary data from the core application, allowing it to handle large-volume data ingestion without impacting real-time query performance.",
+			  "control_objective": "To ensure that the creation and updating of the knowledge base is a robust, fault-tolerant, and scalable process that does not degrade the responsiveness of the live chat service.",
+			  "control_evidence": "Architecture diagram illustrating the message queue between the data sources and the processing pipeline. Configuration of the queue and the worker pool. Logs showing successful processing of a large batch of documents, with metrics on processing time and throughput."
+			}
+		  ]
+		},
+		{
+		  "FieldType": "risk",
+		  "FieldName": "[C.3.6] - Poor Management of AI System Evolution and Updates",
+		  "question": "When the AI system is updated (e.g., retrained model, new features), are there formal processes for testing, documenting, and deploying these changes, including a plan to roll back if the update causes problems?",
+		  "controls": [
+			{
+			  "control": "[C.3.6][BP-10] - Implement a CI/CD pipeline that automates the testing and deployment of AI model updates. The pipeline must enforce a sequence of validation gates (e.g., unit tests, data validation, integration tests, and model performance evaluation on a holdout dataset) before allowing a deployment.",
+			  "control_objective": "To automate quality assurance, reduce human error, and ensure that only thoroughly vetted and validated model updates are promoted to production.",
+			  "control_evidence": "The CI/CD pipeline configuration file (e.g., `gitlab-ci.yml`, Jenkinsfile). Test reports and logs generated by the pipeline showing successful completion of all gates. A deployment manifest that references the specific model version and code commit hash deployed."
+			},
+			{
+			  "control": "[C.3.6][BP-11] - Utilize a version control system that atomically bundles code, data schemas/references, and model artifacts for each release. Every production deployment must be linked to a single, immutable commit hash or tag.",
+			  "control_objective": "To ensure complete reproducibility of any deployed AI system version and enable reliable, one-step rollbacks to a previous stable state.",
+			  "control_evidence": "Git repository history showing tagged releases. A `dvc.yaml` or similar data versioning file that pins data versions to specific code commits. Deployment logs explicitly stating the commit hash or tag being deployed for each release."
+			},
+			{
+			  "control": "[C.3.6][BP-13] - All data ingestion pipelines must include an automated data validation gate. This gate must verify data schemas, check for statistical drift in key features, and validate data quality against predefined rules before new data is accepted into the training dataset.",
+			  "control_objective": "To prevent model performance degradation caused by upstream data source changes, ensuring data integrity, consistency, and stability across model versions.",
+			  "control_evidence": "Configuration files for a data validation tool (e.g., Great Expectations, Pandera). CI/CD logs showing the successful execution of the data validation step. Generated data quality reports and drift analysis dashboards."
+			},
+			{
+			  "control": "[C.3.6][BP-14] - Any modification to the production dataset within the central data repository (as defined in control A.4.2, A.4.3), including additions, deletions, or schema changes, must be executed through a formal change management ticket that requires peer review and explicit approval from a designated data owner.",
+			  "control_objective": "To maintain the integrity, traceability, and quality of the training dataset by preventing unauthorized or undocumented changes that could adversely affect model performance and reliability.",
+			  "control_evidence": "Documented data change management procedure. Completed change request tickets (e.g., in Jira, ServiceNow) with approval history. Audit logs from the data repository or data pipeline tools confirming that changes were applied post-approval."
+			}
+		  ]
+		},
+		{
+		  "FieldType": "risk",
+		  "FieldName": "Inadequate Disaster Recovery and Business Continuity Planning",
+		  "question": "What would happen to your business process if this AI system suddenly stopped working?",
+		  "controls": [
+			{
+			  "control": "[BU][1] - Define the stateless services—specifically the RAG Orchestrator and User Interface—using Infrastructure-as-Code (IaC). The IaC templates must be version-controlled to allow for the rapid, automated deployment of a functional replica in a designated disaster recovery region.",
+			  "control_objective": "To ensure the core logic and user-facing components of the RAG system can be redeployed consistently and quickly, minimizing the Recovery Time Objective (RTO) for the application's brain and entry point.",
+			  "control_evidence": "Version-controlled IaC files (e.g., Terraform, CloudFormation) for the RAG Orchestrator and UI services. A disaster recovery runbook detailing the execution steps. Logs from a successful DR drill showing these services becoming operational in the failover environment."
+			},
+			{
+			  "control": "[BU][2] - Implement automated, cross-region replication or point-in-time backups for the Permanent Index (vector database). The recovery process for this data store must be tested to ensure the Recovery Point Objective (RPO) is met.",
+			  "control_objective": "To prevent catastrophic loss of the vectorized knowledge base, which is costly and time-consuming to recreate, by ensuring a recent copy is always available in a geographically separate location.",
+			  "control_evidence": "Cloud console configurations or database settings showing cross-region replication or automated backups are active for the vector database. A log from a recent data restoration test. Monitoring dashboards displaying replication lag or backup completion status."
+			},
+			{
+			  "control": "[BU][3] - Configure a DNS-based failover mechanism for the User Interface's public endpoint. The system must use health checks to monitor the primary RAG Orchestrator's availability and be able to redirect traffic to the replica in the disaster recovery region.",
+			  "control_objective": "To provide a seamless transition for end-users during a regional outage by automatically or manually redirecting their requests to the healthy standby environment.",
+			  "control_evidence": "DNS record configuration (e.g., AWS Route 53, Azure Traffic Manager) showing the failover routing policy. Health check configuration and status logs. A report from a planned failover test that confirms traffic was successfully redirected with minimal user-facing downtime."
+			},
+			{
+			  "control": "[BU][4] - Ensure the privately-hosted LLM inference endpoint is deployed with a multi-region disaster recovery strategy. This must include either an active-standby deployment defined in IaC or a documented procedure to rapidly redeploy the model from a central, replicated model registry into the failover region.",
+			  "control_objective": "To guarantee that the core generative capability of the system is recoverable, preventing a complete service outage if the primary LLM hosting environment becomes unavailable.",
+			  "control_evidence": "IaC templates for the LLM endpoint deployment (e.g., SageMaker endpoint config, Kubernetes manifests). A DR runbook with steps for LLM failover/redeployment. Screenshots of the model artifact stored in a resilient registry (e.g., S3 with cross-region replication)."
+			}
+		  ]
+		},
+		{
+		  "FieldType": "risk",
+		  "FieldName": "Insufficient Performance Monitoring and Analysis",
+		  "question": "Will the AI’s outputs need to be continuously monitored to ensure they stay accurate and relevant?",
+		  "controls": [
+			{
+			  "control": "[PER][1] - Instrument the RAG Orchestrator with distributed tracing to measure the end-to-end latency of a user query. The trace must capture the duration of each critical operation: retrieval from the vector index, augmentation of the prompt, and response generation by the LLM.",
+			  "control_objective": "To pinpoint performance bottlenecks within the live RAG chain, enabling targeted optimization of either the retrieval or generation components to improve user-perceived response time.",
+			  "control_evidence": "A distributed tracing dashboard (e.g., Jaeger, Datadog) showing a waterfall diagram of a user request. A metrics dashboard displaying P95/P99 latency for each individual step (retrieval, generation)."
+			},
+			{
+			  "control": "[PER][2] - Implement dedicated monitoring for the privately-hosted LLM inference endpoint. Dashboards must track GPU utilization, memory usage, time-to-first-token, and output tokens per second, with alerts configured for significant degradations.",
+			  "control_objective": "To ensure the most resource-intensive component of the stack is operating efficiently and to proactively detect hardware or model issues before they impact the entire system.",
+			  "control_evidence": "A monitoring dashboard (e.g., Grafana) with panels for GPU metrics and inference latency. The configuration file for the alerting rules (e.g., in Prometheus/Alertmanager). Load test reports showing performance under stress."
+			},
+			{
+			  "control": "[PER][3] - Establish a feedback loop by logging a sample of user queries, the IDs of the retrieved document chunks, and the final generated response. Implement an offline job to periodically calculate retrieval quality metrics (e.g., hit rate, Mean Reciprocal Rank) against a golden dataset.",
+			  "control_objective": "To monitor the relevance and accuracy of the RAG system's outputs over time, detecting concept drift or degradation in retrieval quality as the knowledge base evolves.",
+			  "control_evidence": "A sample of the logged data from the production system. A script from a CI/CD pipeline or scheduled job that runs the evaluation. A report or dashboard showing the trend of retrieval quality metrics over time."
+			},
+			{
+			  "control": "[PER][4] - Instrument the asynchronous Data Processing Pipeline to monitor its throughput (documents processed per hour) and error rate. Track the average time spent on each stage: text extraction, chunking, and embedding generation.",
+			  "control_objective": "To ensure the knowledge base creation process is scalable and reliable, allowing for timely updates and additions to the system's proprietary data without system degradation.",
+			  "control_evidence": "A metrics dashboard for the data pipeline showing throughput and error rates. Logs from pipeline workers detailing the processing time for each stage. An alert that triggers if the pipeline's failure rate exceeds a set threshold."
+			}
+		  ]
+		},
+		{
+		  "FieldType": "risk",
+		  "FieldName": "Inadequate Security Monitoring and Threat Detection",
+		  "question": "Do you need visibility into whether this AI system is under attack or being misused?",
+		  "controls": [
+			{
+			  "control": "[STM][1] - Implement logging for all prompts sent to the RAG Orchestrator and the final augmented prompts sent to the LLM. All LLM responses must also be logged before being sent to the user. These logs must be streamed to a centralized SIEM for analysis.",
+			  "control_objective": "To create an auditable trail for detecting and investigating prompt injection attacks, data exfiltration attempts, and misuse of the generative model's capabilities.",
+			  "control_evidence": "SIEM dashboard showing ingested prompt and response logs. A documented alert rule that triggers on signatures of known prompt injection techniques (e.g., 'ignore previous instructions'). Code review demonstrating the logging calls within the RAG Orchestrator."
+			},
+			{
+			  "control": "[STM][2] - The Data Processing Pipeline must integrate a file scanning mechanism (e.g., ClamAV) to inspect all internal proprietary documents *before* text extraction. Any documents flagged as malicious must be quarantined, and an alert must be generated.",
+			  "control_objective": "To prevent the ingestion of weaponized documents that could exploit vulnerabilities in the processing pipeline or poison the permanent vector index with malicious content.",
+			  "control_evidence": "Logs from the file scanner showing files being successfully scanned or quarantined. An example security alert generated by a malicious test file. The pipeline's configuration file or code showing the integration of the scanning step."
+			},
+			{
+			  "control": "[STM][3] - Enable and centralize audit logs from the Permanent Index (vector database). Configure alerts for anomalous query patterns, such as an unusually high volume of retrieval requests from a single user or attempts to enumerate large portions of the index.",
+			  "control_objective": "To detect attempts to exfiltrate large amounts of proprietary data from the knowledge base or unauthorized attempts to access restricted data segments.",
+			  "control_evidence": "Vector database configuration file with auditing enabled. Screenshots of the SIEM dashboard displaying query logs. A documented alert rule that triggers on a high-frequency query threshold from a single source IP or user account."
+			},
+			{
+			  "control": "[STM][4] - Deploy network flow logging for traffic between all internal components (UI, RAG Orchestrator, LLM, Vector DB). Establish a baseline of normal traffic patterns and configure alerts for deviations, such as unexpected connections or unusually large data payloads.",
+			  "control_objective": "To detect potential lateral movement by an attacker or compromised components within the architecture, particularly to and from the isolated LLM.",
+			  "control_evidence": "VPC flow logs or network monitoring tool dashboards. A documented network traffic baseline report. An active alert that triggers when a service attempts to connect to another service on a non-standard port."
+			}
+		  ]
+		}
       ]
     }
   ],
