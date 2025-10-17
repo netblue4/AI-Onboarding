@@ -52,6 +52,25 @@
       ]
     },
     {
+      "StepName": "(A.9.3) Objectives for responsible use of AI system",
+      "WebFormTitle": "To establish and document the guiding principles for the ethical, fair, and responsible operation of the AI system.",
+      "Objectives": [
+        {
+          "Objective": "1. Human Agency and Oversight: To ensure that the AI system is used to augment, not replace, human judgment. All high-stakes decisions suggested by the AI must be subject to meaningful human review and approval before taking effect."
+        },
+        {
+          "Objective": "2. Fair and Equitable Application: To commit to using the AI system in a manner that prevents discriminatory outcomes. The system's application must be monitored to ensure it is applied equitably across all relevant demographic groups and contexts."
+        },
+        {
+          "Objective": "3. Purpose Limitation: To guarantee that the AI system is used strictly for its defined and documented intended purpose. This principle prohibits using the system or its data for any secondary, unvalidated, or unapproved applications."
+        },
+        {
+          "Objective": "4. Accountability and Recourse: To maintain a clear and auditable trail of the system's use, ensuring there is a designated person accountable for its outcomes and a transparent process for affected individuals to challenge decisions and seek recourse."
+        }
+    ],
+    "Fields": []
+	},
+    {
       "StepName": "x(A.4.2, A.4.4) AI Systems Software and Tooling Resources",
       "Objectives": [
         {
@@ -1025,7 +1044,7 @@
       ]
     },
     {
-      "StepName": "(A.8.4) AI System Documentation and User Information",
+      "StepName": "(A.8.4) Communication of incidents",
       "Objectives": [
         {
           "Objective": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties."
@@ -1051,7 +1070,26 @@
           "FieldType": "TextBox"
         }
       ]
-    }
+    },
+    {
+      "StepName": "(A.8.2) AI System Documentation and User Information",
+      "WebFormTitle": "To provide all users and stakeholders with clear, comprehensive, and accessible information required for the safe, effective, and responsible use of the AI system.",
+      "Objectives": [
+        {
+          "Objective": "1. Clarity and Accessibility: To ensure all documentation is written in plain language, is well-structured, and is tailored to the technical level of the intended audience, from end-users to technical administrators."
+        },
+        {
+          "Objective": "2. Comprehensive Operational Guidance: To provide clear, step-by-step instructions for all system functionalities, including standard operating procedures and guidance for handling common errors or unexpected outputs."
+        },
+        {
+          "Objective": "3. Transparency of Capabilities and Limitations: To explicitly document the AI system's intended use, its known limitations, and potential risks. This includes describing what the system is not designed to do to prevent misuse."
+        },
+        {
+          "Objective": "4. Communication of User Responsibilities: To clearly communicate the 'Objectives for responsible use' to all users, ensuring they understand their role and accountability in operating the system ethically and in accordance with its intended purpose."
+        }
+    ],
+    "Fields": []
+	}
   ],
   "Phase Post deployment verification": [
     {
