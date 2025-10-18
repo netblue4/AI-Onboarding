@@ -976,33 +976,27 @@
         }
       ],
       "Fields": [
-        {
-          "FieldType": "risk",
-          "FieldName": "Insufficient Audit Trails and Logging",
-          "question": "Will you need to track who accessed the AI system, what it did, and when — for accountability or regulatory purposes?",
-          "controls": [
-            {
-              "control": "[RAG-ORCH][1] - The orchestrator must integrate with the Identity and Access Management (IAM) system to retrieve user permissions and enforce data access policies *before* querying the vector database or knowledge base.",
-              "control_objective": "To prevent unauthorized data access by ensuring a user's privileges are validated at the point of orchestration, before any data retrieval operation is initiated.",
-              "control_evidence": "Sequence diagram showing the IAM check in the RAG workflow. Code review demonstrating the API call to the IAM system and the conditional logic that blocks unauthorized queries. Integration test results showing that queries from users with insufficient permissions are denied access to specific documents."
-            },
-            {
-              "control": "[RAG-ORCH][2] - Implement query velocity and complexity monitoring within the orchestrator. The system must flag or block users exhibiting anomalous query patterns (e.g., high-frequency, low-semantic-variance queries) indicative of an inference attack.",
-              "control_objective": "To detect and mitigate attempts to reconstruct sensitive information by analyzing patterns of user queries over time.",
-              "control_evidence": "Configuration files defining thresholds for rate limiting and query complexity. Logs from a security test showing a simulated inference attack being detected and the user's session being flagged or throttled. A runbook detailing the response procedure for a flagged account."
-            },
-            {
-              "control": "[RAG-ORCH][3] - The orchestrator must generate structured, immutable audit logs for every user interaction. Logs must include a unique transaction ID, user identifier, timestamp, the full user query, the IDs of the documents retrieved from the knowledge base, and the final LLM-generated response.",
-              "control_objective": "To create a complete and reliable trail of activity for security forensics, accountability, and non-repudiation, ensuring all critical stages of the RAG process are recorded.",
-              "control_evidence": "Sample of the structured audit log (e.g., in JSON format) showing all required fields are populated. Architecture diagram illustrating the logging pipeline to a secure, write-once storage system (e.g., AWS CloudWatch Logs with object lock). Penetration test report confirming that logs cannot be tampered with or deleted by unauthorized users."
-            },
-            {
-              "control": "[RAG-ORCH][4] - The orchestrator's state transitions and data handling between components (User Query -> Vector DB -> LLM) must be defined within a secure, isolated service. All inter-component communication must use authenticated and encrypted channels (e.g., mTLS).",
-              "control_objective": "To protect the integrity and confidentiality of data as it moves through the RAG pipeline and prevent attackers from manipulating the workflow logic.",
-              "control_evidence": "Network architecture diagram showing mTLS enforced between microservices. Infrastructure-as-code (e.g., Terraform, Kubernetes YAML) configuration files specifying the network policies and secret management for certificates. Vulnerability scan reports for the orchestrator service container and its dependencies."
-            }
-          ]
-        },
+		{
+  "FieldType": "risk",
+  "FieldName": "Insufficient Audit Logging and Traceability",
+  "question": "Do you need to maintain a detailed, tamper-proof record of the AI system's operations to meet regulatory requirements and investigate incidents?",
+  "controls": [
+    {
+      "control": "[AUL][1] - Implement capabilities in the RAG Orchestrator to enable for the automatic recording of events (logs) while the high-risk AI system is operating.",
+      "control_objective": "To ensure a level of traceability of the AI system’s functioning throughout its lifecycle that is appropriate to its intended purpose.",
+	  "control_evidence": "Code review or configuration file for the **RAG Orchestrator** showing the logging service is automatically initialized on startup. A sample of raw event logs from the orchestrator capturing its primary operations (e.g., Step 1: 'Request', Step 4: 'Retrieve', Step 6: 'Generate', Step 7: 'Response'). SIEM dashboard showing these logs being successfully ingested in real-time from the **RAG Orchestrator**."
+    },
+    {
+      "control": "[[AUL][2] - Implement capabilities in the RAG Orchestrator to ensure logging capabilities record the period of each use, the reference database, the input data, and the identity of the persons involved in verifying the results.",
+      "control_objective": "To provide detailed operational transparency and accountability for AI systems used in critical public and justice-related applications.",
+      "control_evidence": "A log schema definition document for transaction logs generated by the **RAG Orchestrator**. The schema must include fields for: 'period_of_use', 'reference_database' (e.g., 'Permanent Index' or 'Temporary In-Memory'), 'input_data' (the 'PDF + QUESTION' from Step 1), and 'identity_of_person_verifying' (a user ID from the **User Interface**). A log query tracing a single user session that populates all these fields, including a subsequent verification event from the **User Interface**."
+    },
+    {
+      "control": "[AUL][3] - Implement capabilities in the RAG Orchestrator to ensure logging capabilities record the period of use, reference database, input data, and the identification of the person generating the match.",
+      "control_objective": "To enhance auditability and accountability in the use of sensitive remote biometric identification technologies.",
+      "control_evidence": "An audit log export of a complete \"Chat With Your Document\" session. The log entry, generated by the **RAG Orchestrator**, must include: 'period_of_use', 'reference_database', 'input_data', and 'identification_of_person' (the authenticated user ID from the **User Interface** who initiated the request). Access control policy demonstrating that only authorized users can send requests to the **RAG Orchestrator**."    }
+  ]
+},
         {
           "FieldType": "risk",
           "FieldName": "[RAG-ORCH-01] - Failure to Enforce Permitted User Prompt Categories",
@@ -1698,28 +1692,7 @@
 			  "control_evidence": "VPC flow logs or network monitoring tool dashboards. A documented network traffic baseline report. An active alert that triggers when a service attempts to connect to another service on a non-standard port."
 			}
 		  ]
-		},
-		{
-  "FieldType": "risk",
-  "FieldName": "Insufficient Audit Logging and Traceability",
-  "question": "Do you need to maintain a detailed, tamper-proof record of the AI system's operations to meet regulatory requirements and investigate incidents?",
-  "controls": [
-    {
-      "control": "[AUL][1] - Implement capabilities in the RAG Orchestrator to enable for the automatic recording of events (logs) while the high-risk AI system is operating.",
-      "control_objective": "To ensure a level of traceability of the AI system’s functioning throughout its lifecycle that is appropriate to its intended purpose.",
-	  "control_evidence": "Code review or configuration file for the **RAG Orchestrator** showing the logging service is automatically initialized on startup. A sample of raw event logs from the orchestrator capturing its primary operations (e.g., Step 1: 'Request', Step 4: 'Retrieve', Step 6: 'Generate', Step 7: 'Response'). SIEM dashboard showing these logs being successfully ingested in real-time from the **RAG Orchestrator**."
-    },
-    {
-      "control": "[[AUL][2] - Implement capabilities in the RAG Orchestrator to ensure logging capabilities record the period of each use, the reference database, the input data, and the identity of the persons involved in verifying the results.",
-      "control_objective": "To provide detailed operational transparency and accountability for AI systems used in critical public and justice-related applications.",
-      "control_evidence": "A log schema definition document for transaction logs generated by the **RAG Orchestrator**. The schema must include fields for: 'period_of_use', 'reference_database' (e.g., 'Permanent Index' or 'Temporary In-Memory'), 'input_data' (the 'PDF + QUESTION' from Step 1), and 'identity_of_person_verifying' (a user ID from the **User Interface**). A log query tracing a single user session that populates all these fields, including a subsequent verification event from the **User Interface**."
-    },
-    {
-      "control": "[AUL][3] - Implement capabilities in the RAG Orchestrator to ensure logging capabilities record the period of use, reference database, input data, and the identification of the person generating the match.",
-      "control_objective": "To enhance auditability and accountability in the use of sensitive remote biometric identification technologies.",
-      "control_evidence": "An audit log export of a complete \"Chat With Your Document\" session. The log entry, generated by the **RAG Orchestrator**, must include: 'period_of_use', 'reference_database', 'input_data', and 'identification_of_person' (the authenticated user ID from the **User Interface** who initiated the request). Access control policy demonstrating that only authorized users can send requests to the **RAG Orchestrator**."    }
-  ]
-}
+		}
       ]
     }
   ],
