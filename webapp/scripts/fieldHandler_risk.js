@@ -39,7 +39,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 
         const radioLabel = document.createElement('label');
         radioLabel.textContent = trimmedOption;
-        label.htmlFor = uniqueId;
+        radioLabel.htmlFor = uniqueId;
 
 		radioInput.appendChild(radioLabel);
         radioGroupContainer.appendChild(radioInput);
