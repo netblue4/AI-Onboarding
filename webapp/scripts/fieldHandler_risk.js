@@ -106,47 +106,33 @@ function createRisk(field, capturedData, sanitizeForId) {
 
             const controlText = document.createElement('p');
             controlText.textContent = controlItem.control;
-            controlContainer.appendChild(controlText);
-            
-            const input = document.createElement('textarea');
-    		input.placeholder = controlItem.control_evidence;
-    		controlContainer.appendChild(input);
- 
+            controlContainer.appendChild(controlText);  		
+    		
+    		// Check if control_status exists and starts with "MET"
+			if (controlItem.control_status && controlItem.control_status.startsWith("MET")) {
+				// IF "MET": Display evidence in a label and span as requested
+				const label = document.createElement('label');
+				label.textContent = field.FieldLabel + ": "; // Using your field.FieldLabel
+	
+				const span = document.createElement('span');
+				span.className = 'auto-generated-label'; // Using your class name
+				span.textContent = controlItem.control_evidence; // Set evidence text
+	
+				label.appendChild(span); // Nest span inside label
+				controlContainer.appendChild(label); // Add the whole label to container
+	
+			} else {
+				// ELSE: Display it in the existing text box
+				const input = document.createElement('textarea');
+				input.placeholder = controlItem.control_evidence;
+				controlContainer.appendChild(input);
+			}
+    		
             controlsDiv.appendChild(controlContainer);
         });
     }
     contentDiv.appendChild(controlsDiv);
 
-
-
-
-/*
-    // --- 4. Iterate and Display Evidence ---
-    // Crreate the Evidence  div
-    const evidenceDiv = document.createElement('div');  
-    // Create label for the evidenc div
-    const evidenceLabel = document.createElement('p');
-    evidenceLabel.textContent = 'Evidence required';
-    evidenceLabel.className = 'label-bold';
-    contentDiv.appendChild(evidenceLabel);
-
-    if (field.controls && Array.isArray(field.controls)) {
-        field.controls.forEach(controlItem => {
-            const evidenceContainer = document.createElement('div');
-
-            const evidenceText = document.createElement('p');
-            evidenceText.textContent = controlItem.control_evidence;
-            evidenceContainer.appendChild(evidenceText);
- 
-            evidenceDiv.appendChild(evidenceContainer);
-        });
-    }
-    contentDiv.appendChild(evidenceDiv);
-*/
-    
-
-
-    
     fieldDiv.appendChild(contentDiv);
 
     // Add the click listener to the header to toggle the content visibility
