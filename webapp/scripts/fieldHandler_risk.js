@@ -15,45 +15,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // Header for the collapsible section
     const headerDiv = document.createElement('div');
     headerDiv.className = 'collapsible-header';
-    // --- 1. Create Radio Button Group ---
-    // These options are standard for this type of compliance form.
-    //const radioGroupContainer = document.createElement('div');
-    //radioGroupContainer.className = 'radio-group-container options-after-header';
-    //const options = ['Applicable', 'Not Applicable'];
-    //const selectedValue = capturedData[field.FieldName] ?? null; // Use field.risk as the key
 
-    //options.forEach((optionText, index) => {
-    //    const trimmedOption = optionText.trim();
-
-    //    const radioInput = document.createElement('input');
-    //    radioInput.type = 'radio';
-    //    radioInput.value = trimmedOption;
-    //    radioInput.required = true;
-    //    const uniqueId = 'radio-' + trimmedOption.replace(/\s+/g, '-');
-	//	radioInput.id = uniqueId;
-
-        // Pre-select the radio button if there's saved data
-    //    if (trimmedOption === String(selectedValue).trim()) {
-    //        radioInput.checked = true;
-    //    }
-
-    //    const radioLabel = document.createElement('label');
-    //    radioLabel.textContent = trimmedOption;
-    //    radioLabel.htmlFor = uniqueId;
-
-	//	radioGroupContainer.appendChild(radioLabel);
-    //    radioGroupContainer.appendChild(radioInput);
-
-    //});
-    
-    
-    
-
-    
-    
-    
-    
-    
     const icon = document.createElement('span');
     icon.className = 'collapse-icon';
     icon.textContent = '▶'; // Start in collapsed state
