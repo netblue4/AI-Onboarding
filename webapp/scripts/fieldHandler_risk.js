@@ -19,7 +19,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // These options are standard for this type of compliance form.
     const radioGroupContainer = document.createElement('div');
     //radioGroupContainer.className = 'radio-group-container options-after-header';
-    const options = ['Applicable 5', 'Not Applicable'];
+    const options = ['Applicable', 'Not Applicable'];
     const selectedValue = capturedData[field.FieldName] ?? null; // Use field.risk as the key
 
     options.forEach((optionText, index) => {
