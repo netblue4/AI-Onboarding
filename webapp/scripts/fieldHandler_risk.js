@@ -55,8 +55,6 @@ function createRisk(field, capturedData, sanitizeForId) {
         wrapper.appendChild(radioLabel);
         radioGroupContainer.appendChild(wrapper);
     });
-    headerDiv.appendChild(radioGroupContainer);
-
 
     const icon = document.createElement('span');
     icon.className = 'collapse-icon';
@@ -71,7 +69,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     fieldDiv.appendChild(headerDiv);
 
     // Append the radio buttons to be always visible directly under the header
-    //fieldDiv.appendChild(radioGroupContainer);
+    fieldDiv.appendChild(radioGroupContainer);
 
     // Create the collapsible container for the detailed information
     const contentDiv = document.createElement('div');
