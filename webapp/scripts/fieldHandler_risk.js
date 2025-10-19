@@ -24,7 +24,6 @@ function createRisk(field, capturedData, sanitizeForId) {
 
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
-        const optionId = `${sanitizedId}-${index}`;
 
         const radioInput = document.createElement('input');
         radioInput.type = 'radio';
@@ -43,12 +42,6 @@ function createRisk(field, capturedData, sanitizeForId) {
 		radioInput.appendChild(radioLabel);
         radioGroupContainer.appendChild(radioInput);
 
-
-        //const wrapper = document.createElement('div');
-        //wrapper.className = 'radio-option';
-        //wrapper.appendChild(radioInput);
-        //wrapper.appendChild(radioLabel);
-        //radioGroupContainer.appendChild(wrapper);
     });
 
     const icon = document.createElement('span');
