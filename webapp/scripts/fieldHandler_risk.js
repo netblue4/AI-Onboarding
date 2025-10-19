@@ -19,7 +19,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     // These options are standard for this type of compliance form.
     const radioGroupContainer = document.createElement('div');
     //radioGroupContainer.className = 'radio-group-container options-after-header';
-    const options = ['Applicable', 'Not Applicable'];
+    const options = ['Applicable 5', 'Not Applicable'];
     const selectedValue = capturedData[field.FieldName] ?? null; // Use field.risk as the key
 
     options.forEach((optionText, index) => {
@@ -29,6 +29,8 @@ function createRisk(field, capturedData, sanitizeForId) {
         radioInput.type = 'radio';
         radioInput.value = trimmedOption;
         radioInput.required = true;
+        const uniqueId = 'radio-' + trimmedOption.replace(/\s+/g, '-');
+		radioInput.id = uniqueId;
 
         // Pre-select the radio button if there's saved data
         if (trimmedOption === String(selectedValue).trim()) {
@@ -36,8 +38,8 @@ function createRisk(field, capturedData, sanitizeForId) {
         }
 
         const radioLabel = document.createElement('label');
-        radioLabel.setAttribute('for', optionId);
         radioLabel.textContent = trimmedOption;
+        label.htmlFor = uniqueId;
 
 		radioInput.appendChild(radioLabel);
         radioGroupContainer.appendChild(radioInput);
