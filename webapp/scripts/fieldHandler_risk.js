@@ -9,19 +9,12 @@
  * @returns {HTMLElement} The fully constructed div element for the form field.
  */
 function createRisk(field, capturedData, sanitizeForId) {
-    // Main container for the entire field
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
-
-    // Use the 'risk' text to create a unique and stable ID.
-    const sanitizedId = sanitizeForId(field.FieldName);
-
    // --- 2. Build the Collapsible Structure ---
-
     // Header for the collapsible section
     const headerDiv = document.createElement('div');
     headerDiv.className = 'collapsible-header';
-    
     // --- 1. Create Radio Button Group ---
     // These options are standard for this type of compliance form.
     const radioGroupContainer = document.createElement('div');
@@ -35,8 +28,6 @@ function createRisk(field, capturedData, sanitizeForId) {
 
         const radioInput = document.createElement('input');
         radioInput.type = 'radio';
-        radioInput.id = sanitizedId; // Use unique ID for the input
-        radioInput.name = sanitizedId; // Group buttons by the sanitized risk name
         radioInput.value = trimmedOption;
         radioInput.required = true;
 
@@ -49,11 +40,15 @@ function createRisk(field, capturedData, sanitizeForId) {
         radioLabel.setAttribute('for', optionId);
         radioLabel.textContent = trimmedOption;
 
-        const wrapper = document.createElement('div');
-        wrapper.className = 'radio-option';
-        wrapper.appendChild(radioInput);
-        wrapper.appendChild(radioLabel);
-        radioGroupContainer.appendChild(wrapper);
+		radioInput.appendChild(radioLabel);
+        radioGroupContainer.appendChild(radioInput);
+
+
+        //const wrapper = document.createElement('div');
+        //wrapper.className = 'radio-option';
+        //wrapper.appendChild(radioInput);
+        //wrapper.appendChild(radioLabel);
+        //radioGroupContainer.appendChild(wrapper);
     });
 
     const icon = document.createElement('span');
