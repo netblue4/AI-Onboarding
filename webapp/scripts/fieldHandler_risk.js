@@ -124,7 +124,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     		// Check if control_status exists and starts with "MET"
 			if (controlItem.control_status && controlItem.control_status.startsWith("MET")) {
 
-        		select.value = controlItem.control_status
+        		select.value = controlItem.control_status;
 
 				const span = document.createElement('span');
 				span.className = 'auto-generated-label'; // Using your class name

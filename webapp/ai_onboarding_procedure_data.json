@@ -70,37 +70,37 @@
             {
               "control": "[Art-9][Par-1][1] - Establish, implement, document, and maintain a comprehensive risk management system for high-risk AI systems.",
               "control_objective": "To ensure a systematic and ongoing process for identifying, evaluating, and mitigating risks associated with high-risk AI systems throughout their lifecycle.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the AI onboarding procedure itself. This procedure combines the 'A.9.4 functional specification webform' (to define the system's boundaries) with the 'Risk' node (to document the risk management process), demonstrating a systematic approach."
             },
             {
               "control": "[Art-9][Par-2][2] - Implement a continuous iterative risk management process that includes regular systematic reviews and updates, covering identification, analysis, estimation, and evaluation of foreseeable risks.",
               "control_objective": "To proactively manage and adapt to evolving risks by maintaining a dynamic and up-to-date risk management framework.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the completed 'Risk' node for each RAG component. This node serves as a living document that captures the full analysis, from 'FieldName' (risk identification) to 'controls' (evaluation/treatment), ensuring a traceable and iterative process."
             },
             {
               "control": "[Art-9][Par-2][3] - Adopt appropriate and targeted risk management measures to address identified risks, including those from post-market monitoring.",
               "control_objective": "To effectively mitigate identified risks through the implementation of specific and relevant control measures.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is documented within the 'Risk' node. The 'controls' and 'control_objectives' fields for each identified threat (e.g., 'data poisoning') explain the specific measures adopted to treat that targeted risk."
             },
             {
               "control": "[Art-9][Par-5][4] - Ensure that residual risks, both individual and overall, are acceptable by eliminating or reducing risks as far as technically feasible through design, implementing mitigation measures, and providing information and training.",
               "control_objective": "To reduce the potential for harm to an acceptable level by employing a multi-layered approach to risk mitigation.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the formal sign-off of the AI onboarding documentation. This act confirms that the controls documented in the 'Risk' node are sufficient and that any residual risk is deemed acceptable for the system's 'Intended Use' as defined in the A.9.4 webform."
             },
             {
               "control": "[Art-9][Par-6][5] - Conduct testing of high-risk AI systems to identify the most appropriate risk management measures and to ensure consistent performance and compliance with requirements.",
               "control_objective": "To validate the effectiveness of risk management measures and ensure the AI system operates as intended.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the output of the '(A.6.2.4) AI Systems verifications' step. This step documents the test plans (e.g., performance, fairness, data quality) that validate the effectiveness of our risk management measures. The 'PlanCriteria' within this step defines the specific, measurable success conditions used to ensure the system operates as intended and that the controls are verifiably effective."
             },
             {
               "control": "[Art-9][Par-9][6] - Consider the potential adverse impact on persons under the age of 18 and other vulnerable groups when implementing the risk management system.",
               "control_objective": "To provide heightened protection for vulnerable populations who may be disproportionately affected by the AI system.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the completed '(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment' step. This step provides the documented assessment required by the control, forcing a formal review of potential negative impacts on at-risk groups and the creation of specific mitigation and monitoring strategies to ensure their protection."
             }
           ]
@@ -113,31 +113,31 @@
             {
               "control": "[Art-10][Par-2][1] - Implement and document data governance and management practices covering the entire data lifecycle, including design choices, collection, and preparation processes like annotation and cleaning.",
               "control_objective": "To ensure that data used for high-risk AI systems is handled systematically and responsibly, maintaining quality and integrity from collection to use.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the combination of the 'Internal Data Sources,' 'Data Processing Pipeline,' and '(A.6.2.4) AI Systems verifications' steps. Together, these procedures document our entire data management strategy (A.7.2), covering data acquisition, preparation (A.7.6), and quality, thus ensuring systematic handling."
             },
             {
               "control": "[Art-10][Par-2][2] - Establish a process to examine data sets for possible biases that could negatively impact fundamental rights, health, or safety, and implement measures to detect, prevent, and mitigate these biases.",
               "control_objective": "To minimize the risk of discriminatory or unfair outcomes and ensure the AI system operates in a manner that is safe and respects fundamental rights.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the 'Fairness and Bias' test plan within the '(A.6.2.4) AI Systems verifications' step. This plan documents the formal process for examining bias by analyzing dataset representativeness against real-world populations (A.7.3) and setting measurable fairness criteria (A.7.4) to mitigate discriminatory outcomes."
             },
             {
               "control": "[Art-10][Par-3][3] - Ensure that training, validation, and testing data sets are relevant, sufficiently representative, free of errors, and complete for the system's intended purpose, with appropriate statistical properties.",
               "control_objective": "To build a robust and reliable AI system by using high-quality data that accurately reflects the operational environment and minimizes performance issues.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the '(A.6.2.4) AI Systems verifications' step. Its 'Data quality requirements' plan sets explicit, measurable criteria for accuracy and completeness (A.7.4), while the 'Fairness and Bias' plan sets the criteria for representativeness, ensuring all data is fit for purpose."
             },
             {
               "control": "[Art-10][Par-4][4] - Verify that data sets account for the specific geographical, contextual, behavioral, or functional settings in which the high-risk AI system will be used.",
               "control_objective": "To ensure the AI system performs effectively and as intended in its specific operational context, reducing the risk of failures due to environmental mismatches.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the combination of the 'Internal Data Sources' step and the 'Fairness and Bias' test plan. The 'Internal Data Sources' documentation defines the origin and context of our data, and the test plan verifies its representativeness against the 'real-world populations' of that specific operational setting."
             },
             {
               "control": "[Art-10][Par-5][5] - Where strictly necessary for bias detection and correction, process special categories of personal data only with appropriate safeguards, technical limitations, and security measures, ensuring data is deleted after use.",
               "control_objective": "To enable effective bias mitigation while upholding the highest standards of data protection and privacy for sensitive personal information.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Evidence is the 'Data quality requirements' test plan. This plan establishes safeguards by defining specific data provenance criteria (DATA-SEN-05) and verification steps (BBT-EXT-PRO-01, BBT-EXT-PRO-02), which create a secure, auditable process for handling and tracing sensitive data used for bias correction."
             }
           ]
@@ -150,19 +150,19 @@
             {
               "control": "[Art-12][Par-1][1] - Implement capabilities for the automatic recording of events (logs) while the high-risk AI system is operating.",
               "control_objective": "To ensure a level of traceability of the AI system’s functioning throughout its lifecycle that is appropriate to its intended purpose.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Compliance is met by ensuring the **RAG Orchestrator's** logging service initializes automatically on startup. This captures a complete operational trail, including the 'Request', 'Retrieve', 'Generate', and 'Response' steps, and streams these events to a SIEM. This provides the necessary end-to-end traceability of the system's function during operation, meeting the objective."
             },
             {
               "control": "[Art-12][Par-2][2] - Implement capabilities ensuring logging capabilities record the period of each use, the reference database, the input data, and the identity of the persons involved in verifying the results.",
               "control_objective": "To provide detailed operational transparency and accountability for AI systems used in critical public and justice-related applications.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Accountability is provided via a defined log schema for the **RAG Orchestrator** that explicitly includes fields for 'period_of_use', 'reference_database' (e.g., 'Permanent Index'), 'input_data' (the 'PDF + QUESTION'), and 'identity_of_person_verifying'. Verifying a log query for a single user session confirms that these specific data points are captured, providing the detailed operational transparency required by the objective."
             },
             {
               "control": "[Art-12][Par-4][3] - Implement capabilities ensuring  logging capabilities record the period of use, reference database, input data, and the identification of the person generating the match.",
               "control_objective": "To enhance auditability and accountability in the use of sensitive remote biometric identification technologies.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Accountability is met by demonstrating that a complete \"Chat With Your Document\" session log, generated by the **RAG Orchestrator**, contains all the required elements: 'period_of_use', 'reference_database', 'input_data', and the 'identification_of_person' (the authenticated user ID). This log export provides a clear, auditable record linking a specific user to a specific query and its underlying data sources, fulfilling the objective."
             }
           ]
@@ -212,31 +212,31 @@
             {
               "control": "[Art-14][Par-1] - Design and develop high-risk AI systems with appropriate human-machine interface tools to enable effective oversight by natural persons.",
               "control_objective": "To ensure that a human can effectively monitor and control the AI system while it is in use.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "The `AI system response - Decision-Making Language Requiring Intervention` list defines the specific criteria (e.g., 'approve the loan', 'the diagnosis is') that trigger the human oversight mechanism. This list is the core configuration for the human-machine interface, as it identifies exactly which system outputs must be flagged for an overseer, enabling them to monitor and control the system's high-risk actions as described in control `[RAG-DM-01]`."
             },
             {
               "control": "[Art-14][Par-2] - Implement human oversight to prevent or minimize risks to health, safety, or fundamental rights, especially those risks that persist after other requirements have been applied.",
               "control_objective": "To provide a final layer of risk mitigation through active human involvement.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "This is met in two ways: 1) The `AI system intended use - Prohibited Uses Blacklist Definition` proactively prevents high-risk uses that threaten fundamental rights (e.g., 'social scoring', 'biometric categorization'). 2) For risks that may emerge during permitted use, the `AI system response - Decision-Making Language Requiring Intervention` list identifies outputs with potential risks to health (e.g., 'prescribe treatment') or rights (e.g., 'deny benefits'), triggering human oversight via control `[RAG-DM-01]` as a final mitigation layer."
             },
             {
               "control": "[Art-14][Par-3] - Ensure human oversight measures are built into the AI system by the provider or are appropriate for implementation by the deployer.",
               "control_objective": "To integrate necessary oversight capabilities either directly into the system or into the operational procedures of the user.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "The provided content defines measures that are built directly into the RAG Orchestrator. Control `[RAG-DM-01]` describes a 'monitoring module' that inspects LLM output, and the `AI system response - Decision-Making Language Requiring Intervention` list serves as its direct configuration file. This demonstrates an oversight capability integrated into the system's core design, not one left to chance or deployer procedures."
             },
             {
               "control": "[Art-14][Par-4a, 4b, 4c] - Enable assigned human overseers to understand the AI system's capabilities and limitations, monitor for anomalies, and correctly interpret its output, while remaining aware of potential automation bias.",
               "control_objective": "To empower human overseers with the knowledge and awareness needed to make informed judgments about the system's performance.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "The `AI system intended use - Permitted User Prompt Categories Whitelist Definition` and `Prohibited Uses Blacklist Definition` clearly document the system's intended capabilities and limitations for an overseer. More specifically, the `AI system response - Decision-Making Language Requiring Intervention` list acts as a concrete guide, training overseers to monitor for and correctly interpret anomalous, high-risk outputs (e.g., 'this is a medical recommendation'), thereby empowering them to make informed judgments and remain aware of automation bias."
             },
             {
               "control": "[Art-14][Par-4d, 4e] - Enable assigned human overseers to have the ability to decide not to use the system, override its output, or interrupt its operation via a 'stop' button or similar procedure.",
               "control_objective": "To ensure ultimate human control over the AI system's actions and decisions in any given situation.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Control `[RAG-DM-01]` directly mandates this. It requires a mechanism for 'immediate human intervention' that explicitly allows the 'overseer to stop or override the system.' The `AI system response - Decision-Making Language Requiring Intervention` list defines the precise triggers (e.g., 'authorize payment', 'initiate safety protocol') that activate this 'stop' or 'override' capability, ensuring ultimate human control over high-risk decisions."
             },
             {
@@ -254,31 +254,31 @@
             {
               "control": "[Art-15][Par-1] - Ensure high-risk AI systems are designed and developed to achieve and maintain an appropriate level of accuracy, robustness, and cybersecurity throughout their lifecycle.",
               "control_objective": "To maintain the system's trustworthiness and prevent harm from inaccurate or insecure operation.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "The `(A.6.2.4) AI Systems verifications` step provides the formal framework to ensure these levels are met. It defines specific test plans for performance (accuracy) and fairness (a component of robustness). Each plan includes `PlanCriteria` that set measurable success conditions and `criteria_evidence` requirements, directly verifying that the system achieves and maintains the appropriate levels of accuracy and trustworthiness."
             },
             {
               "control": "[Art-15][Par-2] - Encourage the development of benchmarks and measurement methodologies for accuracy and robustness in cooperation with relevant stakeholders.",
               "control_objective": "To establish standardized methods for evaluating and verifying the performance of AI systems.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "The `(A.6.2.4) AI Systems verifications` step establishes this standardized method. It formally documents the validation process through distinct test plans (e.g., for performance, fairness) which consist of specific `PlanSteps` (the verification measures) and `PlanCriteria` (the success conditions). This structure creates a defined, repeatable, and documented methodology for evaluating and verifying the system's performance against objective standards."
             },
             {
               "control": "[Art-15][Par-3] - Clearly state the levels of accuracy and the relevant accuracy metrics in the AI system's instructions for use.",
               "control_objective": "To provide transparency to users about the system's expected performance.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "The (A.7.4, A.7.6) - Data quality requirements & Test Plan directly supports this control by defining a specific, measurable accuracy metric and the methodology for its validation. The criterion `DATA-SEN-01` establishes the quantitative accuracy target of '> 95% for sensitive data'. The test steps `BBT-EXT-ACC-01` and `BBT-EXT-ACC-02` provide the procedure for creating a 'golden dataset' and programmatically verifying this accuracy level. This ensures that the accuracy figures stated in the user instructions are based on a robust and repeatable testing process, providing a transparent and evidence-backed representation of the system's performance."
             },
             {
               "control": "[Art-15][Par-4] - Design AI systems to be resilient to errors, faults, or inconsistencies, using technical redundancies and fail-safe plans where appropriate, and mitigate risks from biased feedback loops in learning systems.",
               "control_objective": "To ensure the system can handle unexpected situations and maintain stable performance without being negatively influenced by its own outputs.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "The `(A.6.2.4) AI Systems verifications` step provides the evidence for this objective. It includes test plans for 'performance' and 'fairness,' which are used to validate the system's resilience and check for bias. By defining measurable `PlanCriteria` for these plans, we verify that the system can handle errors and that measures to mitigate bias are effective, ensuring stable and fair performance."
             },
             {
               "control": "[Art-15][Par-5] - Implement cybersecurity measures to protect high-risk AI systems from unauthorized alteration of their use, outputs, or performance by exploiting vulnerabilities.",
               "control_objective": "To safeguard the AI system against malicious attacks such as data poisoning, model poisoning, and adversarial examples.",
-              "control_status": "MET",
+              "control_status": "Met",
 			  "control_evidence": "Compliance is evidenced by the 'Risk' node documented for each RAG component. This node explicitly defines the security requirements by identifying specific threats, such as 'malicious data ingestion or data poisoning'. It then documents the 'associated controls' and 'control objectives' designed to mitigate these exact vulnerabilities, providing a traceable record of the measures specified to protect the system from such attacks."
             }
           ]
@@ -291,7 +291,7 @@
 			{
 			  "control": "[Art-27][Par-1] - Perform a Fundamental Rights Impact Assessment (FRIA) prior to deploying a high-risk AI system (for public bodies, providers of public services, and systems for credit scoring or insurance).",
 			  "control_objective": "To proactively identify and analyze the potential impact and specific risks the AI system's use may pose to the fundamental rights of affected persons before any harm can occur.",
-			  "control_status": "MET",
+			  "control_status": "Met",
 			  "control_evidence": "This objective is met by implementing the 'Vulnerable Populations Impact Assessment' step. This step establishes the formal, proactive process required by the objective, providing a 'structured framework' to identify and analyze both 'positive and negative impacts' on 'at-risk groups' before deployment."
 			},
 			{
@@ -302,7 +302,7 @@
 			{
 			  "control": "[Art-27][Par-1c, 1d] - The FRIA must include the categories of persons/groups likely to be affected and the specific risks of harm likely to impact them, using information from the provider.",
 			  "control_objective": "To move from a general assessment to a specific analysis of *who* could be harmed and *how* they could be harmed, ensuring vulnerable groups are considered.",
-			  "control_status": "MET",
+			  "control_status": "Met",
 			  "control_evidence": "This is directly met. The 'Vulnerable Populations Impact Assessment' step provides a 'structured method to identify at-risk populations' (who) and 'describe and rate the severity of potential positive or negative impacts' (how). This is complemented by the 'Workforce Transition and Adaptation' step, which specifically identifies the 'job roles affected,' fulfilling the objective's need for a specific analysis of *who* is impacted."
 			},
 			{
@@ -313,13 +313,13 @@
 			{
 			  "control": "[Art-27][Par-1f] - The FRIA must include the measures to be taken if risks materialize, including internal governance and complaint mechanisms.",
 			  "control_objective": "To create an actionable plan for risk mitigation and redress, ensuring that if a risk does materialize, there is a pre-defined process to manage it and provide recourse for affected individuals.",
-			  "control_status": "MET",
+			  "control_status": "Met",
 			  "control_evidence": "This objective is met through the 'Vulnerable Populations Impact Assessment' step, which requires the organization to 'define clear mitigation strategies to prevent harm.' The 'Workforce Transition and Adaptation' step reinforces this by requiring documentation of 'corresponding mitigation strategies, including re-skilling and re-deployment plans.' Together, these create the actionable plan required to manage materialized risks."
 			},
 			{
 			  "control": "[Art-27][Par-2] - Conduct the FRIA for the first use of the system and update it if any of the key elements change during its use.",
 			  "control_objective": "To ensure the FRIA is a relevant, living document that accurately reflects the system's current use, rather than a one-time, static assessment that becomes outdated.",
-			  "control_status": "MET",
+			  "control_status": "Met",
 			  "control_evidence": "This is met by establishing formal monitoring plans within the assessments. The 'Vulnerable Populations Impact Assessment' step 'establish[es] a post-deployment monitoring plan to ensure ongoing oversight.' Similarly, the 'Environmental Sustainability' step outlines a 'plan for ongoing monitoring and review,' ensuring the assessment remains relevant and is not just a static, one-time activity."
 			},
 			{
