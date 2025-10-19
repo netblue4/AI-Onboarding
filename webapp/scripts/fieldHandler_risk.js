@@ -65,11 +65,12 @@ function createRisk(field, capturedData, sanitizeForId) {
     questionLabel.textContent = field.question.trim(); // The main risk title
     questionLabel.className = 'label-bold';
     headerDiv.appendChild(questionLabel);
+    questionLabel.appendChild(radioGroupContainer);
 
     fieldDiv.appendChild(headerDiv);
 
     // Append the radio buttons to be always visible directly under the header
-    fieldDiv.appendChild(radioGroupContainer);
+    //fieldDiv.appendChild(radioGroupContainer);
 
     // Create the collapsible container for the detailed information
     const contentDiv = document.createElement('div');
