@@ -17,35 +17,42 @@ function createRisk(field, capturedData, sanitizeForId) {
     headerDiv.className = 'collapsible-header';
     // --- 1. Create Radio Button Group ---
     // These options are standard for this type of compliance form.
-    const radioGroupContainer = document.createElement('div');
+    //const radioGroupContainer = document.createElement('div');
     //radioGroupContainer.className = 'radio-group-container options-after-header';
-    const options = ['Applicable', 'Not Applicable'];
-    const selectedValue = capturedData[field.FieldName] ?? null; // Use field.risk as the key
+    //const options = ['Applicable', 'Not Applicable'];
+    //const selectedValue = capturedData[field.FieldName] ?? null; // Use field.risk as the key
 
-    options.forEach((optionText, index) => {
-        const trimmedOption = optionText.trim();
+    //options.forEach((optionText, index) => {
+    //    const trimmedOption = optionText.trim();
 
-        const radioInput = document.createElement('input');
-        radioInput.type = 'radio';
-        radioInput.value = trimmedOption;
-        radioInput.required = true;
-        const uniqueId = 'radio-' + trimmedOption.replace(/\s+/g, '-');
-		radioInput.id = uniqueId;
+    //    const radioInput = document.createElement('input');
+    //    radioInput.type = 'radio';
+    //    radioInput.value = trimmedOption;
+    //    radioInput.required = true;
+    //    const uniqueId = 'radio-' + trimmedOption.replace(/\s+/g, '-');
+	//	radioInput.id = uniqueId;
 
         // Pre-select the radio button if there's saved data
-        if (trimmedOption === String(selectedValue).trim()) {
-            radioInput.checked = true;
-        }
+    //    if (trimmedOption === String(selectedValue).trim()) {
+    //        radioInput.checked = true;
+    //    }
 
-        const radioLabel = document.createElement('label');
-        radioLabel.textContent = trimmedOption;
-        radioLabel.htmlFor = uniqueId;
+    //    const radioLabel = document.createElement('label');
+    //    radioLabel.textContent = trimmedOption;
+    //    radioLabel.htmlFor = uniqueId;
 
-		radioGroupContainer.appendChild(radioLabel);
-        radioGroupContainer.appendChild(radioInput);
+	//	radioGroupContainer.appendChild(radioLabel);
+    //    radioGroupContainer.appendChild(radioInput);
 
-    });
-	fieldDiv.appendChild(radioGroupContainer);
+    //});
+    
+    
+    
+
+    
+    
+    
+    
     
     const icon = document.createElement('span');
     icon.className = 'collapse-icon';
@@ -59,8 +66,15 @@ function createRisk(field, capturedData, sanitizeForId) {
     
     fieldDiv.appendChild(headerDiv);
 
-    // Append the radio buttons to be always visible directly under the header
-    //fieldDiv.appendChild(radioGroupContainer);
+	const radioInput = document.createElement('input');
+	const options = ['', 'Applicable', 'Not Applicable'];
+	options.forEach((optionText, index) => {
+		const option = document.createElement('option');
+		option.value = optionText;
+		option.textContent = optionText;
+		radioInput.appendChild(option);
+	});
+    fieldDiv.appendChild(radioInput);
 
     // Create the collapsible container for the detailed information
     const contentDiv = document.createElement('div');
