@@ -67,7 +67,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     fieldDiv.appendChild(headerDiv);
 
 	const radioInput = document.createElement('select');
-	const options = ['', 'Applicable', 'Not Applicable'];
+	const options = ['Select', 'Applicable', 'Not Applicable'];
 	options.forEach((optionText, index) => {
 		const option = document.createElement('option');
 		option.value = optionText;
