@@ -108,24 +108,16 @@ function createRisk(field, capturedData, sanitizeForId) {
             controlText.textContent = controlItem.control;
             controlContainer.appendChild(controlText);  	
             
-			const select = document.createElement('select');
-			const option0 = document.createElement('option');
-			option0.value = "";
-			option0.textContent = "";
-			select.appendChild(option0);
-			const option = document.createElement('option');
-			option.value = "MET";
-			option.textContent = "MET";
-			select.appendChild(option);
-			const option2 = document.createElement('option');
-			option2.value = "NOT MET";
-			option2.textContent = "NOT MET";
-			select.appendChild(option2);        
-			const option3 = document.createElement('option');
-			option3.value = "PARTIALLY MET";
-			option3.textContent = "PARTIALLY MET";
-			select.appendChild(option3);    
+            //Control status
+            const options = ['', 'Met', 'Not Met', 'Partially Met'];
+    		options.forEach((optionText, index) => {
+				const option = document.createElement('option');
+				option.value = optionText;
+				option.textContent = optionText;
+				select.appendChild(option);
+    		}
 			controlText.appendChild(select);	
+
     		
     		// Check if control_status exists and starts with "MET"
 			if (controlItem.control_status && controlItem.control_status.startsWith("MET")) {
