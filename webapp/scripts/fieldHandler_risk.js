@@ -107,6 +107,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             controlContainer.appendChild(controlText);  	
             
             //Control status
+            const select = document.createElement('select');
             const options = ['', 'Met', 'Not Met', 'Partially Met'];
     		options.forEach((optionText, index) => {
 				const option = document.createElement('option');
