@@ -106,14 +106,32 @@ function createRisk(field, capturedData, sanitizeForId) {
 
             const controlText = document.createElement('p');
             controlText.textContent = controlItem.control;
-            controlContainer.appendChild(controlText);  		
+            controlContainer.appendChild(controlText);  	
+            
+			const select = document.createElement('select');
+			const option0 = document.createElement('option');
+			option0.value = "";
+			option0.textContent = "";
+			select.appendChild(option0);
+			const option = document.createElement('option');
+			option.value = "MET";
+			option.textContent = "MET";
+			select.appendChild(option);
+			const option2 = document.createElement('option');
+			option2.value = "NOT MET";
+			option2.textContent = "NOT MET";
+			select.appendChild(option2);        
+			const option3 = document.createElement('option');
+			option3.value = "PARTIALLY MET";
+			option3.textContent = "PARTIALLY MET";
+			select.appendChild(option3);    
+			controlText.appendChild(select);	
     		
     		// Check if control_status exists and starts with "MET"
 			if (controlItem.control_status && controlItem.control_status.startsWith("MET")) {
-				// IF "MET": Display evidence in a label and span as requested
-				//const label = document.createElement('label');
-				//label.textContent = "Evidence"; // Using your field.FieldLabel
-	
+
+        		select.value = controlItem.control_status
+
 				const span = document.createElement('span');
 				span.className = 'auto-generated-label'; // Using your class name
 				span.textContent = controlItem.control_evidence; // Set evidence text
@@ -122,9 +140,8 @@ function createRisk(field, capturedData, sanitizeForId) {
 				//controlContainer.appendChild(label); // Add the whole label to container
 	
 			} else {
-				// ELSE: Display it in the existing text box
-				//const label = document.createElement('label');
-				//label.textContent = "Evidence Requirement"; // Using your field.FieldLabel
+
+        		select.value = options[0]?.trim();
 				
 				const input = document.createElement('textarea');
 				input.placeholder = controlItem.control_evidence;
