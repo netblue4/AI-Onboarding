@@ -111,21 +111,26 @@ function createRisk(field, capturedData, sanitizeForId) {
     		// Check if control_status exists and starts with "MET"
 			if (controlItem.control_status && controlItem.control_status.startsWith("MET")) {
 				// IF "MET": Display evidence in a label and span as requested
-				const label = document.createElement('label');
-				label.textContent = field.FieldLabel + ": "; // Using your field.FieldLabel
+				//const label = document.createElement('label');
+				//label.textContent = "Evidence"; // Using your field.FieldLabel
 	
 				const span = document.createElement('span');
 				span.className = 'auto-generated-label'; // Using your class name
 				span.textContent = controlItem.control_evidence; // Set evidence text
 	
-				label.appendChild(span); // Nest span inside label
-				controlContainer.appendChild(label); // Add the whole label to container
+				controlText.appendChild(span); // Nest span inside label
+				//controlContainer.appendChild(label); // Add the whole label to container
 	
 			} else {
 				// ELSE: Display it in the existing text box
+				//const label = document.createElement('label');
+				//label.textContent = "Evidence Requirement"; // Using your field.FieldLabel
+				
 				const input = document.createElement('textarea');
 				input.placeholder = controlItem.control_evidence;
-				controlContainer.appendChild(input);
+
+				controlText.appendChild(input); // Nest span inside label
+				//controlContainer.appendChild(input);
 			}
     		
             controlsDiv.appendChild(controlContainer);
