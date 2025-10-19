@@ -113,7 +113,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 				option.value = optionText;
 				option.textContent = optionText;
 				select.appendChild(option);
-    		}
+    		});
 			controlText.appendChild(select);	
 
     		
