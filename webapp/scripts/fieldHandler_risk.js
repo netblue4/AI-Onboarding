@@ -122,7 +122,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 
     		
     		// Check if control_status exists and starts with "MET"
-			if (controlItem.control_status && controlItem.control_status.startsWith("MET")) {
+			if (controlItem.control_status && controlItem.control_status.startsWith("Met")) {
 
         		select.value = controlItem.control_status;
 
