@@ -16,6 +16,12 @@ function createRisk(field, capturedData, sanitizeForId) {
     // Use the 'risk' text to create a unique and stable ID.
     const sanitizedId = sanitizeForId(field.FieldName);
 
+   // --- 2. Build the Collapsible Structure ---
+
+    // Header for the collapsible section
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'collapsible-header';
+    
     // --- 1. Create Radio Button Group ---
     // These options are standard for this type of compliance form.
     const radioGroupContainer = document.createElement('div');
@@ -49,12 +55,8 @@ function createRisk(field, capturedData, sanitizeForId) {
         wrapper.appendChild(radioLabel);
         radioGroupContainer.appendChild(wrapper);
     });
+    headerDiv.appendChild(radioGroupContainer);
 
-    // --- 2. Build the Collapsible Structure ---
-
-    // Header for the collapsible section
-    const headerDiv = document.createElement('div');
-    headerDiv.className = 'collapsible-header';
 
     const icon = document.createElement('span');
     icon.className = 'collapse-icon';
@@ -69,15 +71,11 @@ function createRisk(field, capturedData, sanitizeForId) {
     fieldDiv.appendChild(headerDiv);
 
     // Append the radio buttons to be always visible directly under the header
-    fieldDiv.appendChild(radioGroupContainer);
+    //fieldDiv.appendChild(radioGroupContainer);
 
     // Create the collapsible container for the detailed information
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
-    //contentDiv.style.maxHeight = '500px'; // Adjust this pixel value as needed for your layout
-    //contentDiv.style.overflowY = 'auto';   // Add a vertical scrollbar only when content overflows
-    //contentDiv.style.paddingRight = '10px'; // Add padding to prevent text from touching the scrollbar
-
 
     // Add the primary question inside the collapsible area
     const riskLabel = document.createElement('label');
