@@ -41,11 +41,12 @@ function createRisk(field, capturedData, sanitizeForId) {
         radioLabel.textContent = trimmedOption;
         radioLabel.htmlFor = uniqueId;
 
-		radioInput.appendChild(radioLabel);
+		radioGroupContainer.appendChild(radioLabel);
         radioGroupContainer.appendChild(radioInput);
 
     });
-
+	fieldDiv.appendChild(radioGroupContainer);
+    
     const icon = document.createElement('span');
     icon.className = 'collapse-icon';
     icon.textContent = '▶'; // Start in collapsed state
@@ -55,8 +56,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     questionLabel.textContent = field.question.trim(); // The main risk title
     questionLabel.className = 'label-bold';
     headerDiv.appendChild(questionLabel);
-    questionLabel.appendChild(radioGroupContainer);
-
+    
     fieldDiv.appendChild(headerDiv);
 
     // Append the radio buttons to be always visible directly under the header
