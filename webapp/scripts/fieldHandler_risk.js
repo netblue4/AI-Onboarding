@@ -73,6 +73,9 @@ function createRisk(field, capturedData, sanitizeForId) {
 		option.value = optionText;
 		option.textContent = optionText;
 		radioInput.appendChild(option);
+		if (controlItem.control_status && controlItem.control_status.startsWith("MET")) {
+			radioInput.value = "Applicable";
+		};
 	});
     fieldDiv.appendChild(radioInput);
 
