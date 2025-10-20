@@ -511,8 +511,7 @@
             {
               "control": "[A.6.2.3] - Documentation of AI system design and development: The organization shall document the AI system design and development based on organizational objectives, documented requirements and specification criteria.",
               "control_objective": "The organization shall document the AI system design and development based on organizational objectives, documented requirements and specification criteria.",
-              "control_status": "Met",
-              "control_evidence": "The ISO 42001 A.6.2.3 control mandates comprehensive documentation of the AI system's design and development, linking it directly to organizational objectives and specified requirements. This ensures that the system's architecture and implementation choices are transparent, justifiable, and traceable back to the intended purpose and established standards.\n\nThe overall AI Onboarding procedure, structured as a set of interconnected steps, serves as the complete documentation for the AI system design and development process. Specifically, the 'Architecture, Components, and Dependencies' step directly addresses this control. This step systematically captures all necessary information, including the system's core design elements (e.g., API Gateway, Orchestrator, Database), their operational dependencies, and their functional mapping to the required system objectives. The fields within this step—such as component name, version, role, and inter-component communication mechanisms—create a clear, auditable trail that connects the initial objectives to the final implementation architecture, fulfilling the documentation requirements of A.6.2.3."
+              "control_evidence": ""
             },
             {
               "control": "[A.6.2.4] - AI system verification and validation: The organization shall define and document verification and validation measures for the AI system and specify criteria for their use.",
@@ -535,8 +534,7 @@
             {
               "control": "[A.6.2.7] - AI system technical documentation: The organization shall determine what AI system technical documentation is needed for each relevant category of interested parties, such as users, partners, supervisory authorities, and provide the technical documentation to them in the appropriate form.",
               "control_objective": "The organization shall determine what AI system technical documentation is needed for each relevant category of interested parties, such as users, partners, supervisory authorities, and provide the technical documentation to them in the appropriate form.",
-              "control_status": "Met",
-              "control_evidence": "ISO 42001 A.6.2.7 requires that the organization must determine and provide the necessary **technical documentation** to various interested parties (e.g., users, partners, authorities) in an appropriate form.\n\nOur procedure addresses this through the **'Architecture, Components, and Dependencies'** step, which is the repository for the primary technical documentation. Specifically, it requires documenting the **System Architecture Diagram** (a critical piece of technical documentation for partners/auditors), the **Component Inventory** (technical details for engineers/maintainers), and the **External Documentation Link** (which is explicitly intended for users or external parties). By mandating that this technical information be compiled and an accessible external link be provided, the procedure ensures that the necessary technical documentation is determined, prepared, and ready for distribution to all relevant interested parties, fulfilling A.6.2.7."
+              "control_evidence": ""
             },
             {
               "control": "[A.6.2.8] - AI system recording of event logs: The organization shall determine at which phases of the AI system life cycle, record keeping of event logs should be enabled, but at the minimum when the AI system is in use.",
@@ -591,26 +589,22 @@
             {
               "control": "[A.8.2] - System documentation and information for users: The organization shall determine and provide the necessary information to users of the AI system.",
               "control_objective": "The organization shall determine and provide the necessary information to users of the AI system.",
-              "control_status": "Met",
-              "control_evidence": "ISO 42001 A.8.2 requires the organization to determine and provide the **necessary information to users** of the AI system to ensure safe and effective use.\n\nThis is met by mandating the creation of a definitive user guide within the onboarding procedure. This guide must, at a minimum, include: **1. Intended Use and Limitations (A.9.4)**: Detailing what the system is for and what it is not for. **2. Performance and Accuracy (A.6.2.4)**: Providing the system’s performance metrics. **3. Human Oversight Procedures (A.14)**: Explaining when and how the user must intervene. The **'Architecture, Components, and Dependencies'** step then requires a final **'External Documentation Link'** to this compiled user-facing information. This process ensures the determination of necessary information and its provision to the end-users, fulfilling A.8.2."
+              "control_evidence": ""
             },
             {
               "control": "[A.8.3] - External reporting: The organization shall provide capabilities for interested parties to report adverse impacts of the AI system.",
               "control_objective": "The organization shall provide capabilities for interested parties to report adverse impacts of the AI system.",
-              "control_status": "Met",
-              "control_evidence": "ISO 42001 A.8.3 mandates that the organization must provide a capability for interested parties (e.g., users, public, affected groups) to report adverse impacts of the AI system.\n\nThis is addressed by mandating the definition of a clear **'Adverse Impact Reporting Mechanism'** within the organization's governance. The procedure requires the team to document the specific mechanism—such as a dedicated email alias ('ai-concerns@org.com'), a web form, or an internal governance portal—that serves as the official intake channel for complaints and adverse impact reports. By formally documenting and defining this mechanism within the onboarding procedure, the organization establishes the required capability for external reporting, thereby fulfilling A.8.3."
+              "control_evidence": ""
             },
             {
               "control": "[A.8.4] - Communication of incidents: The organization shall determine and document a plan for communicating incidents to users of the AI system.",
               "control_objective": "The organization shall determine and document a plan for communicating incidents to users of the AI system.",
-              "control_status": "Met",
-              "control_evidence": "ISO 42001 A.8.4 requires the organization to determine and document a plan for communicating incidents related to the AI system to its users.\n\nThis is met by mandating the documentation of an explicit **'Incident Communication Plan'** within the overall AI onboarding procedure. This plan must detail, at a minimum, the specific scenarios that trigger communication (e.g., system outage, significant model drift, data breach), the communication channels to be used (e.g., email notification, in-app banner), and the key messages to be conveyed (e.g., nature of the incident, impact, estimated time to resolution). By establishing and documenting this formal plan, the organization ensures a systematic and consistent approach to incident communication, satisfying A.8.4."
+              "control_evidence": ""
             },
             {
               "control": "[A.8.5] - Information for interested parties: The organization shall determine and document their obligations to reporting information about the AI system to interested parties.",
               "control_objective": "The organization shall determine and document their obligations to reporting information about the AI system to interested parties.",
-              "control_status": "Met",
-              "control_evidence": "ISO 42001 A.8.5 requires the organization to determine and document its obligations for reporting information about the AI system to various interested parties (e.g., regulators, partners, the public).\n\nThis is met by mandating the documentation of a **'Regulatory and External Reporting Obligations'** matrix within the onboarding procedure. This matrix requires the team to systematically identify and document:\n* **The interested party/regulator** (e.g., EU AI Act, Data Protection Authority).\n* **The specific reporting obligation** (e.g., 'notify in case of serious incident', 'submit FRIA results').\n* **The frequency/trigger** (e.g., 'annually', 'within 72 hours of discovery').\n* **The internal team responsible**.\n\nThis process systematically determines and documents all external reporting obligations, creating a single, auditable record that fulfills the requirement of A.8.5."
+              "control_evidence": ""
             }
           ]
         },
@@ -647,20 +641,17 @@
             {
               "control": "[A.10.2] - Allocating responsibilities: The organization shall ensure that responsibilities within their AI system life cycle are allocated between the organization, its partners, suppliers, customers and third parties.",
               "control_objective": "The organization shall ensure that responsibilities within their AI system life cycle are allocated between the organization, its partners, suppliers, customers and third parties.",
-              "control_status": "Met",
-              "control_evidence": "ISO 42001 A.10.2 requires that responsibilities for the AI system lifecycle be clearly allocated between the organization and all involved third parties (partners, suppliers, customers).\n\nThis is met by mandating the creation of a formal **'Responsibility Allocation Matrix'** within the onboarding procedure. This matrix requires the team to systematically define who is responsible for each key phase of the AI lifecycle, including:\n* **Data Sourcing/Acquisition**\n* **Model Training/Development**\n* **Deployment/Hosting**\n* **Ongoing Monitoring/Maintenance**\n\nFor each phase, the matrix must explicitly list the responsible entity (e.g., 'Internal Dev Team', 'Cloud Vendor', 'Data Partner'), ensuring that no responsibility is unassigned or duplicated, thereby fulfilling the allocation requirement of A.10.2."
+              "control_evidence": ""
             },
             {
               "control": "[A.10.3] - Suppliers: The organization shall establish a process to ensure that its usage of services, products or materials provided by suppliers aligns with the organization’s approach to the responsible development and use of AI systems.",
               "control_objective": "The organization shall establish a process to ensure that its usage of services, products or materials provided by suppliers aligns with the organization’s approach to the responsible development and use of AI systems.",
-              "control_status": "Met",
-              "control_evidence": "ISO 42001 A.10.3 mandates that the organization establishes a process to ensure that the services, products, or materials provided by suppliers (including foundational models, cloud services, and datasets) align with the organization's approach to the responsible development and use of AI systems.\n\nThis is met by mandating a formal **'AI Supplier Due Diligence'** step. This step requires the team to document:\n1.  **Supplier Vetting**: The process used to assess the supplier's own responsible AI policies and compliance (e.g., confirming ISO 42001 certification or similar). \n2.  **Contractual Requirements**: Vetting the contract to ensure the supplier's obligations regarding data quality, security, and ethical use are explicitly defined and align with our internal standards.\n3.  **Exit Strategy**: Documenting a plan for switching providers or services, which is a key component of mitigating supplier risk.\n\nThis documented due diligence process ensures a systematic method for supplier alignment and risk management, fulfilling the requirement of A.10.3."
+              "control_evidence": ""
             },
             {
               "control": "[A.10.4] - Customers: The organization shall ensure that its responsible approach to the development and use of AI systems considers their customer expectations and needs.",
               "control_objective": "The organization shall ensure that its responsible approach to the development and use of AI systems considers their customer expectations and needs.",
-              "control_status": "Met",
-              "control_evidence": "ISO 42001 A.10.4 requires the organization to ensure that its responsible approach to AI considers customer expectations and needs.\n\nThis is met by mandating the documentation of **'Customer Engagement and Feedback Mechanisms'**. The procedure requires the team to document:\n1.  **Feedback Channels**: The official channels for customer input on the AI system's performance and impact (e.g., dedicated customer support line, user forums).\n2.  **Expectation Management**: How customer expectations are set and managed, linking back to the official documentation of the AI system's **Intended Use and Limitations (A.9.4)**.\n3.  **Adverse Impact Reporting (A.8.3)**: Leveraging the mandatory adverse impact reporting mechanism (A.8.3) to capture and respond to critical customer concerns.\n\nBy systematically documenting how customer input is gathered, expectations are set, and concerns are addressed, the organization demonstrates consideration of customer needs and fulfills the requirement of A.10.4."
+              "control_evidence": ""
             }
           ]
         }
