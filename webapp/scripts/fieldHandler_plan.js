@@ -89,7 +89,7 @@ function createPlan(field, capturedData, sanitizeForId) {
     }
 
     // --- Render Test Criteria Metadata (New Logic) ---
-    if (field.TestCriteriaMetadata) {
+    if (field.TestDatasetMetadata) {
         // Add the Metadata label
         const metadataLabel = document.createElement('label');
         metadataLabel.textContent = "Test Criteria Metadata";
@@ -102,7 +102,7 @@ function createPlan(field, capturedData, sanitizeForId) {
         contentDiv.appendChild(separator);
 
         // Render the metadata
-        const metadataElement = renderTestCriteriaMetadata(field.TestCriteriaMetadata);
+        const metadataElement = renderTestCriteriaMetadata(field.TestDatasetMetadata);
         if (metadataElement) {
             contentDiv.appendChild(metadataElement);
         }
