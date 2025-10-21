@@ -37,6 +37,91 @@ function createPlan(field, capturedData, sanitizeForId) {
     contentDiv.className = 'collapsible-content collapsed';
 
 
+    /**
+     * Golden Dataset Table Renderer.
+     * Creates a table element with dynamic headers and rows based on the array of objects.
+     * @param {Array<Object>} goldenDatasetArray - The array of GoldenDataset objects (the `field.GoldenDataset` node).
+     * @returns {HTMLElement} The constructed table element.
+     */
+    function createGoldenDatasetTable(goldenDatasetArray) {
+        if (!goldenDatasetArray || goldenDatasetArray.length === 0) return null;
+
+        const table = document.createElement('table');
+        // Basic inline styles for table appearance
+        table.style.width = '100%';
+        table.style.borderCollapse = 'collapse';
+        table.style.marginBottom = '20px';
+        table.style.fontSize = '12px';
+
+        // 1. Get Headers from the first object
+        const headers = Object.keys(goldenDatasetArray[0]);
+
+        // 2. Create Table Header
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        headerRow.style.backgroundColor = '#e0e0e0';
+        headerRow.style.fontWeight = 'bold';
+
+        headers.forEach(key => {
+            const th = document.createElement('th');
+            th.textContent = key.replace(/_/g, ' '); // Improve readability of column names
+            th.style.border = '1px solid #ccc';
+            th.style.padding = '8px';
+            th.style.textAlign = 'left';
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // 3. Create Table Body
+        const tbody = document.createElement('tbody');
+        goldenDatasetArray.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.style.backgroundColor = index % 2 === 0 ? '#fff' : '#f9f9f9'; // Zebra striping
+
+            headers.forEach(key => {
+                const td = document.createElement('td');
+                td.textContent = item[key] || '';
+                td.style.border = '1px solid #ccc';
+                td.style.padding = '8px';
+                td.style.verticalAlign = 'top';
+                row.appendChild(td);
+            });
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+
+        return table;
+    }
+
+    // --- Render Golden Dataset if data is present (New Feature) ---
+    if (field.GoldenDataset && Array.isArray(field.GoldenDataset)) {
+        // Add the Golden Dataset label
+        const goldenDatasetLabel = document.createElement('label');
+        goldenDatasetLabel.textContent = "Golden Datasets";
+        goldenDatasetLabel.className = 'label-bold';
+        contentDiv.appendChild(goldenDatasetLabel);
+        
+        // Add separator
+        const separator = document.createElement('hr');
+        separator.className = 'control-separator';
+        contentDiv.appendChild(separator);
+
+        // Crreate the Golden Dataset div and append the table
+        const goldenDatasetDiv = document.createElement('div');
+        // NOTE: The function is now called with field.GoldenDataset directly, matching the new signature
+        const table = createGoldenDatasetTable(field.GoldenDataset); 
+        if (table) {
+            goldenDatasetDiv.appendChild(table);
+        } else {
+            const p = document.createElement('p');
+            p.textContent = 'No Golden Dataset items to display.';
+            goldenDatasetDiv.appendChild(p);
+        }
+        contentDiv.appendChild(goldenDatasetDiv);
+    }
+    
+
  /**
  * Plan Criteria.
  */

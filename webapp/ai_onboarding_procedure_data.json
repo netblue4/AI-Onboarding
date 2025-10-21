@@ -1158,7 +1158,7 @@
           "FieldType": "plan",
           "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
           "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
-			"DataExtractionGoldenDataset": [
+		  "GoldenDataset": [
 				{
 				  "Document_ID": "DOC-001",
 				  "Source_File": "contract_v2.pdf",
@@ -1729,7 +1729,7 @@
 			"FieldType": "plan",
 			"FieldName": "(A.7.5, A.7.6) - LLM Generation Quality Test Plan",
 			"PlanObjective": "Ensure the LLM accurately, safely, and coherently synthesizes the retrieved information into a final, human-readable answer while adhering to security policies.",
-		  "GenerationGoldenDataset": [
+		    "GoldenDataset": [
 			{
 			  "ID": "GDS-GEN-001",
 			  "Query": "What is the maximum allowed time for a business trip without special approval?",
