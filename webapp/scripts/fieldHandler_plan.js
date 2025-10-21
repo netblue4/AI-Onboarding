@@ -167,7 +167,7 @@ function createPlan(field, capturedData, sanitizeForId) {
     }
 
     // --- Render Golden Dataset if data is present (Previous Feature) ---
-    if (field.GoldenDataset && Array.isArray(field.GoldenDataset)) {
+    if (field.TestDataset && Array.isArray(field.TestDataset)) {
         // Add the Golden Dataset label
         const goldenDatasetLabel = document.createElement('label');
         goldenDatasetLabel.textContent = "Golden Datasets";
@@ -181,8 +181,8 @@ function createPlan(field, capturedData, sanitizeForId) {
 
         // Crreate the Golden Dataset div and append the table
         const goldenDatasetDiv = document.createElement('div');
-        // NOTE: The function is now called with field.GoldenDataset directly
-        const table = createGoldenDatasetTable(field.GoldenDataset); 
+        // NOTE: The function is now called with field.TestDataset directly
+        const table = createGoldenDatasetTable(field.TestDataset); 
         if (table) {
             goldenDatasetDiv.appendChild(table);
         } else {
