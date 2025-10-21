@@ -36,6 +36,78 @@ function createPlan(field, capturedData, sanitizeForId) {
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
 
+    /**
+     * Renders the standardized Test Criteria Metadata in a descriptive list format.
+     * @param {Object} metadata - The standardized TestCriteriaMetadata object.
+     * @returns {HTMLElement} A div containing the formatted metadata.
+     */
+    function renderTestCriteriaMetadata(metadata) {
+        if (!metadata) return null;
+
+        const container = document.createElement('div');
+        container.className = 'metadata-container p-4 bg-gray-50 border border-gray-200 rounded-lg mb-6';
+        
+        // Title (Test Category)
+        const title = document.createElement('h3');
+        title.textContent = `${metadata.TestCategory || 'Test Plan Details'} (ID: ${metadata.ControlID || 'N/A'})`;
+        title.className = 'text-base font-semibold text-indigo-700 mb-3';
+        container.appendChild(title);
+
+        const dl = document.createElement('dl');
+        dl.className = 'grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 text-sm';
+        container.appendChild(dl);
+
+        const addTerm = (term, definition) => {
+            if (!definition) return;
+            const dt = document.createElement('dt');
+            dt.textContent = term;
+            dt.className = 'font-medium text-gray-700 col-span-1 border-b border-gray-100 pb-1';
+            
+            const dd = document.createElement('dd');
+            dd.textContent = definition;
+            dd.className = 'text-gray-900 col-span-1 border-b border-gray-100 pb-1';
+            
+            dl.appendChild(dt);
+            dl.appendChild(dd);
+        };
+
+        // 1. Purpose
+        addTerm('Purpose', metadata.Purpose);
+
+        // 2. Metric Name & Threshold (combined for easy comparison)
+        const metricName = metadata.PrimaryMetric?.Name || 'N/A';
+        const threshold = metadata.PassCriteria?.Threshold || 'N/A';
+        addTerm('Metric / Threshold', `${metricName} (Goal: ${threshold})`);
+
+        // 3. Metric Definition
+        addTerm('Definition', metadata.PrimaryMetric?.Definition);
+
+        // 4. Calculation Detail
+        addTerm('Calculation Detail', metadata.PrimaryMetric?.CalculationDetail);
+
+        return container;
+    }
+
+    // --- Render Test Criteria Metadata (New Logic) ---
+    if (field.TestCriteriaMetadata) {
+        // Add the Metadata label
+        const metadataLabel = document.createElement('label');
+        metadataLabel.textContent = "Test Criteria Metadata";
+        metadataLabel.className = 'label-bold';
+        contentDiv.appendChild(metadataLabel);
+
+        // Add separator
+        const separator = document.createElement('hr');
+        separator.className = 'control-separator';
+        contentDiv.appendChild(separator);
+
+        // Render the metadata
+        const metadataElement = renderTestCriteriaMetadata(field.TestCriteriaMetadata);
+        if (metadataElement) {
+            contentDiv.appendChild(metadataElement);
+        }
+    }
+
 
     /**
      * Golden Dataset Table Renderer.
@@ -94,7 +166,7 @@ function createPlan(field, capturedData, sanitizeForId) {
         return table;
     }
 
-    // --- Render Golden Dataset if data is present (New Feature) ---
+    // --- Render Golden Dataset if data is present (Previous Feature) ---
     if (field.GoldenDataset && Array.isArray(field.GoldenDataset)) {
         // Add the Golden Dataset label
         const goldenDatasetLabel = document.createElement('label');
@@ -109,7 +181,7 @@ function createPlan(field, capturedData, sanitizeForId) {
 
         // Crreate the Golden Dataset div and append the table
         const goldenDatasetDiv = document.createElement('div');
-        // NOTE: The function is now called with field.GoldenDataset directly, matching the new signature
+        // NOTE: The function is now called with field.GoldenDataset directly
         const table = createGoldenDatasetTable(field.GoldenDataset); 
         if (table) {
             goldenDatasetDiv.appendChild(table);
