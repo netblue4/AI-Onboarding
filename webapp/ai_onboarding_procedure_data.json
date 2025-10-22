@@ -4,7 +4,7 @@
       "StepName": "EU AI Act: Prohibited AI Practices Assessment",
       "Objectives": [
         {
-          "Objective": "To determine if the AI system's intended purpose constitutes a prohibited practice under the EU AI Act."
+          "Objective": "A mandatory screening to ensure the AI system does not fall into the category of "Prohibited AI Practices" as defined by the EU AI Act (e.g., systems that manipulate behavior or exploit vulnerabilities)."
         }
       ],
       "Fields": [
@@ -20,7 +20,7 @@
       "StepName": "EU AI Act: Role Classification (Provider vs. Deployer)",
       "Objectives": [
         {
-          "Objective": "To clarify the organization's role and corresponding legal obligations under the EU AI Act based on its development and deployment activities."
+          "Objective": "Defining the organization’s legal responsibility for the AI system. This step determines whether the entity is acting as the Provider (the developer/manufacturer) or the Deployer (the user/operator) of the system, which dictates the scope of subsequent obligations."
         }
       ],
       "Fields": [
@@ -36,7 +36,7 @@
       "StepName": "EU AI Act: High-Risk System Classification",
       "Objectives": [
         {
-          "Objective": "To classify the AI system's risk level by assessing its intended purpose against the high-risk categories defined in the EU AI Act."
+          "Objective": "A critical step involving the legal classification of the AI system to determine if it meets the criteria for a High-Risk AI System. This classification triggers a significantly higher level of scrutiny and more detailed compliance requirements."
         }
       ],
       "Fields": [
@@ -58,7 +58,7 @@
       "StepName": "AI Act - Section 2: Provider & Deployer Requirements for High-Risk AI Systems",
       "Objectives": [
         {
-          "Objective": "If the AI system is categorised as high-risk according to the AI Acty, define the security requirements for - High-Risk AI Systems."
+          "Objective": "For systems classified as High-Risk, this step involves implementing the detailed obligations covering areas like risk management, data and data governance, technical documentation, automatic record-keeping (logging), transparency, human oversight, and robustness, accuracy, and security."
         }
       ],
       "Fields": [
@@ -340,34 +340,7 @@
       "StepName": "ISO 42001 Compliance",
       "Objectives": [
         {
-          "Objective": "To provide management direction and support for AI systems according to business requirements."
-        },
-        {
-          "Objective": "To establish accountability within the organization to uphold its responsible approach for the implementation, operation and management of AI systems."
-        },
-        {
-          "Objective": "To ensure that the organization accounts for the resources (including AI system components and assets) of the AI system in order to fully understand and address risks and impacts."
-        },
-        {
-          "Objective": "To assess AI system impacts to individuals or groups of individuals, or both, and societies affected by the AI system throughout its life cycle."
-        },
-        {
-          "Objective": "To ensure that the organization identifies and documents objectives and implements processes for the responsible design and development of AI systems."
-        },
-        {
-          "Objective": "To define the criteria and requirements for each stage of the AI system life cycle."
-        },
-        {
-          "Objective": "To ensure that the organization understands the role and impacts of data in AI systems in the application and development, provision or use of AI systems throughout their life cycles."
-        },
-        {
-          "Objective": "To ensure that relevant interested parties have the necessary information to understand and assess the risks and their impacts (both positive and negative)."
-        },
-        {
-          "Objective": "To ensure that the organization uses AI systems responsibly and per organizational policies."
-        },
-        {
-          "Objective": "To ensure that the organization understands its responsibilities and remains accountable, and risks are appropriately apportioned when third parties are involved at any stage of the AI system life cycle."
+          "Objective": "Adopting and documenting processes to meet the requirements of ISO/IEC 42001, the standard for Artificial Intelligence Management Systems (AIMS). This ensures governance, ethical principles, and risk controls are systematically applied to the AI lifecycle."
         }
       ],
       "Fields": [
@@ -661,7 +634,7 @@
       "StepName": "(A.9.4) AI system's intended use and limitations",
       "Objectives": [
         {
-          "Objective": "Document the purpose, target users, and intended use cases of the AI system."
+          "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
         }
       ],
       "Fields": [
@@ -712,13 +685,7 @@
       "StepName": "(A.9.3) AI system's Objectives for Responsible Use",
       "Objectives": [
         {
-          "Objective": "1. Establish Clear Operational Boundaries: To formally document the precise scope of the AI system by defining what it is built to do (Permitted Prompt Categories), what it must never be used for (Known Prohibited Uses), and who is authorized to use it (Intended User Profile)."
-        },
-        {
-          "Objective": "2. Ensure Safety and Regulatory Compliance: To proactively mitigate risks and ensure compliance with regulations like the EU AI Act by explicitly identifying and forbidding high-risk or prohibited applications from the outset."
-        },
-        {
-          "Objective": "3. Promote Effective and Authorized Use: To ensure the system is used effectively and safely by restricting its operation to trained, authorized users and guiding them towards the specific, validated use cases for which the system was designed."
+          "Objective": "Formalizing the ethical and governance goals for the system. This involves defining the specific outcomes and controls necessary to ensure the AI system is used in a responsible, fair, and transparent manner."
         }
       ],
       "Fields": [
@@ -752,7 +719,7 @@
       "StepName": "x(A.4.2, A.4.4) AI Systems Software and Tooling Resources",
       "Objectives": [
         {
-          "Objective": "Define the software and tools used by the AI system."
+          "Objective": "Documenting all necessary software components, libraries, frameworks, and development tools required to build, maintain, and operate the AI system effectively."
         }
       ],
       "Fields": [
@@ -780,7 +747,7 @@
       "StepName": "x(A.4.2, A.4.5) AI Systems Computing Resources",
       "Objectives": [
         {
-          "Objective": "Define the computing resources used by the AI system"
+          "Objective": "Detailing the physical and cloud infrastructure required, including specific hardware (e.g., GPUs), cloud service subscriptions, and computing power needed to train, deploy, and run the AI model."
         }
       ],
       "Fields": [
@@ -808,7 +775,7 @@
       "StepName": "x(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
       "Objectives": [
         {
-          "Objective": "Define the workforce adaptation and training strategies to address risks from job role evolution due to AI adoption."
+          "Objective": "Assessing the impact of the new AI system on current job roles and organizational structure. This includes planning for upskilling, retraining, or necessary workforce adjustments to ensure a smooth transition."
         }
       ],
       "Fields": [
@@ -855,7 +822,7 @@
       "StepName": "x(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
       "Objectives": [
         {
-          "Objective": "Define and evaluate the AI system's impacts, risks, and mitigation strategies specific to vulnerable populations affected by deployment."
+          "Objective": "Conducting a focused impact assessment to proactively identify and mitigate any risks the AI system might pose to vulnerable groups, such as those related to bias, discrimination, or lack of accessibility."
         }
       ],
       "Fields": [
@@ -913,7 +880,7 @@
       "StepName": "x(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
       "Objectives": [
         {
-          "Objective": "Define proper environmental assessments, eco-efficient practices, and sustainable lifecycle management controls to minimize ecological impacts."
+          "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
         }
       ],
       "Fields": [
@@ -974,16 +941,7 @@
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
       "Objectives": [
         {
-          "Objective": "1. Data Integrity: This principle is about ensuring the information we use is the official source of truth. It means we select data from authoritative systems and explicitly exclude unofficial sources like draft documents, personal notes, or unverified information. This ensures the AI's answers are not just relevant and current, but are based on correct, approved company data."
-        },
-        {
-          "Objective": "2. Data Relevance: This principle ensures that we only feed the AI information related to its designated function. Just as you wouldn't give a pilot a cookbook to fly a plane, we must prevent irrelevant data from polluting the AI's knowledge base. This step establishes a clear scope to keep the AI's answers focused, accurate, and helpful."
-        },
-        {
-          "Objective": "3. Data Currency: An AI's answers are only as reliable as the information it has learned from. This step establishes a process to ensure that only up-to-date, current documents are used, and that obsolete information is explicitly excluded. This prevents the AI from providing answers based on outdated policies, which could lead to significant business risks."
-        },
-        {
-          "Objective": "4. Data Compliance: This is a critical governance checkpoint to protect our company, employees, and customers. Before any data source is approved, it is reviewed to ensure it adheres to privacy laws (like GDPR) and our internal ethics policies. This prevents sensitive personal information or other inappropriate content from being included in the AI's knowledge base."
+          "Objective": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base."
         }
       ],
       "Fields": [
@@ -1092,13 +1050,7 @@
       "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
       "Objectives": [
         {
-          "Objective": "ToDo: 1. Accurate Extraction: This is the first and most crucial step to ensure the AI learns from the correct information. It involves carefully reading the source documents, including complex formats like scanned PDFs, to create a perfect digital text copy. An error here could be like the AI misreading a word, which could alter the meaning of a key fact."
-        },
-        {
-          "Objective": "2. Thorough Cleaning: Documents often contain digital noise that isn't part of the core knowledge, such as page numbers, headers, footers, or website navigation links. This step acts as a filter, removing this irrelevant information so the AI can focus purely on the valuable content, leading to clearer and more relevant answers."
-        },
-        {
-          "Objective": "3. Logical Chunking: An AI cannot process an entire 100-page document at once to answer a single question. This step intelligently breaks down long documents into smaller, bite-sized, and contextually complete paragraphs or ideas. This is like creating a perfectly indexed and bookmarked version of the knowledge, making it possible for the AI to quickly find the single most relevant piece of information later on."
+          "Objective": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing, often involving vectorization for retrieval-augmented generation (RAG) models."
         }
       ],
       "Fields": [
@@ -1338,13 +1290,7 @@
       "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
       "Objectives": [
         {
-          "Objective": "1. Data Confidentiality (Encryption): This ensures that the company's proprietary information, which has been converted into an AI-readable numerical format (vectorized), is unreadable to unauthorized parties. Think of this as storing the AI's knowledge in a digital safe (encryption at rest) and using a secure, armored courier when moving it between systems (encryption in transit)."
-        },
-        {
-          "Objective": "2. Data Integrity and Access Control: This establishes strict controls over who can add, modify, or delete information in the AI's knowledge base. It prevents both accidental corruption and malicious tampering (data poisoning) by ensuring only authorized personnel or automated processes can manage the data, with all actions logged for auditing."
-        },
-        {
-          "Objective": "3. Availability and Resilience: This guarantees that the AI's knowledge base, now a critical business asset, is protected against loss. It involves implementing robust backup and disaster recovery plans, ensuring the system can be restored quickly and reliably in the event of a technical failure, cyber-attack, or other disruption."
+          "Objective": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols."
         }
       ],
       "Fields": []
@@ -1354,13 +1300,7 @@
       "WebFormTitle": "To ensure the secure and confidential transfer of all proprietary data from internal sources into the data processing pipeline by enforcing strong encryption for all data in transit.",
       "Objectives": [
         {
-          "Objective": "1. Offline Path (Knowledge Base Building): Systematically transfer and process large volumes of internal documents to build the core, persistent knowledge base. This involves extracting, chunking, and embedding data to create a comprehensive, searchable vector index of the company's proprietary information."
-        },
-        {
-          "Objective": "2. Real-Time Path (Query Augmentation): Provide an on-the-fly processing capability for user-uploaded documents. Data is processed immediately and stored in a temporary, session-specific index, allowing the system to answer questions on new information without altering the permanent knowledge base."
-        },
-        {
-          "Objective": "3. Data in Transit Security: Protect all data during transfer between internal sources and the processing pipeline. This involves mandating strong encryption (e.g., TLS) for both offline bulk transfers and real-time user uploads to prevent eavesdropping and data interception, ensuring confidentiality is maintained throughout the ingestion process."
+          "Objective": "To ensure the secure and confidential transfer of all proprietary data from internal sources into the data processing pipeline by enforcing strong encryption for all data in transit."
         }
       ],
       "Fields": []
@@ -1372,13 +1312,7 @@
       "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
       "Objectives": [
         {
-          "Objective": "1. Identity and Access: Establishes that the system must know who is making the request, which is the foundation for access control."
-        },
-        {
-          "Objective": "2. Data Integrity: Covers the need to inspect the incoming data itself for malicious content, such as prompt injection, code, or other attacks that could compromise the system."
-        },
-        {
-          "Objective": "3. Audibility and Non-repudiation: Creating an immutable record that proves a specific user performed a specific action, and they cannot later deny it. This is critical for security investigations and accountability."
+          "Objective": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs."
         }
       ],
       "Fields": [
@@ -1467,16 +1401,7 @@
       "WebFormTitle": "To ensure the secure and appropriate handling of user queries and retrieved data by enforcing strict access controls, mitigating complex inference-based attacks, and maintaining a detailed audit trail for accountability and non-repudiation.",
       "Objectives": [
         {
-          "Objective": "1. Secure Workflow Management: The orchestrator acts as the central logic unit, managing the entire RAG process from receiving a user's query to retrieving data and generating a final, context-aware response."
-        },
-        {
-          "Objective": "2. Access Control Enforcement: It must rigorously check a user's permissions *before* retrieving data from the knowledge base. This is the most critical function to prevent access control bypasses, where a user could otherwise access confidential information beyond their privilege level."
-        },
-        {
-          "Objective": "3. Inference Attack Mitigation: The system must be designed to detect and counter inference attacks, where a user attempts to piece together sensitive information by asking numerous simple, seemingly harmless questions. This involves monitoring query patterns and applying appropriate safeguards."
-        },
-        {
-          "Objective": "4. Audit and Accountability: To create an immutable record of all interactions, including user queries, data access events, and generated responses. This establishes a comprehensive audit trail critical for security monitoring, forensic analysis, and ensuring non-repudiation."
+          "Objective": "To ensure the secure and appropriate handling of user queries and retrieved data by enforcing strict access controls, mitigating complex inference-based attacks, and maintaining a detailed audit trail for accountability and non-repudiation."
         }
       ],
       "Fields": [
@@ -1542,10 +1467,7 @@
       "WebFormTitle": "To enforce strict operational security for the self-hosted LLM by isolating its network access and implementing governed MLOps deployment workflows.",
       "Objectives": [
         {
-          "Objective": "1. Resource Isolation: To contain the LLM's operational environment by strictly controlling and restricting its access to all network resources, internal services, and APIs, preventing it from performing unauthorized actions."
-        },
-        {
-          "Objective": "2. Governed Deployment: To ensure model integrity and security by implementing automated MLOps deployment pipelines that include robust governance, tracking, and formal approval workflows for all changes."
+          "Objective": "To enforce strict operational security for the self-hosted Large Language Model (LLM) by isolating its network access and implementing governed MLOps deployment workflows."
         }
       ],
       "Fields": []
@@ -1555,13 +1477,7 @@
       "WebFormTitle": "To ensure that all queries and responses between the user interface and the RAG orchestrator are subject to strict, user-specific access control enforcement, preventing unauthorized data disclosure.",
       "Objectives": [
         {
-          "Objective": "1. Enforce Access Control: The primary vulnerability is the failure to apply a user's specific permissions. This objective is to validate that the orchestrator, despite its high-level privileges, strictly filters all knowledge base queries and results according to the individual user's access rights."
-        },
-        {
-          "Objective": "2. Prevent Data Leakage: Directly addresses the risk of a major data breach by ensuring that sensitive documents retrieved by the orchestrator are never passed back to an unauthorized user through the communication channel."
-        },
-        {
-          "Objective": "3. Secure Communication Channel: To protect the integrity and confidentiality of the raw question and the final answer as they are transmitted between the user interface and the orchestrator, preventing interception or tampering."
+          "Objective": "To ensure that all queries and responses between the user interface and the RAG orchestrator are subject to strict, user-specific access control enforcement, preventing unauthorized data disclosure."
         }
       ],
       "Fields": []
@@ -1571,13 +1487,7 @@
       "WebFormTitle": "To retrieve relevant text chunks from the knowledge base in response to a user query while mitigating the risk of unintentionally over-fetching and exposing sensitive data.",
       "Objectives": [
         {
-          "Objective": "1. Contextual Retrieval: To query the vector database with the user's vectorized input to find and return the most semantically relevant information needed to generate an accurate answer."
-        },
-        {
-          "Objective": "2. Mitigate Data Over-fetching: To address the primary risk of retrieving document chunks that contain the answer but also include collateral sensitive data, such as Personally Identifiable Information (PII)."
-        },
-        {
-          "Objective": "3. Prevent Sensitive Data Exposure: To ensure that unintentionally retrieved confidential details are not passed on to the LLM, thus preventing their potential exposure in the final generated answer."
+          "Objective": "To retrieve relevant text chunks from the knowledge base in response to a user query while mitigating the risk of unintentionally over-fetching and exposing sensitive data."
         }
       ],
       "Fields": [
@@ -1723,13 +1633,7 @@
       "WebFormTitle": "To generate a coherent, fact-based answer by sending a context-rich prompt to the LLM while mitigating risks of prompt injection and sensitive data leakage.",
       "Objectives": [
         {
-          "Objective": "1. Prompt Augmentation: To combine the user's original question with the retrieved text chunks to create a single, comprehensive 'augmented prompt' for the LLM."
-        },
-        {
-          "Objective": "2. Mitigate Prompt Injection: To defend against malicious instructions hidden within the user's query or retrieved data that could hijack the LLM and cause it to perform unintended actions."
-        },
-        {
-          "Objective": "3. Prevent Data Leakage: To ensure the LLM does not inadvertently include sensitive PII or other confidential information from the context in its final answer, preventing the exposure of private data."
+          "Objective": "To generate a coherent, fact-based answer by sending a context-rich prompt to the LLM while mitigating risks of prompt injection and sensitive data leakage."
         }
       ],
       "Fields": []
@@ -1739,13 +1643,7 @@
       "WebFormTitle": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data.",
       "Objectives": [
         {
-          "Objective": "1. Augmented Prompt Construction: To combine the user's question with the retrieved text chunks into a single, comprehensive 'augmented prompt' and send it to the LLM for final answer generation."
-        },
-        {
-          "Objective": "2. Mitigate Prompt Injection: To defend against vulnerabilities where a malicious instruction hidden in the user's query or retrieved data could hijack the LLM, causing it to perform unintended actions."
-        },
-        {
-          "Objective": "3. Prevent Data Leakage: To ensure the LLM does not include sensitive PII or confidential notes from the provided context in its final answer, thus preventing inadvertent exposure of private information."
+          "Objective": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data."
         }
       ],
       "Fields": [
@@ -1882,16 +1780,7 @@
 	  "StepName": "(A.6.2.4) AI Systems verifications",
 	  "Objectives": [
 		{
-		  "Objective": "1. Overall System Validation: To execute a formal suite of verification and validation tests that ensure the AI system meets all pre-defined technical, ethical, and operational requirements before deployment."
-		},
-		{
-		  "Objective": "2. Performance and Stability Verification: To validate that the AI system is robust, stable, and scalable under realistic load conditions by executing the 'Performance & Load Test Plan'."
-		},
-		{
-		  "Objective": "3. Responsible AI Compliance: To verify that the system operates ethically by confirming adherence to fairness, bias, transparency, and explainability standards through the 'Fairness and Bias' and 'Transparency and Explainability' test plans."
-		},
-		{
-		  "Objective": "4. Operational Integrity and Safety: To ensure the system can be used safely and correctly by validating its technical guardrails against misuse through the 'Purpose Limitation and Prompt Category Enforcement Test Plan'."
+		  "Objective": "To perform comprehensive validation of the entire AI system and its components against defined performance, security, and ethical requirements before final deployment."
 		}
 	  ],
 	  "Fields": [
@@ -2702,13 +2591,7 @@
       "WebFormTitle": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation.",
       "Objectives": [
         {
-          "Objective": "1. Deployment Planning: To formalize the deployment strategy by documenting the complete process, including timelines, resource allocation, technical steps, and rollback procedures, ensuring a predictable and controlled rollout."
-        },
-        {
-          "Objective": "2. Prerequisite Verification: To confirm that the AI system meets all established technical, security, ethical, and performance benchmarks through rigorous pre-deployment testing and validation, preventing the release of a non-compliant or unstable system."
-        },
-        {
-          "Objective": "3. Secure Packaging: To guarantee the integrity and security of the deployable artifacts by ensuring that all components, particularly container images, are built from trusted sources, scanned for vulnerabilities, and hardened before deployment."
+          "Objective": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation."
         }
       ],
       "Fields": [
@@ -2815,7 +2698,7 @@
       "StepName": "(A.8.4) Communication of incidents",
       "Objectives": [
         {
-          "Objective": "Define and document the information, reporting, and incident communication plan for all internal and external interested parties."
+          "Objective": "To establish clear, defined protocols and channels for the immediate and effective communication of any AI system incidents or breaches to relevant internal stakeholders and external regulatory bodies."
         }
       ],
       "Fields": [
@@ -2844,16 +2727,7 @@
       "WebFormTitle": "To provide all users and stakeholders with clear, comprehensive, and accessible information required for the safe, effective, and responsible use of the AI system.",
       "Objectives": [
         {
-          "Objective": "1. Clarity and Accessibility: To ensure all documentation is written in plain language, is well-structured, and is tailored to the technical level of the intended audience, from end-users to technical administrators."
-        },
-        {
-          "Objective": "2. Comprehensive Operational Guidance: To provide clear, step-by-step instructions for all system functionalities, including standard operating procedures and guidance for handling common errors or unexpected outputs."
-        },
-        {
-          "Objective": "3. Transparency of Capabilities and Limitations: To explicitly document the AI system's intended use, its known limitations, and potential risks. This includes describing what the system is not designed to do to prevent misuse."
-        },
-        {
-          "Objective": "4. Communication of User Responsibilities: To clearly communicate the 'Objectives for responsible use' to all users, ensuring they understand their role and accountability in operating the system ethically and in accordance with its intended purpose."
+          "Objective": "To provide all users and stakeholders with clear, comprehensive, and accessible information required for the safe, effective, and responsible use of the AI system, ensuring full transparency and compliance with documentation requirements."
         }
       ],
       "Fields": []
@@ -2864,7 +2738,7 @@
       "StepName": "(A.6.2.6) AI Lifecycle Phase requirements - Operation and Monitoring",
       "Objectives": [
         {
-          "Objective": "Define the security requirements for lifecycle phase - Deployment, Maintenance and Updates."
+          "Objective": "To establish continuous monitoring, management, and maintenance protocols for the live AI system to ensure sustained performance, compliance, and risk mitigation throughout its operational lifespan."
         }
       ],
       "Fields": [
