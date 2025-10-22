@@ -2695,7 +2695,7 @@
         }
       ]
     }
-    ]
+    ],
   "7. Deployment": [
     {
       "StepName": "x(A.6.2.5) AI Lifecycle Phase requirements - Deployment",
@@ -3005,6 +3005,5 @@
         }
       ]
     }
-  ],
-  
+  ]
 }
