@@ -333,3 +333,54 @@ button:hover {
     content: '✔';
     color: #28a745;
 }
+
+/* Add a simple style for the new dropdown */
+.role-selection-container {
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.role-selection-container label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+}
+.role-selection-container select {
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	width: 100%;
+	box-sizing: border-box;
+}
+/* Style for the phase headers to make them stand out */
+.phase-header {
+	font-weight: bold;
+	margin-top: 15px;
+	margin-bottom: 5px;
+	padding: 5px 0;
+	border-bottom: 1px solid #eee;
+}
+/* Style adjustments for step items (assuming some base styles exist in style.css) */
+.step-item {
+	cursor: pointer;
+	padding: 8px 10px;
+	border-radius: 4px;
+	margin-bottom: 2px;
+	display: flex; /* Ensure the step name and icon are on the same line */
+	align-items: center;
+}
+.step-item:hover {
+	background-color: #f0f0f0;
+}
+.active-step {
+	background-color: #e6f7ff; /* Highlight color for the current step */
+	font-weight: bold;
+	border-left: 3px solid #1890ff;
+}
+.completed-step .icon::before {
+	 /* Assuming a checkmark or similar icon is used for completed steps */
+	 content: '✓';
+	 color: green;
+	 margin-right: 5px;
+}
