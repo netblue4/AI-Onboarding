@@ -224,7 +224,7 @@ function createPlan(field, capturedData, sanitizeForId) {
             
             const input = document.createElement('textarea');
     		input.placeholder = criteriaItem.criteria_evidence;
-    		criteriaContainer.appendChild(input);
+    		criteriaText.appendChild(input);
  
             criteriaDiv.appendChild(criteriaContainer);
         });
