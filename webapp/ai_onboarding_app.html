@@ -13,8 +13,7 @@
             <select id="role-dropdown">
                 <option value="">All Steps</option>
                 <option value="Requester">Requester</option>
-                <option value="Engineer">Engineer</option>
-            </select>
+                <option value="Developer/Tester">Engineer</option> </select>
         </div>
         <div class="progress-wrapper">
             <div class="progress-container">
@@ -70,48 +69,34 @@
                 const progressBar = document.getElementById('progress-bar');
                 const progressText = document.getElementById('progress-text');
                 const stepContainer = document.getElementById('step-container');
-                const roleDropdown = document.getElementById('role-dropdown'); // Get the new dropdown
+                const roleDropdown = document.getElementById('role-dropdown'); 
 
                 // Store the original procedure data structure
                 const originalWebappData = webappData;
                 
-                // Define the filtered step names for each role
-                const filteredSteps = {
-                    "Engineer": [
-                        "3. Data Preparation (Offline or Real-Time Knowledge Base Creation)", 
-                        "4. Development (Real-Time Chat With Your Document)", 
-                        "5. Pre-deployment verification", 
-                        "6. Approvals", 
-                        "7. Deployment", 
-                        "8. Operations"
-                    ],
-                    "Requester": [
-                        "2. AI System Documentation and Impact Assessments"
-                    ]
-                };
-
                 let procedureDataArray = [];
                 let procedureSteps = [];
                 const capturedData = {};
                 let currentStepIndex = 0;
 
-                // --- NEW FUNCTION: FILTER AND INITIALIZE STEPS ---
+                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS ---
                 function filterAndInitializeSteps(role) {
                     currentStepIndex = 0; // Reset to the first step after filtering
-
+                    const allStepsFlat = Object.values(originalWebappData).flat();
+                    
                     if (role === "" || !role) {
                         // Show all steps
-                        procedureDataArray = Object.values(originalWebappData).flat();
-                    } else if (filteredSteps[role]) {
-                        // Filter steps based on the role-specific step names
-                        const allowedStepNames = filteredSteps[role];
-                        const allStepsFlat = Object.values(originalWebappData).flat();
-                        procedureDataArray = allStepsFlat.filter(step => 
-                            allowedStepNames.includes(step.StepName)
-                        );
+                        procedureDataArray = allStepsFlat;
                     } else {
-                        // Fallback to all steps if role is unknown, though should be covered by ""
-                        procedureDataArray = Object.values(originalWebappData).flat();
+                        // Filter steps based on the step's 'Role' property
+                        procedureDataArray = allStepsFlat.filter(step => {
+                            // The step's 'Role' property must match the selected role.
+                            // We use .includes() for robustness if the Step's 'Role' field 
+                            // contains multiple comma-separated roles (e.g., "Requester, Analyst") 
+                            // or if the JSON simply contains the role string.
+                            const stepRoles = step.Role ? String(step.Role).split(',').map(r => r.trim()) : [];
+                            return stepRoles.includes(role);
+                        });
                     }
                     
                     // Re-create the array of step names for progress tracking
@@ -122,24 +107,22 @@
                     if (procedureSteps.length > 0) {
                         renderCurrentStep();
                     } else {
-                        // Handle case where no steps are available (e.g., if a role is selected but the filter list is empty)
+                        // Handle case where no steps are available
                         mainTitle.textContent = "No Steps Available";
                         formContainer.innerHTML = "<p>There are no steps defined for the selected role.</p>";
                         prevBtn.style.display = 'none';
                         nextBtn.style.display = 'none';
                         downloadBtn.style.display = 'none';
-                        updateProgressBar(); // Clears/resets the progress bar display
+                        updateProgressBar(); 
                     }
                 }
-                // --- END NEW FUNCTION ---
+                // --- END MODIFIED FUNCTION ---
 
-                // --- MODIFIED FUNCTION: RENDER PROCEDURE STEPS ---
+                // --- MODIFIED FUNCTION: RENDER PROCEDURE STEPS (to use the filtered list) ---
                 function renderProcedureSteps() {
                     stepContainer.innerHTML = '';
-                    let globalStepIndex = 0; // Keep track of the absolute step index for the *filtered* list
+                    let globalStepIndex = 0; 
 
-                    // Iterate over the original data structure to maintain phase grouping, 
-                    // but only render steps that exist in the *filtered* procedureDataArray.
                     for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
                         let phaseHasRenderableSteps = false;
                         const phaseStepsToRender = [];
@@ -178,7 +161,6 @@
                                 textSpan.textContent = step.StepName;
                                 stepDiv.appendChild(textSpan);
                                 
-                                // Use a captured variable for the index in the event listener
                                 const stepIndexToNavigate = globalStepIndex;
                                 stepDiv.addEventListener('click', () => {
                                     currentStepIndex = stepIndexToNavigate;
@@ -240,12 +222,9 @@
                     updateProgressBar();
                     updateStepHighlight();
                     
-                    // Access the current step's data directly from the flattened array.
                     const stepData = procedureDataArray[currentStepIndex];
 
                     if (!stepData) {
-                        // This handles the edge case where a step is somehow rendered but no data exists.
-                        // For the final step completed view, the nextBtn logic handles the display.
                         return; 
                     }
 
@@ -270,7 +249,6 @@
 
                     
                     if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
-                         // Assuming createNoteField() is a globally available function
                          if (typeof createNoteField === 'function') {
                             formStepDiv.appendChild(createNoteField());
                          }
@@ -295,11 +273,9 @@
                 });
 
                 nextBtn.addEventListener('click', () => {
-                    // Check if there are any steps before proceeding
                     if (procedureSteps.length === 0) return;
 
                     const currentStepKey = procedureSteps[currentStepIndex];
-                    // Access the current step's data directly from the flattened array.
                     const stepData = procedureDataArray[currentStepIndex];
 
                     if (stepData && stepData.Fields) {
@@ -325,19 +301,17 @@
                     if (currentStepIndex < procedureSteps.length) {
                         renderCurrentStep();
                     } else {
-                        // All steps completed
                         formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file.</p>';
                         mainTitle.textContent = "Finished";
                         nextBtn.style.display = 'none';
                         prevBtn.style.display = 'none';
                         downloadBtn.style.display = 'block';
                         
-                        // Update the last step as completed
                         procedureSteps.forEach((_, index) => {
                            document.getElementById(`step-item-${index}`).classList.remove('active-step');
                            document.getElementById(`step-item-${index}`).classList.add('completed-step');
                         });
-                        updateProgressBar(); // Final update to show 100%
+                        updateProgressBar();
                     }
                 });
 
@@ -354,17 +328,16 @@
                     URL.revokeObjectURL(url);
                 });
 
-                // --- NEW EVENT LISTENER FOR DROPDOWN ---
+                // Event listener for dropdown change
                 roleDropdown.addEventListener('change', (event) => {
-                    // Clear captured data on role change to ensure a fresh start
+                    // Clear captured data on role change
                     for (const key in capturedData) {
                         delete capturedData[key];
                     }
                     filterAndInitializeSteps(event.target.value);
                 });
-                // --- END NEW EVENT LISTENER ---
 
-                // Initial load: show all steps (which is the default dropdown value)
+                // Initial load: show all steps (default dropdown value is "")
                 filterAndInitializeSteps(roleDropdown.value);
             })
             .catch(error => {
