@@ -69,7 +69,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[Article 9] - Inadequate or Ineffective Risk Management",
-          "question": "Does the organization have a documented and continuously updated risk management system for its high-risk AI systems that covers the entire lifecycle of the system?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[Art-9][Par-1][1] - Establish, implement, document, and maintain a comprehensive risk management system for high-risk AI systems.",
@@ -112,7 +112,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[Article 10] - Poor Data Quality and Governance",
-          "question": "Are there appropriate data governance and management practices in place for the training, validation, and testing datasets used by the high-risk AI system to ensure they are relevant, representative, and free of errors and biases?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[Art-10][Par-2][1] - Implement and document data governance and management practices covering the entire data lifecycle, including design choices, collection, and preparation processes like annotation and cleaning.",
@@ -149,7 +149,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[Article 12] - Inadequate Traceability and Record-Keeping",
-          "question": "Does the organization need to trace the operational history of its high-risk AI system to investigate incidents, audit results, or ensure accountability?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[Art-12][Par-1][1] - Implement capabilities for the automatic recording of events (logs) while the high-risk AI system is operating.",
@@ -174,7 +174,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[Article 13] - Lack of Transparency and Provision of Information to Users",
-          "question": "Will users of this AI system need to understand its capabilities, limitations, and the meaning of its outputs to use it safely and effectively?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[Art-13][Par-1] - Ensure the design of high-risk AI systems allows users to interpret outputs and use the system appropriately.",
@@ -211,7 +211,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[Article 14] - Ineffective or Insufficient Human Oversight",
-          "question": "Does the AI system operate in a way that requires human monitoring, intervention, or decision-making to prevent or mitigate risks to health, safety, or fundamental rights?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[Art-14][Par-1] - Design and develop high-risk AI systems with appropriate human-machine interface tools to enable effective oversight by natural persons.",
@@ -253,7 +253,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[Article 15] - Inadequate Accuracy, Robustness, and Cybersecurity",
-          "question": "Will poor AI performance (e.g., incorrect or unreliable outputs) cause business disruption, compliance issues, or customer dissatisfaction?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[Art-15][Par-1] - Ensure high-risk AI systems are designed and developed to achieve and maintain an appropriate level of accuracy, robustness, and cybersecurity throughout their lifecycle.",
@@ -290,7 +290,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[Article 27] - Failure to Assess Fundamental Rights Impact",
-          "question": "Does the organization (as a deployer of a high-risk system in a public or sensitive sector) need to conduct and document a fundamental rights impact assessment (FRIA) before deploying the system?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[Art-27][Par-1] - Perform a Fundamental Rights Impact Assessment (FRIA) prior to deploying a high-risk AI system (for public bodies, providers of public services, and systems for credit scoring or insurance).",
@@ -352,7 +352,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.2] - Policies related to AI",
-          "question": "Is the organization fully compliant with the requirements of [A.2] - Policies related to AI?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.2.2] - AI policy: The organization shall document a policy for the development or use of AI systems.",
@@ -377,7 +377,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.3] - Internal organization",
-          "question": "Is the organization fully compliant with the requirements of [A.3] - Internal organization?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.3.2] - AI roles and responsibilities: Roles and responsibilities for AI shall be defined and allocated according to the needs of the organization.",
@@ -396,7 +396,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.4] - Resources for AI systems",
-          "question": "Is the organization fully compliant with the requirements of [A.4] - Resources for AI systems?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.4.2] - Resource documentation: The organization shall identify and document relevant resources required for the activities at given AI system life cycle stages and other AI-related activities relevant for the organization.",
@@ -433,7 +433,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.5] - Assessing impacts of AI systems",
-          "question": "Is the organization fully compliant with the requirements of [A.5] - Assessing impacts of AI systems?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.5.2] - AI system impact assessment process: The organization shall establish a process to assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle.",
@@ -464,7 +464,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.6] - AI system life cycle",
-          "question": "Is the organization fully compliant with the requirements of [A.6] - AI system life cycle?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.6.1.2] - Objectives for responsible development of AI system: The organization shall identify and document objectives to guide the responsible development AI systems, and take those objectives into account and integrate measures to achieve them in the development life cycle.",
@@ -523,7 +523,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.7] - Data for AI systems",
-          "question": "Is the organization fully compliant with the requirements of [A.7] - Data for AI systems?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.7.2] - Data for development and enhancement of AI system: The organization shall define, document and implement data management processes related to the development of AI systems.",
@@ -560,7 +560,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.8] - Information for interested parties of AI systems",
-          "question": "Is the organization fully compliant with the requirements of [A.8] - Information for interested parties of AI systems?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.8.2] - System documentation and information for users: The organization shall determine and provide the necessary information to users of the AI system.",
@@ -587,7 +587,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.9] - Use of AI systems",
-          "question": "Is the organization fully compliant with the requirements of [A.9] - Use of AI systems?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.9.2] - Processes for responsible use of AI systems: The organization shall define and document the processes for the responsible use of AI systems.",
@@ -612,7 +612,7 @@
         {
           "FieldType": "risk",
           "FieldName": "[A.10] - Third-party and customer relationships",
-          "question": "Is the organization fully compliant with the requirements of [A.10] - Third-party and customer relationships?",
+		  "RiskDescription": "",
           "controls": [
             {
               "control": "[A.10.2] - Allocating responsibilities: The organization shall ensure that responsibilities within their AI system life cycle are allocated between the organization, its partners, suppliers, customers and third parties.",
@@ -1022,7 +1022,6 @@
           "FieldType": "risk",
           "FieldName": "Malicious Data Ingestion (Data Poisoning & Indirect Prompt Injection)",
           "RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
-          "question": "Does the AI system ingest data from internal sources (like wikis, shared drives, or databases) where a number of users have permission to create or edit content?",
           "controls": [
             {
               "control": "[DATA-INT-01] - Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
@@ -1060,7 +1059,7 @@
     },
     {
       "StepName": "3.2. Data Processing Pipeline (Vectorise proprietary data)",
-      "Role":"Engineer",
+      "Role":"Engineer,Data Engineer,Tester",
       "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
       "Objectives": [
         {
@@ -1336,7 +1335,7 @@
         {
           "FieldType": "risk",
           "FieldName": "LLM01 Prompt Injection",
-          "question": "Will external users or other systems provide text prompts or instructions to the AI model?",
+          "RiskDescription": "Failure to properly **validate and sanitize** user inputs before they are processed by the RAG Orchestrator and sent to the LLM exposes the system to **Prompt Injection** attacks. An attacker could exploit this vulnerability to bypass the system's intended behavior, resulting in **unauthorized information disclosure** (e.g., data exfiltration via the LLM response), **denial of service**, or **unintended execution** of functions/code.",
           "controls": [
             {
               "control": "[LLM01][1] - All user inputs within the UI must be validated to prevent the injection of malicious code.",
@@ -1347,30 +1346,13 @@
               "control": "[LLM01][2] - Implement input sanitization techniques to remove harmful characters from user inputs.",
               "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI.",
               "control_evidence": "Code snippets showing the use of a sanitization library or function. Test cases with logs that display the 'before' and 'after' state of user inputs containing harmful characters."
-            },
-            {
-              "control": "[LLM01][4] - Encrypt all sensitive data transmitted through APIs.",
-              "control_objective": "Protect sensitive data from unauthorised interception or tampering during communication through APIs.",
-              "control_evidence": "Web server or API gateway configuration files enforcing TLS 1.2 or higher. A report from an external security scanner (e.g., Qualys SSL Labs) confirming a strong HTTPS implementation."
-            }
-          ]
-        },
-        {
-          "FieldType": "risk",
-          "FieldName": "LLM02 Insecure Output Handling",
-          "question": "Will the AI output be used in other systems, documents, or communications without being verified first?",
-          "controls": [
-            {
-              "control": "[LLM02][1] - Ensure that sensitive or IP data is not exposed in AI system outputs.",
-              "control_objective": "To mitigate the risk of insecure output handling by treating LLM-generated outputs as potentially untrusted.",
-              "control_evidence": "Implementation of an output filtering or sanitization layer that scans the LLM's response for sensitive data patterns (e.g., using regex or a DLP service) before it is sent to the user or downstream systems. Test results demonstrating that the filter successfully redacts or blocks known sensitive information or intellectual property."
             }
           ]
         },
         {
           "FieldType": "risk",
           "FieldName": "LLM04 Model Denial of Service",
-          "question": "Could this AI system be overwhelmed or misused in a way that impacts availability?",
+          "RiskDescription": "Failure to enforce capacity constraints, such as **API rate limits** on user requests and limits on **task queue sizes** for actions triggered by LLM responses, could lead to a **Denial of Service (DoS)** condition. This allows a malicious or unconstrained user to **overwhelm the LLM endpoint** or the downstream processing system, resulting in **service unavailability**, **high latency**, and **resource exhaustion**.",
           "controls": [
             {
               "control": "[LLM04][3] - Enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe.",
@@ -1381,18 +1363,13 @@
               "control": "[LLM04][4] - Limit the number of queued actions and the number of total actions in a system reacting to LLM responses.",
               "control_objective": "To prevent the accumulation of excessive workload and ensure that the system can effectively process LLM responses without becoming overwhelmed.",
               "control_evidence": "Configuration files from the task queue system (e.g., Celery, RabbitMQ), application code setting queue size or concurrency limits, or architectural diagrams illustrating these constraints."
-            },
-            {
-              "control": "[LLM04][5] - Continuously monitor the resource utilisation of the LLM to identify abnormal spikes or patterns that may indicate a DoS attack.",
-              "control_objective": "To detect and respond to anomalous resource usage patterns indicative of a denial of service attack on the LLM.",
-              "control_evidence": "Screenshots from the monitoring dashboard (e.g., Grafana, Datadog) showing resource utilisation graphs, copies of the alert configurations for abnormal spikes, and the incident response procedure for such alerts."
             }
           ]
         },
         {
           "FieldType": "risk",
           "FieldName": "LLM05: Supply Chain Vulnerabilities",
-          "question": "Does the AI system depend on third-party libraries, tools, or models you haven’t vetted?",
+          "RiskDescription": "Insufficient visibility into third-party dependencies and **unvetted external components** (such as plugins) introduces **supply chain vulnerabilities** into the AI system. Without maintaining a **Software Bill of Materials (SBOM)** and a formal **plugin vetting process**, the system risks incorporating **malicious or unpatched code**, which could lead to **system compromise**, **data leakage**, or **exploitation** by external parties.",
           "controls": [
             {
               "control": "[LLM05][2] - Only use reputable plugins that have been tested for application requirements.",
@@ -1403,11 +1380,6 @@
               "control": "[LLM05][4] - Maintain an up-to-date inventory using a Software Bill of Materials (SBOM).",
               "control_objective": "Track and manage components.",
               "control_evidence": "The current SBOM document for the application, evidence of a process for regularly updating the SBOM, and change logs."
-            },
-            {
-              "control": "[LLM05][7] - Implement sufficient monitoring and a robust patching policy.",
-              "control_objective": "Maintain system security and component currency.",
-              "control_evidence": "The documented patching policy, vulnerability scan reports, and change management records demonstrating timely patch application."
             }
           ]
         }
@@ -1426,7 +1398,7 @@
         {
           "FieldType": "risk",
           "FieldName": "Insufficient Audit Logging and Traceability",
-          "question": "Do you need to maintain a detailed, tamper-proof record of the AI system's operations to meet regulatory requirements and investigate incidents?",
+          "RiskDescription": "A lack of detailed, structured, and comprehensive audit logging and traceability within the RAG Orchestrator poses the risk that system operations, user interactions, and data flows are **not fully recorded or attributable**. This failure leads to an **inability to reconstruct the chain of events** leading to an outcome, preventing **effective post-incident forensic analysis**, hindering compliance with **regulatory transparency requirements**, and making it impossible to **verify accountability** for critical decisions or output generation.",
           "controls": [
             {
               "control": "[AUL][1] - Implement capabilities in the RAG Orchestrator to enable for the automatic recording of events (logs) while the high-risk AI system is operating.",
@@ -1449,7 +1421,6 @@
           "FieldType": "risk",
           "FieldName": "[RAG-ORCH-01] - Failure to Enforce Permitted User Prompt Categories",
           "RiskDescription": "The risk that the RAG Orchestrator processes user prompts that do not align with the pre-defined, permitted categories (e.g., Q&A, Summarization). This can lead the orchestrator to misinterpret user intent, retrieve irrelevant documents, and generate unreliable or non-compliant responses, fundamentally undermining the system's intended use.",
-          "question": "Does the RAG Orchestrator have a specific, built-in mechanism to classify incoming user prompts against the permitted categories and reject those that do not match?",
           "controls": [
             {
               "control": "[RAG-PC-01] - Implement a Prompt Classification Module: The RAG Orchestrator must include a pre-processing module that classifies the intent of every incoming user prompt into one of the pre-defined, permitted categories. Prompts that cannot be classified or are classified as out-of-scope must be rejected before the retrieval step.",
@@ -1504,7 +1475,7 @@
     },
     {
       "StepName": "4.5. RAG Orchestrator <->  Vector Database (Retrieval)",
-      "Role":"Engineer",
+      "Role":"Engineer,Tester",
       "WebFormTitle": "To retrieve relevant text chunks from the knowledge base in response to a user query while mitigating the risk of unintentionally over-fetching and exposing sensitive data.",
       "Objectives": [
         {
@@ -1662,7 +1633,7 @@
     },
     {
       "StepName": "4.7. Generic LLM <-> RAG Orchestrator (LLM Generation)",
-      "Role":"Engineer",
+      "Role":"Engineer,Tester",
       "WebFormTitle": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data.",
       "Objectives": [
         {
@@ -2624,7 +2595,7 @@
         {
           "FieldType": "risk",
           "FieldName": "Insecure AI component Packaging",
-          "question": "Are any components of the AI system be packaged in containers?",
+          "RiskDescription": "Failure to properly secure the lifecycle and runtime environment of containerized AI components—including insecure container **registries**, weak **access controls**, unhardened **host operating systems**, and poorly configured **container security context**—creates a significant attack surface. This could allow an attacker to **tamper with model code/artifacts** during transit or storage, **exfiltrate secrets**, achieve **privilege escalation** from a compromised container to the host, or exploit **unrestricted network access** to conduct lateral movement and **Denial of Service (DoS)**.",
           "controls": [
             {
               "control": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
@@ -2774,7 +2745,7 @@
         {
           "FieldType": "risk",
           "FieldName": "Insufficient Scalability Management",
-          "question": "Will this AI be used across multiple teams, products, or regions — and is it ready to scale reliably?",
+          "RiskDescription": "Failure to architect the RAG system for **horizontal scalability** across all components—including the RAG Orchestrator, the LLM endpoint, the vector database, and the data pipeline—will result in an **inability to handle increasing user load** or **growing data volumes**. This leads to degraded **performance**, high **latency**, potential **service instability** during traffic spikes, and prevents the timely **update** of the core knowledge base.",
           "controls": [
             {
               "control": "[SC][1] - Implement separate horizontal auto-scaling mechanisms for the RAG Orchestrator (CPU-bound) and the privately-hosted LLM inference service (GPU-bound). Scaling policies for each should be based on relevant metrics (e.g., request latency for the orchestrator, GPU utilization for the LLM).",
@@ -2800,8 +2771,8 @@
         },
         {
           "FieldType": "risk",
-          "FieldName": "[C.3.6] - Poor Management of AI System Evolution and Updates",
-          "question": "When the AI system is updated (e.g., retrained model, new features), are there formal processes for testing, documenting, and deploying these changes, including a plan to roll back if the update causes problems?",
+          "FieldName": "[C.3.6] - Poor Management of AI System Changes and Updates",
+          "RiskDescription": "Failure to manage the lifecycle of the AI system, including **changes to its underlying data, code, or model artifacts**, due to a lack of automated **validation, testing, version control, and formal change management**, could lead to the deployment of an **unstable, non-reproducible, or poor-performing** model. This results in **service degradation**, potential **compliance issues** from undocumented changes, and the inability to reliably **rollback** to a previous stable state.",
           "controls": [
             {
               "control": "[C.3.6][BP-10] - Implement a CI/CD pipeline that automates the testing and deployment of AI model updates. The pipeline must enforce a sequence of validation gates (e.g., unit tests, data validation, integration tests, and model performance evaluation on a holdout dataset) before allowing a deployment.",
@@ -2828,7 +2799,7 @@
         {
           "FieldType": "risk",
           "FieldName": "Inadequate Disaster Recovery and Business Continuity Planning",
-          "question": "What would happen to your business process if this AI system suddenly stopped working?",
+          "RiskDescription": "A regional or catastrophic failure affecting the RAG system's primary deployment—including the user interface, RAG Orchestrator, privately-hosted LLM, or the Permanent Index (vector database)—could lead to **prolonged, unauthorized downtime**. Without tested failover procedures, IaC for rapid deployment, and cross-region data replication, the system would fail to meet its established **Recovery Time Objective (RTO)** and **Recovery Point Objective (RPO)**, causing a **critical disruption** to business operations.",
           "controls": [
             {
               "control": "[BU][1] - Define the stateless services—specifically the RAG Orchestrator and User Interface—using Infrastructure-as-Code (IaC). The IaC templates must be version-controlled to allow for the rapid, automated deployment of a functional replica in a designated disaster recovery region.",
@@ -2855,7 +2826,7 @@
         {
           "FieldType": "risk",
           "FieldName": "Insufficient Performance Monitoring and Analysis",
-          "question": "Will the AI’s outputs need to be continuously monitored to ensure they stay accurate and relevant?",
+          "RiskDescription": "Lack of comprehensive instrumentation across the RAG architecture—spanning end-to-end user query latency, LLM inference efficiency, knowledge base update throughput, and retrieval quality—could lead to **undetected performance degradation**. This results in poor **user experience** due to slow response times, **cost inefficiencies** from underoptimized GPU resources, and **inaccurate model outputs** caused by poor information retrieval.",
           "controls": [
             {
               "control": "[PER][1] - Instrument the RAG Orchestrator with distributed tracing to measure the end-to-end latency of a user query. The trace must capture the duration of each critical operation: retrieval from the vector index, augmentation of the prompt, and response generation by the LLM.",
@@ -2882,7 +2853,7 @@
         {
           "FieldType": "risk",
           "FieldName": "Inadequate Security Monitoring and Threat Detection",
-          "question": "Do you need visibility into whether this AI system is under attack or being misused?",
+          "RiskDescription": "Failure to adequately monitor the generative AI architecture—including user prompts, LLM responses, internal data processing, and component-to-component network traffic—could result in the **undetected successful exploitation** of vulnerabilities like prompt injection, leading to **data exfiltration** of proprietary information from the vector store, **model misuse** for unauthorized tasks, or **system compromise** via malicious document ingestion or **lateral movement** across the internal services.",
           "controls": [
             {
               "control": "[STM][1] - Implement logging for all prompts sent to the RAG Orchestrator and the final augmented prompts sent to the LLM. All LLM responses must also be logged before being sent to the user. These logs must be streamed to a centralized SIEM for analysis.",

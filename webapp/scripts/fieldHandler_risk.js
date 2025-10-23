@@ -22,7 +22,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     headerDiv.appendChild(icon);
 
     const questionLabel = document.createElement('label');
-    questionLabel.textContent = field.question.trim(); // The main risk title
+    questionLabel.textContent = field.FieldName.trim(); // The main risk title
     questionLabel.className = 'label-bold';
     headerDiv.appendChild(questionLabel);
     
@@ -44,7 +44,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 
     // Add the primary question inside the collapsible area
     const riskLabel = document.createElement('label');
-    riskLabel.textContent = field.FieldName;
+    riskLabel.textContent = field.RiskDescription;
     riskLabel.className = 'label-bold';
     contentDiv.appendChild(riskLabel);
     
