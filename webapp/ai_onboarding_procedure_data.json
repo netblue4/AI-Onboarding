@@ -724,7 +724,7 @@
     },
     {
       "StepName": "2.3. (A.4.2, A.4.4) AI Systems Software and Tooling Resources",
-      "Role":"Engineer/Requester",
+      "Role":"Engineer,Requester",
       "Objectives": [
         {
           "Objective": "Documenting all necessary software components, libraries, frameworks, and development tools required to build, maintain, and operate the AI system effectively."
@@ -753,7 +753,7 @@
     },
     {
       "StepName": "2.4. (A.4.2, A.4.5) AI Systems Computing Resources",
-      "Role":"Engineer/Requester",
+      "Role":"Engineer,Requester",
       "Objectives": [
         {
           "Objective": "Detailing the physical and cloud infrastructure required, including specific hardware (e.g., GPUs), cloud service subscriptions, and computing power needed to train, deploy, and run the AI model."
@@ -1801,7 +1801,7 @@
   "5. Pre-deployment verification": [
     {
       "StepName": "5.1. (A.6.2.4) AI Systems verifications",
-      "Role":"Tester/Approver",
+      "Role":"Tester,Approver",
       "Objectives": [
         {
           "Objective": "To perform comprehensive validation of the entire AI system and its components against defined performance, security, and ethical requirements before final deployment."
