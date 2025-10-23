@@ -2751,7 +2751,7 @@
     },
     {
       "StepName": "7.3. (A.8.2) AI System Documentation and User Information",
-      "Role":"Enfineer",
+      "Role":"Engineer",
       "WebFormTitle": "To provide all users and stakeholders with clear, comprehensive, and accessible information required for the safe, effective, and responsible use of the AI system.",
       "Objectives": [
         {
