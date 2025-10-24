@@ -95,7 +95,6 @@
                 const progressText = document.getElementById('progress-text');
                 const stepContainer = document.getElementById('step-container');
                 const roleDropdown = document.getElementById('role-dropdown'); 
-                // Get the new dropdown element
                 const dimensionDropdown = document.getElementById('dimension-dropdown'); 
 
                 // Store the original procedure data structure
@@ -105,58 +104,60 @@
                 let procedureSteps = [];
                 const capturedData = {};
                 let currentStepIndex = 0;
+                
+                // Track current filters
+                let currentRole = roleDropdown.value;
+                let currentDimension = dimensionDropdown.value;
 
-                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS (Accepts both role and dimension) ---
-                function filterAndInitializeSteps(role, trustDimension) {
+                // --- HELPER FUNCTION: CHECK IF A FIELD MATCHES THE CURRENT DIMENSION ---
+                function fieldMatchesDimension(field) {
+                    // Always show if "All Trust Dimensions" is selected
+                    if (currentDimension === "" || !currentDimension) {
+                        return true;
+                    }
+                    
+                    // Check the TrustDimension property on the field object
+                    if (field.TrustDimension) {
+                        const fieldDimensions = String(field.TrustDimension).split(',').map(d => d.trim());
+                        return fieldDimensions.includes(currentDimension);
+                    }
+                    
+                    // If the field has no TrustDimension property, it is generally considered an un-dimensioned 
+                    // operational field (e.g., auto-generated ID) and should be shown for context.
+                    // However, based on the requirement to *only* show matching fields, 
+                    // we will hide fields that lack a dimension if a dimension is selected.
+                    return false;
+                }
+                // --- END HELPER FUNCTION ---
+
+                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS (Role filter only) ---
+                function filterAndInitializeSteps() {
                     currentStepIndex = 0; // Reset to the first step after filtering
                     const allStepsFlat = Object.values(originalWebappData).flat();
                     
-                    let filteredByRole = allStepsFlat;
-                    
-                    // 1. Role Filtering
-                    if (role && role !== "") {
-                        filteredByRole = allStepsFlat.filter(step => {
-                            const stepRoles = step.Role ? String(step.Role).split(',').map(r => r.trim()) : [];
-                            return stepRoles.includes(role);
-                        });
-                    }
-
-                    // 2. Trust Dimension Filtering
-                    if (trustDimension && trustDimension !== "") {
-                        // Filter steps that have at least one field matching the selected TrustDimension
-                        procedureDataArray = filteredByRole.filter(step => {
-                            if (!step.Fields || step.Fields.length === 0) {
-                                // Steps without fields are generally informational, we can choose 
-                                // to include them or not. Here, we'll exclude them to focus on 
-                                // steps with relevant governance fields.
-                                return false; 
-                            }
-                            
-                            // Check if ANY field in the step contains the selected TrustDimension
-                            return step.Fields.some(field => {
-                                if (field.TrustDimension) {
-                                    const fieldDimensions = String(field.TrustDimension).split(',').map(d => d.trim());
-                                    return fieldDimensions.includes(trustDimension);
-                                }
-                                return false;
-                            });
-                        });
+                    // 1. Role Filtering (Still performed at the Step level)
+                    if (currentRole === "" || !currentRole) {
+                        // Show all steps
+                        procedureDataArray = allStepsFlat;
                     } else {
-                        // No Trust Dimension selected, use the results of the role filter
-                        procedureDataArray = filteredByRole;
+                        // Filter steps based on the step's 'Role' property
+                        procedureDataArray = allStepsFlat.filter(step => {
+                            const stepRoles = step.Role ? String(step.Role).split(',').map(r => r.trim()) : [];
+                            return stepRoles.includes(currentRole);
+                        });
                     }
-
+                    
                     // Re-create the array of step names for progress tracking
                     procedureSteps = procedureDataArray.map(step => step.StepName);
                     
                     renderProcedureSteps();
-                    // Render the first step of the *newly filtered* procedure
+                    
                     if (procedureSteps.length > 0) {
                         renderCurrentStep();
                     } else {
                         // Handle case where no steps are available
                         mainTitle.textContent = "No Steps Available";
-                        formContainer.innerHTML = "<p>There are no steps defined for the selected role and/or trust dimension.</p>";
+                        formContainer.innerHTML = "<p>There are no steps defined for the selected role.</p>";
                         prevBtn.style.display = 'none';
                         nextBtn.style.display = 'none';
                         downloadBtn.style.display = 'none';
@@ -165,7 +166,7 @@
                 }
                 // --- END MODIFIED FUNCTION ---
 
-                // --- MODIFIED FUNCTION: RENDER PROCEDURE STEPS (to use the filtered list) ---
+                // --- RENDER PROCEDURE STEPS (unchanged, uses procedureDataArray) ---
                 function renderProcedureSteps() {
                     stepContainer.innerHTML = '';
                     let globalStepIndex = 0; 
@@ -175,7 +176,7 @@
                         const phaseStepsToRender = [];
 
                         stepsInPhase.forEach(step => {
-                            // Check if this step is present in the current (filtered) procedureDataArray
+                            // Check if this step is present in the current (filtered by role) procedureDataArray
                             const isStepIncluded = procedureDataArray.some(filteredStep => 
                                 filteredStep.StepName === step.StepName
                             );
@@ -220,7 +221,7 @@
                         }
                     }
                 }
-                // --- END MODIFIED FUNCTION ---
+                // --- END RENDER PROCEDURE STEPS ---
 
                 function updateStepHighlight() {
                     procedureSteps.forEach((_, index) => {
@@ -265,6 +266,7 @@
                     progressBar.style.width = progressPercentage + '%';
                 }
 
+                // --- MODIFIED FUNCTION: RENDER CURRENT STEP (Applies per-field filtering) ---
                 function renderCurrentStep() {
                     updateProgressBar();
                     updateStepHighlight();
@@ -286,6 +288,7 @@
                     formStepDiv.className = 'form-step';
 
 
+                    // Objectives are always shown (they don't have a TrustDimension property in the data)
                     if (stepData.Objectives && stepData.Objectives.length > 0) {
                     	const handler = getFieldHandler('objective');
                         if (handler) {
@@ -295,22 +298,40 @@
                     };
 
                     
+                    let renderedFieldCount = 0;
+
                     if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
-                         if (typeof createNoteField === 'function') {
-                            formStepDiv.appendChild(createNoteField());
+                         // Fallback for steps with no defined fields (only if no dimension is selected)
+                         if (currentDimension === "") {
+                            if (typeof createNoteField === 'function') {
+                                formStepDiv.appendChild(createNoteField());
+                                renderedFieldCount++;
+                            }
                          }
                     } else {
                         stepData.Fields.forEach(field => {
                             if (!field || !field.FieldName) return;
-                            const handler = getFieldHandler(field.FieldType);
-                            if (handler) {
-                                const fieldElement = handler(field, capturedData, sanitizeForId);
-                                formStepDiv.appendChild(fieldElement);
+                            
+                            // *** CORE FILTERING LOGIC ***
+                            if (fieldMatchesDimension(field)) {
+                                const handler = getFieldHandler(field.FieldType);
+                                if (handler) {
+                                    const fieldElement = handler(field, capturedData, sanitizeForId);
+                                    formStepDiv.appendChild(fieldElement);
+                                    renderedFieldCount++;
+                                }
                             }
+                            // *** END CORE FILTERING LOGIC ***
                         });
                     }
-                    formContainer.appendChild(formStepDiv);
+                    
+                    if (renderedFieldCount === 0) {
+                         formContainer.innerHTML = `<p>No relevant fields found for the selected **Trust Dimension: ${currentDimension}**.</p>`;
+                    } else {
+                        formContainer.appendChild(formStepDiv);
+                    }
                 }
+                // --- END MODIFIED FUNCTION ---
                 
                 prevBtn.addEventListener('click', () => {
                     if (currentStepIndex > 0) {
@@ -328,17 +349,20 @@
                     if (stepData && stepData.Fields) {
                         capturedData['Step: ' + currentStepIndex] = currentStepKey;
                         stepData.Fields.forEach(field => {
-                            if (!field || !field.FieldName || field.FieldType === 'Auto generated number') return;
-                            const sanitizedId = sanitizeForId(field.FieldName);
-                            const inputElement = document.getElementById(sanitizedId);
-                            if (inputElement) {
-                                if (inputElement.type === 'radio') {
-                                     const checkedRadio = document.querySelector(`input[name="${sanitizedId}"]:checked`);
-                                     if(checkedRadio) {
-                                         capturedData[' - ' + field.FieldName] = checkedRadio.value;
-                                     }
-                                } else {
-                                    capturedData[' - ' + field.FieldName] = inputElement.value;
+                            // Only attempt to capture data for fields that were visible/processed based on dimension
+                            if (fieldMatchesDimension(field)) {
+                                if (!field || !field.FieldName || field.FieldType === 'Auto generated number') return;
+                                const sanitizedId = sanitizeForId(field.FieldName);
+                                const inputElement = document.getElementById(sanitizedId);
+                                if (inputElement) {
+                                    if (inputElement.type === 'radio') {
+                                        const checkedRadio = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+                                        if(checkedRadio) {
+                                            capturedData[' - ' + field.FieldName] = checkedRadio.value;
+                                        }
+                                    } else {
+                                        capturedData[' - ' + field.FieldName] = inputElement.value;
+                                    }
                                 }
                             }
                         });
@@ -377,27 +401,31 @@
 
                 // Event listener for Role dropdown change
                 roleDropdown.addEventListener('change', (event) => {
+                    currentRole = event.target.value; // Update state
                     // Clear captured data on role change
                     for (const key in capturedData) {
                         delete capturedData[key];
                     }
-                    // Filter using the new role and the *current* dimension
-                    filterAndInitializeSteps(event.target.value, dimensionDropdown.value);
+                    // Re-filter steps based on the new role (dimension filter is applied in renderCurrentStep)
+                    filterAndInitializeSteps(); 
                 });
                 
                 // Event listener for Dimension dropdown change
                 dimensionDropdown.addEventListener('change', (event) => {
+                    currentDimension = event.target.value; // Update state
                     // Clear captured data on dimension change
                     for (const key in capturedData) {
                         delete capturedData[key];
                     }
-                    // Filter using the new dimension and the *current* role
-                    filterAndInitializeSteps(roleDropdown.value, event.target.value);
+                    // Re-render the current step to apply the new dimension filter immediately
+                    if (procedureSteps.length > 0) {
+                         renderCurrentStep();
+                    }
                 });
 
 
                 // Initial load: show all steps (default dropdown values are "")
-                filterAndInitializeSteps(roleDropdown.value, dimensionDropdown.value);
+                filterAndInitializeSteps();
             })
             .catch(error => {
                 console.error('Error loading the webapp data:', error);
