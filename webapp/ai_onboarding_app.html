@@ -8,6 +8,23 @@
 </head>
 <body>
    <div class="steps-container">
+        <div class="dimension-selection-container">
+            <label for="dimension-dropdown">Select Trust Dimension:</label>
+            <select id="dimension-dropdown">
+                <option value="">All Trust Dimensions</option>
+                <option value="Compliance">Compliance</option>
+                <option value="Risk Management System">Risk Management System</option>
+                <option value="Data and Data Governance">Data and Data Governance</option>
+                <option value="Technical Documentation">Technical Documentation</option>
+                <option value="Record-Keeping">Record-Keeping</option>
+                <option value="Transparency and Provision of Information">Transparency and Provision of Information</option>
+                <option value="Human Oversight">Human Oversight</option>
+                <option value="Cybersecurity & Resilience">Cybersecurity & Resilience</option>
+                <option value="Intended Use">Intended Use</option>
+                <option value="Job Preservation">Job Preservation</option>
+                <option value="Fairness and Bias">Fairness and Bias</option>
+            </select>
+        </div>
         <div class="role-selection-container">
             <label for="role-dropdown">Select Your Role:</label>
             <select id="role-dropdown">
@@ -78,6 +95,8 @@
                 const progressText = document.getElementById('progress-text');
                 const stepContainer = document.getElementById('step-container');
                 const roleDropdown = document.getElementById('role-dropdown'); 
+                // Get the new dropdown element
+                const dimensionDropdown = document.getElementById('dimension-dropdown'); 
 
                 // Store the original procedure data structure
                 const originalWebappData = webappData;
@@ -87,26 +106,46 @@
                 const capturedData = {};
                 let currentStepIndex = 0;
 
-                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS ---
-                function filterAndInitializeSteps(role) {
+                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS (Accepts both role and dimension) ---
+                function filterAndInitializeSteps(role, trustDimension) {
                     currentStepIndex = 0; // Reset to the first step after filtering
                     const allStepsFlat = Object.values(originalWebappData).flat();
                     
-                    if (role === "" || !role) {
-                        // Show all steps
-                        procedureDataArray = allStepsFlat;
-                    } else {
-                        // Filter steps based on the step's 'Role' property
-                        procedureDataArray = allStepsFlat.filter(step => {
-                            // The step's 'Role' property must match the selected role.
-                            // We use .includes() for robustness if the Step's 'Role' field 
-                            // contains multiple comma-separated roles (e.g., "Requester, Analyst") 
-                            // or if the JSON simply contains the role string.
+                    let filteredByRole = allStepsFlat;
+                    
+                    // 1. Role Filtering
+                    if (role && role !== "") {
+                        filteredByRole = allStepsFlat.filter(step => {
                             const stepRoles = step.Role ? String(step.Role).split(',').map(r => r.trim()) : [];
                             return stepRoles.includes(role);
                         });
                     }
-                    
+
+                    // 2. Trust Dimension Filtering
+                    if (trustDimension && trustDimension !== "") {
+                        // Filter steps that have at least one field matching the selected TrustDimension
+                        procedureDataArray = filteredByRole.filter(step => {
+                            if (!step.Fields || step.Fields.length === 0) {
+                                // Steps without fields are generally informational, we can choose 
+                                // to include them or not. Here, we'll exclude them to focus on 
+                                // steps with relevant governance fields.
+                                return false; 
+                            }
+                            
+                            // Check if ANY field in the step contains the selected TrustDimension
+                            return step.Fields.some(field => {
+                                if (field.TrustDimension) {
+                                    const fieldDimensions = String(field.TrustDimension).split(',').map(d => d.trim());
+                                    return fieldDimensions.includes(trustDimension);
+                                }
+                                return false;
+                            });
+                        });
+                    } else {
+                        // No Trust Dimension selected, use the results of the role filter
+                        procedureDataArray = filteredByRole;
+                    }
+
                     // Re-create the array of step names for progress tracking
                     procedureSteps = procedureDataArray.map(step => step.StepName);
                     
@@ -117,7 +156,7 @@
                     } else {
                         // Handle case where no steps are available
                         mainTitle.textContent = "No Steps Available";
-                        formContainer.innerHTML = "<p>There are no steps defined for the selected role.</p>";
+                        formContainer.innerHTML = "<p>There are no steps defined for the selected role and/or trust dimension.</p>";
                         prevBtn.style.display = 'none';
                         nextBtn.style.display = 'none';
                         downloadBtn.style.display = 'none';
@@ -336,17 +375,29 @@
                     URL.revokeObjectURL(url);
                 });
 
-                // Event listener for dropdown change
+                // Event listener for Role dropdown change
                 roleDropdown.addEventListener('change', (event) => {
                     // Clear captured data on role change
                     for (const key in capturedData) {
                         delete capturedData[key];
                     }
-                    filterAndInitializeSteps(event.target.value);
+                    // Filter using the new role and the *current* dimension
+                    filterAndInitializeSteps(event.target.value, dimensionDropdown.value);
+                });
+                
+                // Event listener for Dimension dropdown change
+                dimensionDropdown.addEventListener('change', (event) => {
+                    // Clear captured data on dimension change
+                    for (const key in capturedData) {
+                        delete capturedData[key];
+                    }
+                    // Filter using the new dimension and the *current* role
+                    filterAndInitializeSteps(roleDropdown.value, event.target.value);
                 });
 
-                // Initial load: show all steps (default dropdown value is "")
-                filterAndInitializeSteps(roleDropdown.value);
+
+                // Initial load: show all steps (default dropdown values are "")
+                filterAndInitializeSteps(roleDropdown.value, dimensionDropdown.value);
             })
             .catch(error => {
                 console.error('Error loading the webapp data:', error);
