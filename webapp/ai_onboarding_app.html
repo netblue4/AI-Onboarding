@@ -102,3 +102,350 @@
                 
                 let procedureDataArray = [];
                 let procedureSteps = [];
+                const capturedData = {};
+                let currentStepIndex = 0;
+                
+                // Track current filters
+                let currentRole = roleDropdown.value;
+                let currentDimension = dimensionDropdown.value;
+
+                // --- HELPER FUNCTION: JOINT FILTER LOGIC ---
+                function fieldPassesFilters(field) {
+                    // 1. Role Filtering
+                    const roleSelected = currentRole && currentRole !== "";
+                    let roleMatch = true;
+                    
+                    if (roleSelected) {
+                        const fieldRoles = field.Role ? String(field.Role).split(',').map(r => r.trim()) : [];
+                        // Check if the field's role includes the selected role
+                        roleMatch = fieldRoles.includes(currentRole);
+                    }
+                    
+                    // 2. Trust Dimension Filtering
+                    const dimensionSelected = currentDimension && currentDimension !== "";
+                    let dimensionMatch = true;
+                    
+                    if (dimensionSelected) {
+                        const fieldDimensions = field.TrustDimension ? String(field.TrustDimension).split(',').map(d => d.trim()) : [];
+                        // Check if the field's dimension includes the selected dimension
+                        dimensionMatch = fieldDimensions.includes(currentDimension);
+                    }
+                    
+                    // The field must satisfy BOTH active filters.
+                    return roleMatch && dimensionMatch;
+                }
+                // --- END HELPER FUNCTION ---
+
+
+                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS (Now filters steps) ---
+                function filterAndInitializeSteps() {
+                    currentStepIndex = 0; // Reset to the first step after filtering
+                    const allStepsFlat = Object.values(originalWebappData).flat();
+                    
+                    procedureDataArray = allStepsFlat.filter(step => {
+                        // Keep steps that are purely informational (no fields) only if no filters are active
+                        if (!step.Fields || step.Fields.length === 0) {
+                            return currentRole === "" && currentDimension === "";
+                        }
+                        
+                        // Keep steps that have AT LEAST ONE field matching the current filters
+                        return step.Fields.some(field => fieldPassesFilters(field));
+                    });
+                    
+                    // Re-create the array of step names for progress tracking
+                    procedureSteps = procedureDataArray.map(step => step.StepName);
+                    
+                    renderProcedureSteps();
+                    
+                    if (procedureSteps.length > 0) {
+                        renderCurrentStep();
+                    } else {
+                        mainTitle.textContent = "No Relevant Steps Available";
+                        formContainer.innerHTML = "<p>There are no steps containing fields that match the selected role and/or trust dimension filters.</p>";
+                        prevBtn.style.display = 'none';
+                        nextBtn.style.display = 'none';
+                        downloadBtn.style.display = 'none';
+                        updateProgressBar(); 
+                    }
+                }
+                // --- END MODIFIED FUNCTION ---
+
+                // --- MODIFIED FUNCTION: RENDER PROCEDURE STEPS (Renders only filtered steps) ---
+                function renderProcedureSteps() {
+                    stepContainer.innerHTML = '';
+                    let globalStepIndex = 0; 
+
+                    for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
+                        let phaseHasRenderableSteps = false;
+                        const phaseStepsToRender = [];
+
+                        stepsInPhase.forEach(step => {
+                            // Check if this step is present in the current (filtered) procedureDataArray
+                            const isStepIncluded = procedureDataArray.some(filteredStep => 
+                                filteredStep.StepName === step.StepName
+                            );
+
+                            if (isStepIncluded) {
+                                phaseHasRenderableSteps = true;
+                                phaseStepsToRender.push(step);
+                            }
+                        });
+
+                        if (phaseHasRenderableSteps) {
+                            // Create and append a header for the phase only if it contains renderable steps
+                            const phaseHeader = document.createElement('div');
+                            phaseHeader.className = 'phase-header';
+                            phaseHeader.textContent = phaseName;
+                            stepContainer.appendChild(phaseHeader);
+
+                            // Render only the included steps for this phase
+                            phaseStepsToRender.forEach(step => {
+                                const stepDiv = document.createElement('div');
+                                stepDiv.className = 'step-item';
+                                // The ID must correspond to the step's index in the *filtered* array
+                                const indexInFilteredArray = procedureSteps.indexOf(step.StepName);
+                                stepDiv.id = `step-item-${indexInFilteredArray}`; 
+
+                                const iconSpan = document.createElement('span');
+                                iconSpan.className = 'icon';
+                                stepDiv.appendChild(iconSpan);
+
+                                const textSpan = document.createElement('span');
+                                textSpan.textContent = step.StepName;
+                                stepDiv.appendChild(textSpan);
+                                
+                                const stepIndexToNavigate = indexInFilteredArray;
+                                stepDiv.addEventListener('click', () => {
+                                    currentStepIndex = stepIndexToNavigate;
+                                    renderCurrentStep();
+                                });
+
+                                stepContainer.appendChild(stepDiv);
+                                globalStepIndex++; // This increment is tricky now, simplifying to rely on procedureSteps index
+                            });
+                        }
+                    }
+                }
+                // --- END MODIFIED FUNCTION ---
+                
+                function updateStepHighlight() {
+                    procedureSteps.forEach((_, index) => {
+                        const stepDiv = document.getElementById(`step-item-${index}`);
+                        if (stepDiv) {
+                            stepDiv.classList.remove('active-step', 'completed-step');
+
+                            if (index < currentStepIndex) {
+                                stepDiv.classList.add('completed-step');
+                            } else if (index === currentStepIndex) {
+                                stepDiv.classList.add('active-step');
+                            }
+                        }
+                    });
+                }
+                
+                function sanitizeForId(text) {
+                    if (typeof text !== 'string') return '';
+                    return text.replace(/[^a-zA-Z0-9_]/g, '_');
+                }
+
+                function getStepKeyByString(searchText) {
+                    currentStepIndex = procedureSteps.indexOf(searchText);
+                    renderCurrentStep();
+                }
+                window.getStepKeyByString = getStepKeyByString;
+                
+                function updateProgressBar() {
+                    const totalSteps = procedureSteps.length;
+                    if (totalSteps === 0) {
+                        progressText.textContent = `No steps selected`;
+                        progressBar.style.width = '0%';
+                        return;
+                    }
+
+                    if (currentStepIndex < totalSteps) {
+                        progressText.textContent = `Step ${currentStepIndex + 1} of ${totalSteps}`;
+                    } else {
+                         progressText.textContent = `Completed ${totalSteps} of ${totalSteps}`;
+                    }
+                    const progressPercentage = totalSteps > 1 ? ((currentStepIndex) / (totalSteps - 1)) * 100 : (totalSteps === 1 ? (currentStepIndex === 0 ? 0 : 100) : 100);
+                    progressBar.style.width = progressPercentage + '%';
+                }
+
+                // --- MODIFIED FUNCTION: RENDER CURRENT STEP (Applies joint per-field filtering) ---
+                function renderCurrentStep() {
+                    updateProgressBar();
+                    updateStepHighlight();
+                    
+                    const stepData = procedureDataArray[currentStepIndex];
+
+                    if (!stepData) {
+                        return; 
+                    }
+
+                    prevBtn.style.display = currentStepIndex > 0 ? 'inline-block' : 'none';
+                    nextBtn.style.display = 'inline-block';
+                    downloadBtn.style.display = 'none';
+
+                    mainTitle.textContent = stepData.StepName || "Procedure Step";
+                    formContainer.innerHTML = '';
+
+                    const formStepDiv = document.createElement('div');
+                    formStepDiv.className = 'form-step';
+
+
+                    // Objectives are always rendered as they are informational
+                    if (stepData.Objectives && stepData.Objectives.length > 0) {
+                    	const handler = getFieldHandler('objective');
+                        if (handler) {
+                            const fieldElement = handler(stepData.Objectives);
+                            formStepDiv.appendChild(fieldElement);
+                        }                    	
+                    };
+
+                    
+                    let renderedFieldCount = 0;
+
+                    if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
+                         // Note field only shown if no fields are present AND no filter is active
+                         if (currentDimension === "" && currentRole === "") {
+                            if (typeof createNoteField === 'function') {
+                                formStepDiv.appendChild(createNoteField());
+                                renderedFieldCount++;
+                            }
+                         }
+                    } else {
+                        stepData.Fields.forEach(field => {
+                            if (!field || !field.FieldName) return;
+                            
+                            // *** CORE JOINT FILTERING LOGIC ***
+                            if (fieldPassesFilters(field)) {
+                                const handler = getFieldHandler(field.FieldType);
+                                if (handler) {
+                                    const fieldElement = handler(field, capturedData, sanitizeForId);
+                                    formStepDiv.appendChild(fieldElement);
+                                    renderedFieldCount++;
+                                }
+                            }
+                            // *** END CORE JOINT FILTERING LOGIC ***
+                        });
+                    }
+                    
+                    if (renderedFieldCount === 0) {
+                        let filterMessage = "No relevant fields found for the current selection.";
+                        if (currentRole !== "" && currentDimension !== "") {
+                             filterMessage = `No fields match both **Role: ${currentRole}** AND **Dimension: ${currentDimension}** in this step.`;
+                        } else if (currentRole !== "") {
+                            filterMessage = `No fields match the selected **Role: ${currentRole}** in this step.`;
+                        } else if (currentDimension !== "") {
+                            filterMessage = `No fields match the selected **Dimension: ${currentDimension}** in this step.`;
+                        }
+
+                         formContainer.innerHTML = `<p>${filterMessage}</p>`;
+                    } else {
+                        formContainer.appendChild(formStepDiv);
+                    }
+                }
+                // --- END MODIFIED FUNCTION ---
+                
+                prevBtn.addEventListener('click', () => {
+                    if (currentStepIndex > 0) {
+                        currentStepIndex--;
+                        renderCurrentStep();
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    if (procedureSteps.length === 0) return;
+
+                    const currentStepKey = procedureSteps[currentStepIndex];
+                    const stepData = procedureDataArray[currentStepIndex];
+
+                    if (stepData && stepData.Fields) {
+                        capturedData['Step: ' + currentStepIndex] = currentStepKey;
+                        stepData.Fields.forEach(field => {
+                            // Only capture data for fields that were visible/processed based on both filters
+                            if (fieldPassesFilters(field)) {
+                                if (!field || !field.FieldName || field.FieldType === 'Auto generated number') return;
+                                const sanitizedId = sanitizeForId(field.FieldName);
+                                const inputElement = document.getElementById(sanitizedId);
+                                
+                                if (inputElement) {
+                                    if (inputElement.type === 'radio') {
+                                        const checkedRadio = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+                                        if(checkedRadio) {
+                                            capturedData[' - ' + field.FieldName] = checkedRadio.value;
+                                        }
+                                    } else {
+                                        capturedData[' - ' + field.FieldName] = inputElement.value;
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    currentStepIndex++;
+                    if (currentStepIndex < procedureSteps.length) {
+                        renderCurrentStep();
+                    } else {
+                        formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file.</p>';
+                        mainTitle.textContent = "Finished";
+                        nextBtn.style.display = 'none';
+                        prevBtn.style.display = 'none';
+                        downloadBtn.style.display = 'block';
+                        
+                        procedureSteps.forEach((_, index) => {
+                           document.getElementById(`step-item-${index}`).classList.remove('active-step');
+                           document.getElementById(`step-item-${index}`).classList.add('completed-step');
+                        });
+                        updateProgressBar();
+                    }
+                });
+
+                downloadBtn.addEventListener('click', () => {
+                    const jsonData = JSON.stringify(capturedData, null, 4);
+                    const blob = new Blob([jsonData], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'onboarding_documentation.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+
+                // Event listener for Role dropdown change
+                roleDropdown.addEventListener('change', (event) => {
+                    currentRole = event.target.value; // Update state
+                    // Clear captured data on role change (as step and field visibility changes)
+                    for (const key in capturedData) {
+                        delete capturedData[key];
+                    }
+                    // Re-filter steps based on the new role
+                    filterAndInitializeSteps(); 
+                });
+                
+                // Event listener for Dimension dropdown change
+                dimensionDropdown.addEventListener('change', (event) => {
+                    currentDimension = event.target.value; // Update state
+                    // Clear captured data on dimension change (as step and field visibility changes)
+                    for (const key in capturedData) {
+                        delete capturedData[key];
+                    }
+                    // Re-filter steps based on the new dimension
+                    filterAndInitializeSteps();
+                });
+
+
+                // Initial load: show all steps and render the first step with default filters ("")
+                filterAndInitializeSteps();
+            })
+            .catch(error => {
+                console.error('Error loading the webapp data:', error);
+                mainTitle.textContent = "Error";
+                formContainer.innerHTML = "<p>Failed to load procedure data. Please check the console and ensure 'ai_onboarding_procedure_data.json' is available.</p>";
+            });
+    });
+    </script>
+</body>
+</html>
