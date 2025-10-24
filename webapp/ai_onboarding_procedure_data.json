@@ -2,7 +2,6 @@
   "1. AI Act and ISO 42001 Compliance": [
     {
       "StepName": "1.1. EU AI Act: Prohibited AI Practices Assessment",
-      "Role": "Compliance",
       "Objectives": [
         {
           "Objective": "A mandatory screening to ensure the AI system does not fall into the category of 'Prohibited AI Practices' as defined by the EU AI Act (e.g., systems that manipulate behavior or exploit vulnerabilities)."
@@ -11,6 +10,7 @@
       "Fields": [
         {
           "FieldName": "EU-AI-ACT-PROHIBITED-ASSESSMENT",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldLabel": "Will the AI system be used for any of the following prohibited purposes?",
           "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
@@ -20,7 +20,6 @@
     },
     {
       "StepName": "1.2. EU AI Act: Role Classification (Provider vs. Deployer)",
-      "Role": "Compliance",
       "Objectives": [
         {
           "Objective": "Defining the organization’s legal responsibility for the AI system. This step determines whether the entity is acting as the Provider (the developer/manufacturer) or the Deployer (the user/operator) of the system, which dictates the scope of subsequent obligations."
@@ -29,6 +28,7 @@
       "Fields": [
         {
           "FieldName": "AI-ACT-ROLE-CLASSIFICATION",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldLabel": "Which description best defines your organization's role and activities for this AI system?",
           "FieldText": "It's very important to clearly define the organisation's activities because it will impact the AI Act’s distinction between 'Provider' (developer) and 'Deployer' (user), which comes with significantly different responsibilities. The organisation's activities are exclusively focused on operationalizing, integrating, and governing generic pre-trained LLMs and developing internal infrastructure for Retrieval-Augmented Generation (RAG), without any modification, fine-tuning, or retraining of the underlying model itself. The AI system is for internal organizational use only, and is not repackaged or distributed to external customers. The LLM is chosen as a generic, pre-trained model, stored on-premises, and never fine-tuned, retrained, Its parameters, weights, or architecture layers are not modified by the organisation's internal engineering team. Meaning it does not interact with or access any external internet datasets, ensuring data sovereignty and minimizing exposure to third-party risks. The organisation's internal engineering team’s efforts are strictly limited to building infrastructure, orchestration, and internal data pipelines for the LLM, but do not alter the core LLM architecture or its parameters.",
@@ -38,7 +38,6 @@
     },
     {
       "StepName": "1.3. EU AI Act: High-Risk System Classification",
-      "Role": "Compliance",
       "Objectives": [
         {
           "Objective": "A critical step involving the legal classification of the AI system to determine if it meets the criteria for a High-Risk AI System. This classification triggers a significantly higher level of scrutiny and more detailed compliance requirements."
@@ -47,6 +46,7 @@
       "Fields": [
         {
           "FieldName": "EU-AI-ACT-HIGH-RISK-ASSESSMENT",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldLabel": "Will the AI system be used for any of the following purposes?",
           "FieldText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
@@ -54,6 +54,7 @@
         },
         {
           "FieldName": "EU-AI-ACT-LIMITED-RISK-ASSESSMENT",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldLabel": "Does the AI system have specific transparency obligations (Limited Risk)?",
           "FieldText": "If the system is not high-risk, it may still be 'Limited Risk' and have specific transparency obligations to ensure users are not deceived. Please select all that apply.",
@@ -63,7 +64,6 @@
     },
     {
       "StepName": "1.4. AI Act - Section 2: Provider & Deployer Requirements for High-Risk AI Systems",
-      "Role": "Compliance",
       "Objectives": [
         {
           "Objective": "For systems classified as High-Risk, this step involves implementing the detailed obligations covering areas like risk management, data and data governance, technical documentation, automatic record-keeping (logging), transparency, human oversight, and robustness, accuracy, and security."
@@ -72,6 +72,7 @@
       "Fields": [
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[Article 9] - Inadequate or Ineffective Risk Management",
           "RiskDescription": "",
@@ -116,6 +117,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[Article 10] - Poor Data Quality and Governance",
           "RiskDescription": "",
@@ -154,6 +156,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[Article 12] - Inadequate Traceability and Record-Keeping (Decomposed)",
           "RiskDescription": "Failure to implement technical capabilities for automatic event logging (logs) over the system's lifetime and failure to record specific, detailed information required for traceability, accountability, and post-market monitoring as mandated by Article 12.",
@@ -180,6 +183,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[Article 13] - Lack of Transparency and Provision of Information to Users",
           "RiskDescription": "",
@@ -218,6 +222,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[Article 14] - Ineffective or Insufficient Human Oversight",
           "RiskDescription": "",
@@ -261,6 +266,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[Article 15] - Inadequate Accuracy, Robustness, and Cybersecurity",
           "RiskDescription": "",
@@ -299,6 +305,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[Article 27] - Failure to Assess Fundamental Rights Impact",
           "RiskDescription": "",
@@ -353,7 +360,6 @@
     },
     {
       "StepName": "1.5. ISO 42001 Compliance",
-      "Role": "Compliance",
       "Objectives": [
         {
           "Objective": "Adopting and documenting processes to meet the requirements of ISO/IEC 42001, the standard for Artificial Intelligence Management Systems (AIMS). This ensures governance, ethical principles, and risk controls are systematically applied to the AI lifecycle."
@@ -362,6 +368,7 @@
       "Fields": [
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.2] - Policies related to AI",
           "RiskDescription": "",
@@ -388,6 +395,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.3] - Internal organization",
           "RiskDescription": "",
@@ -408,6 +416,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.4] - Resources for AI systems",
           "RiskDescription": "",
@@ -446,6 +455,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.5] - Assessing impacts of AI systems",
           "RiskDescription": "",
@@ -478,6 +488,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.6] - AI system life cycle",
           "RiskDescription": "",
@@ -538,6 +549,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.7] - Data for AI systems",
           "RiskDescription": "",
@@ -576,6 +588,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.8] - Information for interested parties of AI systems",
           "RiskDescription": "",
@@ -604,6 +617,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.9] - Use of AI systems",
           "RiskDescription": "",
@@ -630,6 +644,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Compliance",
           "TrustDimension": "Compliance",
           "FieldName": "[A.10] - Third-party and customer relationships",
           "RiskDescription": "",
@@ -657,7 +672,6 @@
   "2. AI System Documentation and Impact Assessments": [
     {
       "StepName": "2.1. (A.9.4) AI system's intended use and limitations",
-      "Role": "Requester",
       "Objectives": [
         {
           "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
@@ -666,6 +680,7 @@
       "Fields": [
         {
           "Control": "A.9.4 – Intended use of the AI system",
+          "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldName": "(A.9.4) - AI System ID",
           "FieldLabel": "AI System ID",
@@ -674,6 +689,7 @@
         },
         {
           "Control": "A.9.4 – Intended use of the AI system",
+          "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldName": "(A.9.4) - Name",
           "FieldLabel": "Name",
@@ -682,6 +698,7 @@
         },
         {
           "Control": "A.9.4 – Intended use of the AI system",
+          "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldName": "(A.9.4) - Business Purpose",
           "FieldLabel": "Business Purpose",
@@ -690,6 +707,7 @@
         },
         {
           "Control": "A.9.4 – Intended use of the AI system",
+          "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldName": "(A.9.4) - Intended Use",
           "FieldLabel": "Intended Use",
@@ -698,6 +716,7 @@
         },
         {
           "FieldName": "AI system impact assessment - Employees - Benefits",
+          "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldLabel": "Select Potential Benefits",
           "FieldText": "",
@@ -705,6 +724,7 @@
         },
         {
           "Control": "A.9.4 – Intended use of the AI system",
+          "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldName": "HR-WIA-2.3-AugmentationTasks",
           "FieldLabel": "Augmented/Enhanced Tasks",
@@ -715,7 +735,6 @@
     },
     {
       "StepName": "2.2. (A.9.3) AI system's Objectives for Responsible Use",
-      "Role": "Requester",
       "Objectives": [
         {
           "Objective": "Formalizing the ethical and governance goals for the system. This involves defining the specific outcomes and controls necessary to ensure the AI system is used in a responsible, fair, and transparent manner."
@@ -724,6 +743,7 @@
       "Fields": [
         {
           "FieldName": "AI system intended use - Permitted User Prompt Categories Whitelist Definition",
+          "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldLabel": "Whitelist Key Phrases for Permitted User Prompt Categories",
           "FieldText": "This is the reference list of key phrases that will be allowed by the RAG Orchestrator. The RAG Orchestrator will be trained to recognize prompts similar to these examples.",
@@ -731,6 +751,7 @@
         },
         {
           "FieldName": "AI system intended use - Prohibited Uses Blacklist Definition",
+          "Role": "Requester",
           "TrustDimension": "Intended Usee",
           "FieldLabel": "Blacklist Key Phrases for Prohibited User Prompt Categories",
           "FieldText": "This is a reference list of key phrases that will be blocked by the RAG Orchestrator. AI systems that support these key phrases are prohibited by the AI act.",
@@ -738,6 +759,7 @@
         },
         {
           "FieldName": "AI system response - Decision-Making Language Requiring Intervention",
+          "Role": "Requester",
           "TrustDimension": "Human Oversight",
           "FieldLabel": "Key Phrases in LLM Responses That Require Human Intervention",
           "FieldText": "This is a reference list of key phrases in the LLM's output that indicate it may be making a business decision or a decision with potential risks. If these phrases are detected, the system should flag the response for immediate human oversight and potential intervention, allowing an overseer to stop or override the action.",
@@ -745,6 +767,7 @@
         },
         {
           "FieldName": "AI system intended use - Intended User Profile",
+          "Role": "Requester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Select the Intended User Profiles for the AI System",
           "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
@@ -754,7 +777,6 @@
     },
     {
       "StepName": "2.3. (A.4.2, A.4.4) AI Systems Software and Tooling Resources",
-      "Role": "Engineer,Requester",
       "Objectives": [
         {
           "Objective": "Documenting all necessary software components, libraries, frameworks, and development tools required to build, maintain, and operate the AI system effectively."
@@ -763,6 +785,7 @@
       "Fields": [
         {
           "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
+          "Role": "Engineer,Requester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Tools Name and Version",
           "FieldText": "Name of the software, libraries, or frameworks and their Version numbers.",
@@ -770,6 +793,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.4) - Category",
+          "Role": "Engineer,Requester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Select Tool Categories",
           "FieldText": "",
@@ -777,6 +801,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
+          "Role": "Engineer,Requester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Purpose/Use Case in Project",
           "FieldText": "How these tools will be used in the AI system's lifecycle.",
@@ -786,7 +811,6 @@
     },
     {
       "StepName": "2.4. (A.4.2, A.4.5) AI Systems Computing Resources",
-      "Role": "Engineer,Requester",
       "Objectives": [
         {
           "Objective": "Detailing the physical and cloud infrastructure required, including specific hardware (e.g., GPUs), cloud service subscriptions, and computing power needed to train, deploy, and run the AI model."
@@ -795,6 +819,7 @@
       "Fields": [
         {
           "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
+          "Role": "Engineer,Requester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Computing Resource Name and Version",
           "FieldText": "Names of the computing resources used.",
@@ -802,6 +827,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.5) - Category",
+          "Role": "Engineer,Requester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Category of the computing resource",
           "FieldText": "",
@@ -809,6 +835,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
+          "Role": "Engineer,Requester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Which parts of the AI lifecycle do these resource supports?",
           "FieldText": "",
@@ -818,7 +845,6 @@
     },
     {
       "StepName": "2.5. (A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
-      "Role": "Requester",
       "Objectives": [
         {
           "Objective": "Assessing the impact of the new AI system on current job roles and organizational structure. This includes planning for upskilling, retraining, or necessary workforce adjustments to ensure a smooth transition."
@@ -827,6 +853,7 @@
       "Fields": [
         {
           "Control": "A.9.4 – Intended use of the AI system",
+          "Role": "Requester",
           "TrustDimension": "Compliance,Job Preservation",
           "FieldName": "(A.9.4) - Target Users",
           "FieldLabel": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
@@ -835,6 +862,7 @@
         },
         {
           "FieldName": "HR-WIA-1.2-CoreAction",
+          "Role": "Requester",
           "TrustDimension": "Compliance,Job Preservation",
           "FieldLabel": "Identify the primary roles of the AI system relative to human workers",
           "FieldText": "",
@@ -842,6 +870,7 @@
         },
         {
           "FieldName": "HR-WIA-2.2-AutomationTasks",
+          "Role": "Requester",
           "TrustDimension": "Compliance,Job Preservation",
           "FieldLabel": "Automated/Eliminated Tasks",
           "FieldText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
@@ -849,6 +878,7 @@
         },
         {
           "FieldName": "HR-WIA-4.1-MitigationPlan",
+          "Role": "Requester",
           "TrustDimension": "Compliance,Job Preservation",
           "FieldLabel": "Primary Mitigation Strategy for Displacement",
           "FieldText": "If job displacement is identified, select the primary strategies for the affected workers",
@@ -856,6 +886,7 @@
         },
         {
           "FieldName": "HR-WIA-4.2-TrainingProgram",
+          "Role": "Requester",
           "TrustDimension": "Compliance,Job Preservation",
           "FieldLabel": "Structured Re-skilling Program in Place",
           "FieldText": "Describe the primary strategies to address the affected workers.",
@@ -863,6 +894,7 @@
         },
         {
           "FieldName": "HR-WIA-4.2-TrainingProgram",
+          "Role": "Requester",
           "TrustDimension": "Compliance,Job Preservation",
           "FieldLabel": "Structured Re-skilling Program Effectiveness",
           "FieldText": "Describe the Training Effectiveness measures to evaluate the success of the primary strategies to address the affected workers.",
@@ -939,7 +971,6 @@
     },
     {
       "StepName": "2.7. (A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
-      "Role": "Requester",
       "Objectives": [
         {
           "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
@@ -948,6 +979,7 @@
       "Fields": [
         {
           "FieldName": "ENV-IA-1.1-EnergySource",
+          "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldLabel": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
           "FieldText": "",
@@ -955,6 +987,7 @@
         },
         {
           "FieldName": "ENV-IA-2.1-ConsumptionMetrics",
+          "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldLabel": "Energy Consumption & Carbon Footprint Estimation",
           "FieldText": "Describe the methodology and provide the estimated energy consumption (e.g., in kWh) and carbon footprint (e.g., in tons of CO2e) for the system's lifecycle (training, validation, and deployment).",
@@ -962,6 +995,7 @@
         },
         {
           "FieldName": "ENV-IA-3.1-HardwareEOL",
+          "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldLabel": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
           "FieldText": "",
@@ -969,6 +1003,7 @@
         },
         {
           "FieldName": "ENV-IA-4.1-EfficiencyMeasures",
+          "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldLabel": "Select main strategies for minimizing negative environmental impacts.",
           "FieldText": "",
@@ -976,6 +1011,7 @@
         },
         {
           "FieldName": "ENV-IA-4.2-ImpactLevel",
+          "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldLabel": "Level of Environmental Impact",
           "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
@@ -983,6 +1019,7 @@
         },
         {
           "FieldName": "VP-IMP-2.3-SeverityAssessment",
+          "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldLabel": "Describe the Environmental Impact",
           "FieldText": "Describe the degree of environmental burden/benefit.",
@@ -990,6 +1027,7 @@
         },
         {
           "FieldName": "ENV-IA-5.1-PositiveContribution",
+          "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldLabel": "Contribution to Environmental Sustainability Goals",
           "FieldText": "Does the AI system's intended application directly contribute to positive environmental outcomes (e.g., climate change modeling, energy grid optimization, biodiversity monitoring)? If yes, please describe.",
@@ -997,6 +1035,7 @@
         },
         {
           "FieldName": "ENV-IA-6.1-MonitoringReview",
+          "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldLabel": "Environmental Impact Monitoring and Review",
           "FieldText": "Describe the process and frequency for monitoring and reviewing the environmental performance metrics of the AI system over its lifecycle.",
@@ -1008,7 +1047,6 @@
   "3. Data Preparation (Offline or Real-Time Knowledge Base Creation)": [
     {
       "StepName": "3.1. Internal Data Sources",
-      "Role": "Data Engineer,Engineer",
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
       "Objectives": [
         {
@@ -1018,6 +1056,7 @@
       "Fields": [
         {
           "FieldName": "(A.4.2, A.4.3) - Dataset Repository",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "Dataset Repository",
           "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
@@ -1025,6 +1064,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Dataset Description",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "Dataset Description",
           "FieldText": "Brief overview of the dataset's content and general purpose.",
@@ -1032,6 +1072,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "Where does the data originate from?",
           "FieldText": "",
@@ -1039,6 +1080,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Intended Use",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "What is the specific purpose(s) of the data?",
           "FieldText": "",
@@ -1046,6 +1088,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3, A.7.3, A.7.2) - Acquisition of data",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "How will the Data be acquired and selected?",
           "FieldText": "",
@@ -1053,6 +1096,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "What is the data Retention schedules based on legal and operational requirements?",
           "FieldText": "",
@@ -1060,6 +1104,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Refresh Schedules",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "How often does the data need to be refreshed?",
           "FieldText": "",
@@ -1067,6 +1112,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "Secure Disposing",
           "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
@@ -1074,6 +1120,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Approximate Size",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "Approximate Size",
           "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
@@ -1081,6 +1128,7 @@
         },
         {
           "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance",
           "FieldLabel": "Owner/Custodian",
           "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
@@ -1088,6 +1136,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance,Cybersecurity & Resilience",
           "FieldName": "Malicious Data Ingestion (Data Poisoning & Indirect Prompt Injection)",
           "RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
@@ -1123,7 +1172,6 @@
     },
     {
       "StepName": "3.2. Data Processing Pipeline (Vectorise proprietary data)",
-      "Role": "Engineer,Data Engineer,Tester",
       "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
       "Objectives": [
         {
@@ -1133,6 +1181,7 @@
       "Fields": [
         {
           "FieldType": "plan",
+          "Role": "Data Engineer,Tester",
           "TrustDimension": "Data and Data Governance",
           "FieldName": "(A.7.6) Sensitive Data Preparation Plan",
           "PlanObjective": "Ensure that raw sensitive data is anonymised before it is used by the AI system.",
@@ -1182,6 +1231,7 @@
         },
         {
           "FieldType": "plan",
+          "Role": "Tester",
           "TrustDimension": "Data and Data Governance",
           "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
           "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
@@ -1366,7 +1416,6 @@
     },
     {
       "StepName": "3.3. Indexing and storing company's proprietary data",
-      "Role": "Engineer",
       "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
       "Objectives": [
         {
@@ -1377,7 +1426,6 @@
     },
     {
       "StepName": "3.4. Connecting Internal Data <-> the Processing Pipeline",
-      "Role": "Engineer",
       "WebFormTitle": "To ensure the secure and confidential transfer of all proprietary data from internal sources into the data processing pipeline by enforcing strong encryption for all data in transit.",
       "Objectives": [
         {
@@ -1390,7 +1438,6 @@
   "4. Development (Real-Time Chat With Your Document)": [
     {
       "StepName": "4.1. User Interface",
-      "Role": "Engineer",
       "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
       "Objectives": [
         {
@@ -1400,6 +1447,7 @@
       "Fields": [
         {
           "FieldType": "risk",
+          "Role": "Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "LLM01 Prompt Injection",
           "RiskDescription": "Failure to properly **validate and sanitize** user inputs before they are processed by the RAG Orchestrator and sent to the LLM exposes the system to **Prompt Injection** attacks. An attacker could exploit this vulnerability to bypass the system's intended behavior, resulting in **unauthorized information disclosure** (e.g., data exfiltration via the LLM response), **denial of service**, or **unintended execution** of functions/code.",
@@ -1418,6 +1466,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "LLM04 Model Denial of Service",
           "RiskDescription": "Failure to enforce capacity constraints, such as **API rate limits** on user requests and limits on **task queue sizes** for actions triggered by LLM responses, could lead to a **Denial of Service (DoS)** condition. This allows a malicious or unconstrained user to **overwhelm the LLM endpoint** or the downstream processing system, resulting in **service unavailability**, **high latency**, and **resource exhaustion**.",
@@ -1436,6 +1485,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "LLM05: Supply Chain Vulnerabilities",
           "RiskDescription": "Insufficient visibility into third-party dependencies and **unvetted external components** (such as plugins) introduces **supply chain vulnerabilities** into the AI system. Without maintaining a **Software Bill of Materials (SBOM)** and a formal **plugin vetting process**, the system risks incorporating **malicious or unpatched code**, which could lead to **system compromise**, **data leakage**, or **exploitation** by external parties.",
@@ -1456,7 +1506,6 @@
     },
     {
       "StepName": "4.2. RAG Orchestrator",
-      "Role": "Engineer",
       "WebFormTitle": "To ensure the secure and appropriate handling of user queries and retrieved data by enforcing strict access controls, mitigating complex inference-based attacks, and maintaining a detailed audit trail for accountability and non-repudiation.",
       "Objectives": [
         {
@@ -1466,6 +1515,7 @@
       "Fields": [
         {
           "FieldType": "risk",
+          "Role": "Engineer",
           "TrustDimension": "Record-Keeping",
           "FieldName": "Insufficient Audit Logging and Traceability",
           "RiskDescription": "A lack of detailed, structured, and comprehensive audit logging and traceability within the RAG Orchestrator poses the risk that system operations, user interactions, and data flows are **not fully recorded or attributable**. This failure leads to an **inability to reconstruct the chain of events** leading to an outcome, preventing **effective post-incident forensic analysis**, hindering compliance with **regulatory transparency requirements**, and making it impossible to **verify accountability** for critical decisions or output generation.",
@@ -1484,6 +1534,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Engineer",
           "TrustDimension": "Intended Use",
           "FieldName": "[RAG-COMP-01] - Failure to Implement & Enforce Defined AI System Intended Use",
           "RiskDescription": "The risk that the RAG Orchestrator fails to correctly implement and enforce the 'AI system intended use' fields (Whitelist of Permitted Categories and Blacklist of Prohibited Uses), leading to system usage that is outside its documented capabilities or, critically, in violation of the EU AI Act's prohibitions (e.g., social scoring, harmful manipulation). This failure directly undermines the system's legal compliance and responsible use objective.",
@@ -1512,6 +1563,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Engineer",
           "TrustDimension": "Human Oversight",
           "FieldName": "[RAG-HO-01] - Failure to Detect and Flag Decision-Making Language for Human Intervention",
           "RiskDescription": "The risk that the RAG Orchestrator fails to detect specific 'Decision-Making Language Requiring Intervention' in the LLM's final response. This failure allows the AI system to effectively execute or recommend high-impact decisions (e.g., financial, health, or rights-based judgments) without human review, leading to a violation of the mandatory human oversight principle and exposing the organization and user to unmitigated risk.",
@@ -1542,7 +1594,6 @@
     },
     {
       "StepName": "4.3. Generic LLM",
-      "Role": "Engineer",
       "WebFormTitle": "To enforce strict operational security for the self-hosted LLM by isolating its network access and implementing governed MLOps deployment workflows.",
       "Objectives": [
         {
@@ -1553,7 +1604,6 @@
     },
     {
       "StepName": "4.4. User Interface <->  RAG Orchestrator",
-      "Role": "Engineer",
       "WebFormTitle": "To ensure that all queries and responses between the user interface and the RAG orchestrator are subject to strict, user-specific access control enforcement, preventing unauthorized data disclosure.",
       "Objectives": [
         {
@@ -1564,7 +1614,6 @@
     },
     {
       "StepName": "4.5. RAG Orchestrator <->  Vector Database (Retrieval)",
-      "Role": "Engineer,Tester",
       "WebFormTitle": "To retrieve relevant text chunks from the knowledge base in response to a user query while mitigating the risk of unintentionally over-fetching and exposing sensitive data.",
       "Objectives": [
         {
@@ -1574,6 +1623,7 @@
       "Fields": [
         {
           "FieldType": "plan",
+          "Role": "Tester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "(A.7.4, A.7.6) - RAG Retrieval Quality Test Plan",
           "PlanObjective": "Ensure the RAG Orchestrator accurately and securely retrieves the most relevant and timely indexed data.",
@@ -1712,7 +1762,6 @@
     },
     {
       "StepName": "4.6. RAG Orchestrator <-> Generic LLM (Augmented Prompt & LLM Call)",
-      "Role": "Engineer",
       "WebFormTitle": "To generate a coherent, fact-based answer by sending a context-rich prompt to the LLM while mitigating risks of prompt injection and sensitive data leakage.",
       "Objectives": [
         {
@@ -1723,7 +1772,6 @@
     },
     {
       "StepName": "4.7. Generic LLM <-> RAG Orchestrator (LLM Generation)",
-      "Role": "Engineer,Tester",
       "WebFormTitle": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data.",
       "Objectives": [
         {
@@ -1733,6 +1781,7 @@
       "Fields": [
         {
           "FieldType": "plan",
+          "Role": "Tester",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "(A.7.5, A.7.6) - LLM Generation Quality Test Plan",
           "PlanObjective": "Ensure the LLM accurately, safely, and coherently synthesizes the retrieved information into a final, human-readable answer while adhering to security policies.",
@@ -1863,7 +1912,6 @@
   "5. Pre-deployment verification": [
     {
       "StepName": "5.1. (A.6.2.4) AI Systems verifications",
-      "Role": "Tester,Approver",
       "Objectives": [
         {
           "Objective": "To perform comprehensive validation of the entire AI system and its components against defined performance, security, and ethical requirements before final deployment."
@@ -1872,6 +1920,7 @@
       "Fields": [
         {
           "FieldType": "plan",
+          "Role": "Tester,Approver",
           "TrustDimension": "",
           "FieldName": "(A.12.1.2, A.14.2.5) - Performance & Load Test Plan",
           "PlanObjective": "To validate that the AI system meets its defined non-functional requirements for performance, stability, and scalability under realistic load conditions.",
@@ -1921,6 +1970,7 @@
         },
         {
           "FieldType": "plan",
+          "Role": "Tester,Approver",
           "TrustDimension": "Fairness and Bias",
           "FieldName": "(A.7.4) Fairness and Bias in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
@@ -2292,6 +2342,7 @@
         },
         {
           "FieldType": "plan",
+          "Role": "Tester,Approver",
           "TrustDimension": "Transparency and Provision of Information",
           "FieldName": "(A.7.4) Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
@@ -2439,6 +2490,7 @@
         },
         {
           "FieldType": "plan",
+          "Role": "Tester,Approver",
           "TrustDimension": "Record-Keeping",
           "FieldName": "(Art 12) - Logging and Traceability Validation Plan",
           "PlanObjective": "To validate that the RAG Orchestrator's audit logging is comprehensive, correctly structured, and functionally capable of capturing the necessary events and data points required for regulatory traceability, post-market monitoring, and accountability.",
@@ -2484,6 +2536,7 @@
         },
         {
           "FieldType": "plan",
+          "Role": "Tester,Approver",
           "TrustDimension": "Unacceptable Risk / Compliance",
           "FieldName": "[TEST-COMP-01B] - Prohibited Uses Blacklist Enforcement and Audit Test",
           "PlanObjective": "To validate that the **Prohibited Uses Blacklist Screening Module** (RAG-COMP-01.2) successfully detects and rejects all queries containing prohibited terms, and that the attempted misuse is correctly logged and alerted (RAG-COMP-01.4).",
@@ -2562,6 +2615,7 @@
         },
         {
           "FieldType": "plan",
+          "Role": "Tester,Approver",
           "TrustDimension": "Human Oversight",
           "FieldName": "[TEST-HO-01] - Decision-Making Language Detection and Human-in-the-Loop Test Plan",
           "PlanObjective": "To test and validate that the RAG Orchestrator's post-processing controls effectively detect high-impact 'Decision-Making Language Requiring Intervention' in the LLM output, correctly trigger the Human-in-the-Loop (HIL) workflow, and ensure all actions are logged for traceability.",
@@ -2672,7 +2726,6 @@
   "6. Approvals": [
     {
       "StepName": "6.1. AI Systems approvals",
-      "Role": "Approver",
       "Objectives": [
         {
           "Objective": "Stakeholder Approval and Governance: To obtain formal sign-off from all relevant stakeholders, confirming that the deployment plan is sound and all prerequisites have been satisfied, thereby providing a clear governance gate and accountability for the deployment decision."
@@ -2681,6 +2734,7 @@
       "Fields": [
         {
           "FieldName": "AI System Security Approver",
+          "Role": "Approver",
           "TrustDimension": "",
           "FieldLabel": "Security Approver",
           "FieldText": "Name/Role of the Security Aprover",
@@ -2688,6 +2742,7 @@
         },
         {
           "FieldName": "AI System Security Approval",
+          "Role": "Approver",
           "TrustDimension": "",
           "FieldLabel": "Security Approved",
           "FieldText": "",
@@ -2695,6 +2750,7 @@
         },
         {
           "FieldName": "AI System DPO Approver",
+          "Role": "Approver",
           "TrustDimension": "",
           "FieldLabel": "DPO Approver",
           "FieldText": "Name/Role of the DPO Aprover",
@@ -2702,6 +2758,7 @@
         },
         {
           "FieldName": "AI System DPO Approval",
+          "Role": "Approver",
           "TrustDimension": "",
           "FieldLabel": "DPO Approved",
           "FieldText": "",
@@ -2709,6 +2766,7 @@
         },
         {
           "FieldName": "AI System Risk Approver",
+          "Role": "Approver",
           "TrustDimension": "",
           "FieldLabel": "Risk Approver",
           "FieldText": "Name/Role of the Risk Aprover",
@@ -2716,6 +2774,7 @@
         },
         {
           "FieldName": "AI System Risk Approval",
+          "Role": "Approver",
           "TrustDimension": "",
           "FieldLabel": "Risk Approved",
           "FieldText": "",
@@ -2723,6 +2782,7 @@
         },
         {
           "FieldName": "AI System Business Approver",
+          "Role": "Approver",
           "TrustDimension": "",
           "FieldLabel": "Business Approver",
           "FieldText": "Name/Role of the Business Approver",
@@ -2730,6 +2790,7 @@
         },
         {
           "FieldName": "AI System Business Approval",
+          "Role": "Approver",
           "TrustDimension": "",
           "FieldLabel": "Business Approved",
           "FieldText": "",
@@ -2741,7 +2802,6 @@
   "7. Deployment": [
     {
       "StepName": "7.1. (A.6.2.5) AI Lifecycle Phase requirements - Deployment",
-      "Role": "Deployment Engineer",
       "WebFormTitle": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation.",
       "Objectives": [
         {
@@ -2751,6 +2811,7 @@
       "Fields": [
         {
           "FieldType": "risk",
+          "Role": "Deployment Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "Insecure AI component Packaging",
           "RiskDescription": "Failure to properly secure the lifecycle and runtime environment of containerized AI components—including insecure container **registries**, weak **access controls**, unhardened **host operating systems**, and poorly configured **container security context**—creates a significant attack surface. This could allow an attacker to **tamper with model code/artifacts** during transit or storage, **exfiltrate secrets**, achieve **privilege escalation** from a compromised container to the host, or exploit **unrestricted network access** to conduct lateral movement and **Denial of Service (DoS)**.",
@@ -2851,7 +2912,6 @@
     },
     {
       "StepName": "7.2. (A.8.4) Communication of incidents",
-      "Role": "Incident Manager",
       "Objectives": [
         {
           "Objective": "To establish clear, defined protocols and channels for the immediate and effective communication of any AI system incidents or breaches to relevant internal stakeholders and external regulatory bodies."
@@ -2860,6 +2920,7 @@
       "Fields": [
         {
           "FieldName": "(A.8.4) - Incident Communication Plan - Data Breach",
+          "Role": "Incident Manager",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Data Breach",
           "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
@@ -2867,6 +2928,7 @@
         },
         {
           "FieldName": "(A.8.4) - Incident Communication Plan - Model Misuse",
+          "Role": "Incident Manager",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Model Misuse",
           "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
@@ -2874,6 +2936,7 @@
         },
         {
           "FieldName": "(A.8.4) - Incident Communication Plan - Model Failure",
+          "Role": "Incident Manager",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldLabel": "Model Failure",
           "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
@@ -2883,7 +2946,6 @@
     },
     {
       "StepName": "7.3. (A.8.2) AI System Documentation and User Information",
-      "Role": "Engineer",
       "WebFormTitle": "To provide all users and stakeholders with clear, comprehensive, and accessible information required for the safe, effective, and responsible use of the AI system.",
       "Objectives": [
         {
@@ -2896,7 +2958,6 @@
   "8. Operations": [
     {
       "StepName": "8.1. (A.6.2.6) AI Lifecycle Phase requirements - Operation and Monitoring",
-      "Role": "Operation & Monitoring Engineer",
       "Objectives": [
         {
           "Objective": "To establish continuous monitoring, management, and maintenance protocols for the live AI system to ensure sustained performance, compliance, and risk mitigation throughout its operational lifespan."
@@ -2905,6 +2966,7 @@
       "Fields": [
         {
           "FieldType": "risk",
+          "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "Insufficient Scalability Management",
           "RiskDescription": "Failure to architect the RAG system for **horizontal scalability** across all components—including the RAG Orchestrator, the LLM endpoint, the vector database, and the data pipeline—will result in an **inability to handle increasing user load** or **growing data volumes**. This leads to degraded **performance**, high **latency**, potential **service instability** during traffic spikes, and prevents the timely **update** of the core knowledge base.",
@@ -2933,6 +2995,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "[C.3.6] - Poor Management of AI System Changes and Updates",
           "RiskDescription": "Failure to manage the lifecycle of the AI system, including **changes to its underlying data, code, or model artifacts**, due to a lack of automated **validation, testing, version control, and formal change management**, could lead to the deployment of an **unstable, non-reproducible, or poor-performing** model. This results in **service degradation**, potential **compliance issues** from undocumented changes, and the inability to reliably **rollback** to a previous stable state.",
@@ -2961,6 +3024,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "Inadequate Disaster Recovery and Business Continuity Planning",
           "RiskDescription": "A regional or catastrophic failure affecting the RAG system's primary deployment—including the user interface, RAG Orchestrator, privately-hosted LLM, or the Permanent Index (vector database)—could lead to **prolonged, unauthorized downtime**. Without tested failover procedures, IaC for rapid deployment, and cross-region data replication, the system would fail to meet its established **Recovery Time Objective (RTO)** and **Recovery Point Objective (RPO)**, causing a **critical disruption** to business operations.",
@@ -2989,6 +3053,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "Insufficient Performance Monitoring and Analysis",
           "RiskDescription": "Lack of comprehensive instrumentation across the RAG architecture—spanning end-to-end user query latency, LLM inference efficiency, knowledge base update throughput, and retrieval quality—could lead to **undetected performance degradation**. This results in poor **user experience** due to slow response times, **cost inefficiencies** from underoptimized GPU resources, and **inaccurate model outputs** caused by poor information retrieval.",
@@ -3017,6 +3082,7 @@
         },
         {
           "FieldType": "risk",
+          "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "Inadequate Security Monitoring and Threat Detection",
           "RiskDescription": "Failure to adequately monitor the generative AI architecture—including user prompts, LLM responses, internal data processing, and component-to-component network traffic—could result in the **undetected successful exploitation** of vulnerabilities like prompt injection, leading to **data exfiltration** of proprietary information from the vector store, **model misuse** for unauthorized tasks, or **system compromise** via malicious document ingestion or **lateral movement** across the internal services.",

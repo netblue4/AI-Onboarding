@@ -100,6 +100,7 @@
                 // Store the original procedure data structure
                 const originalWebappData = webappData;
                 
+                // procedureDataArray will now hold ALL steps from the JSON
                 let procedureDataArray = [];
                 let procedureSteps = [];
                 const capturedData = {};
@@ -109,43 +110,38 @@
                 let currentRole = roleDropdown.value;
                 let currentDimension = dimensionDropdown.value;
 
-                // --- HELPER FUNCTION: CHECK IF A FIELD MATCHES THE CURRENT DIMENSION ---
-                function fieldMatchesDimension(field) {
-                    // Always show if "All Trust Dimensions" is selected
-                    if (currentDimension === "" || !currentDimension) {
-                        return true;
+                // --- HELPER FUNCTION: JOINT FILTER LOGIC ---
+                function fieldPassesFilters(field) {
+                    // 1. Role Filtering
+                    const roleSelected = currentRole && currentRole !== "";
+                    let roleMatch = true;
+                    
+                    if (roleSelected) {
+                        const fieldRoles = field.Role ? String(field.Role).split(',').map(r => r.trim()) : [];
+                        // Check if the field's role includes the selected role
+                        roleMatch = fieldRoles.includes(currentRole);
                     }
                     
-                    // Check the TrustDimension property on the field object
-                    if (field.TrustDimension) {
-                        const fieldDimensions = String(field.TrustDimension).split(',').map(d => d.trim());
-                        return fieldDimensions.includes(currentDimension);
+                    // 2. Trust Dimension Filtering
+                    const dimensionSelected = currentDimension && currentDimension !== "";
+                    let dimensionMatch = true;
+                    
+                    if (dimensionSelected) {
+                        const fieldDimensions = field.TrustDimension ? String(field.TrustDimension).split(',').map(d => d.trim()) : [];
+                        // Check if the field's dimension includes the selected dimension
+                        dimensionMatch = fieldDimensions.includes(currentDimension);
                     }
                     
-                    // If the field has no TrustDimension property, it is generally considered an un-dimensioned 
-                    // operational field (e.g., auto-generated ID) and should be shown for context.
-                    // However, based on the requirement to *only* show matching fields, 
-                    // we will hide fields that lack a dimension if a dimension is selected.
-                    return false;
+                    // The field must satisfy BOTH active filters.
+                    return roleMatch && dimensionMatch;
                 }
                 // --- END HELPER FUNCTION ---
 
-                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS (Role filter only) ---
+
+                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS (NO step filtering now) ---
                 function filterAndInitializeSteps() {
-                    currentStepIndex = 0; // Reset to the first step after filtering
-                    const allStepsFlat = Object.values(originalWebappData).flat();
-                    
-                    // 1. Role Filtering (Still performed at the Step level)
-                    if (currentRole === "" || !currentRole) {
-                        // Show all steps
-                        procedureDataArray = allStepsFlat;
-                    } else {
-                        // Filter steps based on the step's 'Role' property
-                        procedureDataArray = allStepsFlat.filter(step => {
-                            const stepRoles = step.Role ? String(step.Role).split(',').map(r => r.trim()) : [];
-                            return stepRoles.includes(currentRole);
-                        });
-                    }
+                    // Populate with ALL steps from the JSON
+                    procedureDataArray = Object.values(originalWebappData).flat();
                     
                     // Re-create the array of step names for progress tracking
                     procedureSteps = procedureDataArray.map(step => step.StepName);
@@ -155,9 +151,9 @@
                     if (procedureSteps.length > 0) {
                         renderCurrentStep();
                     } else {
-                        // Handle case where no steps are available
+                        // This case is unlikely now unless the JSON is empty
                         mainTitle.textContent = "No Steps Available";
-                        formContainer.innerHTML = "<p>There are no steps defined for the selected role.</p>";
+                        formContainer.innerHTML = "<p>The procedure data is empty.</p>";
                         prevBtn.style.display = 'none';
                         nextBtn.style.display = 'none';
                         downloadBtn.style.display = 'none';
@@ -166,63 +162,44 @@
                 }
                 // --- END MODIFIED FUNCTION ---
 
-                // --- RENDER PROCEDURE STEPS (unchanged, uses procedureDataArray) ---
+                // --- MODIFIED FUNCTION: RENDER PROCEDURE STEPS (Renders ALL steps for visual flow) ---
                 function renderProcedureSteps() {
                     stepContainer.innerHTML = '';
                     let globalStepIndex = 0; 
 
                     for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
-                        let phaseHasRenderableSteps = false;
-                        const phaseStepsToRender = [];
+                        const phaseHeader = document.createElement('div');
+                        phaseHeader.className = 'phase-header';
+                        phaseHeader.textContent = phaseName;
+                        stepContainer.appendChild(phaseHeader);
 
                         stepsInPhase.forEach(step => {
-                            // Check if this step is present in the current (filtered by role) procedureDataArray
-                            const isStepIncluded = procedureDataArray.some(filteredStep => 
-                                filteredStep.StepName === step.StepName
-                            );
+                            const stepDiv = document.createElement('div');
+                            stepDiv.className = 'step-item';
+                            // The ID must correspond to the step's index in the *full* array
+                            stepDiv.id = `step-item-${globalStepIndex}`; 
 
-                            if (isStepIncluded) {
-                                phaseHasRenderableSteps = true;
-                                phaseStepsToRender.push(step);
-                            }
-                        });
+                            const iconSpan = document.createElement('span');
+                            iconSpan.className = 'icon';
+                            stepDiv.appendChild(iconSpan);
 
-                        if (phaseHasRenderableSteps) {
-                            // Create and append a header for the phase only if it contains steps
-                            const phaseHeader = document.createElement('div');
-                            phaseHeader.className = 'phase-header';
-                            phaseHeader.textContent = phaseName;
-                            stepContainer.appendChild(phaseHeader);
-
-                            // Render only the included steps for this phase
-                            phaseStepsToRender.forEach(step => {
-                                const stepDiv = document.createElement('div');
-                                stepDiv.className = 'step-item';
-                                // The ID must correspond to the step's index in the *filtered* array
-                                stepDiv.id = `step-item-${globalStepIndex}`; 
-
-                                const iconSpan = document.createElement('span');
-                                iconSpan.className = 'icon';
-                                stepDiv.appendChild(iconSpan);
-
-                                const textSpan = document.createElement('span');
-                                textSpan.textContent = step.StepName;
-                                stepDiv.appendChild(textSpan);
-                                
-                                const stepIndexToNavigate = globalStepIndex;
-                                stepDiv.addEventListener('click', () => {
-                                    currentStepIndex = stepIndexToNavigate;
-                                    renderCurrentStep();
-                                });
-
-                                stepContainer.appendChild(stepDiv);
-                                globalStepIndex++; // Increment for the next *included* step
+                            const textSpan = document.createElement('span');
+                            textSpan.textContent = step.StepName;
+                            stepDiv.appendChild(textSpan);
+                            
+                            const stepIndexToNavigate = globalStepIndex;
+                            stepDiv.addEventListener('click', () => {
+                                currentStepIndex = stepIndexToNavigate;
+                                renderCurrentStep();
                             });
-                        }
+
+                            stepContainer.appendChild(stepDiv);
+                            globalStepIndex++; // Increment for the next *included* step
+                        });
                     }
                 }
-                // --- END RENDER PROCEDURE STEPS ---
-
+                // --- END MODIFIED FUNCTION ---
+                
                 function updateStepHighlight() {
                     procedureSteps.forEach((_, index) => {
                         const stepDiv = document.getElementById(`step-item-${index}`);
@@ -266,7 +243,7 @@
                     progressBar.style.width = progressPercentage + '%';
                 }
 
-                // --- MODIFIED FUNCTION: RENDER CURRENT STEP (Applies per-field filtering) ---
+                // --- MODIFIED FUNCTION: RENDER CURRENT STEP (Applies joint per-field filtering) ---
                 function renderCurrentStep() {
                     updateProgressBar();
                     updateStepHighlight();
@@ -288,7 +265,7 @@
                     formStepDiv.className = 'form-step';
 
 
-                    // Objectives are always shown (they don't have a TrustDimension property in the data)
+                    // Objectives are always rendered as they are informational
                     if (stepData.Objectives && stepData.Objectives.length > 0) {
                     	const handler = getFieldHandler('objective');
                         if (handler) {
@@ -301,8 +278,8 @@
                     let renderedFieldCount = 0;
 
                     if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
-                         // Fallback for steps with no defined fields (only if no dimension is selected)
-                         if (currentDimension === "") {
+                         // Note field only shown if no fields are present AND no filter is active
+                         if (currentDimension === "" && currentRole === "") {
                             if (typeof createNoteField === 'function') {
                                 formStepDiv.appendChild(createNoteField());
                                 renderedFieldCount++;
@@ -312,8 +289,8 @@
                         stepData.Fields.forEach(field => {
                             if (!field || !field.FieldName) return;
                             
-                            // *** CORE FILTERING LOGIC ***
-                            if (fieldMatchesDimension(field)) {
+                            // *** CORE JOINT FILTERING LOGIC ***
+                            if (fieldPassesFilters(field)) {
                                 const handler = getFieldHandler(field.FieldType);
                                 if (handler) {
                                     const fieldElement = handler(field, capturedData, sanitizeForId);
@@ -321,12 +298,21 @@
                                     renderedFieldCount++;
                                 }
                             }
-                            // *** END CORE FILTERING LOGIC ***
+                            // *** END CORE JOINT FILTERING LOGIC ***
                         });
                     }
                     
                     if (renderedFieldCount === 0) {
-                         formContainer.innerHTML = `<p>No relevant fields found for the selected **Trust Dimension: ${currentDimension}**.</p>`;
+                        let filterMessage = "No relevant fields found for the current selection.";
+                        if (currentRole !== "" && currentDimension !== "") {
+                             filterMessage = `No fields match both **Role: ${currentRole}** AND **Dimension: ${currentDimension}**.`;
+                        } else if (currentRole !== "") {
+                            filterMessage = `No fields match the selected **Role: ${currentRole}**.`;
+                        } else if (currentDimension !== "") {
+                            filterMessage = `No fields match the selected **Dimension: ${currentDimension}**.`;
+                        }
+
+                         formContainer.innerHTML = `<p>${filterMessage}</p>`;
                     } else {
                         formContainer.appendChild(formStepDiv);
                     }
@@ -349,11 +335,15 @@
                     if (stepData && stepData.Fields) {
                         capturedData['Step: ' + currentStepIndex] = currentStepKey;
                         stepData.Fields.forEach(field => {
-                            // Only attempt to capture data for fields that were visible/processed based on dimension
-                            if (fieldMatchesDimension(field)) {
+                            // Only attempt to capture data for fields that were visible/processed based on both filters
+                            if (fieldPassesFilters(field)) {
                                 if (!field || !field.FieldName || field.FieldType === 'Auto generated number') return;
                                 const sanitizedId = sanitizeForId(field.FieldName);
                                 const inputElement = document.getElementById(sanitizedId);
+                                
+                                // Capture data regardless of whether the field is rendered now,
+                                // but we use the filter to determine which fields to loop through and check.
+                                // In this new setup, we only capture data for fields that *pass* the current filter.
                                 if (inputElement) {
                                     if (inputElement.type === 'radio') {
                                         const checkedRadio = document.querySelector(`input[name="${sanitizedId}"]:checked`);
@@ -363,7 +353,12 @@
                                     } else {
                                         capturedData[' - ' + field.FieldName] = inputElement.value;
                                     }
+                                } else {
+                                    // Handle cases where a field might exist in capturedData but is not on the page (e.g., if the user changes the filter mid-step)
+                                    // To simplify, we keep the previously captured data. If a field isn't on the page, we don't update its value.
                                 }
+                            } else {
+                                // If a field doesn't pass the filter, we simply skip capturing its data for this step completion.
                             }
                         });
                     }
@@ -402,29 +397,31 @@
                 // Event listener for Role dropdown change
                 roleDropdown.addEventListener('change', (event) => {
                     currentRole = event.target.value; // Update state
-                    // Clear captured data on role change
-                    for (const key in capturedData) {
-                        delete capturedData[key];
+                    // Re-render the current step to apply the new filter
+                    if (procedureSteps.length > 0) {
+                        // Clear captured data on role change (as field visibility changes)
+                        for (const key in capturedData) {
+                            delete capturedData[key];
+                        }
+                         renderCurrentStep();
                     }
-                    // Re-filter steps based on the new role (dimension filter is applied in renderCurrentStep)
-                    filterAndInitializeSteps(); 
                 });
                 
                 // Event listener for Dimension dropdown change
                 dimensionDropdown.addEventListener('change', (event) => {
                     currentDimension = event.target.value; // Update state
-                    // Clear captured data on dimension change
-                    for (const key in capturedData) {
-                        delete capturedData[key];
-                    }
-                    // Re-render the current step to apply the new dimension filter immediately
+                    // Re-render the current step to apply the new filter
                     if (procedureSteps.length > 0) {
+                        // Clear captured data on dimension change (as field visibility changes)
+                        for (const key in capturedData) {
+                            delete capturedData[key];
+                        }
                          renderCurrentStep();
                     }
                 });
 
 
-                // Initial load: show all steps (default dropdown values are "")
+                // Initial load: show all steps and render the first step with default filters ("")
                 filterAndInitializeSteps();
             })
             .catch(error => {
