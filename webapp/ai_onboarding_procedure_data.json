@@ -680,30 +680,31 @@
       "Fields": [
         {
           "FieldType": "fieldGroup",
+          "FieldName": "(A.9.4) - AI system's intended use and limitations Group",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
           "GroupTitle": "Intention of the AI System",
           "Fields": [
-        {
-          "Control": "A.9.4 – Intended use of the AI system",
-          "Role": "Requester",
-          "TrustDimension": "Intended Use",
-          "FieldName": "(A.9.4) - AI System ID",
-          "FieldLabel": "AI System ID",
-          "FieldText": "AI System Unique Number",
-          "FieldType": "Auto generated number"
-        },
-        {
-          "Control": "A.9.4 – Intended use of the AI system",
-          "Role": "Requester",
-          "TrustDimension": "Intended Use",
-          "FieldName": "(A.9.4) - Name",
-          "FieldLabel": "Name",
-          "FieldText": "Name of the AI application",
-          "FieldType": "TextBox"
-        }
- 	  ]
- 	 },
+			{
+			  "Control": "A.9.4 – Intended use of the AI system",
+			  "Role": "Requester",
+			  "TrustDimension": "Intended Use",
+			  "FieldName": "(A.9.4) - AI System ID",
+			  "FieldLabel": "AI System ID",
+			  "FieldText": "AI System Unique Number",
+			  "FieldType": "Auto generated number"
+			},
+			{
+			  "Control": "A.9.4 – Intended use of the AI system",
+			  "Role": "Requester",
+			  "TrustDimension": "Intended Use",
+			  "FieldName": "(A.9.4) - Name",
+			  "FieldLabel": "Name",
+			  "FieldText": "Name of the AI application",
+			  "FieldType": "TextBox"
+			}
+		]
+ 	    },
         
         {
           "Control": "A.9.4 – Intended use of the AI system",
