@@ -73,7 +73,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Risk Management System",
           "FieldName": "[Article 9] - Inadequate or Ineffective Risk Management",
           "RiskDescription": "",
           "controls": [
@@ -118,7 +118,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Data and Data Governance",
           "FieldName": "[Article 10] - Poor Data Quality and Governance",
           "RiskDescription": "",
           "controls": [
@@ -184,7 +184,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Transparency and Provision of Information",
           "FieldName": "[Article 13] - Lack of Transparency and Provision of Information to Users",
           "RiskDescription": "",
           "controls": [
@@ -223,7 +223,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Human Oversight",
           "FieldName": "[Article 14] - Ineffective or Insufficient Human Oversight",
           "RiskDescription": "",
           "controls": [
@@ -267,7 +267,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Cybersecurity & Resilience",
           "FieldName": "[Article 15] - Inadequate Accuracy, Robustness, and Cybersecurity",
           "RiskDescription": "",
           "controls": [
@@ -306,7 +306,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldName": "[Article 27] - Failure to Assess Fundamental Rights Impact",
           "RiskDescription": "",
           "controls": [
@@ -923,56 +923,56 @@
       "Fields": [
         {
           "FieldName": "VP-IMP-1.1-PopulationType",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
           "FieldText": "",
           "FieldType": "Option box with values:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
         },
         {
           "FieldName": "VP-IMP-2.1-ImpactType",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Negitive or positive impacts",
           "FieldText": "Describe the specific ways the AI system could negatively or positively affect the vulnerable population identified.",
           "FieldType": "TextBox"
         },
         {
           "FieldName": "VP-IMP-2.2-SeverityAssessment",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Rate the severity of identified impacts",
           "FieldText": "",
           "FieldType": "Dropdown box with values:/Low/Medium/High"
         },
         {
           "FieldName": "VP-IMP-2.3-SeverityAssessment",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Describe the severity of identified impacts",
           "FieldText": "",
           "FieldType": "TextBox"
         },
         {
           "FieldName": "VP-IMP-3.1-MitigationStrategy",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population",
           "FieldText": "",
           "FieldType": "MultiSelect:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
         },
         {
           "FieldName": "VP-IMP-4.1-StakeholderInclusion",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
           "FieldText": "",
           "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
         },
         {
           "FieldName": "VP-IMP-4.2-SeverityAssessment",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Impact Description",
           "FieldText": "Describe the severity of identified impacts.",
           "FieldType": "TextBox"
         },
         {
           "FieldName": "VP-IMP-3.2-MitigationEffectiveness",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Post-Deployment Monitoring Plan",
           "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and the frequency of review.",
           "FieldType": "TextBox"
@@ -990,7 +990,7 @@
         {
           "FieldName": "ENV-IA-1.1-EnergySource",
           "Role": "Requester",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
           "FieldText": "",
           "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
@@ -998,7 +998,7 @@
         {
           "FieldName": "ENV-IA-2.1-ConsumptionMetrics",
           "Role": "Requester",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Energy Consumption & Carbon Footprint Estimation",
           "FieldText": "Describe the methodology and provide the estimated energy consumption (e.g., in kWh) and carbon footprint (e.g., in tons of CO2e) for the system's lifecycle (training, validation, and deployment).",
           "FieldType": "TextBox"
@@ -1006,7 +1006,7 @@
         {
           "FieldName": "ENV-IA-3.1-HardwareEOL",
           "Role": "Requester",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
           "FieldText": "",
           "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
@@ -1014,7 +1014,7 @@
         {
           "FieldName": "ENV-IA-4.1-EfficiencyMeasures",
           "Role": "Requester",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Select main strategies for minimizing negative environmental impacts.",
           "FieldText": "",
           "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
@@ -1022,7 +1022,7 @@
         {
           "FieldName": "ENV-IA-4.2-ImpactLevel",
           "Role": "Requester",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Level of Environmental Impact",
           "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
           "FieldType": "Dropdown box with values:/Low/Medium/High"
@@ -1030,7 +1030,7 @@
         {
           "FieldName": "VP-IMP-2.3-SeverityAssessment",
           "Role": "Requester",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Describe the Environmental Impact",
           "FieldText": "Describe the degree of environmental burden/benefit.",
           "FieldType": "TextBox"
@@ -1038,7 +1038,7 @@
         {
           "FieldName": "ENV-IA-5.1-PositiveContribution",
           "Role": "Requester",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Contribution to Environmental Sustainability Goals",
           "FieldText": "Does the AI system's intended application directly contribute to positive environmental outcomes (e.g., climate change modeling, energy grid optimization, biodiversity monitoring)? If yes, please describe.",
           "FieldType": "TextBox"
@@ -1046,7 +1046,7 @@
         {
           "FieldName": "ENV-IA-6.1-MonitoringReview",
           "Role": "Requester",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "FieldLabel": "Environmental Impact Monitoring and Review",
           "FieldText": "Describe the process and frequency for monitoring and reviewing the environmental performance metrics of the AI system over its lifecycle.",
           "FieldType": "TextBox"
@@ -1067,7 +1067,7 @@
          {
           "FieldType": "fieldGroup",
           "FieldName": "(A.4.2, A.4.3) - Dataset Repository",
-          "Role": "Requester, Data Engineer",
+          "Role": "Requester,Data Engineer",
           "TrustDimension": "Data and Data Governance",
           "GroupTitle": "(A.4.2, A.4.3) - Data for AI System Details",
           "Fields": [
