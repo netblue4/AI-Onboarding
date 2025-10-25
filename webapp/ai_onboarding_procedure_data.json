@@ -730,17 +730,7 @@
           "FieldLabel": "Augmented/Enhanced Tasks",
           "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
           "FieldType": "TextBox"
-        }
-      ]
-    },
-    {
-      "StepName": "2.2. (A.9.3) AI system's Objectives for Responsible Use",
-      "Objectives": [
-        {
-          "Objective": "Formalizing the ethical and governance goals for the system. This involves defining the specific outcomes and controls necessary to ensure the AI system is used in a responsible, fair, and transparent manner."
-        }
-      ],
-      "Fields": [
+        },
         {
           "FieldName": "AI system intended use - Permitted User Prompt Categories Whitelist Definition",
           "Role": "Requester",
@@ -773,6 +763,17 @@
           "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
           "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
         }
+      ]
+    },
+    {
+      "StepName": "2.2. (A.9.3) AI system's Objectives for Responsible Use",
+      "Objectives": [
+        {
+          "Objective": "Formalizing the ethical and governance goals for the system. This involves defining the specific outcomes and controls necessary to ensure the AI system is used in a responsible, fair, and transparent manner."
+        }
+      ],
+      "Fields": [
+
       ]
     },
     {
