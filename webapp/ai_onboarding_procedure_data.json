@@ -14,7 +14,7 @@
           "TrustDimension": "Compliance",
           "FieldLabel": "Will the AI system be used for any of the following prohibited purposes?",
           "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
-          "FieldType": "MultiSelect:Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)"
+          "FieldType": "MultiSelect:None/Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)"
         }
       ]
     },
@@ -369,7 +369,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,AI Governance",
           "FieldName": "[A.2] - Policies related to AI",
           "RiskDescription": "",
           "controls": [
@@ -396,7 +396,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,AI Governance",
           "FieldName": "[A.3] - Internal organization",
           "RiskDescription": "",
           "controls": [
@@ -417,7 +417,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Cybersecurity & Resilience",
           "FieldName": "[A.4] - Resources for AI systems",
           "RiskDescription": "",
           "controls": [
@@ -456,7 +456,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Fundamental Rights,Job Preservation",
           "FieldName": "[A.5] - Assessing impacts of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -489,7 +489,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Cybersecurity & Resilience",
           "FieldName": "[A.6] - AI system life cycle",
           "RiskDescription": "",
           "controls": [
@@ -550,7 +550,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Data and Data Governance",
           "FieldName": "[A.7] - Data for AI systems",
           "RiskDescription": "",
           "controls": [
@@ -589,7 +589,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Transparency and Provision of Information",
           "FieldName": "[A.8] - Information for interested parties of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -618,7 +618,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Intended Use",
           "FieldName": "[A.9] - Use of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -645,7 +645,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Risk Management System",
           "FieldName": "[A.10] - Third-party and customer relationships",
           "RiskDescription": "",
           "controls": [
@@ -1643,7 +1643,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester",
-          "TrustDimension": "Cybersecurity & Resilience",
+          "TrustDimension": "Data and Data Governance",
           "FieldName": "(A.7.4, A.7.6) - RAG Retrieval Quality Test Plan",
           "PlanObjective": "Ensure the RAG Orchestrator accurately and securely retrieves the most relevant and timely indexed data.",
           "TestDatasetMetadata": {
@@ -1940,7 +1940,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "",
+          "TrustDimension": "Cybersecurity & Resilience",
           "FieldName": "(A.12.1.2, A.14.2.5) - Performance & Load Test Plan",
           "PlanObjective": "To validate that the AI system meets its defined non-functional requirements for performance, stability, and scalability under realistic load conditions.",
           "PlanCriteria": [
@@ -2556,7 +2556,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Unacceptable Risk / Compliance",
+          "TrustDimension": "Intended Use",
           "FieldName": "[TEST-COMP-01B] - Prohibited Uses Blacklist Enforcement and Audit Test",
           "PlanObjective": "To validate that the **Prohibited Uses Blacklist Screening Module** (RAG-COMP-01.2) successfully detects and rejects all queries containing prohibited terms, and that the attempted misuse is correctly logged and alerted (RAG-COMP-01.4).",
           "TestDatasetMetadata": {
