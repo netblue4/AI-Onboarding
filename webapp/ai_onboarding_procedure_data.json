@@ -677,8 +677,14 @@
           "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
         }
       ],
-       "Fields": [        
-       {
+      "Fields": [
+        {
+          "FieldType": "fieldGroup",
+          "Role": "Engineer",
+          "TrustDimension": "Human Oversight",
+          "GroupTitle": "Intention of the AI System",
+          "controls": [
+        {
           "Control": "A.9.4 – Intended use of the AI system",
           "Role": "Requester",
           "TrustDimension": "Intended Use",
@@ -686,18 +692,19 @@
           "FieldLabel": "AI System ID",
           "FieldText": "AI System Unique Number",
           "FieldType": "Auto generated number"
-        }
-        ],
-      "Fields": [
+        },
         {
           "Control": "A.9.4 – Intended use of the AI system",
           "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldName": "(A.9.4) - Name",
-          "FieldLabel": "Namell",
+          "FieldLabel": "Name",
           "FieldText": "Name of the AI application",
           "FieldType": "TextBox"
-        },
+        }
+ 	  ]
+ 	 },
+        
         {
           "Control": "A.9.4 – Intended use of the AI system",
           "Role": "Requester",
