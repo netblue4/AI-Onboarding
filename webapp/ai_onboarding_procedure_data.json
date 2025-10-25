@@ -683,7 +683,7 @@
           "FieldName": "(A.9.4) - AI system's intended use and limitations Group",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
-          "GroupTitle": "Intention of the AI System",
+          "GroupTitle": "AI System Details",
           "Fields": [
 			{
 			  "Control": "A.9.4 – Intended use of the AI system",
@@ -702,45 +702,44 @@
 			  "FieldLabel": "Name",
 			  "FieldText": "Name of the AI application",
 			  "FieldType": "TextBox"
-			}
+			},
+			{
+			  "Control": "A.9.4 – Intended use of the AI system",
+			  "Role": "Requester",
+			  "TrustDimension": "Intended Use",
+			  "FieldName": "(A.9.4) - Business Purpose",
+			  "FieldLabel": "Business Purpose",
+			  "FieldText": "What specific business problem or task does this system address?",
+			  "FieldType": "TextBox"
+			},
+			{
+			  "Control": "A.9.4 – Intended use of the AI system",
+			  "Role": "Requester",
+			  "TrustDimension": "Intended Use",
+			  "FieldName": "(A.9.4) - Intended Use",
+			  "FieldLabel": "Intended Use",
+			  "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
+			  "FieldType": "TextBox"
+			},
+			{
+			  "FieldName": "AI system impact assessment - Employees - Benefits",
+			  "Role": "Requester",
+			  "TrustDimension": "Intended Use",
+			  "FieldLabel": "Select Potential Benefits",
+			  "FieldText": "",
+			  "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
+			},
+			{
+			  "Control": "A.9.4 – Intended use of the AI system",
+			  "Role": "Requester",
+			  "TrustDimension": "Intended Use",
+			  "FieldName": "HR-WIA-2.3-AugmentationTasks",
+			  "FieldLabel": "Augmented/Enhanced Tasks",
+			  "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
+			  "FieldType": "TextBox"
+			}		
 		]
  	    },
-        
-        {
-          "Control": "A.9.4 – Intended use of the AI system",
-          "Role": "Requester",
-          "TrustDimension": "Intended Use",
-          "FieldName": "(A.9.4) - Business Purpose",
-          "FieldLabel": "Business Purpose",
-          "FieldText": "What specific business problem or task does this system address?",
-          "FieldType": "TextBox"
-        },
-        {
-          "Control": "A.9.4 – Intended use of the AI system",
-          "Role": "Requester",
-          "TrustDimension": "Intended Use",
-          "FieldName": "(A.9.4) - Intended Use",
-          "FieldLabel": "Intended Use",
-          "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "AI system impact assessment - Employees - Benefits",
-          "Role": "Requester",
-          "TrustDimension": "Intended Use",
-          "FieldLabel": "Select Potential Benefits",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
-        },
-        {
-          "Control": "A.9.4 – Intended use of the AI system",
-          "Role": "Requester",
-          "TrustDimension": "Intended Use",
-          "FieldName": "HR-WIA-2.3-AugmentationTasks",
-          "FieldLabel": "Augmented/Enhanced Tasks",
-          "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
-          "FieldType": "TextBox"
-        },
         {
           "FieldName": "AI system intended use - Permitted User Prompt Categories Whitelist Definition",
           "Role": "Requester",
