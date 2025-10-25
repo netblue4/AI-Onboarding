@@ -14,6 +14,7 @@ function getFieldHandler(fieldType) {
         'risk':createRisk,
         'objective':createObjective,
         'plan':createPlan,
+        'fieldGroup':createFieldGroup,
     };
     
     if (exactMatchHandlers[fieldType]) {

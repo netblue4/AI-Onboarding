@@ -683,7 +683,7 @@
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
           "GroupTitle": "Intention of the AI System",
-          "controls": [
+          "Fields": [
         {
           "Control": "A.9.4 – Intended use of the AI system",
           "Role": "Requester",

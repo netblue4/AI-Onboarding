@@ -384,3 +384,28 @@ button:hover {
 	 color: green;
 	 margin-right: 5px;
 }
+
+/* Style for the Group Box Container */
+.field-group-container {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Light background to make it stand out */
+}
+
+/* Style for the Group Title */
+.field-group-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #ddd; /* Separator line */
+}
+
+/* Optional wrapper for inner fields (adjusts spacing) */
+.field-group-wrapper > div:last-child {
+    margin-bottom: 0 !important; /* Remove bottom margin for the last field inside the group */
+}
