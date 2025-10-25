@@ -28,8 +28,8 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
     groupContainer.appendChild(fieldsWrapper);
 
     // 3. Iterate through the nested 'controls' array
-    if (field.controls && Array.isArray(field.controls)) {
-        field.controls.forEach(nestedField => {
+    if (field.Fields && Array.isArray(field.Fields)) {
+        field.Fields.forEach(nestedField => {
             if (!nestedField.FieldType) {
                 // If a nested field uses 'Control' instead of 'FieldType' for control flow, 
                 // we'll assume a standard TextBox if no type is explicitly defined.
@@ -59,7 +59,7 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
         });
     } else {
          const warning = document.createElement('p');
-         warning.textContent = `[Error: fieldGroup is missing the 'controls' array.]`;
+         warning.textContent = `[Error: fieldGroup is missing the 'fields' array.]`;
          fieldsWrapper.appendChild(warning);
     }
 
