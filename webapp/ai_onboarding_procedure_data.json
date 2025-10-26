@@ -1990,7 +1990,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Transparency & Provision of Information",
+          "TrustDimension": "Fairness & Bias",
           "FieldName": "(A.7.4) Fairness and Bias in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
           "TestDatasetMetadata": {
