@@ -2363,7 +2363,7 @@
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Transparency and Provision of Information",
-          "FieldName": "(A.7.4) Transparency and Explainability in AI Systems Test Plan",
+          "FieldName": "(A.8.5) Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
           "TestDatasetMetadata": {
             "TestCategory": "Transparency and Explainability (Post-Model Validation)",
