@@ -118,7 +118,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Data and Data Governance",
+          "TrustDimension": "Compliance,Data & Data Governance",
           "FieldName": "[Article 10] - Poor Data Quality and Governance",
           "RiskDescription": "",
           "controls": [
@@ -184,8 +184,8 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Transparency and Provision of Information",
-          "FieldName": "[Article 13] - Lack of Transparency and Provision of Information to Users",
+          "TrustDimension": "Compliance,Transparency & Provision of Information",
+          "FieldName": "[Article 13] - Lack of Transparency & Provision of Information to Users",
           "RiskDescription": "",
           "controls": [
             {
@@ -550,7 +550,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Data and Data Governance",
+          "TrustDimension": "Compliance,Data & Data Governance",
           "FieldName": "[A.7] - Data for AI systems",
           "RiskDescription": "",
           "controls": [
@@ -589,7 +589,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Transparency and Provision of Information",
+          "TrustDimension": "Compliance,Transparency & Provision of Information",
           "FieldName": "[A.8] - Information for interested parties of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -1068,13 +1068,13 @@
           "FieldType": "fieldGroup",
           "FieldName": "(A.4.2, A.4.3) - Dataset Repository",
           "Role": "Requester,Data Engineer",
-          "TrustDimension": "Data and Data Governance",
+          "TrustDimension": "Data & Data Governance",
           "GroupTitle": "(A.4.2, A.4.3) - Data for AI System Details",
           "Fields": [
 				{
 				  "FieldName": "(A.4.2, A.4.3) - Dataset Repository",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "Dataset Repository",
 				  "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
 				  "FieldType": "TextBox"
@@ -1082,7 +1082,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3) - Dataset Description",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "Dataset Description",
 				  "FieldText": "Brief overview of the dataset's content and general purpose.",
 				  "FieldType": "TextBox"
@@ -1090,7 +1090,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "Where does the data originate from?",
 				  "FieldText": "",
 				  "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
@@ -1098,7 +1098,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3) - Intended Use",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "What is the specific purpose(s) of the data?",
 				  "FieldText": "",
 				  "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
@@ -1106,7 +1106,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3, A.7.3, A.7.2) - Acquisition of data",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "How will the Data be acquired and selected?",
 				  "FieldText": "",
 				  "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
@@ -1114,7 +1114,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "What is the data Retention schedules based on legal and operational requirements?",
 				  "FieldText": "",
 				  "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
@@ -1122,7 +1122,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3) - Refresh Schedules",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "How often does the data need to be refreshed?",
 				  "FieldText": "",
 				  "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
@@ -1130,7 +1130,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "Secure Disposing",
 				  "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
 				  "FieldType": "TextBox"
@@ -1138,7 +1138,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3) - Approximate Size",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "Approximate Size",
 				  "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
 				  "FieldType": "TextBox"
@@ -1146,7 +1146,7 @@
 				{
 				  "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
 				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
+				  "TrustDimension": "Data & Data Governance",
 				  "FieldLabel": "Owner/Custodian",
 				  "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
 				  "FieldType": "TextBox"
@@ -1156,7 +1156,7 @@
         {
           "FieldType": "risk",
           "Role": "Data Engineer,Engineer",
-          "TrustDimension": "Data and Data Governance,Cybersecurity & Resilience",
+          "TrustDimension": "Data & Data Governance,Cybersecurity & Resilience",
           "FieldName": "Malicious Data Ingestion (Data Poisoning & Indirect Prompt Injection)",
           "RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
           "controls": [
@@ -1201,7 +1201,7 @@
         {
           "FieldType": "plan",
           "Role": "Data Engineer,Tester",
-          "TrustDimension": "Data and Data Governance",
+          "TrustDimension": "Data & Data Governance",
           "FieldName": "(A.7.6) Sensitive Data Preparation Plan",
           "PlanObjective": "Ensure that raw sensitive data is anonymised before it is used by the AI system.",
           "PlanCriteria": [
@@ -1251,7 +1251,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester",
-          "TrustDimension": "Data and Data Governance",
+          "TrustDimension": "Data & Data Governance",
           "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
           "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
           "TestDatasetMetadata": {
@@ -1643,7 +1643,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester",
-          "TrustDimension": "Data and Data Governance",
+          "TrustDimension": "Data & Data Governance",
           "FieldName": "(A.7.4, A.7.6) - RAG Retrieval Quality Test Plan",
           "PlanObjective": "Ensure the RAG Orchestrator accurately and securely retrieves the most relevant and timely indexed data.",
           "TestDatasetMetadata": {
@@ -1990,11 +1990,11 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Fairness and Bias",
+          "TrustDimension": "Transparency & Provision of Information",
           "FieldName": "(A.7.4) Fairness and Bias in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
           "TestDatasetMetadata": {
-            "TestCategory": "Fairness and Bias (Dataset Pre-Model)",
+            "TestCategory": "Transparency & Provision of Information (Dataset Pre-Model)",
             "ControlID": "FAIR-CTX-TEST-01",
             "Purpose": "To validate the dataset for fairness criteria FAIR-REP-01 (Representation Bias), FAIR-HIST-01 (Historical Bias), and FAIR-PRX-01 (Proxy Identification) before model training.",
             "PrimaryMetric": {
@@ -2362,7 +2362,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Transparency and Provision of Information",
+          "TrustDimension": "Transparency & Provision of Information",
           "FieldName": "(A.7.4) Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
           "TestDatasetMetadata": {
