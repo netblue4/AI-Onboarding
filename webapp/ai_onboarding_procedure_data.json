@@ -741,7 +741,7 @@
           ]
         },
         {
-          "FieldName": "(A.9.4) - AI system intended use - Permitted User Prompt Categories Whitelist Definition",
+          "FieldName": "(A.9.4) - Whitelist Key Phrases for Permitted User Prompt Categories",
           "Role": "Requester",
           "TrustDimension": "Intended Use",
           "FieldLabel": "(A.9.4) - Whitelist Key Phrases for Permitted User Prompt Categories",
@@ -749,7 +749,7 @@
           "FieldType": "MultiSelect:Information Retrieval and Q&A:what is, who is, where can I find, tell me about, explain the, what are the details on/Document Summarization:summarize this, give me the key points, tl;dr, provide a summary of, what are the main takeaways, create an abstract for/Content Creation and Drafting:draft an email about, write a paragraph on, create a marketing blurb for, help me write, generate a draft of, compose a message about/Policy and Procedure Guidance:what is the policy for, how do I request, what is the procedure for, explain the process of, guide me through the steps for/Onboarding and Training Support:how do I set up, what training do I need for, explain the onboarding process, guide for new hires, help me learn about/Technical Support and Troubleshooting:how to fix, I'm getting an error, troubleshoot this issue, what does this error mean, help me with this technical problem/Data Analysis and Extraction:extract all the names from, what is the total of, find the average of, pull the data for, list all the dates in, analyze the trends in"
         },
         {
-          "FieldName": "(A.9.4) - AI system intended use - Prohibited Uses Blacklist Definition",
+          "FieldName": "(A.9.4) - Blacklist Key Phrases for Prohibited User Prompt Categories",
           "Role": "Requester",
           "TrustDimension": "Intended Usee",
           "FieldLabel": "(A.9.4) - Blacklist Key Phrases for Prohibited User Prompt Categories",
@@ -757,7 +757,7 @@
           "FieldType": "MultiSelect:Manipulative or Subliminal Techniques Causing Harm:influence my decision, make me buy, change my mind, secretly persuade, subliminal message, hidden command, trick me into, deceive me/Exploitation of Vulnerabilities (e.g., age, disability):target children with ads, exploit elderly, convince a disabled person, addictive game for kids, target financially desperate, exploit vulnerability/General-Purpose Social Scoring:calculate social score, rate my behavior, trustworthiness score, classify people's value, social credit system, evaluate a person based on/Predictive Policing Based Solely on Profiling:predict who will commit a crime, crime risk assessment for a person, profile potential criminals, likelihood of reoffending, predict recidivism/Untargeted Scraping of Facial Images for Databases:scrape faces from internet, create facial recognition database, find all images of a person online, collect CCTV footage for faces, build a face dataset/Emotion Recognition in Workplace or Education:analyze employee emotions, detect student mood, tell me if my team is happy, monitor engagement with emotion, read facial expressions for performance/Biometric Categorization Using Sensitive Data (e.g., race, religion):guess race from photo, determine political opinion from text, infer religious beliefs, categorize by sexual orientation, deduce sex life/'Real-Time' Remote Biometric ID in Public Spaces:live facial recognition, track people in real-time with cameras, identify everyone in this crowd, public camera identification, real-time biometric tracking"
         },
         {
-          "FieldName": "[Article 14] - Decision-Making Language Requiring Intervention",
+          "FieldName": "[Article 14] - Key Phrases in LLM Responses That Require Human Intervention",
           "Role": "Requester",
           "TrustDimension": "Human Oversight",
           "FieldLabel": "[Article 14] - Key Phrases in LLM Responses That Require Human Intervention",
