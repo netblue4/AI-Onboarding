@@ -10,7 +10,7 @@
       "Fields": [
         {
           "FieldName": "EU-AI-ACT-PROHIBITED-ASSESSMENT",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance",
           "FieldLabel": "Will the AI system be used for any of the following prohibited purposes?",
           "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
@@ -28,7 +28,7 @@
       "Fields": [
         {
           "FieldName": "AI-ACT-ROLE-CLASSIFICATION",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance",
           "FieldLabel": "Which description best defines your organization's role and activities for this AI system?",
           "FieldText": "It's very important to clearly define the organisation's activities because it will impact the AI Act’s distinction between 'Provider' (developer) and 'Deployer' (user), which comes with significantly different responsibilities. The organisation's activities are exclusively focused on operationalizing, integrating, and governing generic pre-trained LLMs and developing internal infrastructure for Retrieval-Augmented Generation (RAG), without any modification, fine-tuning, or retraining of the underlying model itself. The AI system is for internal organizational use only, and is not repackaged or distributed to external customers. The LLM is chosen as a generic, pre-trained model, stored on-premises, and never fine-tuned, retrained, Its parameters, weights, or architecture layers are not modified by the organisation's internal engineering team. Meaning it does not interact with or access any external internet datasets, ensuring data sovereignty and minimizing exposure to third-party risks. The organisation's internal engineering team’s efforts are strictly limited to building infrastructure, orchestration, and internal data pipelines for the LLM, but do not alter the core LLM architecture or its parameters.",
@@ -46,7 +46,7 @@
       "Fields": [
         {
           "FieldName": "EU-AI-ACT-HIGH-RISK-ASSESSMENT",
-          "Role": "Compliance",
+          "Role": "ComplianceApprover",
           "TrustDimension": "Compliance",
           "FieldLabel": "Will the AI system be used for any of the following purposes?",
           "FieldText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
@@ -54,7 +54,7 @@
         },
         {
           "FieldName": "EU-AI-ACT-LIMITED-RISK-ASSESSMENT",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance",
           "FieldLabel": "Does the AI system have specific transparency obligations (Limited Risk)?",
           "FieldText": "If the system is not high-risk, it may still be 'Limited Risk' and have specific transparency obligations to ensure users are not deceived. Please select all that apply.",
@@ -72,7 +72,7 @@
       "Fields": [
         {
           "FieldType": "risk",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Risk Management System",
           "FieldName": "[Article 9] - Inadequate or Ineffective Risk Management",
           "RiskDescription": "",
@@ -117,7 +117,7 @@
         },
         {
           "FieldType": "risk",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Data and Data Governance",
           "FieldName": "[Article 10] - Poor Data Quality and Governance",
           "RiskDescription": "",
@@ -156,7 +156,7 @@
         },
         {
           "FieldType": "risk",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Record-Keeping",
           "FieldName": "[Article 12] - Inadequate Traceability and Record-Keeping",
           "RiskDescription": "Failure to implement technical capabilities for automatic event logging (logs) over the system's lifetime and failure to record specific, detailed information required for traceability, accountability, and post-market monitoring as mandated by Article 12.",
@@ -183,7 +183,7 @@
         },
         {
           "FieldType": "risk",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Transparency and Provision of Information",
           "FieldName": "[Article 13] - Lack of Transparency and Provision of Information to Users",
           "RiskDescription": "",
@@ -222,7 +222,7 @@
         },
         {
           "FieldType": "risk",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Human Oversight",
           "FieldName": "[Article 14] - Ineffective or Insufficient Human Oversight",
           "RiskDescription": "",
@@ -266,7 +266,7 @@
         },
         {
           "FieldType": "risk",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Cybersecurity and Resilience",
           "FieldName": "[Article 15] - Inadequate Accuracy, Robustness, and Cybersecurity",
           "RiskDescription": "",
@@ -305,7 +305,7 @@
         },
         {
           "FieldType": "risk",
-          "Role": "Compliance",
+          "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Fundamental Rights",
           "FieldName": "[Article 27] - Failure to Assess Fundamental Rights Impact",
           "RiskDescription": "",
