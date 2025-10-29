@@ -720,9 +720,19 @@
               "FieldLabel": "Intended Use",
               "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
               "FieldType": "TextBox"
-            },
+            }
+          ]
+        },            
+         {
+          "FieldType": "fieldGroup",
+          "FieldName": "(A.9.3) - Objectives for responsible use of AI system Group",
+          "Role": "Engineer",
+          "TrustDimension": "Intended Use",
+          "GroupTitle": "(A.9.3) - Objectives for responsible use of AI system",
+          "Fields": [           
             {
-              "FieldName": "AI system impact assessment - Employees - Benefits",
+              "Control": "(A.9.3) - Objectives for responsible use of AI system",
+              "FieldName": "(A.9.3) - Objectives for responsible use of AI system - Benefits",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldLabel": "Select Potential Benefits",
@@ -730,14 +740,16 @@
               "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
             },
             {
-              "Control": "A.9.4 – Intended use of the AI system",
+              "Control": "(A.9.3) - Objectives for responsible use of AI system",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
-              "FieldName": "HR-WIA-2.3-AugmentationTasks",
+              "FieldName": "(A.9.3) - Objectives for responsible use of AI system - Augmentation Tasks",
               "FieldLabel": "Augmented/Enhanced Tasks",
               "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
               "FieldType": "TextBox"
             }
+           ]
+        }                
           ]
         },
         {
