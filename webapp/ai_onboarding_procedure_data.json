@@ -685,61 +685,61 @@
           "TrustDimension": "Intended Use",
           "GroupTitle": "(A.9.4) - AI System Intended Use",
           "Fields": [
-			{
-			  "Control": "A.9.4 – Intended use of the AI system",
-			  "Role": "Requester",
-			  "TrustDimension": "Intended Use",
-			  "FieldName": "(A.9.4) - AI System ID",
-			  "FieldLabel": "AI System ID",
-			  "FieldText": "AI System Unique Number",
-			  "FieldType": "Auto generated number"
-			},
-			{
-			  "Control": "A.9.4 – Intended use of the AI system",
-			  "Role": "Requester",
-			  "TrustDimension": "Intended Use",
-			  "FieldName": "(A.9.4) - Name",
-			  "FieldLabel": "Name",
-			  "FieldText": "Name of the AI application",
-			  "FieldType": "TextBox"
-			},
-			{
-			  "Control": "A.9.4 – Intended use of the AI system",
-			  "Role": "Requester",
-			  "TrustDimension": "Intended Use",
-			  "FieldName": "(A.9.4) - Business Purpose",
-			  "FieldLabel": "Business Purpose",
-			  "FieldText": "What specific business problem or task does this system address?",
-			  "FieldType": "TextBox"
-			},
-			{
-			  "Control": "A.9.4 – Intended use of the AI system",
-			  "Role": "Requester",
-			  "TrustDimension": "Intended Use",
-			  "FieldName": "(A.9.4) - Intended Use",
-			  "FieldLabel": "Intended Use",
-			  "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
-			  "FieldType": "TextBox"
-			},
-			{
-			  "FieldName": "AI system impact assessment - Employees - Benefits",
-			  "Role": "Requester",
-			  "TrustDimension": "Intended Use",
-			  "FieldLabel": "Select Potential Benefits",
-			  "FieldText": "",
-			  "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
-			},
-			{
-			  "Control": "A.9.4 – Intended use of the AI system",
-			  "Role": "Requester",
-			  "TrustDimension": "Intended Use",
-			  "FieldName": "HR-WIA-2.3-AugmentationTasks",
-			  "FieldLabel": "Augmented/Enhanced Tasks",
-			  "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
-			  "FieldType": "TextBox"
-			}		
-		]
- 	    },
+            {
+              "Control": "A.9.4 – Intended use of the AI system",
+              "Role": "Requester",
+              "TrustDimension": "Intended Use",
+              "FieldName": "(A.9.4) - AI System ID",
+              "FieldLabel": "AI System ID",
+              "FieldText": "AI System Unique Number",
+              "FieldType": "Auto generated number"
+            },
+            {
+              "Control": "A.9.4 – Intended use of the AI system",
+              "Role": "Requester",
+              "TrustDimension": "Intended Use",
+              "FieldName": "(A.9.4) - Name",
+              "FieldLabel": "Name",
+              "FieldText": "Name of the AI application",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "A.9.4 – Intended use of the AI system",
+              "Role": "Requester",
+              "TrustDimension": "Intended Use",
+              "FieldName": "(A.9.4) - Business Purpose",
+              "FieldLabel": "Business Purpose",
+              "FieldText": "What specific business problem or task does this system address?",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "A.9.4 – Intended use of the AI system",
+              "Role": "Requester",
+              "TrustDimension": "Intended Use",
+              "FieldName": "(A.9.4) - Intended Use",
+              "FieldLabel": "Intended Use",
+              "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "AI system impact assessment - Employees - Benefits",
+              "Role": "Requester",
+              "TrustDimension": "Intended Use",
+              "FieldLabel": "Select Potential Benefits",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
+            },
+            {
+              "Control": "A.9.4 – Intended use of the AI system",
+              "Role": "Requester",
+              "TrustDimension": "Intended Use",
+              "FieldName": "HR-WIA-2.3-AugmentationTasks",
+              "FieldLabel": "Augmented/Enhanced Tasks",
+              "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
+              "FieldType": "TextBox"
+            }
+          ]
+        },
         {
           "FieldName": "AI system intended use - Permitted User Prompt Categories Whitelist Definition",
           "Role": "Requester",
@@ -781,9 +781,7 @@
           "Objective": "Formalizing the ethical and governance goals for the system. This involves defining the specific outcomes and controls necessary to ensure the AI system is used in a responsible, fair, and transparent manner."
         }
       ],
-      "Fields": [
-
-      ]
+      "Fields": []
     },
     {
       "StepName": "2.3. (A.4.2, A.4.4) AI Systems Software and Tooling Resources",
@@ -854,133 +852,7 @@
       ]
     },
     {
-      "StepName": "2.5. (A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
-      "Objectives": [
-        {
-          "Objective": "Assessing the impact of the new AI system on current job roles and organizational structure. This includes planning for upskilling, retraining, or necessary workforce adjustments to ensure a smooth transition."
-        }
-      ],
-      "Fields": [
-        {
-          "Control": "A.9.4 – Intended use of the AI system",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Job Preservation",
-          "FieldName": "(A.9.4) - Target Users",
-          "FieldLabel": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
-        },
-        {
-          "FieldName": "HR-WIA-1.2-CoreAction",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Job Preservation",
-          "FieldLabel": "Identify the primary roles of the AI system relative to human workers",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
-        },
-        {
-          "FieldName": "HR-WIA-2.2-AutomationTasks",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Job Preservation",
-          "FieldLabel": "Automated/Eliminated Tasks",
-          "FieldText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "HR-WIA-4.1-MitigationPlan",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Job Preservation",
-          "FieldLabel": "Primary Mitigation Strategy for Displacement",
-          "FieldText": "If job displacement is identified, select the primary strategies for the affected workers",
-          "FieldType": "MultiSelect:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
-        },
-        {
-          "FieldName": "HR-WIA-4.2-TrainingProgram",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Job Preservation",
-          "FieldLabel": "Structured Re-skilling Program in Place",
-          "FieldText": "Describe the primary strategies to address the affected workers.",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "HR-WIA-4.2-TrainingProgram",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Job Preservation",
-          "FieldLabel": "Structured Re-skilling Program Effectiveness",
-          "FieldText": "Describe the Training Effectiveness measures to evaluate the success of the primary strategies to address the affected workers.",
-          "FieldType": "TextBox"
-        }
-      ]
-    },
-    {
-      "StepName": "2.6. (A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
-      "Role": "Requester",
-      "Objectives": [
-        {
-          "Objective": "Conducting a focused impact assessment to proactively identify and mitigate any risks the AI system might pose to vulnerable groups, such as those related to bias, discrimination, or lack of accessibility."
-        }
-      ],
-      "Fields": [
-        {
-          "FieldName": "VP-IMP-1.1-PopulationType",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
-          "FieldText": "",
-          "FieldType": "Option box with values:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
-        },
-        {
-          "FieldName": "VP-IMP-2.1-ImpactType",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Negitive or positive impacts",
-          "FieldText": "Describe the specific ways the AI system could negatively or positively affect the vulnerable population identified.",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "VP-IMP-2.2-SeverityAssessment",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Rate the severity of identified impacts",
-          "FieldText": "",
-          "FieldType": "Dropdown box with values:/Low/Medium/High"
-        },
-        {
-          "FieldName": "VP-IMP-2.3-SeverityAssessment",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Describe the severity of identified impacts",
-          "FieldText": "",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "VP-IMP-3.1-MitigationStrategy",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
-        },
-        {
-          "FieldName": "VP-IMP-4.1-StakeholderInclusion",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
-          "FieldText": "",
-          "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
-        },
-        {
-          "FieldName": "VP-IMP-4.2-SeverityAssessment",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Impact Description",
-          "FieldText": "Describe the severity of identified impacts.",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "VP-IMP-3.2-MitigationEffectiveness",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Post-Deployment Monitoring Plan",
-          "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and the frequency of review.",
-          "FieldType": "TextBox"
-        }
-      ]
-    },
-    {
-      "StepName": "2.7. (A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
+      "StepName": "2.5. (A.5.2, A.5.3, A.5.4,A.5.5) Impact Assessments",
       "Objectives": [
         {
           "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
@@ -988,68 +860,200 @@
       ],
       "Fields": [
         {
-          "FieldName": "ENV-IA-1.1-EnergySource",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
+          "FieldType": "fieldGroup",
+          "FieldName": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
+          "Role": "Engineer",
+          "TrustDimension": "Intended Use",
+          "GroupTitle": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
+          "Fields": [
+            {
+              "Control": "A.9.4 – Intended use of the AI system",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Job Preservation",
+              "FieldName": "(A.9.4) - Target Users",
+              "FieldLabel": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
+            },
+            {
+              "FieldName": "HR-WIA-1.2-CoreAction",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Job Preservation",
+              "FieldLabel": "Identify the primary roles of the AI system relative to human workers",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
+            },
+            {
+              "FieldName": "HR-WIA-2.2-AutomationTasks",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Job Preservation",
+              "FieldLabel": "Automated/Eliminated Tasks",
+              "FieldText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "HR-WIA-4.1-MitigationPlan",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Job Preservation",
+              "FieldLabel": "Primary Mitigation Strategy for Displacement",
+              "FieldText": "If job displacement is identified, select the primary strategies for the affected workers",
+              "FieldType": "MultiSelect:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
+            },
+            {
+              "FieldName": "HR-WIA-4.2-TrainingProgram",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Job Preservation",
+              "FieldLabel": "Structured Re-skilling Program in Place",
+              "FieldText": "Describe the primary strategies to address the affected workers.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "HR-WIA-4.2-TrainingProgram",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Job Preservation",
+              "FieldLabel": "Structured Re-skilling Program Effectiveness",
+              "FieldText": "Describe the Training Effectiveness measures to evaluate the success of the primary strategies to address the affected workers.",
+              "FieldType": "TextBox"
+            }
+          ]
         },
         {
-          "FieldName": "ENV-IA-2.1-ConsumptionMetrics",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Energy Consumption & Carbon Footprint Estimation",
-          "FieldText": "Describe the methodology and provide the estimated energy consumption (e.g., in kWh) and carbon footprint (e.g., in tons of CO2e) for the system's lifecycle (training, validation, and deployment).",
-          "FieldType": "TextBox"
+          "FieldType": "fieldGroup",
+          "FieldName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
+          "Role": "Engineer",
+          "TrustDimension": "Intended Use",
+          "GroupTitle": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
+          "Fields": [
+            {
+              "FieldName": "VP-IMP-1.1-PopulationType",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
+              "FieldText": "",
+              "FieldType": "Option box with values:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
+            },
+            {
+              "FieldName": "VP-IMP-2.1-ImpactType",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Negitive or positive impacts",
+              "FieldText": "Describe the specific ways the AI system could negatively or positively affect the vulnerable population identified.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "VP-IMP-2.2-SeverityAssessment",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Rate the severity of identified impacts",
+              "FieldText": "",
+              "FieldType": "Dropdown box with values:/Low/Medium/High"
+            },
+            {
+              "FieldName": "VP-IMP-2.3-SeverityAssessment",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Describe the severity of identified impacts",
+              "FieldText": "",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "VP-IMP-3.1-MitigationStrategy",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
+            },
+            {
+              "FieldName": "VP-IMP-4.1-StakeholderInclusion",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
+              "FieldText": "",
+              "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
+            },
+            {
+              "FieldName": "VP-IMP-4.2-SeverityAssessment",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Impact Description",
+              "FieldText": "Describe the severity of identified impacts.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "VP-IMP-3.2-MitigationEffectiveness",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Post-Deployment Monitoring Plan",
+              "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and the frequency of review.",
+              "FieldType": "TextBox"
+            }
+          ]
         },
         {
-          "FieldName": "ENV-IA-3.1-HardwareEOL",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
-        },
-        {
-          "FieldName": "ENV-IA-4.1-EfficiencyMeasures",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Select main strategies for minimizing negative environmental impacts.",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
-        },
-        {
-          "FieldName": "ENV-IA-4.2-ImpactLevel",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Level of Environmental Impact",
-          "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
-          "FieldType": "Dropdown box with values:/Low/Medium/High"
-        },
-        {
-          "FieldName": "VP-IMP-2.3-SeverityAssessment",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Describe the Environmental Impact",
-          "FieldText": "Describe the degree of environmental burden/benefit.",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "ENV-IA-5.1-PositiveContribution",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Contribution to Environmental Sustainability Goals",
-          "FieldText": "Does the AI system's intended application directly contribute to positive environmental outcomes (e.g., climate change modeling, energy grid optimization, biodiversity monitoring)? If yes, please describe.",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "ENV-IA-6.1-MonitoringReview",
-          "Role": "Requester",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldLabel": "Environmental Impact Monitoring and Review",
-          "FieldText": "Describe the process and frequency for monitoring and reviewing the environmental performance metrics of the AI system over its lifecycle.",
-          "FieldType": "TextBox"
+          "FieldType": "fieldGroup",
+          "FieldName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
+          "Role": "Engineer",
+          "TrustDimension": "Intended Use",
+          "GroupTitle": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
+          "Fields": [
+            {
+              "FieldName": "ENV-IA-1.1-EnergySource",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
+            },
+            {
+              "FieldName": "ENV-IA-2.1-ConsumptionMetrics",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Energy Consumption & Carbon Footprint Estimation",
+              "FieldText": "Describe the methodology and provide the estimated energy consumption (e.g., in kWh) and carbon footprint (e.g., in tons of CO2e) for the system's lifecycle (training, validation, and deployment).",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "ENV-IA-3.1-HardwareEOL",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
+            },
+            {
+              "FieldName": "ENV-IA-4.1-EfficiencyMeasures",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Select main strategies for minimizing negative environmental impacts.",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
+            },
+            {
+              "FieldName": "ENV-IA-4.2-ImpactLevel",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Level of Environmental Impact",
+              "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
+              "FieldType": "Dropdown box with values:/Low/Medium/High"
+            },
+            {
+              "FieldName": "VP-IMP-2.3-SeverityAssessment",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Describe the Environmental Impact",
+              "FieldText": "Describe the degree of environmental burden/benefit.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "ENV-IA-5.1-PositiveContribution",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Contribution to Environmental Sustainability Goals",
+              "FieldText": "Does the AI system's intended application directly contribute to positive environmental outcomes (e.g., climate change modeling, energy grid optimization, biodiversity monitoring)? If yes, please describe.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "ENV-IA-6.1-MonitoringReview",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Environmental Impact Monitoring and Review",
+              "FieldText": "Describe the process and frequency for monitoring and reviewing the environmental performance metrics of the AI system over its lifecycle.",
+              "FieldType": "TextBox"
+            }
+          ]
         }
       ]
     }
@@ -1064,94 +1068,94 @@
         }
       ],
       "Fields": [
-         {
+        {
           "FieldType": "fieldGroup",
           "FieldName": "(A.4.2, A.4.3) - Dataset Repository",
           "Role": "Requester,Data Engineer",
           "TrustDimension": "Data and Data Governance",
           "GroupTitle": "(A.4.2, A.4.3) - Data for AI System Details",
           "Fields": [
-				{
-				  "FieldName": "(A.4.2, A.4.3) - Dataset Repository",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "Dataset Repository",
-				  "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
-				  "FieldType": "TextBox"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3) - Dataset Description",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "Dataset Description",
-				  "FieldText": "Brief overview of the dataset's content and general purpose.",
-				  "FieldType": "TextBox"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "Where does the data originate from?",
-				  "FieldText": "",
-				  "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3) - Intended Use",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "What is the specific purpose(s) of the data?",
-				  "FieldText": "",
-				  "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3, A.7.3, A.7.2) - Acquisition of data",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "How will the Data be acquired and selected?",
-				  "FieldText": "",
-				  "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "What is the data Retention schedules based on legal and operational requirements?",
-				  "FieldText": "",
-				  "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3) - Refresh Schedules",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "How often does the data need to be refreshed?",
-				  "FieldText": "",
-				  "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "Secure Disposing",
-				  "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
-				  "FieldType": "TextBox"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3) - Approximate Size",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "Approximate Size",
-				  "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
-				  "FieldType": "TextBox"
-				},
-				{
-				  "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
-				  "Role": "Data Engineer,Engineer",
-				  "TrustDimension": "Data and Data Governance",
-				  "FieldLabel": "Owner/Custodian",
-				  "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
-				  "FieldType": "TextBox"
-				}
-			]
+            {
+              "FieldName": "(A.4.2, A.4.3) - Dataset Repository",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "Dataset Repository",
+              "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3) - Dataset Description",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "Dataset Description",
+              "FieldText": "Brief overview of the dataset's content and general purpose.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3, A.7.5) - Source",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "Where does the data originate from?",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3) - Intended Use",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "What is the specific purpose(s) of the data?",
+              "FieldText": "",
+              "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3, A.7.3, A.7.2) - Acquisition of data",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "How will the Data be acquired and selected?",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3) - Retention Schedules",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "What is the data Retention schedules based on legal and operational requirements?",
+              "FieldText": "",
+              "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3) - Refresh Schedules",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "How often does the data need to be refreshed?",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3) - Secure Disposing",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "Secure Disposing",
+              "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3) - Approximate Size",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "Approximate Size",
+              "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "(A.4.2, A.4.3) - Owner/Custodian",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldLabel": "Owner/Custodian",
+              "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
+              "FieldType": "TextBox"
+            }
+          ]
         },
         {
           "FieldType": "risk",
