@@ -671,7 +671,7 @@
   ],
   "2. AI System Documentation and Impact Assessments": [
     {
-      "StepName": "2.1. (A.9.4) AI system's intended use and limitations",
+      "StepName": "2.1. (A.9.3, A.9.4) AI system's intended use and limitations",
       "Objectives": [
         {
           "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
@@ -787,84 +787,84 @@
       ]
     },
     {
-      "StepName": "2.2. (A.9.3) AI system's Objectives for Responsible Use",
+      "StepName": "2.2. (A.4.2, A.4.4, A.4.5) AI Systems Tooling and Computing Resources",
       "Objectives": [
         {
-          "Objective": "Formalizing the ethical and governance goals for the system. This involves defining the specific outcomes and controls necessary to ensure the AI system is used in a responsible, fair, and transparent manner."
-        }
-      ],
-      "Fields": []
-    },
-    {
-      "StepName": "2.3. (A.4.2, A.4.4) AI Systems Software and Tooling Resources",
-      "Objectives": [
-        {
-          "Objective": "Documenting all necessary software components, libraries, frameworks, and development tools required to build, maintain, and operate the AI system effectively."
-        }
-      ],
-      "Fields": [
-        {
-          "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
-          "Role": "Engineer,Requester",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldLabel": "Tools Name and Version",
-          "FieldText": "Name of the software, libraries, or frameworks and their Version numbers.",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "(A.4.2, A.4.4) - Category",
-          "Role": "Engineer,Requester",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldLabel": "Select Tool Categories",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
-        },
-        {
-          "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
-          "Role": "Engineer,Requester",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldLabel": "Purpose/Use Case in Project",
-          "FieldText": "How these tools will be used in the AI system's lifecycle.",
-          "FieldType": "TextBox"
-        }
-      ]
-    },
-    {
-      "StepName": "2.4. (A.4.2, A.4.5) AI Systems Computing Resources",
-      "Objectives": [
-        {
+          "Objective": "Documenting all necessary software components, libraries, frameworks, and development tools required to build, maintain, and operate the AI system effectively.",
           "Objective": "Detailing the physical and cloud infrastructure required, including specific hardware (e.g., GPUs), cloud service subscriptions, and computing power needed to train, deploy, and run the AI model."
         }
       ],
       "Fields": [
-        {
-          "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
-          "Role": "Engineer,Requester",
+         {
+          "FieldType": "fieldGroup",
+          "FieldName": "(A.4.2, A.4.4) - AI system's Tooling resources Group",
+          "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
-          "FieldLabel": "Computing Resource Name and Version",
-          "FieldText": "Names of the computing resources used.",
-          "FieldType": "TextBox"
-        },
-        {
-          "FieldName": "(A.4.2, A.4.5) - Category",
-          "Role": "Engineer,Requester",
+          "GroupTitle": "(A.4.2, A.4.4) - AI system's Tooling resources",
+          "Fields": [     
+			{
+			  "FieldName": "(A.4.2, A.4.4) - Tool Name and Version",
+			  "Role": "Engineer,Requester",
+			  "TrustDimension": "Cybersecurity and Resilience",
+			  "FieldLabel": "Tools Name and Version",
+			  "FieldText": "Name of the software, libraries, or frameworks and their Version numbers.",
+			  "FieldType": "TextBox"
+			},
+			{
+			  "FieldName": "(A.4.2, A.4.4) - Category",
+			  "Role": "Engineer,Requester",
+			  "TrustDimension": "Cybersecurity and Resilience",
+			  "FieldLabel": "Select Tool Categories",
+			  "FieldText": "",
+			  "FieldType": "MultiSelect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
+			},
+			{
+			  "FieldName": "(A.4.2, A.4.4) - Purpose/Use Case in Project",
+			  "Role": "Engineer,Requester",
+			  "TrustDimension": "Cybersecurity and Resilience",
+			  "FieldLabel": "Purpose/Use Case in Project",
+			  "FieldText": "How these tools will be used in the AI system's lifecycle.",
+			  "FieldType": "TextBox"
+			}
+			]
+        },            
+          {
+          "FieldType": "fieldGroup",
+          "FieldName": "(A.4.2, A.4.5) - AI system's AI Systems Computing Resources Group",
+          "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
-          "FieldLabel": "Category of the computing resource",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
-        },
-        {
-          "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
-          "Role": "Engineer,Requester",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldLabel": "Which parts of the AI lifecycle do these resource supports?",
-          "FieldText": "",
-          "FieldType": "MultiSelect:Development/Training/Testing/Staging/Production/Monitoring"
-        }
+          "GroupTitle": "(A.4.2, A.4.5) - AI system's AI Systems Computing Resources",
+          "Fields": [    
+			 {
+			  "FieldName": "(A.4.2, A.4.5) - Computing Resource Name and Version",
+			  "Role": "Engineer,Requester",
+			  "TrustDimension": "Cybersecurity and Resilience",
+			  "FieldLabel": "Computing Resource Name and Version",
+			  "FieldText": "Names of the computing resources used.",
+			  "FieldType": "TextBox"
+			},
+			{
+			  "FieldName": "(A.4.2, A.4.5) - Category",
+			  "Role": "Engineer,Requester",
+			  "TrustDimension": "Cybersecurity and Resilience",
+			  "FieldLabel": "Category of the computing resource",
+			  "FieldText": "",
+			  "FieldType": "MultiSelect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
+			},
+			{
+			  "FieldName": "(A.4.2, A.4.5) - Lifecycle Phase(s) Supported",
+			  "Role": "Engineer,Requester",
+			  "TrustDimension": "Cybersecurity and Resilience",
+			  "FieldLabel": "Which parts of the AI lifecycle do these resource supports?",
+			  "FieldText": "",
+			  "FieldType": "MultiSelect:Development/Training/Testing/Staging/Production/Monitoring"
+			}         
+          ]
+          }       
       ]
     },
     {
-      "StepName": "2.5. (A.5.2, A.5.3, A.5.4,A.5.5) Impact Assessments",
+      "StepName": "2.3. (A.5.2, A.5.3, A.5.4, A.5.5) Impact Assessments",
       "Objectives": [
         {
           "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
@@ -875,7 +875,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
           "Role": "Engineer",
-          "TrustDimension": "Intended Use",
+          "TrustDimension": "Compliance,Job Preservation",
           "GroupTitle": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
           "Fields": [
             {
@@ -933,7 +933,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
           "Role": "Engineer",
-          "TrustDimension": "Intended Use",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "GroupTitle": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
           "Fields": [
             {
@@ -998,7 +998,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
           "Role": "Engineer",
-          "TrustDimension": "Intended Use",
+          "TrustDimension": "Compliance,Fundamental Rights",
           "GroupTitle": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
           "Fields": [
             {
