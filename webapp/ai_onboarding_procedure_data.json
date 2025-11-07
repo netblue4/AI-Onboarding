@@ -764,7 +764,7 @@
               "FieldName": "[Art. 12] - System Lifecycle Events Spec",
               "FieldLabel": "Required System Lifecycle Events",
               "FieldText": "Select all infrastructure-level events that must be automatically logged to ensure full lifecycle traceability from deployment to decommissioning.",
-              "FieldType": "MultiSelect:Deployment_Event, Model_Version_Change, Configuration_Update, System_Start_Time_UTC, System_Stop_Time_UTC, Error_Critical_Failure, Decommission_Event"
+              "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
               "Control": "[Art-12][Par-2] - Operational Traceability",
@@ -773,7 +773,7 @@
               "FieldName": "[Art. 12] - Interaction Data Spec",
               "FieldLabel": "Required Interaction Data Points",
               "FieldText": "Specify the exact data points that must be captured *per interaction* to allow for post-market monitoring and incident reconstruction.",
-              "FieldType": "MultiSelect:Unique_Session_ID, Request_Trace_ID, User_ID_Pseudonymized, Timestamp_Precision_ms, Input_Prompt_Hash, Output_Response_Hash, Retrieval_Document_IDs(RAG)"
+              "FieldType": "MultiSelect:Unique_Session_ID/Request_Trace_ID/User_ID_Pseudonymized/Timestamp_Precision_ms/Input_Prompt_Hash/Output_Response_Hash/Retrieval_Document_IDs(RAG)"
             },
             {
               "Control": "[Art-12][Par-2a] - Risk Identification Logging",
@@ -782,7 +782,7 @@
               "FieldName": "[Art. 12] - Risk & Safety Signal Spec",
               "FieldLabel": "Required Risk & Safety Signals",
               "FieldText": "Define which internal security and safety signals must be logged to detect 'substantial modifications' or emerging risks during operation.",
-              "FieldType": "MultiSelect:Guardrail_Triggered_Event, Guardrail_Type(e.g., PII/Toxicity), Confidence_Score_Value, Content_Filter_Rejection, Latency_Anomaly_Flag"
+              "FieldType": "MultiSelect:Guardrail_Triggered_Event/Guardrail_Type(e.g., PII/Toxicity)/Confidence_Score_Value/Content_Filter_Rejection/Latency_Anomaly_Flag"
             }
           ]
         },
