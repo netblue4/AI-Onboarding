@@ -306,7 +306,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Fundamental Rights",
+          "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias",
           "FieldName": "[Article 27] - Failure to Assess Fundamental Rights Impact",
           "RiskDescription": "",
           "controls": [
