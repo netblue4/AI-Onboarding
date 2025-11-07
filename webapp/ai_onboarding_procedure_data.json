@@ -1032,7 +1032,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldLabel": "Select main strategies for minimizing negative environmental impacts.",
               "FieldText": "",
-              "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain/Other (specify)"
+              "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain"
             },
             {
               "FieldName": "ENV-IA-4.2-ImpactLevel",
@@ -1083,21 +1083,21 @@
       "TrustDimension": "Compliance,Fundamental Rights",
       "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
       "FieldText": "",
-      "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
+      "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
     },
     {
       "FieldName": "VP-IMP-2.1a-NegativeImpacts",
       "TrustDimension": "Compliance,Fundamental Rights",
       "FieldLabel": "Potential negative impacts on fundamental rights",
       "FieldText": "Select specifically identified risks to the vulnerable population.",
-      "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Limitation of Expression/Reduced Access to Services/Loss of Autonomy/Physical or Mental Harm/Socio-economic Exclusion/Other (specify)"
+      "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
     },
     {
       "FieldName": "VP-IMP-2.1b-PositiveImpacts",
       "TrustDimension": "Compliance,Fundamental Rights",
       "FieldLabel": "Potential positive impacts on fundamental rights",
       "FieldText": "Select expected benefits for the vulnerable population.",
-      "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency/Empowerment/Personalization/Other (specify)"
+      "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
     },
     {
       "FieldName": "VP-IMP-2.2-SeverityAssessment",
@@ -1117,15 +1117,8 @@
       "FieldName": "VP-IMP-3.1-TechnicalMitigation",
       "TrustDimension": "Compliance,Fundamental Rights",
       "FieldLabel": "Technical mechanisms implemented to mitigate negative impacts",
-      "FieldText": "Select the primary technical controls used to reduce risks to vulnerable populations.",
-      "FieldType": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing/Accessibility Features (WCAG)/Other (specify)"
-    },
-    {
-      "FieldName": "VP-IMP-4.1-StakeholderInclusion",
-      "TrustDimension": "Compliance,Fundamental Rights",
-      "FieldLabel": "Consultation with vulnerable populations",
-      "FieldText": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing?",
-      "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
+      "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
+      "FieldType": "TextBox"
     },
     {
       "FieldName": "VP-IMP-3.2-MonitoringPlan",
