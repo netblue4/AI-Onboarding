@@ -996,10 +996,10 @@
         },
         {
           "FieldType": "fieldGroup",
-          "FieldName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
+          "FieldName": "[Article 27] - Fundamental Rights Impact Assessm",
           "Role": "Engineer",
           "TrustDimension": "Compliance,Fundamental Rights",
-          "GroupTitle": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
+          "GroupTitle": "[Article 27] - Fundamental Rights Impact Assessm",
           "Fields": [
             {
               "FieldName": "VP-IMP-1.1-PopulationType",
@@ -1059,6 +1059,27 @@
             }
           ]
         },
+        
+{
+  "FieldType": "fieldGroup",
+  "FieldName": "[Art-27] - Fundamental Rights Impact Assessment (FRIA)",
+  "Role": "Requester",
+  "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias",
+  "GroupTitle": "[Art-27] - Fundamental Rights Impact Assessment (FRIA)",
+  "Fields": [
+    {
+      "FieldName": "[Art-27] - Fundamental Rights At-Risk Categories",
+      "Role": "Requester",
+      "TrustDimension": "Fundamental Rights, Fairness and Bias",
+      "FieldLabel": "Fundamental Rights At-Risk Categories for Impact Assessment",
+      "FieldText": "This is the defined scope of Fundamental Rights and Vulnerable Groups that must be specifically addressed by operational controls (human oversight, bias mitigation) in this AI System, as mandated by Article 27 FRIA requirements.",
+      "FieldType": "MultiSelect:Right to Non-Discrimination:ethnic origin, gender, disability status, age, sexual orientation/Right to Good Administration:transparent decisions, right to be heard, timely handling of affairs/Right to Effective Remedy and Fair Trial:explainability of automated decisions, accessible complaint mechanisms, human avenue for redress/Protection of Personal Data:minimization of sensitive data, privacy of minors, prevention of unauthorized surveillance/Rights of the Child:age-appropriate content, protection from manipulative design, data profiling limitations/Consumer Protection:protection from aggressively personalized pricing, clear information requirements, right to withdrawal"
+    }
+  ]
+},        
+        
+        
+        
         {
           "FieldType": "fieldGroup",
           "FieldName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
@@ -2425,7 +2446,7 @@
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Transparency and Provision of Information",
-          "FieldName": "(A.8.5) Transparency and Explainability in AI Systems Test Plan",
+          "FieldName": "[Art-13][Par-1] - Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
           "TestDatasetMetadata": {
             "TestCategory": "Transparency and Explainability (Post-Model Validation)",
