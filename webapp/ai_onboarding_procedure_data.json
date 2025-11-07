@@ -813,18 +813,12 @@
             }
           ]
         },
-        
-        
-        
-        
-        
-        
                 {
           "FieldType": "fieldGroup",
           "FieldName": "Operational_Guardrails_Classification_Group",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
-          "GroupTitle": "[Art. 14] - Human Oversight",
+          "GroupTitle": "[Article 14] - Human Intervention Key Phrase Categories Requiring Human Intervention",
           "Fields": [
             {
               "Control": "[Art. 14] - Human Oversight",
@@ -1004,7 +998,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
           "Role": "Engineer",
-          "TrustDimension": "Compliance,Fundamental Rights",
+          "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias",
           "GroupTitle": "(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment",
           "Fields": [
             {
@@ -1069,7 +1063,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
           "Role": "Engineer",
-          "TrustDimension": "Compliance,Fundamental Rights",
+          "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias",
           "GroupTitle": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
           "Fields": [
             {
@@ -2066,7 +2060,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Fairness and Bias",
+          "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias",
           "FieldName": "(A.7.4) Fairness and Bias in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
           "TestDatasetMetadata": {
