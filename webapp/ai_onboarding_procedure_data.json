@@ -118,7 +118,7 @@
         {
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Data and Data Governance",
+          "TrustDimension": "Compliance,Data and Data Governance,Fairness and Bias",
           "FieldName": "[Article 10] - Poor Data Quality and Governance",
           "RiskDescription": "",
           "controls": [
@@ -813,7 +813,7 @@
             }
           ]
         },
-                {
+        {
           "FieldType": "fieldGroup",
           "FieldName": "Operational_Guardrails_Classification_Group",
           "Role": "Engineer",
@@ -831,17 +831,6 @@
             }
           ]
         },
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         {
           "FieldName": "AI system intended use - Intended User Profile",
           "Role": "Requester",
@@ -994,7 +983,6 @@
             }
           ]
         },
-   
         {
           "FieldType": "fieldGroup",
           "FieldName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
@@ -1068,72 +1056,91 @@
             }
           ]
         },
-        
-        
-        
-   {
-  "FieldType": "fieldGroup",
-  "FieldName": "[Article 27] - Fundamental Rights Impact Assessment",
-  "Role": "Engineer",
-  "TrustDimension": "Compliance,Fundamental Rights",
-  "GroupTitle": "[Article 27] - Fundamental Rights Impact Assessment",
-  "Fields": [
-    {
-      "FieldName": "VP-IMP-1.1-PopulationType",
-      "TrustDimension": "Compliance,Fundamental Rights",
-      "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
-      "FieldText": "",
-      "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
-    },
-    {
-      "FieldName": "VP-IMP-2.1a-NegativeImpacts",
-      "TrustDimension": "Compliance,Fundamental Rights",
-      "FieldLabel": "Potential negative impacts on fundamental rights",
-      "FieldText": "Select specifically identified risks to the vulnerable population.",
-      "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
-    },
-    {
-      "FieldName": "VP-IMP-2.1b-PositiveImpacts",
-      "TrustDimension": "Compliance,Fundamental Rights",
-      "FieldLabel": "Potential positive impacts on fundamental rights",
-      "FieldText": "Select expected benefits for the vulnerable population.",
-      "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
-    },
-    {
-      "FieldName": "VP-IMP-2.2-SeverityAssessment",
-      "TrustDimension": "Compliance,Fundamental Rights",
-      "FieldLabel": "Rate the severity of identified negative impacts",
-      "FieldText": "",
-      "FieldType": "Dropdown box with values:/Low/Medium/High"
-    },
-    {
-      "FieldName": "VP-IMP-2.3-SeverityDescription",
-      "TrustDimension": "Compliance,Fundamental Rights",
-      "FieldLabel": "Describe the severity of identified impacts",
-      "FieldText": "Provide justification for the severity rating selected above.",
-      "FieldType": "TextBox"
-    },
-    {
-      "FieldName": "VP-IMP-3.1-TechnicalMitigation",
-      "TrustDimension": "Compliance,Fundamental Rights",
-      "FieldLabel": "Technical mechanisms implemented to mitigate negative impacts",
-      "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
-      "FieldType": "TextBox"
-    },
-    {
-      "FieldName": "VP-IMP-3.2-MonitoringPlan",
-      "TrustDimension": "Compliance,Fundamental Rights",
-      "FieldLabel": "Post-Deployment Monitoring Plan",
-      "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
-      "FieldType": "TextBox"
-    }
-  ]
-}     
-        
-        
-        
-        
-        
+        {
+          "FieldType": "fieldGroup",
+          "FieldName": "[Article 27] - Fundamental Rights Impact Assessment",
+          "Role": "Engineer",
+          "TrustDimension": "Compliance,Fundamental Rights",
+          "GroupTitle": "[Article 27] - Fundamental Rights Impact Assessment",
+          "Fields": [
+            {
+              "FieldName": "VP-IMP-1.1-PopulationType",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
+            },
+            {
+              "FieldName": "VP-IMP-2.1a-NegativeImpacts",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Potential negative impacts on fundamental rights",
+              "FieldText": "Select specifically identified risks to the vulnerable population.",
+              "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
+            },
+            {
+              "FieldName": "VP-IMP-2.1b-PositiveImpacts",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Potential positive impacts on fundamental rights",
+              "FieldText": "Select expected benefits for the vulnerable population.",
+              "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
+            },
+            {
+              "FieldName": "VP-IMP-2.2-SeverityAssessment",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Rate the severity of identified negative impacts",
+              "FieldText": "",
+              "FieldType": "Dropdown box with values:/Low/Medium/High"
+            },
+            {
+              "FieldName": "VP-IMP-2.3-SeverityDescription",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Describe the severity of identified impacts",
+              "FieldText": "Provide justification for the severity rating selected above.",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "VP-IMP-3.1-TechnicalMitigation",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Technical mechanisms implemented to mitigate negative impacts",
+              "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
+              "FieldType": "TextBox"
+            },
+            {
+              "FieldName": "VP-IMP-3.2-MonitoringPlan",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldLabel": "Post-Deployment Monitoring Plan",
+              "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
+              "FieldType": "TextBox"
+            }
+          ]
+        },
+        {
+          "FieldType": "fieldGroup",
+          "FieldName": "(Art. 10) - Data Bias Examination & Mitigation Group",
+          "Role": "Requester",
+          "TrustDimension": "Data and Data Governance,Fairness and Bias",
+          "GroupTitle": "(Art. 10) - Data Governance: Bias Examination & Mitigation",
+          "Fields": [
+            {
+              "Control": "Art. 10(f) – Examination for possible biases",
+              "FieldName": "(Art. 10.f) - Targeted Protected Attributes for Bias Examination",
+              "Role": "Requester",
+              "TrustDimension": "Data and Data Governance,Fairness and Bias",
+              "FieldLabel": "(Art. 10.f) - Targeted Protected Attributes for Bias Examination",
+              "FieldText": "Select the specific protected attributes that must be examined for bias in this AI system's training/validation data. Selection mandates a subsequent statistical test in the Build/Test phases.",
+              "FieldType": "MultiSelect:Age (prevent discrimination against specific age cohorts e.g. elderly)/Gender Identity (ensure equitable performance across gender expressions)/Racial or Ethnic Origin (detect proxy discrimination in input features)/Disability Status (ensure data representativeness for accessibility)/Socio-Economic Status (prevent exclusion based on income or geography proxies)/Religion or Belief (prevent discriminatory output based on creed)/Sexual Orientation (ensure non-discriminatory processing of related data)"
+            },
+            {
+              "Control": "Art. 10(g) – Measures to detect, prevent and mitigate biases",
+              "FieldName": "(Art. 10.g) - Required Data Bias Mitigation Strategies",
+              "Role": "Requester",
+              "TrustDimension": "Data and Data Governance,Fairness and Bias",
+              "FieldLabel": "(Art. 10.g) - Required Data Bias Mitigation Strategies",
+              "FieldText": "Specify the pre-approved technical measures that engineers must implement if bias is detected during the examination phase defined in (Art. 10.f).",
+              "FieldType": "MultiSelect:Pre-processing: Re-sampling (Over/Under-sample to balance protected group representation)/Pre-processing: Re-weighting (Assign higher loss weights to underrepresented groups during training)/Pre-processing: Synthetic Data Augmentation (Generate compliant synthetic records for minority classes)/In-processing: Adversarial Debiasing (Include a discriminator network to penalize bias during training)/Post-processing: Threshold Adjustment (Calibrate decision thresholds per group to achieve equal opportunity)"
+            }
+          ]
+        }
       ]
     }
   ],
@@ -1599,30 +1606,30 @@
         }
       ],
       "Fields": [
-{
-  "FieldType": "risk",
-  "Role": "Engineer",
-  "TrustDimension": "Compliance,Record-Keeping",
-  "FieldName": "[RAG-LOG-01] - Failure to Implement Comprehensive Article 12 Logging",
-  "RiskDescription": "The risk that the RAG Orchestrator fails to automatically capture, retain, or secure the detailed operational logs required by EU AI Act Article 12. Failure here means the organization cannot trace the root cause of AI errors (hallucinations, bias), cannot perform required post-market monitoring (Article 72), and lacks the evidentiary audit trail necessary to prove compliance to regulators.",
-  "controls": [
-    {
-      "control": "[RAG-LOG-01.1] - Centralized, Immutable Operational Logging Pipeline: Implement an automated logging service that captures all RAG Orchestrator events in real-time. These logs must be shipped to a centralized, secure repository (e.g., dedicated encrypted S3 bucket, hardened ELK stack) configured for immutability (Write-Once-Read-Many) to prevent tampering, and retained for the mandatory duration of the system's lifetime.",
-      "control_objective": "To strictly fulfill Article 12(1) by ensuring **automatic, uninterrupted, and tamper-proof recording** of events from the moment of deployment until decommissioning.",
-      "control_evidence": "Infrastructure-as-Code (IaC) definitions for the logging pipeline; retention policy configuration screenshots verifying the lifetime duration setting; and penetration test results confirming logs cannot be manually altered or deleted by standard operators."
-    },
-    {
-      "control": "[RAG-LOG-01.2] - Structured Event Schema for Traceability: The Orchestrator must log every inference cycle using a strict, queryable JSON schema. Mandatory fields include: (a) UTC Timestamp, (b) Anonymized User Session ID, (c) Input Prompt (hashed if highly sensitive, otherwise raw), (d) Retrieved Context Metadata (Document IDs, Source URIs, Similarity Scores), (e) The Generated Output, and (f) Any active moderation flags triggered during the session.",
-      "control_objective": "To meet Article 12(2) requirements for **functional traceability** and **post-market monitoring**, enabling rapid reconstruction of any incident to see exactly what the user asked, what data the RAG retrieved, and what it answered.",
-      "control_evidence": "The defined JSON logging schema documentation; sample log entries showing all mandatory fields populated during a test run; and a demonstration of querying this data to trace a specific historical transaction."
-    },
-    {
-      "control": "[RAG-LOG-01.3] - Human-in-the-Loop (HITL) Intervention Logging: If the system includes a human oversight or review step (as required for many high-risk systems), the logging system must record: (a) The ID of the human reviewer, (b) The timestamp of review, (c) The explicit decision (e.g., 'Approved', 'Rejected', 'Overridden'), and (d) any modifications made to the AI's output before final delivery to the user.",
-      "control_objective": "To fulfill Article 12(3) equivalent accountability requirements, ensuring that human oversight is not just a policy, but a **verifyable, auditable technical action**.",
-      "control_evidence": "Logs demonstrating a 'flagged' transaction, followed by the corresponding 'reviewer action' log entry, linked by a common transaction ID."
-    }
-  ]
-},
+        {
+          "FieldType": "risk",
+          "Role": "Engineer",
+          "TrustDimension": "Compliance,Record-Keeping",
+          "FieldName": "[RAG-LOG-01] - Failure to Implement Comprehensive Article 12 Logging",
+          "RiskDescription": "The risk that the RAG Orchestrator fails to automatically capture, retain, or secure the detailed operational logs required by EU AI Act Article 12. Failure here means the organization cannot trace the root cause of AI errors (hallucinations, bias), cannot perform required post-market monitoring (Article 72), and lacks the evidentiary audit trail necessary to prove compliance to regulators.",
+          "controls": [
+            {
+              "control": "[RAG-LOG-01.1] - Centralized, Immutable Operational Logging Pipeline: Implement an automated logging service that captures all RAG Orchestrator events in real-time. These logs must be shipped to a centralized, secure repository (e.g., dedicated encrypted S3 bucket, hardened ELK stack) configured for immutability (Write-Once-Read-Many) to prevent tampering, and retained for the mandatory duration of the system's lifetime.",
+              "control_objective": "To strictly fulfill Article 12(1) by ensuring **automatic, uninterrupted, and tamper-proof recording** of events from the moment of deployment until decommissioning.",
+              "control_evidence": "Infrastructure-as-Code (IaC) definitions for the logging pipeline; retention policy configuration screenshots verifying the lifetime duration setting; and penetration test results confirming logs cannot be manually altered or deleted by standard operators."
+            },
+            {
+              "control": "[RAG-LOG-01.2] - Structured Event Schema for Traceability: The Orchestrator must log every inference cycle using a strict, queryable JSON schema. Mandatory fields include: (a) UTC Timestamp, (b) Anonymized User Session ID, (c) Input Prompt (hashed if highly sensitive, otherwise raw), (d) Retrieved Context Metadata (Document IDs, Source URIs, Similarity Scores), (e) The Generated Output, and (f) Any active moderation flags triggered during the session.",
+              "control_objective": "To meet Article 12(2) requirements for **functional traceability** and **post-market monitoring**, enabling rapid reconstruction of any incident to see exactly what the user asked, what data the RAG retrieved, and what it answered.",
+              "control_evidence": "The defined JSON logging schema documentation; sample log entries showing all mandatory fields populated during a test run; and a demonstration of querying this data to trace a specific historical transaction."
+            },
+            {
+              "control": "[RAG-LOG-01.3] - Human-in-the-Loop (HITL) Intervention Logging: If the system includes a human oversight or review step (as required for many high-risk systems), the logging system must record: (a) The ID of the human reviewer, (b) The timestamp of review, (c) The explicit decision (e.g., 'Approved', 'Rejected', 'Overridden'), and (d) any modifications made to the AI's output before final delivery to the user.",
+              "control_objective": "To fulfill Article 12(3) equivalent accountability requirements, ensuring that human oversight is not just a policy, but a **verifyable, auditable technical action**.",
+              "control_evidence": "Logs demonstrating a 'flagged' transaction, followed by the corresponding 'reviewer action' log entry, linked by a common transaction ID."
+            }
+          ]
+        },
         {
           "FieldType": "risk",
           "Role": "Engineer",
@@ -1678,6 +1685,30 @@
               "control": "[RAG-HO-01.4] - Logging and Traceability of Interventions: The orchestrator must automatically and irrevocably log every instance where decision-making language was flagged, the subsequent human action (override, stop, or approval), and the identity of the human overseer. This log must be maintained for a minimum of one year.",
               "control_objective": "To ensure full traceability and accountability of the system's operation and the human's role in the decision-making chain, facilitating post-market monitoring and regulatory audits.",
               "control_evidence": "Sample log data showing all fields (timestamp, detected phrase, human overseer ID, final action taken); and documentation of the log retention policy."
+            }
+          ]
+        },
+        {
+          "FieldType": "risk",
+          "Role": "Engineer",
+          "TrustDimension": "Data and Data Governance,Fairness and Bias",
+          "FieldName": "[RAG-DATA-RISK-02] - Failure to Implement RAG Bias Mitigation",
+          "RiskDescription": "The risk that the RAG Orchestrator fails to apply necessary technical mitigations when retrieving from a potentially biased Knowledge Base. Since the underlying LLM is frozen (no re-training), failure to actively balance retrieved context or inject fairness guardrails during generation will result in the system propagating or amplifying historical biases present in the source documents, violating EU AI Act Art. 10(g).",
+          "controls": [
+            {
+              "control": "[RAG-MIT-01] - Diversity-Aware Retrieval Re-ranking: The retrieval pipeline must include a re-ranking step that specifically boosts content from underrepresented groups or diverse viewpoints if initial vector search results are homogeneously skewed toward a dominant demographic or perspective.",
+              "control_objective": "To technically ensure that the 'data' (context) provided to the frozen LLM is balanced, mitigating representation bias at the retrieval stage before generation begins.",
+              "control_evidence": "RAG Orchestrator configuration showing the active 'DiversityReRanker' module in the retrieval chain; logs showing search results before and after re-ranking."
+            },
+            {
+              "control": "[RAG-MIT-02] - Mandatory Fairness System Prompt Injection: The RAG Orchestrator must automatically inject explicit fairness instructions and constraints into the system prompt (e.g., 'Do not make assumptions based on gender/race if not explicitly stated in retrieved context') for every query.",
+              "control_objective": "To use in-context learning to force the frozen LLM to adhere to fairness principles, mitigating the risk that it will amplify biases found in the retrieved data.",
+              "control_evidence": "Code review of the prompt template management system; runtime logs showing the final assembled prompt sent to the LLM containing the mandatory fairness clauses."
+            },
+            {
+              "control": "[RAG-MIT-03] - Real-time Output Fairness Guardrail: A post-processing scanning module must check generated answers for prohibited biased language or unsubstantiated inferences about protected groups *before* the response is returned to the user. Violations must trigger a fallback response.",
+              "control_objective": "To provide a final technical fail-safe that catches discriminatory outputs if retrieval and prompt mitigations fail.",
+              "control_evidence": "Guardrail configuration files (e.g., regex patterns or toxicity classifier thresholds); audit logs of 'blocked' responses due to fairness violations."
             }
           ]
         }
@@ -2191,174 +2222,6 @@
               "FAIR-HIST_Outcome": "Favorable",
               "FAIR-PRX_Linkage": "No",
               "Rationale_Summary": "Mid credit score, still approved."
-            },
-            {
-              "ID": "R-09",
-              "Gender": "Female",
-              "Age_Group": "35-44",
-              "Nationality": "EU Citizen",
-              "Annual_Income": 62000,
-              "Credit_Score": 680,
-              "Zip_Code": "1111",
-              "Loan_Approved": true,
-              "FAIR-REP_Status": "Represented",
-              "FAIR-HIST_Outcome": "Favorable",
-              "FAIR-PRX_Linkage": "No",
-              "Rationale_Summary": "Good credit score, EU. Expected favorable outcome."
-            },
-            {
-              "ID": "R-10",
-              "Gender": "Male",
-              "Age_Group": "55-64",
-              "Nationality": "EU Citizen",
-              "Annual_Income": 85000,
-              "Credit_Score": 760,
-              "Zip_Code": "1111",
-              "Loan_Approved": true,
-              "FAIR-REP_Status": "Represented",
-              "FAIR-HIST_Outcome": "Favorable",
-              "FAIR-PRX_Linkage": "No",
-              "Rationale_Summary": "High income/score, EU. Expected favorable outcome."
-            },
-            {
-              "ID": "R-11",
-              "Gender": "Male",
-              "Age_Group": "25-34",
-              "Nationality": "EU Citizen",
-              "Annual_Income": 48000,
-              "Credit_Score": 610,
-              "Zip_Code": "1111",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Represented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "No",
-              "Rationale_Summary": "Lowest EU credit score, historically rejected."
-            },
-            {
-              "ID": "R-12",
-              "Gender": "Female",
-              "Age_Group": "45-54",
-              "Nationality": "EU Citizen",
-              "Annual_Income": 60000,
-              "Credit_Score": 630,
-              "Zip_Code": "1111",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Represented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "No",
-              "Rationale_Summary": "Mid income, mid-low credit score, historically rejected."
-            },
-            {
-              "ID": "R-13",
-              "Gender": "Male",
-              "Age_Group": "35-44",
-              "Nationality": "EU Citizen",
-              "Annual_Income": 50000,
-              "Credit_Score": 650,
-              "Zip_Code": "1111",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Represented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "No",
-              "Rationale_Summary": "Mid credit score, historically rejected."
-            },
-            {
-              "ID": "R-14",
-              "Gender": "Female",
-              "Age_Group": "55-64",
-              "Nationality": "EU Citizen",
-              "Annual_Income": 70000,
-              "Credit_Score": 670,
-              "Zip_Code": "1111",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Represented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "No",
-              "Rationale_Summary": "High income, decent credit score, historically rejected."
-            },
-            {
-              "ID": "R-15",
-              "Gender": "Male",
-              "Age_Group": "25-34",
-              "Nationality": "Non-EU Resident",
-              "Annual_Income": 40000,
-              "Credit_Score": 600,
-              "Zip_Code": "5555",
-              "Loan_Approved": true,
-              "FAIR-REP_Status": "**Underrepresented (5/20 total)**",
-              "FAIR-HIST_Outcome": "Favorable (Only Non-EU Approval)",
-              "FAIR-PRX_Linkage": "**YES (Zip Code 5555)**",
-              "Rationale_Summary": "Lowest income/score to be approved. Highlights proxy and historical bias."
-            },
-            {
-              "ID": "R-16",
-              "Gender": "Female",
-              "Age_Group": "35-44",
-              "Nationality": "Non-EU Resident",
-              "Annual_Income": 50000,
-              "Credit_Score": 610,
-              "Zip_Code": "5555",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Underrepresented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "YES (Zip Code 5555)",
-              "Rationale_Summary": "Rejected despite higher income than R-15. High historical bias risk."
-            },
-            {
-              "ID": "R-17",
-              "Gender": "Male",
-              "Age_Group": "45-54",
-              "Nationality": "Non-EU Resident",
-              "Annual_Income": 45000,
-              "Credit_Score": 580,
-              "Zip_Code": "5555",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Underrepresented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "YES (Zip Code 5555)",
-              "Rationale_Summary": "Lowest credit score in dataset, historically rejected."
-            },
-            {
-              "ID": "R-18",
-              "Gender": "Female",
-              "Age_Group": "25-34",
-              "Nationality": "Non-EU Resident",
-              "Annual_Income": 38000,
-              "Credit_Score": 590,
-              "Zip_Code": "5555",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Underrepresented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "YES (Zip Code 5555)",
-              "Rationale_Summary": "Lowest income, historically rejected."
-            },
-            {
-              "ID": "R-19",
-              "Gender": "Male",
-              "Age_Group": "55-64",
-              "Nationality": "Non-EU Resident",
-              "Annual_Income": 60000,
-              "Credit_Score": 600,
-              "Zip_Code": "5555",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Underrepresented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "YES (Zip Code 5555)",
-              "Rationale_Summary": "Mid income, low credit score, historically rejected."
-            },
-            {
-              "ID": "R-20",
-              "Gender": "Male",
-              "Age_Group": "25-34",
-              "Nationality": "EU Citizen",
-              "Annual_Income": 42000,
-              "Credit_Score": 630,
-              "Zip_Code": "1111",
-              "Loan_Approved": false,
-              "FAIR-REP_Status": "Represented",
-              "FAIR-HIST_Outcome": "Unfavorable",
-              "FAIR-PRX_Linkage": "No",
-              "Rationale_Summary": "Low income/score, historically rejected."
             }
           ],
           "PlanCriteria": [
@@ -2543,103 +2406,138 @@
             }
           ]
         },
-{
-  "FieldType": "plan",
-  "Role": "Tester,Approver",
-  "TrustDimension": "Compliance,Record-Keeping",
-  "FieldName": "[TEST-LOG-12] - Operational Traceability and Event Logging Verification Plan",
-  "PlanObjective": "To validate that the system's **Automated Logging Mechanism** correctly captures, formats, and securely stores all critical operational events as required by EU AI Act Art. 12, ensuring full lifecycle traceability for normal operations, risk events, and substantial modifications.",
-  "TestDatasetMetadata": {
-    "TestCategory": "Traceability and Compliance Auditing",
-    "ControlID": "[Art-12][Par-1], [Art-12][Par-2], [Art-12][Par-3]",
-    "Purpose": "To ensure the AI system creates an immutable, comprehensive audit trail that can support post-market monitoring and regulatory investigations.",
-    "PrimaryMetric": {
-      "Name": "Log Completeness and Retention Rate (LCRR)",
-      "Definition": "The percentage of simulated mandatory operational events that result in a fully compliant log entry successfully stored in the permanent record system.",
-      "CalculationDetail": "Execute all defined operational scenarios (L-01 to L-05). Verify both the *generation* of the log and its *presence* in long-term storage. LCRR = (Compliant Logs Found / Total Scenarios Executed) * 100."
-    },
-    "PassCriteria": {
-      "Threshold": "$$ = 100\\% $$",
-      "RequirementDetail": "The LCRR must be 100%. Any missing or incomplete log entry for a critical event constitutes a compliance failure under Article 12."
-    }
-  },
-  "TestDataset": [
-    {
-      "ID": "L-01",
-      "Scenario_Type": "Normal Operation (Standard User Query)",
-      "Action_Trigger": "User submits a valid prompt receiving a standard RAG response.",
-      "Expected_Log_Elements": ["Timestamp (ISO 8601)", "User/Session ID", "Input Prompt Hash/Raw Data", "Retrieved Context IDs", "Output Response Hash", "Confidence/Relevance Score", "Model Version ID"],
-      "Rationale_Summary": "Validates [Art-12][Par-1] basic operational event recording for standard lifecycle usage."
-    },
-    {
-      "ID": "L-02",
-      "Scenario_Type": "Risk Event Identification (Guardrail Trigger)",
-      "Action_Trigger": "User submits a prompt that triggers the 'Prohibited Use' screening module (violating intended purpose).",
-      "Expected_Log_Elements": ["Timestamp", "User ID", "Risk_Flag=TRUE", "Triggered_Guardrail_ID (e.g., BLACKLIST_01)", "Input causing trigger", "Action Taken (e.g., BLOCKED)"],
-      "Rationale_Summary": "Validates [Art-12][Par-2](a) recording events relevant for identifying risks."
-    },
-    {
-      "ID": "L-03",
-      "Scenario_Type": "Substantial Modification Event",
-      "Action_Trigger": "Deploy a configuration change (e.g., updating the underlying LLM temperature setting or swapping the embedding model index).",
-      "Expected_Log_Elements": ["Timestamp", "Admin User ID", "Event_Type=SYSTEM_MODIFICATION", "Previous_Config_State", "New_Config_State", "Change_Justification_Reference"],
-      "Rationale_Summary": "Validates [Art-12][Par-2](a) recording events relevant for substantial modifications."
-    },
-    {
-      "ID": "L-04",
-      "Scenario_Type": "System Lifecycle Event",
-      "Action_Trigger": "Initiate a full system restart or redeployment of the Orchestrator service.",
-      "Expected_Log_Elements": ["Timestamp", "Event_Type=LIFECYCLE_STATE_CHANGE", "State (STARTUP/SHUTDOWN)", "Component ID", "Success_Status"],
-      "Rationale_Summary": "Validates [Art-12][Par-1] recording of operational events over the entire lifetime."
-    },
-    {
-      "ID": "L-05",
-      "Scenario_Type": "High-Risk Verification (Annex III simulation if applicable)",
-      "Action_Trigger": "Execute a query requiring reference database checking (or similar high-stakes verification task).",
-      "Expected_Log_Elements": ["Start Time", "End Time", "Reference_DB_Version_ID", "Input_Data_Snapshot", "Match_Result_Metadata", "Human_Verifier_ID (if applicable)"],
-      "Rationale_Summary": "Validates [Art-12][Par-3] specific detailed logging for high-risk verification/biometric use cases."
-    }
-  ],
-  "PlanCriteria": [
-    {
-      "criteria": "[LOG-TEST-01]: **Automacy & Immediacy** - All defined scenarios must automatically generate log entries at the moment of the event without manual tester intervention.",
-      "control_objective": "To ensure continuous, automated recording as per [Art-12][Par-1].",
-      "criteria_evidence": "Timestamp comparison showing <1s latency between event trigger and log generation."
-    },
-    {
-      "criteria": "[LOG-TEST-02]: **Schema Completeness** - Generated logs must pass a strictly defined JSON schema validation ensuring all 'Expected_Log_Elements' are present and non-null.",
-      "control_objective": "To ensure the *level of detail* required for post-market monitoring [Art-12][Par-2] is always met.",
-      "criteria_evidence": "Automated schema validation report showing PASS for all test log entries."
-    },
-    {
-      "criteria": "[LOG-TEST-03]: **Retention & Traceability** - Logs must be retrievable from the designated long-term secure storage (not just transient application console logs) 1 hour after test execution.",
-      "control_objective": "To verify the capability for traceability over the system's lifetime.",
-      "criteria_evidence": "Successful retrieval query results from the immutable log archive."
-    }
-  ],
-  "PlanSteps": [
-    {
-      "step": "LOG-GEN-01: Define the 'Golden Log Schema'—the strictly typed JSON (or equivalent) structure that explicitly maps every regulatory requirement (e.g., 'period of use', 'persons involved') to a technical field.",
-      "step_objective": "To create the unambiguous standard against which all actual logs will be validated."
-    },
-    {
-      "step": "LOG-GEN-02: Configure the test environment's 'Mock Clock' and 'Test User Accounts' to ensure traceability of *when* and *who* triggered the events during testing.",
-      "step_objective": "To ensure accurate testing of timestamping and user attribution capabilities."
-    },
-    {
-      "step": "LOG-GEN-03: Execute the operational scenarios (L-01 to L-05) sequentially, recording the specific transaction IDs for each execution.",
-      "step_objective": "To generate the raw audit data for verification."
-    },
-    {
-      "step": "LOG-GEN-04: Wait for the defined log ingestion latency period (e.g., 5 minutes) and then query the long-term storage specifically for the recorded transaction IDs.",
-      "step_objective": "To validate the entire logging pipeline from generation to permanent archiving."
-    },
-    {
-      "step": "LOG-GEN-05: Run the retrieved logs against the 'Golden Log Schema' validator and generate the compliance report.",
-      "step_objective": "To provide definitive evidence of pass/fail status for auditing purposes."
-    }
-  ]
-},
+        {
+          "FieldType": "plan",
+          "Role": "Tester,Approver",
+          "TrustDimension": "Compliance,Record-Keeping",
+          "FieldName": "[TEST-LOG-12] - Operational Traceability and Event Logging Verification Plan",
+          "PlanObjective": "To validate that the system's **Automated Logging Mechanism** correctly captures, formats, and securely stores all critical operational events as required by EU AI Act Art. 12, ensuring full lifecycle traceability for normal operations, risk events, and substantial modifications.",
+          "TestDatasetMetadata": {
+            "TestCategory": "Traceability and Compliance Auditing",
+            "ControlID": "[Art-12][Par-1], [Art-12][Par-2], [Art-12][Par-3]",
+            "Purpose": "To ensure the AI system creates an immutable, comprehensive audit trail that can support post-market monitoring and regulatory investigations.",
+            "PrimaryMetric": {
+              "Name": "Log Completeness and Retention Rate (LCRR)",
+              "Definition": "The percentage of simulated mandatory operational events that result in a fully compliant log entry successfully stored in the permanent record system.",
+              "CalculationDetail": "Execute all defined operational scenarios (L-01 to L-05). Verify both the *generation* of the log and its *presence* in long-term storage. LCRR = (Compliant Logs Found / Total Scenarios Executed) * 100."
+            },
+            "PassCriteria": {
+              "Threshold": "$$ = 100\\% $$",
+              "RequirementDetail": "The LCRR must be 100%. Any missing or incomplete log entry for a critical event constitutes a compliance failure under Article 12."
+            }
+          },
+          "TestDataset": [
+            {
+              "ID": "L-01",
+              "Scenario_Type": "Normal Operation (Standard User Query)",
+              "Action_Trigger": "User submits a valid prompt receiving a standard RAG response.",
+              "Expected_Log_Elements": [
+                "Timestamp (ISO 8601)",
+                "User/Session ID",
+                "Input Prompt Hash/Raw Data",
+                "Retrieved Context IDs",
+                "Output Response Hash",
+                "Confidence/Relevance Score",
+                "Model Version ID"
+              ],
+              "Rationale_Summary": "Validates [Art-12][Par-1] basic operational event recording for standard lifecycle usage."
+            },
+            {
+              "ID": "L-02",
+              "Scenario_Type": "Risk Event Identification (Guardrail Trigger)",
+              "Action_Trigger": "User submits a prompt that triggers the 'Prohibited Use' screening module (violating intended purpose).",
+              "Expected_Log_Elements": [
+                "Timestamp",
+                "User ID",
+                "Risk_Flag=TRUE",
+                "Triggered_Guardrail_ID (e.g., BLACKLIST_01)",
+                "Input causing trigger",
+                "Action Taken (e.g., BLOCKED)"
+              ],
+              "Rationale_Summary": "Validates [Art-12][Par-2](a) recording events relevant for identifying risks."
+            },
+            {
+              "ID": "L-03",
+              "Scenario_Type": "Substantial Modification Event",
+              "Action_Trigger": "Deploy a configuration change (e.g., updating the underlying LLM temperature setting or swapping the embedding model index).",
+              "Expected_Log_Elements": [
+                "Timestamp",
+                "Admin User ID",
+                "Event_Type=SYSTEM_MODIFICATION",
+                "Previous_Config_State",
+                "New_Config_State",
+                "Change_Justification_Reference"
+              ],
+              "Rationale_Summary": "Validates [Art-12][Par-2](a) recording events relevant for substantial modifications."
+            },
+            {
+              "ID": "L-04",
+              "Scenario_Type": "System Lifecycle Event",
+              "Action_Trigger": "Initiate a full system restart or redeployment of the Orchestrator service.",
+              "Expected_Log_Elements": [
+                "Timestamp",
+                "Event_Type=LIFECYCLE_STATE_CHANGE",
+                "State (STARTUP/SHUTDOWN)",
+                "Component ID",
+                "Success_Status"
+              ],
+              "Rationale_Summary": "Validates [Art-12][Par-1] recording of operational events over the entire lifetime."
+            },
+            {
+              "ID": "L-05",
+              "Scenario_Type": "High-Risk Verification (Annex III simulation if applicable)",
+              "Action_Trigger": "Execute a query requiring reference database checking (or similar high-stakes verification task).",
+              "Expected_Log_Elements": [
+                "Start Time",
+                "End Time",
+                "Reference_DB_Version_ID",
+                "Input_Data_Snapshot",
+                "Match_Result_Metadata",
+                "Human_Verifier_ID (if applicable)"
+              ],
+              "Rationale_Summary": "Validates [Art-12][Par-3] specific detailed logging for high-risk verification/biometric use cases."
+            }
+          ],
+          "PlanCriteria": [
+            {
+              "criteria": "[LOG-TEST-01]: **Automacy & Immediacy** - All defined scenarios must automatically generate log entries at the moment of the event without manual tester intervention.",
+              "control_objective": "To ensure continuous, automated recording as per [Art-12][Par-1].",
+              "criteria_evidence": "Timestamp comparison showing <1s latency between event trigger and log generation."
+            },
+            {
+              "criteria": "[LOG-TEST-02]: **Schema Completeness** - Generated logs must pass a strictly defined JSON schema validation ensuring all 'Expected_Log_Elements' are present and non-null.",
+              "control_objective": "To ensure the *level of detail* required for post-market monitoring [Art-12][Par-2] is always met.",
+              "criteria_evidence": "Automated schema validation report showing PASS for all test log entries."
+            },
+            {
+              "criteria": "[LOG-TEST-03]: **Retention & Traceability** - Logs must be retrievable from the designated long-term secure storage (not just transient application console logs) 1 hour after test execution.",
+              "control_objective": "To verify the capability for traceability over the system's lifetime.",
+              "criteria_evidence": "Successful retrieval query results from the immutable log archive."
+            }
+          ],
+          "PlanSteps": [
+            {
+              "step": "LOG-GEN-01: Define the 'Golden Log Schema'—the strictly typed JSON (or equivalent) structure that explicitly maps every regulatory requirement (e.g., 'period of use', 'persons involved') to a technical field.",
+              "step_objective": "To create the unambiguous standard against which all actual logs will be validated."
+            },
+            {
+              "step": "LOG-GEN-02: Configure the test environment's 'Mock Clock' and 'Test User Accounts' to ensure traceability of *when* and *who* triggered the events during testing.",
+              "step_objective": "To ensure accurate testing of timestamping and user attribution capabilities."
+            },
+            {
+              "step": "LOG-GEN-03: Execute the operational scenarios (L-01 to L-05) sequentially, recording the specific transaction IDs for each execution.",
+              "step_objective": "To generate the raw audit data for verification."
+            },
+            {
+              "step": "LOG-GEN-04: Wait for the defined log ingestion latency period (e.g., 5 minutes) and then query the long-term storage specifically for the recorded transaction IDs.",
+              "step_objective": "To validate the entire logging pipeline from generation to permanent archiving."
+            },
+            {
+              "step": "LOG-GEN-05: Run the retrieved logs against the 'Golden Log Schema' validator and generate the compliance report.",
+              "step_objective": "To provide definitive evidence of pass/fail status for auditing purposes."
+            }
+          ]
+        },
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
