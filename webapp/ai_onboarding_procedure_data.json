@@ -1334,7 +1334,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester",
-          "TrustDimension": "Data and Data Governance",
+          "TrustDimension": "Data and Data Governance,Fundamental Rights",
           "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
           "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
           "TestDatasetMetadata": {
@@ -2062,7 +2062,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Data and Data Governance",
+          "TrustDimension": "Data and Data Governance,Fundamental Rights,Fairness and Bias",
           "FieldName": "[Art-10][Par-2][2] - Fairness and Bias in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
           "TestDatasetMetadata": {
@@ -2426,7 +2426,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Transparency and Provision of Information",
+          "TrustDimension": "Transparency and Provision of Information,Fundamental Rights",
           "FieldName": "[Art-13][Par-1] - Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
           "TestDatasetMetadata": {
@@ -2643,7 +2643,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Intended Use",
+          "TrustDimension": "Intended Use,Fundamental Rights",
           "FieldName": "[TEST-COMP-01B] - Prohibited Uses Blacklist Enforcement and Audit Test",
           "PlanObjective": "To validate that the **Prohibited Uses Blacklist Screening Module** (RAG-COMP-01.2) successfully detects and rejects all queries containing prohibited terms, and that the attempted misuse is correctly logged and alerted (RAG-COMP-01.4).",
           "TestDatasetMetadata": {
@@ -2730,7 +2730,7 @@
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Human Oversight",
+          "TrustDimension": "Human Oversight,Fundamental Rights",
           "FieldName": "[TEST-HO-01] - Decision-Making Language Detection and Human-in-the-Loop Test Plan",
           "PlanObjective": "To test and validate that the RAG Orchestrator's post-processing controls effectively detect high-impact 'Decision-Making Language Requiring Intervention' in the LLM output, correctly trigger the Human-in-the-Loop (HIL) workflow, and ensure all actions are logged for traceability.",
           "TestDatasetMetadata": {
