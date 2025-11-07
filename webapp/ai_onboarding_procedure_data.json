@@ -994,92 +994,7 @@
             }
           ]
         },
-        {
-          "FieldType": "fieldGroup",
-          "FieldName": "[Article 27] - Fundamental Rights Impact Assessm",
-          "Role": "Engineer",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "GroupTitle": "[Article 27] - Fundamental Rights Impact Assessm",
-          "Fields": [
-            {
-              "FieldName": "VP-IMP-1.1-PopulationType",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
-              "FieldText": "",
-              "FieldType": "Option box with values:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
-            },
-            {
-              "FieldName": "VP-IMP-2.1-ImpactType",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldLabel": "Negitive or positive impacts",
-              "FieldText": "Describe the specific ways the AI system could negatively or positively affect the vulnerable population identified.",
-              "FieldType": "TextBox"
-            },
-            {
-              "FieldName": "VP-IMP-2.2-SeverityAssessment",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldLabel": "Rate the severity of identified impacts",
-              "FieldText": "",
-              "FieldType": "Dropdown box with values:/Low/Medium/High"
-            },
-            {
-              "FieldName": "VP-IMP-2.3-SeverityAssessment",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldLabel": "Describe the severity of identified impacts",
-              "FieldText": "",
-              "FieldType": "TextBox"
-            },
-            {
-              "FieldName": "VP-IMP-3.1-MitigationStrategy",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldLabel": "Describe the main strategies chosen to prevent or reduce negative impacts for the vulnerable population",
-              "FieldText": "",
-              "FieldType": "MultiSelect:Enhanced Access/Targeted Education & Support/Explicit User Consent/Safeguard Controls/Stakeholder Engagement/Other (specify)"
-            },
-            {
-              "FieldName": "VP-IMP-4.1-StakeholderInclusion",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldLabel": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing of the AI system?",
-              "FieldText": "",
-              "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
-            },
-            {
-              "FieldName": "VP-IMP-4.2-SeverityAssessment",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldLabel": "Impact Description",
-              "FieldText": "Describe the severity of identified impacts.",
-              "FieldType": "TextBox"
-            },
-            {
-              "FieldName": "VP-IMP-3.2-MitigationEffectiveness",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldLabel": "Post-Deployment Monitoring Plan",
-              "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and the frequency of review.",
-              "FieldType": "TextBox"
-            }
-          ]
-        },
-        
-{
-  "FieldType": "fieldGroup",
-  "FieldName": "[Art-27] - Fundamental Rights Impact Assessment (FRIA)",
-  "Role": "Requester",
-  "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias",
-  "GroupTitle": "[Art-27] - Fundamental Rights Impact Assessment (FRIA)",
-  "Fields": [
-    {
-      "FieldName": "[Art-27] - Fundamental Rights At-Risk Categories",
-      "Role": "Requester",
-      "TrustDimension": "Fundamental Rights, Fairness and Bias",
-      "FieldLabel": "Fundamental Rights At-Risk Categories for Impact Assessment",
-      "FieldText": "This is the defined scope of Fundamental Rights and Vulnerable Groups that must be specifically addressed by operational controls (human oversight, bias mitigation) in this AI System, as mandated by Article 27 FRIA requirements.",
-      "FieldType": "MultiSelect:Right to Non-Discrimination:ethnic origin, gender, disability status, age, sexual orientation/Right to Good Administration:transparent decisions, right to be heard, timely handling of affairs/Right to Effective Remedy and Fair Trial:explainability of automated decisions, accessible complaint mechanisms, human avenue for redress/Protection of Personal Data:minimization of sensitive data, privacy of minors, prevention of unauthorized surveillance/Rights of the Child:age-appropriate content, protection from manipulative design, data profiling limitations/Consumer Protection:protection from aggressively personalized pricing, clear information requirements, right to withdrawal"
-    }
-  ]
-},        
-        
-        
-        
+   
         {
           "FieldType": "fieldGroup",
           "FieldName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
@@ -1152,7 +1067,80 @@
               "FieldType": "TextBox"
             }
           ]
-        }
+        },
+        
+        
+        
+   {
+  "FieldType": "fieldGroup",
+  "FieldName": "[Article 27] - Fundamental Rights Impact Assessment",
+  "Role": "Engineer",
+  "TrustDimension": "Compliance,Fundamental Rights",
+  "GroupTitle": "[Article 27] - Fundamental Rights Impact Assessment",
+  "Fields": [
+    {
+      "FieldName": "VP-IMP-1.1-PopulationType",
+      "TrustDimension": "Compliance,Fundamental Rights",
+      "FieldLabel": "Select the at-risk group(s) impacted by the AI system",
+      "FieldText": "",
+      "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/Other (specify)"
+    },
+    {
+      "FieldName": "VP-IMP-2.1a-NegativeImpacts",
+      "TrustDimension": "Compliance,Fundamental Rights",
+      "FieldLabel": "Potential negative impacts on fundamental rights",
+      "FieldText": "Select specifically identified risks to the vulnerable population.",
+      "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Limitation of Expression/Reduced Access to Services/Loss of Autonomy/Physical or Mental Harm/Socio-economic Exclusion/Other (specify)"
+    },
+    {
+      "FieldName": "VP-IMP-2.1b-PositiveImpacts",
+      "TrustDimension": "Compliance,Fundamental Rights",
+      "FieldLabel": "Potential positive impacts on fundamental rights",
+      "FieldText": "Select expected benefits for the vulnerable population.",
+      "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency/Empowerment/Personalization/Other (specify)"
+    },
+    {
+      "FieldName": "VP-IMP-2.2-SeverityAssessment",
+      "TrustDimension": "Compliance,Fundamental Rights",
+      "FieldLabel": "Rate the severity of identified negative impacts",
+      "FieldText": "",
+      "FieldType": "Dropdown box with values:/Low/Medium/High"
+    },
+    {
+      "FieldName": "VP-IMP-2.3-SeverityDescription",
+      "TrustDimension": "Compliance,Fundamental Rights",
+      "FieldLabel": "Describe the severity of identified impacts",
+      "FieldText": "Provide justification for the severity rating selected above.",
+      "FieldType": "TextBox"
+    },
+    {
+      "FieldName": "VP-IMP-3.1-TechnicalMitigation",
+      "TrustDimension": "Compliance,Fundamental Rights",
+      "FieldLabel": "Technical mechanisms implemented to mitigate negative impacts",
+      "FieldText": "Select the primary technical controls used to reduce risks to vulnerable populations.",
+      "FieldType": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing/Accessibility Features (WCAG)/Other (specify)"
+    },
+    {
+      "FieldName": "VP-IMP-4.1-StakeholderInclusion",
+      "TrustDimension": "Compliance,Fundamental Rights",
+      "FieldLabel": "Consultation with vulnerable populations",
+      "FieldText": "Have any of the identified vulnerable populations or their representatives been consulted during the design, development, or testing?",
+      "FieldType": "Option box with values:Yes, extensive consultation/Yes, limited consultation/No consultation conducted/Not applicable"
+    },
+    {
+      "FieldName": "VP-IMP-3.2-MonitoringPlan",
+      "TrustDimension": "Compliance,Fundamental Rights",
+      "FieldLabel": "Post-Deployment Monitoring Plan",
+      "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
+      "FieldType": "TextBox"
+    }
+  ]
+}     
+        
+        
+        
+        
+        
       ]
     }
   ],
