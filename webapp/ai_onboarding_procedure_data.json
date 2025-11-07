@@ -782,7 +782,7 @@
               "FieldName": "[Art. 12] - Risk & Safety Signal Spec",
               "FieldLabel": "Required Risk & Safety Signals",
               "FieldText": "Define which internal security and safety signals must be logged to detect 'substantial modifications' or emerging risks during operation.",
-              "FieldType": "MultiSelect:Guardrail_Triggered_Event/Guardrail_Type(e.g., PII/Toxicity)/Confidence_Score_Value/Content_Filter_Rejection/Latency_Anomaly_Flag"
+              "FieldType": "MultiSelect:Guardrail_Triggered_Event/Guardrail_Type(e.g., PII-Toxicity)/Confidence_Score_Value/Content_Filter_Rejection/Latency_Anomaly_Flag"
             }
           ]
         },
@@ -790,7 +790,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Operational_Guardrails_Classification_Group",
           "Role": "Engineer",
-          "TrustDimension": "Intended Use, Human Oversight",
+          "TrustDimension": "Intended Use",
           "GroupTitle": "[A.9.4] - Intended use of AI system",
           "Fields": [
             {
@@ -810,7 +810,22 @@
               "FieldLabel": "(A.9.4) - Blacklist Key Phrase Categories for Prohibited User Prompt",
               "FieldText": "This is a reference list of key phrases that will be blocked by the RAG Orchestrator. AI systems that support these key phrases are prohibited by the AI act.",
               "FieldType": "MultiSelect:Manipulative or Subliminal Techniques Causing Harm:influence my decision, make me buy, change my mind, secretly persuade, subliminal message, hidden command, trick me into, deceive me/Exploitation of Vulnerabilities (e.g., age, disability):target children with ads, exploit elderly, convince a disabled person, addictive game for kids, target financially desperate, exploit vulnerability/General-Purpose Social Scoring:calculate social score, rate my behavior, trustworthiness score, classify people's value, social credit system, evaluate a person based on/Predictive Policing Based Solely on Profiling:predict who will commit a crime, crime risk assessment for a person, profile potential criminals, likelihood of reoffending, predict recidivism/Untargeted Scraping of Facial Images for Databases:scrape faces from internet, create facial recognition database, find all images of a person online, collect CCTV footage for faces, build a face dataset/Emotion Recognition in Workplace or Education:analyze employee emotions, detect student mood, tell me if my team is happy, monitor engagement with emotion, read facial expressions for performance/Biometric Categorization Using Sensitive Data (e.g., race, religion):guess race from photo, determine political opinion from text, infer religious beliefs, categorize by sexual orientation, deduce sex life/'Real-Time' Remote Biometric ID in Public Spaces:live facial recognition, track people in real-time with cameras, identify everyone in this crowd, public camera identification, real-time biometric tracking"
-            },
+            }
+          ]
+        },
+        
+        
+        
+        
+        
+        
+                {
+          "FieldType": "fieldGroup",
+          "FieldName": "Operational_Guardrails_Classification_Group",
+          "Role": "Engineer",
+          "TrustDimension": "Human Oversight",
+          "GroupTitle": "[Art. 14] - Human Oversight",
+          "Fields": [
             {
               "Control": "[Art. 14] - Human Oversight",
               "FieldName": "[Article 14] - Human Intervention Key Phrase Categories Requiring Human Intervention",
@@ -822,6 +837,17 @@
             }
           ]
         },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         {
           "FieldName": "AI system intended use - Intended User Profile",
           "Role": "Requester",
@@ -1577,25 +1603,30 @@
         }
       ],
       "Fields": [
-        {
-          "FieldType": "risk",
-          "Role": "Engineer",
-          "TrustDimension": "Record-Keeping",
-          "FieldName": "Insufficient Audit Logging and Traceability",
-          "RiskDescription": "A lack of detailed, structured, and comprehensive audit logging and traceability within the RAG Orchestrator poses the risk that system operations, user interactions, and data flows are **not fully recorded or attributable**. This failure leads to an **inability to reconstruct the chain of events** leading to an outcome, preventing **effective post-incident forensic analysis**, hindering compliance with **regulatory transparency requirements**, and making it impossible to **verify accountability** for critical decisions or output generation.",
-          "controls": [
-            {
-              "control": "[AUL][1] - Implement logging capabilities in the RAG Orchestrator to ensure events are relevant for: (a) identifying risks or substantial modifications, (b) facilitating post-market monitoring, and (c) monitoring deployer operation, ensuring appropriate functional traceability for the intended purpose.",
-              "control_objective": "To provide the **functional traceability** required for compliance and risk management by explicitly logging metadata that highlights system risks, aids external market surveillance, and supports deployer oversight.",
-              "control_evidence": "Review of the **RAG Orchestrator's** logging configuration and event schema to confirm the inclusion of specific fields or tags for: **Error/Anomaly Detection** (e.g., latency spikes, hallucination scores, API failures), **Post-Market Monitoring** (e.g., system ID, version number, component dependencies), and **Deployer Operation** (e.g., user role, geographic location, operational throughput). Log query demonstrating how an event that constitutes a 'risk' (e.g., a critical exception) is successfully identified and flagged via these logging capabilities."
-            },
-            {
-              "control": "[AUL][2] - Implement logging capabilities in the RAG Orchestrator to record, as a minimum: (a) the period of each use (start/end date/time), (b) the reference database(s) against which input data was checked, (c) the input data that led to a match, and (d) the identification of persons involved in the verification of results.",
-              "control_objective": "To ensure **detailed operational transparency and accountability** by capturing specific data points—particularly for systems analogous to Annex III, Point 1(a)—to allow for precise, auditable reconstruction of a system's output generation process.",
-              "control_evidence": "A review of the log data structure and corresponding code in the **RAG Orchestrator** confirming explicit fields for: **`session_start_timestamp`** and **`session_end_timestamp`**, a structured array of **`reference_database_ids`** (for all used indexes), the precise **`retrieved_input_data`** (the chunks/documents that matched the query), and the **`verifying_user_id`** (authenticated user identity). Provide an example log entry for a single session that successfully populates all four of these data points."
-            }
-          ]
-        },
+{
+  "FieldType": "risk",
+  "Role": "Engineer",
+  "TrustDimension": "Compliance,Record-Keeping",
+  "FieldName": "[RAG-LOG-01] - Failure to Implement Comprehensive Article 12 Logging",
+  "RiskDescription": "The risk that the RAG Orchestrator fails to automatically capture, retain, or secure the detailed operational logs required by EU AI Act Article 12. Failure here means the organization cannot trace the root cause of AI errors (hallucinations, bias), cannot perform required post-market monitoring (Article 72), and lacks the evidentiary audit trail necessary to prove compliance to regulators.",
+  "controls": [
+    {
+      "control": "[RAG-LOG-01.1] - Centralized, Immutable Operational Logging Pipeline: Implement an automated logging service that captures all RAG Orchestrator events in real-time. These logs must be shipped to a centralized, secure repository (e.g., dedicated encrypted S3 bucket, hardened ELK stack) configured for immutability (Write-Once-Read-Many) to prevent tampering, and retained for the mandatory duration of the system's lifetime.",
+      "control_objective": "To strictly fulfill Article 12(1) by ensuring **automatic, uninterrupted, and tamper-proof recording** of events from the moment of deployment until decommissioning.",
+      "control_evidence": "Infrastructure-as-Code (IaC) definitions for the logging pipeline; retention policy configuration screenshots verifying the lifetime duration setting; and penetration test results confirming logs cannot be manually altered or deleted by standard operators."
+    },
+    {
+      "control": "[RAG-LOG-01.2] - Structured Event Schema for Traceability: The Orchestrator must log every inference cycle using a strict, queryable JSON schema. Mandatory fields include: (a) UTC Timestamp, (b) Anonymized User Session ID, (c) Input Prompt (hashed if highly sensitive, otherwise raw), (d) Retrieved Context Metadata (Document IDs, Source URIs, Similarity Scores), (e) The Generated Output, and (f) Any active moderation flags triggered during the session.",
+      "control_objective": "To meet Article 12(2) requirements for **functional traceability** and **post-market monitoring**, enabling rapid reconstruction of any incident to see exactly what the user asked, what data the RAG retrieved, and what it answered.",
+      "control_evidence": "The defined JSON logging schema documentation; sample log entries showing all mandatory fields populated during a test run; and a demonstration of querying this data to trace a specific historical transaction."
+    },
+    {
+      "control": "[RAG-LOG-01.3] - Human-in-the-Loop (HITL) Intervention Logging: If the system includes a human oversight or review step (as required for many high-risk systems), the logging system must record: (a) The ID of the human reviewer, (b) The timestamp of review, (c) The explicit decision (e.g., 'Approved', 'Rejected', 'Overridden'), and (d) any modifications made to the AI's output before final delivery to the user.",
+      "control_objective": "To fulfill Article 12(3) equivalent accountability requirements, ensuring that human oversight is not just a policy, but a **verifyable, auditable technical action**.",
+      "control_evidence": "Logs demonstrating a 'flagged' transaction, followed by the corresponding 'reviewer action' log entry, linked by a common transaction ID."
+    }
+  ]
+},
         {
           "FieldType": "risk",
           "Role": "Engineer",
@@ -2516,52 +2547,103 @@
             }
           ]
         },
-        {
-          "FieldType": "plan",
-          "Role": "Tester,Approver",
-          "TrustDimension": "Record-Keeping",
-          "FieldName": "(Art 12) - Logging and Traceability Validation Plan",
-          "PlanObjective": "To validate that the RAG Orchestrator's audit logging is comprehensive, correctly structured, and functionally capable of capturing the necessary events and data points required for regulatory traceability, post-market monitoring, and accountability.",
-          "PlanCriteria": [
-            {
-              "criteria": "LOG-CRIT-01: Audit logs must contain required fields that support risk/modification identification, post-market monitoring (Art 72), and deployer monitoring (Art 26(5)).",
-              "control_objective": "To confirm that the logging schema is functionally relevant to regulatory and risk traceability requirements.",
-              "criteria_evidence": "Review of the RAG Orchestrator's log schema definition document and an observed log sample demonstrating the presence of all functional metadata tags (e.g., risk_flag: 'true', pmm_version_id: 'v1.2.3', deployer_org_id: 'XYZ')."
-            },
-            {
-              "criteria": "LOG-CRIT-02: All required core data points for accountability must be captured: (a) period of use, (b) reference database, (c) input data leading to a match, and (d) person identification for result verification.",
-              "control_objective": "To confirm that the system meets the high-specificity record-keeping requirements for critical traceable data points, ensuring auditable accountability for every output.",
-              "criteria_evidence": "A successful query and extraction of a transaction log for a test user session where all four mandatory fields—`session_timestamps`, `database_ids`, `retrieved_chunks_content`, and `user_id`—are non-null and correctly populated with accurate data."
-            },
-            {
-              "criteria": "LOG-CRIT-03: The logging mechanism must be resilient, ensuring logs are successfully generated and transmitted to the SIEM/archive system without loss during peak load simulation.",
-              "control_objective": "To confirm that the logging mechanism is robust and does not fail under operational stress, preventing gaps in the auditable record.",
-              "criteria_evidence": "Comparison of the total number of processed requests during a 1-hour load test with the total number of corresponding log entries received by the SIEM/archive. The difference must not exceed a zero or near-zero threshold (e.g., <0.01%)."
-            }
-          ],
-          "PlanSteps": [
-            {
-              "step": "LOG-EXEC-01: Review the RAG Orchestrator's logging configuration and the SIEM ingestion pipeline settings to verify the schema includes all mandatory and functional metadata fields (risk, PMM, deployer-ops, timestamps, reference_db, input_data, user_id).",
-              "step_objective": "To ensure the foundation of the logging structure is correctly defined to meet criteria LOG-CRIT-01 and LOG-CRIT-02 before execution."
-            },
-            {
-              "step": "LOG-EXEC-02: Execute a standard user session (e.g., 'Chat With Your Document') with a known input query and verify the output. Record the authenticated user ID and the known reference database ID used.",
-              "step_objective": "To generate a clean, known transaction event that can be traced and validated against the log criteria."
-            },
-            {
-              "step": "LOG-EXEC-03: Query the SIEM/log archive using the user ID and session timestamp from Step LOG-EXEC-02. Validate that the extracted log entry successfully populates: (a) Start/End time, (b) Reference Database ID, (c) Content of the input query/data that led to a match, and (d) The authenticated User ID.",
-              "step_objective": "To directly confirm compliance with the accountability and transparency requirements of criteria LOG-CRIT-02."
-            },
-            {
-              "step": "LOG-EXEC-04: Execute a controlled error test (e.g., simulate a database connection failure or pass an intentionally malformed query) and monitor the SIEM to ensure the resulting log entry contains the designated 'risk' or 'anomaly' flags.",
-              "step_objective": "To confirm that the logging system is capable of identifying and marking events relevant to risk identification, as required by criteria LOG-CRIT-01(a)."
-            },
-            {
-              "step": "LOG-EXEC-05: Execute a 1-hour load test simulating peak usage. Compare the total number of requests successfully processed by the RAG Orchestrator with the total number of log events ingested by the SIEM during the same period.",
-              "step_objective": "To validate the resilience of the logging mechanism under stress, ensuring log integrity and meeting criteria LOG-CRIT-03."
-            }
-          ]
-        },
+{
+  "FieldType": "plan",
+  "Role": "Tester,Approver",
+  "TrustDimension": "Compliance,Record-Keeping",
+  "FieldName": "[TEST-LOG-12] - Operational Traceability and Event Logging Verification Plan",
+  "PlanObjective": "To validate that the system's **Automated Logging Mechanism** correctly captures, formats, and securely stores all critical operational events as required by EU AI Act Art. 12, ensuring full lifecycle traceability for normal operations, risk events, and substantial modifications.",
+  "TestDatasetMetadata": {
+    "TestCategory": "Traceability and Compliance Auditing",
+    "ControlID": "[Art-12][Par-1], [Art-12][Par-2], [Art-12][Par-3]",
+    "Purpose": "To ensure the AI system creates an immutable, comprehensive audit trail that can support post-market monitoring and regulatory investigations.",
+    "PrimaryMetric": {
+      "Name": "Log Completeness and Retention Rate (LCRR)",
+      "Definition": "The percentage of simulated mandatory operational events that result in a fully compliant log entry successfully stored in the permanent record system.",
+      "CalculationDetail": "Execute all defined operational scenarios (L-01 to L-05). Verify both the *generation* of the log and its *presence* in long-term storage. LCRR = (Compliant Logs Found / Total Scenarios Executed) * 100."
+    },
+    "PassCriteria": {
+      "Threshold": "$$ = 100\\% $$",
+      "RequirementDetail": "The LCRR must be 100%. Any missing or incomplete log entry for a critical event constitutes a compliance failure under Article 12."
+    }
+  },
+  "TestDataset": [
+    {
+      "ID": "L-01",
+      "Scenario_Type": "Normal Operation (Standard User Query)",
+      "Action_Trigger": "User submits a valid prompt receiving a standard RAG response.",
+      "Expected_Log_Elements": ["Timestamp (ISO 8601)", "User/Session ID", "Input Prompt Hash/Raw Data", "Retrieved Context IDs", "Output Response Hash", "Confidence/Relevance Score", "Model Version ID"],
+      "Rationale_Summary": "Validates [Art-12][Par-1] basic operational event recording for standard lifecycle usage."
+    },
+    {
+      "ID": "L-02",
+      "Scenario_Type": "Risk Event Identification (Guardrail Trigger)",
+      "Action_Trigger": "User submits a prompt that triggers the 'Prohibited Use' screening module (violating intended purpose).",
+      "Expected_Log_Elements": ["Timestamp", "User ID", "Risk_Flag=TRUE", "Triggered_Guardrail_ID (e.g., BLACKLIST_01)", "Input causing trigger", "Action Taken (e.g., BLOCKED)"],
+      "Rationale_Summary": "Validates [Art-12][Par-2](a) recording events relevant for identifying risks."
+    },
+    {
+      "ID": "L-03",
+      "Scenario_Type": "Substantial Modification Event",
+      "Action_Trigger": "Deploy a configuration change (e.g., updating the underlying LLM temperature setting or swapping the embedding model index).",
+      "Expected_Log_Elements": ["Timestamp", "Admin User ID", "Event_Type=SYSTEM_MODIFICATION", "Previous_Config_State", "New_Config_State", "Change_Justification_Reference"],
+      "Rationale_Summary": "Validates [Art-12][Par-2](a) recording events relevant for substantial modifications."
+    },
+    {
+      "ID": "L-04",
+      "Scenario_Type": "System Lifecycle Event",
+      "Action_Trigger": "Initiate a full system restart or redeployment of the Orchestrator service.",
+      "Expected_Log_Elements": ["Timestamp", "Event_Type=LIFECYCLE_STATE_CHANGE", "State (STARTUP/SHUTDOWN)", "Component ID", "Success_Status"],
+      "Rationale_Summary": "Validates [Art-12][Par-1] recording of operational events over the entire lifetime."
+    },
+    {
+      "ID": "L-05",
+      "Scenario_Type": "High-Risk Verification (Annex III simulation if applicable)",
+      "Action_Trigger": "Execute a query requiring reference database checking (or similar high-stakes verification task).",
+      "Expected_Log_Elements": ["Start Time", "End Time", "Reference_DB_Version_ID", "Input_Data_Snapshot", "Match_Result_Metadata", "Human_Verifier_ID (if applicable)"],
+      "Rationale_Summary": "Validates [Art-12][Par-3] specific detailed logging for high-risk verification/biometric use cases."
+    }
+  ],
+  "PlanCriteria": [
+    {
+      "criteria": "[LOG-TEST-01]: **Automacy & Immediacy** - All defined scenarios must automatically generate log entries at the moment of the event without manual tester intervention.",
+      "control_objective": "To ensure continuous, automated recording as per [Art-12][Par-1].",
+      "criteria_evidence": "Timestamp comparison showing <1s latency between event trigger and log generation."
+    },
+    {
+      "criteria": "[LOG-TEST-02]: **Schema Completeness** - Generated logs must pass a strictly defined JSON schema validation ensuring all 'Expected_Log_Elements' are present and non-null.",
+      "control_objective": "To ensure the *level of detail* required for post-market monitoring [Art-12][Par-2] is always met.",
+      "criteria_evidence": "Automated schema validation report showing PASS for all test log entries."
+    },
+    {
+      "criteria": "[LOG-TEST-03]: **Retention & Traceability** - Logs must be retrievable from the designated long-term secure storage (not just transient application console logs) 1 hour after test execution.",
+      "control_objective": "To verify the capability for traceability over the system's lifetime.",
+      "criteria_evidence": "Successful retrieval query results from the immutable log archive."
+    }
+  ],
+  "PlanSteps": [
+    {
+      "step": "LOG-GEN-01: Define the 'Golden Log Schema'—the strictly typed JSON (or equivalent) structure that explicitly maps every regulatory requirement (e.g., 'period of use', 'persons involved') to a technical field.",
+      "step_objective": "To create the unambiguous standard against which all actual logs will be validated."
+    },
+    {
+      "step": "LOG-GEN-02: Configure the test environment's 'Mock Clock' and 'Test User Accounts' to ensure traceability of *when* and *who* triggered the events during testing.",
+      "step_objective": "To ensure accurate testing of timestamping and user attribution capabilities."
+    },
+    {
+      "step": "LOG-GEN-03: Execute the operational scenarios (L-01 to L-05) sequentially, recording the specific transaction IDs for each execution.",
+      "step_objective": "To generate the raw audit data for verification."
+    },
+    {
+      "step": "LOG-GEN-04: Wait for the defined log ingestion latency period (e.g., 5 minutes) and then query the long-term storage specifically for the recorded transaction IDs.",
+      "step_objective": "To validate the entire logging pipeline from generation to permanent archiving."
+    },
+    {
+      "step": "LOG-GEN-05: Run the retrieved logs against the 'Golden Log Schema' validator and generate the compliance report.",
+      "step_objective": "To provide definitive evidence of pass/fail status for auditing purposes."
+    }
+  ]
+},
         {
           "FieldType": "plan",
           "Role": "Tester,Approver",
