@@ -791,7 +791,7 @@
           "FieldName": "Operational_Guardrails_Classification_Group",
           "Role": "Engineer",
           "TrustDimension": "Intended Use, Human Oversight",
-          "GroupTitle": "Operational Guardrails & Classification Categories",
+          "GroupTitle": "[A.9.4] - Intended use of AI system",
           "Fields": [
             {
               "Control": "[A.9.4] - Intended use of AI system",
