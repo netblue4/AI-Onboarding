@@ -1602,32 +1602,32 @@
       ],
       "Fields": [
 		{
-          "Control": "[Article 12]",
+		  "Control": "[Article 12]",
 		  "FieldType": "risk",
 		  "Role": "Engineer",
 		  "TrustDimension": "Compliance, Record-Keeping",
 		  "FieldName": "[TRC-LOG-01] - Inadequate AI System Traceability & Record-Keeping",
-		  "RiskDescription": "The risk that the AI system operates as a 'black box' without sufficient immutable logs to reconstruct its continued compliance during post-market monitoring or incident investigation. Failure to implement the defined lifecycle events, operational hooks, and mandatory metadata schema directly violates EU AI Act Article 12, preventing requisite transparency and exposing the organization to maximum regulatory penalties in the event of malfunction or harm.",
+		  "RiskDescription": "The risk that if the AI malfunctions, we cannot reconstruct what happened because it didn't keep detailed enough records. Failure to automatically track the AI's history and daily decisions violates EU transparency rules (Article 12), making it impossible to audit incidents and exposing the organization to maximum regulatory penalties.",
 		  "controls": [
 			{
-			  "control": "[TRC-LOG-01.1] - Automated Infrastructure & Lifecycle Event Emission: Integrate the CI/CD pipeline and runtime environment (e.g., Kubernetes) with the central logging aggregator to automatically emit events for all 'Required System Lifecycle Events' (e.g., Model_Version_Change, Decommission_Event) without requiring manual application-level logging for these infrastructure states.",
-			  "control_objective": "To guarantee complete longitudinal tracking of the system's existence, configuration, and version history from deployment to decommissioning, satisfying Article 12(1).",
-			  "control_evidence": "IaC (Infrastructure as Code) templates showing logging sidecar configuration; CI/CD pipeline scripts demonstrating automated 'Deployment' event emission."
+			  "control": "[TRC-LOG-01.1] - Automated Infrastructure Tracking: Configure the underlying computer systems to automatically record major lifecycle events (like 'New Model Version Deployed' or 'System Shut Down') so we don't have to rely on engineers manually logging these critical changes.",
+			  "control_objective": "To guarantee we have a perfect timeline of when the system was turned on, updated, or turned off, as required by law.",
+			  "control_evidence": "System settings showing that deployment actions automatically trigger a permanent record."
 			},
 			{
-			  "control": "[TRC-LOG-01.2] - RAG Orchestrator Operational Instrumentation: Implement explicit logging hooks within the RAG Orchestrator's main execution path to capture all 'Mandatory Operational Event Categories'. This must include separate, correlated log entries for the raw prompt received, the retrieval step (referencing the vector DB state), the risk guardrail checks, and the final generated response.",
-			  "control_objective": "To provide the functional granularity required for post-market monitoring and forensic analysis of specific inference failures or prohibited use attempts.",
-			  "control_evidence": "Code references (e.g., middleware or decorators) showing instrumentation at key orchestration stages; sample raw logs demonstrating capture of retrieval and inference steps."
+			  "control": "[TRC-LOG-01.2] - Detailed Step-by-Step Activity Recording: Ensure the AI creates a detailed record for every single answer it gives. This must separately record: 1) what the user asked, 2) exactly which documents the AI read to find the answer, 3) any safety checks it passed, and 4) the final answer it produced.",
+			  "control_objective": "To ensure that if an inappropriate answer is given, we can look back and see exactly *why* the AI decided to say it.",
+			  "control_evidence": "Sample records showing the full 'chain of thought' for a single user request, from input to final output."
 			},
 			{
-			  "control": "[TRC-LOG-01.3] - Structured Logging Schema Enforcement Library: Utilize a shared standard logging library that strictly enforces the 'Required Traceability Log Metadata Schema'. The library must automatically populate context-aware fields (Timestamp, Environment, Source_Component) and require developers to pass mandatory context fields (User_ID, Input_Data_Hash, Model_Version_ID) before a log can be successfully emitted.",
-			  "control_objective": "To ensure every log entry is structurally complete and queryable for future audits, preventing 'orphaned' logs that lack necessary context for accountability (Art 12.3).",
-			  "control_evidence": "Unit tests for the logging wrapper showing rejection/alerting when mandatory metadata is missing; repository link to the shared logging schema definition."
+			  "control": "[TRC-LOG-01.3] - Mandatory Standard Recording Template: Force all developers to use a standardized digital template when creating records. This template must automatically reject any record that is missing essential context (like the User ID, exact time, or which AI model version was used).",
+			  "control_objective": "To prevent useless, incomplete records that cannot be linked back to a specific user or event during an audit.",
+			  "control_evidence": "Test results showing the system refusing to save a record if a mandatory field (like 'User_ID') is missing."
 			},
 			{
-			  "control": "[TRC-LOG-01.4] - Immutable Long-Term Log Retention: Configure the log aggregation platform to route all defined traceability logs to Write-Once-Read-Many (WORM) compliant storage with a retention period matching the system's defined lifetime plus the mandatory regulatory tail (e.g., System Lifetime + X Years).",
-			  "control_objective": "To prevent tampering or premature deletion of evidence required for future legal or regulatory inquiries.",
-			  "control_evidence": "Configuration settings for the cloud storage bucket (e.g., AWS S3 Object Lock enabled, Lifecycle Policy set to required retention years)."
+			  "control": "[TRC-LOG-01.4] - Tamper-Proof Long-Term Storage: Save all these records in a secure digital vault set to 'Read-Only.' It must be technically impossible for anyone (including our own administrators) to edit or delete these records until the legally required retention period has ended.",
+			  "control_objective": "To ensure evidence cannot be altered or destroyed if we are investigated in the future.",
+			  "control_evidence": "Cloud storage settings showing 'Object Lock' (cannot be deleted) is active for the required number of years."
 			}
 		  ]
 		},
@@ -1688,31 +1688,6 @@
               "control": "[RAG-HO-01.4] - Logging and Traceability of Interventions: The orchestrator must automatically and irrevocably log every instance where decision-making language was flagged, the subsequent human action (override, stop, or approval), and the identity of the human overseer. This log must be maintained for a minimum of one year.",
               "control_objective": "To ensure full traceability and accountability of the system's operation and the human's role in the decision-making chain, facilitating post-market monitoring and regulatory audits.",
               "control_evidence": "Sample log data showing all fields (timestamp, detected phrase, human overseer ID, final action taken); and documentation of the log retention policy."
-            }
-          ]
-        },
-        {
-          "Control": "[Article 27]",          
-          "FieldType": "risk",
-          "Role": "Engineer",
-          "TrustDimension": "Data and Data Governance,Fairness and Bias",
-          "FieldName": "[RAG-DATA-RISK-02] - Failure to Implement RAG Bias Mitigation",
-          "RiskDescription": "The risk that the RAG Orchestrator fails to apply necessary technical mitigations when retrieving from a potentially biased Knowledge Base. Since the underlying LLM is frozen (no re-training), failure to actively balance retrieved context or inject fairness guardrails during generation will result in the system propagating or amplifying historical biases present in the source documents, violating EU AI Act Art. 10(g).",
-          "controls": [
-            {
-              "control": "[RAG-MIT-01] - Diversity-Aware Retrieval Re-ranking: The retrieval pipeline must include a re-ranking step that specifically boosts content from underrepresented groups or diverse viewpoints if initial vector search results are homogeneously skewed toward a dominant demographic or perspective.",
-              "control_objective": "To technically ensure that the 'data' (context) provided to the frozen LLM is balanced, mitigating representation bias at the retrieval stage before generation begins.",
-              "control_evidence": "RAG Orchestrator configuration showing the active 'DiversityReRanker' module in the retrieval chain; logs showing search results before and after re-ranking."
-            },
-            {
-              "control": "[RAG-MIT-02] - Mandatory Fairness System Prompt Injection: The RAG Orchestrator must automatically inject explicit fairness instructions and constraints into the system prompt (e.g., 'Do not make assumptions based on gender/race if not explicitly stated in retrieved context') for every query.",
-              "control_objective": "To use in-context learning to force the frozen LLM to adhere to fairness principles, mitigating the risk that it will amplify biases found in the retrieved data.",
-              "control_evidence": "Code review of the prompt template management system; runtime logs showing the final assembled prompt sent to the LLM containing the mandatory fairness clauses."
-            },
-            {
-              "control": "[RAG-MIT-03] - Real-time Output Fairness Guardrail: A post-processing scanning module must check generated answers for prohibited biased language or unsubstantiated inferences about protected groups *before* the response is returned to the user. Violations must trigger a fallback response.",
-              "control_objective": "To provide a final technical fail-safe that catches discriminatory outputs if retrieval and prompt mitigations fail.",
-              "control_evidence": "Guardrail configuration files (e.g., regex patterns or toxicity classifier thresholds); audit logs of 'blocked' responses due to fairness violations."
             }
           ]
         }
@@ -2995,36 +2970,36 @@
         }
       ],
       "Fields": [
-        {
-          "Control": "[Article 15]",          
-          "FieldType": "risk",
-          "Role": "Operation & Monitoring Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "Insufficient Scalability Management",
-          "RiskDescription": "Failure to architect the RAG system for **horizontal scalability** across all components—including the RAG Orchestrator, the LLM endpoint, the vector database, and the data pipeline—will result in an **inability to handle increasing user load** or **growing data volumes**. This leads to degraded **performance**, high **latency**, potential **service instability** during traffic spikes, and prevents the timely **update** of the core knowledge base.",
-          "controls": [
-            {
-              "control": "[SC][1] - Implement separate horizontal auto-scaling mechanisms for the RAG Orchestrator (CPU-bound) and the privately-hosted LLM inference service (GPU-bound). Scaling policies for each should be based on relevant metrics (e.g., request latency for the orchestrator, GPU utilization for the LLM).",
-              "control_objective": "To independently scale the logic and generation components of the system, ensuring that a bottleneck in one does not unnecessarily consume costly resources in the other.",
-              "control_evidence": "Two distinct Infrastructure-as-Code (IaC) configurations (e.g., separate Kubernetes HPAs or Terraform auto-scaling groups). Load test results demonstrating that orchestrator and LLM instances scale independently under different load patterns. Monitoring dashboards showing separate scaling events."
-            },
-            {
-              "control": "[SC][2] - Architect the RAG Orchestrator and the LLM inference endpoints as stateless services. Any state required for multi-turn conversations must be managed by the User Interface or externalized to a scalable cache, not held in-memory on the backend instances.",
-              "control_objective": "To enable seamless load balancing and instant failover across all backend components, ensuring that any instance can process any incoming request without being dependent on local session data.",
-              "control_evidence": "System architecture diagram showing stateless services and external state stores. Code review of the orchestrator and LLM service handlers confirming the absence of in-memory session storage. High-availability test report showing user sessions persist after forced restarts of multiple service instances."
-            },
-            {
-              "control": "[SC][3] - Ensure the Permanent Index (vector database) is deployed on an architecture that supports horizontal scaling to handle high query throughput. This should be achieved by scaling out the number of nodes/pods or by implementing index sharding.",
-              "control_objective": "To prevent the vector search operation from becoming a performance bottleneck as the number of concurrent users and the size of the knowledge base grow.",
-              "control_evidence": "Vector database configuration files (e.g., Helm charts, cloud service settings) showing sharding or replica settings. Performance benchmarks demonstrating query latency remains stable as the query load increases. A documented procedure for scaling the vector database cluster."
-            },
-            {
-              "control": "[SC][4] - Design the asynchronous Data Processing Pipeline using a queue-based architecture (e.g., RabbitMQ, SQS). This decouples the initial vectorization of proprietary data from the core application, allowing it to handle large-volume data ingestion without impacting real-time query performance.",
-              "control_objective": "To ensure that the creation and updating of the knowledge base is a robust, fault-tolerant, and scalable process that does not degrade the responsiveness of the live chat service.",
-              "control_evidence": "Architecture diagram illustrating the message queue between the data sources and the processing pipeline. Configuration of the queue and the worker pool. Logs showing successful processing of a large batch of documents, with metrics on processing time and throughput."
-            }
-          ]
-        },
+		{
+		  "Control": "[Article 15]",
+		  "FieldType": "risk",
+		  "Role": "Operation & Monitoring Engineer",
+		  "TrustDimension": "Cybersecurity and Resilience",
+		  "FieldName": "Insufficient Scalability Management",
+		  "RiskDescription": "Failure to design the system so it can easily grow (scale) will result in crashes or extreme slowness when too many users try to access it at once, or when we add too much new data to its knowledge base.",
+		  "controls": [
+			{
+			  "control": "[SC][1] - Independent Automatic Growth: Configure the main application and the AI model to grow (auto-scale) separately from one another. They use different types of computer resources, so one getting busy shouldn't force the other to grow unnecessarily.",
+			  "control_objective": "To ensure we don't waste expensive AI hardware just because basic website traffic is high, and vice versa.",
+			  "control_evidence": "Test results showing the main application adding more servers while the AI model stays stable (and vice versa) under different types of stress."
+			},
+			{
+			  "control": "[SC][2] - 'Stateless' Servers: Design the system so individual servers don't remember specific user conversations locally. All conversation history must be stored in a central, shared location accessible by all servers.",
+			  "control_objective": "To ensure that if one server fails mid-conversation, another can instantly take over without the user noticing any interruption.",
+			  "control_evidence": "A test report demonstrating that users don't lose their chat history even if we deliberately turn off the specific server they were talking to."
+			},
+			{
+			  "control": "[SC][3] - Expandable Knowledge Base: Build the search database so it can handle more simultaneous questions by adding more servers to it (horizontal scaling), rather than just trying to make one single server more powerful.",
+			  "control_objective": "To prevent knowledge searches from becoming slow as more employees use the system at the same time.",
+			  "control_evidence": "Performance benchmarks showing that search speed remains fast even when the number of simultaneous users doubles."
+			},
+			{
+			  "control": "[SC][4] - Background Data Processing: Use a 'waiting line' (queue) system for adding new documents to the knowledge base. This ensures new information is processed in the background without clogging up the live system for active users.",
+			  "control_objective": "To ensure we can upload massive amounts of new company data without slowing down the chat service for people currently using it.",
+			  "control_evidence": "System diagrams showing the 'waiting line' that separates document uploads from the live user chat area."
+			}
+		  ]
+		},
         {
           "Control": "[Article 15]",          
           "FieldType": "risk",
@@ -3052,66 +3027,6 @@
               "control": "[C.3.6][BP-14] - Any modification to the production dataset within the central data repository (as defined in control A.4.2, A.4.3), including additions, deletions, or schema changes, must be executed through a formal change management ticket that requires peer review and explicit approval from a designated data owner.",
               "control_objective": "To maintain the integrity, traceability, and quality of the training dataset by preventing unauthorized or undocumented changes that could adversely affect model performance and reliability.",
               "control_evidence": "Documented data change management procedure. Completed change request tickets (e.g., in Jira, ServiceNow) with approval history. Audit logs from the data repository or data pipeline tools confirming that changes were applied post-approval."
-            }
-          ]
-        },
-        {
-          "Control": "[Article 15]",          
-          "FieldType": "risk",
-          "Role": "Operation & Monitoring Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "Inadequate Disaster Recovery and Business Continuity Planning",
-          "RiskDescription": "A regional or catastrophic failure affecting the RAG system's primary deployment—including the user interface, RAG Orchestrator, privately-hosted LLM, or the Permanent Index (vector database)—could lead to **prolonged, unauthorized downtime**. Without tested failover procedures, IaC for rapid deployment, and cross-region data replication, the system would fail to meet its established **Recovery Time Objective (RTO)** and **Recovery Point Objective (RPO)**, causing a **critical disruption** to business operations.",
-          "controls": [
-            {
-              "control": "[BU][1] - Define the stateless services—specifically the RAG Orchestrator and User Interface—using Infrastructure-as-Code (IaC). The IaC templates must be version-controlled to allow for the rapid, automated deployment of a functional replica in a designated disaster recovery region.",
-              "control_objective": "To ensure the core logic and user-facing components of the RAG system can be redeployed consistently and quickly, minimizing the Recovery Time Objective (RTO) for the application's brain and entry point.",
-              "control_evidence": "Version-controlled IaC files (e.g., Terraform, CloudFormation) for the RAG Orchestrator and UI services. A disaster recovery runbook detailing the execution steps. Logs from a successful DR drill showing these services becoming operational in the failover environment."
-            },
-            {
-              "control": "[BU][2] - Implement automated, cross-region replication or point-in-time backups for the Permanent Index (vector database). The recovery process for this data store must be tested to ensure the Recovery Point Objective (RPO) is met.",
-              "control_objective": "To prevent catastrophic loss of the vectorized knowledge base, which is costly and time-consuming to recreate, by ensuring a recent copy is always available in a geographically separate location.",
-              "control_evidence": "Cloud console configurations or database settings showing cross-region replication or automated backups are active for the vector database. A log from a recent data restoration test. Monitoring dashboards displaying replication lag or backup completion status."
-            },
-            {
-              "control": "[BU][3] - Configure a DNS-based failover mechanism for the User Interface's public endpoint. The system must use health checks to monitor the primary RAG Orchestrator's availability and be able to redirect traffic to the replica in the disaster recovery region.",
-              "control_objective": "To provide a seamless transition for end-users during a regional outage by automatically or manually redirecting their requests to the healthy standby environment.",
-              "control_evidence": "DNS record configuration (e.g., AWS Route 53, Azure Traffic Manager) showing the failover routing policy. Health check configuration and status logs. A report from a planned failover test that confirms traffic was successfully redirected with minimal user-facing downtime."
-            },
-            {
-              "control": "[BU][4] - Ensure the privately-hosted LLM inference endpoint is deployed with a multi-region disaster recovery strategy. This must include either an active-standby deployment defined in IaC or a documented procedure to rapidly redeploy the model from a central, replicated model registry into the failover region.",
-              "control_objective": "To guarantee that the core generative capability of the system is recoverable, preventing a complete service outage if the primary LLM hosting environment becomes unavailable.",
-              "control_evidence": "IaC templates for the LLM endpoint deployment (e.g., SageMaker endpoint config, Kubernetes manifests). A DR runbook with steps for LLM failover/redeployment. Screenshots of the model artifact stored in a resilient registry (e.g., S3 with cross-region replication)."
-            }
-          ]
-        },
-        {
-          "Control": "[Article 15]",          
-          "FieldType": "risk",
-          "Role": "Operation & Monitoring Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "Insufficient Performance Monitoring and Analysis",
-          "RiskDescription": "Lack of comprehensive instrumentation across the RAG architecture—spanning end-to-end user query latency, LLM inference efficiency, knowledge base update throughput, and retrieval quality—could lead to **undetected performance degradation**. This results in poor **user experience** due to slow response times, **cost inefficiencies** from underoptimized GPU resources, and **inaccurate model outputs** caused by poor information retrieval.",
-          "controls": [
-            {
-              "control": "[PER][1] - Instrument the RAG Orchestrator with distributed tracing to measure the end-to-end latency of a user query. The trace must capture the duration of each critical operation: retrieval from the vector index, augmentation of the prompt, and response generation by the LLM.",
-              "control_objective": "To pinpoint performance bottlenecks within the live RAG chain, enabling targeted optimization of either the retrieval or generation components to improve user-perceived response time.",
-              "control_evidence": "A distributed tracing dashboard (e.g., Jaeger, Datadog) showing a waterfall diagram of a user request. A metrics dashboard displaying P95/P99 latency for each individual step (retrieval, generation)."
-            },
-            {
-              "control": "[PER][2] - Implement dedicated monitoring for the privately-hosted LLM inference endpoint. Dashboards must track GPU utilization, memory usage, time-to-first-token, and output tokens per second, with alerts configured for significant degradations.",
-              "control_objective": "To ensure the most resource-intensive component of the stack is operating efficiently and to proactively detect hardware or model issues before they impact the entire system.",
-              "control_evidence": "A monitoring dashboard (e.g., Grafana) with panels for GPU metrics and inference latency. The configuration file for the alerting rules (e.g., in Prometheus/Alertmanager). Load test reports showing performance under stress."
-            },
-            {
-              "control": "[PER][3] - Establish a feedback loop by logging a sample of user queries, the IDs of the retrieved document chunks, and the final generated response. Implement an offline job to periodically calculate retrieval quality metrics (e.g., hit rate, Mean Reciprocal Rank) against a golden dataset.",
-              "control_objective": "To monitor the relevance and accuracy of the RAG system's outputs over time, detecting concept drift or degradation in retrieval quality as the knowledge base evolves.",
-              "control_evidence": "A sample of the logged data from the production system. A script from a CI/CD pipeline or scheduled job that runs the evaluation. A report or dashboard showing the trend of retrieval quality metrics over time."
-            },
-            {
-              "control": "[PER][4] - Instrument the asynchronous Data Processing Pipeline to monitor its throughput (documents processed per hour) and error rate. Track the average time spent on each stage: text extraction, chunking, and embedding generation.",
-              "control_objective": "To ensure the knowledge base creation process is scalable and reliable, allowing for timely updates and additions to the system's proprietary data without system degradation.",
-              "control_evidence": "A metrics dashboard for the data pipeline showing throughput and error rates. Logs from pipeline workers detailing the processing time for each stage. An alert that triggers if the pipeline's failure rate exceeds a set threshold."
             }
           ]
         },
