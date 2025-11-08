@@ -1493,7 +1493,38 @@
           "Objective": "To ensure the secure and confidential transfer of all proprietary data from internal sources into the data processing pipeline by enforcing strong encryption for all data in transit."
         }
       ],
-      "Fields": []
+      "Fields": [
+		{
+		  "Control": "[Article 32]",
+		  "FieldType": "risk",
+		  "Role": "System Architect",
+		  "TrustDimension": "Cybersecurity and Resilience",
+		  "FieldName": "RAG01 Over-privileged Ingestion Connectors",
+		  "RiskDescription": "The **service accounts** or **API keys** used by the Data Processing Pipeline to connect to internal data sources often require broad 'read-all' permissions to function effectively. If these **over-privileged credentials** are compromised (e.g., hardcoded in scripts, leaked in logs, or stolen via lateral movement), an attacker gains **unrestricted access** to all ingestible data simultaneously, bypassing individual user access controls and leading to **massive data exfiltration**.",
+		  "controls": [
+			{
+			  "control": "RAG01.01 Implement Principle of Least Privilege (PoLP) for all ingestion service accounts, restricting access only to specific required datasets/tables rather than entire databases or file servers.",
+			  "control_objective": "To limit the blast radius if ingestion credentials are compromised, ensuring they cannot access data outside their specific scope.",
+			  "control_evidence": "Access control lists (ACLs) or IAM policy documents for the service account showing granular read-only permissions restricted to specific resources."
+			},
+			{
+			  "control": "RAG01.02 Utilize short-lived, dynamically generated credentials (e.g., IAM roles, HashiCorp Vault dynamic secrets) for ingestion jobs instead of static, long-lived API keys or passwords.",
+			  "control_objective": "To reduce the window of opportunity for an attacker to use stolen credentials by ensuring they expire automatically.",
+			  "control_evidence": "Configuration of the secrets management system or orchestrator showing dynamic credential rotation policies (e.g., every 60 minutes)."
+			},
+			{
+			  "control": "RAG01.03 securely store and manage all connector credentials using a dedicated enterprise secrets manager, ensuring they are never hardcoded in pipeline code or configuration files.",
+			  "control_objective": "To prevent accidental leakage of high-privilege credentials through source code repositories or insecure configuration files.",
+			  "control_evidence": "Code repository scans confirming no hardcoded secrets; pipeline configuration showing environmental variable injection from a secure vault."
+			},
+			{
+			  "control": "RAG01.04 Implement specialized monitoring and anomaly detection for ingestion service accounts to flag unusual access patterns (e.g., reading data outside normal batch windows or unusual volumes).",
+			  "control_objective": "To rapidly detect active abuse of legitimate ingestion credentials.",
+			  "control_evidence": "SIEM alert configuration rules specifically targeting the UUID/name of the ingestion service accounts."
+			}
+		  ]
+		}      
+      ]
     }
   ],
   "4. Development (Real-Time Chat With Your Document)": [
@@ -1657,7 +1688,39 @@
           "Objective": "To enforce strict operational security for the self-hosted Large Language Model (LLM) by isolating its network access and implementing governed MLOps deployment workflows."
         }
       ],
-      "Fields": []
+      "Fields": [
+		  {
+			  "Control": "[Article 15]",
+			  "FieldType": "risk",
+			  "Role": "Data Scientist",
+			  "TrustDimension": "Cybersecurity and Resilience",
+			  "FieldName": "LLM05 Model Supply Chain Attack",
+			  "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
+			  "controls": [
+				{
+				  "control": "LLM05.01 Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
+				  "control_objective": "To ensure that only verified and approved components are used in the AI system, reducing the risk of introducing malicious elements from public sources.",
+				  "control_evidence": "Documentation of the internal repository setup (e.g., Artifactory, private Hugging Face hub). Policy documents mandating its use. Logs showing successful mirroring and vetting processes."
+				},
+				{
+				  "control": "LLM05.02 Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
+				  "control_objective": "To detect and block compromised or vulnerable components before they can be used in the development or deployment pipeline.",
+				  "control_evidence": "Configuration of scanning tools (e.g., ClamAV for malware, specialised model scanners like Picklescan). Reports from these tools showing scan results for imported assets."
+				},
+				{
+				  "control": "LLM05.03 Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
+				  "control_objective": "To prevent the silent substitution of legitimate components with malicious ones by ensuring only specifically approved, immutable versions are used.",
+				  "control_evidence": "Requirement files (e.g., 'requirements.txt', 'poetry.lock') with pinned versions and hashes. CI/CD pipeline scripts that verify these hashes before build or deployment."
+				},
+				{
+				  "control": "LLM05.04 Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
+				  "control_objective": "To evaluate the security posture of suppliers and reduce the risk of relying on poorly maintained or compromised upstream projects.",
+				  "control_evidence": "Vendor risk assessment reports, records of due diligence checks on open-source project maintainers (e.g., activity, community trust), and a regularly updated approved vendor list."
+				}"control_evidence": "Automated generation of SBOMs during the CI/CD process. A searchable inventory of all components across all deployed AI systems."
+				}
+			  ]
+			}
+      ]
     },
     {
       "StepName": "4.4. - User Interface <->  RAG Orchestrator",
@@ -1844,17 +1907,7 @@
       ]
     },
     {
-      "StepName": "4.6. - RAG Orchestrator <-> Generic LLM (Augmented Prompt & LLM Call)",
-      "WebFormTitle": "To generate a coherent, fact-based answer by sending a context-rich prompt to the LLM while mitigating risks of prompt injection and sensitive data leakage.",
-      "Objectives": [
-        {
-          "Objective": "To generate a coherent, fact-based answer by sending a context-rich prompt to the LLM while mitigating risks of prompt injection and sensitive data leakage."
-        }
-      ],
-      "Fields": []
-    },
-    {
-      "StepName": "4.7. - Generic LLM <-> RAG Orchestrator (LLM Generation)",
+      "StepName": "4.6. - Generic LLM <-> RAG Orchestrator",
       "WebFormTitle": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data.",
       "Objectives": [
         {
