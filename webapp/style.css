@@ -57,7 +57,7 @@ body {
 }
 .form-field {
     margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #007BFF;
     padding-bottom: 10px;
 }
 /* --- Step 1: Define the shared font styles for all elements --- */
@@ -402,7 +402,7 @@ button:hover {
     margin-top: 0;
     margin-bottom: 15px;
     padding-bottom: 5px;
-    border-bottom: 1px dashed #ddd; /* Separator line */
+    border-bottom: 1px solid #007BFF; /* Separator line */
 }
 
 /* Optional wrapper for inner fields (adjusts spacing) */
