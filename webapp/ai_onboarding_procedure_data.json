@@ -1006,6 +1006,64 @@
       ],
       "Fields": [
         {
+          "Control": "[Article 27] - Fundamental Rights Impact Assessment",
+          "FieldType": "fieldGroup",
+          "Role": "Engineer",
+          "TrustDimension": "Compliance,Fundamental Rights",
+          "FieldName": "Fundamental Rights Impact Assessment",
+          "Fields": [
+            {
+              "Control": "[A.5.2, A.5.3, A.5.4 - Impact]",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldName": "Select the at-risk group(s) impacted by the AI system",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
+            },
+            {
+              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldName": "Potential negative impacts on fundamental rights",
+              "FieldText": "Select specifically identified risks to the vulnerable population.",
+              "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
+            },
+            {
+              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldName": "Potential positive impacts on fundamental rights",
+              "FieldText": "Select expected benefits for the vulnerable population.",
+              "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
+            },
+            {
+              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldName": "Rate the severity of identified negative impacts",
+              "FieldText": "",
+              "FieldType": "Dropdown box with values:/Low/Medium/High"
+            },
+            {
+              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldName": "Describe the severity of identified impacts",
+              "FieldText": "Provide justification for the severity rating selected above.",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
+              "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "TrustDimension": "Compliance,Fundamental Rights",
+              "FieldName": "Post-Deployment Monitoring Plan",
+              "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
+              "FieldType": "TextBox"
+            }
+          ]
+        },
+        {
           "Control": "[A.5.2, A.5.3, A.5.4 - Workforce Transition and Adaptation for AI Integration]",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
@@ -1134,64 +1192,6 @@
               "FieldType": "TextBox"
             }
           ]
-        },
-        {
-          "Control": "[Article 27] - Fundamental Rights Impact Assessment",
-          "FieldType": "fieldGroup",
-          "Role": "Engineer",
-          "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldName": "Fundamental Rights Impact Assessment",
-          "Fields": [
-            {
-              "Control": "[A.5.2, A.5.3, A.5.4 - Impact]",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldName": "Select the at-risk group(s) impacted by the AI system",
-              "FieldText": "",
-              "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
-            },
-            {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldName": "Potential negative impacts on fundamental rights",
-              "FieldText": "Select specifically identified risks to the vulnerable population.",
-              "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
-            },
-            {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldName": "Potential positive impacts on fundamental rights",
-              "FieldText": "Select expected benefits for the vulnerable population.",
-              "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
-            },
-            {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldName": "Rate the severity of identified negative impacts",
-              "FieldText": "",
-              "FieldType": "Dropdown box with values:/Low/Medium/High"
-            },
-            {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldName": "Describe the severity of identified impacts",
-              "FieldText": "Provide justification for the severity rating selected above.",
-              "FieldType": "TextBox"
-            },
-            {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
-              "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
-              "FieldType": "TextBox"
-            },
-            {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
-              "TrustDimension": "Compliance,Fundamental Rights",
-              "FieldName": "Post-Deployment Monitoring Plan",
-              "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
-              "FieldType": "TextBox"
-            }
-          ]
         }
       ]
     }
@@ -1256,7 +1256,7 @@
           "Control": "[A.7.6 - Data preparation]",
           "FieldType": "plan",
           "Role": "Data Engineer,Tester",
-          "TrustDimension": "Data and Data Governance",
+          "TrustDimension": "Data and Data Governance,Fundamental Rights",
           "FieldName": "Sensitive Data Preparation Plan",
           "PlanObjective": "Ensure that raw sensitive data is anonymised before it is used by the AI system.",
           "PlanCriteria": [
@@ -1318,7 +1318,7 @@
           "Control": "[A.7.4 - Quality of data for AI systems",
           "FieldType": "plan",
           "Role": "Tester",
-          "TrustDimension": "Data and Data Governance,Fundamental Rights",
+          "TrustDimension": "Data and Data Governance",
           "FieldName": "Data Extraction Accuracy Test",
           "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
           "TestDatasetMetadata": {
