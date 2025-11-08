@@ -675,6 +675,7 @@
       ],
       "Fields": [
         {
+          "Control": "A.9.4 – Intended use of the AI system",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
@@ -731,6 +732,7 @@
           ]
         },
         {
+          "Control": "[A.9.4] - Intended use of AI system",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
@@ -755,6 +757,7 @@
           ]
         },
         {
+          "Control": "[Art. 14] - Human Oversight",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
@@ -771,6 +774,7 @@
           ]
         },
         {
+          "Control": "[Art-12][Par-1] - Lifecycle Traceability",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Compliance, Record-Keeping",
@@ -822,10 +826,10 @@
       "Fields": [
         {
           "FieldType": "fieldGroup",
-          "FieldName": "(A.4.2, A.4.4) - AI system's Tooling resources Group",
+          "Control": "(A.4.2, A.4.4) - AI system's Tooling resources Group",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "(A.4.2, A.4.4) - AI system's Tooling resources",
+          "FieldName": "AI system's Tooling resources",
           "Fields": [
             {
               "Control": "(A.4.2, A.4.4) - Tool Name and Version",
@@ -854,10 +858,11 @@
           ]
         },
         {
+          "Control": "(A.4.2, A.4.5) - AI system's AI Systems Computing Resources",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "(A.4.2, A.4.5) - AI system's AI Systems Computing Resources",
+          "FieldName": "AI system's AI Systems Computing Resources",
           "Fields": [
             {
               "Control": "(A.4.2, A.4.5) - Computing Resource Name and Version",
@@ -896,10 +901,11 @@
       ],
       "Fields": [
         {
+          "Control": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Compliance,Job Preservation",
-          "FieldName": "(A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration",
+          "FieldName": "Workforce Transition and Adaptation for AI Integration",
           "Fields": [
             {
               "Control": "(A.5.2, A.5.3, A.5.4)",
@@ -952,10 +958,11 @@
           ]
         },
         {
+          "Control": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldName": "(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems",
+          "FieldName": "Environmental Sustainability of AI Systems",
           "Fields": [
             {
               "Control": "(A.5.2, A.5.3, A.5.5)",
@@ -1024,10 +1031,11 @@
           ]
         },
         {
+          "Control": "[Article 27] - Fundamental Rights Impact Assessment",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Compliance,Fundamental Rights",
-          "FieldName": "[Article 27] - Fundamental Rights Impact Assessment",
+          "FieldName": "Fundamental Rights Impact Assessment",
           "Fields": [
             {
               "Control": "(A.5.2, A.5.3, A.5.4)",
@@ -1081,10 +1089,11 @@
           ]
         },
         {
+          "Control":"(Art. 10)",
           "FieldType": "fieldGroup",
           "Role": "Requester",
           "TrustDimension": "Data and Data Governance,Fairness and Bias",
-          "FieldName": "(Art. 10) - Data Governance: Bias Examination & Mitigation",
+          "FieldName": "Data Governance: Bias Examination & Mitigation",
           "Fields": [
             {
               "Control": "Art. 10(f) – Examination for possible biases",
@@ -1118,10 +1127,11 @@
       ],
       "Fields": [
         {
+          "Control": "(A.4.2, A.4.3) - Data for AI System Details",
           "FieldType": "fieldGroup",
           "Role": "Requester,Data Engineer",
           "TrustDimension": "Data and Data Governance",
-          "FieldName": "(A.4.2, A.4.3) - Data for AI System Details",
+          "FieldName": "Data for AI System Details",
           "Fields": [
             {
               "Control": "(A.4.2, A.4.3) - Dataset Repository",
