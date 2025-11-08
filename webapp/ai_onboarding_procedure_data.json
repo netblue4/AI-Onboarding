@@ -695,7 +695,7 @@
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
-          "FieldName": "AI System Intended Use",
+          "FieldName": "AI System Details",
           "Fields": [
             {
               "Control": "[A.9.4 – Intended use of the AI system]",
@@ -841,7 +841,7 @@
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
-          "FieldName": "Intended use of AI system",
+          "FieldName": "Allowed & Disallowed Key Phrase Categories",
           "Fields": [
             {
               "Control": "[A.9.4 - Intended use of AI system]",
@@ -1190,31 +1190,6 @@
               "FieldName": "Post-Deployment Monitoring Plan",
               "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
               "FieldType": "TextBox"
-            }
-          ]
-        },
-        {
-          "Control":"[Article 10]",
-          "FieldType": "fieldGroup",
-          "Role": "Requester",
-          "TrustDimension": "Data and Data Governance,Fairness and Bias",
-          "FieldName": "Bias Examination & Mitigation",
-          "Fields": [
-            {
-              "Control": "[Art. 10(f) – Examination for possible biases]",
-              "Role": "Requester",
-              "TrustDimension": "Data and Data Governance,Fairness and Bias",
-              "FieldName": "(Art. 10.f) - Targeted Protected Attributes for Bias Examination",
-              "FieldText": "Select the specific protected attributes that must be examined for bias in this AI system's training/validation data. Selection mandates a subsequent statistical test in the Build/Test phases.",
-              "FieldType": "MultiSelect:Age (prevent discrimination against specific age cohorts e.g. elderly)/Gender Identity (ensure equitable performance across gender expressions)/Racial or Ethnic Origin (detect proxy discrimination in input features)/Disability Status (ensure data representativeness for accessibility)/Socio-Economic Status (prevent exclusion based on income or geography proxies)/Religion or Belief (prevent discriminatory output based on creed)/Sexual Orientation (ensure non-discriminatory processing of related data)"
-            },
-            {
-              "Control": "[Art. 10(g) – Measures to detect, prevent and mitigate biases]",
-              "Role": "Requester",
-              "TrustDimension": "Data and Data Governance,Fairness and Bias",
-              "FieldName": "(Art. 10.g) - Required Data Bias Mitigation Strategies",
-              "FieldText": "Specify the pre-approved technical measures that engineers must implement if bias is detected during the examination phase defined in (Art. 10.f).",
-              "FieldType": "MultiSelect:Pre-processing: Re-sampling (Over-Under-sample to balance protected group representation)/Pre-processing: Synthetic Data Augmentation (Generate compliant synthetic records for minority classes)"
             }
           ]
         }
