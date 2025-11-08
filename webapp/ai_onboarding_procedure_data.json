@@ -680,7 +680,7 @@
           "TrustDimension": "Intended Use",
           "GroupTitle": "(A.9.4) - AI System Intended Use",
           "Fields": [
-          {
+            {
               "Control": "(A.9.3) - Objectives for responsible use of AI system",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
@@ -910,7 +910,7 @@
               "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
             },
             {
-             "Control": "(A.5.2, A.5.3, A.5.4)"
+              "Control": "(A.5.2, A.5.3, A.5.4)",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Identify the primary roles of the AI system relative to human workers",
