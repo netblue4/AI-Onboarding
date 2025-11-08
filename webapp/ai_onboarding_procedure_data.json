@@ -706,7 +706,7 @@
               "FieldType": "Auto generated number"
             },
             {
-              "Control": "A.9.4 – Intended use of the AI system",
+              "Control": "[A.9.4 – Intended use of the AI system[]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Name",
@@ -714,7 +714,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "A.9.4 – Intended use of the AI system",
+              "Control": "[A.9.4 – Intended use of the AI system]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Business Purpose",
@@ -722,7 +722,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "A.9.4 – Intended use of the AI system",
+              "Control": "[A.9.4 – Intended use of the AI system]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Use Cases",
@@ -1112,7 +1112,7 @@
           "FieldName": "Bias Examination & Mitigation",
           "Fields": [
             {
-              "Control": "Art. 10(f) – Examination for possible biases",
+              "Control": "[Art. 10(f) – Examination for possible biases]",
               "Role": "Requester",
               "TrustDimension": "Data and Data Governance,Fairness and Bias",
               "FieldName": "(Art. 10.f) - Targeted Protected Attributes for Bias Examination",
@@ -1120,7 +1120,7 @@
               "FieldType": "MultiSelect:Age (prevent discrimination against specific age cohorts e.g. elderly)/Gender Identity (ensure equitable performance across gender expressions)/Racial or Ethnic Origin (detect proxy discrimination in input features)/Disability Status (ensure data representativeness for accessibility)/Socio-Economic Status (prevent exclusion based on income or geography proxies)/Religion or Belief (prevent discriminatory output based on creed)/Sexual Orientation (ensure non-discriminatory processing of related data)"
             },
             {
-              "Control": "Art. 10(g) – Measures to detect, prevent and mitigate biases",
+              "Control": "[Art. 10(g) – Measures to detect, prevent and mitigate biases]",
               "Role": "Requester",
               "TrustDimension": "Data and Data Governance,Fairness and Bias",
               "FieldName": "(Art. 10.g) - Required Data Bias Mitigation Strategies",
