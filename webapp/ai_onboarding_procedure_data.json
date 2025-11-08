@@ -706,7 +706,7 @@
               "FieldType": "Auto generated number"
             },
             {
-              "Control": "[A.9.4 – Intended use of the AI system[]",
+              "Control": "[A.9.4 – Intended use of the AI system]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Name",
@@ -755,7 +755,7 @@
           "FieldName": "Intended use of AI system",
           "Fields": [
             {
-              "Control": "[A.9.4] - Intended use of AI system",
+              "Control": "[A.9.4 - Intended use of AI system]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Whitelist Key Phrase Categories for Permitted User Prompts",
@@ -797,7 +797,7 @@
           "FieldName": "Traceability Specifications",
           "Fields": [
             {
-              "Control": "[Art-12][Par-1] - Lifecycle Traceability",
+              "Control": "[[Art-12][Par-1] - Lifecycle Traceability]",
               "Role": "Requester",
               "TrustDimension": "Compliance, Record-Keeping",
               "FieldName": "Required System Lifecycle Events",
@@ -2037,9 +2037,9 @@
       ]
     }
   ],
-  "5. Pre-deployment verification": [
+  "5. Verification and Monitoring": [
     {
-      "StepName": "5.1. (A.6.2.4) AI Systems verifications",
+      "StepName": "5.1. (A.6.2.4,A.6.2.4) AI Systems verifications and monitoring",
       "Objectives": [
         {
           "Objective": "To perform comprehensive validation of the entire AI system and its components against defined performance, security, and ethical requirements before final deployment."
@@ -2988,7 +2988,7 @@
   ],
   "8. Operations": [
     {
-      "StepName": "8.1. (A.6.2.6) AI Lifecycle Phase requirements - Operation and Monitoring",
+      "StepName": "8.1. (A.6.2.6) - Operation",
       "Objectives": [
         {
           "Objective": "To establish continuous monitoring, management, and maintenance protocols for the live AI system to ensure sustained performance, compliance, and risk mitigation throughout its operational lifespan."
