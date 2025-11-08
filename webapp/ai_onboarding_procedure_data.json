@@ -1302,7 +1302,18 @@
               "step_objective": "To validate the effectiveness of the de-duplication process, ensuring the final dataset meets the integrity standard of criterion ANON-INT-01."
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "StepName": "3.3. - Indexing and storing company's proprietary data",
+      "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
+      "Objectives": [
+        {
+          "Objective": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols."
+        }
+      ],
+      "Fields": [
         {
           
           "Control":"[A.7.4 - Quality of data for AI systems",
@@ -1471,18 +1482,8 @@
               "step_objective": "To finalize a stable, high-quality, and auditable 'ground truth' dataset that can be used for repeatable testing."
             }
           ]
-        }
+        }      
       ]
-    },
-    {
-      "StepName": "3.3. - Indexing and storing company's proprietary data",
-      "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
-      "Objectives": [
-        {
-          "Objective": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols."
-        }
-      ],
-      "Fields": []
     },
     {
       "StepName": "3.4. - Connecting Internal Data <-> the Processing Pipeline",
@@ -1505,26 +1506,6 @@
         }
       ],
       "Fields": [
-        {
-          "Control": "[Article 15]",
-          "FieldType": "risk",
-          "Role": "Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "LLM01 Prompt Injection",
-          "RiskDescription": "Failure to properly **validate and sanitize** user inputs before they are processed by the RAG Orchestrator and sent to the LLM exposes the system to **Prompt Injection** attacks. An attacker could exploit this vulnerability to bypass the system's intended behavior, resulting in **unauthorized information disclosure** (e.g., data exfiltration via the LLM response), **denial of service**, or **unintended execution** of functions/code.",
-          "controls": [
-            {
-              "control": "[LLM01][1] - All user inputs within the UI must be validated to prevent the injection of malicious code.",
-              "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system.",
-              "control_evidence": "Unit test results demonstrating the rejection of malicious payloads (e.g., XSS, command injection strings)."
-            },
-            {
-              "control": "[LLM01][2] - Implement input sanitization techniques to remove harmful characters from user inputs.",
-              "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI.",
-              "control_evidence": "Code snippets showing the use of a sanitization library or function. Test cases with logs that display the 'before' and 'after' state of user inputs containing harmful characters."
-            }
-          ]
-        },
         {
           "Control": "[Article 15]",
           "FieldType": "risk",
@@ -1686,7 +1667,28 @@
           "Objective": "To ensure that all queries and responses between the user interface and the RAG orchestrator are subject to strict, user-specific access control enforcement, preventing unauthorized data disclosure."
         }
       ],
-      "Fields": []
+      "Fields": [
+        {
+          "Control": "[Article 15]",
+          "FieldType": "risk",
+          "Role": "Engineer",
+          "TrustDimension": "Cybersecurity and Resilience",
+          "FieldName": "LLM01 Prompt Injection",
+          "RiskDescription": "Failure to properly **validate and sanitize** user inputs before they are processed by the RAG Orchestrator and sent to the LLM exposes the system to **Prompt Injection** attacks. An attacker could exploit this vulnerability to bypass the system's intended behavior, resulting in **unauthorized information disclosure** (e.g., data exfiltration via the LLM response), **denial of service**, or **unintended execution** of functions/code.",
+          "controls": [
+            {
+              "control": "[LLM01][1] - All user inputs within the UI must be validated to prevent the injection of malicious code.",
+              "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system.",
+              "control_evidence": "Unit test results demonstrating the rejection of malicious payloads (e.g., XSS, command injection strings)."
+            },
+            {
+              "control": "[LLM01][2] - Implement input sanitization techniques to remove harmful characters from user inputs.",
+              "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI.",
+              "control_evidence": "Code snippets showing the use of a sanitization library or function. Test cases with logs that display the 'before' and 'after' state of user inputs containing harmful characters."
+            }
+          ]
+        }      
+      ]
     },
     {
       "StepName": "4.5. - RAG Orchestrator <->  Vector Database (Retrieval)",
