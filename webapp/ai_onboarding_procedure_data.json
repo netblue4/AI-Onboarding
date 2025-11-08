@@ -748,6 +748,95 @@
           ]
         },
         {
+          "Control": "[A.4.2, A.4.3 - Data for AI System]",
+          "FieldType": "fieldGroup",
+          "Role": "Requester,Data Engineer",
+          "TrustDimension": "Data and Data Governance",
+          "FieldName": "Data for AI System",
+          "Fields": [
+            {
+              "Control": "[A.4.2, A.4.3 - Dataset Repository]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "Dataset Repository",
+              "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "[A.4.2, A.4.3 - Dataset Description]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "Dataset Description",
+              "FieldText": "Brief overview of the dataset's content and general purpose.",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "[A.4.2, A.4.3, A.7.5 - Source]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "Where does the data originate from?",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
+            },
+            {
+              "Control": "[A.4.2, A.4.3 - Intended Use]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "What is the specific purpose(s) of the data?",
+              "FieldText": "",
+              "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
+            },
+            {
+              "Control": "[A.4.2, A.4.3, A.7.3, A.7.2 - Acquisition of data]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "How will the Data be acquired and selected?",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
+            },
+            {
+              "Control": "[A.4.2, A.4.3 - Retention Schedules]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "What is the data Retention schedules based on legal and operational requirements?",
+              "FieldText": "",
+              "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
+            },
+            {
+              "Control": "[A.4.2, A.4.3 - Refresh Schedules]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "How often does the data need to be refreshed?",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
+            },
+            {
+              "Control": "[A.4.2, A.4.3 - Secure Disposing]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "Secure Disposing",
+              "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "[A.4.2, A.4.3 - Approximate Size]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "Approximate Size",
+              "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "[A.4.2, A.4.3 - Owner/Custodian]",
+              "Role": "Data Engineer,Engineer",
+              "TrustDimension": "Data and Data Governance",
+              "FieldName": "Owner/Custodian",
+              "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
+              "FieldType": "TextBox"
+            }
+          ]
+        },
+        {
           "Control": "[A.9.4 - Intended use of AI system]",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
@@ -1142,95 +1231,6 @@
         }
       ],
       "Fields": [
-        {
-          "Control": "[A.4.2, A.4.3 - Data for AI System]",
-          "FieldType": "fieldGroup",
-          "Role": "Requester,Data Engineer",
-          "TrustDimension": "Data and Data Governance",
-          "FieldName": "Data for AI System",
-          "Fields": [
-            {
-              "Control": "[A.4.2, A.4.3 - Dataset Repository]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "Dataset Repository",
-              "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
-              "FieldType": "TextBox"
-            },
-            {
-              "Control": "[A.4.2, A.4.3 - Dataset Description]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "Dataset Description",
-              "FieldText": "Brief overview of the dataset's content and general purpose.",
-              "FieldType": "TextBox"
-            },
-            {
-              "Control": "[A.4.2, A.4.3, A.7.5 - Source]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "Where does the data originate from?",
-              "FieldText": "",
-              "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
-            },
-            {
-              "Control": "[A.4.2, A.4.3 - Intended Use]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "What is the specific purpose(s) of the data?",
-              "FieldText": "",
-              "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
-            },
-            {
-              "Control": "[A.4.2, A.4.3, A.7.3, A.7.2 - Acquisition of data]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "How will the Data be acquired and selected?",
-              "FieldText": "",
-              "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
-            },
-            {
-              "Control": "[A.4.2, A.4.3 - Retention Schedules]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "What is the data Retention schedules based on legal and operational requirements?",
-              "FieldText": "",
-              "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
-            },
-            {
-              "Control": "[A.4.2, A.4.3 - Refresh Schedules]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "How often does the data need to be refreshed?",
-              "FieldText": "",
-              "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
-            },
-            {
-              "Control": "[A.4.2, A.4.3 - Secure Disposing]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "Secure Disposing",
-              "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
-              "FieldType": "TextBox"
-            },
-            {
-              "Control": "[A.4.2, A.4.3 - Approximate Size]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "Approximate Size",
-              "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
-              "FieldType": "TextBox"
-            },
-            {
-              "Control": "[A.4.2, A.4.3 - Owner/Custodian]",
-              "Role": "Data Engineer,Engineer",
-              "TrustDimension": "Data and Data Governance",
-              "FieldName": "Owner/Custodian",
-              "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
-              "FieldType": "TextBox"
-            }
-          ]
-        },
         {
           "Control": "[Article 15]",
           "FieldType": "risk",
