@@ -298,7 +298,7 @@
               "control_evidence": "The `(A.6.2.4) AI Systems verifications` step provides the evidence for this objective. It includes test plans for 'performance' and 'fairness,' which are used to validate the system's resilience and check for bias. By defining measurable `PlanCriteria` for these plans, we verify that the system can handle errors and that measures to mitigate bias are effective, ensuring stable and fair performance."
             },
             {
-			  "control": "[Art-15][Par-5] - High-risk AI systems shall be resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities.",
+              "control": "[Art-15][Par-5] - High-risk AI systems shall be resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities.",
               "control_objective": "To safeguard the AI system against malicious attacks such as data poisoning, model poisoning, and adversarial examples.",
               "control_status": "Met",
               "control_evidence": "Compliance is evidenced by the 'Risk' node documented for each RAG component. This node explicitly defines the security requirements by identifying specific threats, such as 'malicious data ingestion or data poisoning'. It then documents the 'associated controls' and 'control objectives' designed to mitigate these exact vulnerabilities, providing a traceable record of the measures specified to protect the system from such attacks."
@@ -745,14 +745,14 @@
               "FieldText": "",
               "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
             },
-			{
-			  "Control": "[A.9.4 - Intended use of AI system]",
-			  "Role": "Requester",
-			  "TrustDimension": "Cybersecurity and Resilience",
-			  "FieldName": "Select the Intended User Profiles for the AI System",
-			  "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
-			  "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
-			}            
+            {
+              "Control": "[A.9.4 - Intended use of AI system]",
+              "Role": "Requester",
+              "TrustDimension": "Cybersecurity and Resilience",
+              "FieldName": "Select the Intended User Profiles for the AI System",
+              "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
+              "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
+            }
           ]
         },
         {
@@ -902,21 +902,21 @@
               "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
-			  "Control": "[Art.12] - Mandatory Operational Event Log Categories",
-			  "Role": "Requester",
-			  "TrustDimension": "Compliance,Record-Keeping",
-			  "FieldName": "Select all Mandatory Operational Event Categories for Logging",
-			  "FieldText": "Reference list of operational event categories that MUST trigger an automated log entry to satisfy EU AI Act Art. 12 (traceability over system lifetime). Engineers must ensure hooks exist in the code to capture these specific states.",
-			  "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
-			},
-			{
-			  "Control": "[Art.12] - Required Traceability Log Metadata Fields",
-			  "Role": "Requester",
-			  "TrustDimension": "Compliance,Record-Keeping",
-			  "FieldName": "Required Standard Traceability Log Metadata Schema",
-			  "FieldText": "This defines the minimum required metadata fields that MUST be present in every single log entry defined above. This standardizes logs for automated auditing and post-market monitoring (Art 72).",
-			  "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod/Test)/AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
-			}
+              "Control": "[Art.12] - Mandatory Operational Event Log Categories",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Record-Keeping",
+              "FieldName": "Select all Mandatory Operational Event Categories for Logging",
+              "FieldText": "Reference list of operational event categories that MUST trigger an automated log entry to satisfy EU AI Act Art. 12 (traceability over system lifetime). Engineers must ensure hooks exist in the code to capture these specific states.",
+              "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
+            },
+            {
+              "Control": "[Art.12] - Required Traceability Log Metadata Fields",
+              "Role": "Requester",
+              "TrustDimension": "Compliance,Record-Keeping",
+              "FieldName": "Required Standard Traceability Log Metadata Schema",
+              "FieldText": "This defines the minimum required metadata fields that MUST be present in every single log entry defined above. This standardizes logs for automated auditing and post-market monitoring (Art 72).",
+              "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod/Test)/AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
+            }
           ]
         }
       ]
@@ -1253,7 +1253,7 @@
       ],
       "Fields": [
         {
-          "Control":"[A.7.6 - Data preparation]",
+          "Control": "[A.7.6 - Data preparation]",
           "FieldType": "plan",
           "Role": "Data Engineer,Tester",
           "TrustDimension": "Data and Data Governance",
@@ -1315,8 +1315,7 @@
       ],
       "Fields": [
         {
-          
-          "Control":"[A.7.4 - Quality of data for AI systems",
+          "Control": "[A.7.4 - Quality of data for AI systems",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance,Fundamental Rights",
@@ -1482,7 +1481,7 @@
               "step_objective": "To finalize a stable, high-quality, and auditable 'ground truth' dataset that can be used for repeatable testing."
             }
           ]
-        }      
+        }
       ]
     },
     {
@@ -1494,36 +1493,36 @@
         }
       ],
       "Fields": [
-		{
-		  "Control": "[Article 32]",
-		  "FieldType": "risk",
-		  "Role": "System Architect",
-		  "TrustDimension": "Cybersecurity and Resilience",
-		  "FieldName": "RAG01 Over-privileged Ingestion Connectors",
-		  "RiskDescription": "The **service accounts** or **API keys** used by the Data Processing Pipeline to connect to internal data sources often require broad 'read-all' permissions to function effectively. If these **over-privileged credentials** are compromised (e.g., hardcoded in scripts, leaked in logs, or stolen via lateral movement), an attacker gains **unrestricted access** to all ingestible data simultaneously, bypassing individual user access controls and leading to **massive data exfiltration**.",
-		  "controls": [
-			{
-			  "control": "RAG01.01 Implement Principle of Least Privilege (PoLP) for all ingestion service accounts, restricting access only to specific required datasets/tables rather than entire databases or file servers.",
-			  "control_objective": "To limit the blast radius if ingestion credentials are compromised, ensuring they cannot access data outside their specific scope.",
-			  "control_evidence": "Access control lists (ACLs) or IAM policy documents for the service account showing granular read-only permissions restricted to specific resources."
-			},
-			{
-			  "control": "RAG01.02 Utilize short-lived, dynamically generated credentials (e.g., IAM roles, HashiCorp Vault dynamic secrets) for ingestion jobs instead of static, long-lived API keys or passwords.",
-			  "control_objective": "To reduce the window of opportunity for an attacker to use stolen credentials by ensuring they expire automatically.",
-			  "control_evidence": "Configuration of the secrets management system or orchestrator showing dynamic credential rotation policies (e.g., every 60 minutes)."
-			},
-			{
-			  "control": "RAG01.03 securely store and manage all connector credentials using a dedicated enterprise secrets manager, ensuring they are never hardcoded in pipeline code or configuration files.",
-			  "control_objective": "To prevent accidental leakage of high-privilege credentials through source code repositories or insecure configuration files.",
-			  "control_evidence": "Code repository scans confirming no hardcoded secrets; pipeline configuration showing environmental variable injection from a secure vault."
-			},
-			{
-			  "control": "RAG01.04 Implement specialized monitoring and anomaly detection for ingestion service accounts to flag unusual access patterns (e.g., reading data outside normal batch windows or unusual volumes).",
-			  "control_objective": "To rapidly detect active abuse of legitimate ingestion credentials.",
-			  "control_evidence": "SIEM alert configuration rules specifically targeting the UUID/name of the ingestion service accounts."
-			}
-		  ]
-		}      
+        {
+          "Control": "[Article 32]",
+          "FieldType": "risk",
+          "Role": "System Architect",
+          "TrustDimension": "Cybersecurity and Resilience",
+          "FieldName": "RAG01 Over-privileged Ingestion Connectors",
+          "RiskDescription": "The **service accounts** or **API keys** used by the Data Processing Pipeline to connect to internal data sources often require broad 'read-all' permissions to function effectively. If these **over-privileged credentials** are compromised (e.g., hardcoded in scripts, leaked in logs, or stolen via lateral movement), an attacker gains **unrestricted access** to all ingestible data simultaneously, bypassing individual user access controls and leading to **massive data exfiltration**.",
+          "controls": [
+            {
+              "control": "RAG01.01 Implement Principle of Least Privilege (PoLP) for all ingestion service accounts, restricting access only to specific required datasets/tables rather than entire databases or file servers.",
+              "control_objective": "To limit the blast radius if ingestion credentials are compromised, ensuring they cannot access data outside their specific scope.",
+              "control_evidence": "Access control lists (ACLs) or IAM policy documents for the service account showing granular read-only permissions restricted to specific resources."
+            },
+            {
+              "control": "RAG01.02 Utilize short-lived, dynamically generated credentials (e.g., IAM roles, HashiCorp Vault dynamic secrets) for ingestion jobs instead of static, long-lived API keys or passwords.",
+              "control_objective": "To reduce the window of opportunity for an attacker to use stolen credentials by ensuring they expire automatically.",
+              "control_evidence": "Configuration of the secrets management system or orchestrator showing dynamic credential rotation policies (e.g., every 60 minutes)."
+            },
+            {
+              "control": "RAG01.03 securely store and manage all connector credentials using a dedicated enterprise secrets manager, ensuring they are never hardcoded in pipeline code or configuration files.",
+              "control_objective": "To prevent accidental leakage of high-privilege credentials through source code repositories or insecure configuration files.",
+              "control_evidence": "Code repository scans confirming no hardcoded secrets; pipeline configuration showing environmental variable injection from a secure vault."
+            },
+            {
+              "control": "RAG01.04 Implement specialized monitoring and anomaly detection for ingestion service accounts to flag unusual access patterns (e.g., reading data outside normal batch windows or unusual volumes).",
+              "control_objective": "To rapidly detect active abuse of legitimate ingestion credentials.",
+              "control_evidence": "SIEM alert configuration rules specifically targeting the UUID/name of the ingestion service accounts."
+            }
+          ]
+        }
       ]
     }
   ],
@@ -1588,36 +1587,36 @@
         }
       ],
       "Fields": [
-		{
-		  "Control": "[Article 12]",
-		  "FieldType": "risk",
-		  "Role": "Engineer",
-		  "TrustDimension": "Compliance, Record-Keeping",
-		  "FieldName": "[TRC-LOG-01] - Inadequate AI System Traceability & Record-Keeping",
-		  "RiskDescription": "The risk that if the AI malfunctions, we cannot reconstruct what happened because it didn't keep detailed enough records. Failure to automatically track the AI's history and daily decisions violates EU transparency rules (Article 12), making it impossible to audit incidents and exposing the organization to maximum regulatory penalties.",
-		  "controls": [
-			{
-			  "control": "[TRC-LOG-01.1] - Automated Infrastructure Tracking: Configure the underlying computer systems to automatically record major lifecycle events (like 'New Model Version Deployed' or 'System Shut Down') so we don't have to rely on engineers manually logging these critical changes.",
-			  "control_objective": "To guarantee we have a perfect timeline of when the system was turned on, updated, or turned off, as required by law.",
-			  "control_evidence": "System settings showing that deployment actions automatically trigger a permanent record."
-			},
-			{
-			  "control": "[TRC-LOG-01.2] - Detailed Step-by-Step Activity Recording: Ensure the AI creates a detailed record for every single answer it gives. This must separately record: 1) what the user asked, 2) exactly which documents the AI read to find the answer, 3) any safety checks it passed, and 4) the final answer it produced.",
-			  "control_objective": "To ensure that if an inappropriate answer is given, we can look back and see exactly *why* the AI decided to say it.",
-			  "control_evidence": "Sample records showing the full 'chain of thought' for a single user request, from input to final output."
-			},
-			{
-			  "control": "[TRC-LOG-01.3] - Mandatory Standard Recording Template: Force all developers to use a standardized digital template when creating records. This template must automatically reject any record that is missing essential context (like the User ID, exact time, or which AI model version was used).",
-			  "control_objective": "To prevent useless, incomplete records that cannot be linked back to a specific user or event during an audit.",
-			  "control_evidence": "Test results showing the system refusing to save a record if a mandatory field (like 'User_ID') is missing."
-			},
-			{
-			  "control": "[TRC-LOG-01.4] - Tamper-Proof Long-Term Storage: Save all these records in a secure digital vault set to 'Read-Only.' It must be technically impossible for anyone (including our own administrators) to edit or delete these records until the legally required retention period has ended.",
-			  "control_objective": "To ensure evidence cannot be altered or destroyed if we are investigated in the future.",
-			  "control_evidence": "Cloud storage settings showing 'Object Lock' (cannot be deleted) is active for the required number of years."
-			}
-		  ]
-		},
+        {
+          "Control": "[Article 12]",
+          "FieldType": "risk",
+          "Role": "Engineer",
+          "TrustDimension": "Compliance, Record-Keeping",
+          "FieldName": "[TRC-LOG-01] - Inadequate AI System Traceability & Record-Keeping",
+          "RiskDescription": "The risk that if the AI malfunctions, we cannot reconstruct what happened because it didn't keep detailed enough records. Failure to automatically track the AI's history and daily decisions violates EU transparency rules (Article 12), making it impossible to audit incidents and exposing the organization to maximum regulatory penalties.",
+          "controls": [
+            {
+              "control": "[TRC-LOG-01.1] - Automated Infrastructure Tracking: Configure the underlying computer systems to automatically record major lifecycle events (like 'New Model Version Deployed' or 'System Shut Down') so we don't have to rely on engineers manually logging these critical changes.",
+              "control_objective": "To guarantee we have a perfect timeline of when the system was turned on, updated, or turned off, as required by law.",
+              "control_evidence": "System settings showing that deployment actions automatically trigger a permanent record."
+            },
+            {
+              "control": "[TRC-LOG-01.2] - Detailed Step-by-Step Activity Recording: Ensure the AI creates a detailed record for every single answer it gives. This must separately record: 1) what the user asked, 2) exactly which documents the AI read to find the answer, 3) any safety checks it passed, and 4) the final answer it produced.",
+              "control_objective": "To ensure that if an inappropriate answer is given, we can look back and see exactly *why* the AI decided to say it.",
+              "control_evidence": "Sample records showing the full 'chain of thought' for a single user request, from input to final output."
+            },
+            {
+              "control": "[TRC-LOG-01.3] - Mandatory Standard Recording Template: Force all developers to use a standardized digital template when creating records. This template must automatically reject any record that is missing essential context (like the User ID, exact time, or which AI model version was used).",
+              "control_objective": "To prevent useless, incomplete records that cannot be linked back to a specific user or event during an audit.",
+              "control_evidence": "Test results showing the system refusing to save a record if a mandatory field (like 'User_ID') is missing."
+            },
+            {
+              "control": "[TRC-LOG-01.4] - Tamper-Proof Long-Term Storage: Save all these records in a secure digital vault set to 'Read-Only.' It must be technically impossible for anyone (including our own administrators) to edit or delete these records until the legally required retention period has ended.",
+              "control_objective": "To ensure evidence cannot be altered or destroyed if we are investigated in the future.",
+              "control_evidence": "Cloud storage settings showing 'Object Lock' (cannot be deleted) is active for the required number of years."
+            }
+          ]
+        },
         {
           "Control": "[A.9 - Use of AI systems]",
           "FieldType": "risk",
@@ -1689,37 +1688,36 @@
         }
       ],
       "Fields": [
-		  {
-			  "Control": "[Article 15]",
-			  "FieldType": "risk",
-			  "Role": "Data Scientist",
-			  "TrustDimension": "Cybersecurity and Resilience",
-			  "FieldName": "LLM05 Model Supply Chain Attack",
-			  "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
-			  "controls": [
-				{
-				  "control": "LLM05.01 Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
-				  "control_objective": "To ensure that only verified and approved components are used in the AI system, reducing the risk of introducing malicious elements from public sources.",
-				  "control_evidence": "Documentation of the internal repository setup (e.g., Artifactory, private Hugging Face hub). Policy documents mandating its use. Logs showing successful mirroring and vetting processes."
-				},
-				{
-				  "control": "LLM05.02 Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
-				  "control_objective": "To detect and block compromised or vulnerable components before they can be used in the development or deployment pipeline.",
-				  "control_evidence": "Configuration of scanning tools (e.g., ClamAV for malware, specialised model scanners like Picklescan). Reports from these tools showing scan results for imported assets."
-				},
-				{
-				  "control": "LLM05.03 Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
-				  "control_objective": "To prevent the silent substitution of legitimate components with malicious ones by ensuring only specifically approved, immutable versions are used.",
-				  "control_evidence": "Requirement files (e.g., 'requirements.txt', 'poetry.lock') with pinned versions and hashes. CI/CD pipeline scripts that verify these hashes before build or deployment."
-				},
-				{
-				  "control": "LLM05.04 Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
-				  "control_objective": "To evaluate the security posture of suppliers and reduce the risk of relying on poorly maintained or compromised upstream projects.",
-				  "control_evidence": "Vendor risk assessment reports, records of due diligence checks on open-source project maintainers (e.g., activity, community trust), and a regularly updated approved vendor list."
-				}"control_evidence": "Automated generation of SBOMs during the CI/CD process. A searchable inventory of all components across all deployed AI systems."
-				}
-			  ]
-			}
+        {
+          "Control": "[Article 15]",
+          "FieldType": "risk",
+          "Role": "Data Scientist",
+          "TrustDimension": "Cybersecurity and Resilience",
+          "FieldName": "LLM05 Model Supply Chain Attack",
+          "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
+          "controls": [
+            {
+              "control": "LLM05.01 Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
+              "control_objective": "To ensure that only verified and approved components are used in the AI system, reducing the risk of introducing malicious elements from public sources.",
+              "control_evidence": "Documentation of the internal repository setup (e.g., Artifactory, private Hugging Face hub). Policy documents mandating its use. Logs showing successful mirroring and vetting processes."
+            },
+            {
+              "control": "LLM05.02 Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
+              "control_objective": "To detect and block compromised or vulnerable components before they can be used in the development or deployment pipeline.",
+              "control_evidence": "Configuration of scanning tools (e.g., ClamAV for malware, specialised model scanners like Picklescan). Reports from these tools showing scan results for imported assets."
+            },
+            {
+              "control": "LLM05.03 Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
+              "control_objective": "To prevent the silent substitution of legitimate components with malicious ones by ensuring only specifically approved, immutable versions are used.",
+              "control_evidence": "Requirement files (e.g., 'requirements.txt', 'poetry.lock') with pinned versions and hashes. CI/CD pipeline scripts that verify these hashes before build or deployment."
+            },
+            {
+              "control": "LLM05.04 Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
+              "control_objective": "To evaluate the security posture of suppliers and reduce the risk of relying on poorly maintained or compromised upstream projects.",
+              "control_evidence": "Vendor risk assessment reports, records of due diligence checks on open-source project maintainers (e.g., activity, community trust), and a regularly updated approved vendor list."
+            }
+          ]
+        }
       ]
     },
     {
@@ -1750,7 +1748,7 @@
               "control_evidence": "Code snippets showing the use of a sanitization library or function. Test cases with logs that display the 'before' and 'after' state of user inputs containing harmful characters."
             }
           ]
-        }      
+        }
       ]
     },
     {
@@ -1763,7 +1761,7 @@
       ],
       "Fields": [
         {
-          "Control":"[A.7.4 - Quality of data for AI systems]",
+          "Control": "[A.7.4 - Quality of data for AI systems]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance",
@@ -1916,7 +1914,7 @@
       ],
       "Fields": [
         {
-          "Control":"[A.7.5, A.7.6]",
+          "Control": "[A.7.5, A.7.6]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2051,120 +2049,120 @@
         }
       ],
       "Fields": [
-		{
-		  "Control": "[A.6.2.6 - AI system operation and monitoring]",
-		  "FieldType": "plan",
-		  "Role": "Tester,Approver",
-		  "TrustDimension": "Cybersecurity and Resilience",
-		  "FieldName": "Performance & Load Test Plan",
-		  "PlanObjective": "To validate that the AI system meets defined non-functional requirements (NFRs) for latency, stability, and resource efficiency under strictly defined, repeatable load scenarios.",
-		  "TestDatasetMetadata": {
-			"TestCategory": "Operational Resilience (Load Simulation)",
-			"ControlID": "PERF-OPS-TEST-01",
-			"Purpose": "To subject the system to version-controlled 'Golden Workloads' to detect immediate performance failures and long-term latency drift.",
-			"PrimaryMetric": {
-			  "Name": "SLO Compliance Rate",
-			  "Definition": "The percentage of Golden Scenarios that fully meet their defined P95 Latency and Error Rate thresholds during execution.",
-			  "CalculationDetail": "(Scenarios Passing ALL Thresholds / Total Scenarios Executed) * 100"
-			},
-			"PassCriteria": {
-			  "Threshold": "100% SLO Compliance for Baseline & Peak scenarios",
-			  "RequirementDetail": "Critical operational scenarios must meet established Service Level Objectives (SLOs). Stress scenarios may degrade but must fail gracefully (no unchecked crashes)."
-			}
-		  },
-		  "TestDataset": [
-			{
-			  "ID": "SCEN-BASE-01",
-			  "Scenario_Type": "Baseline (Normal Operations)",
-			  "Description": "Standard mixed workload: 80% read (cached inference), 20% write (new complex prompts).",
-			  "Target_VUs": 50,
-			  "Duration_Mins": 60,
-			  "Expected_P95_Latency_ms": 400,
-			  "Max_Error_Rate_Percent": 0.05,
-			  "Rationale": "Represents average daily utilization based on last quarter's production analytics."
-			},
-			{
-			  "ID": "SCEN-PEAK-01",
-			  "Scenario_Type": "Peak Load (High Traffic Event)",
-			  "Description": "Simulated marketing launch event: High concurrency, heavy on complex reasoning prompts (uncached).",
-			  "Target_VUs": 500,
-			  "Duration_Mins": 30,
-			  "Expected_P95_Latency_ms": 1200,
-			  "Max_Error_Rate_Percent": 0.5,
-			  "Rationale": "Validates auto-scaling capabilities and ensures responsiveness doesn't degrade severely during known high-traffic windows."
-			},
-			{
-			  "ID": "SCEN-STRESS-01",
-			  "Scenario_Type": "Stress Test (Breaking Point)",
-			  "Description": "Ramp up VUs until 50% error rate or system crash to determine absolute ceiling.",
-			  "Target_VUs": "Ramp until fail (Max 2000)",
-			  "Duration_Mins": "N/A (Ramp continuously)",
-			  "Expected_P95_Latency_ms": "N/A (Observe only)",
-			  "Max_Error_Rate_Percent": "N/A (Fail gracefully)",
-			  "Rationale": "Identifies the weakest link in the infrastructure (e.g., database connection pool, GPU memory saturation)."
-			},
-			{
-			  "ID": "SCEN-SOAK-01",
-			  "Scenario_Type": "Endurance (Soak Test)",
-			  "Description": "Constant moderate load run for an extended period to detect memory leaks in model serving infrastructure.",
-			  "Target_VUs": 100,
-			  "Duration_Mins": 1440,
-			  "Expected_P95_Latency_ms": 500,
-			  "Max_Error_Rate_Percent": 0.1,
-			  "Rationale": "Crucial for AI services where prolonged up-time can lead to gradual resource exhaustion not seen in short bursts."
-			}
-		  ],
-		  "PlanCriteria": [
-			{
-			  "criteria": "PERF-LATENCY-01: For every 'Baseline' and 'Peak' scenario in the Golden Dataset, the measured P95 response time must not exceed the specific 'Expected_P95_Latency_ms' threshold defined for that scenario.",
-			  "control_objective": "To ensure responsive user experience is maintained strictly according to the pre-defined Service Level Objectives (SLOs) for different traffic conditions.",
-			  "criteria_evidence": "Automated test report showing side-by-side comparison of actual vs. expected P95 latency for each executed Scenario ID."
-			},
-			{
-			  "criteria": "PERF-STABILITY-01: The actual error rate during 'Baseline' and 'Peak' scenarios must not exceed the 'Max_Error_Rate_Percent' defined in the dataset.",
-			  "control_objective": "To confirm system stability and prevent unacceptable levels of failed inference requests under expected load.",
-			  "criteria_evidence": "Load test summary report highlighting total request count, failure count, and calculated error percentage against the threshold."
-			},
-			{
-			  "criteria": "PERF-RES-01: Resource utilization (CPU, Memory, GPU VRAM) must remain below established saturation points (e.g., 85%) during all non-stress scenarios.",
-			  "control_objective": "To ensure adequate infrastructure headroom and prevent crashing due to resource exhaustion (OOM errors).",
-			  "criteria_evidence": "Time-series monitoring graphs (e.g., Grafana/Datadog exports) overlaying resource usage with load volume during the test window."
-			},
-			{
-			  "criteria": "PERF-DRIFT-01: Performance results must not show statistically significant degradation (>10% variance) compared to the previous accepted release's benchmark for the same Golden Scenarios.",
-			  "control_objective": "To detect 'silent' performance regressions or code bloat that gradually erode system efficiency over multiple releases.",
-			  "criteria_evidence": "A regression trend analysis report comparing current P95/Error rates against historical test runs of the same Scenario IDs."
-			}
-		  ],
-		  "PlanSteps": [
-			{
-			  "step": "PLT-GEN-01: Analyze production traffic logs (if available) or anticipated usage patterns to identify distinct user journeys (e.g., 'simple query', 'complex document analysis').",
-			  "step_objective": "To ensure the test scenarios are grounded in reality rather than arbitrary guesses."
-			},
-			{
-			  "step": "PLT-GEN-02: Define 'Golden Scenarios' in the Test Dataset, assigning specific, approved thresholds (VUs, Latency P95, Error Rate) for Baseline, Peak, and Soak conditions.",
-			  "step_objective": "To create the rigid, non-negotiable benchmarks that the system must meet to pass."
-			},
-			{
-			  "step": "PLT-GEN-03: Implement these scenarios as version-controlled automated scripts (e.g., k6, JMeter, Gatling) that can read the parameters directly from the Golden Dataset configuration.",
-			  "step_objective": "To ensure repeatability, allowing any tester to run the exact same load profile by referencing the Scenario ID."
-			},
-			{
-			  "step": "PLT-EXEC-01: Provision an isolated, production-parity test environment with identical compute resources (including GPU SKUs if applicable) and verify monitoring agent health.",
-			  "step_objective": "To eliminate environmental variables that could skew performance data (ensuring 'apples-to-apples' comparison)."
-			},
-			{
-			  "step": "PLT-EXEC-02: Execute the 'Golden Scenarios' sequentially, ensuring a full system cool-down (reset of connections/caches) between each scenario run.",
-			  "step_objective": "To prevent data pollution from one extreme scenario (e.g., Stress) affecting the results of a subsequent delicate scenario (e.g., Baseline)."
-			},
-			{
-			  "step": "PLT-EXEC-03: Automatically compare the test execution results against the defined thresholds in the Golden Dataset and generate a pass/fail report for each Scenario ID.",
-			  "step_objective": "To provide immediate, binary feedback on whether the release meets its performance NFRs."
-			}
-		  ]
-		},
         {
-          "Control":"[Art-10][Par-2][2]",
+          "Control": "[A.6.2.6 - AI system operation and monitoring]",
+          "FieldType": "plan",
+          "Role": "Tester,Approver",
+          "TrustDimension": "Cybersecurity and Resilience",
+          "FieldName": "Performance & Load Test Plan",
+          "PlanObjective": "To validate that the AI system meets defined non-functional requirements (NFRs) for latency, stability, and resource efficiency under strictly defined, repeatable load scenarios.",
+          "TestDatasetMetadata": {
+            "TestCategory": "Operational Resilience (Load Simulation)",
+            "ControlID": "PERF-OPS-TEST-01",
+            "Purpose": "To subject the system to version-controlled 'Golden Workloads' to detect immediate performance failures and long-term latency drift.",
+            "PrimaryMetric": {
+              "Name": "SLO Compliance Rate",
+              "Definition": "The percentage of Golden Scenarios that fully meet their defined P95 Latency and Error Rate thresholds during execution.",
+              "CalculationDetail": "(Scenarios Passing ALL Thresholds / Total Scenarios Executed) * 100"
+            },
+            "PassCriteria": {
+              "Threshold": "100% SLO Compliance for Baseline & Peak scenarios",
+              "RequirementDetail": "Critical operational scenarios must meet established Service Level Objectives (SLOs). Stress scenarios may degrade but must fail gracefully (no unchecked crashes)."
+            }
+          },
+          "TestDataset": [
+            {
+              "ID": "SCEN-BASE-01",
+              "Scenario_Type": "Baseline (Normal Operations)",
+              "Description": "Standard mixed workload: 80% read (cached inference), 20% write (new complex prompts).",
+              "Target_VUs": 50,
+              "Duration_Mins": 60,
+              "Expected_P95_Latency_ms": 400,
+              "Max_Error_Rate_Percent": 0.05,
+              "Rationale": "Represents average daily utilization based on last quarter's production analytics."
+            },
+            {
+              "ID": "SCEN-PEAK-01",
+              "Scenario_Type": "Peak Load (High Traffic Event)",
+              "Description": "Simulated marketing launch event: High concurrency, heavy on complex reasoning prompts (uncached).",
+              "Target_VUs": 500,
+              "Duration_Mins": 30,
+              "Expected_P95_Latency_ms": 1200,
+              "Max_Error_Rate_Percent": 0.5,
+              "Rationale": "Validates auto-scaling capabilities and ensures responsiveness doesn't degrade severely during known high-traffic windows."
+            },
+            {
+              "ID": "SCEN-STRESS-01",
+              "Scenario_Type": "Stress Test (Breaking Point)",
+              "Description": "Ramp up VUs until 50% error rate or system crash to determine absolute ceiling.",
+              "Target_VUs": "Ramp until fail (Max 2000)",
+              "Duration_Mins": "N/A (Ramp continuously)",
+              "Expected_P95_Latency_ms": "N/A (Observe only)",
+              "Max_Error_Rate_Percent": "N/A (Fail gracefully)",
+              "Rationale": "Identifies the weakest link in the infrastructure (e.g., database connection pool, GPU memory saturation)."
+            },
+            {
+              "ID": "SCEN-SOAK-01",
+              "Scenario_Type": "Endurance (Soak Test)",
+              "Description": "Constant moderate load run for an extended period to detect memory leaks in model serving infrastructure.",
+              "Target_VUs": 100,
+              "Duration_Mins": 1440,
+              "Expected_P95_Latency_ms": 500,
+              "Max_Error_Rate_Percent": 0.1,
+              "Rationale": "Crucial for AI services where prolonged up-time can lead to gradual resource exhaustion not seen in short bursts."
+            }
+          ],
+          "PlanCriteria": [
+            {
+              "criteria": "PERF-LATENCY-01: For every 'Baseline' and 'Peak' scenario in the Golden Dataset, the measured P95 response time must not exceed the specific 'Expected_P95_Latency_ms' threshold defined for that scenario.",
+              "control_objective": "To ensure responsive user experience is maintained strictly according to the pre-defined Service Level Objectives (SLOs) for different traffic conditions.",
+              "criteria_evidence": "Automated test report showing side-by-side comparison of actual vs. expected P95 latency for each executed Scenario ID."
+            },
+            {
+              "criteria": "PERF-STABILITY-01: The actual error rate during 'Baseline' and 'Peak' scenarios must not exceed the 'Max_Error_Rate_Percent' defined in the dataset.",
+              "control_objective": "To confirm system stability and prevent unacceptable levels of failed inference requests under expected load.",
+              "criteria_evidence": "Load test summary report highlighting total request count, failure count, and calculated error percentage against the threshold."
+            },
+            {
+              "criteria": "PERF-RES-01: Resource utilization (CPU, Memory, GPU VRAM) must remain below established saturation points (e.g., 85%) during all non-stress scenarios.",
+              "control_objective": "To ensure adequate infrastructure headroom and prevent crashing due to resource exhaustion (OOM errors).",
+              "criteria_evidence": "Time-series monitoring graphs (e.g., Grafana/Datadog exports) overlaying resource usage with load volume during the test window."
+            },
+            {
+              "criteria": "PERF-DRIFT-01: Performance results must not show statistically significant degradation (>10% variance) compared to the previous accepted release's benchmark for the same Golden Scenarios.",
+              "control_objective": "To detect 'silent' performance regressions or code bloat that gradually erode system efficiency over multiple releases.",
+              "criteria_evidence": "A regression trend analysis report comparing current P95/Error rates against historical test runs of the same Scenario IDs."
+            }
+          ],
+          "PlanSteps": [
+            {
+              "step": "PLT-GEN-01: Analyze production traffic logs (if available) or anticipated usage patterns to identify distinct user journeys (e.g., 'simple query', 'complex document analysis').",
+              "step_objective": "To ensure the test scenarios are grounded in reality rather than arbitrary guesses."
+            },
+            {
+              "step": "PLT-GEN-02: Define 'Golden Scenarios' in the Test Dataset, assigning specific, approved thresholds (VUs, Latency P95, Error Rate) for Baseline, Peak, and Soak conditions.",
+              "step_objective": "To create the rigid, non-negotiable benchmarks that the system must meet to pass."
+            },
+            {
+              "step": "PLT-GEN-03: Implement these scenarios as version-controlled automated scripts (e.g., k6, JMeter, Gatling) that can read the parameters directly from the Golden Dataset configuration.",
+              "step_objective": "To ensure repeatability, allowing any tester to run the exact same load profile by referencing the Scenario ID."
+            },
+            {
+              "step": "PLT-EXEC-01: Provision an isolated, production-parity test environment with identical compute resources (including GPU SKUs if applicable) and verify monitoring agent health.",
+              "step_objective": "To eliminate environmental variables that could skew performance data (ensuring 'apples-to-apples' comparison)."
+            },
+            {
+              "step": "PLT-EXEC-02: Execute the 'Golden Scenarios' sequentially, ensuring a full system cool-down (reset of connections/caches) between each scenario run.",
+              "step_objective": "To prevent data pollution from one extreme scenario (e.g., Stress) affecting the results of a subsequent delicate scenario (e.g., Baseline)."
+            },
+            {
+              "step": "PLT-EXEC-03: Automatically compare the test execution results against the defined thresholds in the Golden Dataset and generate a pass/fail report for each Scenario ID.",
+              "step_objective": "To provide immediate, binary feedback on whether the release meets its performance NFRs."
+            }
+          ]
+        },
+        {
+          "Control": "[Art-10][Par-2][2]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Data and Data Governance,Fundamental Rights,Fairness and Bias",
@@ -2361,7 +2359,7 @@
           ]
         },
         {
-          "Control":"[Art-13][Par-1]",
+          "Control": "[Art-13][Par-1]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Transparency and Provision of Information,Fundamental Rights",
@@ -2481,86 +2479,99 @@
             }
           ]
         },
-		{
-          "Control":"[Art-12]",
-		  "FieldType": "plan",
-		  "Role": "Tester,Approver",
-		  "TrustDimension": "Compliance, Record-Keeping",
-		  "FieldName": "End-to-End Traceability & Immutable Log Verification",
-		  "PlanObjective": "To validate that all mandatory operational events (defined in Define phase) successfully generate log entries that strictly adhere to the required metadata schema (TRC-LOG-01.3) and are correctly routed to explicitly defined immutable storage (TRC-LOG-01.4).",
-		  "TestDatasetMetadata": {
-			"TestCategory": "Forensic Traceability Verification",
-			"ControlID": "TRC-LOG-01.2, TRC-LOG-01.3, TRC-LOG-01.4",
-			"Purpose": "To ensure the system is generating a legally defensible audit trail by attempting various operations and verifying the resulting digital exhaust matches Art. 12 requirements.",
-			"PrimaryMetric": {
-			  "Name": "Log Completeness & Schema Compliance Rate (LCSCR)",
-			  "Definition": "The percentage of executed test scenarios that result in a perfectly formed, retrievable log entry in the permanent storage bucket.",
-			  "CalculationDetail": "For every Scenario ID (T-01 to T-04), query the WORM storage. Success requires: (1) Log exists, (2) All mandatory metadata fields are present and non-null, (3) Timestamps correlate to the test execution window."
-			},
-			"PassCriteria": {
-			  "Threshold": "$$ = 100\\% $$",
-			  "RequirementDetail": "Missing even a single category of logs (e.g., failure events) creates a compliance gap; 100% completeness is required for deployment."
-			}
-		  },
-		  "TestDataset": [
-			{
-			  "ID": "T-01",
-			  "Scenario_Action": "Execute Standard Valid Inference (Happy Path)",
-			  "Expected_Log_Events": ["Prompt Received", "RAG Retrieval Utilized", "Response Generated"],
-			  "Required_Correlations": "All 3 events must share the same 'Session_Trace_ID'."
-			},
-			{
-			  "ID": "T-02",
-			  "Scenario_Action": "Trigger Prohibited Use Guardrail (Security Path)",
-			  "Expected_Log_Events": ["Prompt Received", "Prohibited Use Attempt (Blacklist trigger)"],
-			  "Required_Correlations": "Must include 'Input_Data_Hash' and 'User_ID' for accountability."
-			},
-			{
-			  "ID": "T-03",
-			  "Scenario_Action": "Force System Error (e.g., kill vector DB connection)",
-			  "Expected_Log_Events": ["Unavailable external service", "Error_Critical_Failure"],
-			  "Required_Correlations": "Log must contain the specific error code and stack trace in the payload."
-			},
-			{
-			  "ID": "T-04",
-			  "Scenario_Action": "Simulate Human Oversight Override (Art. 14)",
-			  "Expected_Log_Events": ["Response Generated", "Human override of AI output"],
-			  "Required_Correlations": "Must include valid 'Human_Verifier_ID' metadata field."
-			}
-		  ],
-		  "PlanCriteria": [
-			{
-			  "criteria": "[TRC-TEST-01]: Schema Validation - Every log entry generated by T-01 through T-04 must pass automated JSON schema validation against the '[Art.12] - Required Traceability Log Metadata Fields' definition.",
-			  "control_objective": "To ensure no 'dirty' or incomplete logs are polluting the audit trail.",
-			  "criteria_evidence": "Automated test report showing 0 schema validation errors for the test duration."
-			},
-			{
-			  "criteria": "[TRC-TEST-02]: Immutable Storage Confirmation - Successfully query and retrieve these specific test logs from the designated WORM (Write-Once-Read-Many) storage bucket 15 minutes after execution.",
-			  "control_objective": "To verify the entire logging pipeline reaches the secure, long-term storage medium (TRC-LOG-01.4).",
-			  "criteria_evidence": "A retrieved sample of the raw log file from the S3/Blob storage showing the correct retention tags."
-			}
-		  ],
-		  "PlanSteps": [
-			{
-			  "step": "TRC-EXE-01: Configure the test client with a unique 'Test_Batch_ID' to easily filter logs later.",
-			  "step_objective": "To isolate test data from standard operational noise."
-			},
-			{
-			  "step": "TRC-EXE-02: Sequentially execute Test Scenarios T-01 through T-04 against the deployed RAG Orchestrator.",
-			  "step_objective": "To generate the necessary operational signals."
-			},
-			{
-			  "step": "TRC-EXE-03: Wait for the defined log aggregation latency period (e.g., 5 minutes) to ensure data has successfully traveled the pipeline.",
-			  "step_objective": "To account for non-real-time batching in logging architecture."
-			},
-			{
-			  "step": "TRC-EXE-04: Execute a scripted query against the WORM storage bucket, filtering by the 'Test_Batch_ID' and asserting presence of all 'Expected_Log_Events' with valid metadata.",
-			  "step_objective": "To programmatically verify compliance without manual log hunting."
-			}
-		  ]
-		},
         {
-          "Control":"[A.9 Use of AI systems]",          
+          "Control": "[Art-12]",
+          "FieldType": "plan",
+          "Role": "Tester,Approver",
+          "TrustDimension": "Compliance, Record-Keeping",
+          "FieldName": "End-to-End Traceability & Immutable Log Verification",
+          "PlanObjective": "To validate that all mandatory operational events (defined in Define phase) successfully generate log entries that strictly adhere to the required metadata schema (TRC-LOG-01.3) and are correctly routed to explicitly defined immutable storage (TRC-LOG-01.4).",
+          "TestDatasetMetadata": {
+            "TestCategory": "Forensic Traceability Verification",
+            "ControlID": "TRC-LOG-01.2, TRC-LOG-01.3, TRC-LOG-01.4",
+            "Purpose": "To ensure the system is generating a legally defensible audit trail by attempting various operations and verifying the resulting digital exhaust matches Art. 12 requirements.",
+            "PrimaryMetric": {
+              "Name": "Log Completeness & Schema Compliance Rate (LCSCR)",
+              "Definition": "The percentage of executed test scenarios that result in a perfectly formed, retrievable log entry in the permanent storage bucket.",
+              "CalculationDetail": "For every Scenario ID (T-01 to T-04), query the WORM storage. Success requires: (1) Log exists, (2) All mandatory metadata fields are present and non-null, (3) Timestamps correlate to the test execution window."
+            },
+            "PassCriteria": {
+              "Threshold": "$$ = 100\\% $$",
+              "RequirementDetail": "Missing even a single category of logs (e.g., failure events) creates a compliance gap; 100% completeness is required for deployment."
+            }
+          },
+          "TestDataset": [
+            {
+              "ID": "T-01",
+              "Scenario_Action": "Execute Standard Valid Inference (Happy Path)",
+              "Expected_Log_Events": [
+                "Prompt Received",
+                "RAG Retrieval Utilized",
+                "Response Generated"
+              ],
+              "Required_Correlations": "All 3 events must share the same 'Session_Trace_ID'."
+            },
+            {
+              "ID": "T-02",
+              "Scenario_Action": "Trigger Prohibited Use Guardrail (Security Path)",
+              "Expected_Log_Events": [
+                "Prompt Received",
+                "Prohibited Use Attempt (Blacklist trigger)"
+              ],
+              "Required_Correlations": "Must include 'Input_Data_Hash' and 'User_ID' for accountability."
+            },
+            {
+              "ID": "T-03",
+              "Scenario_Action": "Force System Error (e.g., kill vector DB connection)",
+              "Expected_Log_Events": [
+                "Unavailable external service",
+                "Error_Critical_Failure"
+              ],
+              "Required_Correlations": "Log must contain the specific error code and stack trace in the payload."
+            },
+            {
+              "ID": "T-04",
+              "Scenario_Action": "Simulate Human Oversight Override (Art. 14)",
+              "Expected_Log_Events": [
+                "Response Generated",
+                "Human override of AI output"
+              ],
+              "Required_Correlations": "Must include valid 'Human_Verifier_ID' metadata field."
+            }
+          ],
+          "PlanCriteria": [
+            {
+              "criteria": "[TRC-TEST-01]: Schema Validation - Every log entry generated by T-01 through T-04 must pass automated JSON schema validation against the '[Art.12] - Required Traceability Log Metadata Fields' definition.",
+              "control_objective": "To ensure no 'dirty' or incomplete logs are polluting the audit trail.",
+              "criteria_evidence": "Automated test report showing 0 schema validation errors for the test duration."
+            },
+            {
+              "criteria": "[TRC-TEST-02]: Immutable Storage Confirmation - Successfully query and retrieve these specific test logs from the designated WORM (Write-Once-Read-Many) storage bucket 15 minutes after execution.",
+              "control_objective": "To verify the entire logging pipeline reaches the secure, long-term storage medium (TRC-LOG-01.4).",
+              "criteria_evidence": "A retrieved sample of the raw log file from the S3/Blob storage showing the correct retention tags."
+            }
+          ],
+          "PlanSteps": [
+            {
+              "step": "TRC-EXE-01: Configure the test client with a unique 'Test_Batch_ID' to easily filter logs later.",
+              "step_objective": "To isolate test data from standard operational noise."
+            },
+            {
+              "step": "TRC-EXE-02: Sequentially execute Test Scenarios T-01 through T-04 against the deployed RAG Orchestrator.",
+              "step_objective": "To generate the necessary operational signals."
+            },
+            {
+              "step": "TRC-EXE-03: Wait for the defined log aggregation latency period (e.g., 5 minutes) to ensure data has successfully traveled the pipeline.",
+              "step_objective": "To account for non-real-time batching in logging architecture."
+            },
+            {
+              "step": "TRC-EXE-04: Execute a scripted query against the WORM storage bucket, filtering by the 'Test_Batch_ID' and asserting presence of all 'Expected_Log_Events' with valid metadata.",
+              "step_objective": "To programmatically verify compliance without manual log hunting."
+            }
+          ]
+        },
+        {
+          "Control": "[A.9 Use of AI systems]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Intended Use,Fundamental Rights",
@@ -2648,7 +2659,7 @@
           ]
         },
         {
-          "Control":"[Article 14]",                  
+          "Control": "[Article 14]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Human Oversight,Fundamental Rights",
@@ -2845,7 +2856,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Article 15]",          
+          "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Deployment Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3000,38 +3011,38 @@
         }
       ],
       "Fields": [
-		{
-		  "Control": "[Article 15]",
-		  "FieldType": "risk",
-		  "Role": "Operation & Monitoring Engineer",
-		  "TrustDimension": "Cybersecurity and Resilience",
-		  "FieldName": "Insufficient Scalability Management",
-		  "RiskDescription": "Failure to design the system so it can easily grow (scale) will result in crashes or extreme slowness when too many users try to access it at once, or when we add too much new data to its knowledge base.",
-		  "controls": [
-			{
-			  "control": "[SC][1] - Independent Automatic Growth: Configure the main application and the AI model to grow (auto-scale) separately from one another. They use different types of computer resources, so one getting busy shouldn't force the other to grow unnecessarily.",
-			  "control_objective": "To ensure we don't waste expensive AI hardware just because basic website traffic is high, and vice versa.",
-			  "control_evidence": "Test results showing the main application adding more servers while the AI model stays stable (and vice versa) under different types of stress."
-			},
-			{
-			  "control": "[SC][2] - 'Stateless' Servers: Design the system so individual servers don't remember specific user conversations locally. All conversation history must be stored in a central, shared location accessible by all servers.",
-			  "control_objective": "To ensure that if one server fails mid-conversation, another can instantly take over without the user noticing any interruption.",
-			  "control_evidence": "A test report demonstrating that users don't lose their chat history even if we deliberately turn off the specific server they were talking to."
-			},
-			{
-			  "control": "[SC][3] - Expandable Knowledge Base: Build the search database so it can handle more simultaneous questions by adding more servers to it (horizontal scaling), rather than just trying to make one single server more powerful.",
-			  "control_objective": "To prevent knowledge searches from becoming slow as more employees use the system at the same time.",
-			  "control_evidence": "Performance benchmarks showing that search speed remains fast even when the number of simultaneous users doubles."
-			},
-			{
-			  "control": "[SC][4] - Background Data Processing: Use a 'waiting line' (queue) system for adding new documents to the knowledge base. This ensures new information is processed in the background without clogging up the live system for active users.",
-			  "control_objective": "To ensure we can upload massive amounts of new company data without slowing down the chat service for people currently using it.",
-			  "control_evidence": "System diagrams showing the 'waiting line' that separates document uploads from the live user chat area."
-			}
-		  ]
-		},
         {
-          "Control": "[Article 15]",          
+          "Control": "[Article 15]",
+          "FieldType": "risk",
+          "Role": "Operation & Monitoring Engineer",
+          "TrustDimension": "Cybersecurity and Resilience",
+          "FieldName": "Insufficient Scalability Management",
+          "RiskDescription": "Failure to design the system so it can easily grow (scale) will result in crashes or extreme slowness when too many users try to access it at once, or when we add too much new data to its knowledge base.",
+          "controls": [
+            {
+              "control": "[SC][1] - Independent Automatic Growth: Configure the main application and the AI model to grow (auto-scale) separately from one another. They use different types of computer resources, so one getting busy shouldn't force the other to grow unnecessarily.",
+              "control_objective": "To ensure we don't waste expensive AI hardware just because basic website traffic is high, and vice versa.",
+              "control_evidence": "Test results showing the main application adding more servers while the AI model stays stable (and vice versa) under different types of stress."
+            },
+            {
+              "control": "[SC][2] - 'Stateless' Servers: Design the system so individual servers don't remember specific user conversations locally. All conversation history must be stored in a central, shared location accessible by all servers.",
+              "control_objective": "To ensure that if one server fails mid-conversation, another can instantly take over without the user noticing any interruption.",
+              "control_evidence": "A test report demonstrating that users don't lose their chat history even if we deliberately turn off the specific server they were talking to."
+            },
+            {
+              "control": "[SC][3] - Expandable Knowledge Base: Build the search database so it can handle more simultaneous questions by adding more servers to it (horizontal scaling), rather than just trying to make one single server more powerful.",
+              "control_objective": "To prevent knowledge searches from becoming slow as more employees use the system at the same time.",
+              "control_evidence": "Performance benchmarks showing that search speed remains fast even when the number of simultaneous users doubles."
+            },
+            {
+              "control": "[SC][4] - Background Data Processing: Use a 'waiting line' (queue) system for adding new documents to the knowledge base. This ensures new information is processed in the background without clogging up the live system for active users.",
+              "control_objective": "To ensure we can upload massive amounts of new company data without slowing down the chat service for people currently using it.",
+              "control_evidence": "System diagrams showing the 'waiting line' that separates document uploads from the live user chat area."
+            }
+          ]
+        },
+        {
+          "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3061,7 +3072,7 @@
           ]
         },
         {
-          "Control": "[Article 15]",          
+          "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
