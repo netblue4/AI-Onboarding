@@ -744,7 +744,15 @@
               "FieldName": "Select Potential Benefits",
               "FieldText": "",
               "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
-            }
+            },
+			{
+			  "Control": "[A.9.4 - Intended use of AI system]",
+			  "Role": "Requester",
+			  "TrustDimension": "Cybersecurity and Resilience",
+			  "FieldName": "Select the Intended User Profiles for the AI System",
+			  "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
+			  "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
+			}            
           ]
         },
         {
@@ -910,14 +918,6 @@
 			  "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod/Test)/AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
 			}
           ]
-        },
-        {
-          "Control": "[A.9.4 - Intended use of AI system]",
-          "Role": "Requester",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "Select the Intended User Profiles for the AI System",
-          "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
-          "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
         }
       ]
     },
