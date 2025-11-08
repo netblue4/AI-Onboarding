@@ -15,10 +15,10 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
     groupContainer.className = 'field-group-container'; // Class for styling the box
 
     // 2. Create and set the Group Title (Legend/Header)
-    if (field.GroupTitle) {
+    if (field.FieldName) {
         const groupTitle = document.createElement('h3');
         groupTitle.className = 'field-group-title';
-        groupTitle.textContent = field.GroupTitle;
+        groupTitle.textContent = field.FieldName;
         groupContainer.appendChild(groupTitle);
     }
     
