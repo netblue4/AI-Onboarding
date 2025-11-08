@@ -423,7 +423,7 @@
           "Control": "[A.4 - Resources for AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Cybersecurity and Resilience",
+          "TrustDimension": "Compliance",
           "FieldName": "Resources for AI systems",
           "RiskDescription": "",
           "controls": [
@@ -463,7 +463,7 @@
           "Control": "[A.5 - Assessing impacts of AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Fundamental Rights,Job Preservation",
+          "TrustDimension": "Compliance,Fundamental Rights,Job Preservation,Environmental Sustainability",
           "FieldName": "Assessing impacts of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -497,7 +497,7 @@
           "Control": "[A.6 - AI system life cycle]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Cybersecurity and Resilience",
+          "TrustDimension": "Compliance",
           "FieldName": "AI system life cycle",
           "RiskDescription": "",
           "controls": [
@@ -760,7 +760,7 @@
           "FieldType": "fieldGroup",
           "Role": "Requester,Data Engineer",
           "TrustDimension": "Data and Data Governance",
-          "FieldName": "Data for AI System",
+          "FieldName": "Data for AI System,Cybersecurity and Resilience",
           "Fields": [
             {
               "Control": "[A.4.2, A.4.3 - Dataset Repository]",
@@ -1124,7 +1124,7 @@
           "Control": "[A.5.2, A.5.3, A.5.5 - Environmental Sustainability of AI Systems]",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
-          "TrustDimension": "Compliance,Fundamental Rights",
+          "TrustDimension": "Compliance,Environmental Sustainability",
           "FieldName": "Environmental Sustainability of AI Systems",
           "Fields": [
             {
