@@ -654,7 +654,7 @@
           ]
         },
         {
-          "FieldName": "[A.10 Third-party and customer relationships]",
+          "Control": "[A.10 Third-party and customer relationships]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Risk Management System",
@@ -683,7 +683,7 @@
   ],
   "2. AI System Documentation and Impact Assessments": [
     {
-      "StepName": "2.1. (A.9.3, A.9.4) AI system's intended use and limitations",
+      "StepName": "2.1. - AI system's intended use and limitations",
       "Objectives": [
         {
           "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
@@ -783,7 +783,7 @@
               "Control": "[Art. 14] - Human Oversight",
               "Role": "Requester",
               "TrustDimension": "Human Oversight",
-              "FieldName": "[Article 14] - Human Intervention Key Phrase Categories Requiring Human Intervention",
+              "FieldName": "Human Intervention Key Phrase Categories - Requiring Human Intervention",
               "FieldText": "This is a reference list of key phrases in the LLM's output that indicate it may be making a business decision or a decision with potential risks. If these phrases are detected, the system should flag the response for immediate human oversight and potential intervention, allowing an overseer to stop or override the action.",
               "FieldType": "MultiSelect:Financial and Business Directives:approve the loan, reject the claim, allocate budget, set the price at, hire candidate, terminate contract, invest in, authorize payment, proceed with purchase/Health and Safety Determinations:the diagnosis is, you likely have, prescribe treatment, this is a medical recommendation, it is safe to proceed, declare unsafe, risk level is critical, initiate safety protocol/Eligibility and Rights-Based Judgements:grant access to, deny benefits, is eligible for, application approved, request denied, assign credit score of, this is legally compliant, classify as high-risk/Automated Action and Execution:I have executed the transfer, the system will automatically, action has been triggered, the process is now initiated, I have decided to, the final decision is/Definitive Predictions and Classifications:the outcome will be, I predict with certainty, this will happen, the final score is, this person's risk profile is, this is the correct answer, conclude that"
             }
@@ -805,18 +805,18 @@
               "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
-			  "FieldName": "[Art.12] - Mandatory Operational Event Log Categories",
+			  "Control": "[Art.12] - Mandatory Operational Event Log Categories",
 			  "Role": "Requester",
 			  "TrustDimension": "Compliance,Record-Keeping",
-			  "FieldLabel": "Select all Mandatory Operational Event Categories for Logging",
+			  "FieldName": "Select all Mandatory Operational Event Categories for Logging",
 			  "FieldText": "Reference list of operational event categories that MUST trigger an automated log entry to satisfy EU AI Act Art. 12 (traceability over system lifetime). Engineers must ensure hooks exist in the code to capture these specific states.",
 			  "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
 			},
 			{
-			  "FieldName": "[Art.12] - Required Traceability Log Metadata Fields",
+			  "Control": "[Art.12] - Required Traceability Log Metadata Fields",
 			  "Role": "Requester",
 			  "TrustDimension": "Compliance,Record-Keeping",
-			  "FieldLabel": "Required Standard Traceability Log Metadata Schema",
+			  "FieldName": "Required Standard Traceability Log Metadata Schema",
 			  "FieldText": "This defines the minimum required metadata fields that MUST be present in every single log entry defined above. This standardizes logs for automated auditing and post-market monitoring (Art 72).",
 			  "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod/Test)/AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
 			}
@@ -833,7 +833,7 @@
       ]
     },
     {
-      "StepName": "2.2. (A.4.2, A.4.4, A.4.5) AI Systems Tooling and Computing Resources",
+      "StepName": "2.2. - AI Systems Tooling and Computing Resources",
       "Objectives": [
         {
           "Objective": "Detailing the physical and cloud infrastructure required, including specific hardware (e.g., GPUs), cloud service subscriptions, and computing power needed to train, deploy, and run the AI model."
@@ -909,7 +909,7 @@
       ]
     },
     {
-      "StepName": "2.3. (A.5.2, A.5.3, A.5.4, A.5.5) Impact Assessments",
+      "StepName": "2.3. - Impact Assessments",
       "Objectives": [
         {
           "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
@@ -1134,7 +1134,7 @@
   ],
   "3. Data Preparation (Offline or Real-Time Knowledge Base Creation)": [
     {
-      "StepName": "3.1. Internal Data Sources",
+      "StepName": "3.1. - Internal Data Sources",
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
       "Objectives": [
         {
@@ -1269,7 +1269,7 @@
       ]
     },
     {
-      "StepName": "3.2. Data Processing Pipeline (Vectorise proprietary data)",
+      "StepName": "3.2. - Data Processing Pipeline (Vectorise proprietary data)",
       "WebFormTitle": "To uphold the integrity and trustworthiness of the AI's knowledge base by ensuring all source data is accurately extracted, thoroughly cleaned of irrelevant artifacts, and logically chunked for optimal processing.",
       "Objectives": [
         {
@@ -1500,7 +1500,7 @@
       ]
     },
     {
-      "StepName": "3.3. Indexing and storing company's proprietary data",
+      "StepName": "3.3. - Indexing and storing company's proprietary data",
       "WebFormTitle": "To uphold the principles of data confidentiality, integrity, and availability for all information stored in the AI's knowledge base by implementing comprehensive encryption, strict access controls, and robust disaster recovery protocols.",
       "Objectives": [
         {
@@ -1510,7 +1510,7 @@
       "Fields": []
     },
     {
-      "StepName": "3.4. Connecting Internal Data <-> the Processing Pipeline",
+      "StepName": "3.4. - Connecting Internal Data <-> the Processing Pipeline",
       "WebFormTitle": "To ensure the secure and confidential transfer of all proprietary data from internal sources into the data processing pipeline by enforcing strong encryption for all data in transit.",
       "Objectives": [
         {
@@ -1522,7 +1522,7 @@
   ],
   "4. Development (Real-Time Chat With Your Document)": [
     {
-      "StepName": "4.1. User Interface",
+      "StepName": "4.1. - User Interface",
       "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
       "Objectives": [
         {
@@ -1719,7 +1719,7 @@
       ]
     },
     {
-      "StepName": "4.3. Generic LLM",
+      "StepName": "4.3. - Generic LLM",
       "WebFormTitle": "To enforce strict operational security for the self-hosted LLM by isolating its network access and implementing governed MLOps deployment workflows.",
       "Objectives": [
         {
@@ -1729,7 +1729,7 @@
       "Fields": []
     },
     {
-      "StepName": "4.4. User Interface <->  RAG Orchestrator",
+      "StepName": "4.4. - User Interface <->  RAG Orchestrator",
       "WebFormTitle": "To ensure that all queries and responses between the user interface and the RAG orchestrator are subject to strict, user-specific access control enforcement, preventing unauthorized data disclosure.",
       "Objectives": [
         {
@@ -1739,7 +1739,7 @@
       "Fields": []
     },
     {
-      "StepName": "4.5. RAG Orchestrator <->  Vector Database (Retrieval)",
+      "StepName": "4.5. - RAG Orchestrator <->  Vector Database (Retrieval)",
       "WebFormTitle": "To retrieve relevant text chunks from the knowledge base in response to a user query while mitigating the risk of unintentionally over-fetching and exposing sensitive data.",
       "Objectives": [
         {
@@ -1892,7 +1892,7 @@
       ]
     },
     {
-      "StepName": "4.6. RAG Orchestrator <-> Generic LLM (Augmented Prompt & LLM Call)",
+      "StepName": "4.6. - RAG Orchestrator <-> Generic LLM (Augmented Prompt & LLM Call)",
       "WebFormTitle": "To generate a coherent, fact-based answer by sending a context-rich prompt to the LLM while mitigating risks of prompt injection and sensitive data leakage.",
       "Objectives": [
         {
@@ -1902,7 +1902,7 @@
       "Fields": []
     },
     {
-      "StepName": "4.7. Generic LLM <-> RAG Orchestrator (LLM Generation)",
+      "StepName": "4.7. - Generic LLM <-> RAG Orchestrator (LLM Generation)",
       "WebFormTitle": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data.",
       "Objectives": [
         {
@@ -2039,7 +2039,7 @@
   ],
   "5. Verification and Monitoring": [
     {
-      "StepName": "5.1. (A.6.2.4,A.6.2.4) AI Systems verifications and monitoring",
+      "StepName": "5.1. - AI Systems verifications and monitoring",
       "Objectives": [
         {
           "Objective": "To perform comprehensive validation of the entire AI system and its components against defined performance, security, and ethical requirements before final deployment."
@@ -2755,7 +2755,7 @@
   ],
   "6. Approvals": [
     {
-      "StepName": "6.1. AI Systems approvals",
+      "StepName": "6.1. - AI Systems approvals",
       "Objectives": [
         {
           "Objective": "Stakeholder Approval and Governance: To obtain formal sign-off from all relevant stakeholders, confirming that the deployment plan is sound and all prerequisites have been satisfied, thereby providing a clear governance gate and accountability for the deployment decision."
@@ -2831,7 +2831,7 @@
   ],
   "7. Deployment": [
     {
-      "StepName": "7.1. (A.6.2.5) AI Lifecycle Phase requirements - Deployment",
+      "StepName": "7.1. - AI Lifecycle Phase requirements - Deployment",
       "WebFormTitle": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation.",
       "Objectives": [
         {
@@ -2942,7 +2942,7 @@
       ]
     },
     {
-      "StepName": "7.2. (A.8.4) Communication of incidents",
+      "StepName": "7.2. - Communication of incidents",
       "Objectives": [
         {
           "Objective": "To establish clear, defined protocols and channels for the immediate and effective communication of any AI system incidents or breaches to relevant internal stakeholders and external regulatory bodies."
@@ -2976,7 +2976,7 @@
       ]
     },
     {
-      "StepName": "7.3. (A.8.2) AI System Documentation and User Information",
+      "StepName": "7.3. - AI System Documentation and User Information",
       "WebFormTitle": "To provide all users and stakeholders with clear, comprehensive, and accessible information required for the safe, effective, and responsible use of the AI system.",
       "Objectives": [
         {
@@ -2988,7 +2988,7 @@
   ],
   "8. Operations": [
     {
-      "StepName": "8.1. (A.6.2.6) - Operation",
+      "StepName": "8.1. - Operation",
       "Objectives": [
         {
           "Objective": "To establish continuous monitoring, management, and maintenance protocols for the live AI system to ensure sustained performance, compliance, and risk mitigation throughout its operational lifespan."
