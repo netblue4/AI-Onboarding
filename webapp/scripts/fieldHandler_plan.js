@@ -25,7 +25,7 @@ function createPlan(field, capturedData, sanitizeForId) {
     headerDiv.appendChild(icon);
 
     const planFieldNameLabel = document.createElement('label');
-    planFieldNameLabel.textContent = field.FieldName.trim(); // The main risk title
+    planFieldNameLabel.textContent = field.FieldName.trim() + ' - ' + field.Control; // The main risk title
     planFieldNameLabel.className = 'label-bold';
     headerDiv.appendChild(planFieldNameLabel);
 

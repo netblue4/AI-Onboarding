@@ -22,7 +22,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     headerDiv.appendChild(icon);
 
     const questionLabel = document.createElement('label');
-    questionLabel.textContent = field.FieldName.trim(); // The main risk title
+    questionLabel.textContent = field.FieldName.trim() + ' - ' + field.Control; // The main risk title
     questionLabel.className = 'label-bold';
     headerDiv.appendChild(questionLabel);
     
