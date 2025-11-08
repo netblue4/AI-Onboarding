@@ -67,10 +67,11 @@
       ],
       "Fields": [
         {
+          "Control": "[Article 9]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Risk Management System",
-          "FieldName": "[Article 9] - Inadequate or Ineffective Risk Management",
+          "FieldName": "Inadequate or Ineffective Risk Management",
           "RiskDescription": "",
           "controls": [
             {
@@ -112,10 +113,11 @@
           ]
         },
         {
+          "Control": "[Article 10]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Data and Data Governance,Fairness and Bias",
-          "FieldName": "[Article 10] - Poor Data Quality and Governance",
+          "FieldName": "Poor Data Quality and Governance",
           "RiskDescription": "",
           "controls": [
             {
@@ -151,10 +153,11 @@
           ]
         },
         {
+          "Control": "[Article 12]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Record-Keeping",
-          "FieldName": "[Article 12] - Inadequate Traceability and Record-Keeping",
+          "FieldName": "Inadequate Traceability and Record-Keeping",
           "RiskDescription": "Failure to implement technical capabilities for automatic event logging (logs) over the system's lifetime and failure to record specific, detailed information required for traceability, accountability, and post-market monitoring as mandated by Article 12.",
           "controls": [
             {
@@ -178,10 +181,11 @@
           ]
         },
         {
+          "Control": "[Article 13]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Transparency and Provision of Information",
-          "FieldName": "[Article 13] - Lack of Transparency and Provision of Information to Users",
+          "FieldName": "Lack of Transparency and Provision of Information to Users",
           "RiskDescription": "",
           "controls": [
             {
@@ -217,10 +221,11 @@
           ]
         },
         {
+          "Control": "[Article 14]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Human Oversight",
-          "FieldName": "[Article 14] - Ineffective or Insufficient Human Oversight",
+          "FieldName": "Ineffective or Insufficient Human Oversight",
           "RiskDescription": "",
           "controls": [
             {
@@ -261,10 +266,11 @@
           ]
         },
         {
+          "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Cybersecurity and Resilience",
-          "FieldName": "[Article 15] - Inadequate Accuracy, Robustness, and Cybersecurity",
+          "FieldName": "Inadequate Accuracy, Robustness, and Cybersecurity",
           "RiskDescription": "",
           "controls": [
             {
@@ -300,10 +306,11 @@
           ]
         },
         {
+          "Control": "[Article 27]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
           "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias",
-          "FieldName": "[Article 27] - Failure to Assess Fundamental Rights Impact",
+          "FieldName": "Failure to Assess Fundamental Rights Impact",
           "RiskDescription": "",
           "controls": [
             {
@@ -363,10 +370,11 @@
       ],
       "Fields": [
         {
+          "Control": "[A.2]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,AI Governance",
-          "FieldName": "[A.2] - Policies related to AI",
+          "FieldName": "Policies related to AI",
           "RiskDescription": "",
           "controls": [
             {
@@ -390,10 +398,11 @@
           ]
         },
         {
+          "Control": "[A.3]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,AI Governance",
-          "FieldName": "[A.3] - Internal organization",
+          "FieldName": "Internal organization",
           "RiskDescription": "",
           "controls": [
             {
@@ -411,10 +420,11 @@
           ]
         },
         {
+          "Control": "[A.4]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Cybersecurity and Resilience",
-          "FieldName": "[A.4] - Resources for AI systems",
+          "FieldName": "Resources for AI systems",
           "RiskDescription": "",
           "controls": [
             {
@@ -450,10 +460,11 @@
           ]
         },
         {
+          "Control": "[A.5]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Fundamental Rights,Job Preservation",
-          "FieldName": "[A.5] - Assessing impacts of AI systems",
+          "FieldName": "Assessing impacts of AI systems",
           "RiskDescription": "",
           "controls": [
             {
@@ -483,10 +494,11 @@
           ]
         },
         {
+          "Control": "[A.6]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Cybersecurity and Resilience",
-          "FieldName": "[A.6] - AI system life cycle",
+          "FieldName": "AI system life cycle",
           "RiskDescription": "",
           "controls": [
             {
@@ -544,10 +556,11 @@
           ]
         },
         {
+          "Control": "[A.7]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Data and Data Governance",
-          "FieldName": "[A.7] - Data for AI systems",
+          "FieldName": "Data for AI systems",
           "RiskDescription": "",
           "controls": [
             {
@@ -583,10 +596,11 @@
           ]
         },
         {
+          "Control": "[A.8]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Transparency and Provision of Information",
-          "FieldName": "[A.8] - Information for interested parties of AI systems",
+          "FieldName": "Information for interested parties of AI systems",
           "RiskDescription": "",
           "controls": [
             {
@@ -612,10 +626,11 @@
           ]
         },
         {
+          "Control": "[A.9]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Intended Use",
-          "FieldName": "[A.9] - Use of AI systems",
+          "FieldName": "Use of AI systems",
           "RiskDescription": "",
           "controls": [
             {
@@ -639,10 +654,11 @@
           ]
         },
         {
+          "FieldName": "[A.10]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Risk Management System",
-          "FieldName": "[A.10] - Third-party and customer relationships",
+          "FieldName": "Third-party and customer relationships",
           "RiskDescription": "",
           "controls": [
             {
@@ -736,7 +752,7 @@
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
-          "FieldName": "[A.9.4] - Intended use of AI system",
+          "FieldName": "Intended use of AI system",
           "Fields": [
             {
               "Control": "[A.9.4] - Intended use of AI system",
@@ -1093,7 +1109,7 @@
           "FieldType": "fieldGroup",
           "Role": "Requester",
           "TrustDimension": "Data and Data Governance,Fairness and Bias",
-          "FieldName": "Data Governance: Bias Examination & Mitigation",
+          "FieldName": "Bias Examination & Mitigation",
           "Fields": [
             {
               "Control": "Art. 10(f) – Examination for possible biases",
@@ -1109,7 +1125,7 @@
               "TrustDimension": "Data and Data Governance,Fairness and Bias",
               "FieldName": "(Art. 10.g) - Required Data Bias Mitigation Strategies",
               "FieldText": "Specify the pre-approved technical measures that engineers must implement if bias is detected during the examination phase defined in (Art. 10.f).",
-              "FieldType": "MultiSelect:Pre-processing: Re-sampling (Over/Under-sample to balance protected group representation)/Pre-processing: Re-weighting (Assign higher loss weights to underrepresented groups during training)/Pre-processing: Synthetic Data Augmentation (Generate compliant synthetic records for minority classes)/In-processing: Adversarial Debiasing (Include a discriminator network to penalize bias during training)/Post-processing: Threshold Adjustment (Calibrate decision thresholds per group to achieve equal opportunity)"
+              "FieldType": "MultiSelect:Pre-processing: Re-sampling (Over-Under-sample to balance protected group representation)/Pre-processing: Synthetic Data Augmentation (Generate compliant synthetic records for minority classes)"
             }
           ]
         }
@@ -1127,11 +1143,11 @@
       ],
       "Fields": [
         {
-          "Control": "(A.4.2, A.4.3) - Data for AI System Details",
+          "Control": "(A.4.2, A.4.3) - Data for AI System",
           "FieldType": "fieldGroup",
           "Role": "Requester,Data Engineer",
           "TrustDimension": "Data and Data Governance",
-          "FieldName": "Data for AI System Details",
+          "FieldName": "Data for AI System",
           "Fields": [
             {
               "Control": "(A.4.2, A.4.3) - Dataset Repository",
@@ -1216,6 +1232,7 @@
           ]
         },
         {
+          "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance,Cybersecurity and Resilience",
@@ -1514,6 +1531,7 @@
       ],
       "Fields": [
         {
+          "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1533,6 +1551,7 @@
           ]
         },
         {
+          "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1552,6 +1571,7 @@
           ]
         },
         {
+          "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1582,6 +1602,7 @@
       ],
       "Fields": [
 		{
+          "Control": "[Article 12]",
 		  "FieldType": "risk",
 		  "Role": "Engineer",
 		  "TrustDimension": "Compliance, Record-Keeping",
@@ -1611,6 +1632,7 @@
 		  ]
 		},
         {
+          "Control": "[A.9]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
@@ -1640,6 +1662,7 @@
           ]
         },
         {
+          "Control": "[Article 14]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
@@ -1669,6 +1692,7 @@
           ]
         },
         {
+          "Control": "[Article 27]",          
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Data and Data Governance,Fairness and Bias",
@@ -2755,6 +2779,7 @@
       ],
       "Fields": [
         {
+          "Control": "[Article 15]",          
           "FieldType": "risk",
           "Role": "Deployment Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2910,6 +2935,7 @@
       ],
       "Fields": [
         {
+          "Control": "[Article 15]",          
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2939,6 +2965,7 @@
           ]
         },
         {
+          "Control": "[Article 15]",          
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2968,6 +2995,7 @@
           ]
         },
         {
+          "Control": "[Article 15]",          
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2997,6 +3025,7 @@
           ]
         },
         {
+          "Control": "[Article 15]",          
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3026,6 +3055,7 @@
           ]
         },
         {
+          "Control": "[Article 15]",          
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
