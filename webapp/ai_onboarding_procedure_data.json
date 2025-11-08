@@ -759,8 +759,8 @@
           "Control": "[A.4.2, A.4.3 - Data for AI System]",
           "FieldType": "fieldGroup",
           "Role": "Requester,Data Engineer",
-          "TrustDimension": "Data and Data Governance",
-          "FieldName": "Data for AI System,Cybersecurity and Resilience",
+          "TrustDimension": "Data and Data Governance,Cybersecurity and Resilienc",
+          "FieldName": "Data for AI Systeme",
           "Fields": [
             {
               "Control": "[A.4.2, A.4.3 - Dataset Repository]",
