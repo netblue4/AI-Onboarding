@@ -678,24 +678,8 @@
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
-          "FieldName": "(A.9.4) - AI System Intended Use",
+          "FieldName": "AI System Intended Use",
           "Fields": [
-            {
-              "Control": "(A.9.3) - Objectives for responsible use of AI system",
-              "Role": "Requester",
-              "TrustDimension": "Intended Use",
-              "FieldName": "Augmented/Enhanced Tasks",
-              "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
-              "FieldType": "TextBox"
-            },
-            {
-              "Control": "(A.9.3) - Objectives for responsible use of AI system",
-              "Role": "Requester",
-              "TrustDimension": "Intended Use",
-              "FieldName": "Select Potential Benefits",
-              "FieldText": "",
-              "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
-            },
             {
               "Control": "A.9.4 – Intended use of the AI system",
               "Role": "Requester",
@@ -724,9 +708,25 @@
               "Control": "A.9.4 – Intended use of the AI system",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
-              "FieldName": "Intended Use",
+              "FieldName": "Use Cases",
               "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
               "FieldType": "TextBox"
+            },
+            {
+              "Control": "(A.9.3) - Objectives for responsible use of AI system",
+              "Role": "Requester",
+              "TrustDimension": "Intended Use",
+              "FieldName": "Augmented/Enhanced Tasks",
+              "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
+              "FieldType": "TextBox"
+            },
+            {
+              "Control": "(A.9.3) - Objectives for responsible use of AI system",
+              "Role": "Requester",
+              "TrustDimension": "Intended Use",
+              "FieldName": "Select Potential Benefits",
+              "FieldText": "",
+              "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
             }
           ]
         },
@@ -740,7 +740,7 @@
               "Control": "[A.9.4] - Intended use of AI system",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
-              "FieldName": "(A.9.4) - Whitelist Key Phrase Categories for Permitted User Prompts",
+              "FieldName": "Whitelist Key Phrase Categories for Permitted User Prompts",
               "FieldText": "This is the reference list of key phrases that will be allowed by the RAG Orchestrator. The RAG Orchestrator will be trained to recognize prompts similar to these examples.",
               "FieldType": "MultiSelect:Information Retrieval and Q&A:what is, who is, where can I find, tell me about, explain the, what are the details on/Document Summarization:summarize this, give me the key points, tl;dr, provide a summary of, what are the main takeaways, create an abstract for/Content Creation and Drafting:draft an email about, write a paragraph on, create a marketing blurb for, help me write, generate a draft of, compose a message about/Policy and Procedure Guidance:what is the policy for, how do I request, what is the procedure for, explain the process of, guide me through the steps for/Onboarding and Training Support:how do I set up, what training do I need for, explain the onboarding process, guide for new hires, help me learn about/Technical Support and Troubleshooting:how to fix, I'm getting an error, troubleshoot this issue, what does this error mean, help me with this technical problem/Data Analysis and Extraction:extract all the names from, what is the total of, find the average of, pull the data for, list all the dates in, analyze the trends in"
             },
@@ -748,7 +748,7 @@
               "Control": "[A.9.4] - Intended use (Prohibited by [Art. 5])",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
-              "FieldName": "(A.9.4) - Blacklist Key Phrase Categories for Prohibited User Prompt",
+              "FieldName": "Blacklist Key Phrase Categories for Prohibited User Prompt",
               "FieldText": "This is a reference list of key phrases that will be blocked by the RAG Orchestrator. AI systems that support these key phrases are prohibited by the AI act.",
               "FieldType": "MultiSelect:Manipulative or Subliminal Techniques Causing Harm:influence my decision, make me buy, change my mind, secretly persuade, subliminal message, hidden command, trick me into, deceive me/Exploitation of Vulnerabilities (e.g., age, disability):target children with ads, exploit elderly, convince a disabled person, addictive game for kids, target financially desperate, exploit vulnerability/General-Purpose Social Scoring:calculate social score, rate my behavior, trustworthiness score, classify people's value, social credit system, evaluate a person based on/Predictive Policing Based Solely on Profiling:predict who will commit a crime, crime risk assessment for a person, profile potential criminals, likelihood of reoffending, predict recidivism/Untargeted Scraping of Facial Images for Databases:scrape faces from internet, create facial recognition database, find all images of a person online, collect CCTV footage for faces, build a face dataset/Emotion Recognition in Workplace or Education:analyze employee emotions, detect student mood, tell me if my team is happy, monitor engagement with emotion, read facial expressions for performance/Biometric Categorization Using Sensitive Data (e.g., race, religion):guess race from photo, determine political opinion from text, infer religious beliefs, categorize by sexual orientation, deduce sex life/'Real-Time' Remote Biometric ID in Public Spaces:live facial recognition, track people in real-time with cameras, identify everyone in this crowd, public camera identification, real-time biometric tracking"
             }
@@ -758,7 +758,7 @@
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
-          "FieldName": "[Article 14] - Human Intervention Key Phrase Categories Requiring Human Intervention",
+          "FieldName": "Human Intervention Key Phrase Categories Requiring Human Intervention",
           "Fields": [
             {
               "Control": "[Art. 14] - Human Oversight",
@@ -774,7 +774,7 @@
           "FieldType": "fieldGroup",
           "Role": "Engineer",
           "TrustDimension": "Compliance, Record-Keeping",
-          "FieldName": "[Art. 12] - Traceability Specifications",
+          "FieldName": "Traceability Specifications",
           "Fields": [
             {
               "Control": "[Art-12][Par-1] - Lifecycle Traceability",
@@ -785,21 +785,21 @@
               "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
-              "Control": "[Art-12][Par-2] - Operational Traceability",
-              "Role": "Requester",
-              "TrustDimension": "Compliance, Record-Keeping",
-              "FieldName": "Required Interaction Data Points",
-              "FieldText": "Specify the exact data points that must be captured *per interaction* to allow for post-market monitoring and incident reconstruction.",
-              "FieldType": "MultiSelect:Unique_Session_ID/Request_Trace_ID/User_ID_Pseudonymized/Timestamp_Precision_ms/Input_Prompt_Hash/Output_Response_Hash/Retrieval_Document_IDs(RAG)"
-            },
-            {
-              "Control": "[Art-12][Par-2a] - Risk Identification Logging",
-              "Role": "Requester",
-              "TrustDimension": "Compliance, Record-Keeping",
-              "FieldName": "Required Risk & Safety Signals",
-              "FieldText": "Define which internal security and safety signals must be logged to detect 'substantial modifications' or emerging risks during operation.",
-              "FieldType": "MultiSelect:Guardrail_Triggered_Event/Guardrail_Type(e.g., PII-Toxicity)/Confidence_Score_Value/Content_Filter_Rejection/Latency_Anomaly_Flag"
-            }
+			  "FieldName": "[Art.12] - Mandatory Operational Event Log Categories",
+			  "Role": "Requester",
+			  "TrustDimension": "Compliance,Record-Keeping",
+			  "FieldLabel": "Select all Mandatory Operational Event Categories for Logging",
+			  "FieldText": "Reference list of operational event categories that MUST trigger an automated log entry to satisfy EU AI Act Art. 12 (traceability over system lifetime). Engineers must ensure hooks exist in the code to capture these specific states.",
+			  "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
+			},
+			{
+			  "FieldName": "[Art.12] - Required Traceability Log Metadata Fields",
+			  "Role": "Requester",
+			  "TrustDimension": "Compliance,Record-Keeping",
+			  "FieldLabel": "Required Standard Traceability Log Metadata Schema",
+			  "FieldText": "This defines the minimum required metadata fields that MUST be present in every single log entry defined above. This standardizes logs for automated auditing and post-market monitoring (Art 72).",
+			  "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod/Test)/AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
+			}
           ]
         },
         {
@@ -1251,10 +1251,11 @@
       ],
       "Fields": [
         {
+          "Control":"(A.7.6)",
           "FieldType": "plan",
           "Role": "Data Engineer,Tester",
           "TrustDimension": "Data and Data Governance",
-          "FieldName": "(A.7.6) Sensitive Data Preparation Plan",
+          "FieldName": "Sensitive Data Preparation Plan",
           "PlanObjective": "Ensure that raw sensitive data is anonymised before it is used by the AI system.",
           "PlanCriteria": [
             {
@@ -1301,10 +1302,12 @@
           ]
         },
         {
+          
+          "Control":"(A.7.4)",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance,Fundamental Rights",
-          "FieldName": "(A.7.4, A.7.6) - Data quality requirements & Test Plan",
+          "FieldName": "Data Extraction Accuracy Test",
           "PlanObjective": "Ensure that data used to develop and operate the AI system meet defined Data Quality Requirements?",
           "TestDatasetMetadata": {
             "TestCategory": "Data Extraction Accuracy Test",
@@ -1568,30 +1571,35 @@
         }
       ],
       "Fields": [
-        {
-          "FieldType": "risk",
-          "Role": "Engineer",
-          "TrustDimension": "Compliance,Record-Keeping",
-          "FieldName": "[RAG-LOG-01] - Failure to Implement Comprehensive Article 12 Logging",
-          "RiskDescription": "The risk that the RAG Orchestrator fails to automatically capture, retain, or secure the detailed operational logs required by EU AI Act Article 12. Failure here means the organization cannot trace the root cause of AI errors (hallucinations, bias), cannot perform required post-market monitoring (Article 72), and lacks the evidentiary audit trail necessary to prove compliance to regulators.",
-          "controls": [
-            {
-              "control": "[RAG-LOG-01.1] - Centralized, Immutable Operational Logging Pipeline: Implement an automated logging service that captures all RAG Orchestrator events in real-time. These logs must be shipped to a centralized, secure repository (e.g., dedicated encrypted S3 bucket, hardened ELK stack) configured for immutability (Write-Once-Read-Many) to prevent tampering, and retained for the mandatory duration of the system's lifetime.",
-              "control_objective": "To strictly fulfill Article 12(1) by ensuring **automatic, uninterrupted, and tamper-proof recording** of events from the moment of deployment until decommissioning.",
-              "control_evidence": "Infrastructure-as-Code (IaC) definitions for the logging pipeline; retention policy configuration screenshots verifying the lifetime duration setting; and penetration test results confirming logs cannot be manually altered or deleted by standard operators."
-            },
-            {
-              "control": "[RAG-LOG-01.2] - Structured Event Schema for Traceability: The Orchestrator must log every inference cycle using a strict, queryable JSON schema. Mandatory fields include: (a) UTC Timestamp, (b) Anonymized User Session ID, (c) Input Prompt (hashed if highly sensitive, otherwise raw), (d) Retrieved Context Metadata (Document IDs, Source URIs, Similarity Scores), (e) The Generated Output, and (f) Any active moderation flags triggered during the session.",
-              "control_objective": "To meet Article 12(2) requirements for **functional traceability** and **post-market monitoring**, enabling rapid reconstruction of any incident to see exactly what the user asked, what data the RAG retrieved, and what it answered.",
-              "control_evidence": "The defined JSON logging schema documentation; sample log entries showing all mandatory fields populated during a test run; and a demonstration of querying this data to trace a specific historical transaction."
-            },
-            {
-              "control": "[RAG-LOG-01.3] - Human-in-the-Loop (HITL) Intervention Logging: If the system includes a human oversight or review step (as required for many high-risk systems), the logging system must record: (a) The ID of the human reviewer, (b) The timestamp of review, (c) The explicit decision (e.g., 'Approved', 'Rejected', 'Overridden'), and (d) any modifications made to the AI's output before final delivery to the user.",
-              "control_objective": "To fulfill Article 12(3) equivalent accountability requirements, ensuring that human oversight is not just a policy, but a **verifyable, auditable technical action**.",
-              "control_evidence": "Logs demonstrating a 'flagged' transaction, followed by the corresponding 'reviewer action' log entry, linked by a common transaction ID."
-            }
-          ]
-        },
+		{
+		  "FieldType": "risk",
+		  "Role": "Engineer",
+		  "TrustDimension": "Compliance, Record-Keeping",
+		  "FieldName": "[TRC-LOG-01] - Inadequate AI System Traceability & Record-Keeping (Article 12 Failure)",
+		  "RiskDescription": "The risk that the AI system operates as a 'black box' without sufficient immutable logs to reconstruct its continued compliance during post-market monitoring or incident investigation. Failure to implement the defined lifecycle events, operational hooks, and mandatory metadata schema directly violates EU AI Act Article 12, preventing requisite transparency and exposing the organization to maximum regulatory penalties in the event of malfunction or harm.",
+		  "controls": [
+			{
+			  "control": "[TRC-LOG-01.1] - Automated Infrastructure & Lifecycle Event Emission: Integrate the CI/CD pipeline and runtime environment (e.g., Kubernetes) with the central logging aggregator to automatically emit events for all 'Required System Lifecycle Events' (e.g., Model_Version_Change, Decommission_Event) without requiring manual application-level logging for these infrastructure states.",
+			  "control_objective": "To guarantee complete longitudinal tracking of the system's existence, configuration, and version history from deployment to decommissioning, satisfying Article 12(1).",
+			  "control_evidence": "IaC (Infrastructure as Code) templates showing logging sidecar configuration; CI/CD pipeline scripts demonstrating automated 'Deployment' event emission."
+			},
+			{
+			  "control": "[TRC-LOG-01.2] - RAG Orchestrator Operational Instrumentation: Implement explicit logging hooks within the RAG Orchestrator's main execution path to capture all 'Mandatory Operational Event Categories'. This must include separate, correlated log entries for the raw prompt received, the retrieval step (referencing the vector DB state), the risk guardrail checks, and the final generated response.",
+			  "control_objective": "To provide the functional granularity required for post-market monitoring and forensic analysis of specific inference failures or prohibited use attempts.",
+			  "control_evidence": "Code references (e.g., middleware or decorators) showing instrumentation at key orchestration stages; sample raw logs demonstrating capture of retrieval and inference steps."
+			},
+			{
+			  "control": "[TRC-LOG-01.3] - Structured Logging Schema Enforcement Library: Utilize a shared standard logging library that strictly enforces the 'Required Traceability Log Metadata Schema'. The library must automatically populate context-aware fields (Timestamp, Environment, Source_Component) and require developers to pass mandatory context fields (User_ID, Input_Data_Hash, Model_Version_ID) before a log can be successfully emitted.",
+			  "control_objective": "To ensure every log entry is structurally complete and queryable for future audits, preventing 'orphaned' logs that lack necessary context for accountability (Art 12.3).",
+			  "control_evidence": "Unit tests for the logging wrapper showing rejection/alerting when mandatory metadata is missing; repository link to the shared logging schema definition."
+			},
+			{
+			  "control": "[TRC-LOG-01.4] - Immutable Long-Term Log Retention: Configure the log aggregation platform to route all defined traceability logs to Write-Once-Read-Many (WORM) compliant storage with a retention period matching the system's defined lifetime plus the mandatory regulatory tail (e.g., System Lifetime + X Years).",
+			  "control_objective": "To prevent tampering or premature deletion of evidence required for future legal or regulatory inquiries.",
+			  "control_evidence": "Configuration settings for the cloud storage bucket (e.g., AWS S3 Object Lock enabled, Lifecycle Policy set to required retention years)."
+			}
+		  ]
+		},
         {
           "FieldType": "risk",
           "Role": "Engineer",
@@ -1706,10 +1714,11 @@
       ],
       "Fields": [
         {
+          "Control":"(A.7.4)",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance",
-          "FieldName": "(A.7.4, A.7.6) - RAG Retrieval Quality Test Plan",
+          "FieldName": "RAG Retrieval Quality Test Plan",
           "PlanObjective": "Ensure the RAG Orchestrator accurately and securely retrieves the most relevant and timely indexed data.",
           "TestDatasetMetadata": {
             "TestCategory": "Retrieval Accuracy Test",
@@ -1868,10 +1877,11 @@
       ],
       "Fields": [
         {
+          "Control":"(A.7.5, A.7.6)",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "(A.7.5, A.7.6) - LLM Generation Quality Test Plan",
+          "FieldName": "LLM Generation Quality Test Plan",
           "PlanObjective": "Ensure the LLM accurately, safely, and coherently synthesizes the retrieved information into a final, human-readable answer while adhering to security policies.",
           "TestDatasetMetadata": {
             "TestCategory": "LLM Generation Quality Test",
@@ -2003,10 +2013,11 @@
       ],
       "Fields": [
         {
+          "Control":"(A.12.1.2, A.14.2.5)",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "(A.12.1.2, A.14.2.5) - Performance & Load Test Plan",
+          "FieldName": "Performance & Load Test Plan",
           "PlanObjective": "To validate that the AI system meets its defined non-functional requirements for performance, stability, and scalability under realistic load conditions.",
           "PlanCriteria": [
             {
@@ -2053,10 +2064,11 @@
           ]
         },
         {
+          "Control":"[Art-10][Par-2][2]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Data and Data Governance,Fundamental Rights,Fairness and Bias",
-          "FieldName": "[Art-10][Par-2][2] - Fairness and Bias in AI Systems Test Plan",
+          "FieldName": "Fairness and Bias in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed, and tested with defined fairness objectives to prevent discriminatory or inequitable outcomes.",
           "TestDatasetMetadata": {
             "TestCategory": "Transparency and Provision of Information (Dataset Pre-Model)",
@@ -2249,10 +2261,11 @@
           ]
         },
         {
+          "Control":"[Art-13][Par-1]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Transparency and Provision of Information,Fundamental Rights",
-          "FieldName": "[Art-13][Par-1] - Transparency and Explainability in AI Systems Test Plan",
+          "FieldName": "Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
           "TestDatasetMetadata": {
             "TestCategory": "Transparency and Explainability (Post-Model Validation)",
@@ -2368,139 +2381,86 @@
             }
           ]
         },
+		{
+          "Control":"[Art-12]",
+		  "FieldType": "plan",
+		  "Role": "Tester,Approver",
+		  "TrustDimension": "Compliance, Record-Keeping",
+		  "FieldName": "End-to-End Traceability & Immutable Log Verification",
+		  "PlanObjective": "To validate that all mandatory operational events (defined in Define phase) successfully generate log entries that strictly adhere to the required metadata schema (TRC-LOG-01.3) and are correctly routed to explicitly defined immutable storage (TRC-LOG-01.4).",
+		  "TestDatasetMetadata": {
+			"TestCategory": "Forensic Traceability Verification",
+			"ControlID": "TRC-LOG-01.2, TRC-LOG-01.3, TRC-LOG-01.4",
+			"Purpose": "To ensure the system is generating a legally defensible audit trail by attempting various operations and verifying the resulting digital exhaust matches Art. 12 requirements.",
+			"PrimaryMetric": {
+			  "Name": "Log Completeness & Schema Compliance Rate (LCSCR)",
+			  "Definition": "The percentage of executed test scenarios that result in a perfectly formed, retrievable log entry in the permanent storage bucket.",
+			  "CalculationDetail": "For every Scenario ID (T-01 to T-04), query the WORM storage. Success requires: (1) Log exists, (2) All mandatory metadata fields are present and non-null, (3) Timestamps correlate to the test execution window."
+			},
+			"PassCriteria": {
+			  "Threshold": "$$ = 100\\% $$",
+			  "RequirementDetail": "Missing even a single category of logs (e.g., failure events) creates a compliance gap; 100% completeness is required for deployment."
+			}
+		  },
+		  "TestDataset": [
+			{
+			  "ID": "T-01",
+			  "Scenario_Action": "Execute Standard Valid Inference (Happy Path)",
+			  "Expected_Log_Events": ["Prompt Received", "RAG Retrieval Utilized", "Response Generated"],
+			  "Required_Correlations": "All 3 events must share the same 'Session_Trace_ID'."
+			},
+			{
+			  "ID": "T-02",
+			  "Scenario_Action": "Trigger Prohibited Use Guardrail (Security Path)",
+			  "Expected_Log_Events": ["Prompt Received", "Prohibited Use Attempt (Blacklist trigger)"],
+			  "Required_Correlations": "Must include 'Input_Data_Hash' and 'User_ID' for accountability."
+			},
+			{
+			  "ID": "T-03",
+			  "Scenario_Action": "Force System Error (e.g., kill vector DB connection)",
+			  "Expected_Log_Events": ["Unavailable external service", "Error_Critical_Failure"],
+			  "Required_Correlations": "Log must contain the specific error code and stack trace in the payload."
+			},
+			{
+			  "ID": "T-04",
+			  "Scenario_Action": "Simulate Human Oversight Override (Art. 14)",
+			  "Expected_Log_Events": ["Response Generated", "Human override of AI output"],
+			  "Required_Correlations": "Must include valid 'Human_Verifier_ID' metadata field."
+			}
+		  ],
+		  "PlanCriteria": [
+			{
+			  "criteria": "[TRC-TEST-01]: Schema Validation - Every log entry generated by T-01 through T-04 must pass automated JSON schema validation against the '[Art.12] - Required Traceability Log Metadata Fields' definition.",
+			  "control_objective": "To ensure no 'dirty' or incomplete logs are polluting the audit trail.",
+			  "criteria_evidence": "Automated test report showing 0 schema validation errors for the test duration."
+			},
+			{
+			  "criteria": "[TRC-TEST-02]: Immutable Storage Confirmation - Successfully query and retrieve these specific test logs from the designated WORM (Write-Once-Read-Many) storage bucket 15 minutes after execution.",
+			  "control_objective": "To verify the entire logging pipeline reaches the secure, long-term storage medium (TRC-LOG-01.4).",
+			  "criteria_evidence": "A retrieved sample of the raw log file from the S3/Blob storage showing the correct retention tags."
+			}
+		  ],
+		  "PlanSteps": [
+			{
+			  "step": "TRC-EXE-01: Configure the test client with a unique 'Test_Batch_ID' to easily filter logs later.",
+			  "step_objective": "To isolate test data from standard operational noise."
+			},
+			{
+			  "step": "TRC-EXE-02: Sequentially execute Test Scenarios T-01 through T-04 against the deployed RAG Orchestrator.",
+			  "step_objective": "To generate the necessary operational signals."
+			},
+			{
+			  "step": "TRC-EXE-03: Wait for the defined log aggregation latency period (e.g., 5 minutes) to ensure data has successfully traveled the pipeline.",
+			  "step_objective": "To account for non-real-time batching in logging architecture."
+			},
+			{
+			  "step": "TRC-EXE-04: Execute a scripted query against the WORM storage bucket, filtering by the 'Test_Batch_ID' and asserting presence of all 'Expected_Log_Events' with valid metadata.",
+			  "step_objective": "To programmatically verify compliance without manual log hunting."
+			}
+		  ]
+		},
         {
-          "FieldType": "plan",
-          "Role": "Tester,Approver",
-          "TrustDimension": "Compliance,Record-Keeping",
-          "FieldName": "[TEST-LOG-12] - Operational Traceability and Event Logging Verification Plan",
-          "PlanObjective": "To validate that the system's **Automated Logging Mechanism** correctly captures, formats, and securely stores all critical operational events as required by EU AI Act Art. 12, ensuring full lifecycle traceability for normal operations, risk events, and substantial modifications.",
-          "TestDatasetMetadata": {
-            "TestCategory": "Traceability and Compliance Auditing",
-            "ControlID": "[Art-12][Par-1], [Art-12][Par-2], [Art-12][Par-3]",
-            "Purpose": "To ensure the AI system creates an immutable, comprehensive audit trail that can support post-market monitoring and regulatory investigations.",
-            "PrimaryMetric": {
-              "Name": "Log Completeness and Retention Rate (LCRR)",
-              "Definition": "The percentage of simulated mandatory operational events that result in a fully compliant log entry successfully stored in the permanent record system.",
-              "CalculationDetail": "Execute all defined operational scenarios (L-01 to L-05). Verify both the *generation* of the log and its *presence* in long-term storage. LCRR = (Compliant Logs Found / Total Scenarios Executed) * 100."
-            },
-            "PassCriteria": {
-              "Threshold": "$$ = 100\\% $$",
-              "RequirementDetail": "The LCRR must be 100%. Any missing or incomplete log entry for a critical event constitutes a compliance failure under Article 12."
-            }
-          },
-          "TestDataset": [
-            {
-              "ID": "L-01",
-              "Scenario_Type": "Normal Operation (Standard User Query)",
-              "Action_Trigger": "User submits a valid prompt receiving a standard RAG response.",
-              "Expected_Log_Elements": [
-                "Timestamp (ISO 8601)",
-                "User/Session ID",
-                "Input Prompt Hash/Raw Data",
-                "Retrieved Context IDs",
-                "Output Response Hash",
-                "Confidence/Relevance Score",
-                "Model Version ID"
-              ],
-              "Rationale_Summary": "Validates [Art-12][Par-1] basic operational event recording for standard lifecycle usage."
-            },
-            {
-              "ID": "L-02",
-              "Scenario_Type": "Risk Event Identification (Guardrail Trigger)",
-              "Action_Trigger": "User submits a prompt that triggers the 'Prohibited Use' screening module (violating intended purpose).",
-              "Expected_Log_Elements": [
-                "Timestamp",
-                "User ID",
-                "Risk_Flag=TRUE",
-                "Triggered_Guardrail_ID (e.g., BLACKLIST_01)",
-                "Input causing trigger",
-                "Action Taken (e.g., BLOCKED)"
-              ],
-              "Rationale_Summary": "Validates [Art-12][Par-2](a) recording events relevant for identifying risks."
-            },
-            {
-              "ID": "L-03",
-              "Scenario_Type": "Substantial Modification Event",
-              "Action_Trigger": "Deploy a configuration change (e.g., updating the underlying LLM temperature setting or swapping the embedding model index).",
-              "Expected_Log_Elements": [
-                "Timestamp",
-                "Admin User ID",
-                "Event_Type=SYSTEM_MODIFICATION",
-                "Previous_Config_State",
-                "New_Config_State",
-                "Change_Justification_Reference"
-              ],
-              "Rationale_Summary": "Validates [Art-12][Par-2](a) recording events relevant for substantial modifications."
-            },
-            {
-              "ID": "L-04",
-              "Scenario_Type": "System Lifecycle Event",
-              "Action_Trigger": "Initiate a full system restart or redeployment of the Orchestrator service.",
-              "Expected_Log_Elements": [
-                "Timestamp",
-                "Event_Type=LIFECYCLE_STATE_CHANGE",
-                "State (STARTUP/SHUTDOWN)",
-                "Component ID",
-                "Success_Status"
-              ],
-              "Rationale_Summary": "Validates [Art-12][Par-1] recording of operational events over the entire lifetime."
-            },
-            {
-              "ID": "L-05",
-              "Scenario_Type": "High-Risk Verification (Annex III simulation if applicable)",
-              "Action_Trigger": "Execute a query requiring reference database checking (or similar high-stakes verification task).",
-              "Expected_Log_Elements": [
-                "Start Time",
-                "End Time",
-                "Reference_DB_Version_ID",
-                "Input_Data_Snapshot",
-                "Match_Result_Metadata",
-                "Human_Verifier_ID (if applicable)"
-              ],
-              "Rationale_Summary": "Validates [Art-12][Par-3] specific detailed logging for high-risk verification/biometric use cases."
-            }
-          ],
-          "PlanCriteria": [
-            {
-              "criteria": "[LOG-TEST-01]: **Automacy & Immediacy** - All defined scenarios must automatically generate log entries at the moment of the event without manual tester intervention.",
-              "control_objective": "To ensure continuous, automated recording as per [Art-12][Par-1].",
-              "criteria_evidence": "Timestamp comparison showing <1s latency between event trigger and log generation."
-            },
-            {
-              "criteria": "[LOG-TEST-02]: **Schema Completeness** - Generated logs must pass a strictly defined JSON schema validation ensuring all 'Expected_Log_Elements' are present and non-null.",
-              "control_objective": "To ensure the *level of detail* required for post-market monitoring [Art-12][Par-2] is always met.",
-              "criteria_evidence": "Automated schema validation report showing PASS for all test log entries."
-            },
-            {
-              "criteria": "[LOG-TEST-03]: **Retention & Traceability** - Logs must be retrievable from the designated long-term secure storage (not just transient application console logs) 1 hour after test execution.",
-              "control_objective": "To verify the capability for traceability over the system's lifetime.",
-              "criteria_evidence": "Successful retrieval query results from the immutable log archive."
-            }
-          ],
-          "PlanSteps": [
-            {
-              "step": "LOG-GEN-01: Define the 'Golden Log Schema'—the strictly typed JSON (or equivalent) structure that explicitly maps every regulatory requirement (e.g., 'period of use', 'persons involved') to a technical field.",
-              "step_objective": "To create the unambiguous standard against which all actual logs will be validated."
-            },
-            {
-              "step": "LOG-GEN-02: Configure the test environment's 'Mock Clock' and 'Test User Accounts' to ensure traceability of *when* and *who* triggered the events during testing.",
-              "step_objective": "To ensure accurate testing of timestamping and user attribution capabilities."
-            },
-            {
-              "step": "LOG-GEN-03: Execute the operational scenarios (L-01 to L-05) sequentially, recording the specific transaction IDs for each execution.",
-              "step_objective": "To generate the raw audit data for verification."
-            },
-            {
-              "step": "LOG-GEN-04: Wait for the defined log ingestion latency period (e.g., 5 minutes) and then query the long-term storage specifically for the recorded transaction IDs.",
-              "step_objective": "To validate the entire logging pipeline from generation to permanent archiving."
-            },
-            {
-              "step": "LOG-GEN-05: Run the retrieved logs against the 'Golden Log Schema' validator and generate the compliance report.",
-              "step_objective": "To provide definitive evidence of pass/fail status for auditing purposes."
-            }
-          ]
-        },
-        {
+          "Control":"(A.9)",          
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Intended Use,Fundamental Rights",
@@ -2588,6 +2548,7 @@
           ]
         },
         {
+          "Control":"[Article 14]",                  
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Human Oversight,Fundamental Rights",
