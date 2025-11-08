@@ -298,7 +298,7 @@
               "control_evidence": "The `(A.6.2.4) AI Systems verifications` step provides the evidence for this objective. It includes test plans for 'performance' and 'fairness,' which are used to validate the system's resilience and check for bias. By defining measurable `PlanCriteria` for these plans, we verify that the system can handle errors and that measures to mitigate bias are effective, ensuring stable and fair performance."
             },
             {
-              "control": "[Art-15][Par-5] - Implement cybersecurity measures to protect high-risk AI systems from unauthorized alteration of their use, outputs, or performance by exploiting vulnerabilities.",
+			  "control": "[Art-15][Par-5] - High-risk AI systems shall be resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities.",
               "control_objective": "To safeguard the AI system against malicious attacks such as data poisoning, model poisoning, and adversarial examples.",
               "control_status": "Met",
               "control_evidence": "Compliance is evidenced by the 'Risk' node documented for each RAG component. This node explicitly defines the security requirements by identifying specific threats, such as 'malicious data ingestion or data poisoning'. It then documents the 'associated controls' and 'control objectives' designed to mitigate these exact vulnerabilities, providing a traceable record of the measures specified to protect the system from such attacks."
@@ -1606,7 +1606,7 @@
 		  "FieldType": "risk",
 		  "Role": "Engineer",
 		  "TrustDimension": "Compliance, Record-Keeping",
-		  "FieldName": "[TRC-LOG-01] - Inadequate AI System Traceability & Record-Keeping (Article 12 Failure)",
+		  "FieldName": "[TRC-LOG-01] - Inadequate AI System Traceability & Record-Keeping",
 		  "RiskDescription": "The risk that the AI system operates as a 'black box' without sufficient immutable logs to reconstruct its continued compliance during post-market monitoring or incident investigation. Failure to implement the defined lifecycle events, operational hooks, and mandatory metadata schema directly violates EU AI Act Article 12, preventing requisite transparency and exposing the organization to maximum regulatory penalties in the event of malfunction or harm.",
 		  "controls": [
 			{
@@ -2046,57 +2046,118 @@
         }
       ],
       "Fields": [
-        {
-          "Control":"(A.12.1.2, A.14.2.5)",
-          "FieldType": "plan",
-          "Role": "Tester,Approver",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "Performance & Load Test Plan",
-          "PlanObjective": "To validate that the AI system meets its defined non-functional requirements for performance, stability, and scalability under realistic load conditions.",
-          "PlanCriteria": [
-            {
-              "criteria": "PERF-TEST-01: The system's average API response time must remain below [e.g., 200ms] and the 95th percentile response time below [e.g., 500ms] during peak load simulation.",
-              "control_objective": "To ensure a responsive user experience during high-traffic periods.",
-              "criteria_evidence": "The final load test report containing time-series graphs of P50 and P95 latency metrics, demonstrating compliance with the defined Non-Functional Requirements (NFRs)."
-            },
-            {
-              "criteria": "PERF-TEST-02: The system's server-side error rate must not exceed [e.g., 0.1%] of total requests during the peak load test.",
-              "control_objective": "To confirm system stability and prevent service degradation under stress.",
-              "criteria_evidence": "A summary table in the load test report showing the total number of requests, the number of failed requests, and a calculated error rate below the defined threshold."
-            },
-            {
-              "criteria": "PERF-TEST-03: CPU and memory utilization for all system components must remain below a sustainable threshold (e.g., 80% average) without memory leaks throughout the duration of the load test.",
-              "control_objective": "To ensure the system has adequate resource capacity and operates efficiently without risk of crashing due to resource exhaustion.",
-              "criteria_evidence": "Monitoring dashboard screenshots (e.g., from Grafana, Datadog) or exported metrics showing CPU and memory usage over the test duration, confirming they stay within the acceptable range."
-            }
-          ],
-          "PlanSteps": [
-            {
-              "step": "PLT-EXEC-01: Define and document specific Non-Functional Requirements (NFRs) for performance, including target response times (P50, P95), maximum acceptable error rate, and resource utilization thresholds.",
-              "step_objective": "To establish clear, quantitative success criteria for the load tests, directly informing the benchmarks needed to pass criteria PERF-TEST-01, 02, and 03."
-            },
-            {
-              "step": "PLT-EXEC-02: Develop automated test scripts using a load testing tool (e.g., JMeter, k6, Gatling) to simulate realistic user workflows and data processing volumes, creating profiles for baseline, peak, and stress load.",
-              "step_objective": "To create a repeatable and accurate simulation of real-world user traffic, ensuring the test conditions are valid for assessing system performance."
-            },
-            {
-              "step": "PLT-EXEC-03: Provision a dedicated, production-like test environment and configure monitoring tools to capture key performance indicators (KPIs) including latency, error rates, CPU, and memory usage for all services.",
-              "step_objective": "To ensure that test results are accurate and representative of production performance, and that all necessary data is collected for analysis."
-            },
-            {
-              "step": "PLT-EXEC-04: Execute the load test profiles against the test environment, starting with a baseline and gradually ramping up to peak and stress levels, while actively monitoring system health.",
-              "step_objective": "To systematically apply stress to the system in a controlled manner to gather performance data across different load scenarios."
-            },
-            {
-              "step": "PLT-EXEC-05: Aggregate and analyze the collected metrics, comparing the results against the predefined NFRs. Identify any performance bottlenecks or components that fail to meet the criteria.",
-              "step_objective": "To quantitatively evaluate the system's performance against the success criteria (PERF-TEST-01, 02, 03) and pinpoint areas for optimization."
-            },
-            {
-              "step": "PLT-EXEC-06: Compile a comprehensive load testing report summarizing the methodology, NFRs, test results (including graphs and tables), and a final conclusion on whether the system passed the performance benchmarks.",
-              "step_objective": "To produce the final piece of evidence required by all criteria, providing a clear record of the test outcomes for stakeholder review and approval."
-            }
-          ]
-        },
+		{
+		  "Control": "[A.6.2.6]",
+		  "FieldType": "plan",
+		  "Role": "Tester,Approver",
+		  "TrustDimension": "Cybersecurity and Resilience",
+		  "FieldName": "Performance & Load Test Plan",
+		  "PlanObjective": "To validate that the AI system meets defined non-functional requirements (NFRs) for latency, stability, and resource efficiency under strictly defined, repeatable load scenarios.",
+		  "TestDatasetMetadata": {
+			"TestCategory": "Operational Resilience (Load Simulation)",
+			"ControlID": "PERF-OPS-TEST-01",
+			"Purpose": "To subject the system to version-controlled 'Golden Workloads' to detect immediate performance failures and long-term latency drift.",
+			"PrimaryMetric": {
+			  "Name": "SLO Compliance Rate",
+			  "Definition": "The percentage of Golden Scenarios that fully meet their defined P95 Latency and Error Rate thresholds during execution.",
+			  "CalculationDetail": "(Scenarios Passing ALL Thresholds / Total Scenarios Executed) * 100"
+			},
+			"PassCriteria": {
+			  "Threshold": "100% SLO Compliance for Baseline & Peak scenarios",
+			  "RequirementDetail": "Critical operational scenarios must meet established Service Level Objectives (SLOs). Stress scenarios may degrade but must fail gracefully (no unchecked crashes)."
+			}
+		  },
+		  "TestDataset": [
+			{
+			  "ID": "SCEN-BASE-01",
+			  "Scenario_Type": "Baseline (Normal Operations)",
+			  "Description": "Standard mixed workload: 80% read (cached inference), 20% write (new complex prompts).",
+			  "Target_VUs": 50,
+			  "Duration_Mins": 60,
+			  "Expected_P95_Latency_ms": 400,
+			  "Max_Error_Rate_Percent": 0.05,
+			  "Rationale": "Represents average daily utilization based on last quarter's production analytics."
+			},
+			{
+			  "ID": "SCEN-PEAK-01",
+			  "Scenario_Type": "Peak Load (High Traffic Event)",
+			  "Description": "Simulated marketing launch event: High concurrency, heavy on complex reasoning prompts (uncached).",
+			  "Target_VUs": 500,
+			  "Duration_Mins": 30,
+			  "Expected_P95_Latency_ms": 1200,
+			  "Max_Error_Rate_Percent": 0.5,
+			  "Rationale": "Validates auto-scaling capabilities and ensures responsiveness doesn't degrade severely during known high-traffic windows."
+			},
+			{
+			  "ID": "SCEN-STRESS-01",
+			  "Scenario_Type": "Stress Test (Breaking Point)",
+			  "Description": "Ramp up VUs until 50% error rate or system crash to determine absolute ceiling.",
+			  "Target_VUs": "Ramp until fail (Max 2000)",
+			  "Duration_Mins": "N/A (Ramp continuously)",
+			  "Expected_P95_Latency_ms": "N/A (Observe only)",
+			  "Max_Error_Rate_Percent": "N/A (Fail gracefully)",
+			  "Rationale": "Identifies the weakest link in the infrastructure (e.g., database connection pool, GPU memory saturation)."
+			},
+			{
+			  "ID": "SCEN-SOAK-01",
+			  "Scenario_Type": "Endurance (Soak Test)",
+			  "Description": "Constant moderate load run for an extended period to detect memory leaks in model serving infrastructure.",
+			  "Target_VUs": 100,
+			  "Duration_Mins": 1440,
+			  "Expected_P95_Latency_ms": 500,
+			  "Max_Error_Rate_Percent": 0.1,
+			  "Rationale": "Crucial for AI services where prolonged up-time can lead to gradual resource exhaustion not seen in short bursts."
+			}
+		  ],
+		  "PlanCriteria": [
+			{
+			  "criteria": "PERF-LATENCY-01: For every 'Baseline' and 'Peak' scenario in the Golden Dataset, the measured P95 response time must not exceed the specific 'Expected_P95_Latency_ms' threshold defined for that scenario.",
+			  "control_objective": "To ensure responsive user experience is maintained strictly according to the pre-defined Service Level Objectives (SLOs) for different traffic conditions.",
+			  "criteria_evidence": "Automated test report showing side-by-side comparison of actual vs. expected P95 latency for each executed Scenario ID."
+			},
+			{
+			  "criteria": "PERF-STABILITY-01: The actual error rate during 'Baseline' and 'Peak' scenarios must not exceed the 'Max_Error_Rate_Percent' defined in the dataset.",
+			  "control_objective": "To confirm system stability and prevent unacceptable levels of failed inference requests under expected load.",
+			  "criteria_evidence": "Load test summary report highlighting total request count, failure count, and calculated error percentage against the threshold."
+			},
+			{
+			  "criteria": "PERF-RES-01: Resource utilization (CPU, Memory, GPU VRAM) must remain below established saturation points (e.g., 85%) during all non-stress scenarios.",
+			  "control_objective": "To ensure adequate infrastructure headroom and prevent crashing due to resource exhaustion (OOM errors).",
+			  "criteria_evidence": "Time-series monitoring graphs (e.g., Grafana/Datadog exports) overlaying resource usage with load volume during the test window."
+			},
+			{
+			  "criteria": "PERF-DRIFT-01: Performance results must not show statistically significant degradation (>10% variance) compared to the previous accepted release's benchmark for the same Golden Scenarios.",
+			  "control_objective": "To detect 'silent' performance regressions or code bloat that gradually erode system efficiency over multiple releases.",
+			  "criteria_evidence": "A regression trend analysis report comparing current P95/Error rates against historical test runs of the same Scenario IDs."
+			}
+		  ],
+		  "PlanSteps": [
+			{
+			  "step": "PLT-GEN-01: Analyze production traffic logs (if available) or anticipated usage patterns to identify distinct user journeys (e.g., 'simple query', 'complex document analysis').",
+			  "step_objective": "To ensure the test scenarios are grounded in reality rather than arbitrary guesses."
+			},
+			{
+			  "step": "PLT-GEN-02: Define 'Golden Scenarios' in the Test Dataset, assigning specific, approved thresholds (VUs, Latency P95, Error Rate) for Baseline, Peak, and Soak conditions.",
+			  "step_objective": "To create the rigid, non-negotiable benchmarks that the system must meet to pass."
+			},
+			{
+			  "step": "PLT-GEN-03: Implement these scenarios as version-controlled automated scripts (e.g., k6, JMeter, Gatling) that can read the parameters directly from the Golden Dataset configuration.",
+			  "step_objective": "To ensure repeatability, allowing any tester to run the exact same load profile by referencing the Scenario ID."
+			},
+			{
+			  "step": "PLT-EXEC-01: Provision an isolated, production-parity test environment with identical compute resources (including GPU SKUs if applicable) and verify monitoring agent health.",
+			  "step_objective": "To eliminate environmental variables that could skew performance data (ensuring 'apples-to-apples' comparison)."
+			},
+			{
+			  "step": "PLT-EXEC-02: Execute the 'Golden Scenarios' sequentially, ensuring a full system cool-down (reset of connections/caches) between each scenario run.",
+			  "step_objective": "To prevent data pollution from one extreme scenario (e.g., Stress) affecting the results of a subsequent delicate scenario (e.g., Baseline)."
+			},
+			{
+			  "step": "PLT-EXEC-03: Automatically compare the test execution results against the defined thresholds in the Golden Dataset and generate a pass/fail report for each Scenario ID.",
+			  "step_objective": "To provide immediate, binary feedback on whether the release meets its performance NFRs."
+			}
+		  ]
+		},
         {
           "Control":"[Art-10][Par-2][2]",
           "FieldType": "plan",
