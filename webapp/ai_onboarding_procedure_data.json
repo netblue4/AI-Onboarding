@@ -691,10 +691,10 @@
       ],
       "Fields": [
         {
-          "Control": "[A.9.4 – Intended use of the AI system]",
+          "Control": "[A.6.2.3 – Documentation of AI system design and development]",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
-          "TrustDimension": "Intended Use",
+          "TrustDimension": "Transparency and Provision of Information",
           "FieldName": "AI System Details",
           "Fields": [
             {
@@ -931,9 +931,9 @@
       "Fields": [
         {
           "FieldType": "fieldGroup",
-          "Control": "[A.4.2, A.4.4 - AI system's Tooling resources Group]",
+          "Control": "[A.4.2,A.4.4,A.6.2.3]",
           "Role": "Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
+          "TrustDimension": "Transparency and Provision of Information",
           "FieldName": "AI system's Tooling resources",
           "Fields": [
             {
@@ -963,11 +963,11 @@
           ]
         },
         {
-          "Control": "[A.4.2, A.4.5 - AI system's AI Systems Computing Resources]",
+          "Control": "[A.4.2, A.4.5 ,A.6.2.3]",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
-          "FieldName": "AI system's AI Systems Computing Resources",
+          "TrustDimension": "Transparency and Provision of Information",
+          "FieldName": "AI Systems Computing Resources",
           "Fields": [
             {
               "Control": "[A.4.2, A.4.5 - Computing Resource Name and Version]",
@@ -2968,7 +2968,7 @@
         {
           "Control": "[A.8.4 - Incident Communication Plan - Data Breach]",
           "Role": "Incident Manager",
-          "TrustDimension": "Cybersecurity and Resilience",
+          "TrustDimension": "Transparency and Provision of Information",
           "FieldName": "Data Breach",
           "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
           "FieldType": "TextBox"
@@ -2976,7 +2976,7 @@
         {
           "Control": "[A.8.4 - Incident Communication Plan - Model Misuse]",
           "Role": "Incident Manager",
-          "TrustDimension": "Cybersecurity and Resilience",
+          "TrustDimension": "Transparency and Provision of Information",
           "FieldName": "Model Misuse",
           "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
           "FieldType": "TextBox"
@@ -2984,7 +2984,7 @@
         {
           "Control": "[A.8.4 - Incident Communication Plan - Model Failure]",
           "Role": "Incident Manager",
-          "TrustDimension": "Cybersecurity and Resilience",
+          "TrustDimension": "Transparency and Provision of Information",
           "FieldName": "Model Failure",
           "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
           "FieldType": "TextBox"

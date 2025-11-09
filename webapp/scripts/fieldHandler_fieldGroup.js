@@ -18,7 +18,7 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
     if (field.FieldName) {
         const groupTitle = document.createElement('h3');
         groupTitle.className = 'field-group-title';
-        groupTitle.textContent = field.FieldName;
+        groupTitle.textContent = field.FieldName + ' - ' + field.Control;
         groupContainer.appendChild(groupTitle);
     }
     
