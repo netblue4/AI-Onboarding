@@ -866,7 +866,7 @@
           "FieldName": "Human Intervention Key Phrase Categories Requiring Human Intervention",
           "Fields": [
             {
-              "Control": "[Art-14][Par-1],[Art-27][Par-1e]",
+              "Control": "[Art-14][Par-1],[Art-27][Par-1e],[Art-13][Par-3d]",
               "Role": "Requester",
               "TrustDimension": "Human Oversight",
               "FieldName": "Human Intervention Key Phrase Categories - Requiring Human Intervention",
@@ -1619,7 +1619,7 @@
           ]
         },
         {
-          "Control": "[Art-14][Par-2],[Art-27][Par-1e]",
+          "Control": "[Art-14][Par-2],[Art-27][Par-1e],[Art-13][Par-3d]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
@@ -2630,7 +2630,7 @@
           ]
         },
         {
-          "Control": "[Art-14][Par-3],[A.6.2.4]",
+          "Control": "[Art-14][Par-3],[A.6.2.4],[Art-13][Par-3d]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Human Oversight,Fundamental Rights",
