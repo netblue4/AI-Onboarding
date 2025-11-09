@@ -70,7 +70,7 @@
           "Control": "[Article 9]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Risk Management System",
+          "TrustDimension": "Compliance,Risk Management System,Requirement",
           "FieldName": "Inadequate or Ineffective Risk Management",
           "RiskDescription": "",
           "controls": [
@@ -116,7 +116,7 @@
           "Control": "[Article 10]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Data and Data Governance,Fairness and Bias",
+          "TrustDimension": "Compliance,Data and Data Governance,Fairness and Bias,Requirement",
           "FieldName": "Poor Data Quality and Governance",
           "RiskDescription": "",
           "controls": [
@@ -156,7 +156,7 @@
           "Control": "[Article 12]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Record-Keeping",
+          "TrustDimension": "Compliance,Record-Keeping,Requirement",
           "FieldName": "Inadequate Traceability and Record-Keeping",
           "RiskDescription": "Failure to implement technical capabilities for automatic event logging (logs) over the system's lifetime and failure to record specific, detailed information required for traceability, accountability, and post-market monitoring as mandated by Article 12.",
           "controls": [
@@ -184,7 +184,7 @@
           "Control": "[Article 13]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Transparency and Explainability",
+          "TrustDimension": "Compliance,Transparency and Explainability,Requirement",
           "FieldName": "Lack of Transparency and Explainability to Users",
           "RiskDescription": "",
           "controls": [
@@ -224,7 +224,7 @@
           "Control": "[Article 14]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Human Oversight",
+          "TrustDimension": "Compliance,Human Oversight,Requirement",
           "FieldName": "Ineffective or Insufficient Human Oversight",
           "RiskDescription": "",
           "controls": [
@@ -269,7 +269,7 @@
           "Control": "[Article 15]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Cybersecurity and Resilience",
+          "TrustDimension": "Compliance,Cybersecurity and Resilience,Requirement",
           "FieldName": "Inadequate Accuracy, Robustness, and Cybersecurity",
           "RiskDescription": "",
           "controls": [
@@ -309,7 +309,7 @@
           "Control": "[Article 27]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias",
+          "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias,Requirement",
           "FieldName": "Failure to Assess Fundamental Rights Impact",
           "RiskDescription": "",
           "controls": [
@@ -373,7 +373,7 @@
           "Control": "[A.2 - Policies related to AI]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,AI Governance",
+          "TrustDimension": "Compliance,AI Governance,Requirement",
           "FieldName": "Policies related to AI",
           "RiskDescription": "",
           "controls": [
@@ -401,7 +401,7 @@
           "Control": "[A.3 - Internal organization]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,AI Governance",
+          "TrustDimension": "Compliance,AI Governance,Requirement",
           "FieldName": "Internal organization",
           "RiskDescription": "",
           "controls": [
@@ -423,7 +423,7 @@
           "Control": "[A.4 - Resources for AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Requirement",
           "FieldName": "Resources for AI systems",
           "RiskDescription": "",
           "controls": [
@@ -463,7 +463,7 @@
           "Control": "[A.5 - Assessing impacts of AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Fundamental Rights,Job Preservation,Environmental Sustainability",
+          "TrustDimension": "Compliance,Fundamental Rights,Job Preservation,Environmental Sustainability,Requirement",
           "FieldName": "Assessing impacts of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -497,7 +497,7 @@
           "Control": "[A.6 - AI system life cycle]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance",
+          "TrustDimension": "Compliance,Requirement",
           "FieldName": "AI system life cycle",
           "RiskDescription": "",
           "controls": [
@@ -559,7 +559,7 @@
           "Control": "[A.7 - Data for AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Data and Data Governance",
+          "TrustDimension": "Compliance,Data and Data Governance,Requirement",
           "FieldName": "Data for AI systems",
           "RiskDescription": "",
           "controls": [
@@ -599,7 +599,7 @@
           "Control": "[A.8 - Information for interested parties of AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Transparency and Explainability",
+          "TrustDimension": "Compliance,Transparency and Explainability,Requirement",
           "FieldName": "Information for interested parties of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -629,7 +629,7 @@
           "Control": "[A.9 - Use of AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Intended Use",
+          "TrustDimension": "Compliance,Intended Use,Requirement",
           "FieldName": "Use of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -657,7 +657,7 @@
           "Control": "[A.10 Third-party and customer relationships]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Risk Management System",
+          "TrustDimension": "Compliance,Risk Management System,Requirement",
           "FieldName": "Third-party and customer relationships",
           "RiskDescription": "",
           "controls": [
@@ -1559,7 +1559,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5]",
+          "Control": "[Art-12][Par-1]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Compliance, Record-Keeping",
@@ -3013,7 +3013,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-1]",
+          "Control": "[Art-15][Par-4] ",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
