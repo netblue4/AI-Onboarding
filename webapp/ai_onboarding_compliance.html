@@ -152,6 +152,20 @@
                 });
         });
 
+        /**
+         * Helper function to check if a field's TrustDimension contains a specific tag.
+         * @param {object} field - The field node to check.
+         * @param {string} dimension - The dimension tag to look for (e.g., "Requirement").
+         * @returns {boolean}
+         */
+        function hasTrustDimension(field, dimension) {
+            if (!field || !field.TrustDimension || typeof field.TrustDimension !== 'string') {
+                return false;
+            }
+            // Split by comma, trim whitespace, and check for exact match
+            return field.TrustDimension.split(',').map(s => s.trim()).includes(dimension);
+        }
+
         function processAndRenderData(webappData) {
             // 1. Flatten all steps and extract all fields
             let allFields = [];
@@ -161,51 +175,59 @@
                 }
             });
 
-            // 2. Build relationships based on Control field containment
-            // Map structure: ParentControlString -> { parentNodes: [], childNodes: [] }
-            const complianceMap = new Map();
+            // 2. Separate nodes into Requirements (Parents) and Implementations (Children)
+            const requirementNodes = [];
+            const implementationNodes = [];
 
-            // First pass: Identify all potential nodes and index them by their Control
             allFields.forEach(field => {
-                if (!field.Control || typeof field.Control !== 'string') return;
+                // Check for the "Requirement" tag
+                if (hasTrustDimension(field, 'Requirement')) {
+                    requirementNodes.push(field);
+                } 
+                // A node can be an implementation if it's a 'risk' or 'plan'
+                // and (implicitly) does not have the 'Requirement' tag (handled by else if)
+                else if (['risk', 'plan'].includes(field.FieldType)) {
+                    implementationNodes.push(field);
+                }
+            });
 
-                // We prefer "Regulatory" nodes to be the parents. 
-                // If we don't know which is which specifically, we treat every node as a potential parent 
-                // and see if others link to it.
-                if (!complianceMap.has(field.Control)) {
-                    complianceMap.set(field.Control, { 
-                        parentField: field, // Keep one representative for the parent display header
-                        children: new Set() // Use Set to avoid duplicate child entries
+            // 3. Build compliance map, keyed by the Requirement's Control ID
+            // Map<string, { parentField: object, children: Set<object> }>
+            const complianceMap = new Map();
+            requirementNodes.forEach(reqNode => {
+                if (!reqNode.Control) return; // Skip requirements without a control ID
+                
+                // Use the reqNode.Control as the key
+                if (!complianceMap.has(reqNode.Control)) {
+                    complianceMap.set(reqNode.Control, {
+                        parentField: reqNode,
+                        children: new Set()
                     });
                 }
             });
 
-            // Second pass: Find children for every potential parent
-            // A field is a child if its Control contains the parent's Control
-            allFields.forEach(childField => {
-                // Implementations must be of type 'risk' or 'plan'
-                if (!['risk', 'plan'].includes(childField.FieldType)) return;
-                if (!childField.Control) return;
+            // 4. Link Implementations (Children) to Requirements (Parents)
+            implementationNodes.forEach(implNode => {
+                if (!implNode.Control) return; // This implementation can't be linked
+                
+                // Split the implementation's control string (e.g., "[Art-12][Par-3], [A.5.6]")
+                const implControlParts = implNode.Control.split(',').map(s => s.trim());
 
-                // Split child controls by comma to handle "[Art-12][Par-1], [A.5.6]"
-                const childControlParts = childField.Control.split(',').map(s => s.trim());
-
-                // Check against all known potential parents
-                complianceMap.forEach((parentData, parentControlKey) => {
-                    // Avoid self-referencing (a node is not its own child)
-                    if (childField.Control === parentControlKey) return;
-
-                    // Check if ANY part of the child's control string contains the parent's control key
-                    // We use strict inclusion as requested ("who's 'Control' contain...")
-                    const isLinked = childControlParts.some(part => part.includes(parentControlKey));
+                // Check against every Requirement (parent) in our map
+                complianceMap.forEach((reqData, reqControlKey) => {
+                    
+                    // Check if any part of the implementation's control list
+                    // contains the requirement's (parent's) control key
+                    const isLinked = implControlParts.some(part => part.includes(reqControlKey));
 
                     if (isLinked) {
-                        parentData.children.add(childField);
+                        // Yes, this implementation is a child of this requirement
+                        reqData.children.add(implNode);
                     }
                 });
             });
 
-            // 3. Render the results
+            // 5. Render the results (this function is unchanged from previous version)
             renderMapping(complianceMap);
         }
 
@@ -219,8 +241,10 @@
             const sortedEntries = Array.from(complianceMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
             sortedEntries.forEach(([controlKey, data]) => {
-                // ONLY display Regulatory parents that actually have linked Implementations
-                if (data.children.size === 0) return;
+                // We will display all Requirements, even if they have no children,
+                // to show what is defined.
+                // To only show items with children, uncomment the next line:
+                // if (data.children.size === 0) return;
 
                 hasMatches = true;
                 const parent = data.parentField;
@@ -241,34 +265,41 @@
                 const impList = document.createElement('ul');
                 impList.className = 'imp-list';
 
-                // Convert Set to Array and sort children by their Control for consistent ordering
-                const sortedChildren = Array.from(data.children).sort((a, b) => a.Control.localeCompare(b.Control));
+                if (data.children.size === 0) {
+                    const noChildren = document.createElement('div');
+                    noChildren.className = 'no-children';
+                    noChildren.textContent = 'No matching implementation risks or plans found.';
+                    impList.appendChild(noChildren);
+                } else {
+                    // Convert Set to Array and sort children by their Control for consistent ordering
+                    const sortedChildren = Array.from(data.children).sort((a, b) => (a.Control || '').localeCompare(b.Control || ''));
 
-                sortedChildren.forEach(child => {
-                    const impItem = document.createElement('li');
-                    impItem.className = 'imp-item';
+                    sortedChildren.forEach(child => {
+                        const impItem = document.createElement('li');
+                        impItem.className = 'imp-item';
 
-                    const typeClass = child.FieldType === 'risk' ? 'type-risk' : 'type-plan';
-                    
-                    impItem.innerHTML = `
-                        <span class="imp-type-badge ${typeClass}">${escapeHtml(child.FieldType)}</span>
-                        <div class="imp-content">
-                            <div class="imp-title">${escapeHtml(child.FieldName)}</div>
-                            <div class="imp-meta">
-                                <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
-                                ${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
+                        const typeClass = child.FieldType === 'risk' ? 'type-risk' : 'type-plan';
+                        
+                        impItem.innerHTML = `
+                            <span class="imp-type-badge ${typeClass}">${escapeHtml(child.FieldType)}</span>
+                            <div class="imp-content">
+                                <div class="imp-title">${escapeHtml(child.FieldName)}</div>
+                                <div class="imp-meta">
+                                    <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
+                                    ${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
+                                </div>
                             </div>
-                        </div>
-                    `;
-                    impList.appendChild(impItem);
-                });
+                        `;
+                        impList.appendChild(impItem);
+                    });
+                }
 
                 regItem.appendChild(impList);
                 container.appendChild(regItem);
             });
 
             if (!hasMatches) {
-                container.innerHTML = '<p>No Implementation nodes found that link to Regulatory nodes based on Control field containment.</p>';
+                container.innerHTML = '<p>No "Requirement" nodes found in the data. Please check the JSON file for fields with "Requirement" in their TrustDimension.</p>';
             }
         }
 
