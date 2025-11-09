@@ -8,6 +8,7 @@
         :root {
             --primary-color: #2563eb;
             --secondary-color: #475569;
+            --success-color: #22c55e;
             --bg-light: #f8fafc;
             --border-color: #e2e8f0;
             --border-color-dashed: #cbd5e1;
@@ -49,12 +50,41 @@
             margin-bottom: 25px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
+            overflow: hidden; /* Ensure header radius applies */
         }
 
         .reg-header {
             background-color: #eff6ff;
             padding: 15px 20px;
             border-bottom: 1px solid var(--border-color);
+            display: flex; /* Use flexbox for alignment */
+            align-items: center;
+            cursor: pointer; /* Indicate it's clickable */
+            transition: background-color 0.2s ease;
+        }
+
+        .reg-header:hover {
+            background-color: #e0e7ff;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 15px;
+            transition: transform 0.2s ease;
+            width: 20px; /* Reserve space */
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .toggle-icon.expanded {
+            transform: rotate(90deg);
+        }
+        
+        .reg-header-content {
+            flex-grow: 1; /* Take remaining space */
+            min-width: 0; /* Prevent overflow */
         }
 
         .reg-title {
@@ -62,12 +92,44 @@
             font-weight: 700;
             color: #1e40af;
             margin: 0;
+            margin-bottom: 8px; /* Add space for progress bar */
+            word-wrap: break-word;
         }
-
+        
         .reg-meta {
             font-size: 0.9em;
             color: var(--secondary-color);
-            margin-top: 5px;
+            margin-top: 8px;
+            word-wrap: break-word;
+        }
+
+        /* New Progress Bar Styles */
+        .progress-container {
+            width: 100%;
+            height: 18px;
+            background-color: #e0e7ff; /* Lighter blue */
+            border-radius: 9px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%; /* Will be set by inline style */
+            background-color: var(--primary-color);
+            transition: width 0.4s ease-out;
+        }
+
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            text-align: center;
+            font-size: 0.8em; /* 12.8px */
+            line-height: 18px; /* Match container height */
+            font-weight: 600;
+            color: #1e3a8a; /* Darker blue for contrast */
         }
 
         /* List of Sub-Controls */
@@ -75,6 +137,12 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            display: none; /* Hide by default */
+            background-color: #ffffff;
+        }
+
+        .sub-control-list.expanded {
+            display: block; /* Show when expanded */
         }
 
         /* Individual Sub-Control Item */
@@ -91,6 +159,7 @@
             color: #1e293b;
             font-size: 1em;
             margin-bottom: 10px;
+            word-wrap: break-word;
         }
 
         /* List of Implementations (under a sub-control) */
@@ -174,6 +243,38 @@
             const errorEl = document.getElementById('error');
             const contentEl = document.getElementById('content');
 
+            // --- Event Listener for Collapsible Sections ---
+            // We add it to the contentEl which exists from the start
+            contentEl.addEventListener('click', event => {
+                // Use .closest() to find the header, even if user clicks an inner element
+                const header = event.target.closest('.reg-header');
+                if (!header) return; // Didn't click a header
+
+                const targetId = header.getAttribute('data-target');
+                if (!targetId) return;
+
+                const content = document.querySelector(targetId);
+                const icon = header.querySelector('.toggle-icon');
+
+                if (content && icon) {
+                    // Toggle the 'expanded' class
+                    const isExpanded = content.classList.toggle('expanded');
+                    
+                    // Update icon and aria attributes
+                    if (isExpanded) {
+                        icon.textContent = '−'; // Minus sign
+                        icon.classList.add('expanded');
+                        header.setAttribute('aria-expanded', 'true');
+                        content.setAttribute('aria-hidden', 'false');
+                    } else {
+                        icon.textContent = '+';
+                        icon.classList.remove('expanded');
+                        header.setAttribute('aria-expanded', 'false');
+                        content.setAttribute('aria-hidden', 'true');
+                    }
+                }
+            });
+
             fetch('ai_onboarding_procedure_data.json')
                 .then(response => {
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -234,7 +335,6 @@
                     requirementNodes.push(field);
                 } 
                 else if (field.FieldType === 'fieldGroup' && field.Fields && Array.isArray(field.Fields)) {
-                    // *** NEW LOGIC ***
                     // This is a fieldGroup, so we treat its *inner fields* as potential implementations
                     field.Fields.forEach(innerField => {
                         // Only add if it has a control to match
@@ -250,7 +350,7 @@
                 }
             });
 
-            // 3. Build the compliance map. (Unchanged)
+            // 3. Build the compliance map.
             //    Key: Parent Requirement's FieldName
             //    Value: { parentField: object, subControlLinks: Map<string, { subControl: object, children: Set<object> }> }
             const complianceMap = new Map();
@@ -276,7 +376,7 @@
                 });
             });
 
-            // 4. Link Implementations (Children) to the mapped Sub-Controls (Unchanged)
+            // 4. Link Implementations (Children) to the mapped Sub-Controls
             implementationNodes.forEach(implNode => {
                 if (!implNode.Control) return; // This implementation can't be linked
                 
@@ -318,17 +418,54 @@
                 const regItem = document.createElement('div');
                 regItem.className = 'reg-item';
 
+                // --- Calculate Progress ---
+                const totalSubControls = subControlLinks.size;
+                let matchedSubControls = 0;
+                
+                subControlLinks.forEach(subControlData => {
+                    if (subControlData.children.size > 0) {
+                        matchedSubControls++;
+                    }
+                });
+
+                // If 0/0, treat as 100% complete (N/A)
+                const percentage = (totalSubControls > 0) ? (matchedSubControls / totalSubControls) * 100 : 0;
+                const displayPercentage = (totalSubControls === 0) ? 100 : percentage;
+                const progressText = (totalSubControls === 0) ? "N/A" : `${matchedSubControls} / ${totalSubControls}`;
+                // Use green for 100%, blue otherwise
+                const progressColor = (displayPercentage >= 100) ? 'var(--success-color)' : 'var(--primary-color)';
+
+                // Create a unique ID for the collapsible content
+                const contentId = `content-${parentFieldName.replace(/[^a-zA-Z0-9_]/g, '-')}`;
+
                 // --- Render Regulatory Node Header ---
-                regItem.innerHTML = `
-                    <div class="reg-header">
+                const regHeader = document.createElement('div');
+                regHeader.className = 'reg-header';
+                regHeader.setAttribute('data-target', `#${contentId}`); // Link to content ID
+                regHeader.setAttribute('aria-expanded', 'false');
+                regHeader.setAttribute('aria-controls', contentId);
+                regHeader.innerHTML = `
+                    <div class="toggle-icon">+</div>
+                    <div class="reg-header-content">
                         <div class="reg-title">${escapeHtml(parent.FieldName)}</div>
+                        
+                        <!-- Progress Bar -->
+                        <div class="progress-container" title="Compliance Progress: ${progressText}">
+                            <div class="progress-bar" style="width: ${displayPercentage}%; background-color: ${progressColor};"></div>
+                            <div class="progress-text">${progressText}</div>
+                        </div>
+
                         <div class="reg-meta"><strong>Top-level Control:</strong> ${escapeHtml(parent.Control)} | <strong>Trust Dimension:</strong> ${escapeHtml(parent.TrustDimension || 'N/A')}</div>
                     </div>
                 `;
+                regItem.appendChild(regHeader);
+
 
                 // --- Render List of Sub-Controls ---
                 const subControlList = document.createElement('ul');
-                subControlList.className = 'sub-control-list';
+                subControlList.className = 'sub-control-list'; // No 'expanded' by default
+                subControlList.id = contentId;
+                subControlList.setAttribute('aria-hidden', 'true');
 
                 if (subControlLinks.size === 0) {
                     const noSubItems = document.createElement('li');
@@ -368,10 +505,10 @@
                                 const impItem = document.createElement('li');
                                 impItem.className = 'imp-item';
                                 
-                                // *** UPDATED BADGE LOGIC ***
+                                // *** UPDATED BADGE LOGIC (from previous request) ***
                                 let typeClass = 'type-other';
-                                let typeName = child.FieldType || 'field';
-                               
+                                let typeName = child.FieldType || 'field'; // Get the original field type
+
                                 if (typeName === 'risk') {
                                     typeClass = 'type-risk';
                                     // typeName is already 'risk'
@@ -383,7 +520,7 @@
                                     typeClass = 'type-other';
                                     typeName = 'FIELD'; // Set the display name to FIELD
                                 }
-                                 
+                                
                                 impItem.innerHTML = `
                                     <span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
                                     <div class="imp-content">
@@ -419,3 +556,4 @@
     </script>
 </body>
 </html>
+

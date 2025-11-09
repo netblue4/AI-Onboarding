@@ -1178,7 +1178,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-1]",
+          "Control": "[Art-15][Par-1],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Data Engineer,Engineer",
           "TrustDimension": "Data and Data Governance,Cybersecurity and Resilience",
@@ -1465,7 +1465,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5]",
+          "Control": "[Art-15][Par-5],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "System Architect",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1508,7 +1508,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5]",
+          "Control": "[Art-15][Par-5],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1528,7 +1528,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-5]",
+          "Control": "[Art-15][Par-5],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1559,7 +1559,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-12][Par-1]",
+          "Control": "[Art-12][Par-1],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Compliance, Record-Keeping",
@@ -1589,7 +1589,7 @@
           ]
         },
         {
-          "Control": "[A.9.4]",
+          "Control": "[A.9.4],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
@@ -1619,7 +1619,7 @@
           ]
         },
         {
-          "Control": "[Art-14][Par-2],[Art-27][Par-1e],[Art-13][Par-3d]",
+          "Control": "[Art-14][Par-2],[Art-27][Par-1e],[Art-13][Par-3d],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
@@ -1660,7 +1660,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5]",
+          "Control": "[Art-15][Par-5],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Data Scientist",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1701,7 +1701,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5]",
+          "Control": "[Art-15][Par-5],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2827,7 +2827,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5]",
+          "Control": "[Art-15][Par-5],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Deployment Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2983,7 +2983,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-4]",
+          "Control": "[Art-15][Par-4],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3013,7 +3013,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-4]",
+          "Control": "[Art-15][Par-4],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3043,7 +3043,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-4]",
+          "Control": "[Art-15][Par-4],[A.6.2.2]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
