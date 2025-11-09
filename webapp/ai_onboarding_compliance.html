@@ -371,17 +371,21 @@
                                 // *** UPDATED BADGE LOGIC ***
                                 let typeClass = 'type-other';
                                 let typeName = child.FieldType || 'field';
+                               
                                 if (typeName === 'risk') {
                                     typeClass = 'type-risk';
+                                    // typeName is already 'risk'
                                 } else if (typeName === 'plan') {
                                     typeClass = 'type-plan';
+                                    // typeName is already 'plan'
                                 } else {
-                                    // Shorten long type names for display
-                                    typeName = typeName.replace("Auto generated ", "").replace(" number", "");
+                                    // If it's not 'risk' or 'plan', set it to 'FIELD'
+                                    typeClass = 'type-other';
+                                    typeName = 'FIELD'; // Set the display name to FIELD
                                 }
-                                
+                                 
                                 impItem.innerHTML = `
-                                    <span class="imp-type-badge ${typeClass}">${escapeHtml('FIELD')}</span>
+                                    <span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
                                     <div class="imp-content">
                                         <div class="imp-title">${escapeHtml(child.FieldName)}</div>
                                         <div class="imp-meta">
