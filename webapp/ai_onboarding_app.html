@@ -113,40 +113,59 @@
 
 				// --- MODIFIED FUNCTION: RECURSIVE JOINT FILTER LOGIC ---
 				function fieldPassesFilters(node) {
-					// Safety check
+					// 1. Safety check
 					if (!node) return false;
 				
-					// 0. If no filters are active, everything passes.
-					if (currentRole === "" && currentDimension === "") return true;
+					// 2. Check if any filters are actually active
+					const isRoleFilterActive = currentRole && currentRole !== "";
+					const isDimFilterActive = currentDimension && currentDimension !== "";
 				
-					// 1. Direct Match Check: Does THIS exact node match the active filters?
-					let matchesRole = true;
-					if (currentRole !== "") {
-						// If a role filter is active, this node only 'matches' directly if it has the tag.
-						matchesRole = node.Role ? 
-							String(node.Role).split(',').map(r => r.trim()).includes(currentRole) : 
-							false;
+					// If NO filters are active, show everything.
+					if (!isRoleFilterActive && !isDimFilterActive) return true;
+				
+					// 3. Direct Match Check
+					// Does THIS exact node have the tags requested?
+					let matchesDirectly = true;
+				
+					if (isRoleFilterActive) {
+						// Strict: If filter is active, node MUST have the 'Role' property AND it must match.
+						if (!node.Role) {
+							matchesDirectly = false;
+						} else {
+							// Split by comma and trim whitespace to ensure accurate matching
+							const roles = String(node.Role).split(',').map(r => r.trim());
+							if (!roles.includes(currentRole)) {
+								matchesDirectly = false;
+							}
+						}
 					}
 				
-					let matchesDimension = true;
-					if (currentDimension !== "") {
-						// If a dimension filter is active, this node only 'matches' directly if it has the tag.
-						matchesDimension = node.TrustDimension ? 
-							String(node.TrustDimension).split(',').map(d => d.trim()).includes(currentDimension) : 
-							false;
+					// Only proceed to check dimension if it hasn't already failed the role check
+					if (isDimFilterActive && matchesDirectly) {
+						// Strict: If filter is active, node MUST have the 'TrustDimension' property AND it must match.
+						if (!node.TrustDimension) {
+							 matchesDirectly = false;
+						} else {
+							 const dims = String(node.TrustDimension).split(',').map(d => d.trim());
+							 if (!dims.includes(currentDimension)) {
+								 matchesDirectly = false;
+							 }
+						}
 					}
 				
-					// If this node satisfies ALL active filters directly, it passes.
-					if (matchesRole && matchesDimension) {
-						return true;
-					}
+					// If it passed strict direct checks, it's a match.
+					if (matchesDirectly) return true;
 				
-					// 2. Deep Search: If it didn't match directly, check its children recursively.
-					// This ensures a container (like fieldGroup or Step) passes if it holds RELEVANT content.
+					// 4. Container / Recursion Check
+					// If it failed direct checks, it might still be a container (like a Step or FieldGroup)
+					// that needs to be shown because it contains relevant children.
 					if (node.Fields && Array.isArray(node.Fields) && node.Fields.length > 0) {
+						// Recursively check if ANY child passes the filters. 
+						// If yes, this container must also pass (be displayed).
 						return node.Fields.some(child => fieldPassesFilters(child));
 					}
 				
+					// It's a leaf node that didn't match, or an empty container. Hide it.
 					return false;
 				}
 				// --- END MODIFIED FUNCTION ---
@@ -154,17 +173,14 @@
 
 				// --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS ---
 				function filterAndInitializeSteps() {
-					currentStepIndex = 0; // Reset to the first step after filtering
+					currentStepIndex = 0; 
 					const allStepsFlat = Object.values(originalWebappData).flat();
 					
-					procedureDataArray = allStepsFlat.filter(step => {
-						// Use the recursive function on the STEP itself.
-						// It will check the step's own tags, and if necessary, recurse 
-						// deep into all its fields (and sub-fields) to find a match.
-						return fieldPassesFilters(step);
-					});
+					// Filter the steps using the same robust logic.
+					// A step will now be included if it EITHER matches the filters directly
+					// OR if it contains fields that match the filters.
+					procedureDataArray = allStepsFlat.filter(step => fieldPassesFilters(step));
 					
-					// Re-create the array of step names for progress tracking
 					procedureSteps = procedureDataArray.map(step => step.StepName);
 					
 					renderProcedureSteps();
@@ -173,7 +189,7 @@
 						renderCurrentStep();
 					} else {
 						mainTitle.textContent = "No Relevant Steps Available";
-						formContainer.innerHTML = "<p>There are no steps matching the selected role and/or trust dimension filters.</p>";
+						formContainer.innerHTML = "<p>No steps match the current Role and/or Trust Dimension filters.</p>";
 						prevBtn.style.display = 'none';
 						nextBtn.style.display = 'none';
 						downloadBtn.style.display = 'none';
