@@ -111,66 +111,76 @@
                 let currentRole = roleDropdown.value;
                 let currentDimension = dimensionDropdown.value;
 
-                // --- HELPER FUNCTION: JOINT FILTER LOGIC ---
-                function fieldPassesFilters(field) {
-                    // 1. Role Filtering
-                    const roleSelected = currentRole && currentRole !== "";
-                    let roleMatch = true;
-                    
-                    if (roleSelected) {
-                        const fieldRoles = field.Role ? String(field.Role).split(',').map(r => r.trim()) : [];
-                        // Check if the field's role includes the selected role
-                        roleMatch = fieldRoles.includes(currentRole);
-                    }
-                    
-                    // 2. Trust Dimension Filtering
-                    const dimensionSelected = currentDimension && currentDimension !== "";
-                    let dimensionMatch = true;
-                    
-                    if (dimensionSelected) {
-                        const fieldDimensions = field.TrustDimension ? String(field.TrustDimension).split(',').map(d => d.trim()) : [];
-                        // Check if the field's dimension includes the selected dimension
-                        dimensionMatch = fieldDimensions.includes(currentDimension);
-                    }
-                    
-                    // The field must satisfy BOTH active filters.
-                    return roleMatch && dimensionMatch;
-                }
-                // --- END HELPER FUNCTION ---
+				// --- MODIFIED FUNCTION: RECURSIVE JOINT FILTER LOGIC ---
+				function fieldPassesFilters(node) {
+					// Safety check
+					if (!node) return false;
+				
+					// 0. If no filters are active, everything passes.
+					if (currentRole === "" && currentDimension === "") return true;
+				
+					// 1. Direct Match Check: Does THIS exact node match the active filters?
+					let matchesRole = true;
+					if (currentRole !== "") {
+						// If a role filter is active, this node only 'matches' directly if it has the tag.
+						matchesRole = node.Role ? 
+							String(node.Role).split(',').map(r => r.trim()).includes(currentRole) : 
+							false;
+					}
+				
+					let matchesDimension = true;
+					if (currentDimension !== "") {
+						// If a dimension filter is active, this node only 'matches' directly if it has the tag.
+						matchesDimension = node.TrustDimension ? 
+							String(node.TrustDimension).split(',').map(d => d.trim()).includes(currentDimension) : 
+							false;
+					}
+				
+					// If this node satisfies ALL active filters directly, it passes.
+					if (matchesRole && matchesDimension) {
+						return true;
+					}
+				
+					// 2. Deep Search: If it didn't match directly, check its children recursively.
+					// This ensures a container (like fieldGroup or Step) passes if it holds RELEVANT content.
+					if (node.Fields && Array.isArray(node.Fields) && node.Fields.length > 0) {
+						return node.Fields.some(child => fieldPassesFilters(child));
+					}
+				
+					return false;
+				}
+				// --- END MODIFIED FUNCTION ---
 
 
-                // --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS (Now filters steps) ---
-                function filterAndInitializeSteps() {
-                    currentStepIndex = 0; // Reset to the first step after filtering
-                    const allStepsFlat = Object.values(originalWebappData).flat();
-                    
-                    procedureDataArray = allStepsFlat.filter(step => {
-                        // Keep steps that are purely informational (no fields) only if no filters are active
-                        if (!step.Fields || step.Fields.length === 0) {
-                            return currentRole === "" && currentDimension === "";
-                        }
-                        
-                        // Keep steps that have AT LEAST ONE field matching the current filters
-                        return step.Fields.some(field => fieldPassesFilters(field));
-                    });
-                    
-                    // Re-create the array of step names for progress tracking
-                    procedureSteps = procedureDataArray.map(step => step.StepName);
-                    
-                    renderProcedureSteps();
-                    
-                    if (procedureSteps.length > 0) {
-                        renderCurrentStep();
-                    } else {
-                        mainTitle.textContent = "No Relevant Steps Available";
-                        formContainer.innerHTML = "<p>There are no steps containing fields that match the selected role and/or trust dimension filters.</p>";
-                        prevBtn.style.display = 'none';
-                        nextBtn.style.display = 'none';
-                        downloadBtn.style.display = 'none';
-                        updateProgressBar(); 
-                    }
-                }
-                // --- END MODIFIED FUNCTION ---
+				// --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS ---
+				function filterAndInitializeSteps() {
+					currentStepIndex = 0; // Reset to the first step after filtering
+					const allStepsFlat = Object.values(originalWebappData).flat();
+					
+					procedureDataArray = allStepsFlat.filter(step => {
+						// Use the recursive function on the STEP itself.
+						// It will check the step's own tags, and if necessary, recurse 
+						// deep into all its fields (and sub-fields) to find a match.
+						return fieldPassesFilters(step);
+					});
+					
+					// Re-create the array of step names for progress tracking
+					procedureSteps = procedureDataArray.map(step => step.StepName);
+					
+					renderProcedureSteps();
+					
+					if (procedureSteps.length > 0) {
+						renderCurrentStep();
+					} else {
+						mainTitle.textContent = "No Relevant Steps Available";
+						formContainer.innerHTML = "<p>There are no steps matching the selected role and/or trust dimension filters.</p>";
+						prevBtn.style.display = 'none';
+						nextBtn.style.display = 'none';
+						downloadBtn.style.display = 'none';
+						updateProgressBar(); 
+					}
+				}
+				// --- END MODIFIED FUNCTION ---
 
                 // --- MODIFIED FUNCTION: RENDER PROCEDURE STEPS (Renders only filtered steps) ---
                 function renderProcedureSteps() {
