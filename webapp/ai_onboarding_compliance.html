@@ -447,7 +447,7 @@
                 regHeader.innerHTML = `
                     <div class="toggle-icon">+</div>
                     <div class="reg-header-content">
-                        <div class="reg-title">${escapeHtml(parent.FieldName)}</div>
+                        <div class="reg-title">${escapeHtml(parent.FieldName + ' - ' + parent.Control)}</div>
                         
                         <!-- Progress Bar -->
                         <div class="progress-container" title="Compliance Progress: ${progressText}">
