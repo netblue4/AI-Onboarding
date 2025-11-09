@@ -79,401 +79,315 @@
     
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        fetch('ai_onboarding_procedure_data.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Network response was not ok: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(webappData => {
-                const formContainer = document.getElementById('form-container');
-                const prevBtn = document.getElementById('prev-btn');
-                const nextBtn = document.getElementById('next-btn');
-                const downloadBtn = document.getElementById('download-btn');
-                const mainTitle = document.getElementById('main-title');
-                const progressBar = document.getElementById('progress-bar');
-                const progressText = document.getElementById('progress-text');
-                const stepContainer = document.getElementById('step-container');
-                const roleDropdown = document.getElementById('role-dropdown'); 
-                const dimensionDropdown = document.getElementById('dimension-dropdown'); 
-
-                // Store the original procedure data structure
-                const originalWebappData = webappData;
-                
-                let procedureDataArray = [];
-                let procedureSteps = [];
-                const capturedData = {};
-                let currentStepIndex = 0;
-                
-                // Track current filters
-                let currentRole = roleDropdown.value;
-                let currentDimension = dimensionDropdown.value;
-
-				// --- MODIFIED FUNCTION: RECURSIVE JOINT FILTER LOGIC ---
-				function fieldPassesFilters(node) {
-					// 1. Safety check
-					if (!node) return false;
-				
-					// 2. Check if any filters are actually active
-					const isRoleFilterActive = currentRole && currentRole !== "";
-					const isDimFilterActive = currentDimension && currentDimension !== "";
-				
-					// If NO filters are active, show everything.
-					if (!isRoleFilterActive && !isDimFilterActive) return true;
-				
-					// 3. Direct Match Check
-					// Does THIS exact node have the tags requested?
-					let matchesDirectly = true;
-				
-					if (isRoleFilterActive) {
-						// Strict: If filter is active, node MUST have the 'Role' property AND it must match.
-						if (!node.Role) {
-							matchesDirectly = false;
-						} else {
-							// Split by comma and trim whitespace to ensure accurate matching
-							const roles = String(node.Role).split(',').map(r => r.trim());
-							if (!roles.includes(currentRole)) {
-								matchesDirectly = false;
+		document.addEventListener('DOMContentLoaded', () => {
+				fetch('ai_onboarding_procedure_data.json')
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(`Network responses was not ok: ${response.statusText}`);
+						}
+						return response.json();
+					})
+					.then(webappData => {
+						const formContainer = document.getElementById('form-container');
+						const prevBtn = document.getElementById('prev-btn');
+						const nextBtn = document.getElementById('next-btn');
+						const downloadBtn = document.getElementById('download-btn');
+						const mainTitle = document.getElementById('main-title');
+						const progressBar = document.getElementById('progress-bar');
+						const progressText = document.getElementById('progress-text');
+						const stepContainer = document.getElementById('step-container');
+						const roleDropdown = document.getElementById('role-dropdown'); 
+						const dimensionDropdown = document.getElementById('dimension-dropdown'); 
+		
+						const originalWebappData = webappData;
+						
+						let procedureDataArray = [];
+						let procedureSteps = [];
+						const capturedData = {};
+						let currentStepIndex = 0;
+						
+						let currentRole = roleDropdown.value;
+						let currentDimension = dimensionDropdown.value;
+		
+						// --- NEW: DEEP FILTERING FUNCTION ---
+						// Replaces fieldPassesFilters. Returns a cleaned COPY of the node.
+						function getDeepFilteredNode(node) {
+							if (!node) return null;
+		
+							const isRoleFilterActive = currentRole && currentRole !== "";
+							const isDimFilterActive = currentDimension && currentDimension !== "";
+							
+							if (!isRoleFilterActive && !isDimFilterActive) return node; 
+		
+							let matchesDirectly = true;
+							if (isRoleFilterActive) {
+								if (!node.Role || !String(node.Role).split(',').map(r => r.trim()).includes(currentRole)) {
+									matchesDirectly = false;
+								}
+							}
+							if (isDimFilterActive && matchesDirectly) {
+								if (!node.TrustDimension || !String(node.TrustDimension).split(',').map(d => d.trim()).includes(currentDimension)) {
+									matchesDirectly = false;
+								}
+							}
+		
+							let filteredChildren = [];
+							if (node.Fields && Array.isArray(node.Fields)) {
+								filteredChildren = node.Fields.map(child => getDeepFilteredNode(child)).filter(child => child !== null);
+							}
+		
+							if (matchesDirectly) {
+								 return { ...node, Fields: filteredChildren };
+							} else if (filteredChildren.length > 0) {
+								 return { ...node, Fields: filteredChildren };
+							}
+		
+							return null;
+						}
+		
+						// --- UPDATED: FILTER INITIALIZATION ---
+						function filterAndInitializeSteps() {
+							currentStepIndex = 0; 
+							const allStepsFlat = Object.values(originalWebappData).flat();
+							
+							// Uses Deep Filter to decide which steps to keep
+							procedureDataArray = allStepsFlat.filter(step => getDeepFilteredNode(step) !== null);
+							procedureSteps = procedureDataArray.map(step => step.StepName);
+							
+							renderProcedureSteps();
+							
+							if (procedureSteps.length > 0) {
+								renderCurrentStep();
+							} else {
+								mainTitle.textContent = "No Relevant Steps Available";
+								formContainer.innerHTML = "<p>No steps match the current Role and/or Trust Dimension filters.</p>";
+								prevBtn.style.display = 'none';
+								nextBtn.style.display = 'none';
+								downloadBtn.style.display = 'none';
+								updateProgressBar(); 
 							}
 						}
-					}
-				
-					// Only proceed to check dimension if it hasn't already failed the role check
-					if (isDimFilterActive && matchesDirectly) {
-						// Strict: If filter is active, node MUST have the 'TrustDimension' property AND it must match.
-						if (!node.TrustDimension) {
-							 matchesDirectly = false;
-						} else {
-							 const dims = String(node.TrustDimension).split(',').map(d => d.trim());
-							 if (!dims.includes(currentDimension)) {
-								 matchesDirectly = false;
-							 }
+		
+						// --- KEEPER: SIDEBAR NAVIGATION RENDERER ---
+						function renderProcedureSteps() {
+							stepContainer.innerHTML = '';
+							
+							for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
+								// Find which steps from this phase are currently visible after filtering
+								const visiblePhaseSteps = stepsInPhase.filter(step => 
+									procedureSteps.includes(step.StepName)
+								);
+		
+								if (visiblePhaseSteps.length > 0) {
+									const phaseHeader = document.createElement('div');
+									phaseHeader.className = 'phase-header';
+									phaseHeader.textContent = phaseName;
+									stepContainer.appendChild(phaseHeader);
+		
+									visiblePhaseSteps.forEach(step => {
+										const stepDiv = document.createElement('div');
+										stepDiv.className = 'step-item';
+										// Find the TRUE index of this step in the filtered array
+										const trueIndex = procedureSteps.indexOf(step.StepName);
+										stepDiv.id = `step-item-${trueIndex}`; 
+		
+										const iconSpan = document.createElement('span');
+										iconSpan.className = 'icon';
+										stepDiv.appendChild(iconSpan);
+		
+										const textSpan = document.createElement('span');
+										textSpan.textContent = step.StepName;
+										stepDiv.appendChild(textSpan);
+										
+										stepDiv.addEventListener('click', () => {
+											currentStepIndex = trueIndex;
+											renderCurrentStep();
+										});
+		
+										stepContainer.appendChild(stepDiv);
+									});
+								}
+							}
 						}
-					}
-				
-					// If it passed strict direct checks, it's a match.
-					if (matchesDirectly) return true;
-				
-					// 4. Container / Recursion Check
-					// If it failed direct checks, it might still be a container (like a Step or FieldGroup)
-					// that needs to be shown because it contains relevant children.
-					if (node.Fields && Array.isArray(node.Fields) && node.Fields.length > 0) {
-						// Recursively check if ANY child passes the filters. 
-						// If yes, this container must also pass (be displayed).
-						return node.Fields.some(child => fieldPassesFilters(child));
-					}
-				
-					// It's a leaf node that didn't match, or an empty container. Hide it.
-					return false;
-				}
-				// --- END MODIFIED FUNCTION ---
-
-
-				// --- MODIFIED FUNCTION: FILTER AND INITIALIZE STEPS ---
-				function filterAndInitializeSteps() {
-					currentStepIndex = 0; 
-					const allStepsFlat = Object.values(originalWebappData).flat();
-					
-					// Filter the steps using the same robust logic.
-					// A step will now be included if it EITHER matches the filters directly
-					// OR if it contains fields that match the filters.
-					procedureDataArray = allStepsFlat.filter(step => fieldPassesFilters(step));
-					
-					procedureSteps = procedureDataArray.map(step => step.StepName);
-					
-					renderProcedureSteps();
-					
-					if (procedureSteps.length > 0) {
-						renderCurrentStep();
-					} else {
-						mainTitle.textContent = "No Relevant Steps Available";
-						formContainer.innerHTML = "<p>No steps match the current Role and/or Trust Dimension filters.</p>";
-						prevBtn.style.display = 'none';
-						nextBtn.style.display = 'none';
-						downloadBtn.style.display = 'none';
-						updateProgressBar(); 
-					}
-				}
-				// --- END MODIFIED FUNCTION ---
-
-                // --- MODIFIED FUNCTION: RENDER PROCEDURE STEPS (Renders only filtered steps) ---
-                function renderProcedureSteps() {
-                    stepContainer.innerHTML = '';
-                    let globalStepIndex = 0; 
-
-                    for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
-                        let phaseHasRenderableSteps = false;
-                        const phaseStepsToRender = [];
-
-                        stepsInPhase.forEach(step => {
-                            // Check if this step is present in the current (filtered) procedureDataArray
-                            const isStepIncluded = procedureDataArray.some(filteredStep => 
-                                filteredStep.StepName === step.StepName
-                            );
-
-                            if (isStepIncluded) {
-                                phaseHasRenderableSteps = true;
-                                phaseStepsToRender.push(step);
-                            }
-                        });
-
-                        if (phaseHasRenderableSteps) {
-                            // Create and append a header for the phase only if it contains renderable steps
-                            const phaseHeader = document.createElement('div');
-                            phaseHeader.className = 'phase-header';
-                            phaseHeader.textContent = phaseName;
-                            stepContainer.appendChild(phaseHeader);
-
-                            // Render only the included steps for this phase
-                            phaseStepsToRender.forEach(step => {
-                                const stepDiv = document.createElement('div');
-                                stepDiv.className = 'step-item';
-                                // The ID must correspond to the step's index in the *filtered* array
-                                const indexInFilteredArray = procedureSteps.indexOf(step.StepName);
-                                stepDiv.id = `step-item-${indexInFilteredArray}`; 
-
-                                const iconSpan = document.createElement('span');
-                                iconSpan.className = 'icon';
-                                stepDiv.appendChild(iconSpan);
-
-                                const textSpan = document.createElement('span');
-                                textSpan.textContent = step.StepName;
-                                stepDiv.appendChild(textSpan);
-                                
-                                const stepIndexToNavigate = indexInFilteredArray;
-                                stepDiv.addEventListener('click', () => {
-                                    currentStepIndex = stepIndexToNavigate;
-                                    renderCurrentStep();
-                                });
-
-                                stepContainer.appendChild(stepDiv);
-                                globalStepIndex++; // This increment is tricky now, simplifying to rely on procedureSteps index
-                            });
-                        }
-                    }
-                }
-                // --- END MODIFIED FUNCTION ---
-                
-                function updateStepHighlight() {
-                    procedureSteps.forEach((_, index) => {
-                        const stepDiv = document.getElementById(`step-item-${index}`);
-                        if (stepDiv) {
-                            stepDiv.classList.remove('active-step', 'completed-step');
-
-                            if (index < currentStepIndex) {
-                                stepDiv.classList.add('completed-step');
-                            } else if (index === currentStepIndex) {
-                                stepDiv.classList.add('active-step');
-                            }
-                        }
-                    });
-                }
-                
-                function sanitizeForId(text) {
-                    if (typeof text !== 'string') return '';
-                    return text.replace(/[^a-zA-Z0-9_]/g, '_');
-                }
-
-                function getStepKeyByString(searchText) {
-                    currentStepIndex = procedureSteps.indexOf(searchText);
-                    renderCurrentStep();
-                }
-                window.getStepKeyByString = getStepKeyByString;
-                
-                function updateProgressBar() {
-                    const totalSteps = procedureSteps.length;
-                    if (totalSteps === 0) {
-                        progressText.textContent = `No steps selected`;
-                        progressBar.style.width = '0%';
-                        return;
-                    }
-
-                    if (currentStepIndex < totalSteps) {
-                        progressText.textContent = `Step ${currentStepIndex + 1} of ${totalSteps}`;
-                    } else {
-                         progressText.textContent = `Completed ${totalSteps} of ${totalSteps}`;
-                    }
-                    const progressPercentage = totalSteps > 1 ? ((currentStepIndex) / (totalSteps - 1)) * 100 : (totalSteps === 1 ? (currentStepIndex === 0 ? 0 : 100) : 100);
-                    progressBar.style.width = progressPercentage + '%';
-                }
-
-                // --- MODIFIED FUNCTION: RENDER CURRENT STEP (Applies joint per-field filtering) ---
-                function renderCurrentStep() {
-                    updateProgressBar();
-                    updateStepHighlight();
-                    
-                    const stepData = procedureDataArray[currentStepIndex];
-
-                    if (!stepData) {
-                        return; 
-                    }
-
-                    prevBtn.style.display = currentStepIndex > 0 ? 'inline-block' : 'none';
-                    nextBtn.style.display = 'inline-block';
-                    downloadBtn.style.display = 'none';
-
-                    mainTitle.textContent = stepData.StepName || "Procedure Step";
-                    formContainer.innerHTML = '';
-
-                    const formStepDiv = document.createElement('div');
-                    formStepDiv.className = 'form-step';
-
-
-                    // Objectives are always rendered as they are informational
-                    if (stepData.Objectives && stepData.Objectives.length > 0) {
-                    	const handler = getFieldHandler('objective');
-                        if (handler) {
-                            const fieldElement = handler(stepData.Objectives);
-                            formStepDiv.appendChild(fieldElement);
-                        }                    	
-                    };
-
-                    
-                    let renderedFieldCount = 0;
-
-                    if (!stepData.Fields || stepData.Fields.length === 0 || !stepData.Fields[0].FieldName) {
-                         // Note field only shown if no fields are present AND no filter is active
-                         if (currentDimension === "" && currentRole === "") {
-                            if (typeof createNoteField === 'function') {
-                                formStepDiv.appendChild(createNoteField());
-                                renderedFieldCount++;
-                            }
-                         }
-                    } else {
-                        stepData.Fields.forEach(field => {
-                            if (!field || !field.FieldName) return;
-                            
-                            // *** CORE JOINT FILTERING LOGIC ***
-                            if (fieldPassesFilters(field)) {
-                                const handler = getFieldHandler(field.FieldType);
-                                if (handler) {
-                                    const fieldElement = handler(field, capturedData, sanitizeForId);
-                                    formStepDiv.appendChild(fieldElement);
-                                    renderedFieldCount++;
-                                }
-                            }
-                            // *** END CORE JOINT FILTERING LOGIC ***
-                        });
-                    }
-                    
-                    if (renderedFieldCount === 0) {
-                        let filterMessage = "No relevant fields found for the current selection.";
-                        if (currentRole !== "" && currentDimension !== "") {
-                             filterMessage = `No fields match both **Role: ${currentRole}** AND **Dimension: ${currentDimension}** in this step.`;
-                        } else if (currentRole !== "") {
-                            filterMessage = `No fields match the selected **Role: ${currentRole}** in this step.`;
-                        } else if (currentDimension !== "") {
-                            filterMessage = `No fields match the selected **Dimension: ${currentDimension}** in this step.`;
-                        }
-
-                         formContainer.innerHTML = `<p>${filterMessage}</p>`;
-                    } else {
-                        formContainer.appendChild(formStepDiv);
-                    }
-                }
-                // --- END MODIFIED FUNCTION ---
-                
-                prevBtn.addEventListener('click', () => {
-                    if (currentStepIndex > 0) {
-                        currentStepIndex--;
-                        renderCurrentStep();
-                    }
-                });
-
-                nextBtn.addEventListener('click', () => {
-                    if (procedureSteps.length === 0) return;
-
-                    const currentStepKey = procedureSteps[currentStepIndex];
-                    const stepData = procedureDataArray[currentStepIndex];
-
-                    if (stepData && stepData.Fields) {
-                        capturedData['Step: ' + currentStepIndex] = currentStepKey;
-                        stepData.Fields.forEach(field => {
-                            // Only capture data for fields that were visible/processed based on both filters
-                            if (fieldPassesFilters(field)) {
-                                if (!field || !field.FieldName || field.FieldType === 'Auto generated number') return;
-                                const sanitizedId = sanitizeForId(field.FieldName);
-                                const inputElement = document.getElementById(sanitizedId);
-                                
-                                if (inputElement) {
-                                    if (inputElement.type === 'radio') {
-                                        const checkedRadio = document.querySelector(`input[name="${sanitizedId}"]:checked`);
-                                        if(checkedRadio) {
-                                            capturedData[' - ' + field.FieldName] = checkedRadio.value;
-                                        }
-                                    } else {
-                                        capturedData[' - ' + field.FieldName] = inputElement.value;
-                                    }
-                                }
-                            }
-                        });
-                    }
-
-                    currentStepIndex++;
-                    if (currentStepIndex < procedureSteps.length) {
-                        renderCurrentStep();
-                    } else {
-                        formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file.</p>';
-                        mainTitle.textContent = "Finished";
-                        nextBtn.style.display = 'none';
-                        prevBtn.style.display = 'none';
-                        downloadBtn.style.display = 'block';
-                        
-                        procedureSteps.forEach((_, index) => {
-                           document.getElementById(`step-item-${index}`).classList.remove('active-step');
-                           document.getElementById(`step-item-${index}`).classList.add('completed-step');
-                        });
-                        updateProgressBar();
-                    }
-                });
-
-                downloadBtn.addEventListener('click', () => {
-                    const jsonData = JSON.stringify(capturedData, null, 4);
-                    const blob = new Blob([jsonData], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'onboarding_documentation.json';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                });
-
-                // Event listener for Role dropdown change
-                roleDropdown.addEventListener('change', (event) => {
-                    currentRole = event.target.value; // Update state
-                    // Clear captured data on role change (as step and field visibility changes)
-                    for (const key in capturedData) {
-                        delete capturedData[key];
-                    }
-                    // Re-filter steps based on the new role
-                    filterAndInitializeSteps(); 
-                });
-                
-                // Event listener for Dimension dropdown change
-                dimensionDropdown.addEventListener('change', (event) => {
-                    currentDimension = event.target.value; // Update state
-                    // Clear captured data on dimension change (as step and field visibility changes)
-                    for (const key in capturedData) {
-                        delete capturedData[key];
-                    }
-                    // Re-filter steps based on the new dimension
-                    filterAndInitializeSteps();
-                });
-
-
-                // Initial load: show all steps and render the first step with default filters ("")
-                filterAndInitializeSteps();
-            })
-            .catch(error => {
-                console.error('Error loading the webapp data:', error);
-                mainTitle.textContent = "Error";
-                formContainer.innerHTML = "<p>Failed to load procedure data. Please check the console and ensure 'ai_onboarding_procedure_data.json' is available.</p>";
-            });
-    });
+						
+						function updateStepHighlight() {
+							procedureSteps.forEach((_, index) => {
+								const stepDiv = document.getElementById(`step-item-${index}`);
+								if (stepDiv) {
+									stepDiv.classList.remove('active-step', 'completed-step');
+									if (index < currentStepIndex) {
+										stepDiv.classList.add('completed-step');
+									} else if (index === currentStepIndex) {
+										stepDiv.classList.add('active-step');
+									}
+								}
+							});
+						}
+						
+						function sanitizeForId(text) {
+							if (typeof text !== 'string') return '';
+							return text.replace(/[^a-zA-Z0-9_]/g, '_');
+						}
+		
+						// --- UPDATED: CURRENT STEP RENDERER ---
+						function renderCurrentStep() {
+							updateProgressBar();
+							updateStepHighlight();
+							
+							const originalStepData = procedureDataArray[currentStepIndex];
+							if (!originalStepData) return; 
+		
+							prevBtn.style.display = currentStepIndex > 0 ? 'inline-block' : 'none';
+							nextBtn.style.display = 'inline-block';
+							downloadBtn.style.display = 'none';
+		
+							mainTitle.textContent = originalStepData.StepName || "Procedure Step";
+							formContainer.innerHTML = '';
+		
+							const formStepDiv = document.createElement('div');
+							formStepDiv.className = 'form-step';
+		
+							if (originalStepData.Objectives && originalStepData.Objectives.length > 0) {
+								const handler = getFieldHandler('objective');
+								if (handler) formStepDiv.appendChild(handler(originalStepData.Objectives));
+							};
+		
+							let renderedFieldCount = 0;
+							if (!originalStepData.Fields || originalStepData.Fields.length === 0) {
+								 if (currentDimension === "" && currentRole === "" && typeof createNoteField === 'function') {
+									formStepDiv.appendChild(createNoteField());
+									renderedFieldCount++;
+								 }
+							} else {
+								// Pass 1: Filter the fields using Deep Filter
+								// Pass 2: Render the resulting filtered nodes
+								originalStepData.Fields.forEach(originalField => {
+									const filteredField = getDeepFilteredNode(originalField);
+									if (filteredField) {
+										const handler = getFieldHandler(filteredField.FieldType);
+										if (handler) {
+											formStepDiv.appendChild(handler(filteredField, capturedData, sanitizeForId));
+											renderedFieldCount++;
+										}
+									}
+								});
+							}
+							
+							if (renderedFieldCount === 0) {
+								 formContainer.innerHTML = `<p>No fields match the selected filters in this step.</p>`;
+							} else {
+								formContainer.appendChild(formStepDiv);
+							}
+						}
+						
+						function updateProgressBar() {
+							const totalSteps = procedureSteps.length;
+							if (totalSteps === 0) {
+								progressText.textContent = `No steps selected`;
+								progressBar.style.width = '0%';
+								return;
+							}
+							if (currentStepIndex < totalSteps) {
+								progressText.textContent = `Step ${currentStepIndex + 1} of ${totalSteps}`;
+							} else {
+								 progressText.textContent = `Completed ${totalSteps} of ${totalSteps}`;
+							}
+							const progressPercentage = totalSteps > 1 ? ((currentStepIndex) / (totalSteps - 1)) * 100 : (totalSteps === 1 ? (currentStepIndex === 0 ? 0 : 100) : 100);
+							progressBar.style.width = progressPercentage + '%';
+						}
+		
+						prevBtn.addEventListener('click', () => {
+							if (currentStepIndex > 0) {
+								currentStepIndex--;
+								renderCurrentStep();
+							}
+						});
+		
+						nextBtn.addEventListener('click', () => {
+							if (procedureSteps.length === 0) return;
+		
+							// Capture data from currently visible fields
+							const stepData = procedureDataArray[currentStepIndex];
+							if (stepData && stepData.Fields) {
+								capturedData['Step: ' + currentStepIndex] = procedureSteps[currentStepIndex];
+								
+								// We must only capture data from fields that passed the filter
+								stepData.Fields.forEach(field => {
+									 const filteredField = getDeepFilteredNode(field);
+									 // Helper to recursively capture data from a filtered node tree
+									 function captureFromNode(node) {
+										 if (!node) return;
+										 if (node.FieldName && node.FieldType !== 'Auto generated number' && node.FieldType !== 'fieldGroup') {
+											 const sanitizedId = sanitizeForId(node.FieldName);
+											 const inputElement = document.getElementById(sanitizedId);
+											 if (inputElement) {
+												if (inputElement.type === 'radio') {
+													const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+													if(checked) capturedData[' - ' + node.FieldName] = checked.value;
+												} else {
+													capturedData[' - ' + node.FieldName] = inputElement.value;
+												}
+											 }
+										 }
+										 if (node.Fields) node.Fields.forEach(captureFromNode);
+									 }
+									 captureFromNode(filteredField);
+								});
+							}
+		
+							currentStepIndex++;
+							if (currentStepIndex < procedureSteps.length) {
+								renderCurrentStep();
+							} else {
+								formContainer.innerHTML = '<h2>Onboarding procedure completed!</h2><p>You can now download the generated JSON file.</p>';
+								mainTitle.textContent = "Finished";
+								nextBtn.style.display = 'none';
+								prevBtn.style.display = 'none';
+								downloadBtn.style.display = 'block';
+								procedureSteps.forEach((_, index) => {
+								   const stepItem = document.getElementById(`step-item-${index}`);
+								   if(stepItem) {
+									   stepItem.classList.remove('active-step');
+									   stepItem.classList.add('completed-step');
+								   }
+								});
+								updateProgressBar();
+							}
+						});
+		
+						downloadBtn.addEventListener('click', () => {
+							const jsonData = JSON.stringify(capturedData, null, 4);
+							const blob = new Blob([jsonData], { type: 'application/json' });
+							const url = URL.createObjectURL(blob);
+							const a = document.createElement('a');
+							a.href = url;
+							a.download = 'onboarding_documentation.json';
+							document.body.appendChild(a);
+							a.click();
+							document.body.removeChild(a);
+							URL.revokeObjectURL(url);
+						});
+		
+						roleDropdown.addEventListener('change', (event) => {
+							currentRole = event.target.value;
+							for (const key in capturedData) delete capturedData[key];
+							filterAndInitializeSteps(); 
+						});
+						
+						dimensionDropdown.addEventListener('change', (event) => {
+							currentDimension = event.target.value;
+							for (const key in capturedData) delete capturedData[key];
+							filterAndInitializeSteps();
+						});
+		
+						filterAndInitializeSteps();
+					})
+					.catch(error => {
+						console.error('Error loading the webapp data:', error);
+						mainTitle.textContent = "Error";
+						formContainer.innerHTML = "<p>Failed to load procedure data.</p>";
+					});
+			});
     </script>
 </body>
 </html>
