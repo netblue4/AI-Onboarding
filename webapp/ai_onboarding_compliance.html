@@ -10,6 +10,7 @@
             --secondary-color: #475569;
             --bg-light: #f8fafc;
             --border-color: #e2e8f0;
+            --border-color-dashed: #cbd5e1;
         }
 
         body {
@@ -38,15 +39,17 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            padding: 25px;
             margin-top: 20px;
+            /* We remove padding from the container itself to let reg-item fill it */
+            padding: 0;
+            overflow: hidden; /* For border-radius */
         }
 
+        /* Top-level Regulatory Requirement Node */
         .reg-item {
             margin-bottom: 25px;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            overflow: hidden;
+            border-radius: 8px;
         }
 
         .reg-header {
@@ -56,7 +59,7 @@
         }
 
         .reg-title {
-            font-size: 1.1em;
+            font-size: 1.2em;
             font-weight: 700;
             color: #1e40af;
             margin: 0;
@@ -68,21 +71,50 @@
             margin-top: 5px;
         }
 
-        .imp-list {
+        /* List of Sub-Controls */
+        .sub-control-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .imp-item {
-            padding: 12px 20px;
-            border-bottom: 1px solid var(--bg-light);
-            display: flex;
-            align-items: flex-start;
+        /* Individual Sub-Control Item */
+        .sub-control-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sub-control-item:last-child {
+            border-bottom: none;
         }
 
+        .sub-control-title {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        /* List of Implementations (under a sub-control) */
+        .imp-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-top: 10px;
+            padding-left: 15px;
+            border-left: 3px solid var(--border-color);
+        }
+
+        /* Individual Implementation Item */
+        .imp-item {
+            padding: 10px;
+            display: flex;
+            align-items: flex-start;
+            background-color: #f9fafb;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
         .imp-item:last-child {
-            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .imp-type-badge {
@@ -95,6 +127,7 @@
             margin-right: 10px;
             min-width: 50px;
             text-align: center;
+            margin-top: 3px;
         }
 
         .type-risk { background-color: #fee2e2; color: #991b1b; }
@@ -106,6 +139,7 @@
 
         .imp-title {
             font-weight: 500;
+            font-size: 0.95em;
         }
 
         .imp-meta {
@@ -115,8 +149,9 @@
         }
 
         .no-children {
-            padding: 15px 20px;
+            padding: 5px 0 0 15px;
             color: var(--secondary-color);
+            font-size: 0.9em;
             font-style: italic;
         }
     </style>
@@ -154,16 +189,27 @@
 
         /**
          * Helper function to check if a field's TrustDimension contains a specific tag.
-         * @param {object} field - The field node to check.
-         * @param {string} dimension - The dimension tag to look for (e.g., "Requirement").
-         * @returns {boolean}
          */
         function hasTrustDimension(field, dimension) {
             if (!field || !field.TrustDimension || typeof field.TrustDimension !== 'string') {
                 return false;
             }
-            // Split by comma, trim whitespace, and check for exact match
             return field.TrustDimension.split(',').map(s => s.trim()).includes(dimension);
+        }
+
+        /**
+         * Helper function to extract the control key (e.g., "[Art-10][Par-2][1]")
+         * from the full control string.
+         */
+        function getControlKey(controlString) {
+            if (typeof controlString !== 'string') return null;
+            // Split at the " - " separator and take the first part
+            const key = controlString.split(' - ')[0].trim();
+            // Basic validation: must start with '[' and end with ']'
+            if (key.startsWith('[') && key.endsWith(']')) {
+                return key;
+            }
+            return null; // Return null if format is unexpected
         }
 
         function processAndRenderData(webappData) {
@@ -180,54 +226,60 @@
             const implementationNodes = [];
 
             allFields.forEach(field => {
-                // Check for the "Requirement" tag
                 if (hasTrustDimension(field, 'Requirement')) {
                     requirementNodes.push(field);
                 } 
-                // A node can be an implementation if it's a 'risk' or 'plan'
-                // and (implicitly) does not have the 'Requirement' tag (handled by else if)
                 else if (['risk', 'plan'].includes(field.FieldType)) {
                     implementationNodes.push(field);
                 }
             });
 
-            // 3. Build compliance map, keyed by the Requirement's Control ID
-            // Map<string, { parentField: object, children: Set<object> }>
+            // 3. Build the compliance map.
+            //    Key: Parent Requirement's FieldName
+            //    Value: { parentField: object, subControlLinks: Map<string, { subControl: object, children: Set<object> }> }
             const complianceMap = new Map();
+
             requirementNodes.forEach(reqNode => {
-                if (!reqNode.Control) return; // Skip requirements without a control ID
+                const subControlMap = new Map();
                 
-                // Use the reqNode.Control as the key
-                if (!complianceMap.has(reqNode.Control)) {
-                    complianceMap.set(reqNode.Control, {
-                        parentField: reqNode,
-                        children: new Set()
+                if (reqNode.controls && Array.isArray(reqNode.controls)) {
+                    reqNode.controls.forEach(subControl => {
+                        const controlKey = getControlKey(subControl.control);
+                        if (controlKey) {
+                            subControlMap.set(controlKey, {
+                                subControl: subControl, // The full sub-control object
+                                children: new Set()   // Place to store matching implementations
+                            });
+                        }
                     });
                 }
-            });
-
-            // 4. Link Implementations (Children) to Requirements (Parents)
-            implementationNodes.forEach(implNode => {
-                if (!implNode.Control) return; // This implementation can't be linked
                 
-                // Split the implementation's control string (e.g., "[Art-12][Par-3], [A.5.6]")
-                const implControlParts = implNode.Control.split(',').map(s => s.trim());
-
-                // Check against every Requirement (parent) in our map
-                complianceMap.forEach((reqData, reqControlKey) => {
-                    
-                    // Check if any part of the implementation's control list
-                    // contains the requirement's (parent's) control key
-                    const isLinked = implControlParts.some(part => part.includes(reqControlKey));
-
-                    if (isLinked) {
-                        // Yes, this implementation is a child of this requirement
-                        reqData.children.add(implNode);
-                    }
+                complianceMap.set(reqNode.FieldName, {
+                    parentField: reqNode,
+                    subControlLinks: subControlMap
                 });
             });
 
-            // 5. Render the results (this function is unchanged from previous version)
+            // 4. Link Implementations (Children) to the mapped Sub-Controls
+            implementationNodes.forEach(implNode => {
+                if (!implNode.Control) return; // This implementation can't be linked
+                
+                const implControlParts = implNode.Control.split(',').map(s => s.trim());
+
+                // Check this implementation's keys against ALL sub-controls in our map
+                for (const [parentName, data] of complianceMap.entries()) {
+                    const subControlLinks = data.subControlLinks; // This is the Map
+                    
+                    for (const implKey of implControlParts) {
+                        if (subControlLinks.has(implKey)) {
+                            // Found a match! Add this child.
+                            subControlLinks.get(implKey).children.add(implNode);
+                        }
+                    }
+                }
+            });
+
+            // 5. Render the new, nested structure
             renderMapping(complianceMap);
         }
 
@@ -235,72 +287,92 @@
             const container = document.getElementById('content');
             container.innerHTML = '';
 
-            let hasMatches = false;
+            if (complianceMap.size === 0) {
+                 container.innerHTML = '<p>No "Requirement" nodes found in the data. Please check the JSON file for fields with "Requirement" in their TrustDimension.</p>';
+                 return;
+            }
 
-            // Convert Map to array and sort by Control ID for cleaner display
+            // Sort top-level requirements by FieldName
             const sortedEntries = Array.from(complianceMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
-            sortedEntries.forEach(([controlKey, data]) => {
-                // We will display all Requirements, even if they have no children,
-                // to show what is defined.
-                // To only show items with children, uncomment the next line:
-                // if (data.children.size === 0) return;
-
-                hasMatches = true;
+            sortedEntries.forEach(([parentFieldName, data]) => {
                 const parent = data.parentField;
+                const subControlLinks = data.subControlLinks; // The Map
 
                 const regItem = document.createElement('div');
                 regItem.className = 'reg-item';
 
-                // --- Regulatory Node Header ---
-                const header = document.createElement('div');
-                header.className = 'reg-header';
-                header.innerHTML = `
-                    <div class="reg-title">${escapeHtml(parent.FieldName)}</div>
-                    <div class="reg-meta"><strong>Control:</strong> ${escapeHtml(parent.Control)} | <strong>Trust Dimension:</strong> ${escapeHtml(parent.TrustDimension || 'N/A')}</div>
+                // --- Render Regulatory Node Header ---
+                regItem.innerHTML = `
+                    <div class="reg-header">
+                        <div class="reg-title">${escapeHtml(parent.FieldName)}</div>
+                        <div class="reg-meta"><strong>Top-level Control:</strong> ${escapeHtml(parent.Control)} | <strong>Trust Dimension:</strong> ${escapeHtml(parent.TrustDimension || 'N/A')}</div>
+                    </div>
                 `;
-                regItem.appendChild(header);
 
-                // --- Implementation Children List ---
-                const impList = document.createElement('ul');
-                impList.className = 'imp-list';
+                // --- Render List of Sub-Controls ---
+                const subControlList = document.createElement('ul');
+                subControlList.className = 'sub-control-list';
 
-                if (data.children.size === 0) {
-                    const noChildren = document.createElement('div');
-                    noChildren.className = 'no-children';
-                    noChildren.textContent = 'No matching implementation risks or plans found.';
-                    impList.appendChild(noChildren);
+                if (subControlLinks.size === 0) {
+                    const noSubItems = document.createElement('li');
+                    noSubItems.className = 'sub-control-item';
+                    noSubItems.textContent = 'No specific sub-controls defined in the "controls" array for this requirement.';
+                    subControlList.appendChild(noSubItems);
                 } else {
-                    // Convert Set to Array and sort children by their Control for consistent ordering
-                    const sortedChildren = Array.from(data.children).sort((a, b) => (a.Control || '').localeCompare(b.Control || ''));
+                    // Sort sub-controls by their key (e.g., [Art-10][Par-2][1])
+                    const sortedSubControls = Array.from(subControlLinks.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+                    
+                    sortedSubControls.forEach(([subControlKey, subControlData]) => {
+                        const subControl = subControlData.subControl;
+                        const children = subControlData.children; // The Set
 
-                    sortedChildren.forEach(child => {
-                        const impItem = document.createElement('li');
-                        impItem.className = 'imp-item';
-
-                        const typeClass = child.FieldType === 'risk' ? 'type-risk' : 'type-plan';
+                        const subControlItem = document.createElement('li');
+                        subControlItem.className = 'sub-control-item';
                         
-                        impItem.innerHTML = `
-                            <span class="imp-type-badge ${typeClass}">${escapeHtml(child.FieldType)}</span>
-                            <div class="imp-content">
-                                <div class="imp-title">${escapeHtml(child.FieldName)}</div>
-                                <div class="imp-meta">
-                                    <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
-                                    ${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
-                                </div>
-                            </div>
-                        `;
-                        impList.appendChild(impItem);
+                        // Add sub-control title
+                        const subControlTitle = document.createElement('div');
+                        subControlTitle.className = 'sub-control-title';
+                        subControlTitle.textContent = escapeHtml(subControl.control);
+                        subControlItem.appendChild(subControlTitle);
+
+                        // --- Render List of Implementations for this Sub-Control ---
+                        if (children.size === 0) {
+                            const noChildren = document.createElement('div');
+                            noChildren.className = 'no-children';
+                            noChildren.textContent = 'No matching implementation risks or plans found.';
+                            subControlItem.appendChild(noChildren);
+                        } else {
+                            const impList = document.createElement('ul');
+                            impList.className = 'imp-list';
+
+                            const sortedChildren = Array.from(children).sort((a, b) => (a.FieldName || '').localeCompare(b.FieldName || ''));
+
+                            sortedChildren.forEach(child => {
+                                const impItem = document.createElement('li');
+                                impItem.className = 'imp-item';
+                                const typeClass = child.FieldType === 'risk' ? 'type-risk' : 'type-plan';
+                                
+                                impItem.innerHTML = `
+                                    <span class="imp-type-badge ${typeClass}">${escapeHtml(child.FieldType)}</span>
+                                    <div class="imp-content">
+                                        <div class="imp-title">${escapeHtml(child.FieldName)}</div>
+                                        <div class="imp-meta">
+                                            <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
+                                            ${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
+                                        </div>
+                                    </div>
+                                `;
+                                impList.appendChild(impItem);
+                            });
+                            subControlItem.appendChild(impList);
+                        }
+                        subControlList.appendChild(subControlItem);
                     });
                 }
-
-                regItem.appendChild(impList);
+                regItem.appendChild(subControlList);
                 container.appendChild(regItem);
             });
-
-            if (!hasMatches) {
-                container.innerHTML = '<p>No "Requirement" nodes found in the data. Please check the JSON file for fields with "Requirement" in their TrustDimension.</p>';
-            }
         }
 
         // Utility to prevent HTML injection from JSON data
