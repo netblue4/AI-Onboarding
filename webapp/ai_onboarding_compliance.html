@@ -353,6 +353,7 @@
             // 3. Build the compliance map.
             //    Key: Parent Requirement's FieldName
             //    Value: { parentField: object, subControlLinks: Map<string, { subControl: object, children: Set<object> }> }
+            //    A Map is used here because it *preserves insertion order*, matching the JSON file order.
             const complianceMap = new Map();
 
             requirementNodes.forEach(reqNode => {
@@ -370,6 +371,7 @@
                     });
                 }
                 
+                // Use FieldName as key, which is what the user iterates over later
                 complianceMap.set(reqNode.FieldName, {
                     parentField: reqNode,
                     subControlLinks: subControlMap
@@ -408,10 +410,10 @@
                  return;
             }
 
-            // Sort top-level requirements by FieldName
-            const sortedEntries = Array.from(complianceMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
-
-            sortedEntries.forEach(([parentFieldName, data]) => {
+            // *** CHANGE IS HERE ***
+            // Removed alphabetical sorting.
+            // We now iterate directly on complianceMap, which maintains insertion order.
+            complianceMap.forEach((data, parentFieldName) => {
                 const parent = data.parentField;
                 const subControlLinks = data.subControlLinks; // The Map
 
@@ -436,7 +438,10 @@
                 const progressColor = (displayPercentage >= 100) ? 'var(--success-color)' : 'var(--primary-color)';
 
                 // Create a unique ID for the collapsible content
-                const contentId = `content-${parentFieldName.replace(/[^a-zA-Z0-9_]/g, '-')}`;
+                // Use the parent's control string for a more unique ID
+                const safeIdBase = (parent.Control || parent.FieldName).replace(/[^a-zA-Z0-9_]/g, '-');
+                const contentId = `content-${safeIdBase}`;
+
 
                 // --- Render Regulatory Node Header ---
                 const regHeader = document.createElement('div');
@@ -474,6 +479,7 @@
                     subControlList.appendChild(noSubItems);
                 } else {
                     // Sort sub-controls by their key (e.g., [Art-10][Par-2][1])
+                    // We still sort the *sub-controls* for readability
                     const sortedSubControls = Array.from(subControlLinks.entries()).sort((a, b) => a[0].localeCompare(b[0]));
                     
                     sortedSubControls.forEach(([subControlKey, subControlData]) => {
@@ -503,7 +509,7 @@
 
                             sortedChildren.forEach(child => {
                                 const impItem = document.createElement('li');
-                                impItem.className = 'imp-item';
+S                                impItem.className = 'imp-item';
                                 
                                 // *** UPDATED BADGE LOGIC (from previous request) ***
                                 let typeClass = 'type-other';
@@ -514,7 +520,7 @@
                                     // typeName is already 'risk'
                                 } else if (typeName === 'plan') {
                                     typeClass = 'type-plan';
-                                    // typeName is already 'plan'
+                                    // typeName is 'plan'
                                 } else {
                                     // If it's not 'risk' or 'plan', set it to 'FIELD'
                                     typeClass = 'type-other';
@@ -556,4 +562,3 @@
     </script>
 </body>
 </html>
-
