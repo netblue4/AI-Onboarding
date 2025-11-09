@@ -727,7 +727,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.3,A.6.2.3]",
+              "Control": "[A.9.3],[A.6.2.3]",
               "TrustDimension": "Intended Use,Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "Augmented/Enhanced Tasks",
@@ -735,7 +735,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.3,A.6.2.3]",
+              "Control": "[A.9.3],[A.6.2.3]",
               "TrustDimension": "Intended Use,Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "Select Potential Benefits",
@@ -758,7 +758,7 @@
           "FieldName": "Data for AI System",
           "Fields": [
             {
-              "Control": "[A.4.2,A.4.3]",
+              "Control": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Repository",
@@ -766,7 +766,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2,A.4.3]",
+              "Control": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Description",
@@ -774,7 +774,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2,A.4.3, A.7.5]",
+              "Control": "[A.4.2],[A.4.3],[A.7.5]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Where does the data originate from?",
@@ -782,7 +782,7 @@
               "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
             },
             {
-              "Control": "[A.4.2,A.4.3]",
+              "Control": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the specific purpose(s) of the data?",
@@ -790,7 +790,7 @@
               "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
             },
             {
-              "Control": "[A.4.2,A.4.3,A.7.3,A.7.2]",
+              "Control": "[A.4.2],[A.4.3],[A.7.3],[A.7.2]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How will the Data be acquired and selected?",
@@ -798,7 +798,7 @@
               "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
             },
             {
-              "Control": "[A.4.2,A.4.3]",
+              "Control": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the data Retention schedules based on legal and operational requirements?",
@@ -806,7 +806,7 @@
               "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
             },
             {
-              "Control": "[A.4.2,A.4.3]",
+              "Control": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How often does the data need to be refreshed?",
@@ -814,7 +814,7 @@
               "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
             },
             {
-              "Control": "[A.4.2,A.4.3]",
+              "Control": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Secure Disposing",
@@ -822,7 +822,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2,A.4.3]",
+              "Control": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Approximate Size",
@@ -830,7 +830,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2, A.4.3]",
+              "Control": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer,Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Owner/Custodian",
@@ -880,7 +880,7 @@
           "FieldName": "Traceability Specifications",
           "Fields": [
             {
-              "Control": "[Art-12][Par-1],A.6.2.8",
+              "Control": "[Art-12][Par-1]],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance, Record-Keeping",
               "FieldName": "Required System Lifecycle Events",
@@ -888,7 +888,7 @@
               "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
-              "Control": "[Art-12][Par-1],A.6.2.8",
+              "Control": "[Art-12][Par-1]],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Select all Mandatory Operational Event Categories for Logging",
@@ -896,7 +896,7 @@
               "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
             },
             {
-              "Control": "[Art-12][Par-1],A.6.2.8",
+              "Control": "[Art-12][Par-1]],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Required Standard Traceability Log Metadata Schema",
@@ -920,7 +920,7 @@
           "FieldName": "AI system's Tooling resources",
           "Fields": [
             {
-              "Control": "[A.4.2,A.4.4]",
+              "Control": "[A.4.2],[A.4.4]",
               "Role": "Engineer,Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Tools Name and Version",
@@ -928,7 +928,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2,A.4.4]",
+              "Control": "[A.4.2],[A.4.4]",
               "Role": "Engineer,Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Select Tool Categories",
@@ -936,7 +936,7 @@
               "FieldType": "MultiSelect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
-              "Control": "[A.4.2,A.4.4]",
+              "Control": "[A.4.2],[A.4.4]",
               "Role": "Engineer,Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Purpose/Use Case in Project",
@@ -950,7 +950,7 @@
           "FieldName": "AI Systems Computing Resources",
           "Fields": [
             {
-              "Control": "[A.4.2,A.4.5]",
+              "Control": "[A.4.2],[A.4.5]",
               "Role": "Engineer,Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Computing Resource Name and Version",
@@ -958,7 +958,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2,A.4.5]",
+              "Control": "[A.4.2],[A.4.5]",
               "Role": "Engineer,Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Category of the computing resource",
@@ -966,7 +966,7 @@
               "FieldType": "MultiSelect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
             },
             {
-              "Control": "[A.4.2,A.4.5]",
+              "Control": "[A.4.2],[A.4.5]",
               "Role": "Engineer,Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Which parts of the AI lifecycle do these resource supports?",
@@ -990,49 +990,49 @@
           "FieldName": "Fundamental Rights Impact Assessment",
           "Fields": [
             {
-              "Control": "[A.5.2,A.5.3,A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
               "FieldText": "",
               "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential negative impacts on fundamental rights",
               "FieldText": "Select specifically identified risks to the vulnerable population.",
               "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential positive impacts on fundamental rights",
               "FieldText": "Select expected benefits for the vulnerable population.",
               "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Rate the severity of identified negative impacts",
               "FieldText": "",
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the severity of identified impacts",
               "FieldText": "Provide justification for the severity rating selected above.",
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
               "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Post-Deployment Monitoring Plan",
               "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
@@ -1045,7 +1045,7 @@
           "FieldName": "Workforce Transition and Adaptation for AI Integration",
           "Fields": [
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
@@ -1053,7 +1053,7 @@
               "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Identify the primary roles of the AI system relative to human workers",
@@ -1061,7 +1061,7 @@
               "FieldType": "MultiSelect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Automated/Eliminated Tasks",
@@ -1069,7 +1069,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Primary Mitigation Strategy for Displacement",
@@ -1077,7 +1077,7 @@
               "FieldType": "MultiSelect:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Structured Re-skilling Program in Place",
@@ -1085,7 +1085,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Structured Re-skilling Program Effectiveness",
@@ -1099,7 +1099,7 @@
           "FieldName": "Environmental Sustainability of AI Systems",
           "Fields": [
             {
-              "Control": "[A.5.2, A.5.3, A.5.5]",
+              "Control": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
@@ -1107,7 +1107,7 @@
               "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.5]",
+              "Control": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Energy Consumption & Carbon Footprint Estimation",
@@ -1115,7 +1115,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.5]",
+              "Control": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
@@ -1123,7 +1123,7 @@
               "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.5]",
+              "Control": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select main strategies for minimizing negative environmental impacts.",
@@ -1131,7 +1131,7 @@
               "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.5]",
+              "Control": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Level of Environmental Impact",
@@ -1139,7 +1139,7 @@
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.5]",
+              "Control": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the Environmental Impact",
@@ -1147,7 +1147,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.5]",
+              "Control": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Contribution to Environmental Sustainability Goals",
@@ -1155,7 +1155,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2, A.5.3, A.5.5]",
+              "Control": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Environmental Impact Monitoring and Review",
@@ -1885,7 +1885,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.5,A.7.6]",
+          "Control": "[A.7.5],[A.7.6]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2133,7 +2133,7 @@
           ]
         },
         {
-          "Control": "[Art-10][Par-2][2]",
+          "Control": "[Art-10][Par-2][2],[A.6.2.4]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Data and Data Governance,Fundamental Rights,Fairness and Bias",
@@ -2330,7 +2330,7 @@
           ]
         },
         {
-          "Control": "[Art-13][Par-1]",
+          "Control": "[Art-13][Par-1],[A.6.2.4]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Transparency and Explainability,Fundamental Rights",
@@ -2451,7 +2451,7 @@
           ]
         },
         {
-          "Control": "[Art-12][Par-3]",
+          "Control": "[Art-12][Par-3],[A.6.2.4]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Compliance, Record-Keeping",
@@ -2542,7 +2542,7 @@
           ]
         },
         {
-          "Control": "[A.9.4]",
+          "Control": "[A.9.4],[A.6.2.4]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Intended Use,Fundamental Rights",
@@ -2630,7 +2630,7 @@
           ]
         },
         {
-          "Control": "[Art-14][Par-3]",
+          "Control": "[Art-14][Par-3],[A.6.2.4]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
           "TrustDimension": "Human Oversight,Fundamental Rights",
@@ -2827,7 +2827,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5] ",
+          "Control": "[Art-15][Par-5]",
           "FieldType": "risk",
           "Role": "Deployment Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3013,7 +3013,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-4] ",
+          "Control": "[Art-15][Par-4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3043,7 +3043,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-4] ",
+          "Control": "[Art-15][Par-4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
