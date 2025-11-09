@@ -40,7 +40,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             margin-top: 20px;
-            /* We remove padding from the container itself to let reg-item fill it */
             padding: 0;
             overflow: hidden; /* For border-radius */
         }
@@ -128,24 +127,29 @@
             min-width: 50px;
             text-align: center;
             margin-top: 3px;
+            white-space: nowrap;
         }
 
         .type-risk { background-color: #fee2e2; color: #991b1b; }
         .type-plan { background-color: #dcfce7; color: #166534; }
+        .type-other { background-color: #e2e8f0; color: #475569; } /* New badge for other types */
 
         .imp-content {
             flex: 1;
+            min-width: 0; /* Prevents long text from overflowing */
         }
 
         .imp-title {
             font-weight: 500;
             font-size: 0.95em;
+            word-wrap: break-word; /* Handle long field names */
         }
 
         .imp-meta {
             font-size: 0.85em;
             color: #64748b;
             margin-top: 2px;
+            word-wrap: break-word; /* Handle long control strings */
         }
 
         .no-children {
@@ -229,12 +233,24 @@
                 if (hasTrustDimension(field, 'Requirement')) {
                     requirementNodes.push(field);
                 } 
-                else if (['risk', 'plan'].includes(field.FieldType)) {
+                else if (field.FieldType === 'fieldGroup' && field.Fields && Array.isArray(field.Fields)) {
+                    // *** NEW LOGIC ***
+                    // This is a fieldGroup, so we treat its *inner fields* as potential implementations
+                    field.Fields.forEach(innerField => {
+                        // Only add if it has a control to match
+                        if (innerField.Control) {
+                            implementationNodes.push(innerField);
+                        }
+                    });
+                }
+                else if (field.Control) {
+                    // This catches top-level 'risk', 'plan', and any other field
+                    // that is not a Requirement but has a Control.
                     implementationNodes.push(field);
                 }
             });
 
-            // 3. Build the compliance map.
+            // 3. Build the compliance map. (Unchanged)
             //    Key: Parent Requirement's FieldName
             //    Value: { parentField: object, subControlLinks: Map<string, { subControl: object, children: Set<object> }> }
             const complianceMap = new Map();
@@ -260,7 +276,7 @@
                 });
             });
 
-            // 4. Link Implementations (Children) to the mapped Sub-Controls
+            // 4. Link Implementations (Children) to the mapped Sub-Controls (Unchanged)
             implementationNodes.forEach(implNode => {
                 if (!implNode.Control) return; // This implementation can't be linked
                 
@@ -351,10 +367,21 @@
                             sortedChildren.forEach(child => {
                                 const impItem = document.createElement('li');
                                 impItem.className = 'imp-item';
-                                const typeClass = child.FieldType === 'risk' ? 'type-risk' : 'type-plan';
+                                
+                                // *** UPDATED BADGE LOGIC ***
+                                let typeClass = 'type-other';
+                                let typeName = child.FieldType || 'field';
+                                if (typeName === 'risk') {
+                                    typeClass = 'type-risk';
+                                } else if (typeName === 'plan') {
+                                    typeClass = 'type-plan';
+                                } else {
+                                    // Shorten long type names for display
+                                    typeName = typeName.replace("Auto generated ", "").replace(" number", "");
+                                }
                                 
                                 impItem.innerHTML = `
-                                    <span class="imp-type-badge ${typeClass}">${escapeHtml(child.FieldType)}</span>
+                                    <span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
                                     <div class="imp-content">
                                         <div class="imp-title">${escapeHtml(child.FieldName)}</div>
                                         <div class="imp-meta">
@@ -372,6 +399,7 @@
                 }
                 regItem.appendChild(subControlList);
                 container.appendChild(regItem);
+allc
             });
         }
 
