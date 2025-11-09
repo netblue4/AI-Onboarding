@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulatory Risk & Implementation Mapping</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #475569;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #334155;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--bg-light);
+        }
+
+        h1 {
+            color: #1e293b;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        #loading, #error {
+            padding: 20px;
+            font-size: 1.2em;
+        }
+        #error { color: #dc2626; }
+
+        .mapping-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .reg-item {
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .reg-header {
+            background-color: #eff6ff;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reg-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #1e40af;
+            margin: 0;
+        }
+
+        .reg-meta {
+            font-size: 0.9em;
+            color: var(--secondary-color);
+            margin-top: 5px;
+        }
+
+        .imp-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .imp-item {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--bg-light);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .imp-item:last-child {
+            border-bottom: none;
+        }
+
+        .imp-type-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-right: 10px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .type-risk { background-color: #fee2e2; color: #991b1b; }
+        .type-plan { background-color: #dcfce7; color: #166534; }
+
+        .imp-content {
+            flex: 1;
+        }
+
+        .imp-title {
+            font-weight: 500;
+        }
+
+        .imp-meta {
+            font-size: 0.85em;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .no-children {
+            padding: 15px 20px;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Regulatory Compliance to Implementation Mapping</h1>
+    
+    <div id="loading">Loading onboarding procedure data...</div>
+    <div id="error" style="display: none;"></div>
+    <div id="content" class="mapping-container" style="display: none;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingEl = document.getElementById('loading');
+            const errorEl = document.getElementById('error');
+            const contentEl = document.getElementById('content');
+
+            fetch('ai_onboarding_procedure_data.json')
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    processAndRenderData(data);
+                    loadingEl.style.display = 'none';
+                    contentEl.style.display = 'block';
+                })
+                .catch(err => {
+                    loadingEl.style.display = 'none';
+                    errorEl.textContent = `Error loading data: ${err.message}. Please ensure 'ai_onboarding_procedure_data.json' is in the same directory.`;
+                    errorEl.style.display = 'block';
+                });
+        });
+
+        function processAndRenderData(webappData) {
+            // 1. Flatten all steps and extract all fields
+            let allFields = [];
+            Object.values(webappData).flat().forEach(step => {
+                if (step.Fields && Array.isArray(step.Fields)) {
+                    allFields = allFields.concat(step.Fields);
+                }
+            });
+
+            // 2. Build relationships based on Control field containment
+            // Map structure: ParentControlString -> { parentNodes: [], childNodes: [] }
+            const complianceMap = new Map();
+
+            // First pass: Identify all potential nodes and index them by their Control
+            allFields.forEach(field => {
+                if (!field.Control || typeof field.Control !== 'string') return;
+
+                // We prefer "Regulatory" nodes to be the parents. 
+                // If we don't know which is which specifically, we treat every node as a potential parent 
+                // and see if others link to it.
+                if (!complianceMap.has(field.Control)) {
+                    complianceMap.set(field.Control, { 
+                        parentField: field, // Keep one representative for the parent display header
+                        children: new Set() // Use Set to avoid duplicate child entries
+                    });
+                }
+            });
+
+            // Second pass: Find children for every potential parent
+            // A field is a child if its Control contains the parent's Control
+            allFields.forEach(childField => {
+                // Implementations must be of type 'risk' or 'plan'
+                if (!['risk', 'plan'].includes(childField.FieldType)) return;
+                if (!childField.Control) return;
+
+                // Split child controls by comma to handle "[Art-12][Par-1], [A.5.6]"
+                const childControlParts = childField.Control.split(',').map(s => s.trim());
+
+                // Check against all known potential parents
+                complianceMap.forEach((parentData, parentControlKey) => {
+                    // Avoid self-referencing (a node is not its own child)
+                    if (childField.Control === parentControlKey) return;
+
+                    // Check if ANY part of the child's control string contains the parent's control key
+                    // We use strict inclusion as requested ("who's 'Control' contain...")
+                    const isLinked = childControlParts.some(part => part.includes(parentControlKey));
+
+                    if (isLinked) {
+                        parentData.children.add(childField);
+                    }
+                });
+            });
+
+            // 3. Render the results
+            renderMapping(complianceMap);
+        }
+
+        function renderMapping(complianceMap) {
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            let hasMatches = false;
+
+            // Convert Map to array and sort by Control ID for cleaner display
+            const sortedEntries = Array.from(complianceMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+
+            sortedEntries.forEach(([controlKey, data]) => {
+                // ONLY display Regulatory parents that actually have linked Implementations
+                if (data.children.size === 0) return;
+
+                hasMatches = true;
+                const parent = data.parentField;
+
+                const regItem = document.createElement('div');
+                regItem.className = 'reg-item';
+
+                // --- Regulatory Node Header ---
+                const header = document.createElement('div');
+                header.className = 'reg-header';
+                header.innerHTML = `
+                    <div class="reg-title">${escapeHtml(parent.FieldName)}</div>
+                    <div class="reg-meta"><strong>Control:</strong> ${escapeHtml(parent.Control)} | <strong>Trust Dimension:</strong> ${escapeHtml(parent.TrustDimension || 'N/A')}</div>
+                `;
+                regItem.appendChild(header);
+
+                // --- Implementation Children List ---
+                const impList = document.createElement('ul');
+                impList.className = 'imp-list';
+
+                // Convert Set to Array and sort children by their Control for consistent ordering
+                const sortedChildren = Array.from(data.children).sort((a, b) => a.Control.localeCompare(b.Control));
+
+                sortedChildren.forEach(child => {
+                    const impItem = document.createElement('li');
+                    impItem.className = 'imp-item';
+
+                    const typeClass = child.FieldType === 'risk' ? 'type-risk' : 'type-plan';
+                    
+                    impItem.innerHTML = `
+                        <span class="imp-type-badge ${typeClass}">${escapeHtml(child.FieldType)}</span>
+                        <div class="imp-content">
+                            <div class="imp-title">${escapeHtml(child.FieldName)}</div>
+                            <div class="imp-meta">
+                                <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
+                                ${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
+                            </div>
+                        </div>
+                    `;
+                    impList.appendChild(impItem);
+                });
+
+                regItem.appendChild(impList);
+                container.appendChild(regItem);
+            });
+
+            if (!hasMatches) {
+                container.innerHTML = '<p>No Implementation nodes found that link to Regulatory nodes based on Control field containment.</p>';
+            }
+        }
+
+        // Utility to prevent HTML injection from JSON data
+        function escapeHtml(unsafe) {
+            if (typeof unsafe !== 'string') return unsafe;
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
