@@ -184,8 +184,8 @@
           "Control": "[Article 13]",
           "FieldType": "risk",
           "Role": "Compliance,Approver",
-          "TrustDimension": "Compliance,Transparency and Provision of Information",
-          "FieldName": "Lack of Transparency and Provision of Information to Users",
+          "TrustDimension": "Compliance,Transparency and Explainability",
+          "FieldName": "Lack of Transparency and Explainability to Users",
           "RiskDescription": "",
           "controls": [
             {
@@ -599,7 +599,7 @@
           "Control": "[A.8 - Information for interested parties of AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Transparency and Provision of Information",
+          "TrustDimension": "Compliance,Transparency and Explainability",
           "FieldName": "Information for interested parties of AI systems",
           "RiskDescription": "",
           "controls": [
@@ -691,62 +691,60 @@
       ],
       "Fields": [
         {
-          "Control": "[A.6.2.3 – Documentation of AI system design and development]",
           "FieldType": "fieldGroup",
-          "Role": "Engineer",
-          "TrustDimension": "Transparency and Provision of Information",
           "FieldName": "AI System Details",
           "Fields": [
             {
-              "Control": "[A.9.4 – Intended use of the AI system]",
+              "Control": "[A.6.2.3]",
+			  "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
-              "TrustDimension": "Intended Use",
               "FieldName": "AI System ID",
               "FieldText": "AI System Unique Number",
               "FieldType": "Auto generated number"
             },
             {
-              "Control": "[A.9.4 – Intended use of the AI system]",
+              "Control": "[A.6.2.3]",
+			  "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
-              "TrustDimension": "Intended Use",
               "FieldName": "Name",
               "FieldText": "Name of the AI application",
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.4 – Intended use of the AI system]",
+              "Control": "[A.6.2.3]",
+			  "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
-              "TrustDimension": "Intended Use",
               "FieldName": "Business Purpose",
               "FieldText": "What specific business problem or task does this system address?",
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.4 – Intended use of the AI system]",
+              "Control": "[A.6.2.3]",
+			  "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
-              "TrustDimension": "Intended Use",
               "FieldName": "Use Cases",
               "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.3 - Objectives for responsible use of AI system]",
+              "Control": "[A.9.3,A.6.2.3]",
+              "TrustDimension": "Intended Use,Transparency and Explainability",
               "Role": "Requester",
-              "TrustDimension": "Intended Use",
               "FieldName": "Augmented/Enhanced Tasks",
               "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.3 - Objectives for responsible use of AI system]",
+              "Control": "[A.9.3,A.6.2.3]",
+              "TrustDimension": "Intended Use,Transparency and Explainability",
               "Role": "Requester",
-              "TrustDimension": "Intended Use",
               "FieldName": "Select Potential Benefits",
               "FieldText": "",
               "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
             },
             {
-              "Control": "[A.9.4 - Intended use of AI system]",
+              "Control": "[A.6.2.3]",
+              "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Select the Intended User Profiles for the AI System",
@@ -933,7 +931,7 @@
           "FieldType": "fieldGroup",
           "Control": "[A.4.2,A.4.4,A.6.2.3]",
           "Role": "Engineer",
-          "TrustDimension": "Transparency and Provision of Information",
+          "TrustDimension": "Transparency and Explainability",
           "FieldName": "AI system's Tooling resources",
           "Fields": [
             {
@@ -966,7 +964,7 @@
           "Control": "[A.4.2, A.4.5 ,A.6.2.3]",
           "FieldType": "fieldGroup",
           "Role": "Engineer",
-          "TrustDimension": "Transparency and Provision of Information",
+          "TrustDimension": "Transparency and Explainability",
           "FieldName": "AI Systems Computing Resources",
           "Fields": [
             {
@@ -2362,7 +2360,7 @@
           "Control": "[Art-13][Par-1]",
           "FieldType": "plan",
           "Role": "Tester,Approver",
-          "TrustDimension": "Transparency and Provision of Information,Fundamental Rights",
+          "TrustDimension": "Transparency and Explainability,Fundamental Rights",
           "FieldName": "Transparency and Explainability in AI Systems Test Plan",
           "PlanObjective": "Ensure AI systems are designed, developed and tested to provide understandable and sufficient information about its decisions to affected individuals.",
           "TestDatasetMetadata": {
@@ -2968,7 +2966,7 @@
         {
           "Control": "[A.8.4 - Incident Communication Plan - Data Breach]",
           "Role": "Incident Manager",
-          "TrustDimension": "Transparency and Provision of Information",
+          "TrustDimension": "Transparency and Explainability",
           "FieldName": "Data Breach",
           "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
           "FieldType": "TextBox"
@@ -2976,7 +2974,7 @@
         {
           "Control": "[A.8.4 - Incident Communication Plan - Model Misuse]",
           "Role": "Incident Manager",
-          "TrustDimension": "Transparency and Provision of Information",
+          "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Misuse",
           "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
           "FieldType": "TextBox"
@@ -2984,7 +2982,7 @@
         {
           "Control": "[A.8.4 - Incident Communication Plan - Model Failure]",
           "Role": "Incident Manager",
-          "TrustDimension": "Transparency and Provision of Information",
+          "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Failure",
           "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
           "FieldType": "TextBox"
