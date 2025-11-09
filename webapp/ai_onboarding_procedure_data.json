@@ -727,7 +727,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.3],[A.6.2.3]",
+              "Control": "[A.9.3],[A.6.2.3],[Art-27][Par-1a, 1b]",
               "TrustDimension": "Intended Use,Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "Augmented/Enhanced Tasks",
@@ -844,7 +844,7 @@
           "FieldName": "Allowed & Disallowed Key Phrase Categories",
           "Fields": [
             {
-              "Control": "[A.9.4]",
+              "Control": "[A.9.4],[Art-27][Par-1a, 1b]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Whitelist Key Phrase Categories for Permitted User Prompts",
@@ -852,7 +852,7 @@
               "FieldType": "MultiSelect:Information Retrieval and Q&A:what is, who is, where can I find, tell me about, explain the, what are the details on/Document Summarization:summarize this, give me the key points, tl;dr, provide a summary of, what are the main takeaways, create an abstract for/Content Creation and Drafting:draft an email about, write a paragraph on, create a marketing blurb for, help me write, generate a draft of, compose a message about/Policy and Procedure Guidance:what is the policy for, how do I request, what is the procedure for, explain the process of, guide me through the steps for/Onboarding and Training Support:how do I set up, what training do I need for, explain the onboarding process, guide for new hires, help me learn about/Technical Support and Troubleshooting:how to fix, I'm getting an error, troubleshoot this issue, what does this error mean, help me with this technical problem/Data Analysis and Extraction:extract all the names from, what is the total of, find the average of, pull the data for, list all the dates in, analyze the trends in"
             },
             {
-              "Control": "[A.9.4]",
+              "Control": "[A.9.4],[Art-27][Par-1a, 1b]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Blacklist Key Phrase Categories for Prohibited User Prompt",
@@ -866,7 +866,7 @@
           "FieldName": "Human Intervention Key Phrase Categories Requiring Human Intervention",
           "Fields": [
             {
-              "Control": "[Art-14][Par-1]",
+              "Control": "[Art-14][Par-1],[Art-27][Par-1e]",
               "Role": "Requester",
               "TrustDimension": "Human Oversight",
               "FieldName": "Human Intervention Key Phrase Categories - Requiring Human Intervention",
@@ -990,42 +990,42 @@
           "FieldName": "Fundamental Rights Impact Assessment",
           "Fields": [
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c, 1d]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
               "FieldText": "",
               "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c, 1d]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential negative impacts on fundamental rights",
               "FieldText": "Select specifically identified risks to the vulnerable population.",
               "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c, 1d]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential positive impacts on fundamental rights",
               "FieldText": "Select expected benefits for the vulnerable population.",
               "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c, 1d]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Rate the severity of identified negative impacts",
               "FieldText": "",
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c, 1d]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the severity of identified impacts",
               "FieldText": "Provide justification for the severity rating selected above.",
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1f] ",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
               "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
@@ -1619,7 +1619,7 @@
           ]
         },
         {
-          "Control": "[Art-14][Par-2]",
+          "Control": "[Art-14][Par-2],[Art-27][Par-1e]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
