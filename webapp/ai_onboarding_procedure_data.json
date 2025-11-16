@@ -1,5 +1,5 @@
 {
-  "1. AI Act and ISO 42001 Compliance": [
+  "1. Compliance Requirements: AI Act and ISO 42001": [
     {
       "StepName": "1.1. EU AI Act: Prohibited AI Practices Assessment",
       "Objectives": [
@@ -681,7 +681,7 @@
       ]
     }
   ],
-  "2. AI System Documentation and Impact Assessments": [
+  "2. Define: AI System Documentation and Impact Assessments": [
     {
       "StepName": "2.1. - AI system's intended use and limitations",
       "Objectives": [
@@ -1167,7 +1167,7 @@
       ]
     }
   ],
-  "3. Data Preparation (Offline or Real-Time Knowledge Base Creation)": [
+  "3. Build: Data Preparation (Offline or Real-Time Knowledge Base Creation)": [
     {
       "StepName": "3.1. - Internal Data Sources",
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
@@ -1497,7 +1497,7 @@
       ]
     }
   ],
-  "4. Development (Real-Time Chat With Your Document)": [
+  "4. Build: Development (Real-Time Chat With Your Document)": [
     {
       "StepName": "4.1. - User Interface",
       "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
@@ -2011,7 +2011,7 @@
       ]
     }
   ],
-  "5. Verification and Monitoring": [
+  "5. Test: Verification and Monitoring": [
     {
       "StepName": "5.1. - AI Systems verifications and monitoring",
       "Objectives": [
@@ -2816,7 +2816,7 @@
       ]
     }
   ],
-  "7. Deployment": [
+  "7. Build: Deployment": [
     {
       "StepName": "7.1. - AI Lifecycle Phase requirements - Deployment",
       "WebFormTitle": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation.",
