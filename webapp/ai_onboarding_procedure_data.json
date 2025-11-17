@@ -59,7 +59,7 @@
       ]
     },
     {
-      "StepName": "1.4. AI Act - Section 2: Provider & Deployer Requirements for High-Risk AI Systems",
+      "StepName": "1.4. AI Act - Provider & Deployer Requirements for High-Risk AI Systems",
       "Objectives": [
         {
           "Objective": "For systems classified as High-Risk, this step involves implementing the detailed obligations covering areas like risk management, data and data governance, technical documentation, automatic record-keeping (logging), transparency, human oversight, and robustness, accuracy, and security."
