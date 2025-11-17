@@ -305,6 +305,100 @@
             }
           ]
         },
+		{
+		  "Control": "[Article 26]",
+		  "FieldType": "risk",
+		  "Role": "Compliance,Approver",
+		  "TrustDimension": "Compliance,Accountability,Requirement",
+		  "FieldName": "Failure to Fulfill Deployer Obligations for High-Risk AI",
+		  "RiskDescription": "Risk of non-compliance with the specific obligations mandated for deployers of high-risk AI systems, including failure to use as instructed, ensure human oversight, maintain logs, or inform affected persons.",
+		  "controls": [
+			{
+			  "control": "[Art-26][Par-1, 3] - Take appropriate technical and organisational measures to ensure the high-risk AI system is used in accordance with its instructions for use.",
+			  "control_objective": "To ensure the AI system is operated within its intended, tested, and approved parameters as defined by the provider, mitigating risks from misuse.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-2, 3] - Assign human oversight to natural persons who have the necessary competence, training, authority, and support.",
+			  "control_objective": "To ensure that a qualified human is in the loop, capable of effectively monitoring, intervening, and overriding the AI system as needed.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-4] - Ensure that input data under the deployer's control is relevant and sufficiently representative for the system's intended purpose.",
+			  "control_objective": "To prevent biased or erroneous outputs by ensuring the data fed into the system is appropriate for its domain and does not introduce risks not accounted for by the provider.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-5] - Monitor the operation of the high-risk AI system based on its instructions for use and inform the provider and relevant authorities of any serious incidents or risks.",
+			  "control_objective": "To create a post-market feedback loop, enabling the deployer to detect and report emergent risks, system malfunctions, or serious incidents to those responsible for correction and oversight.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-6] - Keep automatically generated logs (to the extent they are under deployer control) for an appropriate period, at least six months, or as required by other applicable laws.",
+			  "control_objective": "To enable post-incident investigation, monitoring of system performance, and auditing of AI-driven decisions by retaining a record of its operations.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-7] - (As an employer) Inform workers' representatives and affected workers before putting a high-risk AI system into service or use at the workplace.",
+			  "control_objective": "To provide transparency to employees and fulfill labor relations obligations regarding the introduction of new technologies that monitor or affect them.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-8] - (For public authorities) Verify the system is registered in the EU database before use; if not registered, do not use and inform the provider/distributor.",
+			  "control_objective": "To ensure that public bodies only use compliant, registered high-risk AI systems and to provide a feedback loop about non-compliant systems.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-9] - Use the information provided by the provider (under Art. 13) to comply with any obligation to conduct a Data Protection Impact Assessment (DPIA).",
+			  "control_objective": "To streamline compliance by integrating the AI system's specific information into existing data protection governance and impact assessment processes.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-10] - (For law enforcement post-remote biometric ID) Obtain ex-ante or rapid (max 48h) authorization from a judicial or equivalent authority for each use.",
+			  "control_objective": "To establish strict, independent oversight and legal grounding for each specific use of highly intrusive biometric surveillance.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-10] - (For law enforcement post-remote biometric ID) Ensure use is strictly necessary, targeted to a specific criminal offense, and not for general, untargeted surveillance.",
+			  "control_objective": "To prevent mass surveillance and ensure the use of such systems is proportionate and tied to a specific, legitimate law enforcement need.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-10] - (For law enforcement post-remote biometric ID) Ensure no adverse legal decision is based *solely* on the AI system's output.",
+			  "control_objective": "To maintain human agency and accountability in critical law enforcement decisions, using the AI as a tool rather than a final decision-maker.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-10] - (For law enforcement post-remote biometric ID) Document every use in the relevant police file and submit annual reports to authorities.",
+			  "control_objective": "To create a comprehensive audit trail for accountability and enable regulatory oversight of the system's use.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-11] - Inform natural persons when they are subject to a decision or decision-assistance from a high-risk AI system (unless exempt for law enforcement).",
+			  "control_objective": "To provide transparency to individuals, allowing them to understand that an AI system is involved in a process affecting them.",
+			  "control_status": "",
+			  "control_evidence": ""
+			},
+			{
+			  "control": "[Art-26][Par-12] - Cooperate with relevant competent authorities in any action those authorities take in relation to the high-risk AI system.",
+			  "control_objective": "To ensure effective market surveillance and enforcement by mandating deployer cooperation with regulatory bodies.",
+			  "control_status": "",
+			  "control_evidence": ""
+			}
+		  ]
+		},
         {
           "Control": "[Article 27]",
           "FieldType": "risk",
