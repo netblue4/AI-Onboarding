@@ -2843,7 +2843,7 @@
       "Fields": [
         {
           "Role": "Compliance,Approver",
-          "TrustDimension": "Requirement,ntended Use",
+          "TrustDimension": "Requirement,Intended Use",
           "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
           "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
           "FieldType": "comply"
