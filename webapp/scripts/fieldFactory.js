@@ -15,6 +15,7 @@ function getFieldHandler(fieldType) {
         'objective':createObjective,
         'plan':createPlan,
         'fieldGroup':createFieldGroup,
+        'comply':createComplyField,
     };
     
     if (exactMatchHandlers[fieldType]) {

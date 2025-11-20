@@ -74,6 +74,7 @@
     <script src="scripts/fieldHandler_multiselect.js"></script> 
     <script src="scripts/fieldHandler_plan.js"></script> 
     <script src="scripts/fieldHandler_fieldGroup.js"></script>
+    <script src="scripts/fieldHandler_comply.js"></script>
 
     <script src="scripts/fieldFactory.js"></script>
     
@@ -88,6 +89,9 @@
 						return response.json();
 					})
 					.then(webappData => {
+						// We save the data to the window object so comply.js can read it
+						window.originalWebappData = webappData; 
+						// --------------------------						
 						const formContainer = document.getElementById('form-container');
 						const prevBtn = document.getElementById('prev-btn');
 						const nextBtn = document.getElementById('next-btn');

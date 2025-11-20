@@ -409,3 +409,23 @@ button:hover {
 .field-group-wrapper > div:last-child {
     margin-bottom: 0 !important; /* Remove bottom margin for the last field inside the group */
 }
+
+
+
+
+
+
+
+
+
+/* Compliance Field Styles */
+.reg-item {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.reg-header { transition: background 0.2s; }
+.reg-header:hover { background-color: #e0e7ff !important; }
