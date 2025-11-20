@@ -1,5 +1,5 @@
 {
-  "1. Compliance Requirements: AI Act and ISO 42001": [
+  "1. Compliance Requirements": [
     {
       "StepName": "1.1. EU AI Act: Prohibited AI Practices Assessment",
       "Objectives": [
@@ -775,7 +775,7 @@
       ]
     }
   ],
-  "2. Define: AI System Documentation and Impact Assessments": [
+  "2. Define": [
     {
       "StepName": "2.1. - AI system's intended use and limitations",
       "Objectives": [
@@ -1261,7 +1261,7 @@
       ]
     }
   ],
-  "3. Build: Data Preparation (Offline or Real-Time Knowledge Base Creation)": [
+  "3. Build": [
     {
       "StepName": "3.1. - Internal Data Sources",
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
@@ -1589,11 +1589,9 @@
           ]
         }
       ]
-    }
-  ],
-  "4. Build: Development (Real-Time Chat With Your Document)": [
+    },
     {
-      "StepName": "4.1. - User Interface",
+      "StepName": "3.5. - User Interface",
       "WebFormTitle": "To uphold system integrity at the point of user interaction by validating user identity, sanitizing all submitted queries to neutralize potential threats, and ensuring non-repudiation through detailed audit logs.",
       "Objectives": [
         {
@@ -1644,7 +1642,7 @@
       ]
     },
     {
-      "StepName": "4.2. RAG Orchestrator",
+      "StepName": "3.6. RAG Orchestrator",
       "WebFormTitle": "To ensure the secure and appropriate handling of user queries and retrieved data by enforcing strict access controls, mitigating complex inference-based attacks, and maintaining a detailed audit trail for accountability and non-repudiation.",
       "Objectives": [
         {
@@ -1745,7 +1743,7 @@
       ]
     },
     {
-      "StepName": "4.3. - Generic LLM",
+      "StepName": "3.7. - Generic LLM",
       "WebFormTitle": "To enforce strict operational security for the self-hosted LLM by isolating its network access and implementing governed MLOps deployment workflows.",
       "Objectives": [
         {
@@ -1786,7 +1784,7 @@
       ]
     },
     {
-      "StepName": "4.4. - User Interface <->  RAG Orchestrator",
+      "StepName": "3.8. - User Interface <->  RAG Orchestrator",
       "WebFormTitle": "To ensure that all queries and responses between the user interface and the RAG orchestrator are subject to strict, user-specific access control enforcement, preventing unauthorized data disclosure.",
       "Objectives": [
         {
@@ -1817,7 +1815,7 @@
       ]
     },
     {
-      "StepName": "4.5. - RAG Orchestrator <->  Vector Database (Retrieval)",
+      "StepName": "3.9. - RAG Orchestrator <->  Vector Database (Retrieval)",
       "WebFormTitle": "To retrieve relevant text chunks from the knowledge base in response to a user query while mitigating the risk of unintentionally over-fetching and exposing sensitive data.",
       "Objectives": [
         {
@@ -1970,7 +1968,7 @@
       ]
     },
     {
-      "StepName": "4.6. - Generic LLM <-> RAG Orchestrator",
+      "StepName": "3.10. - Generic LLM <-> RAG Orchestrator",
       "WebFormTitle": "To generate a coherent, fact-based answer by sending an augmented prompt to the LLM, while safeguarding against prompt injection and preventing the leakage of sensitive data.",
       "Objectives": [
         {
@@ -2105,7 +2103,7 @@
       ]
     }
   ],
-  "5. Test: Verification and Monitoring": [
+  "5. Test": [
     {
       "StepName": "5.1. - AI Systems verifications and monitoring",
       "Objectives": [
@@ -2910,7 +2908,7 @@
       ]
     }
   ],
-  "7. Build: Deployment": [
+  "7. Deployment": [
     {
       "StepName": "7.1. - AI Lifecycle Phase requirements - Deployment",
       "WebFormTitle": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation.",
