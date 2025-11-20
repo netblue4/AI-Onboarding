@@ -2,8 +2,62 @@ function createComplyField(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     
- 
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingEl = document.getElementById('loading');
+            const errorEl = document.getElementById('error');
+            const contentEl = document.getElementById('content');
 
+            // --- Event Listener for Collapsible Sections ---
+            // We add it to the contentEl which exists from the start
+            contentEl.addEventListener('click', event => {
+                // Use .closest() to find the header, even if user clicks an inner element
+                const header = event.target.closest('.reg-header');
+                if (!header) return; // Didn't click a header
+
+                const targetId = header.getAttribute('data-target');
+                if (!targetId) return;
+
+                const content = document.querySelector(targetId);
+                const icon = header.querySelector('.toggle-icon');
+
+                if (content && icon) {
+                    // Toggle the 'expanded' class
+                    const isExpanded = content.classList.toggle('expanded');
+                    
+                    // Update icon and aria attributes
+                    if (isExpanded) {
+                        icon.textContent = '−'; // Minus sign
+                        icon.classList.add('expanded');
+                        header.setAttribute('aria-expanded', 'true');
+                        content.setAttribute('aria-hidden', 'false');
+                    } else {
+                        icon.textContent = '+';
+                        icon.classList.remove('expanded');
+                        header.setAttribute('aria-expanded', 'false');
+                        content.setAttribute('aria-hidden', 'true');
+                    }
+                }
+            });
+
+            fetch('ai_onboarding_procedure_data.json')
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    processAndRenderData(data);
+                    loadingEl.style.display = 'none';
+                    contentEl.style.display = 'block';
+                })
+                .catch(err => {
+                    loadingEl.style.display = 'none';
+                    errorEl.textContent = `Error loading data: ${err.message}. Please ensure 'ai_onboarding_procedure_data.json' is in the same directory.`;
+                    errorEl.style.display = 'block';
+                });
+        });
+
+processAndRenderData(webappData);
         /**
          * Helper function to check if a field's TrustDimension contains a specific tag.
          */
