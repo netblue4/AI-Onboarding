@@ -2843,7 +2843,7 @@
       "Fields": [
         {
           "Role": "Compliance,Approver",
-          "TrustDimension": "Requirement",
+          "TrustDimension": "Comply",
           "FieldName": "",
           "FieldText": "",
           "FieldType": "comply"
