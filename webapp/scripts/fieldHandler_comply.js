@@ -1,338 +1,237 @@
 function createComplyField(field, capturedData, sanitizeForId) {
-    //const fieldDiv = document.createElement('div');
-    //fieldDiv.className = 'form-field';
     
+    // 1. Get the global data (Must be exposed in ai_onboarding_app.html)
+    const webappData = window.originalWebappData;
 
-    
-        document.addEventListener('DOMContentLoaded', () => {
-            const loadingEl = document.getElementById('loading');
-            const errorEl = document.getElementById('error');
-            const contentEl = document.getElementById('content');
+    if (!webappData) {
+        const errDiv = document.createElement('div');
+        errDiv.innerHTML = "<p style='color:red'>Error: Data not found. Please ensure window.originalWebappData is set in the main HTML file.</p>";
+        return errDiv;
+    }
 
-            // --- Event Listener for Collapsible Sections ---
-            // We add it to the contentEl which exists from the start
-            contentEl.addEventListener('click', event => {
-                // Use .closest() to find the header, even if user clicks an inner element
-                const header = event.target.closest('.reg-header');
-                if (!header) return; // Didn't click a header
+    // 2. Run the processing logic immediately (No event listener needed)
+    return processAndRenderData(webappData);
 
-                const targetId = header.getAttribute('data-target');
-                if (!targetId) return;
+    // --- HELPER FUNCTIONS DEFINED BELOW ---
 
-                const content = document.querySelector(targetId);
-                const icon = header.querySelector('.toggle-icon');
-
-                if (content && icon) {
-                    // Toggle the 'expanded' class
-                    const isExpanded = content.classList.toggle('expanded');
-                    
-                    // Update icon and aria attributes
-                    if (isExpanded) {
-                        icon.textContent = '−'; // Minus sign
-                        icon.classList.add('expanded');
-                        header.setAttribute('aria-expanded', 'true');
-                        content.setAttribute('aria-hidden', 'false');
-                    } else {
-                        icon.textContent = '+';
-                        icon.classList.remove('expanded');
-                        header.setAttribute('aria-expanded', 'false');
-                        content.setAttribute('aria-hidden', 'true');
-                    }
-                }
-            });
-
-            fetch('ai_onboarding_procedure_data.json')
-                .then(response => {
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    return response.json();
-                })
-                .then(data => {
-                    processAndRenderData(data);
-                    loadingEl.style.display = 'none';
-                    contentEl.style.display = 'block';
-                })
-                .catch(err => {
-                    loadingEl.style.display = 'none';
-                    errorEl.textContent = `Error loading data: ${err.message}. Please ensure 'ai_onboarding_procedure_data.json' is in the same directory.`;
-                    errorEl.style.display = 'block';
-                });
+    function processAndRenderData(data) {
+        // 1. Flatten all steps and extract all fields
+        let allFields = [];
+        Object.values(data).flat().forEach(step => {
+            if (step.Fields && Array.isArray(step.Fields)) {
+                allFields = allFields.concat(step.Fields);
+            }
         });
 
-       const fieldDiv = processAndRenderData(window.originalWebappData );
-        /**
-         * Helper function to check if a field's TrustDimension contains a specific tag.
-         */
-        function hasTrustDimension(field, dimension) {
-            if (!field || !field.TrustDimension || typeof field.TrustDimension !== 'string') {
-                return false;
-            }
-            return field.TrustDimension.split(',').map(s => s.trim()).includes(dimension);
-        }
+        // 2. Separate nodes into Requirements (Parents) and Implementations (Children)
+        const requirementNodes = [];
+        const implementationNodes = [];
 
-        /**
-         * Helper function to extract the control key (e.g., "[Art-10][Par-2][1]")
-         * from the full control string.
-         */
-        function getControlKey(controlString) {
-            if (typeof controlString !== 'string') return null;
-            // Split at the " - " separator and take the first part
-            const key = controlString.split(' - ')[0].trim();
-            // Basic validation: must start with '[' and end with ']'
-            if (key.startsWith('[') && key.endsWith(']')) {
-                return key;
-            }
-            return null; // Return null if format is unexpected
-        }
-
-        function processAndRenderData(webappData) {
-            // 1. Flatten all steps and extract all fields
-            let allFields = [];
-            Object.values(webappData).flat().forEach(step => {
-                if (step.Fields && Array.isArray(step.Fields)) {
-                    allFields = allFields.concat(step.Fields);
-                }
-            });
-
-            // 2. Separate nodes into Requirements (Parents) and Implementations (Children)
-            const requirementNodes = [];
-            const implementationNodes = [];
-
-            allFields.forEach(field => {
-                if (hasTrustDimension(field, 'Requirement')) {
-                    requirementNodes.push(field);
-                } 
-                else if (field.FieldType === 'fieldGroup' && field.Fields && Array.isArray(field.Fields)) {
-                    // This is a fieldGroup, so we treat its *inner fields* as potential implementations
-                    field.Fields.forEach(innerField => {
-                        // Only add if it has a control to match
-                        if (innerField.Control) {
-                            implementationNodes.push(innerField);
-                        }
-                    });
-                }
-                else if (field.Control) {
-                    // This catches top-level 'risk', 'plan', and any other field
-                    // that is not a Requirement but has a Control.
-                    implementationNodes.push(field);
-                }
-            });
-
-            // 3. Build the compliance map.
-            //    Key: Parent Requirement's FieldName
-            //    Value: { parentField: object, subControlLinks: Map<string, { subControl: object, children: Set<object> }> }
-            //    A Map is used here because it *preserves insertion order*, matching the JSON file order.
-            const complianceMap = new Map();
-
-            requirementNodes.forEach(reqNode => {
-                const subControlMap = new Map();
-                
-                if (reqNode.controls && Array.isArray(reqNode.controls)) {
-                    reqNode.controls.forEach(subControl => {
-                        const controlKey = getControlKey(subControl.control);
-                        if (controlKey) {
-                            subControlMap.set(controlKey, {
-                                subControl: subControl, // The full sub-control object
-                                children: new Set()   // Place to store matching implementations
-                            });
-                        }
-                    });
-                }
-                
-                // Use FieldName as key, which is what the user iterates over later
-                complianceMap.set(reqNode.FieldName, {
-                    parentField: reqNode,
-                    subControlLinks: subControlMap
+        allFields.forEach(f => {
+            if (hasTrustDimension(f, 'Requirement')) {
+                requirementNodes.push(f);
+            } 
+            else if (f.FieldType === 'fieldGroup' && f.Fields && Array.isArray(f.Fields)) {
+                f.Fields.forEach(innerField => {
+                    if (innerField.Control) implementationNodes.push(innerField);
                 });
-            });
-
-            // 4. Link Implementations (Children) to the mapped Sub-Controls
-            implementationNodes.forEach(implNode => {
-                if (!implNode.Control) return; // This implementation can't be linked
-                
-                const implControlParts = implNode.Control.split(',').map(s => s.trim());
-
-                // Check this implementation's keys against ALL sub-controls in our map
-                for (const [parentName, data] of complianceMap.entries()) {
-                    const subControlLinks = data.subControlLinks; // This is the Map
-                    
-                    for (const implKey of implControlParts) {
-                        if (subControlLinks.has(implKey)) {
-                            // Found a match! Add this child.
-                            subControlLinks.get(implKey).children.add(implNode);
-                        }
-                    }
-                }
-            });
-
-            // 5. Render the new, nested structure
-            return renderMapping(complianceMap);
-        }
-
-        function renderMapping(complianceMap) {
-        
-            const container = document.createElement('div');
-            container.className = 'mapping-container';
-    
-           // const container = document.getElementById('content');
-            container.innerHTML = '';
-
-            if (complianceMap.size === 0) {
-                 container.innerHTML = '<p>No "Requirement" nodes found in the data. Please check the JSON file for fields with "Requirement" in their TrustDimension.</p>';
-                 return;
             }
+            else if (f.Control) {
+                implementationNodes.push(f);
+            }
+        });
 
-            // *** CHANGE IS HERE ***
-            // Removed alphabetical sorting.
-            // We now iterate directly on complianceMap, which maintains insertion order.
-            complianceMap.forEach((data, parentFieldName) => {
-                const parent = data.parentField;
-                const subControlLinks = data.subControlLinks; // The Map
+        // 3. Build the compliance map
+        const complianceMap = new Map();
 
-                const regItem = document.createElement('div');
-                regItem.className = 'reg-item';
-
-                // --- Calculate Progress ---
-                const totalSubControls = subControlLinks.size;
-                let matchedSubControls = 0;
-                
-                subControlLinks.forEach(subControlData => {
-                    if (subControlData.children.size > 0) {
-                        matchedSubControls++;
+        requirementNodes.forEach(reqNode => {
+            const subControlMap = new Map();
+            if (reqNode.controls && Array.isArray(reqNode.controls)) {
+                reqNode.controls.forEach(subControl => {
+                    const controlKey = getControlKey(subControl.control);
+                    if (controlKey) {
+                        subControlMap.set(controlKey, {
+                            subControl: subControl,
+                            children: new Set()
+                        });
                     }
                 });
+            }
+            complianceMap.set(reqNode.FieldName, {
+                parentField: reqNode,
+                subControlLinks: subControlMap
+            });
+        });
 
-                // If 0/0, treat as 100% complete (N/A)
-                const percentage = (totalSubControls > 0) ? (matchedSubControls / totalSubControls) * 100 : 0;
-                const displayPercentage = (totalSubControls === 0) ? 100 : percentage;
-                const progressText = (totalSubControls === 0) ? "N/A" : `${matchedSubControls} / ${totalSubControls}`;
-                // Use green for 100%, blue otherwise
-                const progressColor = (displayPercentage >= 100) ? 'var(--success-color)' : 'var(--primary-color)';
+        // 4. Link Implementations (Children)
+        implementationNodes.forEach(implNode => {
+            if (!implNode.Control) return;
+            const implControlParts = implNode.Control.split(',').map(s => s.trim());
 
-                // Create a unique ID for the collapsible content
-                // Use the parent's control string for a more unique ID
-                const safeIdBase = (parent.Control || parent.FieldName).replace(/[^a-zA-Z0-9_]/g, '-');
-                const contentId = `content-${safeIdBase}`;
+            for (const [parentName, data] of complianceMap.entries()) {
+                const subControlLinks = data.subControlLinks;
+                for (const implKey of implControlParts) {
+                    if (subControlLinks.has(implKey)) {
+                        subControlLinks.get(implKey).children.add(implNode);
+                    }
+                }
+            }
+        });
 
+        // 5. Render the result
+        return renderMapping(complianceMap);
+    }
 
-                // --- Render Regulatory Node Header ---
-                const regHeader = document.createElement('div');
-                regHeader.className = 'reg-header';
-                regHeader.setAttribute('data-target', `#${contentId}`); // Link to content ID
-                regHeader.setAttribute('aria-expanded', 'false');
-                regHeader.setAttribute('aria-controls', contentId);
-                regHeader.innerHTML = `
-                    <div class="toggle-icon">+</div>
-                    <div class="reg-header-content">
-                        <div class="reg-title">${escapeHtml(parent.FieldName + ' - ' + parent.Control)}</div>
-                        
-                        <!-- Progress Bar -->
-                        <div class="progress-container" title="Compliance Progress: ${progressText}">
-                            <div class="progress-bar" style="width: ${displayPercentage}%; background-color: ${progressColor};"></div>
-                            <div class="progress-text">${progressText}</div>
-                        </div>
+    function renderMapping(complianceMap) {
+        const container = document.createElement('div');
+        container.className = 'mapping-container';
 
-                        <div class="reg-meta"><strong>Top-level Control:</strong> ${escapeHtml(parent.Control)} | <strong>Trust Dimension:</strong> ${escapeHtml(parent.TrustDimension || 'N/A')}</div>
-                    </div>
-                `;
-                regItem.appendChild(regHeader);
+        // --- ATTACH CLICK LISTENER HERE (Event Delegation) ---
+        container.addEventListener('click', event => {
+            const header = event.target.closest('.reg-header');
+            if (!header) return;
 
+            const targetId = header.getAttribute('data-target');
+            if (!targetId) return;
 
-                // --- Render List of Sub-Controls ---
-                const subControlList = document.createElement('ul');
-                subControlList.className = 'sub-control-list'; // No 'expanded' by default
-                subControlList.id = contentId;
-                subControlList.setAttribute('aria-hidden', 'true');
+            // We look for the element inside our specific container
+            const content = container.querySelector(targetId);
+            const icon = header.querySelector('.toggle-icon');
 
-                if (subControlLinks.size === 0) {
-                    const noSubItems = document.createElement('li');
-                    noSubItems.className = 'sub-control-item';
-                    noSubItems.textContent = 'No specific sub-controls defined in the "controls" array for this requirement.';
-                    subControlList.appendChild(noSubItems);
+            if (content && icon) {
+                const isExpanded = content.classList.toggle('expanded');
+                if (isExpanded) {
+                    icon.textContent = '−';
+                    icon.classList.add('expanded');
+                    header.setAttribute('aria-expanded', 'true');
+                    content.setAttribute('aria-hidden', 'false');
+                    content.style.display = 'block'; // Ensure visibility
                 } else {
-                    // Sort sub-controls by their key (e.g., [Art-10][Par-2][1])
-                    // We still sort the *sub-controls* for readability
-                    const sortedSubControls = Array.from(subControlLinks.entries()).sort((a, b) => a[0].localeCompare(b[0]));
-                    
-                    sortedSubControls.forEach(([subControlKey, subControlData]) => {
-                        const subControl = subControlData.subControl;
-                        const children = subControlData.children; // The Set
-
-                        const subControlItem = document.createElement('li');
-                        subControlItem.className = 'sub-control-item';
-                        
-                        // Add sub-control title
-                        const subControlTitle = document.createElement('div');
-                        subControlTitle.className = 'sub-control-title';
-                        subControlTitle.textContent = escapeHtml(subControl.control);
-                        subControlItem.appendChild(subControlTitle);
-
-                        // --- Render List of Implementations for this Sub-Control ---
-                        if (children.size === 0) {
-                            const noChildren = document.createElement('div');
-                            noChildren.className = 'no-children';
-                            noChildren.textContent = 'No matching implementation risks or plans found.';
-                            subControlItem.appendChild(noChildren);
-                        } else {
-                            const impList = document.createElement('ul');
-                            impList.className = 'imp-list';
-
-                            const sortedChildren = Array.from(children).sort((a, b) => (a.FieldName || '').localeCompare(b.FieldName || ''));
-
-                            sortedChildren.forEach(child => {
-                                const impItem = document.createElement('li');
-                                impItem.className = 'imp-item';
-                                
-                                // *** UPDATED BADGE LOGIC (from previous request) ***
-                                let typeClass = 'type-other';
-                                let typeName = child.FieldType || 'field'; // Get the original field type
-
-                                if (typeName === 'risk') {
-                                    typeClass = 'type-risk';
-                                    // typeName is already 'risk'
-                                } else if (typeName === 'plan') {
-                                    typeClass = 'type-plan';
-                                    // typeName is 'plan'
-                                } else {
-                                    // If it's not 'risk' or 'plan', set it to 'FIELD'
-                                    typeClass = 'type-other';
-                                    typeName = 'FIELD'; // Set the display name to FIELD
-                                }
-                                
-                                impItem.innerHTML = `
-                                    <span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
-                                    <div class="imp-content">
-                                        <div class="imp-title">${escapeHtml(child.FieldName)}</div>
-                                        <div class="imp-meta">
-                                            <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
-                                            ${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
-                                        </div>
-                                    </div>
-                                `;
-                                impList.appendChild(impItem);
-                            });
-                            subControlItem.appendChild(impList);
-                        }
-                        subControlList.appendChild(subControlItem);
-                    });
+                    icon.textContent = '+';
+                    icon.classList.remove('expanded');
+                    header.setAttribute('aria-expanded', 'false');
+                    content.setAttribute('aria-hidden', 'true');
+                    content.style.display = 'none'; // Ensure hidden
                 }
-                regItem.appendChild(subControlList);
-                container.appendChild(regItem);
-            });
+            }
+        });
+
+        if (complianceMap.size === 0) {
+            container.innerHTML = '<p>No "Requirement" nodes found.</p>';
             return container;
         }
 
-        // Utility to prevent HTML injection from JSON data
-        function escapeHtml(unsafe) {
-            if (typeof unsafe !== 'string') return unsafe;
-            return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
+        complianceMap.forEach((data, parentFieldName) => {
+            const parent = data.parentField;
+            const subControlLinks = data.subControlLinks;
 
+            // Only render if it matches the CURRENT field we are processing (Optional, removes duplicates)
+            // If you want to show the WHOLE map every time, remove this `if` block.
+            // if (parent.FieldName !== field.FieldName) return; 
 
+            const regItem = document.createElement('div');
+            regItem.className = 'reg-item';
 
-    return fieldDiv;
+            // Calculate Progress
+            const totalSubControls = subControlLinks.size;
+            let matchedSubControls = 0;
+            subControlLinks.forEach(d => { if (d.children.size > 0) matchedSubControls++; });
+            
+            const percentage = (totalSubControls > 0) ? (matchedSubControls / totalSubControls) * 100 : 0;
+            const displayPercentage = (totalSubControls === 0) ? 100 : percentage;
+            const progressText = (totalSubControls === 0) ? "N/A" : `${matchedSubControls} / ${totalSubControls}`;
+            const progressColor = (displayPercentage >= 100) ? 'var(--success-color, #22c55e)' : 'var(--primary-color, #2563eb)';
+
+            // Generate ID
+            const safeIdBase = (parent.Control || parent.FieldName).replace(/[^a-zA-Z0-9_]/g, '-');
+            const contentId = `content-${safeIdBase}`;
+
+            // Render Header
+            const regHeader = document.createElement('div');
+            regHeader.className = 'reg-header';
+            regHeader.setAttribute('data-target', `#${contentId}`);
+            regHeader.style.cursor = 'pointer'; 
+            regHeader.innerHTML = `
+                <div class="toggle-icon" style="margin-right:10px; font-weight:bold;">+</div>
+                <div class="reg-header-content" style="flex-grow:1;">
+                    <div class="reg-title" style="font-weight:bold; color:#1e40af;">${escapeHtml(parent.FieldName)}</div>
+                    <div class="progress-container" style="background:#e0e7ff; height:10px; border-radius:5px; margin-top:5px;">
+                        <div class="progress-bar" style="width: ${displayPercentage}%; background-color: ${progressColor}; height:100%;"></div>
+                    </div>
+                    <div class="reg-meta" style="font-size:0.9em; color:#64748b;">${escapeHtml(parent.Control)}</div>
+                </div>
+            `;
+            regItem.appendChild(regHeader);
+
+            // Render Content (Sub-controls)
+            const subControlList = document.createElement('ul');
+            subControlList.className = 'sub-control-list';
+            subControlList.id = contentId;
+            subControlList.style.display = 'none'; // Hidden by default
+            subControlList.style.padding = '0';
+
+            if (subControlLinks.size === 0) {
+                subControlList.innerHTML = '<li class="sub-control-item" style="padding:10px;">No sub-controls.</li>';
+            } else {
+                const sortedSubControls = Array.from(subControlLinks.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+                
+                sortedSubControls.forEach(([key, subData]) => {
+                    const subItem = document.createElement('li');
+                    subItem.className = 'sub-control-item';
+                    subItem.style.listStyle = 'none';
+                    subItem.style.padding = '10px';
+                    subItem.style.borderTop = '1px solid #eee';
+
+                    subItem.innerHTML = `<div class="sub-control-title"><strong>${escapeHtml(subData.subControl.control)}</strong></div>`;
+                    
+                    // Implementations
+                    if (subData.children.size > 0) {
+                        const impList = document.createElement('ul');
+                        impList.className = 'imp-list';
+                        subData.children.forEach(child => {
+                            const impItem = document.createElement('li');
+                            impItem.className = 'imp-item';
+                            impItem.style.marginBottom = '5px';
+                            
+                            let badgeColor = '#eee';
+                            if(child.FieldType === 'risk') badgeColor = '#fee2e2';
+                            if(child.FieldType === 'plan') badgeColor = '#dcfce7';
+
+                            impItem.innerHTML = `
+                                <span style="background:${badgeColor}; padding:2px 6px; border-radius:4px; font-size:0.8em;">${child.FieldType || 'Field'}</span>
+                                ${escapeHtml(child.FieldName)}
+                            `;
+                            impList.appendChild(impItem);
+                        });
+                        subItem.appendChild(impList);
+                    } else {
+                        subItem.innerHTML += `<div style="color:#999; font-style:italic;">No linked items.</div>`;
+                    }
+                    subControlList.appendChild(subItem);
+                });
+            }
+
+            regItem.appendChild(subControlList);
+            container.appendChild(regItem);
+        });
+
+        return container;
+    }
+
+    // --- UTILITIES ---
+    function hasTrustDimension(field, dimension) {
+        if (!field || !field.TrustDimension) return false;
+        return field.TrustDimension.includes(dimension);
+    }
+
+    function getControlKey(str) {
+        if (!str) return null;
+        const key = str.split(' - ')[0].trim();
+        return (key.startsWith('[') && key.endsWith(']')) ? key : null;
+    }
+
+    function escapeHtml(unsafe) {
+        if (typeof unsafe !== 'string') return unsafe;
+        return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
 }
