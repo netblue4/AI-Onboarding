@@ -2,6 +2,8 @@ function createComplyField(field, capturedData, sanitizeForId) {
     
     // 1. Get the global data (Must be exposed in ai_onboarding_app.html)
     const webappData = window.originalWebappData;
+    
+    const selectedTrustDimension = window.selectedTrustDimension;
 
     if (!webappData) {
         const errDiv = document.createElement('div');
