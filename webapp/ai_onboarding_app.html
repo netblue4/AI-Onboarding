@@ -89,9 +89,12 @@
 						return response.json();
 					})
 					.then(webappData => {
-						// We save the data to the window object so comply.js can read it
-						window.originalWebappData = webappData; 
-						// --------------------------						
+						// *** ADD THIS LINE ***
+						window.originalWebappData = webappData;
+						// *********************
+				
+						const originalWebappData = webappData;	
+										
 						const formContainer = document.getElementById('form-container');
 						const prevBtn = document.getElementById('prev-btn');
 						const nextBtn = document.getElementById('next-btn');
