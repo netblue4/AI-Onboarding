@@ -241,10 +241,25 @@ function createComplyField(field, capturedData, sanitizeForId) {
     }
 
     // --- UTILITIES ---
-    function hasTrustDimension(field, dimension) {
-        if (!field || !field.TrustDimension) return false;
-        return field.TrustDimension.includes(dimension);
-    }
+	function hasTrustDimension(field, dimension) {
+			// Safety check: ensure field and TrustDimension string exist
+			if (!field || !field.TrustDimension) return false;
+	
+			// 1. Check the mandatory dimension passed to the function (e.g., 'Requirement')
+			const matchesMandatory = field.TrustDimension.includes(dimension);
+	
+			// 2. Check the global filter (selectedTrustDimension)
+			// In JS, this 'if' creates a truthy check.
+			// It returns FALSE if selectedTrustDimension is null OR "".
+			// It returns TRUE if selectedTrustDimension has text (e.g. "Compliance").
+			if (selectedTrustDimension) {
+				 // If a filter is active, the field must match BOTH the mandatory tag AND the user selection
+				 return matchesMandatory && field.TrustDimension.includes(selectedTrustDimension);
+			}
+	
+			// 3. If selectedTrustDimension is null or empty, return the basic match
+			return matchesMandatory;
+	}
 
     function getControlKey(str) {
         if (!str) return null;
