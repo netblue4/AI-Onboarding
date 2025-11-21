@@ -173,7 +173,11 @@ processAndRenderData(window.originalWebappData );
         }
 
         function renderMapping(complianceMap) {
-            const container = document.getElementById('content');
+        
+            const container = document.createElement('div').id="content";
+    container.className = 'mapping-container';
+    
+           // const container = document.getElementById('content');
             container.innerHTML = '';
 
             if (complianceMap.size === 0) {
