@@ -194,13 +194,33 @@ function createComplyField(field, capturedData, sanitizeForId) {
                             impItem.style.marginBottom = '5px';
                             
                             let badgeColor = '#eee';
-                            if(child.FieldType === 'risk') badgeColor = '#fee2e2';
-                            if(child.FieldType === 'plan') badgeColor = '#dcfce7';
+ 
+                                let typeClass = 'type-other';
+                                let typeName = child.FieldType || 'field'; // Get the original field type
 
-                            impItem.innerHTML = `
-                                <span style="background:${badgeColor}; padding:2px 6px; border-radius:4px; font-size:0.8em;">${child.FieldType || 'Field'}</span>
-                                ${escapeHtml(child.FieldName)}
-                            `;
+                                if (typeName === 'risk') {
+                                    typeClass = 'type-risk';
+                                    // typeName is already 'risk'
+                                } else if (typeName === 'plan') {
+                                    typeClass = 'type-plan';
+                                    // typeName is 'plan'
+                                } else {
+                                    // If it's not 'risk' or 'plan', set it to 'FIELD'
+                                    typeClass = 'type-other';
+                                    typeName = 'FIELD'; // Set the display name to FIELD
+                                }
+                                
+                                impItem.innerHTML = `
+                                    <span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
+                                    <div class="imp-content">
+                                        <div class="imp-title">${escapeHtml(child.FieldName)}</div>
+                                        <div class="imp-meta">
+                                            <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
+                                            ${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
+                                        </div>
+                                    </div>
+                                `;
+ 
                             impList.appendChild(impItem);
                         });
                         subItem.appendChild(impList);
