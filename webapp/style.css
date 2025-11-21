@@ -418,14 +418,196 @@ button:hover {
 
 
 
-/* Compliance Field Styles */
-.reg-item {
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-    overflow: hidden;
+
+
+.mapping-container {
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+	margin-top: 20px;
+	padding: 0;
+	overflow: hidden; /* For border-radius */
 }
-.reg-header { transition: background 0.2s; }
-.reg-header:hover { background-color: #e0e7ff !important; }
+
+/* Top-level Regulatory Requirement Node */
+.reg-item {
+	margin-bottom: 25px;
+	border: 1px solid var(--border-color);
+	border-radius: 8px;
+	overflow: hidden; /* Ensure header radius applies */
+}
+
+.reg-header {
+	background-color: #eff6ff;
+	padding: 15px 20px;
+	border-bottom: 1px solid var(--border-color);
+	display: flex; /* Use flexbox for alignment */
+	align-items: center;
+	cursor: pointer; /* Indicate it's clickable */
+	transition: background-color 0.2s ease;
+}
+
+.reg-header:hover {
+	background-color: #e0e7ff;
+}
+
+.toggle-icon {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: var(--primary-color);
+	margin-right: 15px;
+	transition: transform 0.2s ease;
+	width: 20px; /* Reserve space */
+	text-align: center;
+	flex-shrink: 0;
+}
+
+.toggle-icon.expanded {
+	transform: rotate(90deg);
+}
+
+.reg-header-content {
+	flex-grow: 1; /* Take remaining space */
+	min-width: 0; /* Prevent overflow */
+}
+
+.reg-title {
+	font-size: 1.2em;
+	font-weight: 700;
+	color: #1e40af;
+	margin: 0;
+	margin-bottom: 8px; /* Add space for progress bar */
+	word-wrap: break-word;
+}
+
+.reg-meta {
+	font-size: 0.9em;
+	color: var(--secondary-color);
+	margin-top: 8px;
+	word-wrap: break-word;
+}
+
+/* New Progress Bar Styles */
+.progress-container {
+	width: 100%;
+	height: 18px;
+	background-color: #e0e7ff; /* Lighter blue */
+	border-radius: 9px;
+	overflow: hidden;
+	position: relative;
+}
+
+.progress-bar {
+	height: 100%;
+	width: 0%; /* Will be set by inline style */
+	background-color: var(--primary-color);
+	transition: width 0.4s ease-out;
+}
+
+.progress-text {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	font-size: 0.8em; /* 12.8px */
+	line-height: 18px; /* Match container height */
+	font-weight: 600;
+	color: #1e3a8a; /* Darker blue for contrast */
+}
+
+/* List of Sub-Controls */
+.sub-control-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: none; /* Hide by default */
+	background-color: #ffffff;
+}
+
+.sub-control-list.expanded {
+	display: block; /* Show when expanded */
+}
+
+/* Individual Sub-Control Item */
+.sub-control-item {
+	padding: 15px 20px;
+	border-bottom: 1px solid var(--border-color);
+}
+.sub-control-item:last-child {
+	border-bottom: none;
+}
+
+.sub-control-title {
+	font-weight: 600;
+	color: #1e293b;
+	font-size: 1em;
+	margin-bottom: 10px;
+	word-wrap: break-word;
+}
+
+/* List of Implementations (under a sub-control) */
+.imp-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	margin-top: 10px;
+	padding-left: 15px;
+	border-left: 3px solid var(--border-color);
+}
+
+/* Individual Implementation Item */
+.imp-item {
+	padding: 10px;
+	display: flex;
+	align-items: flex-start;
+	background-color: #f9fafb;
+	border-radius: 4px;
+	margin-bottom: 8px;
+}
+.imp-item:last-child {
+	margin-bottom: 0;
+}
+
+.imp-type-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 12px;
+	font-size: 0.75em;
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-right: 10px;
+	min-width: 50px;
+	text-align: center;
+	margin-top: 3px;
+	white-space: nowrap;
+}
+
+.type-risk { background-color: #fee2e2; color: #991b1b; }
+.type-plan { background-color: #dcfce7; color: #166534; }
+.type-other { background-color: #e2e8f0; color: #475569; } /* New badge for other types */
+
+.imp-content {
+	flex: 1;
+	min-width: 0; /* Prevents long text from overflowing */
+}
+
+.imp-title {
+	font-weight: 500;
+	font-size: 0.95em;
+	word-wrap: break-word; /* Handle long field names */
+}
+
+.imp-meta {
+	font-size: 0.85em;
+	color: #64748b;
+	margin-top: 2px;
+	word-wrap: break-word; /* Handle long control strings */
+}
+
+.no-children {
+	padding: 5px 0 0 15px;
+	color: var(--secondary-color);
+	font-size: 0.9em;
+	font-style: italic;
+}
