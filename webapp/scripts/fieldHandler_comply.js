@@ -1,11 +1,7 @@
 function createComplyField(field, capturedData, sanitizeForId) {
-    const fieldDiv = document.createElement('div');
-    fieldDiv.className = 'form-field';
+    //const fieldDiv = document.createElement('div');
+    //fieldDiv.className = 'form-field';
     
-        const loadingDiv = document.createElement('div').id = "loading";
-    const errorDiv = document.createElement('div').id="error";
-    const contentDiv = document.createElement('div').id="content";
-    contentDiv.className = 'mapping-container';
 
     
         document.addEventListener('DOMContentLoaded', () => {
@@ -62,7 +58,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
                 });
         });
 
-processAndRenderData(window.originalWebappData );
+       const fieldDiv = processAndRenderData(window.originalWebappData);
         /**
          * Helper function to check if a field's TrustDimension contains a specific tag.
          */
@@ -169,13 +165,13 @@ processAndRenderData(window.originalWebappData );
             });
 
             // 5. Render the new, nested structure
-            renderMapping(complianceMap);
+            return renderMapping(complianceMap);
         }
 
         function renderMapping(complianceMap) {
         
             const container = document.createElement('div');
-    container.className = 'mapping-container';
+            container.className = 'mapping-container';
     
            // const container = document.getElementById('content');
             container.innerHTML = '';
@@ -322,6 +318,7 @@ processAndRenderData(window.originalWebappData );
                 regItem.appendChild(subControlList);
                 container.appendChild(regItem);
             });
+            return container;
         }
 
         // Utility to prevent HTML injection from JSON data
