@@ -94,6 +94,8 @@
 						// *********************
 				
 						const originalWebappData = webappData;	
+						
+						
 										
 						const formContainer = document.getElementById('form-container');
 						const prevBtn = document.getElementById('prev-btn');
@@ -380,6 +382,7 @@
 						});
 						
 						dimensionDropdown.addEventListener('change', (event) => {
+							window.selectedTrustDimension = event.target.value;
 							currentDimension = event.target.value;
 							for (const key in capturedData) delete capturedData[key];
 							filterAndInitializeSteps();
