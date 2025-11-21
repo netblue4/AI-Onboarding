@@ -2844,6 +2844,8 @@
         {
           "Role": "Compliance,Approver",
           "TrustDimension": "Comply",
+          "FieldName": "",
+          "FieldText": "",
           "FieldType": "comply"
         }
       ]
