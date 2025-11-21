@@ -174,7 +174,7 @@ processAndRenderData(window.originalWebappData );
 
         function renderMapping(complianceMap) {
         
-            const container = document.createElement('div').id="content";
+            const container = document.createElement('div');
     container.className = 'mapping-container';
     
            // const container = document.getElementById('content');
