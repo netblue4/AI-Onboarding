@@ -247,16 +247,16 @@ function createComplyField(field, capturedData, sanitizeForId) {
 
         // 1. First, it MUST match the dimension argument passed (e.g., 'Requirement')
         const matchesMandatory = field.TrustDimension.includes(dimension);
-        
-        // If it's not the right type (e.g. not a Requirement), fail immediately
-        if (!matchesMandatory) return false;
-
+ 
         // 2. "Comply" Bypass Clause
         // If the field is marked with "Comply", we accept it immediately
         // and skip the selectedTrustDimension filter check.
         if (field.TrustDimension.includes("Comply")) {
             return true;
         }
+               
+        // If it's not the right type (e.g. not a Requirement), fail immediately
+        if (!matchesMandatory) return false;
 
         // 3. Filter Logic (The "Other Clause")
         // Only evaluates if "Comply" was NOT present.
