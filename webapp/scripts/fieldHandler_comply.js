@@ -48,7 +48,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
 
         requirementNodes.forEach(reqNode => {
             const subControlMap = new Map();
-            if (reqNode.FieldName != "" && reqNode.controls && Array.isArray(reqNode.controls)) {
+            if (reqNode.controls && Array.isArray(reqNode.controls)) {
                 reqNode.controls.forEach(subControl => {
                     const controlKey = getControlKey(subControl.control);
                     if (controlKey) {
@@ -59,10 +59,12 @@ function createComplyField(field, capturedData, sanitizeForId) {
                     }
                 });
             }
-            complianceMap.set(reqNode.FieldName, {
-                parentField: reqNode,
-                subControlLinks: subControlMap
-            });
+            if (reqNode.FieldName != "") {
+				complianceMap.set(reqNode.FieldName, {
+					parentField: reqNode,
+					subControlLinks: subControlMap
+				});
+            }
         });
 
         // 4. Link Implementations (Children)
