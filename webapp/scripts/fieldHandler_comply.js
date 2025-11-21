@@ -48,7 +48,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
 
         requirementNodes.forEach(reqNode => {
             const subControlMap = new Map();
-            if (reqNode.controls && Array.isArray(reqNode.controls)) {
+            if (reqNode.FieldName != "" && reqNode.controls && Array.isArray(reqNode.controls)) {
                 reqNode.controls.forEach(subControl => {
                     const controlKey = getControlKey(subControl.control);
                     if (controlKey) {
