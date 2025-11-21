@@ -57,7 +57,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
                 });
         });
 
-processAndRenderData(webappData);
+processAndRenderData(window.originalWebappData );
         /**
          * Helper function to check if a field's TrustDimension contains a specific tag.
          */
