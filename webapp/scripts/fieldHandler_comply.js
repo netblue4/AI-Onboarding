@@ -4,7 +4,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
     
         const loadingDiv = document.createElement('div').id = "loading";
     const errorDiv = document.createElement('div').id="error";
-    const contentDiv = document.createElement('div')id="content";
+    const contentDiv = document.createElement('div').id="content";
     contentDiv.className = 'mapping-container';
 
     
