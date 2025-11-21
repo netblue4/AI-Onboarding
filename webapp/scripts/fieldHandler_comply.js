@@ -2,6 +2,9 @@ function createComplyField(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     
+    <div id="loading">Loading onboarding procedure data...</div>
+    <div id="error" style="display: none;"></div>
+    <div id="content" class="mapping-container" style="display: none;"></div>
     
         document.addEventListener('DOMContentLoaded', () => {
             const loadingEl = document.getElementById('loading');
