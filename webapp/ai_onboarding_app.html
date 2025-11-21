@@ -133,7 +133,19 @@
 								}
 							}
 							if (isDimFilterActive && matchesDirectly) {
-								if (!node.TrustDimension || !String(node.TrustDimension).split(',').map(d => d.trim()).includes(currentDimension)) {
+								// Convert string to array for cleaner checking
+								const nodeDims = node.TrustDimension ? String(node.TrustDimension).split(',').map(d => d.trim()) : [];
+								
+								// Check for the overriding "Comply" tag
+								const isComplyOverride = nodeDims.includes("Comply");
+								
+								// Check for the specific user selection
+								const matchesSelection = nodeDims.includes(currentDimension);
+
+								// LOGIC:
+								// If it is NOT a "Comply" override AND it does NOT match the selection, then it fails.
+								// (If isComplyOverride is true, this if-block is skipped, preserving matchesDirectly = true)
+								if (!isComplyOverride && !matchesSelection) {
 									matchesDirectly = false;
 								}
 							}
