@@ -1310,7 +1310,7 @@
 		"Control": "[Art-10][Par-3][3],[Art-10][Par-4][4],[Art-10][Par-5][5]",
 		"FieldType": "plan",
 		"Role": "Data Scientist, Lead Auditor",
-		"TrustDimension": "Data Quality, Fairness, Robustness",
+		"TrustDimension": "Data and Data Governance",
 		"FieldName": "[TEST-DATA-01] - Data Quality, Representativeness & Bias Audit",
 		"PlanObjective": "To statistically validate that the compiled datasets match the defined Operational Design Domain (ODD), meet quality error thresholds (Art-10.3), and that sensitive data used for bias testing was handled/deleted compliantly (Art-10.5).",
 		"TestDatasetMetadata": {
