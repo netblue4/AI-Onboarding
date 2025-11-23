@@ -1305,7 +1305,95 @@
               "control_evidence": "Screenshots or logs of the final user-facing response clearly showing embedded citations or links. A code snippet from the RAG Orchestrator demonstrating how the source metadata from the retrieved chunks is formatted and appended to the final LLM response."
             }
           ]
-        }
+        },
+		{
+		"Control": "[Art-10][Par-3][3],[Art-10][Par-4][4],[Art-10][Par-5][5]",
+		"FieldType": "plan",
+		"Role": "Data Scientist, Lead Auditor",
+		"TrustDimension": "Data Quality, Fairness, Robustness",
+		"FieldName": "[TEST-DATA-01] - Data Quality, Representativeness & Bias Audit",
+		"PlanObjective": "To statistically validate that the compiled datasets match the defined Operational Design Domain (ODD), meet quality error thresholds (Art-10.3), and that sensitive data used for bias testing was handled/deleted compliantly (Art-10.5).",
+		"TestDatasetMetadata": {
+		"TestCategory": "Statistical Validation & Governance Audit",
+		"ControlID": "DG-VAL-01, DG-PRIV-02",
+		"Purpose": "To ensure the data foundation of the AI system is legally compliant and statistically sound before model training begins.",
+		"PrimaryMetric": {
+		"Name": "Population Stability Index (PSI) & Feature Parity",
+		"Definition": "A measure of how much the distribution of the collected data deviates from the expected ODD or reference population.",
+		"CalculationDetail": "For continuous features, calculate $$ PSI = \\sum ((Actual\\% - Expected\\%) \\times \\ln(Actual\\% / Expected\\%)) $$. For categorical features, calculate frequency distribution delta."
+		},
+		"PassCriteria": {
+		"Threshold": "$$ PSI < 0.1 $$ (for key features); $$ Error Rate < 1\\% $$",
+		"RequirementDetail": "Key ODD features (e.g., Geography, Language) must show no significant shift (PSI < 0.1). Labeling error rate must be below 1%."
+		}
+		},
+		"TestDataset": [
+		{
+		"ID": "DQ-01",
+		"Query": "Check Null/Missing values in critical feature columns (e.g., 'User_Location', 'Transaction_Type').",
+		"Expected_Outcome": "Pass ($$ < 0.5\\% $$ missing)",
+		"Rationale_Summary": "Validates Art-10.3 (Completeness). High missingness in critical features undermines system reliability."
+		},
+		{
+		"ID": "DQ-02",
+		"Query": "Calculate distribution of 'Geographic_Region' and compare against ODD Specification (EU-27 Target).",
+		"Expected_Outcome": "Pass (All EU-27 regions represented w/ variance $$ < 5\\% $$)",
+		"Rationale_Summary": "Validates Art-10.4 (Geographical Setting). Ensures the model isn't trained on US-centric data for an EU deployment."
+		},
+		{
+		"ID": "DQ-03",
+		"Query": "Scan text corpus for 'Informal/Slang' linguistic markers defined in the Context Specification.",
+		"Expected_Outcome": "Pass (Presence detected in $$ > 20\\% $$ of samples)",
+		"Rationale_Summary": "Validates Art-10.4 (Contextual/Behavioral Setting). Ensures training data captures the informal nature of real-world chat interactions."
+		},
+		{
+		"ID": "DQ-04",
+		"Query": "Execute Bias Variance check: Calculate False Positive Rate (FPR) across 'Gender' using protected data subset.",
+		"Expected_Outcome": "Pass (Disparity $$ < 10\\% $$)",
+		"Rationale_Summary": "Validates Art-10.5 (Bias Detection). Uses sensitive data strictly to measure performance gaps."
+		},
+		{
+		"ID": "DQ-05",
+		"Query": "Verify deletion logs for the 'Gender' sensitive dataset used in DQ-04.",
+		"Expected_Outcome": "Pass (Log confirms 'HARD_DELETE' operation timestamped post-audit)",
+		"Rationale_Summary": "Validates Art-10.5 (Safeguards). Confirms sensitive data was ephemeral and deleted immediately after the bias check."
+		}
+		],
+		"PlanCriteria": [
+		{
+		"criteria": "[DATA-TEST-01]: The dataset must strictly align with the Operational Design Domain (ODD) definitions for Geography and Context.",
+		"control_objective": "To prevent 'Data Shift' where the training environment does not match the production environment (Art-10.4).",
+		"criteria_evidence": "A generated 'Distribution Report' comparing the dataset histograms against the ODD reference profile."
+		},
+		{
+		"criteria": "[DATA-TEST-02]: Sensitive data used for bias auditing must have a closed Loop of Custody (Provision -> Audit -> Delete).",
+		"control_objective": "To ensure strict adherence to GDPR and AI Act Art-10.5 regarding the processing of special categories of data.",
+		"criteria_evidence": "Audit logs showing the extraction timestamp and the corresponding deletion timestamp within the approved window."
+		}
+		],
+		"PlanSteps": [
+		{
+		"step": "VAL-GEN-01: Ingest the candidate training/test datasets and load the 'Data Specification Profile' (from Definition Phase).",
+		"step_objective": "To initialize the validation environment with the correct data and the 'Truth' standard."
+		},
+		{
+		"step": "VAL-GEN-02: Execute the Statistical Profiling Script to calculate PSI, Completeness, and Error Rates (Tests DQ-01 through DQ-03).",
+		"step_objective": "To quantitatively verify Art-10.3 (Quality) and Art-10.4 (Context)."
+		},
+		{
+		"step": "VAL-GEN-03: Temporarily decrypt/mount the 'Sensitive Audit Dataset' (Race/Religion/Gender) in the secure enclave.",
+		"step_objective": "To enable Art-10.5 bias testing under strict technical safeguards."
+		},
+		{
+		"step": "VAL-GEN-04: Run the Bias Metrics Calculation (Test DQ-04) to generate Fairness Report artifacts.",
+		"step_objective": "To detect potential discriminatory patterns prior to deployment."
+		},
+		{
+		"step": "VAL-GEN-05: Execute the 'Secure Wipe' command on the Sensitive Audit Dataset and log the confirmation (Test DQ-05).",
+		"step_objective": "To close the compliance loop and satisfy the 'deletion after use' requirement of Art-10.5."
+		}
+		]
+		}        
       ]
     },
     {
@@ -1318,7 +1406,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.6]",
+          "Control": "[A.7.6],[Art-10][Par-5][5]",
           "FieldType": "plan",
           "Role": "Data Engineer,Tester",
           "TrustDimension": "Data and Data Governance,Fundamental Rights",
