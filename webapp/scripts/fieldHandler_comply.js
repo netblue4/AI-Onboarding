@@ -159,7 +159,6 @@ function createComplyField(field, capturedData, sanitizeForId) {
                 <div class="toggle-icon" style="margin-right:10px; font-weight:bold;">+</div>
                 <div class="reg-header-content" style="flex-grow:1;">
                     <div class="reg-title" style="font-weight:bold; color:#1e40af;">${escapeHtml(parent.FieldName)}</div>
-                    <div class="auto-generated-label">${escapeHtml(parent.control_evidence)}</div>
                     <div class="progress-container" style="background:#e0e7ff; height:10px; border-radius:5px; margin-top:5px;">
                         <div class="progress-bar" style="width: ${displayPercentage}%; background-color: ${progressColor}; height:100%;"></div>
                     </div>
@@ -187,7 +186,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
                     subItem.style.padding = '10px';
                     subItem.style.borderTop = '1px solid #eee';
 
-                    subItem.innerHTML = `<div class="sub-control-title"><strong>${escapeHtml(subData.subControl.control)}</strong></div>`;
+                    subItem.innerHTML = `<div class="sub-control-title"><strong>${escapeHtml(subData.subControl.control)}</strong></div><div class="auto-generated-label">${escapeHtml(subData.subControl.control_evidence)}</div>`;
                     
                     // Implementations
                     if (subData.children.size > 0) {
