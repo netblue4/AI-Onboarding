@@ -205,11 +205,6 @@ function createComplyField(field, capturedData, sanitizeForId) {
 						// Display "Select status..." if value is empty, otherwise show value
 						option.textContent = optionText;
 						
-						// KEY FEATURE: Check if the data already has a status and select it
-						if (soption.value === 'Select') {
-							option.selected = true;
-						}
-						
 						select.appendChild(option);
 					});
 				
