@@ -534,6 +534,19 @@ button:hover {
 	padding: 15px 20px;
 	border-bottom: 1px solid var(--border-color);
 }
+
+
+.sub-control-item .auto-generated-label {
+    font-size: 0.9rem;
+    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
+    font-style: italic;
+    color: #555;
+    background-color: #eee;
+    padding: 0.75rem;
+    border-radius: 4px;
+    display: block;
+}
+
 .sub-control-item:last-child {
 	border-bottom: none;
 }
