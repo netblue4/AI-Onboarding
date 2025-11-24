@@ -198,7 +198,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
 					select.style.borderRadius = '4px';
 					select.style.border = '1px solid #ccc';
 					
-					const options = ['Select status...', 'Met', 'Not Met', 'Partially Met'];
+					const options = ['Select status...', 'N/A', 'Met', 'Not Met', 'Partially Met'];
 					options.forEach((optionText) => {
 						const option = document.createElement('option');
 						option.value = optionText;
