@@ -180,59 +180,101 @@ function createComplyField(field, capturedData, sanitizeForId) {
                 const sortedSubControls = Array.from(subControlLinks.entries()).sort((a, b) => a[0].localeCompare(b[0]));
                 
                 sortedSubControls.forEach(([key, subData]) => {
-                    const subItem = document.createElement('li');
-                    subItem.className = 'sub-control-item';
-                    subItem.style.listStyle = 'none';
-                    subItem.style.padding = '10px';
-                    subItem.style.borderTop = '1px solid #eee';
-
-                    subItem.innerHTML = `<div class="sub-control-title"><strong>${escapeHtml(subData.subControl.control)}</strong></div><div class="auto-generated-label">${escapeHtml(subData.subControl.control_evidence)}</div>`;
-                    
-                    // Implementations
-                    if (subData.children.size > 0) {
-                        const impList = document.createElement('ul');
-                        impList.className = 'imp-list';
-                        subData.children.forEach(child => {
-                            const impItem = document.createElement('li');
-                            impItem.className = 'imp-item';
-                            impItem.style.marginBottom = '5px';
-                            
-                            let badgeColor = '#eee';
- 
-                                let typeClass = 'type-other';
-                                let typeName = child.FieldType || 'field'; // Get the original field type
-
-                                if (typeName === 'risk') {
-                                    typeClass = 'type-risk';
-                                    // typeName is already 'risk'
-                                } else if (typeName === 'plan') {
-                                    typeClass = 'type-plan';
-                                    // typeName is 'plan'
-                                } else {
-                                    // If it's not 'risk' or 'plan', set it to 'FIELD'
-                                    typeClass = 'type-other';
-                                    typeName = 'FIELD'; // Set the display name to FIELD
-                                }
-                                
-                                impItem.innerHTML = `
-                                    <span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
-                                    <div class="imp-content">
-                                        <div class="imp-title">${escapeHtml(child.FieldName)}</div>
-                                        <div class="imp-meta">
-                                            <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
-                                            ${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
-                                        </div>
-                                    </div>
-                                `;
- 
-                            impList.appendChild(impItem);
-                        });
-                        subItem.appendChild(impList);
-                    } else {
-                        subItem.innerHTML += `<div style="color:#999; font-style:italic;">No linked items.</div>`;
-                    }
-                    subControlList.appendChild(subItem);
-                });
+					const subItem = document.createElement('li');
+					subItem.className = 'sub-control-item';
+					subItem.style.listStyle = 'none';
+					subItem.style.padding = '10px';
+					subItem.style.borderTop = '1px solid #eee';
+				
+					// 1. Create Title
+					const titleDiv = document.createElement('div');
+					titleDiv.className = 'sub-control-title';
+					titleDiv.innerHTML = `<strong>${escapeHtml(subData.subControl.control)}</strong>`;
+					
+					// 2. Create Dropdown
+					const select = document.createElement('select');
+					select.style.margin = '5px 0 10px 0'; // Add some spacing
+					select.style.padding = '4px';
+					select.style.borderRadius = '4px';
+					select.style.border = '1px solid #ccc';
+					
+					const options = ['', 'Met', 'Not Met', 'Partially Met'];
+					options.forEach((optionText) => {
+						const option = document.createElement('option');
+						option.value = optionText;
+						// Display "Select status..." if value is empty, otherwise show value
+						option.textContent = optionText === '' ? 'Select status...' : optionText;
+						
+						// KEY FEATURE: Check if the data already has a status and select it
+						if (subData.subControl.control_status === optionText) {
+							option.selected = true;
+						}
+						
+						select.appendChild(option);
+					});
+				
+					// Optional: Add event listener to save changes back to your data object locally
+					select.addEventListener('change', (e) => {
+						subData.subControl.control_status = e.target.value;
+						// console.log(`Status updated for ${key}: ${e.target.value}`);
+					});
+				
+					// 3. Create Evidence/Description
+					const evidenceDiv = document.createElement('div');
+					evidenceDiv.className = 'auto-generated-label';
+					evidenceDiv.innerHTML = escapeHtml(subData.subControl.control_evidence);
+				
+					// 4. Append specific elements to the subItem in order
+					subItem.appendChild(titleDiv);
+					subItem.appendChild(select); // The Dropdown goes here
+					subItem.appendChild(evidenceDiv);
+					
+					// 5. Handle Implementations (Existing Logic)
+					if (subData.children.size > 0) {
+						const impList = document.createElement('ul');
+						impList.className = 'imp-list';
+						subData.children.forEach(child => {
+							const impItem = document.createElement('li');
+							impItem.className = 'imp-item';
+							impItem.style.marginBottom = '5px';
+							
+							let typeClass = 'type-other';
+							let typeName = child.FieldType || 'field'; 
+				
+							if (typeName === 'risk') {
+								typeClass = 'type-risk';
+							} else if (typeName === 'plan') {
+								typeClass = 'type-plan';
+							} else {
+								typeClass = 'type-other';
+								typeName = 'FIELD'; 
+							}
+							
+							impItem.innerHTML = `
+								<span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
+								<div class="imp-content">
+									<div class="imp-title">${escapeHtml(child.FieldName)}</div>
+									<div class="imp-meta">
+										<strong>Matches Control:</strong> ${escapeHtml(child.Control)}
+										${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
+									</div>
+								</div>
+							`;
+				
+							impList.appendChild(impItem);
+						});
+						subItem.appendChild(impList);
+					} else {
+						// Create the "No linked items" message as a div and append it
+						const noItemsDiv = document.createElement('div');
+						noItemsDiv.style.color = '#999';
+						noItemsDiv.style.fontStyle = 'italic';
+						noItemsDiv.textContent = 'No linked items.';
+						subItem.appendChild(noItemsDiv);
+					}
+					
+					subControlList.appendChild(subItem);
+				});
             }
 
             regItem.appendChild(subControlList);
