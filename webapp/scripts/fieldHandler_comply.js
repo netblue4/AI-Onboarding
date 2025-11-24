@@ -159,6 +159,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
                 <div class="toggle-icon" style="margin-right:10px; font-weight:bold;">+</div>
                 <div class="reg-header-content" style="flex-grow:1;">
                     <div class="reg-title" style="font-weight:bold; color:#1e40af;">${escapeHtml(parent.FieldName)}</div>
+                    <div class="auto-generated-label">${escapeHtml(parent.control_evidence)}</div>
                     <div class="progress-container" style="background:#e0e7ff; height:10px; border-radius:5px; margin-top:5px;">
                         <div class="progress-bar" style="width: ${displayPercentage}%; background-color: ${progressColor}; height:100%;"></div>
                     </div>
