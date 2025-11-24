@@ -198,15 +198,13 @@ function createComplyField(field, capturedData, sanitizeForId) {
 					select.style.borderRadius = '4px';
 					select.style.border = '1px solid #ccc';
 					
-					const options = ['', 'Met', 'Not Met', 'Partially Met'];
+					const options = ['Select status...', 'Met', 'Not Met', 'Partially Met'];
 					options.forEach((optionText) => {
 						const option = document.createElement('option');
 						option.value = optionText;
-						// Display "Select status..." if value is empty, otherwise show value
-						option.textContent = optionText === '' ? 'Select status...' : optionText;
-						
+
 						// KEY FEATURE: Check if the data already has a status and select it
-						if (subData.subControl.control_status === optionText) {
+						if (option.value === 'Select status...') {
 							option.selected = true;
 						}
 						
