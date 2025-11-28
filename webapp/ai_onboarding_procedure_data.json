@@ -1119,14 +1119,14 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1f],[Art-27][Par-1a-1b],[Art-27][Par-1c-1d]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1f],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
               "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1a-1b],[Art-27][Par-1c-1d]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d]",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Post-Deployment Monitoring Plan",
               "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
@@ -2191,7 +2191,7 @@
       ]
     }
   ],
-  "5. Test": [
+  "4. Test": [
     {
       "StepName": "5.1. - AI Systems verifications and monitoring",
       "Objectives": [
@@ -2920,7 +2920,7 @@
       ]
     }
   ],
-  "6. Comply": [
+  "5. Comply": [
     {
       "StepName": "5.1. EU AI Act and ISO 42001 Compliance",
       "Objectives": [
@@ -2939,7 +2939,7 @@
       ]
     }    
   ],
-  "7. Approvals": [
+  "6. Approvals": [
     {
       "StepName": "6.1. - AI Systems approvals",
       "Objectives": [
@@ -3015,7 +3015,7 @@
       ]
     }
   ],
-  "8. Deployment": [
+  "7. Deployment": [
     {
       "StepName": "7.1. - AI Lifecycle Phase requirements - Deployment",
       "WebFormTitle": "To orchestrate a secure and compliant AI system deployment by ensuring component integrity through secure packaging, formalizing a deployment plan, and verifying all prerequisite conditions are met prior to system activation.",
@@ -3172,7 +3172,7 @@
       "Fields": []
     }
   ],
-  "9. Operations": [
+  "8. Operations": [
     {
       "StepName": "8.1. - Operation",
       "Objectives": [
