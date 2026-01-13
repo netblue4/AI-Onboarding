@@ -1085,6 +1085,7 @@
           "Fields": [
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1],[Art-27][Par-1a-1b],[Art-27]",
+              "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
               "FieldText": "",
@@ -1092,6 +1093,7 @@
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a=1b],[Art-27][Par-1c, 1d]",
+              "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential negative impacts on fundamental rights",
               "FieldText": "Select specifically identified risks to the vulnerable population.",
@@ -1099,6 +1101,7 @@
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27]",
+              "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential positive impacts on fundamental rights",
               "FieldText": "Select expected benefits for the vulnerable population.",
@@ -1106,6 +1109,7 @@
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27]",
+              "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Rate the severity of identified negative impacts",
               "FieldText": "",
@@ -1113,6 +1117,7 @@
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d]",
+              "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the severity of identified impacts",
               "FieldText": "Provide justification for the severity rating selected above.",
@@ -1120,6 +1125,7 @@
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1f],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d]",
+              "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
               "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
@@ -1127,6 +1133,7 @@
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d]",
+              "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Post-Deployment Monitoring Plan",
               "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
