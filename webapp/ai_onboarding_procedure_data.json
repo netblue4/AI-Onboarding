@@ -1316,7 +1316,7 @@
 		{
 		"Control": "[Art-10][Par-3][3],[Art-10][Par-4][4],[Art-10][Par-5][5]",
 		"FieldType": "plan",
-		"Role": "Data Scientist, Lead Auditor",
+		"Role": "Tester",
 		"TrustDimension": "Data and Data Governance",
 		"FieldName": "[TEST-DATA-01] - Data Quality, Representativeness & Bias Audit",
 		"PlanObjective": "To statistically validate that the compiled datasets match the defined Operational Design Domain (ODD), meet quality error thresholds (Art-10.3), and that sensitive data used for bias testing was handled/deleted compliantly (Art-10.5).",
@@ -1656,7 +1656,7 @@
         {
           "Control": "[Art-15][Par-5],[A.6.2.2]",
           "FieldType": "risk",
-          "Role": "System Architect",
+          "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
           "FieldName": "RAG01 Over-privileged Ingestion Connectors",
           "RiskDescription": "The **service accounts** or **API keys** used by the Data Processing Pipeline to connect to internal data sources often require broad 'read-all' permissions to function effectively. If these **over-privileged credentials** are compromised (e.g., hardcoded in scripts, leaked in logs, or stolen via lateral movement), an attacker gains **unrestricted access** to all ingestible data simultaneously, bypassing individual user access controls and leading to **massive data exfiltration**.",
@@ -1849,7 +1849,7 @@
         {
           "Control": "[Art-15][Par-5],[A.6.2.2]",
           "FieldType": "risk",
-          "Role": "Data Scientist",
+          "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
           "FieldName": "LLM05 Model Supply Chain Attack",
           "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
