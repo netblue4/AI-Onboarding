@@ -253,9 +253,6 @@ function createComplyField(field, capturedData, sanitizeForId) {
 										<strong>Matches Control:</strong> ${escapeHtml(child.Control)}
 									</div>
 									<div class="imp-meta">
-										${child.Role ? ` | <strong>Role:</strong> ${escapeHtml(child.Role)}` : ''}
-									</div>
-									<div class="imp-meta">
 										<strong>Evidence:</strong> ${escapeHtml(child.control_evidence)}
 									</div>									
 								</div>
