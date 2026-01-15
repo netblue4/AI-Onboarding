@@ -1281,7 +1281,7 @@
         {
           "Control": "[Art-15][Par-1],[A.6.2.2]",
           "FieldType": "risk",
-          "Role": "Data Engineer,Engineer",
+          "Role": "Engineer",
           "TrustDimension": "Data and Data Governance,Cybersecurity and Resilience",
           "FieldName": "Malicious Data Ingestion (Data Poisoning & Indirect Prompt Injection)",
           "RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
@@ -1415,7 +1415,7 @@
         {
           "Control": "[A.7.6],[Art-10][Par-5][5]",
           "FieldType": "plan",
-          "Role": "Data Engineer,Tester",
+          "Role": "Tester",
           "TrustDimension": "Data and Data Governance,Fundamental Rights",
           "FieldName": "Sensitive Data Preparation Plan",
           "PlanObjective": "Ensure that raw sensitive data is anonymised before it is used by the AI system.",
