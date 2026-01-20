@@ -509,7 +509,7 @@
                                             if (field.controls && Array.isArray(field.controls)) {
                                                 field.controls.forEach((control, index) => {
                                                     const controlKey = `${control.control_number}`;
-                                                    
+                                                    controlKey = sanitizeForId(controlKey)
                                                     
                                                     const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
 													if (statusElement && capturedData[`${controlKey}_status`]) {
