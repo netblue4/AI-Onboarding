@@ -501,7 +501,7 @@
                                         else if (fieldType === 'risk') {
                                             // Restore main risk dropdown
                                             if (capturedData[field.FieldName]) {
-                                                const riskSelect = document.querySelector('.form-field select');
+                                                const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
                                                 if (riskSelect) riskSelect.value = capturedData[field.FieldName];
                                             }
                                             
@@ -509,14 +509,17 @@
                                             if (field.controls && Array.isArray(field.controls)) {
                                                 field.controls.forEach((control, index) => {
                                                     const controlKey = `${control.control_number}`;
-                                                    const selects = document.querySelectorAll('.form-field select');
-                                                    const textareas = document.querySelectorAll('.form-field textarea');
                                                     
-                                                    if (capturedData[`${controlKey}_status`] && selects[index]) {
-                                                        selects[index].value = capturedData[`${controlKey}_status`];
+                                                    
+													const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
+													const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
+
+                                                    
+                                                    if (capturedData[`${controlKey}_status`] && statusElement[index]) {
+                                                        statusElement[index].value = capturedData[`${controlKey}_status`];
                                                     }
-                                                    if (capturedData[`${controlKey}_evidence`] && textareas[index]) {
-                                                        textareas[index].value = capturedData[`${controlKey}_evidence`];
+                                                    if (capturedData[`${controlKey}_evidence`] && evidenceElement[index]) {
+                                                        evidenceElement[index].value = capturedData[`${controlKey}_evidence`];
                                                     }
                                                 });
                                             }
