@@ -121,6 +121,25 @@
             font-size: 14px;
         }
 
+        .info-banner {
+            background: #d1ecf1;
+            border-left: 4px solid #0c5460;
+            padding: 15px 30px;
+            display: none;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-banner.show {
+            display: flex;
+        }
+
+        .info-banner .content p {
+            color: #0c5460;
+            font-size: 14px;
+            margin: 0;
+        }
+
         .content-area {
             padding: 30px;
             max-height: calc(100vh - 300px);
@@ -251,10 +270,16 @@
             <div class="button-group">
                 <input type="file" id="file-input" accept=".json">
                 <button class="btn-secondary" onclick="document.getElementById('file-input').click()">
-                    📁 Load Project
+                    📁 Load Data File
                 </button>
                 <button class="btn-success" id="save-btn">💾 Save Progress</button>
                 <button class="btn-primary" id="download-btn">📥 Download Report</button>
+            </div>
+        </div>
+
+        <div class="info-banner" id="info-banner">
+            <div class="content">
+                <p><strong>📋 Data file loaded:</strong> <span id="loaded-file-info"></span></p>
             </div>
         </div>
 
@@ -270,7 +295,7 @@
         <div class="content-area" id="content-area">
             <div class="empty-state">
                 <h2>Welcome to AI Onboarding</h2>
-                <p>Select your role to begin, or load an existing project to continue.</p>
+                <p>Select your role to begin, or load an existing data file to continue.</p>
             </div>
         </div>
     </div>
@@ -295,8 +320,8 @@
         // Template version - UPDATE THIS when you modify the template JSON
         const CURRENT_TEMPLATE_VERSION = "1.0";
 
-        let originalWebappData = null;
-        let capturedData = {};
+        let templateData = null;  // The template structure (read-only)
+        let capturedData = {};    // The captured values (separate data file)
         let currentRole = "";
         let currentDimension = "";
         let systemId = "";
@@ -311,6 +336,7 @@
         const downloadBtn = document.getElementById('download-btn');
         const contentArea = document.getElementById('content-area');
         const versionBanner = document.getElementById('version-banner');
+        const infoBanner = document.getElementById('info-banner');
         const highlightNewBtn = document.getElementById('highlight-new-btn');
 
         // Generate unique system ID
@@ -368,47 +394,41 @@
             return null;
         }
 
-        // Check if field is new
+        // Check if field is new (doesn't exist in captured data)
         function isFieldNew(fieldName) {
             if (!loadedVersion || loadedVersion === CURRENT_TEMPLATE_VERSION) return false;
-            
-            // Check if this field exists in the loaded captured data
-            if (!capturedData || !capturedData.phases) return false;
-            
-            let fieldExists = false;
-            for (const [phaseName, stepsInPhase] of Object.entries(capturedData.phases)) {
-                stepsInPhase.forEach(step => {
-                    if (step.Fields) {
-                        function checkField(field) {
-                            if (field.FieldName === fieldName && field.CapturedValue !== undefined) {
-                                fieldExists = true;
-                            }
-                            if (field.Fields) {
-                                field.Fields.forEach(checkField);
-                            }
-                        }
-                        step.Fields.forEach(checkField);
-                    }
-                });
-            }
-            
-            return !fieldExists;
+            return !capturedData.hasOwnProperty(fieldName);
         }
 
-        // Wrap field elements with "new" styling if needed
-        function wrapIfNew(element, fieldName) {
-            if (isFieldNew(fieldName) && newFieldsHighlighted) {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'field-new';
-                wrapper.appendChild(element);
-                return wrapper;
+        // Get all field names from template recursively
+        function getAllFieldNamesFromTemplate() {
+            const fieldNames = new Set();
+            
+            if (!templateData) return fieldNames;
+
+            for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
+                stepsInPhase.forEach(step => {
+                    if (!step.Fields) return;
+
+                    function extractFieldNames(field) {
+                        if (field.FieldName && field.FieldType !== 'Auto generated number' && field.FieldType !== 'fieldGroup') {
+                            fieldNames.add(field.FieldName);
+                        }
+                        if (field.Fields && Array.isArray(field.Fields)) {
+                            field.Fields.forEach(extractFieldNames);
+                        }
+                    }
+
+                    step.Fields.forEach(extractFieldNames);
+                });
             }
-            return element;
+
+            return fieldNames;
         }
 
         // Render all content using field handlers
         function renderContent() {
-            if (!originalWebappData || !currentRole) {
+            if (!templateData || !currentRole) {
                 contentArea.innerHTML = '<div class="empty-state"><h2>Select Your Role</h2><p>Choose your role from the dropdown above to see relevant fields.</p></div>';
                 return;
             }
@@ -416,10 +436,7 @@
             contentArea.innerHTML = '';
             let hasContent = false;
 
-            // Use captured data structure if available, otherwise use original
-            const dataToRender = (capturedData && capturedData.phases) ? capturedData.phases : originalWebappData;
-
-            for (const [phaseName, stepsInPhase] of Object.entries(dataToRender)) {
+            for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
                 const phaseDiv = document.createElement('div');
                 phaseDiv.className = 'phase-section';
 
@@ -455,20 +472,19 @@
                         filteredStep.Fields.forEach(field => {
                             const handler = getFieldHandler(field.FieldType);
                             if (handler) {
-                                // Pass the field with captured value to the handler
                                 const fieldElement = handler(field, capturedData, sanitizeForId);
                                 
                                 // After rendering, populate with captured value if it exists
-                                if (field.FieldName && field.CapturedValue !== undefined) {
+                                if (field.FieldName && capturedData.hasOwnProperty(field.FieldName)) {
                                     setTimeout(() => {
                                         const sanitizedId = sanitizeForId(field.FieldName);
                                         const inputElement = document.getElementById(sanitizedId);
                                         if (inputElement) {
                                             if (inputElement.type === 'radio') {
-                                                const radioToCheck = document.querySelector(`input[name="${sanitizedId}"][value="${field.CapturedValue}"]`);
+                                                const radioToCheck = document.querySelector(`input[name="${sanitizedId}"][value="${capturedData[field.FieldName]}"]`);
                                                 if (radioToCheck) radioToCheck.checked = true;
                                             } else {
-                                                inputElement.value = field.CapturedValue;
+                                                inputElement.value = capturedData[field.FieldName];
                                             }
                                         }
                                     }, 0);
@@ -506,36 +522,17 @@
             }
         }
 
-        // Capture all field data - maintains original JSON structure
-        function captureAllData() {
-            if (!originalWebappData) return null;
+        // Capture all current field values
+        function captureCurrentValues() {
+            if (!templateData) return {};
 
-            // Create a deep copy of the original structure
-            const structuredData = JSON.parse(JSON.stringify(originalWebappData));
-            
-            // Add metadata at the root level
-            const outputData = {
-                _metadata: {
-                    templateVersion: CURRENT_TEMPLATE_VERSION,
-                    systemId: systemId,
-                    lastModifiedBy: currentRole,
-                    lastModifiedDate: new Date().toISOString()
-                },
-                phases: structuredData
-            };
+            const currentData = { ...capturedData }; // Start with existing data
 
-            // If we have previously captured data, restore it first
-            if (capturedData && capturedData.phases) {
-                outputData.phases = JSON.parse(JSON.stringify(capturedData.phases));
-            }
-
-            // Now capture current form values and update the structure
-            for (const [phaseName, stepsInPhase] of Object.entries(outputData.phases)) {
+            for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
                 stepsInPhase.forEach(step => {
                     if (!step.Fields) return;
 
-                    // Recursively update field values in the structure
-                    function updateFieldValue(field) {
+                    function captureFieldValue(field) {
                         if (!field) return;
                         
                         if (field.FieldName && field.FieldType !== 'Auto generated number' && field.FieldType !== 'fieldGroup') {
@@ -546,59 +543,92 @@
                                 if (inputElement.type === 'radio') {
                                     const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
                                     if (checked) {
-                                        field.CapturedValue = checked.value;
+                                        currentData[field.FieldName] = checked.value;
                                     }
                                 } else {
-                                    field.CapturedValue = inputElement.value;
+                                    currentData[field.FieldName] = inputElement.value;
                                 }
                             }
                         }
                         
                         if (field.Fields && Array.isArray(field.Fields)) {
-                            field.Fields.forEach(updateFieldValue);
+                            field.Fields.forEach(captureFieldValue);
                         }
                     }
 
-                    step.Fields.forEach(updateFieldValue);
+                    step.Fields.forEach(captureFieldValue);
                 });
             }
 
-            return outputData;
+            return currentData;
         }
 
-        // Save progress
+        // Save progress - creates data file
         saveBtn.addEventListener('click', () => {
             if (!systemId) {
                 systemId = systemIdInput.value || generateSystemId();
                 systemIdInput.value = systemId;
             }
 
-            capturedData = captureAllData();
-            
-            const jsonData = JSON.stringify(capturedData, null, 4);
+            // Capture current form values
+            const currentValues = captureCurrentValues();
+
+            // Create data file structure
+            const dataFile = {
+                _metadata: {
+                    templateVersion: CURRENT_TEMPLATE_VERSION,
+                    systemId: systemId,
+                    lastModifiedBy: currentRole,
+                    lastModifiedDate: new Date().toISOString()
+                },
+                capturedData: currentValues
+            };
+
+            // Update in-memory captured data
+            capturedData = currentValues;
+
+            // Download data file
+            const jsonData = JSON.stringify(dataFile, null, 4);
             const blob = new Blob([jsonData], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `${systemId}_progress.json`;
+            a.download = `${systemId}_data.json`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
-            alert('Progress saved! File downloaded: ' + systemId + '_progress.json');
+            alert('Progress saved! File downloaded: ' + systemId + '_data.json');
         });
 
-        // Download final report
+        // Download final compliance report
         downloadBtn.addEventListener('click', () => {
             if (!systemId) {
                 alert('Please set a System ID first');
                 return;
             }
 
-            const finalData = captureAllData();
-            
-            const jsonData = JSON.stringify(finalData, null, 4);
+            // Capture current form values
+            const currentValues = captureCurrentValues();
+
+            // Create comprehensive report
+            const report = {
+                _metadata: {
+                    templateVersion: CURRENT_TEMPLATE_VERSION,
+                    systemId: systemId,
+                    reportGeneratedBy: currentRole,
+                    reportGeneratedDate: new Date().toISOString(),
+                    reportType: "AI Compliance Report"
+                },
+                capturedData: currentValues,
+                summary: {
+                    totalFields: Object.keys(currentValues).length,
+                    completedFields: Object.values(currentValues).filter(v => v && v !== '').length
+                }
+            };
+
+            const jsonData = JSON.stringify(report, null, 4);
             const blob = new Blob([jsonData], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -612,7 +642,7 @@
             alert('Compliance report downloaded!');
         });
 
-        // Load existing project
+        // Load data file
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
@@ -620,26 +650,38 @@
             const reader = new FileReader();
             reader.onload = (event) => {
                 try {
-                    const loadedData = JSON.parse(event.target.result);
-                    capturedData = loadedData;
+                    const loadedFile = JSON.parse(event.target.result);
                     
                     // Extract metadata
-                    if (loadedData._metadata) {
-                        systemId = loadedData._metadata.systemId || '';
+                    if (loadedFile._metadata) {
+                        systemId = loadedFile._metadata.systemId || '';
                         systemIdInput.value = systemId;
-                        loadedVersion = loadedData._metadata.templateVersion || "1.0";
+                        loadedVersion = loadedFile._metadata.templateVersion || "1.0";
+                        
+                        // Show info banner
+                        infoBanner.classList.add('show');
+                        document.getElementById('loaded-file-info').textContent = 
+                            `System ID: ${systemId} | Last modified by: ${loadedFile._metadata.lastModifiedBy || 'Unknown'} | Date: ${loadedFile._metadata.lastModifiedDate ? new Date(loadedFile._metadata.lastModifiedDate).toLocaleString() : 'Unknown'}`;
+                    }
+                    
+                    // Extract captured data
+                    if (loadedFile.capturedData) {
+                        capturedData = loadedFile.capturedData;
                     } else {
-                        // Legacy format support
-                        systemId = loadedData.systemId || '';
-                        systemIdInput.value = systemId;
-                        loadedVersion = loadedData.templateVersion || "1.0";
+                        capturedData = {};
                     }
                     
                     // Check version compatibility
                     if (loadedVersion !== CURRENT_TEMPLATE_VERSION) {
                         versionBanner.classList.add('show');
+                        
+                        // Find new fields
+                        const templateFields = getAllFieldNamesFromTemplate();
+                        const existingFields = new Set(Object.keys(capturedData));
+                        const newFields = [...templateFields].filter(f => !existingFields.has(f));
+                        
                         document.getElementById('version-message').textContent = 
-                            `This assessment was created with template v${loadedVersion}, but you're using v${CURRENT_TEMPLATE_VERSION}. New fields may be available.`;
+                            `This assessment was created with template v${loadedVersion}, but you're using v${CURRENT_TEMPLATE_VERSION}. ${newFields.length} new field(s) detected.`;
                     } else {
                         versionBanner.classList.remove('show');
                     }
@@ -648,7 +690,7 @@
                         renderContent();
                     }
 
-                    alert('Project loaded successfully!');
+                    alert('Data file loaded successfully!');
                 } catch (error) {
                     alert('Error loading file: ' + error.message);
                 }
@@ -680,7 +722,7 @@
             highlightNewBtn.textContent = newFieldsHighlighted ? 'Hide Highlights' : 'Highlight New Fields';
         });
 
-        // Load the template JSON
+        // Load the template JSON on page load
         document.addEventListener('DOMContentLoaded', () => {
             fetch('ai_onboarding_procedure_data.json')
                 .then(response => {
@@ -690,7 +732,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    originalWebappData = data;
+                    templateData = data;
                     window.originalWebappData = data; // Make available globally for field handlers
                     console.log('Template loaded successfully');
                     
