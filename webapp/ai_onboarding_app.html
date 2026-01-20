@@ -511,12 +511,12 @@
                                                     const controlKey = sanitizeForId(control.control_number)
                                                                                                         
                                                     const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
-													if (statusElement && capturedData[`${control.control_number}_status`]) {
+													if (statusElement && capturedData[`${controlKey}_status`]) {
 														statusElement.value = capturedData[`${controlKey}_status`];
 													}
                                                     
 													const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
-                                                    if (evidenceElement && capturedData[`${control.control_number}_evidence`]) {
+                                                    if (evidenceElement && capturedData[`${controlKey}_evidence`]) {
                                                     	evidenceElement.value = capturedData[`${controlKey}_evidence`];
                                                     }
 
