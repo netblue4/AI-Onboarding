@@ -371,7 +371,28 @@
         // Check if field is new
         function isFieldNew(fieldName) {
             if (!loadedVersion || loadedVersion === CURRENT_TEMPLATE_VERSION) return false;
-            return !capturedData.hasOwnProperty(fieldName);
+            
+            // Check if this field exists in the loaded captured data
+            if (!capturedData || !capturedData.phases) return false;
+            
+            let fieldExists = false;
+            for (const [phaseName, stepsInPhase] of Object.entries(capturedData.phases)) {
+                stepsInPhase.forEach(step => {
+                    if (step.Fields) {
+                        function checkField(field) {
+                            if (field.FieldName === fieldName && field.CapturedValue !== undefined) {
+                                fieldExists = true;
+                            }
+                            if (field.Fields) {
+                                field.Fields.forEach(checkField);
+                            }
+                        }
+                        step.Fields.forEach(checkField);
+                    }
+                });
+            }
+            
+            return !fieldExists;
         }
 
         // Wrap field elements with "new" styling if needed
@@ -395,7 +416,10 @@
             contentArea.innerHTML = '';
             let hasContent = false;
 
-            for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
+            // Use captured data structure if available, otherwise use original
+            const dataToRender = (capturedData && capturedData.phases) ? capturedData.phases : originalWebappData;
+
+            for (const [phaseName, stepsInPhase] of Object.entries(dataToRender)) {
                 const phaseDiv = document.createElement('div');
                 phaseDiv.className = 'phase-section';
 
@@ -431,7 +455,24 @@
                         filteredStep.Fields.forEach(field => {
                             const handler = getFieldHandler(field.FieldType);
                             if (handler) {
+                                // Pass the field with captured value to the handler
                                 const fieldElement = handler(field, capturedData, sanitizeForId);
+                                
+                                // After rendering, populate with captured value if it exists
+                                if (field.FieldName && field.CapturedValue !== undefined) {
+                                    setTimeout(() => {
+                                        const sanitizedId = sanitizeForId(field.FieldName);
+                                        const inputElement = document.getElementById(sanitizedId);
+                                        if (inputElement) {
+                                            if (inputElement.type === 'radio') {
+                                                const radioToCheck = document.querySelector(`input[name="${sanitizedId}"][value="${field.CapturedValue}"]`);
+                                                if (radioToCheck) radioToCheck.checked = true;
+                                            } else {
+                                                inputElement.value = field.CapturedValue;
+                                            }
+                                        }
+                                    }, 0);
+                                }
                                 
                                 // Wrap with "new" styling if needed
                                 if (field.FieldName && isFieldNew(field.FieldName) && newFieldsHighlighted) {
@@ -465,58 +506,64 @@
             }
         }
 
-        // Capture all field data
+        // Capture all field data - maintains original JSON structure
         function captureAllData() {
-            const tempData = {
-                templateVersion: CURRENT_TEMPLATE_VERSION,
-                systemId: systemId,
-                lastModifiedBy: currentRole,
-                lastModifiedDate: new Date().toISOString()
+            if (!originalWebappData) return null;
+
+            // Create a deep copy of the original structure
+            const structuredData = JSON.parse(JSON.stringify(originalWebappData));
+            
+            // Add metadata at the root level
+            const outputData = {
+                _metadata: {
+                    templateVersion: CURRENT_TEMPLATE_VERSION,
+                    systemId: systemId,
+                    lastModifiedBy: currentRole,
+                    lastModifiedDate: new Date().toISOString()
+                },
+                phases: structuredData
             };
 
-            // Merge existing captured data
-            Object.keys(capturedData).forEach(key => {
-                if (!['templateVersion', 'systemId', 'lastModifiedBy', 'lastModifiedDate'].includes(key)) {
-                    tempData[key] = capturedData[key];
-                }
-            });
+            // If we have previously captured data, restore it first
+            if (capturedData && capturedData.phases) {
+                outputData.phases = JSON.parse(JSON.stringify(capturedData.phases));
+            }
 
-            // Capture current values from all visible input fields
-            if (!originalWebappData) return tempData;
-
-            for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
+            // Now capture current form values and update the structure
+            for (const [phaseName, stepsInPhase] of Object.entries(outputData.phases)) {
                 stepsInPhase.forEach(step => {
-                    const filteredStep = getDeepFilteredNode(step);
-                    if (!filteredStep || !filteredStep.Fields) return;
+                    if (!step.Fields) return;
 
-                    // Recursively capture data from fields
-                    function captureFromNode(node) {
-                        if (!node) return;
+                    // Recursively update field values in the structure
+                    function updateFieldValue(field) {
+                        if (!field) return;
                         
-                        if (node.FieldName && node.FieldType !== 'Auto generated number' && node.FieldType !== 'fieldGroup') {
-                            const sanitizedId = sanitizeForId(node.FieldName);
+                        if (field.FieldName && field.FieldType !== 'Auto generated number' && field.FieldType !== 'fieldGroup') {
+                            const sanitizedId = sanitizeForId(field.FieldName);
                             const inputElement = document.getElementById(sanitizedId);
                             
                             if (inputElement) {
                                 if (inputElement.type === 'radio') {
                                     const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
-                                    if (checked) tempData[node.FieldName] = checked.value;
+                                    if (checked) {
+                                        field.CapturedValue = checked.value;
+                                    }
                                 } else {
-                                    tempData[node.FieldName] = inputElement.value;
+                                    field.CapturedValue = inputElement.value;
                                 }
                             }
                         }
                         
-                        if (node.Fields) {
-                            node.Fields.forEach(captureFromNode);
+                        if (field.Fields && Array.isArray(field.Fields)) {
+                            field.Fields.forEach(updateFieldValue);
                         }
                     }
 
-                    filteredStep.Fields.forEach(captureFromNode);
+                    step.Fields.forEach(updateFieldValue);
                 });
             }
 
-            return tempData;
+            return outputData;
         }
 
         // Save progress
@@ -577,10 +624,16 @@
                     capturedData = loadedData;
                     
                     // Extract metadata
-                    systemId = loadedData.systemId || '';
-                    systemIdInput.value = systemId;
-                    
-                    loadedVersion = loadedData.templateVersion || "1.0";
+                    if (loadedData._metadata) {
+                        systemId = loadedData._metadata.systemId || '';
+                        systemIdInput.value = systemId;
+                        loadedVersion = loadedData._metadata.templateVersion || "1.0";
+                    } else {
+                        // Legacy format support
+                        systemId = loadedData.systemId || '';
+                        systemIdInput.value = systemId;
+                        loadedVersion = loadedData.templateVersion || "1.0";
+                    }
                     
                     // Check version compatibility
                     if (loadedVersion !== CURRENT_TEMPLATE_VERSION) {
