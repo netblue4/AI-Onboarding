@@ -509,7 +509,7 @@
                                             if (field.controls && Array.isArray(field.controls)) {
                                                 field.controls.forEach((control, index) => {
                                                     const controlKey = sanitizeForId(control.control_number)
-                                                    
+                                                                                                        
                                                     const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
 													if (statusElement && capturedData[`${control.control_number}_status`]) {
 														statusElement.value = capturedData[`${controlKey}_status`];
@@ -654,10 +654,6 @@
                                     const controlKey = `${controlNumber}`;
                                     currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
                                     
-                                    // Find the select and textarea for this control
-                                    const selects = document.querySelectorAll('.form-field select');
-                                    const textareas = document.querySelectorAll('.form-field textarea');
-                                    
                                     // Find specific elements by their unique name
 									const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
 									const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
@@ -665,10 +661,10 @@
 									const statusValue = statusElement ? statusElement.value : null;
 									const evidenceValue = evidenceElement ? evidenceElement.value : null;
                                     
-                                    if (selects[index]) {
+                                    if (statusValue) {
                                         currentData[`${controlKey}_status`] = statusValue;
                                     }
-                                    if (textareas[index]) {
+                                    if (evidenceValue) {
                                         currentData[`${controlKey}_evidence`] = evidenceValue;
                                     }
                                 });
