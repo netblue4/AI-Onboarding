@@ -647,11 +647,11 @@
                             
                             // Capture control_status and control_evidence from nested controls
                             if (field.controls && Array.isArray(field.controls)) {
-                            	currentData[`Risk: `] = fieldName;
+                            	currentData[`${fieldName}: `] = fieldName;
                                 field.controls.forEach((control, index) => {
-                                	currentData[`Control: `] = control.control_number + " - " + control.control_description;
                                     const controlNumber = control.control_number;
                                     const controlKey = `${controlNumber}`;
+                                    currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
                                     
                                     // Find the select and textarea for this control
                                     const selects = document.querySelectorAll('.form-field select');
