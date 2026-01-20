@@ -647,7 +647,9 @@
                             
                             // Capture control_status and control_evidence from nested controls
                             if (field.controls && Array.isArray(field.controls)) {
+                            	currentData[`Risk: `] = fieldName;
                                 field.controls.forEach((control, index) => {
+                                	currentData[`Control: `] = control.control_number + " - " + control.control_description;
                                     const controlNumber = control.control_number;
                                     const controlKey = `${controlNumber}`;
                                     
