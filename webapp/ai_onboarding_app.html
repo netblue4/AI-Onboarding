@@ -601,10 +601,8 @@
             const currentData = { ...capturedData }; // Start with existing data
 
             for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
-            	currentData[phaseName] = phaseName; // Phase Name
                 stepsInPhase.forEach(step => {
                     if (!step.Fields) return;
-						currentData[step] = step; // Step Name
 
                     function captureFieldValue(field) {
                         if (!field) return;
@@ -658,11 +656,18 @@
                                     const selects = document.querySelectorAll('.form-field select');
                                     const textareas = document.querySelectorAll('.form-field textarea');
                                     
+                                    // Find specific elements by their unique name
+									const statusElement = document.querySelector(`select[name="${controlId}_status"]`);
+									const evidenceElement = document.querySelector(`textarea[name="${controlId}_evidence"]`);
+
+									const statusValue = statusElement ? statusElement.value : null;
+									const evidenceValue = evidenceElement ? evidenceElement.value : null;
+                                    
                                     if (selects[index]) {
-                                        currentData[`${controlKey}_status`] = selects[index].value;
+                                        currentData[`${controlKey}_status`] = statusValue;
                                     }
                                     if (textareas[index]) {
-                                        currentData[`${controlKey}_evidence`] = textareas[index].value;
+                                        currentData[`${controlKey}_evidence`] = evidenceValue;
                                     }
                                 });
                             }

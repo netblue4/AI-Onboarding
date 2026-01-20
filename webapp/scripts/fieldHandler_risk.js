@@ -29,6 +29,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     fieldDiv.appendChild(headerDiv);
 
 	const radioInput = document.createElement('select');
+	radioInput.name = sanitizeForId(field.FieldName);
 	const options = ['Select', 'Applicable', 'Not Applicable'];
 	options.forEach((optionText, index) => {
 		const option = document.createElement('option');
@@ -73,6 +74,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             
             //Control status
             const select = document.createElement('select');
+            select.name = sanitizeForId(controlItem.control_number) + '_status';
             const options = ['', 'Met', 'Not Met', 'Partially Met'];
     		options.forEach((optionText, index) => {
 				const option = document.createElement('option');
@@ -88,11 +90,12 @@ function createRisk(field, capturedData, sanitizeForId) {
 
         		select.value = controlItem.control_status;
 
-				const span = document.createElement('span');
-				span.className = 'auto-generated-label'; // Using your class name
-				span.textContent = controlItem.control_evidence; // Set evidence text
+				const textarea = document.createElement('textarea');
+				textarea.classList.add('form-field'); // Ensure the class matches your query
+				textarea.name = sanitizeForId(controlItem.control_number) + '_evidence';
+				textarea.value = controlItem.control_evidence; // Use .value for inputs
 	
-				controlText.appendChild(span); // Nest span inside label
+				controlText.appendChild(textarea); // Nest span inside label
 				//controlContainer.appendChild(label); // Add the whole label to container
 	
 			} else {
