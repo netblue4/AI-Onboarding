@@ -508,7 +508,7 @@
                                             // Restore control statuses and evidence
                                             if (field.controls && Array.isArray(field.controls)) {
                                                 field.controls.forEach((control, index) => {
-                                                    const controlKey = `${field.FieldName}_control_${index}`;
+                                                    const controlKey = `${control.control_number}`;
                                                     const selects = document.querySelectorAll('.form-field select');
                                                     const textareas = document.querySelectorAll('.form-field textarea');
                                                     
@@ -648,8 +648,8 @@
                             // Capture control_status and control_evidence from nested controls
                             if (field.controls && Array.isArray(field.controls)) {
                                 field.controls.forEach((control, index) => {
-                                    const controlName = control.control;
-                                    const controlKey = `${controlName}`;
+                                    const controlNumber = control.control_number;
+                                    const controlKey = `${controlNumber}`;
                                     
                                     // Find the select and textarea for this control
                                     const selects = document.querySelectorAll('.form-field select');

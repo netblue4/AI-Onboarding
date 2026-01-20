@@ -68,7 +68,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             const controlContainer = document.createElement('div');
 
             const controlText = document.createElement('p');
-            controlText.textContent = controlItem.control;
+            controlText.textContent = controlItem.control_number + " - " + controlItem.control_description;
             controlContainer.appendChild(controlText);  	
             
             //Control status

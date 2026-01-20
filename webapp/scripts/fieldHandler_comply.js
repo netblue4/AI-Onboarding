@@ -50,7 +50,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
             const subControlMap = new Map();
             if (reqNode.controls && Array.isArray(reqNode.controls)) {
                 reqNode.controls.forEach(subControl => {
-                    const controlKey = getControlKey(subControl.control);
+                    const controlKey = getControlKey(subControl.control_number);
                     if (controlKey) {
                         subControlMap.set(controlKey, {
                             subControl: subControl,
@@ -189,7 +189,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
 					// 1. Create Title
 					const titleDiv = document.createElement('div');
 					titleDiv.className = 'sub-control-title';
-					titleDiv.innerHTML = `<strong>${escapeHtml(subData.subControl.control)}</strong>`;
+					titleDiv.innerHTML = `<strong>${escapeHtml(subData.subControl.control_number)}</strong>` + ` - ${escapeHtml(subData.subControl.control_description)}`;
 					
 					// 2. Create Dropdown
 					const select = document.createElement('select');

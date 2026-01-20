@@ -75,37 +75,43 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[Art-9][Par-1][1] - Establish, implement, document, and maintain a comprehensive risk management system for high-risk AI systems.",
+              "control_number": "[Art-9][Par-1][1]",
+              "control_description": "Establish, implement, document, and maintain a comprehensive risk management system for high-risk AI systems.",
               "control_objective": "To ensure a systematic and ongoing process for identifying, evaluating, and mitigating risks associated with high-risk AI systems throughout their lifecycle.",
               "control_status": "Met",
               "control_evidence": "Evidence is the AI onboarding procedure itself. This procedure combines the 'A.9.4 functional specification webform' (to define the system's boundaries) with the 'Risk' node (to document the risk management process), demonstrating a systematic approach."
             },
             {
-              "control": "[Art-9][Par-2][2] - Implement a continuous iterative risk management process that includes regular systematic reviews and updates, covering identification, analysis, estimation, and evaluation of foreseeable risks.",
+              "control_number": "[Art-9][Par-2][2]",
+              "control_description":"Implement a continuous iterative risk management process that includes regular systematic reviews and updates, covering identification, analysis, estimation, and evaluation of foreseeable risks.",
               "control_objective": "To proactively manage and adapt to evolving risks by maintaining a dynamic and up-to-date risk management framework.",
               "control_status": "Met",
               "control_evidence": "Evidence is the completed 'Risk' node for each RAG component. This node serves as a living document that captures the full analysis, from 'FieldName' (risk identification) to 'controls' (evaluation/treatment), ensuring a traceable and iterative process."
             },
             {
-              "control": "[Art-9][Par-2][3] - Adopt appropriate and targeted risk management measures to address identified risks, including those from post-market monitoring.",
+              "control_number": "[Art-9][Par-2][3]",
+              "control_description": "Adopt appropriate and targeted risk management measures to address identified risks, including those from post-market monitoring.",
               "control_objective": "To effectively mitigate identified risks through the implementation of specific and relevant control measures.",
               "control_status": "Met",
               "control_evidence": "Evidence is documented within the 'Risk' node. The 'controls' and 'control_objectives' fields for each identified threat (e.g., 'data poisoning') explain the specific measures adopted to treat that targeted risk."
             },
             {
-              "control": "[Art-9][Par-5][4] - Ensure that residual risks, both individual and overall, are acceptable by eliminating or reducing risks as far as technically feasible through design, implementing mitigation measures, and providing information and training.",
+              "control_number": "[Art-9][Par-5][4]",
+              "control_description": "Ensure that residual risks, both individual and overall, are acceptable by eliminating or reducing risks as far as technically feasible through design, implementing mitigation measures, and providing information and training.",
               "control_objective": "To reduce the potential for harm to an acceptable level by employing a multi-layered approach to risk mitigation.",
               "control_status": "Met",
               "control_evidence": "Evidence is the formal sign-off of the AI onboarding documentation. This act confirms that the controls documented in the 'Risk' node are sufficient and that any residual risk is deemed acceptable for the system's 'Intended Use' as defined in the A.9.4 webform."
             },
             {
-              "control": "[Art-9][Par-6][5] - Conduct testing of high-risk AI systems to identify the most appropriate risk management measures and to ensure consistent performance and compliance with requirements.",
+              "control_number": "[Art-9][Par-6][5]",
+              "control_description": "Conduct testing of high-risk AI systems to identify the most appropriate risk management measures and to ensure consistent performance and compliance with requirements.",
               "control_objective": "To validate the effectiveness of risk management measures and ensure the AI system operates as intended.",
               "control_status": "Met",
               "control_evidence": "Evidence is the output of the '(A.6.2.4) AI Systems verifications' step. This step documents the test plans (e.g., performance, fairness, data quality) that validate the effectiveness of our risk management measures. The 'PlanCriteria' within this step defines the specific, measurable success conditions used to ensure the system operates as intended and that the controls are verifiably effective."
             },
             {
-              "control": "[Art-9][Par-9][6] - Consider the potential adverse impact on persons under the age of 18 and other vulnerable groups when implementing the risk management system.",
+              "control_number": "[Art-9][Par-9][6]",
+              "control_description": "Consider the potential adverse impact on persons under the age of 18 and other vulnerable groups when implementing the risk management system.",
               "control_objective": "To provide heightened protection for vulnerable populations who may be disproportionately affected by the AI system.",
               "control_status": "Met",
               "control_evidence": "Evidence is the completed '(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment' step. This step provides the documented assessment required by the control, forcing a formal review of potential negative impacts on at-risk groups and the creation of specific mitigation and monitoring strategies to ensure their protection."
@@ -121,31 +127,36 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[Art-10][Par-2][1] - Implement and document data governance and management practices covering the entire data lifecycle, including design choices, collection, and preparation processes like annotation and cleaning.",
+              "control_number": "[Art-10][Par-2][1]",
+              "control_description": "Implement and document data governance and management practices covering the entire data lifecycle, including design choices, collection, and preparation processes like annotation and cleaning.",
               "control_objective": "To ensure that data used for high-risk AI systems is handled systematically and responsibly, maintaining quality and integrity from collection to use.",
               "control_status": "Met",
               "control_evidence": "Evidence is the combination of the 'Internal Data Sources,' 'Data Processing Pipeline,' and '(A.6.2.4) AI Systems verifications' steps. Together, these procedures document our entire data management strategy (A.7.2), covering data acquisition, preparation (A.7.6), and quality, thus ensuring systematic handling."
             },
             {
-              "control": "[Art-10][Par-2][2] - Establish a process to examine data sets for possible biases that could negatively impact fundamental rights, health, or safety, and implement measures to detect, prevent, and mitigate these biases.",
+              "control_number": "[Art-10][Par-2][2]",
+              "control_description": "Establish a process to examine data sets for possible biases that could negatively impact fundamental rights, health, or safety, and implement measures to detect, prevent, and mitigate these biases.",
               "control_objective": "To minimize the risk of discriminatory or unfair outcomes and ensure the AI system operates in a manner that is safe and respects fundamental rights.",
               "control_status": "Met",
               "control_evidence": "Evidence is the 'Fairness and Bias' test plan within the '(A.6.2.4) AI Systems verifications' step. This plan documents the formal process for examining bias by analyzing dataset representativeness against real-world populations (A.7.3) and setting measurable fairness criteria (A.7.4) to mitigate discriminatory outcomes."
             },
             {
-              "control": "[Art-10][Par-3][3] - Ensure that training, validation, and testing data sets are relevant, sufficiently representative, free of errors, and complete for the system's intended purpose, with appropriate statistical properties.",
+              "control_number": "[Art-10][Par-3][3]",
+              "control_description": "Ensure that training, validation, and testing data sets are relevant, sufficiently representative, free of errors, and complete for the system's intended purpose, with appropriate statistical properties.",
               "control_objective": "To build a robust and reliable AI system by using high-quality data that accurately reflects the operational environment and minimizes performance issues.",
               "control_status": "Met",
               "control_evidence": "Evidence is the '(A.6.2.4) AI Systems verifications' step. Its 'Data quality requirements' plan sets explicit, measurable criteria for accuracy and completeness (A.7.4), while the 'Fairness and Bias' plan sets the criteria for representativeness, ensuring all data is fit for purpose."
             },
             {
-              "control": "[Art-10][Par-4][4] - Verify that data sets account for the specific geographical, contextual, behavioral, or functional settings in which the high-risk AI system will be used.",
+              "control_number": "[Art-10][Par-4][4]",
+              "control_description": "Verify that data sets account for the specific geographical, contextual, behavioral, or functional settings in which the high-risk AI system will be used.",
               "control_objective": "To ensure the AI system performs effectively and as intended in its specific operational context, reducing the risk of failures due to environmental mismatches.",
               "control_status": "Met",
               "control_evidence": "Evidence is the combination of the 'Internal Data Sources' step and the 'Fairness and Bias' test plan. The 'Internal Data Sources' documentation defines the origin and context of our data, and the test plan verifies its representativeness against the 'real-world populations' of that specific operational setting."
             },
             {
-              "control": "[Art-10][Par-5][5] - Where strictly necessary for bias detection and correction, process special categories of personal data only with appropriate safeguards, technical limitations, and security measures, ensuring data is deleted after use.",
+              "control_number": "[Art-10][Par-5][5]",
+              "control_description": "Where strictly necessary for bias detection and correction, process special categories of personal data only with appropriate safeguards, technical limitations, and security measures, ensuring data is deleted after use.",
               "control_objective": "To enable effective bias mitigation while upholding the highest standards of data protection and privacy for sensitive personal information.",
               "control_status": "Met",
               "control_evidence": "Evidence is the 'Data quality requirements' test plan. This plan establishes safeguards by defining specific data provenance criteria (DATA-SEN-05) and verification steps (BBT-EXT-PRO-01, BBT-EXT-PRO-02), which create a secure, auditable process for handling and tracing sensitive data used for bias correction."
@@ -161,19 +172,22 @@
           "RiskDescription": "Failure to implement technical capabilities for automatic event logging (logs) over the system's lifetime and failure to record specific, detailed information required for traceability, accountability, and post-market monitoring as mandated by Article 12.",
           "controls": [
             {
-              "control": "[Art-12][Par-1] - Implement technical capabilities for the automatic recording of operational events (logs) over the entire lifetime of the high-risk AI system.",
+              "control_number": "[Art-12][Par-1]",
+              "control_description": "Implement technical capabilities for the automatic recording of operational events (logs) over the entire lifetime of the high-risk AI system.",
               "control_objective": "To ensure the system is technically capable of **full lifecycle traceability** by maintaining a comprehensive log of operational events from deployment until decommissioning.",
               "control_status": "",
               "control_evidence": ""
             },
             {
-              "control": "[Art-12][Par-2] - Implement logging capabilities that enable the recording of events relevant for: (a) identifying risks or substantial modifications, (b) facilitating post-market monitoring (Art 72), and (c) monitoring deployer operation (Art 26(5)), ensuring appropriate functional traceability for the system's intended purpose.",
+              "control_number": "[Art-12][Par-2]",
+              "control_description": "Implement logging capabilities that enable the recording of events relevant for: (a) identifying risks or substantial modifications, (b) facilitating post-market monitoring (Art 72), and (c) monitoring deployer operation (Art 26(5)), ensuring appropriate functional traceability for the system's intended purpose.",
               "control_objective": "To provide a level of functional traceability appropriate to the system's intended purpose, supporting proactive risk identification, market surveillance, and compliance monitoring throughout its operation.",
               "control_status": "",
               "control_evidence": ""
             },
             {
-              "control": "[Art-12][Par-3] - For Annex III systems (Point 1(a)), logging capabilities shall provide, at a minimum: (a) recording of the period of each use (start/end date/time), (b) the reference database against which input data was checked, (c) the input data that led to a match, and (d) the identification of persons involved in the verification of results (Art 14(5)).",
+              "control_number": "[Art-12][Par-3]",
+              "control_description": "For Annex III systems (Point 1(a)), logging capabilities shall provide, at a minimum: (a) recording of the period of each use (start/end date/time), (b) the reference database against which input data was checked, (c) the input data that led to a match, and (d) the identification of persons involved in the verification of results (Art 14(5)).",
               "control_objective": "To ensure detailed operational transparency and accountability for high-risk AI systems used for biometric identification (or similar applications), facilitating audits and compliance with specific data and personnel recording requirements.",
               "control_status": "",
               "control_evidence": ""
@@ -189,32 +203,38 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[Art-13][Par-1] - Ensure the design of high-risk AI systems allows users to interpret outputs and use the system appropriately.",
+              "control_number": "[Art-13][Par-1]",
+              "control_description": "Ensure the design of high-risk AI systems allows users to interpret outputs and use the system appropriately.",
               "control_objective": "To enable safe and effective use of the AI system by ensuring user comprehension.",
               "control_evidence": ""
             },
             {
-              "control": "[Art-13][Par-2] - Provide clear, complete, and accessible instructions for use with all high-risk AI systems.",
+              "control_number": "[Art-13][Par-2]",
+              "control_description": "Provide clear, complete, and accessible instructions for use with all high-risk AI systems.",
               "control_objective": "To ensure users have the necessary information to operate the AI system correctly and safely.",
               "control_evidence": ""
             },
             {
-              "control": "[Art-13][Par-3a] - Include the identity and contact details of the provider and their authorized representative in the instructions for use.",
+              "control_number": "[Art-13][Par-3a]",
+              "control_description": "Include the identity and contact details of the provider and their authorized representative in the instructions for use.",
               "control_objective": "To establish clear lines of communication and accountability for the AI system.",
               "control_evidence": ""
             },
             {
-              "control": "[Art-13][Par-3b] - Detail the AI systems characteristics, capabilities, limitations, intended purpose, accuracy, robustness, cybersecurity, and performance metrics in the instructions for use.",
+              "control_number": "[Art-13][Par-3b]",
+              "control_description": "Detail the AI systems characteristics, capabilities, limitations, intended purpose, accuracy, robustness, cybersecurity, and performance metrics in the instructions for use.",
               "control_objective": "To provide a comprehensive understanding of the AI system's operational parameters and performance expectations.",
               "control_evidence": ""
             },
             {
-              "control": "[Art-13][Par-3c-e-f] - Specify the necessary hardware resources, expected lifetime, maintenance, and pre-determined changes for operating the AI system in the instructions for use.",
+              "control_number": "[Art-13][Par-3c-e-f]",
+              "control_description": "Specify the necessary hardware resources, expected lifetime, maintenance, and pre-determined changes for operating the AI system in the instructions for use.",
               "control_objective": "To ensure users have the required infrastructure and information to run and maintain the AI system effectively over its lifecycle.",
               "control_evidence": ""
             },
             {
-              "control": "[Art-13][Par-3d] - Detail the human oversight measures from Article 14, including technical aids for interpreting system outputs, in the instructions for use.",
+              "control_number": "[Art-13][Par-3d]",
+              "control_description": "Detail the human oversight measures from Article 14, including technical aids for interpreting system outputs, in the instructions for use.",
               "control_objective": "To facilitate effective human oversight and intervention in the AI system's operation.",
               "control_evidence": ""
             }
@@ -229,37 +249,43 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[Art-14][Par-1] - Design and develop high-risk AI systems with appropriate human-machine interface tools to enable effective oversight by natural persons.",
+              "control_number": "[Art-14][Par-1]",
+              "control_description": "Design and develop high-risk AI systems with appropriate human-machine interface tools to enable effective oversight by natural persons.",
               "control_objective": "To ensure that a human can effectively monitor and control the AI system while it is in use.",
               "control_status": "Met",
               "control_evidence": "The `AI system response - Decision-Making Language Requiring Intervention` list defines the specific criteria (e.g., 'approve the loan', 'the diagnosis is') that trigger the human oversight mechanism. This list is the core configuration for the human-machine interface, as it identifies exactly which system outputs must be flagged for an overseer, enabling them to monitor and control the system's high-risk actions as described in control `[RAG-DM-01]`."
             },
             {
-              "control": "[Art-14][Par-2] - Implement human oversight to prevent or minimize risks to health, safety, or fundamental rights, especially those risks that persist after other requirements have been applied.",
+              "control_number": "[Art-14][Par-2]",
+              "control_description": "Implement human oversight to prevent or minimize risks to health, safety, or fundamental rights, especially those risks that persist after other requirements have been applied.",
               "control_objective": "To provide a final layer of risk mitigation through active human involvement.",
               "control_status": "Met",
               "control_evidence": "This is met in two ways: 1) The `AI system intended use - Prohibited Uses Blacklist Definition` proactively prevents high-risk uses that threaten fundamental rights (e.g., 'social scoring', 'biometric categorization'). 2) For risks that may emerge during permitted use, the `AI system response - Decision-Making Language Requiring Intervention` list identifies outputs with potential risks to health (e.g., 'prescribe treatment') or rights (e.g., 'deny benefits'), triggering human oversight via control `[RAG-DM-01]` as a final mitigation layer."
             },
             {
-              "control": "[Art-14][Par-3] - Ensure human oversight measures are built into the AI system by the provider or are appropriate for implementation by the deployer.",
+              "control_number": "[Art-14][Par-3]",
+              "control_description": "Ensure human oversight measures are built into the AI system by the provider or are appropriate for implementation by the deployer.",
               "control_objective": "To integrate necessary oversight capabilities either directly into the system or into the operational procedures of the user.",
               "control_status": "Met",
               "control_evidence": "The provided content defines measures that are built directly into the RAG Orchestrator. Control `[RAG-DM-01]` describes a 'monitoring module' that inspects LLM output, and the `AI system response - Decision-Making Language Requiring Intervention` list serves as its direct configuration file. This demonstrates an oversight capability integrated into the system's core design, not one left to chance or deployer procedures."
             },
             {
-              "control": "[Art-14][Par-4a, 4b, 4c] - Enable assigned human overseers to understand the AI system's capabilities and limitations, monitor for anomalies, and correctly interpret its output, while remaining aware of potential automation bias.",
+              "control_number": "[Art-14][Par-4a, 4b, 4c]",
+              "control_description": "Enable assigned human overseers to understand the AI system's capabilities and limitations, monitor for anomalies, and correctly interpret its output, while remaining aware of potential automation bias.",
               "control_objective": "To empower human overseers with the knowledge and awareness needed to make informed judgments about the system's performance.",
               "control_status": "Met",
               "control_evidence": "The `AI system intended use - Permitted User Prompt Categories Whitelist Definition` and `Prohibited Uses Blacklist Definition` clearly document the system's intended capabilities and limitations for an overseer. More specifically, the `AI system response - Decision-Making Language Requiring Intervention` list acts as a concrete guide, training overseers to monitor for and correctly interpret anomalous, high-risk outputs (e.g., 'this is a medical recommendation'), thereby empowering them to make informed judgments and remain aware of automation bias."
             },
             {
-              "control": "[Art-14][Par-4d, 4e] - Enable assigned human overseers to have the ability to decide not to use the system, override its output, or interrupt its operation via a 'stop' button or similar procedure.",
+              "control_number": "[Art-14][Par-4d, 4e]",
+              "control_description": "Enable assigned human overseers to have the ability to decide not to use the system, override its output, or interrupt its operation via a 'stop' button or similar procedure.",
               "control_objective": "To ensure ultimate human control over the AI system's actions and decisions in any given situation.",
               "control_status": "Met",
               "control_evidence": "Control `[RAG-DM-01]` directly mandates this. It requires a mechanism for 'immediate human intervention' that explicitly allows the 'overseer to stop or override the system.' The `AI system response - Decision-Making Language Requiring Intervention` list defines the precise triggers (e.g., 'authorize payment', 'initiate safety protocol') that activate this 'stop' or 'override' capability, ensuring ultimate human control over high-risk decisions."
             },
             {
-              "control": "[Art-14][Par-5] - Ensure that any identification is verified and confirmed by at least two competent, trained, and authorized natural persons before action is taken.",
+              "control_number": "[Art-14][Par-5]",
+              "control_description": "Ensure that any identification is verified and confirmed by at least two competent, trained, and authorized natural persons before action is taken.",
               "control_objective": "To increase the reliability and accountability of critical identification tasks performed by AI.",
               "control_evidence": ""
             }
@@ -274,31 +300,36 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[Art-15][Par-1] - Ensure high-risk AI systems are designed and developed to achieve and maintain an appropriate level of accuracy, robustness, and cybersecurity throughout their lifecycle.",
+              "control_number": "[Art-15][Par-1]",
+              "control_description": "Ensure high-risk AI systems are designed and developed to achieve and maintain an appropriate level of accuracy, robustness, and cybersecurity throughout their lifecycle.",
               "control_objective": "To maintain the system's trustworthiness and prevent harm from inaccurate or insecure operation.",
               "control_status": "Met",
               "control_evidence": "The `(A.6.2.4) AI Systems verifications` step provides the formal framework to ensure these levels are met. It defines specific test plans for performance (accuracy) and fairness (a component of robustness). Each plan includes `PlanCriteria` that set measurable success conditions and `criteria_evidence` requirements, directly verifying that the system achieves and maintains the appropriate levels of accuracy and trustworthiness."
             },
             {
-              "control": "[Art-15][Par-2] - Encourage the development of benchmarks and measurement methodologies for accuracy and robustness in cooperation with relevant stakeholders.",
+              "control_number": "[Art-15][Par-2]",
+              "control_description": "Encourage the development of benchmarks and measurement methodologies for accuracy and robustness in cooperation with relevant stakeholders.",
               "control_objective": "To establish standardized methods for evaluating and verifying the performance of AI systems.",
               "control_status": "Met",
               "control_evidence": "The `(A.6.2.4) AI Systems verifications` step establishes this standardized method. It formally documents the validation process through distinct test plans (e.g., for performance, fairness) which consist of specific `PlanSteps` (the verification measures) and `PlanCriteria` (the success conditions). This structure creates a defined, repeatable, and documented methodology for evaluating and verifying the system's performance against objective standards."
             },
             {
-              "control": "[Art-15][Par-3] - Clearly state the levels of accuracy and the relevant accuracy metrics in the AI system's instructions for use.",
+              "control_number": "[Art-15][Par-3]",
+              "control_description": "Clearly state the levels of accuracy and the relevant accuracy metrics in the AI system's instructions for use.",
               "control_objective": "To provide transparency to users about the system's expected performance.",
               "control_status": "Met",
               "control_evidence": "The (A.7.4, A.7.6) - Data quality requirements & Test Plan directly supports this control by defining a specific, measurable accuracy metric and the methodology for its validation. The criterion `DATA-SEN-01` establishes the quantitative accuracy target of '> 95% for sensitive data'. The test steps `BBT-EXT-ACC-01` and `BBT-EXT-ACC-02` provide the procedure for creating a 'golden dataset' and programmatically verifying this accuracy level. This ensures that the accuracy figures stated in the user instructions are based on a robust and repeatable testing process, providing a transparent and evidence-backed representation of the system's performance."
             },
             {
-              "control": "[Art-15][Par-4] - Design AI systems to be resilient to errors, faults, or inconsistencies, using technical redundancies and fail-safe plans where appropriate, and mitigate risks from biased feedback loops in learning systems.",
+              "control_number": "[Art-15][Par-4]",
+              "control_description": "Design AI systems to be resilient to errors, faults, or inconsistencies, using technical redundancies and fail-safe plans where appropriate, and mitigate risks from biased feedback loops in learning systems.",
               "control_objective": "To ensure the system can handle unexpected situations and maintain stable performance without being negatively influenced by its own outputs.",
               "control_status": "Met",
               "control_evidence": "The `(A.6.2.4) AI Systems verifications` step provides the evidence for this objective. It includes test plans for 'performance' and 'fairness,' which are used to validate the system's resilience and check for bias. By defining measurable `PlanCriteria` for these plans, we verify that the system can handle errors and that measures to mitigate bias are effective, ensuring stable and fair performance."
             },
             {
-              "control": "[Art-15][Par-5] - High-risk AI systems shall be resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities.",
+              "control_number": "[Art-15][Par-5]",
+              "control_description": "High-risk AI systems shall be resilient against attempts by unauthorised third parties to alter their use, outputs or performance by exploiting system vulnerabilities.",
               "control_objective": "To safeguard the AI system against malicious attacks such as data poisoning, model poisoning, and adversarial examples.",
               "control_status": "Met",
               "control_evidence": "Compliance is evidenced by the 'Risk' node documented for each RAG component. This node explicitly defines the security requirements by identifying specific threats, such as 'malicious data ingestion or data poisoning'. It then documents the 'associated controls' and 'control objectives' designed to mitigate these exact vulnerabilities, providing a traceable record of the measures specified to protect the system from such attacks."
@@ -314,85 +345,99 @@
 		  "RiskDescription": "Risk of non-compliance with the specific obligations mandated for deployers of high-risk AI systems, including failure to use as instructed, ensure human oversight, maintain logs, or inform affected persons.",
 		  "controls": [
 			{
-			  "control": "[Art-26][Par-1-3] - Take appropriate technical and organisational measures to ensure the high-risk AI system is used in accordance with its instructions for use.",
+			  "control_number": "[Art-26][Par-1-3]",
+              "control_description": "Take appropriate technical and organisational measures to ensure the high-risk AI system is used in accordance with its instructions for use.",
 			  "control_objective": "To ensure the AI system is operated within its intended, tested, and approved parameters as defined by the provider, mitigating risks from misuse.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-2, 3] - Assign human oversight to natural persons who have the necessary competence, training, authority, and support.",
+			  "control_number": "[Art-26][Par-2, 3]",
+              "control_description": "Assign human oversight to natural persons who have the necessary competence, training, authority, and support.",
 			  "control_objective": "To ensure that a qualified human is in the loop, capable of effectively monitoring, intervening, and overriding the AI system as needed.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-4] - Ensure that input data under the deployer's control is relevant and sufficiently representative for the system's intended purpose.",
+			  "control_number": "[Art-26][Par-4]",
+              "control_description": "Ensure that input data under the deployer's control is relevant and sufficiently representative for the system's intended purpose.",
 			  "control_objective": "To prevent biased or erroneous outputs by ensuring the data fed into the system is appropriate for its domain and does not introduce risks not accounted for by the provider.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-5] - Monitor the operation of the high-risk AI system based on its instructions for use and inform the provider and relevant authorities of any serious incidents or risks.",
+			  "control_number": "[Art-26][Par-5]",
+              "control_description": "Monitor the operation of the high-risk AI system based on its instructions for use and inform the provider and relevant authorities of any serious incidents or risks.",
 			  "control_objective": "To create a post-market feedback loop, enabling the deployer to detect and report emergent risks, system malfunctions, or serious incidents to those responsible for correction and oversight.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-6] - Keep automatically generated logs (to the extent they are under deployer control) for an appropriate period, at least six months, or as required by other applicable laws.",
+			  "control_number": "[Art-26][Par-6]",
+              "control_description": "Keep automatically generated logs (to the extent they are under deployer control) for an appropriate period, at least six months, or as required by other applicable laws.",
 			  "control_objective": "To enable post-incident investigation, monitoring of system performance, and auditing of AI-driven decisions by retaining a record of its operations.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-7] - (As an employer) Inform workers' representatives and affected workers before putting a high-risk AI system into service or use at the workplace.",
+			  "control_number": "[Art-26][Par-7]",
+              "control_description": "(As an employer) Inform workers' representatives and affected workers before putting a high-risk AI system into service or use at the workplace.",
 			  "control_objective": "To provide transparency to employees and fulfill labor relations obligations regarding the introduction of new technologies that monitor or affect them.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-8] - (For public authorities) Verify the system is registered in the EU database before use; if not registered, do not use and inform the provider/distributor.",
+			  "control_number": "[Art-26][Par-8]",
+              "control_description": "(For public authorities) Verify the system is registered in the EU database before use; if not registered, do not use and inform the provider/distributor.",
 			  "control_objective": "To ensure that public bodies only use compliant, registered high-risk AI systems and to provide a feedback loop about non-compliant systems.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-9] - Use the information provided by the provider (under Art. 13) to comply with any obligation to conduct a Data Protection Impact Assessment (DPIA).",
+			  "control_number": "[Art-26][Par-9]",
+              "control_description": "Use the information provided by the provider (under Art. 13) to comply with any obligation to conduct a Data Protection Impact Assessment (DPIA).",
 			  "control_objective": "To streamline compliance by integrating the AI system's specific information into existing data protection governance and impact assessment processes.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-10] - (For law enforcement post-remote biometric ID) Obtain ex-ante or rapid (max 48h) authorization from a judicial or equivalent authority for each use.",
+			  "control_number": "[Art-26][Par-10]",
+              "control_description": "(For law enforcement post-remote biometric ID) Obtain ex-ante or rapid (max 48h) authorization from a judicial or equivalent authority for each use.",
 			  "control_objective": "To establish strict, independent oversight and legal grounding for each specific use of highly intrusive biometric surveillance.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-10] - (For law enforcement post-remote biometric ID) Ensure use is strictly necessary, targeted to a specific criminal offense, and not for general, untargeted surveillance.",
+			  "control_number": "[Art-26][Par-10]",
+              "control_description": "(For law enforcement post-remote biometric ID) Ensure use is strictly necessary, targeted to a specific criminal offense, and not for general, untargeted surveillance.",
 			  "control_objective": "To prevent mass surveillance and ensure the use of such systems is proportionate and tied to a specific, legitimate law enforcement need.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-10] - (For law enforcement post-remote biometric ID) Ensure no adverse legal decision is based *solely* on the AI system's output.",
+			  "control_number": "[Art-26][Par-10]",
+              "control_description": "(For law enforcement post-remote biometric ID) Ensure no adverse legal decision is based *solely* on the AI system's output.",
 			  "control_objective": "To maintain human agency and accountability in critical law enforcement decisions, using the AI as a tool rather than a final decision-maker.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-10] - (For law enforcement post-remote biometric ID) Document every use in the relevant police file and submit annual reports to authorities.",
+			  "control_number": "[Art-26][Par-10]",
+              "control_description": "(For law enforcement post-remote biometric ID) Document every use in the relevant police file and submit annual reports to authorities.",
 			  "control_objective": "To create a comprehensive audit trail for accountability and enable regulatory oversight of the system's use.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-11] - Inform natural persons when they are subject to a decision or decision-assistance from a high-risk AI system (unless exempt for law enforcement).",
+			  "control_number": "[Art-26][Par-11]",
+              "control_description": "Inform natural persons when they are subject to a decision or decision-assistance from a high-risk AI system (unless exempt for law enforcement).",
 			  "control_objective": "To provide transparency to individuals, allowing them to understand that an AI system is involved in a process affecting them.",
 			  "control_status": "",
 			  "control_evidence": ""
 			},
 			{
-			  "control": "[Art-26][Par-12] - Cooperate with relevant competent authorities in any action those authorities take in relation to the high-risk AI system.",
+			  "control_number": "[Art-26][Par-12]",
+              "control_description": "Cooperate with relevant competent authorities in any action those authorities take in relation to the high-risk AI system.",
 			  "control_objective": "To ensure effective market surveillance and enforcement by mandating deployer cooperation with regulatory bodies.",
 			  "control_status": "",
 			  "control_evidence": ""
@@ -408,46 +453,54 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[Art-27][Par-1] - Perform a Fundamental Rights Impact Assessment (FRIA) prior to deploying a high-risk AI system (for public bodies, providers of public services, and systems for credit scoring or insurance).",
+              "control_number": "[Art-27][Par-1]",
+              "control_description": "Perform a Fundamental Rights Impact Assessment (FRIA) prior to deploying a high-risk AI system (for public bodies, providers of public services, and systems for credit scoring or insurance).",
               "control_objective": "To proactively identify and analyze the potential impact and specific risks the AI system's use may pose to the fundamental rights of affected persons before any harm can occur.",
               "control_status": "Met",
               "control_evidence": "This objective is met by implementing the 'Vulnerable Populations Impact Assessment' step. This step establishes the formal, proactive process required by the objective, providing a 'structured framework' to identify and analyze both 'positive and negative impacts' on 'at-risk groups' before deployment."
             },
             {
-              "control": "[Art-27][Par-1a-1b] - The FRIA must include a description of the processes, the intended purpose, the period of time, and the frequency of the system's use.",
+              "control_number": "[Art-27][Par-1a-1b]",
+              "control_description": "The FRIA must include a description of the processes, the intended purpose, the period of time, and the frequency of the system's use.",
               "control_objective": "To clearly document the context, scope, and intensity of the AI system's deployment to understand its potential sphere of influence on fundamental rights.",
               "control_evidence": ""
             },
             {
-              "control": "[Art-27][Par-1c-1d] - The FRIA must include the categories of persons/groups likely to be affected and the specific risks of harm likely to impact them, using information from the provider.",
+              "control_number": "[Art-27][Par-1c-1d]",
+              "control_description": "The FRIA must include the categories of persons/groups likely to be affected and the specific risks of harm likely to impact them, using information from the provider.",
               "control_objective": "To move from a general assessment to a specific analysis of *who* could be harmed and *how* they could be harmed, ensuring vulnerable groups are considered.",
               "control_status": "Met",
               "control_evidence": "This is directly met. The 'Vulnerable Populations Impact Assessment' step provides a 'structured method to identify at-risk populations' (who) and 'describe and rate the severity of potential positive or negative impacts' (how). This is complemented by the 'Workforce Transition and Adaptation' step, which specifically identifies the 'job roles affected,' fulfilling the objective's need for a specific analysis of *who* is impacted."
             },
             {
-              "control": "[Art-27][Par-1e] - The FRIA must include a description of how human oversight measures will be implemented according to the instructions for use.",
+              "control_number": "[Art-27][Par-1e]",
+              "control_description": "The FRIA must include a description of how human oversight measures will be implemented according to the instructions for use.",
               "control_objective": "To ensure that the planned human oversight is not just theoretical, but is described and integrated into the deployment plan as a key risk mitigation measure.",
               "control_evidence": ""
             },
             {
-              "control": "[Art-27][Par-1f] - The FRIA must include the measures to be taken if risks materialize, including internal governance and complaint mechanisms.",
+              "control_number": "[Art-27][Par-1f]",
+              "control_description": "The FRIA must include the measures to be taken if risks materialize, including internal governance and complaint mechanisms.",
               "control_objective": "To create an actionable plan for risk mitigation and redress, ensuring that if a risk does materialize, there is a pre-defined process to manage it and provide recourse for affected individuals.",
               "control_status": "Met",
               "control_evidence": "This objective is met through the 'Vulnerable Populations Impact Assessment' step, which requires the organization to 'define clear mitigation strategies to prevent harm.' The 'Workforce Transition and Adaptation' step reinforces this by requiring documentation of 'corresponding mitigation strategies, including re-skilling and re-deployment plans.' Together, these create the actionable plan required to manage materialized risks."
             },
             {
-              "control": "[Art-27][Par-2] - Conduct the FRIA for the first use of the system and update it if any of the key elements change during its use.",
+              "control_number": "[Art-27][Par-2]",
+              "control_description": "Conduct the FRIA for the first use of the system and update it if any of the key elements change during its use.",
               "control_objective": "To ensure the FRIA is a relevant, living document that accurately reflects the system's current use, rather than a one-time, static assessment that becomes outdated.",
               "control_status": "Met",
               "control_evidence": "This is met by establishing formal monitoring plans within the assessments. The 'Vulnerable Populations Impact Assessment' step 'establish[es] a post-deployment monitoring plan to ensure ongoing oversight.' Similarly, the 'Environmental Sustainability' step outlines a 'plan for ongoing monitoring and review,' ensuring the assessment remains relevant and is not just a static, one-time activity."
             },
             {
-              "control": "[Art-27][Par-3] - Notify the market surveillance authority of the FRIA results by submitting the completed template (unless exempt).",
+              "control_number": "[Art-27][Par-3]",
+              "control_description": "Notify the market surveillance authority of the FRIA results by submitting the completed template (unless exempt).",
               "control_objective": "To provide regulatory transparency and enable authorities to oversee the deployment of high-risk systems and the deployer's due diligence.",
               "control_evidence": ""
             },
             {
-              "control": "[Art-27][Par-4] - Complement any existing Data Protection Impact Assessment (DPIA) with the FRIA, if the DPIA already meets some of the obligations.",
+              "control_number": "[Art-27][Par-4]",
+              "control_description": "Complement any existing Data Protection Impact Assessment (DPIA) with the FRIA, if the DPIA already meets some of the obligations.",
               "control_objective": "To streamline compliance by avoiding redundant work, allowing the FRIA to build upon an existing DPIA to cover the broader, specific impacts on all fundamental rights, not just data protection.",
               "control_evidence": ""
             }
@@ -472,19 +525,22 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.2.2] - AI policy: The organization shall document a policy for the development or use of AI systems.",
+              "control_number": "[A.2.2]",
+              "control_description": "AI policy: The organization shall document a policy for the development or use of AI systems.",
               "control_objective": "The organization shall document a policy for the development or use of AI systems.",
               "control_status": "Not Met",
               "control_evidence": ""
             },
             {
-              "control": "[A.2.3] - Alignment with other organizational policies: The organization shall determine where other policies can be affected by or apply to, the organization’s objectives with respect to AI systems.",
+              "control_number": "[A.2.3]",
+              "control_description": "Alignment with other organizational policies: The organization shall determine where other policies can be affected by or apply to, the organization’s objectives with respect to AI systems.",
               "control_objective": "The organization shall determine where other policies can be affected by or apply to, the organization’s objectives with respect to AI systems.",
               "control_status": "Not Met",
               "control_evidence": ""
             },
             {
-              "control": "[A.2.4] - Review of the AI policy: The AI policy shall be reviewed at planned intervals or additionally as needed to ensure its continuing suitability, adequacy and effectiveness.",
+              "control_number": "[A.2.4]",
+              "control_description": "Review of the AI policy: The AI policy shall be reviewed at planned intervals or additionally as needed to ensure its continuing suitability, adequacy and effectiveness.",
               "control_objective": "The AI policy shall be reviewed at planned intervals or additionally as needed to ensure its continuing suitability, adequacy and effectiveness.",
               "control_status": "Not Met",
               "control_evidence": ""
@@ -500,13 +556,15 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.3.2] - AI roles and responsibilities: Roles and responsibilities for AI shall be defined and allocated according to the needs of the organization.",
+              "control_number": "[A.3.2]",
+              "control_description": "AI roles and responsibilities: Roles and responsibilities for AI shall be defined and allocated according to the needs of the organization.",
               "control_objective": "Roles and responsibilities for AI shall be defined and allocated according to the needs of the organization.",
               "control_status": "Not Met",
               "control_evidence": ""
             },
             {
-              "control": "[A.3.3] - Reporting of concerns: The organization shall define and put in place a process to report concerns about the organization’s role with respect to an AI system throughout its life cycle.",
+              "control_number": "[A.3.3]",
+              "control_description": "Reporting of concerns: The organization shall define and put in place a process to report concerns about the organization’s role with respect to an AI system throughout its life cycle.",
               "control_objective": "The organization shall define and put in place a process to report concerns about the organization’s role with respect to an AI system throughout its life cycle.",
               "control_status": "Not Met",
               "control_evidence": ""
@@ -522,31 +580,36 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.4.2] - Resource documentation: The organization shall identify and document relevant resources required for the activities at given AI system life cycle stages and other AI-related activities relevant for the organization.",
+              "control_number": "[A.4.2]",
+              "control_description": "Resource documentation: The organization shall identify and document relevant resources required for the activities at given AI system life cycle stages and other AI-related activities relevant for the organization.",
               "control_objective": "The organization shall identify and document relevant resources required for the activities at given AI system life cycle stages and other AI-related activities relevant for the organization.",
               "control_status": "Not Met",
               "control_evidence": ""
             },
             {
-              "control": "[A.4.3] - Data resources: As part of resource identification, the organization shall document information about the data resources utilized for the AI system.",
+              "control_number": "[A.4.3]",
+              "control_description": "Data resources: As part of resource identification, the organization shall document information about the data resources utilized for the AI system.",
               "control_objective": "As part of resource identification, the organization shall document information about the data resources utilized for the AI system.",
               "control_status": "Met",
               "control_evidence": "These ISO controls, A.4.2 and A.4.3, mandate that the organization formally identify and document all relevant resources—with a specific focus on the data resources—used at any stage of the AI system's lifecycle. This ensures a clear, traceable inventory of the data being utilized. Step's: 'Internal Data Sources' addresses the requirements by systematically collecting key information for each data asset. It captures the dataset's name and description, its source and intended use (e.g., training, validation), its technical format, and the specific method of acquisition. Furthermore, it documents critical governance details such as data retention schedules, procedures for secure disposal, its approximate size, how it is accessed, and the responsible owner or custodian, thereby creating the comprehensive documentation required by the ISO standard."
             },
             {
-              "control": "[A.4.4] - Tooling resources: As part of resource identification, the organization shall document information about the tooling resources utilized for the AI system.",
+              "control_number": "[A.4.4]",
+              "control_description": "Tooling resources: As part of resource identification, the organization shall document information about the tooling resources utilized for the AI system.",
               "control_objective": "As part of resource identification, the organization shall document information about the tooling resources utilized for the AI system.",
               "control_status": "Met",
               "control_evidence": "These ISO controls mandate that we identify and maintain documentation for all resources utilized throughout the AI system's lifecycle. This includes specific information on both software tooling (A.4.4) and the underlying system and computing infrastructure (A.4.5). Step: (A.4.2, A.4.4) AI Systems Software and Tooling Resources addresses the requirements by capturing the specific name and version of each software tool, library, or framework. It further requires classifying each tool by its category and documenting its explicit purpose or use case within the project, which directly satisfies the need to document tooling resources. Step: (A.4.2, A.4.5) AI Systems Computing Resources addresses the requirements by documenting the name and version of each computing resource, assigning it a category (such as a training cluster or cloud service), and detailing the specific lifecycle phase it supports. This provides a clear inventory of the system and computing resources as required."
             },
             {
-              "control": "[A.4.5] - System and computing resources: As part of resource identification, the organization shall document information about the system and computing resources utilized for the AI system.",
+              "control_number": "[A.4.5]",
+              "control_description": "System and computing resources: As part of resource identification, the organization shall document information about the system and computing resources utilized for the AI system.",
               "control_objective": "As part of resource identification, the organization shall document information about the system and computing resources utilized for the AI system.",
               "control_status": "Met",
               "control_evidence": "These ISO controls mandate that we identify and maintain documentation for all resources utilized throughout the AI system's lifecycle. This includes specific information on both software tooling (A.4.4) and the underlying system and computing infrastructure (A.4.5). Step: (A.4.2, A.4.4) AI Systems Software and Tooling Resources addresses the requirements by capturing the specific name and version of each software tool, library, or framework. It further requires classifying each tool by its category and documenting its explicit purpose or use case within the project, which directly satisfies the need to document tooling resources. Step: (A.4.2, A.4.5) AI Systems Computing Resources addresses the requirements by documenting the name and version of each computing resource, assigning it a category (such as a training cluster or cloud service), and detailing the specific lifecycle phase it supports. This provides a clear inventory of the system and computing resources as required."
             },
             {
-              "control": "[A.4.6] - Human resources: As part of resource identification, the organization shall document information about the human resources and their competences utilized for the development, deployment, operation, change management, maintenance, transfer and decommissioning, as well as verification and integration of the AI system.",
+              "control_number": "[A.4.6]",
+              "control_description": "Human resources: As part of resource identification, the organization shall document information about the human resources and their competences utilized for the development, deployment, operation, change management, maintenance, transfer and decommissioning, as well as verification and integration of the AI system.",
               "control_objective": "As part of resource identification, the organization shall document information about the human resources and their competences utilized for the development, deployment, operation, change management, maintenance, transfer and decommissioning, as well as verification and integration of the AI system.",
               "control_status": "Not Met",
               "control_evidence": ""
@@ -562,25 +625,29 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.5.2] - AI system impact assessment process: The organization shall establish a process to assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle.",
+              "control_number": "[A.5.2]",
+              "control_description": "AI system impact assessment process: The organization shall establish a process to assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle.",
               "control_objective": "The organization shall establish a process to assess the potential consequences for individuals or groups of individuals, or both, and societies that can result from the AI system throughout its life cycle.",
               "control_status": "Met",
               "control_evidence": "These controls mandate that we establish a formal process to assess potential consequences for individuals, groups, or society that can result from an AI system (A.5.2), and that we document and retain the results of these assessments (A.5.3). The Step '(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment' addresses these requirements by providing a structured framework to identify at-risk groups, describe the nature and severity of both positive and negative impacts, and define mitigation and monitoring strategies. This directly establishes the assessment process required by A.5.2, while the act of completing these fields creates the formal documentation needed to satisfy A.5.3. Similarly, the Step '(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems' addresses the requirements by guiding the assessment of societal impacts, specifically focusing on environmental factors like energy consumption, carbon footprint, and hardware lifecycle management. The fields create a systematic process for evaluating and recording these environmental consequences, thereby fulfilling the assessment (A.5.2) and documentation (A.5.3) mandates."
             },
             {
-              "control": "[A.5.3] - Documentation of AI system impact assessments: The organization shall document the results of AI system impact assessments and retain results for a defined period.",
+              "control_number": "[A.5.3]",
+              "control_description": "Documentation of AI system impact assessments: The organization shall document the results of AI system impact assessments and retain results for a defined period.",
               "control_objective": "The organization shall document the results of AI system impact assessments and retain results for a defined period.",
               "control_status": "Met",
               "control_evidence": "These controls mandate that we establish a formal process to assess potential consequences for individuals, groups, or society that can result from an AI system (A.5.2), and that we document and retain the results of these assessments (A.5.3). The Step '(A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment' addresses these requirements by providing a structured framework to identify at-risk groups, describe the nature and severity of both positive and negative impacts, and define mitigation and monitoring strategies. This directly establishes the assessment process required by A.5.2, while the act of completing these fields creates the formal documentation needed to satisfy A.5.3. Similarly, the Step '(A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems' addresses the requirements by guiding the assessment of societal impacts, specifically focusing on environmental factors like energy consumption, carbon footprint, and hardware lifecycle management. The fields create a systematic process for evaluating and recording these environmental consequences, thereby fulfilling the assessment (A.5.2) and documentation (A.5.3) mandates."
             },
             {
-              "control": "[A.5.4] - Assessing AI system impact on individuals or groups of individuals: The organization shall assess and document the potential impacts of AI systems to individuals or groups of individuals throughout the system’s life cycle.",
+              "control_number": "[A.5.4]",
+              "control_description": "Assessing AI system impact on individuals or groups of individuals: The organization shall assess and document the potential impacts of AI systems to individuals or groups of individuals throughout the system’s life cycle.",
               "control_objective": "The organization shall assess and document the potential impacts of AI systems to individuals or groups of individuals throughout the system’s life cycle.",
               "control_status": "Met",
               "control_evidence": "These controls mandate that we establish a formal process to assess potential impacts on individuals, groups, and society (A.5.2), conduct and document that assessment (A.5.4), and retain the results (A.5.3). Step: (A.5.2, A.5.3, A.5.4) Workforce Transition and Adaptation for AI Integration addresses the requirements by systematically evaluating the AI system's impact on our internal workforce. This is achieved by identifying the specific job roles affected, classifying the nature of the impact as augmentation or automation, detailing the tasks to be automated, and documenting the corresponding mitigation strategies, including re-skilling and re-deployment plans. Step: (A.5.2, A.5.3, A.5.4) Vulnerable Populations Impact Assessment addresses the requirements by extending the analysis to external societal groups. It provides a structured method to identify at-risk populations, describe and rate the severity of potential positive or negative impacts, define clear mitigation strategies to prevent harm, and establish a post-deployment monitoring plan to ensure ongoing oversight."
             },
             {
-              "control": "[A.5.5] - Assessing societal impacts of AI systems: The organization shall assess and document the potential societal impacts of their AI systems throughout their life cycle.",
+              "control_number": "[A.5.5]",
+              "control_description": "Assessing societal impacts of AI systems: The organization shall assess and document the potential societal impacts of their AI systems throughout their life cycle.",
               "control_objective": "The organization shall assess and document the potential societal impacts of their AI systems throughout their life cycle.",
               "control_status": "Met",
               "control_evidence": "These controls mandate that we establish a formal process to assess potential societal consequences (A.5.2, A.5.5) that can result from the AI system, and document and retain the results of this assessment (A.5.3) throughout the system's life cycle. Step: (A.5.2, A.5.3, A.5.5) Environmental Sustainability of AI Systems addresses the requirements by providing a structured process to assess and document the system's environmental footprint—a key societal impact. It facilitates this assessment by requiring documentation of the primary energy sources used, an estimation of the total energy consumption and carbon footprint, and the strategies for hardware end-of-life management. Furthermore, it documents the efficiency measures taken to minimize negative impacts, rates the overall level of environmental impact, and outlines a plan for ongoing monitoring and review, ensuring the assessment remains relevant throughout the AI system's lifecycle."
@@ -596,53 +663,62 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.6.1.2] - Objectives for responsible development of AI system: The organization shall identify and document objectives to guide the responsible development AI systems, and take those objectives into account and integrate measures to achieve them in the development life cycle.",
+              "control_number": "[A.6.1.2]",
+              "control_description": "Objectives for responsible development of AI system: The organization shall identify and document objectives to guide the responsible development AI systems, and take those objectives into account and integrate measures to achieve them in the development life cycle.",
               "control_objective": "The organization shall identify and document objectives to guide the responsible development AI systems, and take those objectives into account and integrate measures to achieve them in the development life cycle.",
               "control_status": "Met",
               "control_evidence": "These ISO controls mandate that the organization establishes and documents clear objectives for the responsible development of AI systems (A.6.1.2) and defines and documents the specific processes for how the design and development will be carried out responsibly (A.6.1.3). Our procedure addresses these requirements by first establishing key objectives for responsible development, such as ensuring Fairness and Non-discrimination and promoting Transparency and Explainability. It then defines the specific processes to achieve these objectives through a structured AI onboarding procedure. A core part of this process is the '(A.6.2.4) AI Systems verifications' step, which operationalizes our responsible AI objectives into auditable actions. For instance: Our objective of Fairness is implemented through the documented 'Fairness and Bias in AI Systems Test Plan'. This plan defines the specific processes for data acquisition, analysis of dataset representativeness, and quantitative testing for historical bias. Similarly, our Transparency objective is implemented via the 'Transparency and Explainability in AI Systems Test Plan', which documents the process for defining audience needs, selecting explanation techniques, and validating their effectiveness. By embedding these detailed, verifiable test plans directly into our development lifecycle, we ensure our high-level objectives (A.6.1.2) are supported by a concrete, documented, and repeatable process (A.6.1.3)."
             },
             {
-              "control": "[A.6.1.3] - Processes for responsible AI system design and development: The organization shall define and document the specific processes for the responsible design and development of the AI system.",
+              "control_number": "[A.6.1.3]",
+              "control_description": "Processes for responsible AI system design and development: The organization shall define and document the specific processes for the responsible design and development of the AI system.",
               "control_objective": "The organization shall define and document the specific processes for the responsible design and development of the AI system.",
               "control_status": "Met",
               "control_evidence": "These ISO controls mandate that the organization establishes and documents clear objectives for the responsible development of AI systems (A.6.1.2) and defines and documents the specific processes for how the design and development will be carried out responsibly (A.6.1.3). Our procedure addresses these requirements by first establishing key objectives for responsible development, such as ensuring Fairness and Non-discrimination and promoting Transparency and Explainability. It then defines the specific processes to achieve these objectives through a structured AI onboarding procedure. A core part of this process is the '(A.6.2.4) AI Systems verifications' step, which operationalizes our responsible AI objectives into auditable actions. For instance: Our objective of Fairness is implemented through the documented 'Fairness and Bias in AI Systems Test Plan'. This plan defines the specific processes for data acquisition, analysis of dataset representativeness, and quantitative testing for historical bias. Similarly, our Transparency objective is implemented via the 'Transparency and Explainability in AI Systems Test Plan', which documents the process for defining audience needs, selecting explanation techniques, and validating their effectiveness. By embedding these detailed, verifiable test plans directly into our development lifecycle, we ensure our high-level objectives (A.6.1.2) are supported by a concrete, documented, and repeatable process (A.6.1.3)."
             },
             {
-              "control": "[A.6.2.2] - AI system requirements and specification: The organization shall specify and document requirements for new AI systems or material enhancements to existing systems.",
+              "control_number": "[A.6.2.2]",
+              "control_description": "AI system requirements and specification: The organization shall specify and document requirements for new AI systems or material enhancements to existing systems.",
               "control_objective": "The organization shall specify and document requirements for new AI systems or material enhancements to existing systems.",
               "control_status": "Met",
               "control_evidence": "ISO 42001 control A.6.2.2 requires that organizations formally specify and document the requirements for new or materially changed AI systems, ensuring those specifications capture both functional and non-functional needs alongside security, risk, and compliance expectations. These details collectively demonstrate that the AI system’s behavior, purpose, and mitigations are fully defined before deployment, aligning system design with organizational, ethical, and regulatory obligations. The “Risk” node in each RAG component addresses this requirement by documenting the security and integrity requirements of individual modules. It defines specific threats (for example, malicious data ingestion or data poisoning), the associated controls, control objectives, and audit evidence, all structured to promote traceability from risk identification through control design. These elements collectively satisfy the documentation requirement for non-functional aspects such as integrity and confidentiality. Complementing the security and risk documentation, the functional requirements are captured through the structured webform aligned with ISO 42001 A.9.4 on intended use. This JSON schema defines how functional details are gathered and documented, ensuring that each AI system’s intended behavior and operational scope are transparent and justified. It includes fields such as the AI System ID, Name, Business Purpose, Intended Use, and Augmented Tasks, along with selectable benefit outcomes (for example, faster service or increased efficiency). By pairing the A.9.4 functional specification webform with each component’s “Risk” node, the AI onboarding documentation holistically fulfills A.6.2.2 by ensuring that every RAG-based component has a documented purpose, defined operational boundary, articulated risks, and mapped controls. This creates a single, integrated framework for demonstrating how AI system design aligns with organizational objectives and responsible use obligations throughout the lifecycle."
             },
             {
-              "control": "[A.6.2.3] - Documentation of AI system design and development: The organization shall document the AI system design and development based on organizational objectives, documented requirements and specification criteria.",
+              "control_number": "[A.6.2.3]",
+              "control_description": "Documentation of AI system design and development: The organization shall document the AI system design and development based on organizational objectives, documented requirements and specification criteria.",
               "control_objective": "The organization shall document the AI system design and development based on organizational objectives, documented requirements and specification criteria.",
               "control_evidence": ""
             },
             {
-              "control": "[A.6.2.4] - AI system verification and validation: The organization shall define and document verification and validation measures for the AI system and specify criteria for their use.",
+              "control_number": "[A.6.2.4]",
+              "control_description": "AI system verification and validation: The organization shall define and document verification and validation measures for the AI system and specify criteria for their use.",
               "control_objective": "The organization shall define and document verification and validation measures for the AI system and specify criteria for their use.",
               "control_status": "Met",
               "control_evidence": "ISO 42001 control A.6.2.4 requires mandates that we formally define and document the specific measures we will take to verify and validate our AI system, and also specify the exact criteria that determine success or failure for those measures. Step: '(A.6.2.4) AI Systems verifications' addresses the requirements by structuring the validation process into distinct test plans covering key areas such as performance, fairness, transparency, and data quality. For each plan, it documents the 'verification and validation measures' through a detailed list of executable PlanSteps. More importantly, it 'specifies criteria for their use' by defining explicit PlanCriteria, where each criterion contains a measurable success condition (criteria), its purpose (control_objective), and the specific criteria_evidence required to prove it has been met. This ensures our entire validation process is clearly defined, documented, and based on objective, auditable standards."
             },
             {
-              "control": "[A.6.2.5] - AI system deployment: The organization shall document a deployment plan and ensure that appropriate requirements are met prior to deployment.",
+              "control_number": "[A.6.2.5]",
+              "control_description": "AI system deployment: The organization shall document a deployment plan and ensure that appropriate requirements are met prior to deployment.",
               "control_objective": "The organization shall document a deployment plan and ensure that appropriate requirements are met prior to deployment.",
               "control_status": "Met",
               "control_evidence": "The ISO control A.6.2.5 requires that organizations formally document a deployment plan for AI systems and verify that all technical, security, ethical, and performance requirements are met before deployment. This ensures a secure, controlled, and compliant rollout of AI solutions by preventing the activation of non-compliant or unstable systems and by maintaining the integrity of deployed components. Step: (A.6.2.5) AI Lifecycle Phase requirements - Deployment addresses these requirements by orchestrating a secure and compliant AI system deployment through several key mechanisms: it requires the documentation of a comprehensive deployment plan that defines the rollout strategy, resource allocation, technical steps, and rollback procedures, providing clear evidence of a controlled deployment process. The step also ensures that prerequisite verification is performed so that all technical, security, ethical, and performance benchmarks are met via rigorous pre-deployment testing and validation. Secure packaging controls are enforced to guarantee the integrity of each deployable artifact, requiring container images to be sourced only from trusted registries, scanned for vulnerabilities, and hardened before deployment, as documented with evidence such as configuration files, automated pruning job logs, and access control settings. Collectively, these documented objectives and fields in your onboarding procedure demonstrate compliance with ISO A.6.2.5 by ensuring all deployment activities are formally structured, thoroughly validated, and securely executed prior to AI system activation."
             },
             {
-              "control": "[A.6.2.6] - AI system operation and monitoring: The organization shall define and document the necessary elements for the ongoing operation of the AI system. At the minimum, this should include system and performance monitoring, repairs, updates and support.",
+              "control_number": "[A.6.2.6]",
+              "control_description": "AI system operation and monitoring: The organization shall define and document the necessary elements for the ongoing operation of the AI system. At the minimum, this should include system and performance monitoring, repairs, updates and support.",
               "control_objective": "The organization shall define and document the necessary elements for the ongoing operation of the AI system. At the minimum, this should include system and performance monitoring, repairs, updates and support.",
               "control_status": "Met",
               "control_evidence": "ISO 42001 control A.6.2.6 mandates that we formally define and document the necessary elements for the ongoing operation of the AI system, including, at a minimum, the processes for system and performance monitoring, repairs, updates, and support.  Step: '(A.6.2.6) AI Lifecycle Phase requirements - Operation and Monitoring' addresses the requirements by using a risk-based approach to document every aspect of the AI system's operational lifecycle. The 'risk' nodes within this step function as the formal documentation for these elements: the 'Insufficient Performance Monitoring...' and 'Inadequate Security Monitoring...' nodes define the requirements for system and performance monitoring; the 'Poor Management of AI System Evolution and Updates' node defines the process for managing updates; and the 'Inadequate Disaster Recovery...' and 'Insufficient Scalability Management' nodes define the technical controls for repairs and support by documenting the required failover, replication, and scaling mechanisms."
             },
             {
-              "control": "[A.6.2.7] - AI system technical documentation: The organization shall determine what AI system technical documentation is needed for each relevant category of interested parties, such as users, partners, supervisory authorities, and provide the technical documentation to them in the appropriate form.",
+              "control_number": "[A.6.2.7]",
+              "control_description": "AI system technical documentation: The organization shall determine what AI system technical documentation is needed for each relevant category of interested parties, such as users, partners, supervisory authorities, and provide the technical documentation to them in the appropriate form.",
               "control_objective": "The organization shall determine what AI system technical documentation is needed for each relevant category of interested parties, such as users, partners, supervisory authorities, and provide the technical documentation to them in the appropriate form.",
               "control_evidence": ""
             },
             {
-              "control": "[A.6.2.8] - AI system recording of event logs: The organization shall determine at which phases of the AI system life cycle, record keeping of event logs should be enabled, but at the minimum when the AI system is in use.",
+              "control_number": "[A.6.2.8]",
+              "control_description": "AI system recording of event logs: The organization shall determine at which phases of the AI system life cycle, record keeping of event logs should be enabled, but at the minimum when the AI system is in use.",
               "control_objective": "The organization shall determine at which phases of the AI system life cycle, record keeping of event logs should be enabled, but at the minimum when the AI system is in use.",
               "control_status": "Met",
               "control_evidence": "The ISO 42001 control A.6.2.8 requires that a process is in place to record event logs during the AI system lifecycle, with the minimum requirement that logging is active when the system is in use. This ensures a clear record of system activity for traceability, security, and accountability. Step's: 'RAG Orchestrator' addresses this requirement by functioning as the central logic unit that generates structured and immutable audit logs for every user interaction while the system is operational. These logs create a complete audit trail by capturing critical data points, including the user identifier, timestamp, the full user query, the IDs of retrieved documents, and the final AI-generated response. This process ensures a reliable record of activity is always created during the system's use, providing the evidence needed for security forensics, accountability, and non-repudiation, thereby fulfilling the mandate of the control."
@@ -658,31 +734,36 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.7.2] - Data for development and enhancement of AI system: The organization shall define, document and implement data management processes related to the development of AI systems.",
+              "control_number": "[A.7.2]",
+              "control_description": "Data for development and enhancement of AI system: The organization shall define, document and implement data management processes related to the development of AI systems.",
               "control_objective": "The organization shall define, document and implement data management processes related to the development of AI systems.",
               "control_status": "Met",
               "control_evidence": "These controls (A.7.2, A.7.3, A.7.4, A.7.5, A.7.6) mandate that we define, document, and implement comprehensive data management processes for our AI systems. This includes specifying the details of data acquisition, defining criteria for data preparation and quality, and establishing a clear record of data provenance throughout the AI lifecycle. The requirements of these controls are met over 3 procedure steps which detail our data management strategy. 1. Step: 'Data Processing Pipeline (Vectorise proprietary data)' 2. Step: 'Internal Data Sources'  3. Step: '(A.6.2.4) AI Systems verifications'. Together the procedure steps addresses the requirements by providing a structured framework that documents our entire data management strategy (A.7.2). The four detailed test plans—'Performance & Load Test Plan', 'Fairness and Bias', 'Transparency and Explainability' and 'Data quality requirements'—explicitly define the criteria and methods for data preparation (A.7.6) and set clear, measurable requirements for data quality, including accuracy, completeness, and fairness (A.7.4). The 'Fairness and Bias' plan also addresses data acquisition and selection (A.7.3) by requiring an analysis of the dataset's representativeness against real-world populations. Furthermore, the 'Data quality requirements' plan establishes a concrete process for recording and verifying the data's origin and history through specific provenance criteria (DATA-SEN-05) and associated test steps (BBT-EXT-PRO-01, BBT-EXT-PRO-02), fulfilling the data provenance mandate (A.7.5). The detailed PlanSteps within each section serve as the documented implementation and verification procedure, ensuring these defined requirements are consistently met."
             },
             {
-              "control": "[A.7.3] - Acquisition of data: The organization shall determine and document details about the acquisition and selection of the data used in AI systems.",
+              "control_number": "[A.7.3]",
+              "control_description": "Acquisition of data: The organization shall determine and document details about the acquisition and selection of the data used in AI systems.",
               "control_objective": "The organization shall determine and document details about the acquisition and selection of the data used in AI systems.",
               "control_status": "Met",
               "control_evidence": "These controls (A.7.2, A.7.3, A.7.4, A.7.5, A.7.6) mandate that we define, document, and implement comprehensive data management processes for our AI systems. This includes specifying the details of data acquisition, defining criteria for data preparation and quality, and establishing a clear record of data provenance throughout the AI lifecycle. The requirements of these controls are met over 3 procedure steps which detail our data management strategy. 1. Step: 'Data Processing Pipeline (Vectorise proprietary data)' 2. Step: 'Internal Data Sources'  3. Step: '(A.6.2.4) AI Systems verifications'. Together the procedure steps addresses the requirements by providing a structured framework that documents our entire data management strategy (A.7.2). The four detailed test plans—'Performance & Load Test Plan', 'Fairness and Bias', 'Transparency and Explainability' and 'Data quality requirements'—explicitly define the criteria and methods for data preparation (A.7.6) and set clear, measurable requirements for data quality, including accuracy, completeness, and fairness (A.7.4). The 'Fairness and Bias' plan also addresses data acquisition and selection (A.7.3) by requiring an analysis of the dataset's representativeness against real-world populations. Furthermore, the 'Data quality requirements' plan establishes a concrete process for recording and verifying the data's origin and history through specific provenance criteria (DATA-SEN-05) and associated test steps (BBT-EXT-PRO-01, BBT-EXT-PRO-02), fulfilling the data provenance mandate (A.7.5). The detailed PlanSteps within each section serve as the documented implementation and verification procedure, ensuring these defined requirements are consistently met."
             },
             {
-              "control": "[A.7.4] - Quality of data for AI systems: The organization shall define and document requirements for data quality and ensure that data used to develop and operate the AI system meet those requirements.",
+              "control_number": "[A.7.4]",
+              "control_description": "Quality of data for AI systems: The organization shall define and document requirements for data quality and ensure that data used to develop and operate the AI system meet those requirements.",
               "control_objective": "The organization shall define and document requirements for data quality and ensure that data used to develop and operate the AI system meet those requirements.",
               "control_status": "Met",
               "control_evidence": "These controls (A.7.2, A.7.3, A.7.4, A.7.5, A.7.6) mandate that we define, document, and implement comprehensive data management processes for our AI systems. This includes specifying the details of data acquisition, defining criteria for data preparation and quality, and establishing a clear record of data provenance throughout the AI lifecycle. The requirements of these controls are met over 3 procedure steps which detail our data management strategy. 1. Step: 'Data Processing Pipeline (Vectorise proprietary data)' 2. Step: 'Internal Data Sources'  3. Step: '(A.6.2.4) AI Systems verifications'. Together the procedure steps addresses the requirements by providing a structured framework that documents our entire data management strategy (A.7.2). The four detailed test plans—'Performance & Load Test Plan', 'Fairness and Bias', 'Transparency and Explainability' and 'Data quality requirements'—explicitly define the criteria and methods for data preparation (A.7.6) and set clear, measurable requirements for data quality, including accuracy, completeness, and fairness (A.7.4). The 'Fairness and Bias' plan also addresses data acquisition and selection (A.7.3) by requiring an analysis of the dataset's representativeness against real-world populations. Furthermore, the 'Data quality requirements' plan establishes a concrete process for recording and verifying the data's origin and history through specific provenance criteria (DATA-SEN-05) and associated test steps (BBT-EXT-PRO-01, BBT-EXT-PRO-02), fulfilling the data provenance mandate (A.7.5). The detailed PlanSteps within each section serve as the documented implementation and verification procedure, ensuring these defined requirements are consistently met."
             },
             {
-              "control": "[A.7.5] - Data provenance: The organization shall define and document a process for recording the provenance of data used in its AI systems over the life cycles of the data and the AI system.",
+              "control_number": "[A.7.5]",
+              "control_description": "Data provenance: The organization shall define and document a process for recording the provenance of data used in its AI systems over the life cycles of the data and the AI system.",
               "control_objective": "The organization shall define and document a process for recording the provenance of data used in its AI systems over the life cycles of the data and the AI system.",
               "control_status": "Met",
               "control_evidence": "These controls (A.7.2, A.7.3, A.7.4, A.7.5, A.7.6) mandate that we define, document, and implement comprehensive data management processes for our AI systems. This includes specifying the details of data acquisition, defining criteria for data preparation and quality, and establishing a clear record of data provenance throughout the AI lifecycle. The requirements of these controls are met over 3 procedure steps which detail our data management strategy. 1. Step: 'Data Processing Pipeline (Vectorise proprietary data)' 2. Step: 'Internal Data Sources'  3. Step: '(A.6.2.4) AI Systems verifications'. Together the procedure steps addresses the requirements by providing a structured framework that documents our entire data management strategy (A.7.2). The four detailed test plans—'Performance & Load Test Plan', 'Fairness and Bias', 'Transparency and Explainability' and 'Data quality requirements'—explicitly define the criteria and methods for data preparation (A.7.6) and set clear, measurable requirements for data quality, including accuracy, completeness, and fairness (A.7.4). The 'Fairness and Bias' plan also addresses data acquisition and selection (A.7.3) by requiring an analysis of the dataset's representativeness against real-world populations. Furthermore, the 'Data quality requirements' plan establishes a concrete process for recording and verifying the data's origin and history through specific provenance criteria (DATA-SEN-05) and associated test steps (BBT-EXT-PRO-01, BBT-EXT-PRO-02), fulfilling the data provenance mandate (A.7.5). The detailed PlanSteps within each section serve as the documented implementation and verification procedure, ensuring these defined requirements are consistently met."
             },
             {
-              "control": "[A.7.6] - Data preparation: The organization shall define and document its criteria for selecting data preparations and the data preparation methods to be used.",
+              "control_number": "[A.7.6]",
+              "control_description": "Data preparation: The organization shall define and document its criteria for selecting data preparations and the data preparation methods to be used.",
               "control_objective": "The organization shall define and document its criteria for selecting data preparations and the data preparation methods to be used.",
               "control_status": "Met",
               "control_evidence": "These controls (A.7.2, A.7.3, A.7.4, A.7.5, A.7.6) mandate that we define, document, and implement comprehensive data management processes for our AI systems. This includes specifying the details of data acquisition, defining criteria for data preparation and quality, and establishing a clear record of data provenance throughout the AI lifecycle. The requirements of these controls are met over 3 procedure steps which detail our data management strategy. 1. Step: 'Data Processing Pipeline (Vectorise proprietary data)' 2. Step: 'Internal Data Sources'  3. Step: '(A.6.2.4) AI Systems verifications'. Together the procedure steps addresses the requirements by providing a structured framework that documents our entire data management strategy (A.7.2). The four detailed test plans—'Performance & Load Test Plan', 'Fairness and Bias', 'Transparency and Explainability' and 'Data quality requirements'—explicitly define the criteria and methods for data preparation (A.7.6) and set clear, measurable requirements for data quality, including accuracy, completeness, and fairness (A.7.4). The 'Fairness and Bias' plan also addresses data acquisition and selection (A.7.3) by requiring an analysis of the dataset's representativeness against real-world populations. Furthermore, the 'Data quality requirements' plan establishes a concrete process for recording and verifying the data's origin and history through specific provenance criteria (DATA-SEN-05) and associated test steps (BBT-EXT-PRO-01, BBT-EXT-PRO-02), fulfilling the data provenance mandate (A.7.5). The detailed PlanSteps within each section serve as the documented implementation and verification procedure, ensuring these defined requirements are consistently met."
@@ -698,22 +779,26 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.8.2] - System documentation and information for users: The organization shall determine and provide the necessary information to users of the AI system.",
+              "control_number": "[A.8.2]",
+              "control_description": "System documentation and information for users: The organization shall determine and provide the necessary information to users of the AI system.",
               "control_objective": "The organization shall determine and provide the necessary information to users of the AI system.",
               "control_evidence": ""
             },
             {
-              "control": "[A.8.3] - External reporting: The organization shall provide capabilities for interested parties to report adverse impacts of the AI system.",
+              "control_number": "[A.8.3]",
+              "control_description": "External reporting: The organization shall provide capabilities for interested parties to report adverse impacts of the AI system.",
               "control_objective": "The organization shall provide capabilities for interested parties to report adverse impacts of the AI system.",
               "control_evidence": ""
             },
             {
-              "control": "[A.8.4] - Communication of incidents: The organization shall determine and document a plan for communicating incidents to users of the AI system.",
+              "control_number": "[A.8.4]",
+              "control_description": "Communication of incidents: The organization shall determine and document a plan for communicating incidents to users of the AI system.",
               "control_objective": "The organization shall determine and document a plan for communicating incidents to users of the AI system.",
               "control_evidence": ""
             },
             {
-              "control": "[A.8.5] - Information for interested parties: The organization shall determine and document their obligations to reporting information about the AI system to interested parties.",
+              "control_number": "[A.8.5]",
+              "control_description": "Information for interested parties: The organization shall determine and document their obligations to reporting information about the AI system to interested parties.",
               "control_objective": "The organization shall determine and document their obligations to reporting information about the AI system to interested parties.",
               "control_evidence": ""
             }
@@ -728,19 +813,22 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.9.2] - Processes for responsible use of AI systems: The organization shall define and document the processes for the responsible use of AI systems.",
+              "control_number": "[A.9.2]",
+              "control_description": "Processes for responsible use of AI systems: The organization shall define and document the processes for the responsible use of AI systems.",
               "control_objective": "The organization shall define and document the processes for the responsible use of AI systems.",
               "control_status": "Met",
               "control_evidence": "This ISO control mandates that we define and document the specific, repeatable processes that ensure the responsible use of our AI systems in day-to-day operations. Our procedure addresses the requirements by documenting a comprehensive, multi-layered process for responsible use that spans policy, technical implementation, and validation. The process begins with the (A.9.3) AI system's Objectives for Responsible Use step, where we formally document the high-level rules by defining permitted use categories, prohibited uses, and authorized users. These rules are then translated into a concrete technical process within the RAG Orchestrator component, which documents the specific controls—like the prompt classification module and prohibited terms monitoring—that build the enforcement of these objectives directly into the system's architecture. Finally, the process is verified through the (A.9.4) - Purpose Limitation and Prompt Category Enforcement Test Plan in the (A.6.2.4) AI Systems verifications step, which documents the exact testing procedures to ensure these technical controls are implemented correctly and are effective. Together, these three steps form a complete, auditable process for defining, technically enforcing, and validating the responsible use of the AI system."
             },
             {
-              "control": "[A.9.3] - Objectives for responsible use of AI system: The organization shall identify and document objectives to guide the responsible use of AI systems.",
+              "control_number": "[A.9.3]",
+              "control_description": "Objectives for responsible use of AI system: The organization shall identify and document objectives to guide the responsible use of AI systems.",
               "control_objective": "The organization shall identify and document objectives to guide the responsible use of AI systems.",
               "control_status": "Met",
               "control_evidence": "This ISO control mandates that we formally identify and document a clear set of objectives that establish the rules and boundaries for the responsible operation of our AI systems. Step: (A.9.3) AI system's Objectives for Responsible Use addresses the requirements by providing a structured method to document the system's operational boundaries. It does this by defining the approved applications through the 'Permitted User Prompt Categories', establishing clear limitations and compliance guardrails with the 'Known Prohibited Uses', and ensuring accountability by specifying the authorized users in the 'Intended User Profile'. Collectively, these fields create a comprehensive, documented set of objectives that guide the responsible use of the AI system."
             },
             {
-              "control": "[A.9.4] - Intended use of the AI system: The organization shall ensure that the AI system is used according to the intended uses of the AI system and its accompanying documentation.",
+              "control_number": "[A.9.4]",
+              "control_description": "Intended use of the AI system: The organization shall ensure that the AI system is used according to the intended uses of the AI system and its accompanying documentation.",
               "control_objective": "The organization shall ensure that the AI system is used according to the intended uses of the AI system and its accompanying documentation.",
               "control_status": "Met",
               "control_evidence": "This ISO control mandates that we formally document the specific purpose and intended applications of the AI system, and then ensure the system is only operated within those defined boundaries and according to its accompanying documentation. Step: (A.9.4) AI system's intended use and limitations addresses the requirements by creating this foundational documentation. It provides a structured framework to capture the system's explicit 'Business Purpose' and a detailed description of its 'Intended Use'. By further detailing the specific 'Augmented/Enhanced Tasks' and potential benefits, this step produces the official record of intended use that serves as the baseline for all future user training, documentation, and compliance monitoring."
@@ -756,17 +844,20 @@
           "RiskDescription": "",
           "controls": [
             {
-              "control": "[A.10.2] - Allocating responsibilities: The organization shall ensure that responsibilities within their AI system life cycle are allocated between the organization, its partners, suppliers, customers and third parties.",
+              "control_number": "[A.10.2]",
+              "control_description": "Allocating responsibilities: The organization shall ensure that responsibilities within their AI system life cycle are allocated between the organization, its partners, suppliers, customers and third parties.",
               "control_objective": "The organization shall ensure that responsibilities within their AI system life cycle are allocated between the organization, its partners, suppliers, customers and third parties.",
               "control_evidence": ""
             },
             {
-              "control": "[A.10.3] - Suppliers: The organization shall establish a process to ensure that its usage of services, products or materials provided by suppliers aligns with the organization’s approach to the responsible development and use of AI systems.",
+              "control_number": "[A.10.3]",
+              "control_description": "Suppliers: The organization shall establish a process to ensure that its usage of services, products or materials provided by suppliers aligns with the organization’s approach to the responsible development and use of AI systems.",
               "control_objective": "The organization shall establish a process to ensure that its usage of services, products or materials provided by suppliers aligns with the organization’s approach to the responsible development and use of AI systems.",
               "control_evidence": ""
             },
             {
-              "control": "[A.10.4] - Customers: The organization shall ensure that its responsible approach to the development and use of AI systems considers their customer expectations and needs.",
+              "control_number": "[A.10.4]",
+              "control_description": "Customers: The organization shall ensure that its responsible approach to the development and use of AI systems considers their customer expectations and needs.",
               "control_objective": "The organization shall ensure that its responsible approach to the development and use of AI systems considers their customer expectations and needs.",
               "control_evidence": ""
             }
@@ -1287,27 +1378,32 @@
           "RiskDescription": "The risk that malicious actors could deliberately corrupt the internal data sources (e.g., SharePoint, Confluence) that feed the AI's knowledge base. This can be done by inserting false information to mislead users (Data Poisoning) or by embedding hidden commands to hijack the AI's behavior and potentially leak data (Indirect Prompt Injection).",
           "controls": [
             {
-              "control": "[Art-15-DATA-INT-01] - Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
+              "control_number": "[Art-15-DATA-INT-01]",
+              "control_description": "Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
               "control_objective": "To prevent unauthorized users from introducing malicious or erroneous content at the source, directly mitigating risks of intentional Data Poisoning.",
               "control_evidence": "A documented list of user roles and their assigned permissions for the data repository; screenshots or configuration exports from the system's access control panel demonstrating the principle of least privilege; and records of periodic access reviews."
             },
             {
-              "control": "[Art-15-DATA-INT-02] - Enforce mandatory version control with detailed audit logs on all source data repositories. All changes, additions, and deletions must be attributable to a specific user and timestamp.",
+              "control_number": "[Art-15-DATA-INT-02]",
+              "control_description": "Enforce mandatory version control with detailed audit logs on all source data repositories. All changes, additions, and deletions must be attributable to a specific user and timestamp.",
               "control_objective": "To ensure a complete, auditable history of all changes to the knowledge base's source data, enabling rapid detection of unauthorized modifications and rollback to a last-known-good state.",
               "control_evidence": "Screenshots of the version control system's settings demonstrating that versioning is active, and a sample commit/change history log showing a clear attribution of changes to a specific user, timestamp, and a description of the change."
             },
             {
-              "control": "[Art-15-DATA-INT-03] - Establish a mandatory content approval workflow for the addition or significant modification of documents in designated high-sensitivity data sources before they are ingested by the AI system.",
+              "control_number": "[Art-15-DATA-INT-03]",
+              "control_description": "Establish a mandatory content approval workflow for the addition or significant modification of documents in designated high-sensitivity data sources before they are ingested by the AI system.",
               "control_objective": "To create a formal human-in-the-loop verification gate that ensures the authenticity and appropriateness of critical information, providing a strong defense against both deliberate Data Poisoning and unintentional quality issues.",
               "control_evidence": "Documentation of the content approval process including designated approvers, and sample evidence such as a completed Pull Request with mandatory reviewer approvals, or a change management ticket (e.g., in Jira) with a logged approval signature."
             },
             {
-              "control": "[Art-15-DATA-INT-04] - Ensure every data chunk processed and stored in the vector database retains immutable metadata linking it directly to its source document, version, and author.",
+              "control_number": "[Art-15-DATA-INT-04]",
+              "control_description": "Ensure every data chunk processed and stored in the vector database retains immutable metadata linking it directly to its source document, version, and author.",
               "control_objective": "To maintain full data provenance, enabling users and administrators to verify the source of any information provided by the AI and to facilitate the targeted removal of compromised data if a poisoning incident is discovered.",
               "control_evidence": "A sample query output from the vector database displaying a data chunk alongside its associated metadata fields (e.g., source_document_name, version_id, ingestion_timestamp), and a code snippet from the data ingestion pipeline explicitly demonstrating how this metadata is extracted and attached."
             },
             {
-              "control": "[Art-15-DATA-INT-06] - The RAG Orchestrator must be configured to include citations or direct links back to the source documents (leveraging the metadata from control DATA-INT-04) within every response generated by the LLM.",
+              "control_number": "[Art-15-DATA-INT-06]",
+              "control_description": "The RAG Orchestrator must be configured to include citations or direct links back to the source documents (leveraging the metadata from control DATA-INT-04) within every response generated by the LLM.",
               "control_objective": "To empower users to verify the AI's claims and sources, thereby reducing the impact of successful data poisoning by making false information easily identifiable and auditable.",
               "control_evidence": "Screenshots or logs of the final user-facing response clearly showing embedded citations or links. A code snippet from the RAG Orchestrator demonstrating how the source metadata from the retrieved chunks is formatted and appended to the final LLM response."
             }
@@ -1662,22 +1758,22 @@
           "RiskDescription": "The **service accounts** or **API keys** used by the Data Processing Pipeline to connect to internal data sources often require broad 'read-all' permissions to function effectively. If these **over-privileged credentials** are compromised (e.g., hardcoded in scripts, leaked in logs, or stolen via lateral movement), an attacker gains **unrestricted access** to all ingestible data simultaneously, bypassing individual user access controls and leading to **massive data exfiltration**.",
           "controls": [
             {
-              "control": "[Art-15-01] Implement Principle of Least Privilege (PoLP) for all ingestion service accounts, restricting access only to specific required datasets/tables rather than entire databases or file servers.",
+              "control_number": "[Art-15-01] Implement Principle of Least Privilege (PoLP) for all ingestion service accounts, restricting access only to specific required datasets/tables rather than entire databases or file servers.",
               "control_objective": "To limit the blast radius if ingestion credentials are compromised, ensuring they cannot access data outside their specific scope.",
               "control_evidence": "Access control lists (ACLs) or IAM policy documents for the service account showing granular read-only permissions restricted to specific resources."
             },
             {
-              "control": "[Art-15-02] Utilize short-lived, dynamically generated credentials (e.g., IAM roles, HashiCorp Vault dynamic secrets) for ingestion jobs instead of static, long-lived API keys or passwords.",
+              "control_number": "[Art-15-02] Utilize short-lived, dynamically generated credentials (e.g., IAM roles, HashiCorp Vault dynamic secrets) for ingestion jobs instead of static, long-lived API keys or passwords.",
               "control_objective": "To reduce the window of opportunity for an attacker to use stolen credentials by ensuring they expire automatically.",
               "control_evidence": "Configuration of the secrets management system or orchestrator showing dynamic credential rotation policies (e.g., every 60 minutes)."
             },
             {
-              "control": "[Art-15-03] securely store and manage all connector credentials using a dedicated enterprise secrets manager, ensuring they are never hardcoded in pipeline code or configuration files.",
+              "control_number": "[Art-15-03] securely store and manage all connector credentials using a dedicated enterprise secrets manager, ensuring they are never hardcoded in pipeline code or configuration files.",
               "control_objective": "To prevent accidental leakage of high-privilege credentials through source code repositories or insecure configuration files.",
               "control_evidence": "Code repository scans confirming no hardcoded secrets; pipeline configuration showing environmental variable injection from a secure vault."
             },
             {
-              "control": "[Art-15-04] Implement specialized monitoring and anomaly detection for ingestion service accounts to flag unusual access patterns (e.g., reading data outside normal batch windows or unusual volumes).",
+              "control_number": "[Art-15-04] Implement specialized monitoring and anomaly detection for ingestion service accounts to flag unusual access patterns (e.g., reading data outside normal batch windows or unusual volumes).",
               "control_objective": "To rapidly detect active abuse of legitimate ingestion credentials.",
               "control_evidence": "SIEM alert configuration rules specifically targeting the UUID/name of the ingestion service accounts."
             }
@@ -1703,12 +1799,14 @@
           "RiskDescription": "Failure to enforce capacity constraints, such as **API rate limits** on user requests and limits on **task queue sizes** for actions triggered by LLM responses, could lead to a **Denial of Service (DoS)** condition. This allows a malicious or unconstrained user to **overwhelm the LLM endpoint** or the downstream processing system, resulting in **service unavailability**, **high latency**, and **resource exhaustion**.",
           "controls": [
             {
-              "control": "[LLM04][3] - Enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe.",
+              "control_number": "[LLM04][3]",
+              "control_description": "Enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe.",
               "control_objective": "To control the rate of requests and prevent overwhelming the LLM with a high volume of concurrent requests.",
               "control_evidence": "Screenshots of the API gateway configuration, relevant code snippets defining the rate limits, or test results showing that requests are blocked after the limit is exceeded."
             },
             {
-              "control": "[LLM04][4] - Limit the number of queued actions and the number of total actions in a system reacting to LLM responses.",
+              "control_number": "[LLM04][4]",
+              "control_description": "Limit the number of queued actions and the number of total actions in a system reacting to LLM responses.",
               "control_objective": "To prevent the accumulation of excessive workload and ensure that the system can effectively process LLM responses without becoming overwhelmed.",
               "control_evidence": "Configuration files from the task queue system (e.g., Celery, RabbitMQ), application code setting queue size or concurrency limits, or architectural diagrams illustrating these constraints."
             }
@@ -1723,12 +1821,14 @@
           "RiskDescription": "Insufficient visibility into third-party dependencies and **unvetted external components** (such as plugins) introduces **supply chain vulnerabilities** into the AI system. Without maintaining a **Software Bill of Materials (SBOM)** and a formal **plugin vetting process**, the system risks incorporating **malicious or unpatched code**, which could lead to **system compromise**, **data leakage**, or **exploitation** by external parties.",
           "controls": [
             {
-              "control": "[LLM05][2] - Only use reputable plugins that have been tested for application requirements.",
+              "control_number": "[LLM05][2]",
+              "control_description": "Only use reputable plugins that have been tested for application requirements.",
               "control_objective": "Minimise plugin-related vulnerabilities.",
               "control_evidence": "A documented plugin vetting process, test results from plugin security assessments, and a list of approved plugins."
             },
             {
-              "control": "[LLM05][4] - Maintain an up-to-date inventory using a Software Bill of Materials (SBOM).",
+              "control_number": "[LLM05][4]",
+              "control_description": "Maintain an up-to-date inventory using a Software Bill of Materials (SBOM).",
               "control_objective": "Track and manage components.",
               "control_evidence": "The current SBOM document for the application, evidence of a process for regularly updating the SBOM, and change logs."
             }
@@ -1754,22 +1854,26 @@
           "RiskDescription": "The risk that if the AI malfunctions, we cannot reconstruct what happened because it didn't keep detailed enough records. Failure to automatically track the AI's history and daily decisions violates EU transparency rules (Article 12), making it impossible to audit incidents and exposing the organization to maximum regulatory penalties.",
           "controls": [
             {
-              "control": "[TRC-LOG-01.1] - Automated Infrastructure Tracking: Configure the underlying computer systems to automatically record major lifecycle events (like 'New Model Version Deployed' or 'System Shut Down') so we don't have to rely on engineers manually logging these critical changes.",
+              "control_number": "[TRC-LOG-01.1]",
+              "control_description": "Automated Infrastructure Tracking: Configure the underlying computer systems to automatically record major lifecycle events (like 'New Model Version Deployed' or 'System Shut Down') so we don't have to rely on engineers manually logging these critical changes.",
               "control_objective": "To guarantee we have a perfect timeline of when the system was turned on, updated, or turned off, as required by law.",
               "control_evidence": "System settings showing that deployment actions automatically trigger a permanent record."
             },
             {
-              "control": "[TRC-LOG-01.2] - Detailed Step-by-Step Activity Recording: Ensure the AI creates a detailed record for every single answer it gives. This must separately record: 1) what the user asked, 2) exactly which documents the AI read to find the answer, 3) any safety checks it passed, and 4) the final answer it produced.",
+              "control_number": "[TRC-LOG-01.2]",
+              "control_description": "Detailed Step-by-Step Activity Recording: Ensure the AI creates a detailed record for every single answer it gives. This must separately record: 1) what the user asked, 2) exactly which documents the AI read to find the answer, 3) any safety checks it passed, and 4) the final answer it produced.",
               "control_objective": "To ensure that if an inappropriate answer is given, we can look back and see exactly *why* the AI decided to say it.",
               "control_evidence": "Sample records showing the full 'chain of thought' for a single user request, from input to final output."
             },
             {
-              "control": "[TRC-LOG-01.3] - Mandatory Standard Recording Template: Force all developers to use a standardized digital template when creating records. This template must automatically reject any record that is missing essential context (like the User ID, exact time, or which AI model version was used).",
+              "control_number": "[TRC-LOG-01.3]",
+              "control_description": "Mandatory Standard Recording Template: Force all developers to use a standardized digital template when creating records. This template must automatically reject any record that is missing essential context (like the User ID, exact time, or which AI model version was used).",
               "control_objective": "To prevent useless, incomplete records that cannot be linked back to a specific user or event during an audit.",
               "control_evidence": "Test results showing the system refusing to save a record if a mandatory field (like 'User_ID') is missing."
             },
             {
-              "control": "[TRC-LOG-01.4] - Tamper-Proof Long-Term Storage: Save all these records in a secure digital vault set to 'Read-Only.' It must be technically impossible for anyone (including our own administrators) to edit or delete these records until the legally required retention period has ended.",
+              "control_number": "[TRC-LOG-01.4]",
+              "control_description": "Tamper-Proof Long-Term Storage: Save all these records in a secure digital vault set to 'Read-Only.' It must be technically impossible for anyone (including our own administrators) to edit or delete these records until the legally required retention period has ended.",
               "control_objective": "To ensure evidence cannot be altered or destroyed if we are investigated in the future.",
               "control_evidence": "Cloud storage settings showing 'Object Lock' (cannot be deleted) is active for the required number of years."
             }
@@ -1784,22 +1888,26 @@
           "RiskDescription": "The risk that the RAG Orchestrator fails to correctly implement and enforce the 'AI system intended use' fields (Whitelist of Permitted Categories and Blacklist of Prohibited Uses), leading to system usage that is outside its documented capabilities or, critically, in violation of the EU AI Act's prohibitions (e.g., social scoring, harmful manipulation). This failure directly undermines the system's legal compliance and responsible use objective.",
           "controls": [
             {
-              "control": "[RAG-COMP-01.1] - Mandatory Whitelist-based Prompt Classification Module: The RAG Orchestrator must include a mandatory pre-processing step that compares every incoming user prompt against the 'Permitted User Prompt Categories Whitelist Definition'. Only prompts classified into an explicitly permitted category may proceed. Unclassified or out-of-scope prompts must be rejected.",
+              "control_number": "[RAG-COMP-01.1]",
+              "control_description": "Mandatory Whitelist-based Prompt Classification Module: The RAG Orchestrator must include a mandatory pre-processing step that compares every incoming user prompt against the 'Permitted User Prompt Categories Whitelist Definition'. Only prompts classified into an explicitly permitted category may proceed. Unclassified or out-of-scope prompts must be rejected.",
               "control_objective": "To technically enforce the AI system's intended function and prevent unreliable or non-compliant outputs caused by unauthorized use-cases, thereby achieving the objectives defined in the Whitelist field.",
               "control_evidence": "Code review of the prompt classification module's logic; configuration files linking the module to the defined Whitelist terms/examples; and logs demonstrating successful rejection of out-of-category queries."
             },
             {
-              "control": "[RAG-COMP-01.2] - Prohibited Uses Blacklist Screening Module: The RAG Orchestrator must implement a dedicated screening module that inspects user queries for keywords/phrases defined in the 'Prohibited Uses Blacklist Definition' field. Any prompt containing a blacklisted phrase must be immediately rejected and flagged.",
+              "control_number": "[RAG-COMP-01.2]",
+              "control_description": "Prohibited Uses Blacklist Screening Module: The RAG Orchestrator must implement a dedicated screening module that inspects user queries for keywords/phrases defined in the 'Prohibited Uses Blacklist Definition' field. Any prompt containing a blacklisted phrase must be immediately rejected and flagged.",
               "control_objective": "To create an absolute technical barrier against usage patterns (like manipulative or discriminatory queries) that constitute unacceptable risks under the EU AI Act's prohibited practices, thereby implementing the Blacklist field.",
               "control_evidence": "A documented list of all Blacklist phrases/categories and the screening logic (e.g., using RegEx, a specialized LLM call, or a keyword filter); and audit logs showing flagged attempts to use prohibited phrases with corresponding user/session data."
             },
             {
-              "control": "[RAG-COMP-01.3] - Whitelist/Blacklist Configuration Management: The fields defining the Permitted Whitelist and Prohibited Blacklist must be stored in a centralized, version-controlled configuration system. Any changes must undergo a formal change management process, including a legal/compliance review, before deployment to the orchestrator.",
+              "control_number": "[RAG-COMP-01.3]",
+              "control_description": "Whitelist/Blacklist Configuration Management: The fields defining the Permitted Whitelist and Prohibited Blacklist must be stored in a centralized, version-controlled configuration system. Any changes must undergo a formal change management process, including a legal/compliance review, before deployment to the orchestrator.",
               "control_objective": "To ensure that the intended use definitions are consistently applied across all environments (development, testing, production) and that any modification preserves regulatory compliance.",
               "control_evidence": "Documentation of the configuration file storage location, version control logs showing approval for changes to the Whitelist/Blacklist content, and deployment pipeline steps that check for compliance review sign-off."
             },
             {
-              "control": "[RAG-COMP-01.4] - Prohibited Use Audit and Alerting: A monitoring component must track and generate high-priority security alerts for any attempted use of blacklisted key phrases. These alerts must be routed to the risk management team for immediate investigation and follow-up (e.g., user retraining or access revocation).",
+              "control_number": "[RAG-COMP-01.4]",
+              "control_description": "Prohibited Use Audit and Alerting: A monitoring component must track and generate high-priority security alerts for any attempted use of blacklisted key phrases. These alerts must be routed to the risk management team for immediate investigation and follow-up (e.g., user retraining or access revocation).",
               "control_objective": "To create a robust audit trail and incident response workflow for all attempted prohibited uses, ensuring accountability and continuous monitoring required by a high-risk system.",
               "control_evidence": "Sample monitoring dashboard screenshot showing a 'Prohibited Use Attempt' alert; the documented incident response plan for such alerts; and a record of follow-up actions taken."
             }
@@ -1814,22 +1922,26 @@
           "RiskDescription": "The risk that the RAG Orchestrator fails to detect specific 'Decision-Making Language Requiring Intervention' in the LLM's final response. This failure allows the AI system to effectively execute or recommend high-impact decisions (e.g., financial, health, or rights-based judgments) without human review, leading to a violation of the mandatory human oversight principle and exposing the organization and user to unmitigated risk.",
           "controls": [
             {
-              "control": "[RAG-HO-01.1] - Mandatory Post-Processing Decision Detection Module: The RAG Orchestrator must include a mandatory post-processing module that scans the LLM's final output for all key phrases defined in the 'Decision-Making Language Requiring Intervention' field before the response is presented to the user.",
+              "control_number": "[RAG-HO-01.1]",
+              "control_description": "Mandatory Post-Processing Decision Detection Module: The RAG Orchestrator must include a mandatory post-processing module that scans the LLM's final output for all key phrases defined in the 'Decision-Making Language Requiring Intervention' field before the response is presented to the user.",
               "control_objective": "To create a final technical gate that explicitly identifies high-impact language, ensuring that the system's output never constitutes an unreviewed, autonomous decision, thereby enabling the first step of human oversight.",
               "control_evidence": "Code review of the post-processing module; documentation of the detection logic (e.g., keyword/phrase matching, semantic analysis); and configuration files linking the module directly to the defined Intervention phrases."
             },
             {
-              "control": "[RAG-HO-01.2] - Stop/Override Mechanism for Detected Decision Language: Upon detection of a decision-making phrase, the orchestrator must flag the response and engage a specific Human-in-the-Loop (HIL) workflow. This workflow must include clear, immediate options for the human overseer to **stop** the system's output from reaching the end-user or to **override/edit** the suggested response.",
+              "control_number": "[RAG-HO-01.2]",
+              "control_description": "Stop/Override Mechanism for Detected Decision Language: Upon detection of a decision-making phrase, the orchestrator must flag the response and engage a specific Human-in-the-Loop (HIL) workflow. This workflow must include clear, immediate options for the human overseer to **stop** the system's output from reaching the end-user or to **override/edit** the suggested response.",
               "control_objective": "To provide the human overseer with the ultimate authority and technical tools (the 'stop button') to intervene and prevent or minimize risk to fundamental rights, as mandated by the Human Oversight dimension.",
               "control_evidence": "Screenshots of the HIL interface demonstrating the detected phrase, the alert severity, and the functional 'Stop' and 'Override' controls; logs showing a record of a human intervention event."
             },
             {
-              "control": "[RAG-HO-01.3] - Contextual Alerting to the End-User/Deployer: If a decision-making phrase is detected but the response is still presented (e.g., awaiting HIL review), the User Interface must display a clear, context-aware alert to the end-user/deployer that the output is a machine-generated recommendation requiring human verification and should not be acted upon autonomously.",
+              "control_number": "[RAG-HO-01.3]",
+              "control_description": "Contextual Alerting to the End-User/Deployer: If a decision-making phrase is detected but the response is still presented (e.g., awaiting HIL review), the User Interface must display a clear, context-aware alert to the end-user/deployer that the output is a machine-generated recommendation requiring human verification and should not be acted upon autonomously.",
               "control_objective": "To mitigate the risk of 'automation bias' by reinforcing to the user that the AI is only an advisory tool, supporting the human overseer's role in decision-making.",
               "control_evidence": "API documentation showing the response field that triggers the UI alert; and a screenshot of the front-end application displaying the 'Human Verification Required' message alongside an LLM response containing decision language."
             },
             {
-              "control": "[RAG-HO-01.4] - Logging and Traceability of Interventions: The orchestrator must automatically and irrevocably log every instance where decision-making language was flagged, the subsequent human action (override, stop, or approval), and the identity of the human overseer. This log must be maintained for a minimum of one year.",
+              "control_number": "[RAG-HO-01.4]",
+              "control_description": "Logging and Traceability of Interventions: The orchestrator must automatically and irrevocably log every instance where decision-making language was flagged, the subsequent human action (override, stop, or approval), and the identity of the human overseer. This log must be maintained for a minimum of one year.",
               "control_objective": "To ensure full traceability and accountability of the system's operation and the human's role in the decision-making chain, facilitating post-market monitoring and regulatory audits.",
               "control_evidence": "Sample log data showing all fields (timestamp, detected phrase, human overseer ID, final action taken); and documentation of the log retention policy."
             }
@@ -1855,22 +1967,22 @@
           "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
           "controls": [
             {
-              "control": "LLM05.01 Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
+              "control_number": "LLM05.01 Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
               "control_objective": "To ensure that only verified and approved components are used in the AI system, reducing the risk of introducing malicious elements from public sources.",
               "control_evidence": "Documentation of the internal repository setup (e.g., Artifactory, private Hugging Face hub). Policy documents mandating its use. Logs showing successful mirroring and vetting processes."
             },
             {
-              "control": "LLM05.02 Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
+              "control_number": "LLM05.02 Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
               "control_objective": "To detect and block compromised or vulnerable components before they can be used in the development or deployment pipeline.",
               "control_evidence": "Configuration of scanning tools (e.g., ClamAV for malware, specialised model scanners like Picklescan). Reports from these tools showing scan results for imported assets."
             },
             {
-              "control": "LLM05.03 Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
+              "control_number": "LLM05.03 Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
               "control_objective": "To prevent the silent substitution of legitimate components with malicious ones by ensuring only specifically approved, immutable versions are used.",
               "control_evidence": "Requirement files (e.g., 'requirements.txt', 'poetry.lock') with pinned versions and hashes. CI/CD pipeline scripts that verify these hashes before build or deployment."
             },
             {
-              "control": "LLM05.04 Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
+              "control_number": "LLM05.04 Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
               "control_objective": "To evaluate the security posture of suppliers and reduce the risk of relying on poorly maintained or compromised upstream projects.",
               "control_evidence": "Vendor risk assessment reports, records of due diligence checks on open-source project maintainers (e.g., activity, community trust), and a regularly updated approved vendor list."
             }
@@ -1896,12 +2008,14 @@
           "RiskDescription": "Failure to properly **validate and sanitize** user inputs before they are processed by the RAG Orchestrator and sent to the LLM exposes the system to **Prompt Injection** attacks. An attacker could exploit this vulnerability to bypass the system's intended behavior, resulting in **unauthorized information disclosure** (e.g., data exfiltration via the LLM response), **denial of service**, or **unintended execution** of functions/code.",
           "controls": [
             {
-              "control": "[LLM01][1] - All user inputs within the UI must be validated to prevent the injection of malicious code.",
+              "control_number": "[LLM01][1]",
+              "control_description": "All user inputs within the UI must be validated to prevent the injection of malicious code.",
               "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system.",
               "control_evidence": "Unit test results demonstrating the rejection of malicious payloads (e.g., XSS, command injection strings)."
             },
             {
-              "control": "[LLM01][2] - Implement input sanitization techniques to remove harmful characters from user inputs.",
+              "control_number": "[LLM01][2]",
+              "control_description": "Implement input sanitization techniques to remove harmful characters from user inputs.",
               "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI.",
               "control_evidence": "Code snippets showing the use of a sanitization library or function. Test cases with logs that display the 'before' and 'after' state of user inputs containing harmful characters."
             }
@@ -2699,7 +2813,8 @@
           ],
           "PlanCriteria": [
             {
-              "criteria": "[TRC-TEST-01]: Schema Validation - Every log entry generated by T-01 through T-04 must pass automated JSON schema validation against the '[Art.12] - Required Traceability Log Metadata Fields' definition.",
+              "criteria": "[TRC-TEST-01]: Schema Validation - Every log entry generated by T-01 through T-04 must pass automated JSON schema validation against the '[Art.12]",
+              "control_description": "Required Traceability Log Metadata Fields' definition.",
               "control_objective": "To ensure no 'dirty' or incomplete logs are polluting the audit trail.",
               "criteria_evidence": "Automated test report showing 0 schema validation errors for the test duration."
             },
@@ -3041,92 +3156,92 @@
           "RiskDescription": "Failure to properly secure the lifecycle and runtime environment of containerized AI components—including insecure container **registries**, weak **access controls**, unhardened **host operating systems**, and poorly configured **container security context**—creates a significant attack surface. This could allow an attacker to **tamper with model code/artifacts** during transit or storage, **exfiltrate secrets**, achieve **privilege escalation** from a compromised container to the host, or exploit **unrestricted network access** to conduct lateral movement and **Denial of Service (DoS)**.",
           "controls": [
             {
-              "control": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
+              "control_number": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
               "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries.",
               "control_evidence": "Configuration files for development tools, orchestrators (e.g., Kubernetes), and container runtimes demonstrating the use of TLS-encrypted connections (e.g., registry URLs starting with 'https://')."
             },
             {
-              "control": "PROTE.03 Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
+              "control_number": "PROTE.03 Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
               "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images.",
               "control_evidence": "Configuration of the automated pruning job (e.g., a CronJob manifest) and execution logs showing that vulnerable or old images have been successfully removed."
             },
             {
-              "control": "PROTE.04 Enforce read/write access control for registries containing proprietary or sensitive container images.",
+              "control_number": "PROTE.04 Enforce read/write access control for registries containing proprietary or sensitive container images.",
               "control_objective": "To restrict unauthorised access and modifications to container images stored in registries.",
               "control_evidence": "Screenshots or configuration exports of the registry's Role-Based Access Control (RBAC) settings, showing defined user roles and their permissions for specific repositories."
             },
             {
-              "control": "PROTE.05 Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
+              "control_number": "PROTE.05 Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
               "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster.",
               "control_evidence": "Identity Provider (IdP) configuration showing MFA is enforced for the cluster administrator group, and the orchestrator's authentication configuration file pointing to the SSO provider (e.g., OIDC or SAML settings)."
             },
             {
-              "control": "PROTE.06 Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
+              "control_number": "PROTE.06 Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
               "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security.",
               "control_evidence": "Copies of network policy manifests (e.g., Kubernetes 'NetworkPolicy' YAML files) or firewall rules that define and enforce network segmentation."
             },
             {
-              "control": "PROTE.07 Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
+              "control_number": "PROTE.07 Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
               "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs.",
               "control_evidence": "Orchestrator deployment configurations (e.g., YAML files) showing the use of node selectors, taints, and tolerations to restrict pods to specific nodes."
             },
             {
-              "control": "PROTE.12 Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
+              "control_number": "PROTE.12 Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
               "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments.",
               "control_evidence": "Patch management reports, host configuration files showing a minimal OS install (e.g., CIS hardened image), disabled services, and read-only file system settings. A Software Bill of Materials (SBOM) for the host OS."
             },
             {
-              "control": "PROTE.13 Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
+              "control_number": "PROTE.13 Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
               "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks.",
               "control_evidence": "Host inventory documentation or orchestrator node labels and taints that dedicate specific hosts exclusively to containerised workloads."
             },
             {
-              "control": "PROTE.14 Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
+              "control_number": "PROTE.14 Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
               "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data.",
               "control_evidence": "Pod security policies or admission controller configurations that enforce restrictions on hostPath volumes. Deployment manifests showing the container 'securityContext' is configured with minimal permissions."
             },
             {
-              "control": "PROTE.16 Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
+              "control_number": "PROTE.16 Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
               "control_objective": "To safeguard the environment from untrusted or potentially harmful container images.",
               "control_evidence": "Configuration of an admission controller (e.g., OPA Gatekeeper, Kyverno) that implements a policy to only allow images from an approved list of registries."
             },
             {
-              "control": "PROTE.17 Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
+              "control_number": "PROTE.17 Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
               "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads.",
               "control_evidence": "Network policy manifests (e.g., Kubernetes 'NetworkPolicy') or service mesh configurations (e.g., Istio 'AuthorizationPolicy') that define granular ingress and egress rules for pods."
             },
             {
-              "control": "PROTE.18 Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
+              "control_number": "PROTE.18 Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
               "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment.",
               "control_evidence": "Deployment manifests showing the container's root file system is set to read-only ('readOnlyRootFilesystem: true'). CI/CD pipeline configuration demonstrating that changes are deployed by building and shipping a new image."
             },
             {
-              "control": "PROTE.19 Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
+              "control_number": "PROTE.19 Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
               "control_objective": "To ensure the secure operation of APIs",
               "control_evidence": "API gateway configuration files or screenshots demonstrating the enforcement of authentication, authorisation (e.g., access control lists), and rate-limiting policies."
             },
             {
-              "control": "PROTE.20 Images should be configured to run as non-privileged users.",
+              "control_number": "PROTE.20 Images should be configured to run as non-privileged users.",
               "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment.",
               "control_evidence": "The 'Dockerfile' showing the 'USER' instruction is used. The deployment manifest showing the 'securityContext' specifies 'runAsNonRoot: true' and a non-zero 'runAsUser' ID."
             },
             {
-              "control": "PROTE.21 Secrets should be stored outside of images and provided dynamically at runtime as needed.",
+              "control_number": "PROTE.21 Secrets should be stored outside of images and provided dynamically at runtime as needed.",
               "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images.",
               "control_evidence": "Review of the 'Dockerfile' to confirm no secrets are present. Orchestrator manifests showing that secrets are mounted from a secure source (e.g., Kubernetes Secrets, HashiCorp Vault) at runtime."
             },
             {
-              "control": "PROTE.22 Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
+              "control_number": "PROTE.22 Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
               "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation.",
               "control_evidence": "Host-level AppArmor or SELinux profiles. Container-level pod security standards or custom admission controller policies that restrict privileged operations."
             },
             {
-              "control": "PROTE.23 Utilise built-in security features of your containerisation platform.",
+              "control_number": "PROTE.23 Utilise built-in security features of your containerisation platform.",
               "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications.",
               "control_evidence": "A document or report detailing the enabled platform-specific security features, such as Kubernetes Pod Security Standards, Security Contexts, and RBAC configurations."
             },
             {
-              "control": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
+              "control_number": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
               "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks.",
               "control_evidence": "Deployment manifests (e.g., Kubernetes pod spec) showing that CPU and memory requests and limits are defined for all containers."
             }
@@ -3197,22 +3312,26 @@
           "RiskDescription": "Failure to design the system so it can easily grow (scale) will result in crashes or extreme slowness when too many users try to access it at once, or when we add too much new data to its knowledge base.",
           "controls": [
             {
-              "control": "[SC][1] - Independent Automatic Growth: Configure the main application and the AI model to grow (auto-scale) separately from one another. They use different types of computer resources, so one getting busy shouldn't force the other to grow unnecessarily.",
+              "control_number": "[SC][1]",
+              "control_description": "Independent Automatic Growth: Configure the main application and the AI model to grow (auto-scale) separately from one another. They use different types of computer resources, so one getting busy shouldn't force the other to grow unnecessarily.",
               "control_objective": "To ensure we don't waste expensive AI hardware just because basic website traffic is high, and vice versa.",
               "control_evidence": "Test results showing the main application adding more servers while the AI model stays stable (and vice versa) under different types of stress."
             },
             {
-              "control": "[SC][2] - 'Stateless' Servers: Design the system so individual servers don't remember specific user conversations locally. All conversation history must be stored in a central, shared location accessible by all servers.",
+              "control_number": "[SC][2]",
+              "control_description": "'Stateless' Servers: Design the system so individual servers don't remember specific user conversations locally. All conversation history must be stored in a central, shared location accessible by all servers.",
               "control_objective": "To ensure that if one server fails mid-conversation, another can instantly take over without the user noticing any interruption.",
               "control_evidence": "A test report demonstrating that users don't lose their chat history even if we deliberately turn off the specific server they were talking to."
             },
             {
-              "control": "[SC][3] - Expandable Knowledge Base: Build the search database so it can handle more simultaneous questions by adding more servers to it (horizontal scaling), rather than just trying to make one single server more powerful.",
+              "control_number": "[SC][3]",
+              "control_description": "Expandable Knowledge Base: Build the search database so it can handle more simultaneous questions by adding more servers to it (horizontal scaling), rather than just trying to make one single server more powerful.",
               "control_objective": "To prevent knowledge searches from becoming slow as more employees use the system at the same time.",
               "control_evidence": "Performance benchmarks showing that search speed remains fast even when the number of simultaneous users doubles."
             },
             {
-              "control": "[SC][4] - Background Data Processing: Use a 'waiting line' (queue) system for adding new documents to the knowledge base. This ensures new information is processed in the background without clogging up the live system for active users.",
+              "control_number": "[SC][4]",
+              "control_description": "Background Data Processing: Use a 'waiting line' (queue) system for adding new documents to the knowledge base. This ensures new information is processed in the background without clogging up the live system for active users.",
               "control_objective": "To ensure we can upload massive amounts of new company data without slowing down the chat service for people currently using it.",
               "control_evidence": "System diagrams showing the 'waiting line' that separates document uploads from the live user chat area."
             }
@@ -3227,22 +3346,26 @@
           "RiskDescription": "Failure to manage the lifecycle of the AI system, including **changes to its underlying data, code, or model artifacts**, due to a lack of automated **validation, testing, version control, and formal change management**, could lead to the deployment of an **unstable, non-reproducible, or poor-performing** model. This results in **service degradation**, potential **compliance issues** from undocumented changes, and the inability to reliably **rollback** to a previous stable state.",
           "controls": [
             {
-              "control": "[C.3.6][BP-10] - Implement a CI/CD pipeline that automates the testing and deployment of AI model updates. The pipeline must enforce a sequence of validation gates (e.g., unit tests, data validation, integration tests, and model performance evaluation on a holdout dataset) before allowing a deployment.",
+              "control_number": "[C.3.6][BP-10]",
+              "control_description": "Implement a CI/CD pipeline that automates the testing and deployment of AI model updates. The pipeline must enforce a sequence of validation gates (e.g., unit tests, data validation, integration tests, and model performance evaluation on a holdout dataset) before allowing a deployment.",
               "control_objective": "To automate quality assurance, reduce human error, and ensure that only thoroughly vetted and validated model updates are promoted to production.",
               "control_evidence": "The CI/CD pipeline configuration file (e.g., `gitlab-ci.yml`, Jenkinsfile). Test reports and logs generated by the pipeline showing successful completion of all gates. A deployment manifest that references the specific model version and code commit hash deployed."
             },
             {
-              "control": "[C.3.6][BP-11] - Utilize a version control system that atomically bundles code, data schemas/references, and model artifacts for each release. Every production deployment must be linked to a single, immutable commit hash or tag.",
+              "control_number": "[C.3.6][BP-11]",
+              "control_description": "Utilize a version control system that atomically bundles code, data schemas/references, and model artifacts for each release. Every production deployment must be linked to a single, immutable commit hash or tag.",
               "control_objective": "To ensure complete reproducibility of any deployed AI system version and enable reliable, one-step rollbacks to a previous stable state.",
               "control_evidence": "Git repository history showing tagged releases. A `dvc.yaml` or similar data versioning file that pins data versions to specific code commits. Deployment logs explicitly stating the commit hash or tag being deployed for each release."
             },
             {
-              "control": "[C.3.6][BP-13] - All data ingestion pipelines must include an automated data validation gate. This gate must verify data schemas, check for statistical drift in key features, and validate data quality against predefined rules before new data is accepted into the training dataset.",
+              "control_number": "[C.3.6][BP-13]",
+              "control_description": "All data ingestion pipelines must include an automated data validation gate. This gate must verify data schemas, check for statistical drift in key features, and validate data quality against predefined rules before new data is accepted into the training dataset.",
               "control_objective": "To prevent model performance degradation caused by upstream data source changes, ensuring data integrity, consistency, and stability across model versions.",
               "control_evidence": "Configuration files for a data validation tool (e.g., Great Expectations, Pandera). CI/CD logs showing the successful execution of the data validation step. Generated data quality reports and drift analysis dashboards."
             },
             {
-              "control": "[C.3.6][BP-14] - Any modification to the production dataset within the central data repository (as defined in control A.4.2, A.4.3), including additions, deletions, or schema changes, must be executed through a formal change management ticket that requires peer review and explicit approval from a designated data owner.",
+              "control_number": "[C.3.6][BP-14]",
+              "control_description": "Any modification to the production dataset within the central data repository (as defined in control A.4.2, A.4.3), including additions, deletions, or schema changes, must be executed through a formal change management ticket that requires peer review and explicit approval from a designated data owner.",
               "control_objective": "To maintain the integrity, traceability, and quality of the training dataset by preventing unauthorized or undocumented changes that could adversely affect model performance and reliability.",
               "control_evidence": "Documented data change management procedure. Completed change request tickets (e.g., in Jira, ServiceNow) with approval history. Audit logs from the data repository or data pipeline tools confirming that changes were applied post-approval."
             }
@@ -3257,22 +3380,26 @@
           "RiskDescription": "Failure to adequately monitor the generative AI architecture—including user prompts, LLM responses, internal data processing, and component-to-component network traffic—could result in the **undetected successful exploitation** of vulnerabilities like prompt injection, leading to **data exfiltration** of proprietary information from the vector store, **model misuse** for unauthorized tasks, or **system compromise** via malicious document ingestion or **lateral movement** across the internal services.",
           "controls": [
             {
-              "control": "[STM][1] - Implement logging for all prompts sent to the RAG Orchestrator and the final augmented prompts sent to the LLM. All LLM responses must also be logged before being sent to the user. These logs must be streamed to a centralized SIEM for analysis.",
+              "control_number": "[STM][1]",
+              "control_description": "Implement logging for all prompts sent to the RAG Orchestrator and the final augmented prompts sent to the LLM. All LLM responses must also be logged before being sent to the user. These logs must be streamed to a centralized SIEM for analysis.",
               "control_objective": "To create an auditable trail for detecting and investigating prompt injection attacks, data exfiltration attempts, and misuse of the generative model's capabilities.",
               "control_evidence": "SIEM dashboard showing ingested prompt and response logs. A documented alert rule that triggers on signatures of known prompt injection techniques (e.g., 'ignore previous instructions'). Code review demonstrating the logging calls within the RAG Orchestrator."
             },
             {
-              "control": "[STM][2] - The Data Processing Pipeline must integrate a file scanning mechanism (e.g., ClamAV) to inspect all internal proprietary documents *before* text extraction. Any documents flagged as malicious must be quarantined, and an alert must be generated.",
+              "control_number": "[STM][2]",
+              "control_description": "The Data Processing Pipeline must integrate a file scanning mechanism (e.g., ClamAV) to inspect all internal proprietary documents *before* text extraction. Any documents flagged as malicious must be quarantined, and an alert must be generated.",
               "control_objective": "To prevent the ingestion of weaponized documents that could exploit vulnerabilities in the processing pipeline or poison the permanent vector index with malicious content.",
               "control_evidence": "Logs from the file scanner showing files being successfully scanned or quarantined. An example security alert generated by a malicious test file. The pipeline's configuration file or code showing the integration of the scanning step."
             },
             {
-              "control": "[STM][3] - Enable and centralize audit logs from the Permanent Index (vector database). Configure alerts for anomalous query patterns, such as an unusually high volume of retrieval requests from a single user or attempts to enumerate large portions of the index.",
+              "control_number": "[STM][3]",
+              "control_description": "Enable and centralize audit logs from the Permanent Index (vector database). Configure alerts for anomalous query patterns, such as an unusually high volume of retrieval requests from a single user or attempts to enumerate large portions of the index.",
               "control_objective": "To detect attempts to exfiltrate large amounts of proprietary data from the knowledge base or unauthorized attempts to access restricted data segments.",
               "control_evidence": "Vector database configuration file with auditing enabled. Screenshots of the SIEM dashboard displaying query logs. A documented alert rule that triggers on a high-frequency query threshold from a single source IP or user account."
             },
             {
-              "control": "[STM][4] - Deploy network flow logging for traffic between all internal components (UI, RAG Orchestrator, LLM, Vector DB). Establish a baseline of normal traffic patterns and configure alerts for deviations, such as unexpected connections or unusually large data payloads.",
+              "control_number": "[STM][4]",
+              "control_description": "Deploy network flow logging for traffic between all internal components (UI, RAG Orchestrator, LLM, Vector DB). Establish a baseline of normal traffic patterns and configure alerts for deviations, such as unexpected connections or unusually large data payloads.",
               "control_objective": "To detect potential lateral movement by an attacker or compromised components within the architecture, particularly to and from the isolated LLM.",
               "control_evidence": "VPC flow logs or network monitoring tool dashboards. A documented network traffic baseline report. An active alert that triggers when a service attempts to connect to another service on a non-standard port."
             }
