@@ -640,7 +640,7 @@
                         // Handle risk fields (with controls)
                         else if (fieldType === 'risk') {
                             // Capture the main risk applicability dropdown
-                            const riskSelect = document.querySelector(`#${sanitizedId} select, .form-field select`);
+							const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
                             if (riskSelect && riskSelect.value) {
                                 currentData[fieldName] = riskSelect.value;
                             }
