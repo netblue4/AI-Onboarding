@@ -474,20 +474,92 @@
                             if (handler) {
                                 const fieldElement = handler(field, capturedData, sanitizeForId);
                                 
-                                // After rendering, populate with captured value if it exists
-                                if (field.FieldName && capturedData.hasOwnProperty(field.FieldName)) {
+                                // After rendering, populate with captured values based on field type
+                                if (field.FieldName) {
                                     setTimeout(() => {
                                         const sanitizedId = sanitizeForId(field.FieldName);
-                                        const inputElement = document.getElementById(sanitizedId);
-                                        if (inputElement) {
-                                            if (inputElement.type === 'radio') {
+                                        const fieldType = field.FieldType;
+                                        
+                                        // Handle MultiSelect (checkboxes)
+                                        if (fieldType && fieldType.startsWith('MultiSelect')) {
+                                            const selectedValues = capturedData[field.FieldName];
+                                            if (Array.isArray(selectedValues)) {
+                                                selectedValues.forEach(value => {
+                                                    const checkbox = document.querySelector(`input[name="${sanitizedId}"][value="${value}"]`);
+                                                    if (checkbox) checkbox.checked = true;
+                                                });
+                                            }
+                                        }
+                                        // Handle Option box (radio buttons)
+                                        else if (fieldType && fieldType.startsWith('Option box with values')) {
+                                            if (capturedData.hasOwnProperty(field.FieldName)) {
                                                 const radioToCheck = document.querySelector(`input[name="${sanitizedId}"][value="${capturedData[field.FieldName]}"]`);
                                                 if (radioToCheck) radioToCheck.checked = true;
-                                            } else {
+                                            }
+                                        }
+                                        // Handle risk fields
+                                        else if (fieldType === 'risk') {
+                                            // Restore main risk dropdown
+                                            if (capturedData[field.FieldName]) {
+                                                const riskSelect = document.querySelector('.form-field select');
+                                                if (riskSelect) riskSelect.value = capturedData[field.FieldName];
+                                            }
+                                            
+                                            // Restore control statuses and evidence
+                                            if (field.controls && Array.isArray(field.controls)) {
+                                                field.controls.forEach((control, index) => {
+                                                    const controlKey = `${field.FieldName}_control_${index}`;
+                                                    const selects = document.querySelectorAll('.form-field select');
+                                                    const textareas = document.querySelectorAll('.form-field textarea');
+                                                    
+                                                    if (capturedData[`${controlKey}_status`] && selects[index]) {
+                                                        selects[index].value = capturedData[`${controlKey}_status`];
+                                                    }
+                                                    if (capturedData[`${controlKey}_evidence`] && textareas[index]) {
+                                                        textareas[index].value = capturedData[`${controlKey}_evidence`];
+                                                    }
+                                                });
+                                            }
+                                        }
+                                        // Handle plan fields
+                                        else if (fieldType === 'plan') {
+                                            if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
+                                                field.PlanCriteria.forEach((criteria, index) => {
+                                                    const textareas = document.querySelectorAll('.form-field textarea');
+                                                    const evidenceKey = `${field.FieldName}_criteria_${index}_evidence`;
+                                                    if (capturedData[evidenceKey] && textareas[index]) {
+                                                        textareas[index].value = capturedData[evidenceKey];
+                                                    }
+                                                });
+                                            }
+                                        }
+                                        // Handle comply fields
+                                        else if (fieldType === 'comply') {
+                                            const selects = document.querySelectorAll('.sub-control-item select');
+                                            const evidenceInputs = document.querySelectorAll('.sub-control-item textarea, .sub-control-item input[type="text"]');
+                                            
+                                            selects.forEach((select, index) => {
+                                                const statusKey = `${field.FieldName}_subcontrol_${index}_status`;
+                                                if (capturedData[statusKey]) {
+                                                    select.value = capturedData[statusKey];
+                                                }
+                                            });
+                                            
+                                            evidenceInputs.forEach((input, index) => {
+                                                const evidenceKey = `${field.FieldName}_subcontrol_${index}_evidence`;
+                                                if (capturedData[evidenceKey]) {
+                                                    input.value = capturedData[evidenceKey];
+                                                }
+                                            });
+                                        }
+                                        // Handle standard fields
+                                        else if (capturedData.hasOwnProperty(field.FieldName)) {
+                                            const inputElement = document.getElementById(sanitizedId);
+                                            if (inputElement) {
                                                 inputElement.value = capturedData[field.FieldName];
                                             }
                                         }
-                                    }, 0);
+                                    }, 100); // Increased timeout to ensure DOM is fully rendered
                                 }
                                 
                                 // Wrap with "new" styling if needed
@@ -535,22 +607,105 @@
                     function captureFieldValue(field) {
                         if (!field) return;
                         
-                        if (field.FieldName && field.FieldType !== 'Auto generated number' && field.FieldType !== 'fieldGroup') {
-                            const sanitizedId = sanitizeForId(field.FieldName);
+                        const fieldType = field.FieldType;
+                        const fieldName = field.FieldName;
+                        
+                        // Skip auto-generated and fieldGroup types
+                        if (fieldType === 'Auto generated number' || fieldType === 'fieldGroup') {
+                            // Still recurse into fieldGroup children
+                            if (field.Fields && Array.isArray(field.Fields)) {
+                                field.Fields.forEach(captureFieldValue);
+                            }
+                            return;
+                        }
+                        
+                        if (!fieldName) return;
+                        
+                        const sanitizedId = sanitizeForId(fieldName);
+                        
+                        // Handle MultiSelect (checkboxes)
+                        if (fieldType && fieldType.startsWith('MultiSelect')) {
+                            const checkboxes = document.querySelectorAll(`input[name="${sanitizedId}"]:checked`);
+                            if (checkboxes.length > 0) {
+                                currentData[fieldName] = Array.from(checkboxes).map(cb => cb.value);
+                            }
+                        }
+                        // Handle Option box (radio buttons)
+                        else if (fieldType && fieldType.startsWith('Option box with values')) {
+                            const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+                            if (checked) {
+                                currentData[fieldName] = checked.value;
+                            }
+                        }
+                        // Handle risk fields (with controls)
+                        else if (fieldType === 'risk') {
+                            // Capture the main risk applicability dropdown
+                            const riskSelect = document.querySelector(`#${sanitizedId} select, .form-field select`);
+                            if (riskSelect && riskSelect.value) {
+                                currentData[fieldName] = riskSelect.value;
+                            }
+                            
+                            // Capture control_status and control_evidence from nested controls
+                            if (field.controls && Array.isArray(field.controls)) {
+                                field.controls.forEach((control, index) => {
+                                    const controlKey = `${fieldName}_control_${index}`;
+                                    
+                                    // Find the select and textarea for this control
+                                    const selects = document.querySelectorAll('.form-field select');
+                                    const textareas = document.querySelectorAll('.form-field textarea');
+                                    
+                                    if (selects[index]) {
+                                        currentData[`${controlKey}_status`] = selects[index].value;
+                                    }
+                                    if (textareas[index]) {
+                                        currentData[`${controlKey}_evidence`] = textareas[index].value;
+                                    }
+                                });
+                            }
+                        }
+                        // Handle plan fields (with criteria)
+                        else if (fieldType === 'plan') {
+                            // Capture criteria_evidence from PlanCriteria
+                            if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
+                                field.PlanCriteria.forEach((criteria, index) => {
+                                    const textareas = document.querySelectorAll('.form-field textarea');
+                                    if (textareas[index]) {
+                                        currentData[`${fieldName}_criteria_${index}_evidence`] = textareas[index].value;
+                                    }
+                                });
+                            }
+                        }
+                        // Handle comply fields (with control_status and control_evidence)
+                        else if (fieldType === 'comply') {
+                            // The comply field creates a complex mapping structure
+                            // We need to capture the dropdown values and evidence fields
+                            const selects = document.querySelectorAll('.sub-control-item select');
+                            const evidenceInputs = document.querySelectorAll('.sub-control-item textarea, .sub-control-item input[type="text"]');
+                            
+                            selects.forEach((select, index) => {
+                                if (select.value) {
+                                    currentData[`${fieldName}_subcontrol_${index}_status`] = select.value;
+                                }
+                            });
+                            
+                            evidenceInputs.forEach((input, index) => {
+                                if (input.value) {
+                                    currentData[`${fieldName}_subcontrol_${index}_evidence`] = input.value;
+                                }
+                            });
+                        }
+                        // Handle standard input fields (TextBox, Dropdown, etc.)
+                        else {
                             const inputElement = document.getElementById(sanitizedId);
                             
                             if (inputElement) {
-                                if (inputElement.type === 'radio') {
-                                    const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
-                                    if (checked) {
-                                        currentData[field.FieldName] = checked.value;
-                                    }
-                                } else {
-                                    currentData[field.FieldName] = inputElement.value;
+                                if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
+                                    currentData[fieldName] = inputElement.value;
                                 }
                             }
                         }
                         
+                        // Recurse into nested fields
                         if (field.Fields && Array.isArray(field.Fields)) {
                             field.Fields.forEach(captureFieldValue);
                         }
