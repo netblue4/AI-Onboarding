@@ -648,7 +648,8 @@
                             // Capture control_status and control_evidence from nested controls
                             if (field.controls && Array.isArray(field.controls)) {
                                 field.controls.forEach((control, index) => {
-                                    const controlKey = `${fieldName}_control_${index}`;
+                                    const controlName = control.control;
+                                    const controlKey = `${controlName}`;
                                     
                                     // Find the select and textarea for this control
                                     const selects = document.querySelectorAll('.form-field select');
@@ -668,9 +669,10 @@
                             // Capture criteria_evidence from PlanCriteria
                             if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
                                 field.PlanCriteria.forEach((criteria, index) => {
+                                    const criteriaName = criteria.criteria;
                                     const textareas = document.querySelectorAll('.form-field textarea');
                                     if (textareas[index]) {
-                                        currentData[`${fieldName}_criteria_${index}_evidence`] = textareas[index].value;
+                                        currentData[`${criteriaName}_evidence`] = textareas[index].value;
                                     }
                                 });
                             }
