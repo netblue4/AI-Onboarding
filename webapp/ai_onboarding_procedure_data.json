@@ -853,7 +853,7 @@
           "Fields": [
             {
               "Control": "[A.4.2],[A.4.3]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Repository",
               "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
@@ -861,7 +861,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Description",
               "FieldText": "Brief overview of the dataset's content and general purpose.",
@@ -869,7 +869,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3],[A.7.5]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Where does the data originate from?",
               "FieldText": "",
@@ -877,7 +877,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the specific purpose(s) of the data?",
               "FieldText": "",
@@ -885,7 +885,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3],[A.7.3],[A.7.2]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How will the Data be acquired and selected?",
               "FieldText": "",
@@ -893,7 +893,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the data Retention schedules based on legal and operational requirements?",
               "FieldText": "",
@@ -901,7 +901,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How often does the data need to be refreshed?",
               "FieldText": "",
@@ -909,7 +909,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Secure Disposing",
               "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
@@ -925,7 +925,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Owner/Custodian",
               "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
@@ -1015,7 +1015,7 @@
           "Fields": [
             {
               "Control": "[A.4.2],[A.4.4]",
-              "Role": "Engineer,Requester",
+              "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Tools Name and Version",
               "FieldText": "Name of the software, libraries, or frameworks and their Version numbers.",
@@ -1023,7 +1023,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.4]",
-              "Role": "Engineer,Requester",
+              "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Select Tool Categories",
               "FieldText": "",
@@ -1031,7 +1031,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.4]",
-              "Role": "Engineer,Requester",
+              "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Purpose/Use Case in Project",
               "FieldText": "How these tools will be used in the AI system's lifecycle.",
@@ -1045,7 +1045,7 @@
           "Fields": [
             {
               "Control": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
-              "Role": "Engineer,Requester",
+              "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Computing Resource Name and Version",
               "FieldText": "Names of the computing resources used.",
@@ -1053,7 +1053,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
-              "Role": "Engineer,Requester",
+              "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Category of the computing resource",
               "FieldText": "",
@@ -1061,7 +1061,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
-              "Role": "Engineer,Requester",
+              "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Which parts of the AI lifecycle do these resource supports?",
               "FieldText": "",
