@@ -648,7 +648,7 @@
                             // Capture control_status and control_evidence from nested controls
                             if (field.controls && Array.isArray(field.controls)) {
                                 field.controls.forEach((control, index) => {
-                                    const controlNumber = control.control_number;
+                                    const controlNumber = sanitizeForId(control.control_number);
                                     const controlKey = `${controlNumber}`;
                                     currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
                                     
@@ -657,8 +657,8 @@
                                     const textareas = document.querySelectorAll('.form-field textarea');
                                     
                                     // Find specific elements by their unique name
-									const statusElement = document.querySelector(`select[name="${controlId}_status"]`);
-									const evidenceElement = document.querySelector(`textarea[name="${controlId}_evidence"]`);
+									const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
+									const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
 
 									const statusValue = statusElement ? statusElement.value : null;
 									const evidenceValue = evidenceElement ? evidenceElement.value : null;
