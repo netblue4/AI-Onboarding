@@ -4,43 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Onboarding Procedure</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
+        /* Additional styles for new features */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-        }
-
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            opacity: 0.9;
-            font-size: 14px;
         }
 
         .controls-bar {
@@ -65,28 +34,15 @@
             color: #495057;
         }
 
-        select, input[type="text"] {
-            padding: 10px 15px;
-            border: 2px solid #dee2e6;
-            border-radius: 6px;
-            font-size: 14px;
-            min-width: 200px;
-            transition: all 0.3s;
-        }
-
-        select:focus, input[type="text"]:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
         .button-group {
             display: flex;
             gap: 10px;
             margin-left: auto;
         }
 
-        button {
+        .btn-primary {
+            background: #667eea;
+            color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 6px;
@@ -94,11 +50,6 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
         }
 
         .btn-primary:hover {
@@ -110,6 +61,13 @@
         .btn-secondary {
             background: #6c757d;
             color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .btn-secondary:hover {
@@ -119,6 +77,13 @@
         .btn-success {
             background: #28a745;
             color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .btn-success:hover {
@@ -158,7 +123,7 @@
 
         .content-area {
             padding: 30px;
-            max-height: calc(100vh - 400px);
+            max-height: calc(100vh - 300px);
             overflow-y: auto;
         }
 
@@ -193,23 +158,13 @@
             border-bottom: 2px solid #dee2e6;
         }
 
-        .field-container {
-            margin-bottom: 20px;
-        }
-
-        .field-label {
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 8px;
-            display: block;
-        }
-
         .field-new {
-            background: #fff3cd;
+            background: #fff3cd !important;
             padding: 15px;
             border-radius: 6px;
             border-left: 4px solid #ffc107;
             position: relative;
+            margin-bottom: 15px;
         }
 
         .field-new::before {
@@ -225,35 +180,6 @@
             font-weight: 700;
         }
 
-        input[type="text"], 
-        input[type="number"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 10px 15px;
-            border: 2px solid #dee2e6;
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: inherit;
-        }
-
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            margin-top: 10px;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .empty-state {
             text-align: center;
             padding: 60px 20px;
@@ -265,53 +191,21 @@
             color: #495057;
         }
 
-        .file-input-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
         #file-input {
             display: none;
         }
 
-        .system-id-display {
-            background: #e7f3ff;
+        .system-id-input {
             padding: 10px 15px;
+            border: 2px solid #dee2e6;
             border-radius: 6px;
-            font-weight: 600;
-            color: #004085;
-        }
-
-        .objectives-section {
-            background: #e7f3ff;
-            border-left: 4px solid #004085;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-
-        .objectives-section h4 {
-            color: #004085;
-            margin-bottom: 10px;
-        }
-
-        .objectives-section ul {
-            margin-left: 20px;
-        }
-
-        .objectives-section li {
-            margin-bottom: 5px;
-            color: #004085;
+            font-size: 14px;
+            min-width: 200px;
         }
     </style>
 </head>
 <body>
     <div class="main-container">
-        <div class="header">
-            <h1>AI System Onboarding & Compliance</h1>
-            <p>Systematic documentation for AI Act and ISO compliance</p>
-        </div>
-
         <div class="controls-bar">
             <div class="control-group">
                 <label for="role-dropdown">Your Role:</label>
@@ -351,7 +245,7 @@
 
             <div class="control-group">
                 <label for="system-id-input">System ID:</label>
-                <input type="text" id="system-id-input" placeholder="e.g., AI-2025-001">
+                <input type="text" id="system-id-input" class="system-id-input" placeholder="e.g., AI-2025-001">
             </div>
 
             <div class="button-group">
@@ -381,6 +275,22 @@
         </div>
     </div>
 
+    <!-- Field Handler Scripts -->
+    <script src="scripts/fieldHandler_note.js"></script>
+    <script src="scripts/fieldHandler_autoGenerated.js"></script>
+    <script src="scripts/fieldHandler_textBox.js"></script>
+    <script src="scripts/fieldHandler_decision.js"></script>
+    <script src="scripts/fieldHandler_dropdown.js"></script>
+    <script src="scripts/fieldHandler_optionBox.js"></script>
+    <script src="scripts/fieldHandler_label.js"></script>
+    <script src="scripts/fieldHandler_risk.js"></script>
+    <script src="scripts/fieldHandler_objective.js"></script>
+    <script src="scripts/fieldHandler_multiselect.js"></script> 
+    <script src="scripts/fieldHandler_plan.js"></script> 
+    <script src="scripts/fieldHandler_fieldGroup.js"></script>
+    <script src="scripts/fieldHandler_comply.js"></script>
+    <script src="scripts/fieldFactory.js"></script>
+
     <script>
         // Template version - UPDATE THIS when you modify the template JSON
         const CURRENT_TEMPLATE_VERSION = "1.0";
@@ -403,18 +313,6 @@
         const versionBanner = document.getElementById('version-banner');
         const highlightNewBtn = document.getElementById('highlight-new-btn');
 
-        // Load the template JSON
-        fetch('ai_onboarding_procedure_data.json')
-            .then(response => response.json())
-            .then(data => {
-                originalWebappData = data;
-                console.log('Template loaded successfully');
-            })
-            .catch(error => {
-                console.error('Error loading template:', error);
-                contentArea.innerHTML = '<div class="empty-state"><h2>Error</h2><p>Failed to load template data.</p></div>';
-            });
-
         // Generate unique system ID
         function generateSystemId() {
             const date = new Date();
@@ -423,6 +321,12 @@
             const day = String(date.getDate()).padStart(2, '0');
             const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
             return `AI-${year}${month}${day}-${random}`;
+        }
+
+        // Sanitize field name for ID
+        function sanitizeForId(text) {
+            if (typeof text !== 'string') return '';
+            return text.replace(/[^a-zA-Z0-9_]/g, '_');
         }
 
         // Deep filtering function
@@ -464,125 +368,24 @@
             return null;
         }
 
-        // Check if field is new (not in captured data)
+        // Check if field is new
         function isFieldNew(fieldName) {
             if (!loadedVersion || loadedVersion === CURRENT_TEMPLATE_VERSION) return false;
             return !capturedData.hasOwnProperty(fieldName);
         }
 
-        // Sanitize field name for ID
-        function sanitizeForId(text) {
-            if (typeof text !== 'string') return '';
-            return text.replace(/[^a-zA-Z0-9_]/g, '_');
+        // Wrap field elements with "new" styling if needed
+        function wrapIfNew(element, fieldName) {
+            if (isFieldNew(fieldName) && newFieldsHighlighted) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'field-new';
+                wrapper.appendChild(element);
+                return wrapper;
+            }
+            return element;
         }
 
-        // Render field based on type
-        function renderField(field, container) {
-            if (!field || !field.FieldName) return;
-
-            const fieldDiv = document.createElement('div');
-            fieldDiv.className = 'field-container';
-            
-            if (isFieldNew(field.FieldName) && newFieldsHighlighted) {
-                fieldDiv.classList.add('field-new');
-            }
-
-            const label = document.createElement('label');
-            label.className = 'field-label';
-            label.textContent = field.FieldName;
-            fieldDiv.appendChild(label);
-
-            const fieldId = sanitizeForId(field.FieldName);
-            const savedValue = capturedData[field.FieldName] || '';
-
-            switch (field.FieldType) {
-                case 'Text Box':
-                case 'textBox':
-                    if (field.FieldName.toLowerCase().includes('description') || 
-                        field.FieldName.toLowerCase().includes('explain')) {
-                        const textarea = document.createElement('textarea');
-                        textarea.id = fieldId;
-                        textarea.value = savedValue;
-                        fieldDiv.appendChild(textarea);
-                    } else {
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.id = fieldId;
-                        input.value = savedValue;
-                        fieldDiv.appendChild(input);
-                    }
-                    break;
-
-                case 'Decision':
-                case 'decision':
-                    const radioGroup = document.createElement('div');
-                    radioGroup.className = 'radio-group';
-                    ['Yes', 'No'].forEach(option => {
-                        const radioDiv = document.createElement('div');
-                        radioDiv.className = 'radio-option';
-                        
-                        const radio = document.createElement('input');
-                        radio.type = 'radio';
-                        radio.name = fieldId;
-                        radio.value = option;
-                        radio.id = `${fieldId}_${option}`;
-                        if (savedValue === option) radio.checked = true;
-                        
-                        const radioLabel = document.createElement('label');
-                        radioLabel.htmlFor = `${fieldId}_${option}`;
-                        radioLabel.textContent = option;
-                        
-                        radioDiv.appendChild(radio);
-                        radioDiv.appendChild(radioLabel);
-                        radioGroup.appendChild(radioDiv);
-                    });
-                    fieldDiv.appendChild(radioGroup);
-                    break;
-
-                case 'Dropdown':
-                case 'dropdown':
-                    const select = document.createElement('select');
-                    select.id = fieldId;
-                    
-                    const defaultOption = document.createElement('option');
-                    defaultOption.value = '';
-                    defaultOption.textContent = 'Select...';
-                    select.appendChild(defaultOption);
-                    
-                    if (field.Options) {
-                        field.Options.forEach(opt => {
-                            const option = document.createElement('option');
-                            option.value = opt;
-                            option.textContent = opt;
-                            if (savedValue === opt) option.selected = true;
-                            select.appendChild(option);
-                        });
-                    }
-                    fieldDiv.appendChild(select);
-                    break;
-
-                default:
-                    const defaultInput = document.createElement('input');
-                    defaultInput.type = 'text';
-                    defaultInput.id = fieldId;
-                    defaultInput.value = savedValue;
-                    fieldDiv.appendChild(defaultInput);
-            }
-
-            container.appendChild(fieldDiv);
-
-            // Recursively render child fields
-            if (field.Fields && field.Fields.length > 0) {
-                field.Fields.forEach(childField => {
-                    const filteredChild = getDeepFilteredNode(childField);
-                    if (filteredChild) {
-                        renderField(filteredChild, container);
-                    }
-                });
-            }
-        }
-
-        // Render all content
+        // Render all content using field handlers
         function renderContent() {
             if (!originalWebappData || !currentRole) {
                 contentArea.innerHTML = '<div class="empty-state"><h2>Select Your Role</h2><p>Choose your role from the dropdown above to see relevant fields.</p></div>';
@@ -590,7 +393,6 @@
             }
 
             contentArea.innerHTML = '';
-
             let hasContent = false;
 
             for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
@@ -615,31 +417,35 @@
                     stepTitle.textContent = step.StepName || 'Procedure Step';
                     stepDiv.appendChild(stepTitle);
 
-                    // Render objectives if present
+                    // Render objectives using field handler
                     if (step.Objectives && step.Objectives.length > 0) {
-                        const objectivesDiv = document.createElement('div');
-                        objectivesDiv.className = 'objectives-section';
-                        
-                        const objTitle = document.createElement('h4');
-                        objTitle.textContent = 'Objectives:';
-                        objectivesDiv.appendChild(objTitle);
-                        
-                        const objList = document.createElement('ul');
-                        step.Objectives.forEach(obj => {
-                            const li = document.createElement('li');
-                            li.textContent = obj;
-                            objList.appendChild(li);
-                        });
-                        objectivesDiv.appendChild(objList);
-                        stepDiv.appendChild(objectivesDiv);
+                        const handler = getFieldHandler('objective');
+                        if (handler) {
+                            const objectiveElement = handler(step.Objectives);
+                            stepDiv.appendChild(objectiveElement);
+                        }
                     }
 
-                    // Render fields
+                    // Render fields using field handlers
                     if (filteredStep.Fields && filteredStep.Fields.length > 0) {
                         filteredStep.Fields.forEach(field => {
-                            renderField(field, stepDiv);
+                            const handler = getFieldHandler(field.FieldType);
+                            if (handler) {
+                                const fieldElement = handler(field, capturedData, sanitizeForId);
+                                
+                                // Wrap with "new" styling if needed
+                                if (field.FieldName && isFieldNew(field.FieldName) && newFieldsHighlighted) {
+                                    const wrapper = document.createElement('div');
+                                    wrapper.className = 'field-new';
+                                    wrapper.appendChild(fieldElement);
+                                    stepDiv.appendChild(wrapper);
+                                } else {
+                                    stepDiv.appendChild(fieldElement);
+                                }
+                                
+                                phaseHasContent = true;
+                            }
                         });
-                        phaseHasContent = true;
                     }
 
                     if (stepDiv.children.length > 1) {
@@ -665,22 +471,50 @@
                 templateVersion: CURRENT_TEMPLATE_VERSION,
                 systemId: systemId,
                 lastModifiedBy: currentRole,
-                lastModifiedDate: new Date().toISOString(),
-                ...capturedData
+                lastModifiedDate: new Date().toISOString()
             };
 
-            // Capture current values from all input fields
-            contentArea.querySelectorAll('input, textarea, select').forEach(element => {
-                if (element.type === 'radio') {
-                    if (element.checked) {
-                        const fieldName = element.name.replace(/_/g, ' ');
-                        tempData[fieldName] = element.value;
-                    }
-                } else if (element.id && element.id !== 'role-dropdown' && element.id !== 'dimension-dropdown') {
-                    const fieldName = element.id.replace(/_/g, ' ');
-                    tempData[fieldName] = element.value;
+            // Merge existing captured data
+            Object.keys(capturedData).forEach(key => {
+                if (!['templateVersion', 'systemId', 'lastModifiedBy', 'lastModifiedDate'].includes(key)) {
+                    tempData[key] = capturedData[key];
                 }
             });
+
+            // Capture current values from all visible input fields
+            if (!originalWebappData) return tempData;
+
+            for (const [phaseName, stepsInPhase] of Object.entries(originalWebappData)) {
+                stepsInPhase.forEach(step => {
+                    const filteredStep = getDeepFilteredNode(step);
+                    if (!filteredStep || !filteredStep.Fields) return;
+
+                    // Recursively capture data from fields
+                    function captureFromNode(node) {
+                        if (!node) return;
+                        
+                        if (node.FieldName && node.FieldType !== 'Auto generated number' && node.FieldType !== 'fieldGroup') {
+                            const sanitizedId = sanitizeForId(node.FieldName);
+                            const inputElement = document.getElementById(sanitizedId);
+                            
+                            if (inputElement) {
+                                if (inputElement.type === 'radio') {
+                                    const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+                                    if (checked) tempData[node.FieldName] = checked.value;
+                                } else {
+                                    tempData[node.FieldName] = inputElement.value;
+                                }
+                            }
+                        }
+                        
+                        if (node.Fields) {
+                            node.Fields.forEach(captureFromNode);
+                        }
+                    }
+
+                    filteredStep.Fields.forEach(captureFromNode);
+                });
+            }
 
             return tempData;
         }
@@ -793,11 +627,31 @@
             highlightNewBtn.textContent = newFieldsHighlighted ? 'Hide Highlights' : 'Highlight New Fields';
         });
 
-        // Auto-generate system ID if empty
-        if (!systemId) {
-            systemId = generateSystemId();
-            systemIdInput.value = systemId;
-        }
+        // Load the template JSON
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('ai_onboarding_procedure_data.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    originalWebappData = data;
+                    window.originalWebappData = data; // Make available globally for field handlers
+                    console.log('Template loaded successfully');
+                    
+                    // Auto-generate system ID if empty
+                    if (!systemId) {
+                        systemId = generateSystemId();
+                        systemIdInput.value = systemId;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading template:', error);
+                    contentArea.innerHTML = '<div class="empty-state"><h2>Error</h2><p>Failed to load template data.</p></div>';
+                });
+        });
     </script>
 </body>
 </html>
