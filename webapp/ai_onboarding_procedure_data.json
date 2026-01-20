@@ -917,7 +917,7 @@
             },
             {
               "Control": "[A.4.2],[A.4.3]",
-              "Role": "Data Engineer,Engineer",
+              "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Approximate Size",
               "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
