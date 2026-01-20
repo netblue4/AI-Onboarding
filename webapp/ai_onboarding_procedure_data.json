@@ -1758,22 +1758,26 @@
           "RiskDescription": "The **service accounts** or **API keys** used by the Data Processing Pipeline to connect to internal data sources often require broad 'read-all' permissions to function effectively. If these **over-privileged credentials** are compromised (e.g., hardcoded in scripts, leaked in logs, or stolen via lateral movement), an attacker gains **unrestricted access** to all ingestible data simultaneously, bypassing individual user access controls and leading to **massive data exfiltration**.",
           "controls": [
             {
-              "control_number": "[Art-15-01] Implement Principle of Least Privilege (PoLP) for all ingestion service accounts, restricting access only to specific required datasets/tables rather than entire databases or file servers.",
+              "control_number": "[Art-15-01]",
+              "control_description": "Implement Principle of Least Privilege (PoLP) for all ingestion service accounts, restricting access only to specific required datasets/tables rather than entire databases or file servers.",
               "control_objective": "To limit the blast radius if ingestion credentials are compromised, ensuring they cannot access data outside their specific scope.",
               "control_evidence": "Access control lists (ACLs) or IAM policy documents for the service account showing granular read-only permissions restricted to specific resources."
             },
             {
-              "control_number": "[Art-15-02] Utilize short-lived, dynamically generated credentials (e.g., IAM roles, HashiCorp Vault dynamic secrets) for ingestion jobs instead of static, long-lived API keys or passwords.",
+              "control_number": "[Art-15-02]",
+              "control_description": "Utilize short-lived, dynamically generated credentials (e.g., IAM roles, HashiCorp Vault dynamic secrets) for ingestion jobs instead of static, long-lived API keys or passwords.",
               "control_objective": "To reduce the window of opportunity for an attacker to use stolen credentials by ensuring they expire automatically.",
               "control_evidence": "Configuration of the secrets management system or orchestrator showing dynamic credential rotation policies (e.g., every 60 minutes)."
             },
             {
-              "control_number": "[Art-15-03] securely store and manage all connector credentials using a dedicated enterprise secrets manager, ensuring they are never hardcoded in pipeline code or configuration files.",
+              "control_number": "[Art-15-03]",
+              "control_description": "securely store and manage all connector credentials using a dedicated enterprise secrets manager, ensuring they are never hardcoded in pipeline code or configuration files.",
               "control_objective": "To prevent accidental leakage of high-privilege credentials through source code repositories or insecure configuration files.",
               "control_evidence": "Code repository scans confirming no hardcoded secrets; pipeline configuration showing environmental variable injection from a secure vault."
             },
             {
-              "control_number": "[Art-15-04] Implement specialized monitoring and anomaly detection for ingestion service accounts to flag unusual access patterns (e.g., reading data outside normal batch windows or unusual volumes).",
+              "control_number": "[Art-15-04]",
+              "control_description": "Implement specialized monitoring and anomaly detection for ingestion service accounts to flag unusual access patterns (e.g., reading data outside normal batch windows or unusual volumes).",
               "control_objective": "To rapidly detect active abuse of legitimate ingestion credentials.",
               "control_evidence": "SIEM alert configuration rules specifically targeting the UUID/name of the ingestion service accounts."
             }
@@ -1967,22 +1971,26 @@
           "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
           "controls": [
             {
-              "control_number": "LLM05.01 Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
+              "control_number": "LLM05.01",
+              "control_description": "Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
               "control_objective": "To ensure that only verified and approved components are used in the AI system, reducing the risk of introducing malicious elements from public sources.",
               "control_evidence": "Documentation of the internal repository setup (e.g., Artifactory, private Hugging Face hub). Policy documents mandating its use. Logs showing successful mirroring and vetting processes."
             },
             {
-              "control_number": "LLM05.02 Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
+              "control_number": "LLM05.02",
+              "control_description": "Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
               "control_objective": "To detect and block compromised or vulnerable components before they can be used in the development or deployment pipeline.",
               "control_evidence": "Configuration of scanning tools (e.g., ClamAV for malware, specialised model scanners like Picklescan). Reports from these tools showing scan results for imported assets."
             },
             {
-              "control_number": "LLM05.03 Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
+              "control_number": "LLM05.03",
+              "control_description": "Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
               "control_objective": "To prevent the silent substitution of legitimate components with malicious ones by ensuring only specifically approved, immutable versions are used.",
               "control_evidence": "Requirement files (e.g., 'requirements.txt', 'poetry.lock') with pinned versions and hashes. CI/CD pipeline scripts that verify these hashes before build or deployment."
             },
             {
-              "control_number": "LLM05.04 Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
+              "control_number": "LLM05.04",
+              "control_description": "Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
               "control_objective": "To evaluate the security posture of suppliers and reduce the risk of relying on poorly maintained or compromised upstream projects.",
               "control_evidence": "Vendor risk assessment reports, records of due diligence checks on open-source project maintainers (e.g., activity, community trust), and a regularly updated approved vendor list."
             }
@@ -3156,92 +3164,110 @@
           "RiskDescription": "Failure to properly secure the lifecycle and runtime environment of containerized AI components—including insecure container **registries**, weak **access controls**, unhardened **host operating systems**, and poorly configured **container security context**—creates a significant attack surface. This could allow an attacker to **tamper with model code/artifacts** during transit or storage, **exfiltrate secrets**, achieve **privilege escalation** from a compromised container to the host, or exploit **unrestricted network access** to conduct lateral movement and **Denial of Service (DoS)**.",
           "controls": [
             {
-              "control_number": "PROTE.02 Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
+              "control_number": "PROTE.02",
+              "control_description": "Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
               "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries.",
               "control_evidence": "Configuration files for development tools, orchestrators (e.g., Kubernetes), and container runtimes demonstrating the use of TLS-encrypted connections (e.g., registry URLs starting with 'https://')."
             },
             {
-              "control_number": "PROTE.03 Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
+              "control_number": "PROTE.03",
+              "control_description": "Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
               "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images.",
               "control_evidence": "Configuration of the automated pruning job (e.g., a CronJob manifest) and execution logs showing that vulnerable or old images have been successfully removed."
             },
             {
-              "control_number": "PROTE.04 Enforce read/write access control for registries containing proprietary or sensitive container images.",
+              "control_number": "PROTE.04",
+              "control_description": "Enforce read/write access control for registries containing proprietary or sensitive container images.",
               "control_objective": "To restrict unauthorised access and modifications to container images stored in registries.",
               "control_evidence": "Screenshots or configuration exports of the registry's Role-Based Access Control (RBAC) settings, showing defined user roles and their permissions for specific repositories."
             },
             {
-              "control_number": "PROTE.05 Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
+              "control_number": "PROTE.05",
+              "control_description": "Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
               "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster.",
               "control_evidence": "Identity Provider (IdP) configuration showing MFA is enforced for the cluster administrator group, and the orchestrator's authentication configuration file pointing to the SSO provider (e.g., OIDC or SAML settings)."
             },
             {
-              "control_number": "PROTE.06 Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
+              "control_number": "PROTE.06",
+              "control_description": "Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
               "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security.",
               "control_evidence": "Copies of network policy manifests (e.g., Kubernetes 'NetworkPolicy' YAML files) or firewall rules that define and enforce network segmentation."
             },
             {
-              "control_number": "PROTE.07 Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
+              "control_number": "PROTE.07",
+              "control_description": "Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
               "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs.",
               "control_evidence": "Orchestrator deployment configurations (e.g., YAML files) showing the use of node selectors, taints, and tolerations to restrict pods to specific nodes."
             },
             {
-              "control_number": "PROTE.12 Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
+              "control_number": "PROTE.12",
+              "control_description": "Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
               "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments.",
               "control_evidence": "Patch management reports, host configuration files showing a minimal OS install (e.g., CIS hardened image), disabled services, and read-only file system settings. A Software Bill of Materials (SBOM) for the host OS."
             },
             {
-              "control_number": "PROTE.13 Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
+              "control_number": "PROTE.13",
+              "control_description": "Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
               "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks.",
               "control_evidence": "Host inventory documentation or orchestrator node labels and taints that dedicate specific hosts exclusively to containerised workloads."
             },
             {
-              "control_number": "PROTE.14 Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
+              "control_number": "PROTE.14",
+              "control_description": "Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
               "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data.",
               "control_evidence": "Pod security policies or admission controller configurations that enforce restrictions on hostPath volumes. Deployment manifests showing the container 'securityContext' is configured with minimal permissions."
             },
             {
-              "control_number": "PROTE.16 Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
+              "control_number": "PROTE.16",
+              "control_description": "Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
               "control_objective": "To safeguard the environment from untrusted or potentially harmful container images.",
               "control_evidence": "Configuration of an admission controller (e.g., OPA Gatekeeper, Kyverno) that implements a policy to only allow images from an approved list of registries."
             },
             {
-              "control_number": "PROTE.17 Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
+              "control_number": "PROTE.17",
+              "control_description": "Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
               "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads.",
               "control_evidence": "Network policy manifests (e.g., Kubernetes 'NetworkPolicy') or service mesh configurations (e.g., Istio 'AuthorizationPolicy') that define granular ingress and egress rules for pods."
             },
             {
-              "control_number": "PROTE.18 Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
+              "control_number": "PROTE.18",
+              "control_description": "Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
               "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment.",
               "control_evidence": "Deployment manifests showing the container's root file system is set to read-only ('readOnlyRootFilesystem: true'). CI/CD pipeline configuration demonstrating that changes are deployed by building and shipping a new image."
             },
             {
-              "control_number": "PROTE.19 Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
+              "control_number": "PROTE.19",
+              "control_description": "Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
               "control_objective": "To ensure the secure operation of APIs",
               "control_evidence": "API gateway configuration files or screenshots demonstrating the enforcement of authentication, authorisation (e.g., access control lists), and rate-limiting policies."
             },
             {
-              "control_number": "PROTE.20 Images should be configured to run as non-privileged users.",
+              "control_number": "PROTE.20",
+              "control_description": "Images should be configured to run as non-privileged users.",
               "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment.",
               "control_evidence": "The 'Dockerfile' showing the 'USER' instruction is used. The deployment manifest showing the 'securityContext' specifies 'runAsNonRoot: true' and a non-zero 'runAsUser' ID."
             },
             {
-              "control_number": "PROTE.21 Secrets should be stored outside of images and provided dynamically at runtime as needed.",
+              "control_number": "PROTE.21",
+              "control_description": "Secrets should be stored outside of images and provided dynamically at runtime as needed.",
               "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images.",
               "control_evidence": "Review of the 'Dockerfile' to confirm no secrets are present. Orchestrator manifests showing that secrets are mounted from a secure source (e.g., Kubernetes Secrets, HashiCorp Vault) at runtime."
             },
             {
-              "control_number": "PROTE.22 Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
+              "control_number": "PROTE.22",
+              "control_description": "Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
               "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation.",
               "control_evidence": "Host-level AppArmor or SELinux profiles. Container-level pod security standards or custom admission controller policies that restrict privileged operations."
             },
             {
-              "control_number": "PROTE.23 Utilise built-in security features of your containerisation platform.",
+              "control_number": "PROTE.23",
+              "control_description": "Utilise built-in security features of your containerisation platform.",
               "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications.",
               "control_evidence": "A document or report detailing the enabled platform-specific security features, such as Kubernetes Pod Security Standards, Security Contexts, and RBAC configurations."
             },
             {
-              "control_number": "PROTE.24 Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
+              "control_number": "PROTE.24",
+              "control_description": "Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
               "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks.",
               "control_evidence": "Deployment manifests (e.g., Kubernetes pod spec) showing that CPU and memory requests and limits are defined for all containers."
             }
