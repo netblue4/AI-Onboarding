@@ -601,8 +601,10 @@
             const currentData = { ...capturedData }; // Start with existing data
 
             for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
+            	currentData[phaseName] = phaseName; // Phase Name
                 stepsInPhase.forEach(step => {
                     if (!step.Fields) return;
+						currentData[step] = step; // Step Name
 
                     function captureFieldValue(field) {
                         if (!field) return;
