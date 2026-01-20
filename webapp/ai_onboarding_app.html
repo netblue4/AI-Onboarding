@@ -511,16 +511,16 @@
                                                     const controlKey = `${control.control_number}`;
                                                     
                                                     
-													const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
-													const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
-
+                                                    const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
+													if (statusElement && capturedData[`${controlKey}_status`]) {
+														statusElement.value = capturedData[`${controlKey}_status`];
+													}
                                                     
-                                                    if (capturedData[`${controlKey}_status`] && statusElement[index]) {
-                                                        statusElement[index].value = capturedData[`${controlKey}_status`];
+													const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
+                                                    if (evidenceElement && capturedData[`${controlKey}_evidence`]) {
+                                                    	evidenceElement.value = capturedData[`${controlKey}_evidence`];
                                                     }
-                                                    if (capturedData[`${controlKey}_evidence`] && evidenceElement[index]) {
-                                                        evidenceElement[index].value = capturedData[`${controlKey}_evidence`];
-                                                    }
+
                                                 });
                                             }
                                         }
