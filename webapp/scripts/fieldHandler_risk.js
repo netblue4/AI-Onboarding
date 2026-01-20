@@ -103,6 +103,7 @@ function createRisk(field, capturedData, sanitizeForId) {
         		select.value = options[0]?.trim();
 				
 				const input = document.createElement('textarea');
+				input.name = sanitizeForId(controlItem.control_number) + '_evidence';
 				input.placeholder = controlItem.control_evidence;
 
 				controlText.appendChild(input); // Nest span inside label
