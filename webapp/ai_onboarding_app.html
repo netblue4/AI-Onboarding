@@ -265,10 +265,15 @@
 										
 										// Handle MultiSelect (checkboxes)
 										if (fieldType && fieldType.startsWith('MultiSelect')) {
+											// First uncheck all checkboxes for this field
+											const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]`);
+											allCheckboxes.forEach(cb => cb.checked = false);
+											
+											// Then check only the saved values
 											const selectedValues = capturedData[field.FieldName];
 											if (Array.isArray(selectedValues)) {
 												selectedValues.forEach(value => {
-													const checkbox = document.querySelector(`input[name="${sanitizedId}"][value="${value}"]`);
+													const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}"][value="${value}"]`);
 													if (checkbox) checkbox.checked = true;
 												});
 											}
@@ -410,11 +415,10 @@
 						
 						// Handle MultiSelect (checkboxes)
 						if (fieldType && fieldType.startsWith('MultiSelect')) {
-							const checkboxes = document.querySelectorAll(`input[name="${sanitizedId}"]:checked`);
+							const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
 							if (checkboxes.length > 0) {
 								currentData[fieldName] = Array.from(checkboxes).map(cb => cb.value);
 							} else {
-								// Clear if no checkboxes are selected
 								delete currentData[fieldName];
 							}
 						}
