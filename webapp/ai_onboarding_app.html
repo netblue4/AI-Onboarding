@@ -418,7 +418,9 @@
 							const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
 							if (checkboxes.length > 0) {
 								currentData[fieldName] = Array.from(checkboxes).map(cb => cb.value);
-							} else {
+							}
+							// Only delete if element exists but has no value - preserve if not visible
+							else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}"]`)) {
 								delete currentData[fieldName];
 							}
 						}
@@ -427,7 +429,9 @@
 							const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
 							if (checked) {
 								currentData[fieldName] = checked.value;
-							} else {
+							}
+							// Only delete if element exists but has no value - preserve if not visible
+							else if (document.querySelector(`input[name="${sanitizedId}"]`)) {
 								delete currentData[fieldName];
 							}
 						}
@@ -437,7 +441,7 @@
 							const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
 							if (riskSelect && riskSelect.value) {
 								currentData[fieldName] = riskSelect.value;
-							} else {
+							} else if (riskSelect) {
 								delete currentData[fieldName];
 							}
 							
@@ -458,12 +462,12 @@
 									
 									if (statusValue) {
 										currentData[`${controlKey}_status`] = statusValue;
-									} else {
+									} else if (statusElement) {
 										delete currentData[`${controlKey}_status`];
 									}
 									if (evidenceValue) {
 										currentData[`${controlKey}_evidence`] = evidenceValue;
-									} else {
+									} else if (evidenceElement) {
 										delete currentData[`${controlKey}_evidence`];
 									}
 								});
@@ -479,7 +483,7 @@
 									
 									if (textareaElement && textareaElement.value) {
 										currentData[criteriaKey] = textareaElement.value;
-									} else {
+									} else if (textareaElement) {
 										delete currentData[criteriaKey];
 									}
 								});
@@ -499,13 +503,13 @@
 								
 								if (select && select.value) {
 									currentData[statusKey] = select.value;
-								} else {
+								} else if (select) {
 									delete currentData[statusKey];
 								}
 								
 								if (evidenceInput && evidenceInput.value) {
 									currentData[evidenceKey] = evidenceInput.value;
-								} else {
+								} else if (evidenceInput) {
 									delete currentData[evidenceKey];
 								}
 							});
@@ -523,6 +527,7 @@
 									}
 								}
 							}
+							// If element doesn't exist, preserve existing data (don't delete)
 						}
 						
 						// Recurse into nested fields
@@ -537,7 +542,6 @@
 		
 			return currentData;
 		}
-        
         
         // Save progress - creates data file
         saveBtn.addEventListener('click', () => {
