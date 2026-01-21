@@ -5,223 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Onboarding Procedure</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Additional styles for new features */
-        .main-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .controls-bar {
-            background: #f8f9fa;
-            padding: 20px 30px;
-            border-bottom: 2px solid #e9ecef;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .control-group label {
-            font-weight: 600;
-            font-size: 13px;
-            color: #495057;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-left: auto;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-success:hover {
-            background: #218838;
-        }
-
-        .version-banner {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px 30px;
-            display: none;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .version-banner.show {
-            display: flex;
-        }
-
-        .version-banner .icon {
-            font-size: 24px;
-        }
-
-        .version-banner .content {
-            flex: 1;
-        }
-
-        .version-banner .content h3 {
-            color: #856404;
-            margin-bottom: 5px;
-        }
-
-        .version-banner .content p {
-            color: #856404;
-            font-size: 14px;
-        }
-
-        .info-banner {
-            background: #d1ecf1;
-            border-left: 4px solid #0c5460;
-            padding: 15px 30px;
-            display: none;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .info-banner.show {
-            display: flex;
-        }
-
-        .info-banner .content p {
-            color: #0c5460;
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .content-area {
-            padding: 30px;
-            max-height: calc(100vh - 300px);
-            overflow-y: auto;
-        }
-
-        .phase-section {
-            margin-bottom: 40px;
-        }
-
-        .phase-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .step-section {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-        }
-
-        .step-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #dee2e6;
-        }
-
-        .field-new {
-            background: #fff3cd !important;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid #ffc107;
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .field-new::before {
-            content: "NEW";
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            background: #ffc107;
-            color: #856404;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #6c757d;
-        }
-
-        .empty-state h2 {
-            margin-bottom: 10px;
-            color: #495057;
-        }
-
-        #file-input {
-            display: none;
-        }
-
-        .system-id-input {
-            padding: 10px 15px;
-            border: 2px solid #dee2e6;
-            border-radius: 6px;
-            font-size: 14px;
-            min-width: 200px;
-        }
-    </style>
 </head>
 <body>
     <div class="main-container">
@@ -426,306 +209,332 @@
             return fieldNames;
         }
 
-        // Render all content using field handlers
-        function renderContent() {
-            if (!templateData || !currentRole) {
-                contentArea.innerHTML = '<div class="empty-state"><h2>Select Your Role</h2><p>Choose your role from the dropdown above to see relevant fields.</p></div>';
-                return;
-            }
-
-            contentArea.innerHTML = '';
-            let hasContent = false;
-
-            for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
-                const phaseDiv = document.createElement('div');
-                phaseDiv.className = 'phase-section';
-
-                const phaseHeader = document.createElement('div');
-                phaseHeader.className = 'phase-header';
-                phaseHeader.textContent = phaseName;
-
-                let phaseHasContent = false;
-
-                stepsInPhase.forEach(step => {
-                    const filteredStep = getDeepFilteredNode(step);
-                    if (!filteredStep) return;
-
-                    const stepDiv = document.createElement('div');
-                    stepDiv.className = 'step-section';
-
-                    const stepTitle = document.createElement('div');
-                    stepTitle.className = 'step-title';
-                    stepTitle.textContent = step.StepName || 'Procedure Step';
-                    stepDiv.appendChild(stepTitle);
-
-                    // Render objectives using field handler
-                    if (step.Objectives && step.Objectives.length > 0) {
-                        const handler = getFieldHandler('objective');
-                        if (handler) {
-                            const objectiveElement = handler(step.Objectives);
-                            stepDiv.appendChild(objectiveElement);
-                        }
-                    }
-
-                    // Render fields using field handlers
-                    if (filteredStep.Fields && filteredStep.Fields.length > 0) {
-                        filteredStep.Fields.forEach(field => {
-                            const handler = getFieldHandler(field.FieldType);
-                            if (handler) {
-                                const fieldElement = handler(field, capturedData, sanitizeForId);
-                                
-                                // After rendering, populate with captured values based on field type
-                                if (field.FieldName) {
-                                    setTimeout(() => {
-                                        const sanitizedId = sanitizeForId(field.FieldName);
-                                        const fieldType = field.FieldType;
-                                        
-                                        // Handle MultiSelect (checkboxes)
-                                        if (fieldType && fieldType.startsWith('MultiSelect')) {
-                                            const selectedValues = capturedData[field.FieldName];
-                                            if (Array.isArray(selectedValues)) {
-                                                selectedValues.forEach(value => {
-                                                    const checkbox = document.querySelector(`input[name="${sanitizedId}"][value="${value}"]`);
-                                                    if (checkbox) checkbox.checked = true;
-                                                });
-                                            }
-                                        }
-                                        // Handle Option box (radio buttons)
-                                        else if (fieldType && fieldType.startsWith('Option box with values')) {
-                                            if (capturedData.hasOwnProperty(field.FieldName)) {
-                                                const radioToCheck = document.querySelector(`input[name="${sanitizedId}"][value="${capturedData[field.FieldName]}"]`);
-                                                if (radioToCheck) radioToCheck.checked = true;
-                                            }
-                                        }
-                                        // Handle risk fields
-                                        else if (fieldType === 'risk') {
-                                            // Restore main risk dropdown
-                                            if (capturedData[field.FieldName]) {
-                                                const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-                                                if (riskSelect) riskSelect.value = capturedData[field.FieldName];
-                                            }
-                                            
-                                            // Restore control statuses and evidence
-                                            if (field.controls && Array.isArray(field.controls)) {
-                                                field.controls.forEach((control, index) => {
-                                                    const controlKey = sanitizeForId(control.control_number)
-                                                                                                        
-                                                    const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
+		// Render all content using field handlers
+		function renderContent() {
+			if (!templateData || !currentRole) {
+				contentArea.innerHTML = '<div class="empty-state"><h2>Select Your Role</h2><p>Choose your role from the dropdown above to see relevant fields.</p></div>';
+				return;
+			}
+		
+			contentArea.innerHTML = '';
+			let hasContent = false;
+		
+			for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
+				const phaseDiv = document.createElement('div');
+				phaseDiv.className = 'phase-section';
+		
+				const phaseHeader = document.createElement('div');
+				phaseHeader.className = 'phase-header';
+				phaseHeader.textContent = phaseName;
+		
+				let phaseHasContent = false;
+		
+				stepsInPhase.forEach(step => {
+					const filteredStep = getDeepFilteredNode(step);
+					if (!filteredStep) return;
+		
+					const stepDiv = document.createElement('div');
+					stepDiv.className = 'step-section';
+		
+					const stepTitle = document.createElement('div');
+					stepTitle.className = 'step-title';
+					stepTitle.textContent = step.StepName || 'Procedure Step';
+					stepDiv.appendChild(stepTitle);
+		
+					// Render objectives using field handler
+					if (step.Objectives && step.Objectives.length > 0) {
+						const handler = getFieldHandler('objective');
+						if (handler) {
+							const objectiveElement = handler(step.Objectives);
+							stepDiv.appendChild(objectiveElement);
+						}
+					}
+		
+					// Render fields using field handlers
+					if (filteredStep.Fields && filteredStep.Fields.length > 0) {
+						filteredStep.Fields.forEach(field => {
+							const handler = getFieldHandler(field.FieldType);
+							if (handler) {
+								const fieldElement = handler(field, capturedData, sanitizeForId);
+								
+								// After rendering, populate with captured values based on field type
+								if (field.FieldName) {
+									setTimeout(() => {
+										const sanitizedId = sanitizeForId(field.FieldName);
+										const fieldType = field.FieldType;
+										
+										// Handle MultiSelect (checkboxes)
+										if (fieldType && fieldType.startsWith('MultiSelect')) {
+											const selectedValues = capturedData[field.FieldName];
+											if (Array.isArray(selectedValues)) {
+												selectedValues.forEach(value => {
+													const checkbox = document.querySelector(`input[name="${sanitizedId}"][value="${value}"]`);
+													if (checkbox) checkbox.checked = true;
+												});
+											}
+										}
+										// Handle Option box (radio buttons)
+										else if (fieldType && fieldType.startsWith('Option box with values')) {
+											if (capturedData.hasOwnProperty(field.FieldName)) {
+												const radioToCheck = document.querySelector(`input[name="${sanitizedId}"][value="${capturedData[field.FieldName]}"]`);
+												if (radioToCheck) radioToCheck.checked = true;
+											}
+										}
+										// Handle risk fields
+										else if (fieldType === 'risk') {
+											// Restore main risk dropdown
+											if (capturedData[field.FieldName]) {
+												const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
+												if (riskSelect) riskSelect.value = capturedData[field.FieldName];
+											}
+											
+											// Restore control statuses and evidence
+											if (field.controls && Array.isArray(field.controls)) {
+												field.controls.forEach((control, index) => {
+													const controlKey = sanitizeForId(control.control_number);
+													
+													const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
 													if (statusElement && capturedData[`${controlKey}_status`]) {
 														statusElement.value = capturedData[`${controlKey}_status`];
 													}
-                                                    
+													
 													const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
-                                                    if (evidenceElement && capturedData[`${controlKey}_evidence`]) {
-                                                    	evidenceElement.value = capturedData[`${controlKey}_evidence`];
-                                                    }
-
-                                                });
-                                            }
-                                        }
-                                        // Handle plan fields
-                                        else if (fieldType === 'plan') {
-                                            if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
-                                                field.PlanCriteria.forEach((criteria, index) => {
-                                                    const textareas = document.querySelectorAll('.form-field textarea');
-                                                    const evidenceKey = `${field.FieldName}_criteria_${index}_evidence`;
-                                                    if (capturedData[evidenceKey] && textareas[index]) {
-                                                        textareas[index].value = capturedData[evidenceKey];
-                                                    }
-                                                });
-                                            }
-                                        }
-                                        // Handle comply fields
-                                        else if (fieldType === 'comply') {
-                                            const selects = document.querySelectorAll('.sub-control-item select');
-                                            const evidenceInputs = document.querySelectorAll('.sub-control-item textarea, .sub-control-item input[type="text"]');
-                                            
-                                            selects.forEach((select, index) => {
-                                                const statusKey = `${field.FieldName}_subcontrol_${index}_status`;
-                                                if (capturedData[statusKey]) {
-                                                    select.value = capturedData[statusKey];
-                                                }
-                                            });
-                                            
-                                            evidenceInputs.forEach((input, index) => {
-                                                const evidenceKey = `${field.FieldName}_subcontrol_${index}_evidence`;
-                                                if (capturedData[evidenceKey]) {
-                                                    input.value = capturedData[evidenceKey];
-                                                }
-                                            });
-                                        }
-                                        // Handle standard fields
-                                        else if (capturedData.hasOwnProperty(field.FieldName)) {
-                                            const inputElement = document.getElementById(sanitizedId);
-                                            if (inputElement) {
-                                                inputElement.value = capturedData[field.FieldName];
-                                            }
-                                        }
-                                    }, 100); // Increased timeout to ensure DOM is fully rendered
-                                }
-                                
-                                // Wrap with "new" styling if needed
-                                if (field.FieldName && isFieldNew(field.FieldName) && newFieldsHighlighted) {
-                                    const wrapper = document.createElement('div');
-                                    wrapper.className = 'field-new';
-                                    wrapper.appendChild(fieldElement);
-                                    stepDiv.appendChild(wrapper);
-                                } else {
-                                    stepDiv.appendChild(fieldElement);
-                                }
-                                
-                                phaseHasContent = true;
-                            }
-                        });
-                    }
-
-                    if (stepDiv.children.length > 1) {
-                        phaseDiv.appendChild(stepDiv);
-                    }
-                });
-
-                if (phaseHasContent) {
-                    phaseDiv.insertBefore(phaseHeader, phaseDiv.firstChild);
-                    contentArea.appendChild(phaseDiv);
-                    hasContent = true;
-                }
-            }
-
-            if (!hasContent) {
-                contentArea.innerHTML = '<div class="empty-state"><h2>No Fields Available</h2><p>No fields match your current role and dimension filters.</p></div>';
-            }
-        }
-
-        // Capture all current field values
-        function captureCurrentValues() {
-            if (!templateData) return {};
-
-            const currentData = { ...capturedData }; // Start with existing data
-
-            for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
-                stepsInPhase.forEach(step => {
-                    if (!step.Fields) return;
-
-                    function captureFieldValue(field) {
-                        if (!field) return;
-                        
-                        const fieldType = field.FieldType;
-                        const fieldName = field.FieldName;
-                        
-                        // Skip auto-generated and fieldGroup types
-                        if (fieldType === 'Auto generated number' || fieldType === 'fieldGroup') {
-                            // Still recurse into fieldGroup children
-                            if (field.Fields && Array.isArray(field.Fields)) {
-                                field.Fields.forEach(captureFieldValue);
-                            }
-                            return;
-                        }
-                        
-                        if (!fieldName) return;
-                        
-                        const sanitizedId = sanitizeForId(fieldName);
-                        
-                        // Handle MultiSelect (checkboxes)
-                        if (fieldType && fieldType.startsWith('MultiSelect')) {
-                            const checkboxes = document.querySelectorAll(`input[name="${sanitizedId}"]:checked`);
-                            if (checkboxes.length > 0) {
-                                currentData[fieldName] = Array.from(checkboxes).map(cb => cb.value);
-                            }
-                        }
-                        // Handle Option box (radio buttons)
-                        else if (fieldType && fieldType.startsWith('Option box with values')) {
-                            const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
-                            if (checked) {
-                                currentData[fieldName] = checked.value;
-                            }
-                        }
-                        // Handle risk fields (with controls)
-                        else if (fieldType === 'risk') {
-                            // Capture the main risk applicability dropdown
+													if (evidenceElement && capturedData[`${controlKey}_evidence`]) {
+														evidenceElement.value = capturedData[`${controlKey}_evidence`];
+													}
+												});
+											}
+										}
+										// Handle plan fields
+										else if (fieldType === 'plan') {
+											if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
+												field.PlanCriteria.forEach((criteria, index) => {
+													const criteriaKey = `${field.FieldName}_criteria_${index}_evidence`;
+													const textareaElements = document.querySelectorAll(`textarea[name="${sanitizeForId(field.FieldName)}_criteria_${index}"]`);
+													
+													if (textareaElements.length > 0 && capturedData[criteriaKey]) {
+														textareaElements[0].value = capturedData[criteriaKey];
+													}
+												});
+											}
+										}
+										// Handle comply fields
+										else if (fieldType === 'comply') {
+											const subcontrols = document.querySelectorAll(`[data-comply-field="${sanitizedId}"]`);
+											
+											subcontrols.forEach((subcontrol, index) => {
+												const statusKey = `${field.FieldName}_subcontrol_${index}_status`;
+												const evidenceKey = `${field.FieldName}_subcontrol_${index}_evidence`;
+												
+												const statusSelect = subcontrol.querySelector('select');
+												const evidenceInput = subcontrol.querySelector('textarea, input[type="text"]');
+												
+												if (statusSelect && capturedData[statusKey]) {
+													statusSelect.value = capturedData[statusKey];
+												}
+												if (evidenceInput && capturedData[evidenceKey]) {
+													evidenceInput.value = capturedData[evidenceKey];
+												}
+											});
+										}
+										// Handle standard fields
+										else if (capturedData.hasOwnProperty(field.FieldName)) {
+											const inputElement = document.getElementById(sanitizedId);
+											if (inputElement) {
+												inputElement.value = capturedData[field.FieldName];
+											}
+										}
+									}, 100); // Increased timeout to ensure DOM is fully rendered
+								}
+								
+								// Wrap with "new" styling if needed
+								if (field.FieldName && isFieldNew(field.FieldName) && newFieldsHighlighted) {
+									const wrapper = document.createElement('div');
+									wrapper.className = 'field-new';
+									wrapper.appendChild(fieldElement);
+									stepDiv.appendChild(wrapper);
+								} else {
+									stepDiv.appendChild(fieldElement);
+								}
+								
+								phaseHasContent = true;
+							}
+						});
+					}
+		
+					if (stepDiv.children.length > 1) {
+						phaseDiv.appendChild(stepDiv);
+					}
+				});
+		
+				if (phaseHasContent) {
+					phaseDiv.insertBefore(phaseHeader, phaseDiv.firstChild);
+					contentArea.appendChild(phaseDiv);
+					hasContent = true;
+				}
+			}
+		
+			if (!hasContent) {
+				contentArea.innerHTML = '<div class="empty-state"><h2>No Fields Available</h2><p>No fields match your current role and dimension filters.</p></div>';
+			}
+		}
+		
+		// Capture all current field values
+		function captureCurrentValues() {
+			if (!templateData) return {};
+		
+			const currentData = { ...capturedData }; // Start with existing data
+		
+			for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
+				stepsInPhase.forEach(step => {
+					if (!step.Fields) return;
+		
+					function captureFieldValue(field) {
+						if (!field) return;
+						
+						const fieldType = field.FieldType;
+						const fieldName = field.FieldName;
+						
+						// Skip auto-generated and fieldGroup types
+						if (fieldType === 'Auto generated number' || fieldType === 'fieldGroup') {
+							// Still recurse into fieldGroup children
+							if (field.Fields && Array.isArray(field.Fields)) {
+								field.Fields.forEach(captureFieldValue);
+							}
+							return;
+						}
+						
+						if (!fieldName) return;
+						
+						const sanitizedId = sanitizeForId(fieldName);
+						
+						// Handle MultiSelect (checkboxes)
+						if (fieldType && fieldType.startsWith('MultiSelect')) {
+							const checkboxes = document.querySelectorAll(`input[name="${sanitizedId}"]:checked`);
+							if (checkboxes.length > 0) {
+								currentData[fieldName] = Array.from(checkboxes).map(cb => cb.value);
+							} else {
+								// Clear if no checkboxes are selected
+								delete currentData[fieldName];
+							}
+						}
+						// Handle Option box (radio buttons)
+						else if (fieldType && fieldType.startsWith('Option box with values')) {
+							const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+							if (checked) {
+								currentData[fieldName] = checked.value;
+							} else {
+								delete currentData[fieldName];
+							}
+						}
+						// Handle risk fields (with controls)
+						else if (fieldType === 'risk') {
+							// Capture the main risk applicability dropdown
 							const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-                            if (riskSelect && riskSelect.value) {
-                                currentData[fieldName] = riskSelect.value;
-                            }
-                            
-                            // Capture control_status and control_evidence from nested controls
-                            if (field.controls && Array.isArray(field.controls)) {
-                                field.controls.forEach((control, index) => {
-                                    const controlNumber = sanitizeForId(control.control_number);
-                                    const controlKey = `${controlNumber}`;
-                                    currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
-                                    
-                                    // Find specific elements by their unique name
+							if (riskSelect && riskSelect.value) {
+								currentData[fieldName] = riskSelect.value;
+							} else {
+								delete currentData[fieldName];
+							}
+							
+							// Capture control_status and control_evidence from nested controls
+							if (field.controls && Array.isArray(field.controls)) {
+								field.controls.forEach((control, index) => {
+									const controlKey = sanitizeForId(control.control_number);
+									
+									// Store control metadata once
+									currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
+									
+									// Find specific elements by their unique name
 									const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
 									const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
-
+		
 									const statusValue = statusElement ? statusElement.value : null;
 									const evidenceValue = evidenceElement ? evidenceElement.value : null;
-                                    
-                                    if (statusValue) {
-                                        currentData[`${controlKey}_status`] = statusValue;
-                                    }
-                                    if (evidenceValue) {
-                                        currentData[`${controlKey}_evidence`] = evidenceValue;
-                                    }
-                                });
-                            }
-                        }
-                        // Handle plan fields (with criteria)
-                        else if (fieldType === 'plan') {
-                            // Capture criteria_evidence from PlanCriteria
-                            if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
-                                field.PlanCriteria.forEach((criteria, index) => {
-                                    const criteriaName = criteria.criteria;
-                                    const textareas = document.querySelectorAll('.form-field textarea');
-                                    if (textareas[index]) {
-                                        currentData[`${criteriaName}_evidence`] = textareas[index].value;
-                                    }
-                                });
-                            }
-                        }
-                        // Handle comply fields (with control_status and control_evidence)
-                        else if (fieldType === 'comply') {
-                            // The comply field creates a complex mapping structure
-                            // We need to capture the dropdown values and evidence fields
-                            const selects = document.querySelectorAll('.sub-control-item select');
-                            const evidenceInputs = document.querySelectorAll('.sub-control-item textarea, .sub-control-item input[type="text"]');
-                            
-                            selects.forEach((select, index) => {
-                                if (select.value) {
-                                    currentData[`${fieldName}_subcontrol_${index}_status`] = select.value;
-                                }
-                            });
-                            
-                            evidenceInputs.forEach((input, index) => {
-                                if (input.value) {
-                                    currentData[`${fieldName}_subcontrol_${index}_evidence`] = input.value;
-                                }
-                            });
-                        }
-                        // Handle standard input fields (TextBox, Dropdown, etc.)
-                        else {
-                            const inputElement = document.getElementById(sanitizedId);
-                            
-                            if (inputElement) {
-                                if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
-                                    currentData[fieldName] = inputElement.value;
-                                }
-                            }
-                        }
-                        
-                        // Recurse into nested fields
-                        if (field.Fields && Array.isArray(field.Fields)) {
-                            field.Fields.forEach(captureFieldValue);
-                        }
-                    }
-
-                    step.Fields.forEach(captureFieldValue);
-                });
-            }
-
-            return currentData;
-        }
-
+									
+									if (statusValue) {
+										currentData[`${controlKey}_status`] = statusValue;
+									} else {
+										delete currentData[`${controlKey}_status`];
+									}
+									if (evidenceValue) {
+										currentData[`${controlKey}_evidence`] = evidenceValue;
+									} else {
+										delete currentData[`${controlKey}_evidence`];
+									}
+								});
+							}
+						}
+						// Handle plan fields (with criteria)
+						else if (fieldType === 'plan') {
+							// Capture criteria_evidence from PlanCriteria
+							if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
+								field.PlanCriteria.forEach((criteria, index) => {
+									const criteriaKey = `${fieldName}_criteria_${index}_evidence`;
+									const textareaElement = document.querySelector(`textarea[name="${sanitizeForId(fieldName)}_criteria_${index}"]`);
+									
+									if (textareaElement && textareaElement.value) {
+										currentData[criteriaKey] = textareaElement.value;
+									} else {
+										delete currentData[criteriaKey];
+									}
+								});
+							}
+						}
+						// Handle comply fields (with control_status and control_evidence)
+						else if (fieldType === 'comply') {
+							// Query subcontrols by the field name marker
+							const subcontrols = document.querySelectorAll(`[data-comply-field="${sanitizedId}"]`);
+							
+							subcontrols.forEach((subcontrol, index) => {
+								const statusKey = `${fieldName}_subcontrol_${index}_status`;
+								const evidenceKey = `${fieldName}_subcontrol_${index}_evidence`;
+								
+								const select = subcontrol.querySelector('select');
+								const evidenceInput = subcontrol.querySelector('textarea, input[type="text"]');
+								
+								if (select && select.value) {
+									currentData[statusKey] = select.value;
+								} else {
+									delete currentData[statusKey];
+								}
+								
+								if (evidenceInput && evidenceInput.value) {
+									currentData[evidenceKey] = evidenceInput.value;
+								} else {
+									delete currentData[evidenceKey];
+								}
+							});
+						}
+						// Handle standard input fields (TextBox, Dropdown, etc.)
+						else {
+							const inputElement = document.getElementById(sanitizedId);
+							
+							if (inputElement) {
+								if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
+									if (inputElement.value) {
+										currentData[fieldName] = inputElement.value;
+									} else {
+										delete currentData[fieldName];
+									}
+								}
+							}
+						}
+						
+						// Recurse into nested fields
+						if (field.Fields && Array.isArray(field.Fields)) {
+							field.Fields.forEach(captureFieldValue);
+						}
+					}
+		
+					step.Fields.forEach(captureFieldValue);
+				});
+			}
+		
+			return currentData;
+		}
+        
+        
         // Save progress - creates data file
         saveBtn.addEventListener('click', () => {
             if (!systemId) {
