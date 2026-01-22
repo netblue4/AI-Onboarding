@@ -100,6 +100,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 				textarea.classList.add('form-field'); // Ensure the class matches your query
 				textarea.name = sanitizeForId(controlItem.control_number) + '_evidence';
 				textarea.value = controlItem.control_evidence; // Use .value for inputs
+				textarea.disabled = true;
 	
 				controlText.appendChild(textarea); // Nest span inside label
 				//controlContainer.appendChild(label); // Add the whole label to container
