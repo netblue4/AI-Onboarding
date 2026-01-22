@@ -80,6 +80,12 @@ function createRisk(field, capturedData, sanitizeForId) {
 				const option = document.createElement('option');
 				option.value = optionText;
 				option.textContent = optionText;
+				
+				// Set selected if it matches the control_status
+				if (controlItem.control_status && optionText === controlItem.control_status) {
+					option.selected = true;
+				}
+				
 				select.appendChild(option);
     		});
 			controlText.appendChild(select);	
