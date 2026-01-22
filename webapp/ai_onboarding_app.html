@@ -328,8 +328,10 @@
 											const subcontrols = document.querySelectorAll(`[data-comply-field="${sanitizedId}"]`);
 											
 											subcontrols.forEach((subcontrol, index) => {
-												const statusKey = `${field.FieldName}_subcontrol_${index}_status`;
+												const statusKey = `${subcontrol.control_number}_complystatus'`;
 												const evidenceKey = `${field.FieldName}_subcontrol_${index}_evidence`;
+																								
+												
 												
 												const statusSelect = subcontrol.querySelector('select');
 												const evidenceInput = subcontrol.querySelector('textarea, input[type="text"]');
@@ -495,7 +497,7 @@
 							const subcontrols = document.querySelectorAll(`[data-comply-field="${sanitizedId}"]`);
 							
 							subcontrols.forEach((subcontrol, index) => {
-								const statusKey = `${fieldName}_subcontrol_${index}_status`;
+								const statusKey = `${subcontrol.control_number}_complystatus'`;
 								const evidenceKey = `${fieldName}_subcontrol_${index}_evidence`;
 								
 								const select = subcontrol.querySelector('select');

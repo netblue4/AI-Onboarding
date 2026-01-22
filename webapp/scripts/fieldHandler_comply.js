@@ -198,6 +198,10 @@ function createComplyField(field, capturedData, sanitizeForId) {
 					select.style.borderRadius = '4px';
 					select.style.border = '1px solid #ccc';
 					
+					
+            		select.name = sanitizeForId(subData.subControl.control_number) + '_complystatus';
+
+					
 					const options = ['Select', 'N/A', 'Met', 'Not Met', 'Partially Met'];
 					options.forEach((optionText) => {
 						const option = document.createElement('option');
