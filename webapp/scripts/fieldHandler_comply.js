@@ -1,8 +1,11 @@
+/**
+ * FIELD HANDLER: Comply
+ * Handles complex compliance mapping requirements with sub-controls.
+ */
 function createComplyField(field, capturedData, sanitizeForId) {
     
-    // 1. Get the global data (Must be exposed in ai_onboarding_app.html)
+    // 1. Get the global data
     const webappData = window.originalWebappData;
-    
     const selectedTrustDimension = window.selectedTrustDimension;
 
     if (!webappData) {
@@ -11,10 +14,10 @@ function createComplyField(field, capturedData, sanitizeForId) {
         return errDiv;
     }
 
-    // 2. Run the processing logic immediately (No event listener needed)
+    // 2. Process and Render
     return processAndRenderData(webappData);
 
-    // --- HELPER FUNCTIONS DEFINED BELOW ---
+    // --- HELPER FUNCTIONS ---
 
     function processAndRenderData(data) {
         // 1. Flatten all steps and extract all fields
@@ -90,7 +93,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
         const container = document.createElement('div');
         container.className = 'mapping-container';
 
-        // --- ATTACH CLICK LISTENER HERE (Event Delegation) ---
+        // Event Delegation for toggling
         container.addEventListener('click', event => {
             const header = event.target.closest('.reg-header');
             if (!header) return;
@@ -98,7 +101,6 @@ function createComplyField(field, capturedData, sanitizeForId) {
             const targetId = header.getAttribute('data-target');
             if (!targetId) return;
 
-            // We look for the element inside our specific container
             const content = container.querySelector(targetId);
             const icon = header.querySelector('.toggle-icon');
 
@@ -109,13 +111,13 @@ function createComplyField(field, capturedData, sanitizeForId) {
                     icon.classList.add('expanded');
                     header.setAttribute('aria-expanded', 'true');
                     content.setAttribute('aria-hidden', 'false');
-                    content.style.display = 'block'; // Ensure visibility
+                    content.style.display = 'block'; 
                 } else {
                     icon.textContent = '+';
                     icon.classList.remove('expanded');
                     header.setAttribute('aria-expanded', 'false');
                     content.setAttribute('aria-hidden', 'true');
-                    content.style.display = 'none'; // Ensure hidden
+                    content.style.display = 'none'; 
                 }
             }
         });
@@ -129,9 +131,9 @@ function createComplyField(field, capturedData, sanitizeForId) {
             const parent = data.parentField;
             const subControlLinks = data.subControlLinks;
 
-            // Only render if it matches the CURRENT field we are processing (Optional, removes duplicates)
-            // If you want to show the WHOLE map every time, remove this `if` block.
-            // if (parent.FieldName !== field.FieldName) return; 
+            // [FIX] Uncommented this check. 
+            // We only want to render the controls for the specific field currently being built.
+            if (parent.FieldName !== field.FieldName) return; 
 
             const regItem = document.createElement('div');
             regItem.className = 'reg-item';
@@ -143,10 +145,8 @@ function createComplyField(field, capturedData, sanitizeForId) {
             
             const percentage = (totalSubControls > 0) ? (matchedSubControls / totalSubControls) * 100 : 0;
             const displayPercentage = (totalSubControls === 0) ? 100 : percentage;
-            const progressText = (totalSubControls === 0) ? "N/A" : `${matchedSubControls} / ${totalSubControls}`;
             const progressColor = (displayPercentage >= 100) ? 'var(--success-color, #22c55e)' : 'var(--primary-color, #2563eb)';
 
-            // Generate ID
             const safeIdBase = (parent.Control || parent.FieldName).replace(/[^a-zA-Z0-9_]/g, '-');
             const contentId = `content-${safeIdBase}`;
 
@@ -171,7 +171,7 @@ function createComplyField(field, capturedData, sanitizeForId) {
             const subControlList = document.createElement('ul');
             subControlList.className = 'sub-control-list';
             subControlList.id = contentId;
-            subControlList.style.display = 'none'; // Hidden by default
+            subControlList.style.display = 'none'; 
             subControlList.style.padding = '0';
 
             if (subControlLinks.size === 0) {
@@ -185,6 +185,10 @@ function createComplyField(field, capturedData, sanitizeForId) {
 					subItem.style.listStyle = 'none';
 					subItem.style.padding = '10px';
 					subItem.style.borderTop = '1px solid #eee';
+
+                    // [FIX] Add the attributes required by captureCurrentValues in HTML
+                    subItem.setAttribute('data-comply-field', sanitizeForId(parent.FieldName));
+                    subItem.control_number = sanitizeForId(subData.subControl.control_number);
 				
 					// 1. Create Title
 					const titleDiv = document.createElement('div');
@@ -193,29 +197,23 @@ function createComplyField(field, capturedData, sanitizeForId) {
 					
 					// 2. Create Dropdown
 					const select = document.createElement('select');
-					select.style.margin = '5px 0 10px 0'; // Add some spacing
+					select.style.margin = '5px 0 10px 0'; 
 					select.style.padding = '4px';
 					select.style.borderRadius = '4px';
 					select.style.border = '1px solid #ccc';
 					
-					
             		select.name = sanitizeForId(subData.subControl.control_number) + '_complystatus';
-
 					
 					const options = ['Select', 'N/A', 'Met', 'Not Met', 'Partially Met'];
 					options.forEach((optionText) => {
 						const option = document.createElement('option');
 						option.value = optionText;
-						// Display "Select status..." if value is empty, otherwise show value
 						option.textContent = optionText;
-						
 						select.appendChild(option);
 					});
 				
-					// Optional: Add event listener to save changes back to your data object locally
 					select.addEventListener('change', (e) => {
 						subData.subControl.control_status = e.target.value;
-						// console.log(`Status updated for ${key}: ${e.target.value}`);
 					});
 				
 					// 3. Create Evidence/Description
@@ -223,12 +221,12 @@ function createComplyField(field, capturedData, sanitizeForId) {
 					evidenceDiv.className = 'auto-generated-label';
 					evidenceDiv.innerHTML = escapeHtml(subData.subControl.control_evidence);
 				
-					// 4. Append specific elements to the subItem in order
+					// 4. Append
 					subItem.appendChild(titleDiv);
-					subItem.appendChild(select); // The Dropdown goes here
+					subItem.appendChild(select); 
 					subItem.appendChild(evidenceDiv);
 					
-					// 5. Handle Implementations (Existing Logic)
+					// 5. Handle Implementations
 					if (subData.children.size > 0) {
 						const impList = document.createElement('ul');
 						impList.className = 'imp-list';
@@ -266,7 +264,6 @@ function createComplyField(field, capturedData, sanitizeForId) {
 						});
 						subItem.appendChild(impList);
 					} else {
-						// Create the "No linked items" message as a div and append it
 						const noItemsDiv = document.createElement('div');
 						noItemsDiv.style.color = '#999';
 						noItemsDiv.style.fontStyle = 'italic';
@@ -287,30 +284,18 @@ function createComplyField(field, capturedData, sanitizeForId) {
 
     // --- UTILITIES ---
     function hasTrustDimension(field, dimension) {
-        // Safety check
         if (!field || !field.TrustDimension) return false;
-
-        // 1. First, it MUST match the dimension argument passed (e.g., 'Requirement')
         const matchesMandatory = field.TrustDimension.includes(dimension);
  
-        // 2. "Comply" Bypass Clause
-        // If the field is marked with "Comply", we accept it immediately
-        // and skip the selectedTrustDimension filter check.
         if (field.TrustDimension.includes("Comply")) {
             return true;
         }
                
-        // If it's not the right type (e.g. not a Requirement), fail immediately
         if (!matchesMandatory) return false;
 
-        // 3. Filter Logic (The "Other Clause")
-        // Only evaluates if "Comply" was NOT present.
-        // Checks if a filter is selected (not null/empty) and enforces the match.
         if (selectedTrustDimension) {
              return field.TrustDimension.includes(selectedTrustDimension);
         }
-
-        // 4. If no filter is selected, allow it (since matchesMandatory was true)
         return true;
     }
 
