@@ -206,36 +206,42 @@
               "control_number": "[Art-13][Par-1]",
               "control_description": "Ensure the design of high-risk AI systems allows users to interpret outputs and use the system appropriately.",
               "control_objective": "To enable safe and effective use of the AI system by ensuring user comprehension.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[Art-13][Par-2]",
               "control_description": "Provide clear, complete, and accessible instructions for use with all high-risk AI systems.",
               "control_objective": "To ensure users have the necessary information to operate the AI system correctly and safely.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[Art-13][Par-3a]",
               "control_description": "Include the identity and contact details of the provider and their authorized representative in the instructions for use.",
-              "control_objective": "To establish clear lines of communication and accountability for the AI system.",
+              "control_objective": "To establish clear lines of communication and accountability for the AI "control_status": "",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[Art-13][Par-3b]",
               "control_description": "Detail the AI systems characteristics, capabilities, limitations, intended purpose, accuracy, robustness, cybersecurity, and performance metrics in the instructions for use.",
               "control_objective": "To provide a comprehensive understanding of the AI system's operational parameters and performance expectations.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[Art-13][Par-3c-e-f]",
               "control_description": "Specify the necessary hardware resources, expected lifetime, maintenance, and pre-determined changes for operating the AI system in the instructions for use.",
               "control_objective": "To ensure users have the required infrastructure and information to run and maintain the AI system effectively over its lifecycle.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[Art-13][Par-3d]",
               "control_description": "Detail the human oversight measures from Article 14, including technical aids for interpreting system outputs, in the instructions for use.",
               "control_objective": "To facilitate effective human oversight and intervention in the AI system's operation.",
+              "control_status": "",
               "control_evidence": ""
             }
           ]
@@ -782,24 +788,28 @@
               "control_number": "[A.8.2]",
               "control_description": "System documentation and information for users: The organization shall determine and provide the necessary information to users of the AI system.",
               "control_objective": "The organization shall determine and provide the necessary information to users of the AI system.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[A.8.3]",
               "control_description": "External reporting: The organization shall provide capabilities for interested parties to report adverse impacts of the AI system.",
               "control_objective": "The organization shall provide capabilities for interested parties to report adverse impacts of the AI system.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[A.8.4]",
               "control_description": "Communication of incidents: The organization shall determine and document a plan for communicating incidents to users of the AI system.",
               "control_objective": "The organization shall determine and document a plan for communicating incidents to users of the AI system.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[A.8.5]",
               "control_description": "Information for interested parties: The organization shall determine and document their obligations to reporting information about the AI system to interested parties.",
               "control_objective": "The organization shall determine and document their obligations to reporting information about the AI system to interested parties.",
+              "control_status": "",
               "control_evidence": ""
             }
           ]
@@ -847,18 +857,21 @@
               "control_number": "[A.10.2]",
               "control_description": "Allocating responsibilities: The organization shall ensure that responsibilities within their AI system life cycle are allocated between the organization, its partners, suppliers, customers and third parties.",
               "control_objective": "The organization shall ensure that responsibilities within their AI system life cycle are allocated between the organization, its partners, suppliers, customers and third parties.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[A.10.3]",
               "control_description": "Suppliers: The organization shall establish a process to ensure that its usage of services, products or materials provided by suppliers aligns with the organization’s approach to the responsible development and use of AI systems.",
               "control_objective": "The organization shall establish a process to ensure that its usage of services, products or materials provided by suppliers aligns with the organization’s approach to the responsible development and use of AI systems.",
+              "control_status": "",
               "control_evidence": ""
             },
             {
               "control_number": "[A.10.4]",
               "control_description": "Customers: The organization shall ensure that its responsible approach to the development and use of AI systems considers their customer expectations and needs.",
               "control_objective": "The organization shall ensure that its responsible approach to the development and use of AI systems considers their customer expectations and needs.",
+              "control_status": "",
               "control_evidence": ""
             }
           ]
@@ -1381,30 +1394,35 @@
               "control_number": "[Art-15-DATA-INT-01]",
               "control_description": "Implement and enforce Role-Based Access Control (RBAC) with the principle of least privilege on all source data repositories to restrict write and modify permissions to only authorized personnel.",
               "control_objective": "To prevent unauthorized users from introducing malicious or erroneous content at the source, directly mitigating risks of intentional Data Poisoning.",
+              "control_status": "",
               "control_evidence": "A documented list of user roles and their assigned permissions for the data repository; screenshots or configuration exports from the system's access control panel demonstrating the principle of least privilege; and records of periodic access reviews."
             },
             {
               "control_number": "[Art-15-DATA-INT-02]",
               "control_description": "Enforce mandatory version control with detailed audit logs on all source data repositories. All changes, additions, and deletions must be attributable to a specific user and timestamp.",
               "control_objective": "To ensure a complete, auditable history of all changes to the knowledge base's source data, enabling rapid detection of unauthorized modifications and rollback to a last-known-good state.",
+              "control_status": "",
               "control_evidence": "Screenshots of the version control system's settings demonstrating that versioning is active, and a sample commit/change history log showing a clear attribution of changes to a specific user, timestamp, and a description of the change."
             },
             {
               "control_number": "[Art-15-DATA-INT-03]",
               "control_description": "Establish a mandatory content approval workflow for the addition or significant modification of documents in designated high-sensitivity data sources before they are ingested by the AI system.",
               "control_objective": "To create a formal human-in-the-loop verification gate that ensures the authenticity and appropriateness of critical information, providing a strong defense against both deliberate Data Poisoning and unintentional quality issues.",
+              "control_status": "",
               "control_evidence": "Documentation of the content approval process including designated approvers, and sample evidence such as a completed Pull Request with mandatory reviewer approvals, or a change management ticket (e.g., in Jira) with a logged approval signature."
             },
             {
               "control_number": "[Art-15-DATA-INT-04]",
               "control_description": "Ensure every data chunk processed and stored in the vector database retains immutable metadata linking it directly to its source document, version, and author.",
               "control_objective": "To maintain full data provenance, enabling users and administrators to verify the source of any information provided by the AI and to facilitate the targeted removal of compromised data if a poisoning incident is discovered.",
+              "control_status": "",
               "control_evidence": "A sample query output from the vector database displaying a data chunk alongside its associated metadata fields (e.g., source_document_name, version_id, ingestion_timestamp), and a code snippet from the data ingestion pipeline explicitly demonstrating how this metadata is extracted and attached."
             },
             {
               "control_number": "[Art-15-DATA-INT-06]",
               "control_description": "The RAG Orchestrator must be configured to include citations or direct links back to the source documents (leveraging the metadata from control DATA-INT-04) within every response generated by the LLM.",
               "control_objective": "To empower users to verify the AI's claims and sources, thereby reducing the impact of successful data poisoning by making false information easily identifiable and auditable.",
+              "control_status": "",
               "control_evidence": "Screenshots or logs of the final user-facing response clearly showing embedded citations or links. A code snippet from the RAG Orchestrator demonstrating how the source metadata from the retrieved chunks is formatted and appended to the final LLM response."
             }
           ]
@@ -1761,24 +1779,28 @@
               "control_number": "[Art-15-01]",
               "control_description": "Implement Principle of Least Privilege (PoLP) for all ingestion service accounts, restricting access only to specific required datasets/tables rather than entire databases or file servers.",
               "control_objective": "To limit the blast radius if ingestion credentials are compromised, ensuring they cannot access data outside their specific scope.",
+              "control_status": "",
               "control_evidence": "Access control lists (ACLs) or IAM policy documents for the service account showing granular read-only permissions restricted to specific resources."
             },
             {
               "control_number": "[Art-15-02]",
               "control_description": "Utilize short-lived, dynamically generated credentials (e.g., IAM roles, HashiCorp Vault dynamic secrets) for ingestion jobs instead of static, long-lived API keys or passwords.",
               "control_objective": "To reduce the window of opportunity for an attacker to use stolen credentials by ensuring they expire automatically.",
+              "control_status": "",
               "control_evidence": "Configuration of the secrets management system or orchestrator showing dynamic credential rotation policies (e.g., every 60 minutes)."
             },
             {
               "control_number": "[Art-15-03]",
               "control_description": "securely store and manage all connector credentials using a dedicated enterprise secrets manager, ensuring they are never hardcoded in pipeline code or configuration files.",
               "control_objective": "To prevent accidental leakage of high-privilege credentials through source code repositories or insecure configuration files.",
+              "control_status": "",
               "control_evidence": "Code repository scans confirming no hardcoded secrets; pipeline configuration showing environmental variable injection from a secure vault."
             },
             {
               "control_number": "[Art-15-04]",
               "control_description": "Implement specialized monitoring and anomaly detection for ingestion service accounts to flag unusual access patterns (e.g., reading data outside normal batch windows or unusual volumes).",
               "control_objective": "To rapidly detect active abuse of legitimate ingestion credentials.",
+              "control_status": "",
               "control_evidence": "SIEM alert configuration rules specifically targeting the UUID/name of the ingestion service accounts."
             }
           ]
@@ -1806,12 +1828,14 @@
               "control_number": "[LLM04][3]",
               "control_description": "Enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe.",
               "control_objective": "To control the rate of requests and prevent overwhelming the LLM with a high volume of concurrent requests.",
+              "control_status": "",
               "control_evidence": "Screenshots of the API gateway configuration, relevant code snippets defining the rate limits, or test results showing that requests are blocked after the limit is exceeded."
             },
             {
               "control_number": "[LLM04][4]",
               "control_description": "Limit the number of queued actions and the number of total actions in a system reacting to LLM responses.",
               "control_objective": "To prevent the accumulation of excessive workload and ensure that the system can effectively process LLM responses without becoming overwhelmed.",
+              "control_status": "",
               "control_evidence": "Configuration files from the task queue system (e.g., Celery, RabbitMQ), application code setting queue size or concurrency limits, or architectural diagrams illustrating these constraints."
             }
           ]
@@ -1828,12 +1852,14 @@
               "control_number": "[LLM05][2]",
               "control_description": "Only use reputable plugins that have been tested for application requirements.",
               "control_objective": "Minimise plugin-related vulnerabilities.",
+              "control_status": "",
               "control_evidence": "A documented plugin vetting process, test results from plugin security assessments, and a list of approved plugins."
             },
             {
               "control_number": "[LLM05][4]",
               "control_description": "Maintain an up-to-date inventory using a Software Bill of Materials (SBOM).",
               "control_objective": "Track and manage components.",
+              "control_status": "",
               "control_evidence": "The current SBOM document for the application, evidence of a process for regularly updating the SBOM, and change logs."
             }
           ]
@@ -1861,24 +1887,28 @@
               "control_number": "[TRC-LOG-01.1]",
               "control_description": "Automated Infrastructure Tracking: Configure the underlying computer systems to automatically record major lifecycle events (like 'New Model Version Deployed' or 'System Shut Down') so we don't have to rely on engineers manually logging these critical changes.",
               "control_objective": "To guarantee we have a perfect timeline of when the system was turned on, updated, or turned off, as required by law.",
+              "control_status": "",
               "control_evidence": "System settings showing that deployment actions automatically trigger a permanent record."
             },
             {
               "control_number": "[TRC-LOG-01.2]",
               "control_description": "Detailed Step-by-Step Activity Recording: Ensure the AI creates a detailed record for every single answer it gives. This must separately record: 1) what the user asked, 2) exactly which documents the AI read to find the answer, 3) any safety checks it passed, and 4) the final answer it produced.",
               "control_objective": "To ensure that if an inappropriate answer is given, we can look back and see exactly *why* the AI decided to say it.",
+              "control_status": "",
               "control_evidence": "Sample records showing the full 'chain of thought' for a single user request, from input to final output."
             },
             {
               "control_number": "[TRC-LOG-01.3]",
               "control_description": "Mandatory Standard Recording Template: Force all developers to use a standardized digital template when creating records. This template must automatically reject any record that is missing essential context (like the User ID, exact time, or which AI model version was used).",
               "control_objective": "To prevent useless, incomplete records that cannot be linked back to a specific user or event during an audit.",
+              "control_status": "",
               "control_evidence": "Test results showing the system refusing to save a record if a mandatory field (like 'User_ID') is missing."
             },
             {
               "control_number": "[TRC-LOG-01.4]",
               "control_description": "Tamper-Proof Long-Term Storage: Save all these records in a secure digital vault set to 'Read-Only.' It must be technically impossible for anyone (including our own administrators) to edit or delete these records until the legally required retention period has ended.",
               "control_objective": "To ensure evidence cannot be altered or destroyed if we are investigated in the future.",
+              "control_status": "",
               "control_evidence": "Cloud storage settings showing 'Object Lock' (cannot be deleted) is active for the required number of years."
             }
           ]
@@ -1895,24 +1925,28 @@
               "control_number": "[RAG-COMP-01.1]",
               "control_description": "Mandatory Whitelist-based Prompt Classification Module: The RAG Orchestrator must include a mandatory pre-processing step that compares every incoming user prompt against the 'Permitted User Prompt Categories Whitelist Definition'. Only prompts classified into an explicitly permitted category may proceed. Unclassified or out-of-scope prompts must be rejected.",
               "control_objective": "To technically enforce the AI system's intended function and prevent unreliable or non-compliant outputs caused by unauthorized use-cases, thereby achieving the objectives defined in the Whitelist field.",
+              "control_status": "",
               "control_evidence": "Code review of the prompt classification module's logic; configuration files linking the module to the defined Whitelist terms/examples; and logs demonstrating successful rejection of out-of-category queries."
             },
             {
               "control_number": "[RAG-COMP-01.2]",
               "control_description": "Prohibited Uses Blacklist Screening Module: The RAG Orchestrator must implement a dedicated screening module that inspects user queries for keywords/phrases defined in the 'Prohibited Uses Blacklist Definition' field. Any prompt containing a blacklisted phrase must be immediately rejected and flagged.",
               "control_objective": "To create an absolute technical barrier against usage patterns (like manipulative or discriminatory queries) that constitute unacceptable risks under the EU AI Act's prohibited practices, thereby implementing the Blacklist field.",
+              "control_status": "",
               "control_evidence": "A documented list of all Blacklist phrases/categories and the screening logic (e.g., using RegEx, a specialized LLM call, or a keyword filter); and audit logs showing flagged attempts to use prohibited phrases with corresponding user/session data."
             },
             {
               "control_number": "[RAG-COMP-01.3]",
               "control_description": "Whitelist/Blacklist Configuration Management: The fields defining the Permitted Whitelist and Prohibited Blacklist must be stored in a centralized, version-controlled configuration system. Any changes must undergo a formal change management process, including a legal/compliance review, before deployment to the orchestrator.",
               "control_objective": "To ensure that the intended use definitions are consistently applied across all environments (development, testing, production) and that any modification preserves regulatory compliance.",
+              "control_status": "",
               "control_evidence": "Documentation of the configuration file storage location, version control logs showing approval for changes to the Whitelist/Blacklist content, and deployment pipeline steps that check for compliance review sign-off."
             },
             {
               "control_number": "[RAG-COMP-01.4]",
               "control_description": "Prohibited Use Audit and Alerting: A monitoring component must track and generate high-priority security alerts for any attempted use of blacklisted key phrases. These alerts must be routed to the risk management team for immediate investigation and follow-up (e.g., user retraining or access revocation).",
               "control_objective": "To create a robust audit trail and incident response workflow for all attempted prohibited uses, ensuring accountability and continuous monitoring required by a high-risk system.",
+              "control_status": "",
               "control_evidence": "Sample monitoring dashboard screenshot showing a 'Prohibited Use Attempt' alert; the documented incident response plan for such alerts; and a record of follow-up actions taken."
             }
           ]
@@ -1929,24 +1963,28 @@
               "control_number": "[RAG-HO-01.1]",
               "control_description": "Mandatory Post-Processing Decision Detection Module: The RAG Orchestrator must include a mandatory post-processing module that scans the LLM's final output for all key phrases defined in the 'Decision-Making Language Requiring Intervention' field before the response is presented to the user.",
               "control_objective": "To create a final technical gate that explicitly identifies high-impact language, ensuring that the system's output never constitutes an unreviewed, autonomous decision, thereby enabling the first step of human oversight.",
+              "control_status": "",
               "control_evidence": "Code review of the post-processing module; documentation of the detection logic (e.g., keyword/phrase matching, semantic analysis); and configuration files linking the module directly to the defined Intervention phrases."
             },
             {
               "control_number": "[RAG-HO-01.2]",
               "control_description": "Stop/Override Mechanism for Detected Decision Language: Upon detection of a decision-making phrase, the orchestrator must flag the response and engage a specific Human-in-the-Loop (HIL) workflow. This workflow must include clear, immediate options for the human overseer to **stop** the system's output from reaching the end-user or to **override/edit** the suggested response.",
               "control_objective": "To provide the human overseer with the ultimate authority and technical tools (the 'stop button') to intervene and prevent or minimize risk to fundamental rights, as mandated by the Human Oversight dimension.",
+              "control_status": "",
               "control_evidence": "Screenshots of the HIL interface demonstrating the detected phrase, the alert severity, and the functional 'Stop' and 'Override' controls; logs showing a record of a human intervention event."
             },
             {
               "control_number": "[RAG-HO-01.3]",
               "control_description": "Contextual Alerting to the End-User/Deployer: If a decision-making phrase is detected but the response is still presented (e.g., awaiting HIL review), the User Interface must display a clear, context-aware alert to the end-user/deployer that the output is a machine-generated recommendation requiring human verification and should not be acted upon autonomously.",
               "control_objective": "To mitigate the risk of 'automation bias' by reinforcing to the user that the AI is only an advisory tool, supporting the human overseer's role in decision-making.",
+              "control_status": "",
               "control_evidence": "API documentation showing the response field that triggers the UI alert; and a screenshot of the front-end application displaying the 'Human Verification Required' message alongside an LLM response containing decision language."
             },
             {
               "control_number": "[RAG-HO-01.4]",
               "control_description": "Logging and Traceability of Interventions: The orchestrator must automatically and irrevocably log every instance where decision-making language was flagged, the subsequent human action (override, stop, or approval), and the identity of the human overseer. This log must be maintained for a minimum of one year.",
               "control_objective": "To ensure full traceability and accountability of the system's operation and the human's role in the decision-making chain, facilitating post-market monitoring and regulatory audits.",
+              "control_status": "",
               "control_evidence": "Sample log data showing all fields (timestamp, detected phrase, human overseer ID, final action taken); and documentation of the log retention policy."
             }
           ]
@@ -1974,24 +2012,28 @@
               "control_number": "LLM05.01",
               "control_description": "Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
               "control_objective": "To ensure that only verified and approved components are used in the AI system, reducing the risk of introducing malicious elements from public sources.",
+              "control_status": "",
               "control_evidence": "Documentation of the internal repository setup (e.g., Artifactory, private Hugging Face hub). Policy documents mandating its use. Logs showing successful mirroring and vetting processes."
             },
             {
               "control_number": "LLM05.02",
               "control_description": "Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
               "control_objective": "To detect and block compromised or vulnerable components before they can be used in the development or deployment pipeline.",
+              "control_status": "",
               "control_evidence": "Configuration of scanning tools (e.g., ClamAV for malware, specialised model scanners like Picklescan). Reports from these tools showing scan results for imported assets."
             },
             {
               "control_number": "LLM05.03",
               "control_description": "Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
               "control_objective": "To prevent the silent substitution of legitimate components with malicious ones by ensuring only specifically approved, immutable versions are used.",
+              "control_status": "",
               "control_evidence": "Requirement files (e.g., 'requirements.txt', 'poetry.lock') with pinned versions and hashes. CI/CD pipeline scripts that verify these hashes before build or deployment."
             },
             {
               "control_number": "LLM05.04",
               "control_description": "Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
               "control_objective": "To evaluate the security posture of suppliers and reduce the risk of relying on poorly maintained or compromised upstream projects.",
+              "control_status": "",
               "control_evidence": "Vendor risk assessment reports, records of due diligence checks on open-source project maintainers (e.g., activity, community trust), and a regularly updated approved vendor list."
             }
           ]
@@ -2019,12 +2061,14 @@
               "control_number": "[LLM01][1]",
               "control_description": "All user inputs within the UI must be validated to prevent the injection of malicious code.",
               "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system.",
+              "control_status": "",
               "control_evidence": "Unit test results demonstrating the rejection of malicious payloads (e.g., XSS, command injection strings)."
             },
             {
               "control_number": "[LLM01][2]",
               "control_description": "Implement input sanitization techniques to remove harmful characters from user inputs.",
               "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI.",
+              "control_status": "",
               "control_evidence": "Code snippets showing the use of a sanitization library or function. Test cases with logs that display the 'before' and 'after' state of user inputs containing harmful characters."
             }
           ]
@@ -3167,108 +3211,126 @@
               "control_number": "PROTE.02",
               "control_description": "Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
               "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries.",
+              "control_status": "",
               "control_evidence": "Configuration files for development tools, orchestrators (e.g., Kubernetes), and container runtimes demonstrating the use of TLS-encrypted connections (e.g., registry URLs starting with 'https://')."
             },
             {
               "control_number": "PROTE.03",
               "control_description": "Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
               "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images.",
+              "control_status": "",
               "control_evidence": "Configuration of the automated pruning job (e.g., a CronJob manifest) and execution logs showing that vulnerable or old images have been successfully removed."
             },
             {
               "control_number": "PROTE.04",
               "control_description": "Enforce read/write access control for registries containing proprietary or sensitive container images.",
               "control_objective": "To restrict unauthorised access and modifications to container images stored in registries.",
+              "control_status": "",
               "control_evidence": "Screenshots or configuration exports of the registry's Role-Based Access Control (RBAC) settings, showing defined user roles and their permissions for specific repositories."
             },
             {
               "control_number": "PROTE.05",
               "control_description": "Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
               "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster.",
+              "control_status": "",
               "control_evidence": "Identity Provider (IdP) configuration showing MFA is enforced for the cluster administrator group, and the orchestrator's authentication configuration file pointing to the SSO provider (e.g., OIDC or SAML settings)."
             },
             {
               "control_number": "PROTE.06",
               "control_description": "Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
               "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security.",
+              "control_status": "",
               "control_evidence": "Copies of network policy manifests (e.g., Kubernetes 'NetworkPolicy' YAML files) or firewall rules that define and enforce network segmentation."
             },
             {
               "control_number": "PROTE.07",
               "control_description": "Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
               "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs.",
+              "control_status": "",
               "control_evidence": "Orchestrator deployment configurations (e.g., YAML files) showing the use of node selectors, taints, and tolerations to restrict pods to specific nodes."
             },
             {
               "control_number": "PROTE.12",
               "control_description": "Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
               "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments.",
+              "control_status": "",
               "control_evidence": "Patch management reports, host configuration files showing a minimal OS install (e.g., CIS hardened image), disabled services, and read-only file system settings. A Software Bill of Materials (SBOM) for the host OS."
             },
             {
               "control_number": "PROTE.13",
               "control_description": "Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
               "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks.",
+              "control_status": "",
               "control_evidence": "Host inventory documentation or orchestrator node labels and taints that dedicate specific hosts exclusively to containerised workloads."
             },
             {
               "control_number": "PROTE.14",
               "control_description": "Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
               "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data.",
+              "control_status": "",
               "control_evidence": "Pod security policies or admission controller configurations that enforce restrictions on hostPath volumes. Deployment manifests showing the container 'securityContext' is configured with minimal permissions."
             },
             {
               "control_number": "PROTE.16",
               "control_description": "Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
               "control_objective": "To safeguard the environment from untrusted or potentially harmful container images.",
+              "control_status": "",
               "control_evidence": "Configuration of an admission controller (e.g., OPA Gatekeeper, Kyverno) that implements a policy to only allow images from an approved list of registries."
             },
             {
               "control_number": "PROTE.17",
               "control_description": "Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
               "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads.",
+              "control_status": "",
               "control_evidence": "Network policy manifests (e.g., Kubernetes 'NetworkPolicy') or service mesh configurations (e.g., Istio 'AuthorizationPolicy') that define granular ingress and egress rules for pods."
             },
             {
               "control_number": "PROTE.18",
               "control_description": "Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
               "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment.",
+              "control_status": "",
               "control_evidence": "Deployment manifests showing the container's root file system is set to read-only ('readOnlyRootFilesystem: true'). CI/CD pipeline configuration demonstrating that changes are deployed by building and shipping a new image."
             },
             {
               "control_number": "PROTE.19",
               "control_description": "Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
               "control_objective": "To ensure the secure operation of APIs",
+              "control_status": "",
               "control_evidence": "API gateway configuration files or screenshots demonstrating the enforcement of authentication, authorisation (e.g., access control lists), and rate-limiting policies."
             },
             {
               "control_number": "PROTE.20",
               "control_description": "Images should be configured to run as non-privileged users.",
               "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment.",
+              "control_status": "",
               "control_evidence": "The 'Dockerfile' showing the 'USER' instruction is used. The deployment manifest showing the 'securityContext' specifies 'runAsNonRoot: true' and a non-zero 'runAsUser' ID."
             },
             {
               "control_number": "PROTE.21",
               "control_description": "Secrets should be stored outside of images and provided dynamically at runtime as needed.",
               "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images.",
+              "control_status": "",
               "control_evidence": "Review of the 'Dockerfile' to confirm no secrets are present. Orchestrator manifests showing that secrets are mounted from a secure source (e.g., Kubernetes Secrets, HashiCorp Vault) at runtime."
             },
             {
               "control_number": "PROTE.22",
               "control_description": "Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
               "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation.",
+              "control_status": "",
               "control_evidence": "Host-level AppArmor or SELinux profiles. Container-level pod security standards or custom admission controller policies that restrict privileged operations."
             },
             {
               "control_number": "PROTE.23",
               "control_description": "Utilise built-in security features of your containerisation platform.",
               "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications.",
+              "control_status": "",
               "control_evidence": "A document or report detailing the enabled platform-specific security features, such as Kubernetes Pod Security Standards, Security Contexts, and RBAC configurations."
             },
             {
               "control_number": "PROTE.24",
               "control_description": "Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
               "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks.",
+              "control_status": "",
               "control_evidence": "Deployment manifests (e.g., Kubernetes pod spec) showing that CPU and memory requests and limits are defined for all containers."
             }
           ]
@@ -3341,24 +3403,28 @@
               "control_number": "[SC][1]",
               "control_description": "Independent Automatic Growth: Configure the main application and the AI model to grow (auto-scale) separately from one another. They use different types of computer resources, so one getting busy shouldn't force the other to grow unnecessarily.",
               "control_objective": "To ensure we don't waste expensive AI hardware just because basic website traffic is high, and vice versa.",
+              "control_status": "",
               "control_evidence": "Test results showing the main application adding more servers while the AI model stays stable (and vice versa) under different types of stress."
             },
             {
               "control_number": "[SC][2]",
               "control_description": "'Stateless' Servers: Design the system so individual servers don't remember specific user conversations locally. All conversation history must be stored in a central, shared location accessible by all servers.",
               "control_objective": "To ensure that if one server fails mid-conversation, another can instantly take over without the user noticing any interruption.",
+              "control_status": "",
               "control_evidence": "A test report demonstrating that users don't lose their chat history even if we deliberately turn off the specific server they were talking to."
             },
             {
               "control_number": "[SC][3]",
               "control_description": "Expandable Knowledge Base: Build the search database so it can handle more simultaneous questions by adding more servers to it (horizontal scaling), rather than just trying to make one single server more powerful.",
               "control_objective": "To prevent knowledge searches from becoming slow as more employees use the system at the same time.",
+              "control_status": "",
               "control_evidence": "Performance benchmarks showing that search speed remains fast even when the number of simultaneous users doubles."
             },
             {
               "control_number": "[SC][4]",
               "control_description": "Background Data Processing: Use a 'waiting line' (queue) system for adding new documents to the knowledge base. This ensures new information is processed in the background without clogging up the live system for active users.",
               "control_objective": "To ensure we can upload massive amounts of new company data without slowing down the chat service for people currently using it.",
+              "control_status": "",
               "control_evidence": "System diagrams showing the 'waiting line' that separates document uploads from the live user chat area."
             }
           ]
@@ -3375,24 +3441,28 @@
               "control_number": "[C.3.6][BP-10]",
               "control_description": "Implement a CI/CD pipeline that automates the testing and deployment of AI model updates. The pipeline must enforce a sequence of validation gates (e.g., unit tests, data validation, integration tests, and model performance evaluation on a holdout dataset) before allowing a deployment.",
               "control_objective": "To automate quality assurance, reduce human error, and ensure that only thoroughly vetted and validated model updates are promoted to production.",
+              "control_status": "",
               "control_evidence": "The CI/CD pipeline configuration file (e.g., `gitlab-ci.yml`, Jenkinsfile). Test reports and logs generated by the pipeline showing successful completion of all gates. A deployment manifest that references the specific model version and code commit hash deployed."
             },
             {
               "control_number": "[C.3.6][BP-11]",
               "control_description": "Utilize a version control system that atomically bundles code, data schemas/references, and model artifacts for each release. Every production deployment must be linked to a single, immutable commit hash or tag.",
               "control_objective": "To ensure complete reproducibility of any deployed AI system version and enable reliable, one-step rollbacks to a previous stable state.",
+              "control_status": "",
               "control_evidence": "Git repository history showing tagged releases. A `dvc.yaml` or similar data versioning file that pins data versions to specific code commits. Deployment logs explicitly stating the commit hash or tag being deployed for each release."
             },
             {
               "control_number": "[C.3.6][BP-13]",
               "control_description": "All data ingestion pipelines must include an automated data validation gate. This gate must verify data schemas, check for statistical drift in key features, and validate data quality against predefined rules before new data is accepted into the training dataset.",
               "control_objective": "To prevent model performance degradation caused by upstream data source changes, ensuring data integrity, consistency, and stability across model versions.",
+              "control_status": "",
               "control_evidence": "Configuration files for a data validation tool (e.g., Great Expectations, Pandera). CI/CD logs showing the successful execution of the data validation step. Generated data quality reports and drift analysis dashboards."
             },
             {
               "control_number": "[C.3.6][BP-14]",
               "control_description": "Any modification to the production dataset within the central data repository (as defined in control A.4.2, A.4.3), including additions, deletions, or schema changes, must be executed through a formal change management ticket that requires peer review and explicit approval from a designated data owner.",
               "control_objective": "To maintain the integrity, traceability, and quality of the training dataset by preventing unauthorized or undocumented changes that could adversely affect model performance and reliability.",
+              "control_status": "",
               "control_evidence": "Documented data change management procedure. Completed change request tickets (e.g., in Jira, ServiceNow) with approval history. Audit logs from the data repository or data pipeline tools confirming that changes were applied post-approval."
             }
           ]
@@ -3409,24 +3479,28 @@
               "control_number": "[STM][1]",
               "control_description": "Implement logging for all prompts sent to the RAG Orchestrator and the final augmented prompts sent to the LLM. All LLM responses must also be logged before being sent to the user. These logs must be streamed to a centralized SIEM for analysis.",
               "control_objective": "To create an auditable trail for detecting and investigating prompt injection attacks, data exfiltration attempts, and misuse of the generative model's capabilities.",
+              "control_status": "",
               "control_evidence": "SIEM dashboard showing ingested prompt and response logs. A documented alert rule that triggers on signatures of known prompt injection techniques (e.g., 'ignore previous instructions'). Code review demonstrating the logging calls within the RAG Orchestrator."
             },
             {
               "control_number": "[STM][2]",
               "control_description": "The Data Processing Pipeline must integrate a file scanning mechanism (e.g., ClamAV) to inspect all internal proprietary documents *before* text extraction. Any documents flagged as malicious must be quarantined, and an alert must be generated.",
               "control_objective": "To prevent the ingestion of weaponized documents that could exploit vulnerabilities in the processing pipeline or poison the permanent vector index with malicious content.",
+              "control_status": "",
               "control_evidence": "Logs from the file scanner showing files being successfully scanned or quarantined. An example security alert generated by a malicious test file. The pipeline's configuration file or code showing the integration of the scanning step."
             },
             {
               "control_number": "[STM][3]",
               "control_description": "Enable and centralize audit logs from the Permanent Index (vector database). Configure alerts for anomalous query patterns, such as an unusually high volume of retrieval requests from a single user or attempts to enumerate large portions of the index.",
               "control_objective": "To detect attempts to exfiltrate large amounts of proprietary data from the knowledge base or unauthorized attempts to access restricted data segments.",
+              "control_status": "",
               "control_evidence": "Vector database configuration file with auditing enabled. Screenshots of the SIEM dashboard displaying query logs. A documented alert rule that triggers on a high-frequency query threshold from a single source IP or user account."
             },
             {
               "control_number": "[STM][4]",
               "control_description": "Deploy network flow logging for traffic between all internal components (UI, RAG Orchestrator, LLM, Vector DB). Establish a baseline of normal traffic patterns and configure alerts for deviations, such as unexpected connections or unusually large data payloads.",
               "control_objective": "To detect potential lateral movement by an attacker or compromised components within the architecture, particularly to and from the isolated LLM.",
+              "control_status": "",
               "control_evidence": "VPC flow logs or network monitoring tool dashboards. A documented network traffic baseline report. An active alert that triggers when a service attempts to connect to another service on a non-standard port."
             }
           ]
