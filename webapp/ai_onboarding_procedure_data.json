@@ -3106,7 +3106,7 @@
         {
           "Role": "Approver",
           "TrustDimension": "Comply",
-          "FieldName": "",
+          "FieldName": "Compliance_Mapping",
           "FieldText": "",
           "FieldType": "comply"
         }

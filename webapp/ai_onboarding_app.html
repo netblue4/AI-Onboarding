@@ -325,15 +325,16 @@
 										}
 										// Handle comply fields
 										else if (fieldType === 'comply') {
-											// Restore all comply status selects by their name pattern
-											const allSelects = document.querySelectorAll('select[name$="_complystatus"]');
-											
-											allSelects.forEach((select) => {
-												const selectName = select.name;
-												if (capturedData[selectName]) {
-													select.value = capturedData[selectName];
+											const complyData = capturedData[field.FieldName];
+											if (complyData && typeof complyData === 'object') {
+												// Restore each comply status select
+												for (const [selectName, selectValue] of Object.entries(complyData)) {
+													const select = document.querySelector(`select[name="${selectName}"]`);
+													if (select) {
+														select.value = selectValue;
+													}
 												}
-											});
+											}
 										}
 										// Handle standard fields
 										else if (capturedData.hasOwnProperty(field.FieldName)) {
@@ -482,25 +483,29 @@
 								});
 							}
 						}
-						// Handle comply fields (with control_status and control_evidence)
-						// Replace the comply field handling section in captureCurrentValues()
-						// This is the corrected code for the 'comply' field type:
+						// Add this handler in the captureFieldValue function, alongside the other field type handlers
+						// Place it after the 'plan' field handler and before the final 'else' block
 						
+						// Handle comply fields
 						else if (fieldType === 'comply') {
-							// Query all select elements that have the comply status naming pattern
-							// The pattern is: sanitizeForId(control_number) + '_complystatus'
-							const allSelects = document.querySelectorAll('select[name$="_complystatus"]');
+							// Capture all comply status selects (they follow pattern: controlNumber_complystatus)
+							const complySelects = document.querySelectorAll('select[name$="_complystatus"]');
+							const complyData = {};
 							
-							allSelects.forEach((select) => {
+							complySelects.forEach((select) => {
 								const selectName = select.name; // e.g., "Art_15_01_complystatus"
 								
 								if (select.value && select.value !== 'Select') {
-									currentData[selectName] = select.value;
-								} else if (select) {
-									// Only delete if element exists but has no meaningful value
-									delete currentData[selectName];
+									complyData[selectName] = select.value;
 								}
 							});
+							
+							// Store all comply data under the field name as a nested object
+							if (Object.keys(complyData).length > 0) {
+								currentData[fieldName] = complyData;
+							} else {
+								delete currentData[fieldName];
+							}
 						}
 						// Handle standard input fields (TextBox, Dropdown, etc.)
 						else {
