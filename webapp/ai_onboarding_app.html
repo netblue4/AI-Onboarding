@@ -325,22 +325,13 @@
 										}
 										// Handle comply fields
 										else if (fieldType === 'comply') {
-											const subcontrols = document.querySelectorAll(`[data-comply-field="${sanitizedId}"]`);
+											// Restore all comply status selects by their name pattern
+											const allSelects = document.querySelectorAll('select[name$="_complystatus"]');
 											
-											subcontrols.forEach((subcontrol, index) => {
-												const statusKey = `${subcontrol.control_number}_complystatus'`;
-												const evidenceKey = `${field.FieldName}_subcontrol_${index}_evidence`;
-																								
-												
-												
-												const statusSelect = subcontrol.querySelector('select');
-												const evidenceInput = subcontrol.querySelector('textarea, input[type="text"]');
-												
-												if (statusSelect && capturedData[statusKey]) {
-													statusSelect.value = capturedData[statusKey];
-												}
-												if (evidenceInput && capturedData[evidenceKey]) {
-													evidenceInput.value = capturedData[evidenceKey];
+											allSelects.forEach((select) => {
+												const selectName = select.name;
+												if (capturedData[selectName]) {
+													select.value = capturedData[selectName];
 												}
 											});
 										}
@@ -492,22 +483,23 @@
 							}
 						}
 						// Handle comply fields (with control_status and control_evidence)
+						// Replace the comply field handling section in captureCurrentValues()
+						// This is the corrected code for the 'comply' field type:
+						
 						else if (fieldType === 'comply') {
-							// Query subcontrols by the field name marker
-							const subcontrols = document.querySelectorAll(`[data-comply-field="${sanitizedId}"]`);
+							// Query all select elements that have the comply status naming pattern
+							// The pattern is: sanitizeForId(control_number) + '_complystatus'
+							const allSelects = document.querySelectorAll('select[name$="_complystatus"]');
 							
-							subcontrols.forEach((subcontrol, index) => {
-                                const subcontrolKey = sanitizeForId(control.control_number);
-								const statusKey = `${subcontrolKey}_complystatus'`;
+							allSelects.forEach((select) => {
+								const selectName = select.name; // e.g., "Art_15_01_complystatus"
 								
-                                const select = document.querySelector(`select[name="${statusKey}"]`);
-								
-								if (select && select.value) {
-									currentData[statusKey] = select.value;
+								if (select.value && select.value !== 'Select') {
+									currentData[selectName] = select.value;
 								} else if (select) {
-									delete currentData[statusKey];
+									// Only delete if element exists but has no meaningful value
+									delete currentData[selectName];
 								}
-
 							});
 						}
 						// Handle standard input fields (TextBox, Dropdown, etc.)
