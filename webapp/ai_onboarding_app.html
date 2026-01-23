@@ -497,23 +497,17 @@
 							const subcontrols = document.querySelectorAll(`[data-comply-field="${sanitizedId}"]`);
 							
 							subcontrols.forEach((subcontrol, index) => {
-								const statusKey = `${subcontrol.control_number}_complystatus'`;
-								const evidenceKey = `${fieldName}_subcontrol_${index}_evidence`;
+                                const subcontrolKey = sanitizeForId(control.control_number);
+								const statusKey = `${subcontrolKey}_complystatus'`;
 								
-								const select = subcontrol.querySelector('select');
-								const evidenceInput = subcontrol.querySelector('textarea, input[type="text"]');
+                                const select = document.querySelector(`select[name="${statusKey}"]`);
 								
 								if (select && select.value) {
 									currentData[statusKey] = select.value;
 								} else if (select) {
 									delete currentData[statusKey];
 								}
-								
-								if (evidenceInput && evidenceInput.value) {
-									currentData[evidenceKey] = evidenceInput.value;
-								} else if (evidenceInput) {
-									delete currentData[evidenceKey];
-								}
+
 							});
 						}
 						// Handle standard input fields (TextBox, Dropdown, etc.)
