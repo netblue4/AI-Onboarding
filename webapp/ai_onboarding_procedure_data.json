@@ -69,7 +69,7 @@
         {
           "Control": "[Article 9]",
           "FieldType": "risk",
-          "Role": "Compliance,Approver",
+          "Role": "Compliance",
           "TrustDimension": "Compliance,Risk Management System,Requirement",
           "FieldName": "Inadequate or Ineffective Risk Management",
           "RiskDescription": "",
@@ -121,7 +121,7 @@
         {
           "Control": "[Article 10]",
           "FieldType": "risk",
-          "Role": "Compliance,Approver",
+          "Role": "Compliance",
           "TrustDimension": "Compliance,Data and Data Governance,Fairness and Bias,Requirement",
           "FieldName": "Poor Data Quality and Governance",
           "RiskDescription": "",
@@ -166,7 +166,7 @@
         {
           "Control": "[Article 12]",
           "FieldType": "risk",
-          "Role": "Compliance,Approver",
+          "Role": "Compliance",
           "TrustDimension": "Compliance,Record-Keeping,Requirement",
           "FieldName": "Inadequate Traceability and Record-Keeping",
           "RiskDescription": "Failure to implement technical capabilities for automatic event logging (logs) over the system's lifetime and failure to record specific, detailed information required for traceability, accountability, and post-market monitoring as mandated by Article 12.",
@@ -197,7 +197,7 @@
         {
           "Control": "[Article 13]",
           "FieldType": "risk",
-          "Role": "Compliance,Approver",
+          "Role": "Compliance",
           "TrustDimension": "Compliance,Transparency and Explainability,Requirement",
           "FieldName": "Lack of Transparency and Explainability to Users",
           "RiskDescription": "",
@@ -243,7 +243,7 @@
         {
           "Control": "[Article 14]",
           "FieldType": "risk",
-          "Role": "Compliance,Approver",
+          "Role": "Compliance",
           "TrustDimension": "Compliance,Human Oversight,Requirement",
           "FieldName": "Ineffective or Insufficient Human Oversight",
           "RiskDescription": "",
@@ -294,7 +294,7 @@
         {
           "Control": "[Article 15]",
           "FieldType": "risk",
-          "Role": "Compliance,Approver",
+          "Role": "Compliance",
           "TrustDimension": "Compliance,Cybersecurity and Resilience,Requirement",
           "FieldName": "Inadequate Accuracy, Robustness, and Cybersecurity",
           "RiskDescription": "",
@@ -339,7 +339,7 @@
 		{
 		  "Control": "[Article 26]",
 		  "FieldType": "risk",
-		  "Role": "Compliance,Approver",
+		  "Role": "Compliance",
 		  "TrustDimension": "Compliance,Accountability,Requirement",
 		  "FieldName": "Failure to Fulfill Deployer Obligations for High-Risk AI",
 		  "RiskDescription": "Risk of non-compliance with the specific obligations mandated for deployers of high-risk AI systems, including failure to use as instructed, ensure human oversight, maintain logs, or inform affected persons.",
@@ -447,7 +447,7 @@
         {
           "Control": "[Article 27],[Art-27][Par-1],[Art-27]",
           "FieldType": "risk",
-          "Role": "Compliance,Approver",
+          "Role": "Compliance",
           "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias,Requirement",
           "FieldName": "Failure to Assess Fundamental Rights Impact",
           "RiskDescription": "",
@@ -3060,7 +3060,7 @@
       ],
       "Fields": [
         {
-          "Role": "Compliance,Approver",
+          "Role": "Approver",
           "TrustDimension": "Comply",
           "FieldName": "",
           "FieldText": "",
