@@ -2762,7 +2762,7 @@
         {
           "Control": "[Art-12][Par-3],[A.6.2.4]",
           "FieldType": "plan",
-          "Role": "Tester,Approver",
+          "Role": "Tester",
           "TrustDimension": "Compliance, Record-Keeping",
           "FieldName": "End-to-End Traceability & Immutable Log Verification",
           "PlanObjective": "To validate that all mandatory operational events (defined in Define phase) successfully generate log entries that strictly adhere to the required metadata schema (TRC-LOG-01.3) and are correctly routed to explicitly defined immutable storage (TRC-LOG-01.4).",
