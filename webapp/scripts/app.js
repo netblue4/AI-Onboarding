@@ -1,5 +1,5 @@
 // ============================================
-// scripts/app.js (FIXED)
+// scripts/app.js (FIXED - Readonly innerHTML)
 // ============================================
 /**
  * Main application class - orchestrates initialization
@@ -90,20 +90,66 @@ class App {
             console.log('Ready for user interaction');
 
         } catch (error) {
-            //console.error('=== App Initialization Failed ===');
-           // console.error('Error details:', error);
+            console.error('=== App Initialization Failed ===');
+            console.error('Error details:', error);
+            console.error('Error stack:', error.stack);
             
+            this.displayErrorMessage(error);
+        }
+    }
+
+    /**
+     * Display error message safely without using innerHTML
+     * @param {Error} error - The error object
+     */
+    displayErrorMessage(error) {
+        try {
             const contentArea = document.getElementById('content-area');
-            if (contentArea) {
-                contentArea.innerHTML = `
-                    <div class="empty-state">
-                        <h2>Initialization Error</h2>
-                        <p>Failed to initialize the application.</p>
-                        <p><strong>Error:</strong> ${error.message}</p>
-                        <p>Check the browser console for more details.</p>
-                    </div>
-                `;
+            if (!contentArea) {
+                console.error('content-area element not found');
+                return;
             }
+
+            // Clear existing content
+            while (contentArea.firstChild) {
+                contentArea.removeChild(contentArea.firstChild);
+            }
+
+            // Create error container
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'empty-state';
+
+            // Create title
+            const title = document.createElement('h2');
+            title.textContent = 'Initialization Error';
+            errorDiv.appendChild(title);
+
+            // Create message
+            const message = document.createElement('p');
+            message.textContent = 'Failed to initialize the application.';
+            errorDiv.appendChild(message);
+
+            // Create error details
+            const errorDetail = document.createElement('p');
+            const errorLabel = document.createElement('strong');
+            errorLabel.textContent = 'Error: ';
+            errorDetail.appendChild(errorLabel);
+            const errorText = document.createTextNode(error.message);
+            errorDetail.appendChild(errorText);
+            errorDiv.appendChild(errorDetail);
+
+            // Create console tip
+            const tip = document.createElement('p');
+            tip.textContent = 'Check the browser console for more details.';
+            errorDiv.appendChild(tip);
+
+            // Add to page
+            contentArea.appendChild(errorDiv);
+
+            console.error('Error message displayed in UI');
+        } catch (displayError) {
+            console.error('Failed to display error message:', displayError);
+            alert('Application initialization failed. Check console for details.');
         }
     }
 }
