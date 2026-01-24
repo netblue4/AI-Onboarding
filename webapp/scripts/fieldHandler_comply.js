@@ -26,15 +26,32 @@ function createComplyField(field, capturedData, sanitizeForId) {
 function buildComplianceMap(data) {
     const requirementNodes = [];
     const implementationNodes = [];
-
-    // Flatten all fields and categorize them
     let allFields = [];
+
+    // --- FIX: Recursive helper to find fields nested inside fieldGroups ---
+    function collectFieldsRecursively(fields) {
+        if (!fields || !Array.isArray(fields)) return;
+
+        fields.forEach(field => {
+            // 1. Add the field itself to our flat list
+            allFields.push(field);
+
+            // 2. If this field contains children (like a fieldGroup), recurse down
+            if (field.Fields && Array.isArray(field.Fields)) {
+                collectFieldsRecursively(field.Fields);
+            }
+        });
+    }
+    // ---------------------------------------------------------------------
+
+    // Flatten all fields recursively
     Object.values(data).flat().forEach(step => {
-        if (step.Fields && Array.isArray(step.Fields)) {
-            allFields = allFields.concat(step.Fields);
+        if (step.Fields) {
+            collectFieldsRecursively(step.Fields);
         }
     });
 
+    // Categorize them (Logic remains the same)
     allFields.forEach(field => {
         if (hasRequirementTrustDimension(field)) {
             requirementNodes.push(field);
@@ -43,7 +60,7 @@ function buildComplianceMap(data) {
         }
     });
 
-    // Build the compliance map
+    // Build the compliance map (Logic remains the same)
     const complianceMap = new Map();
 
     requirementNodes.forEach(reqNode => {
@@ -73,6 +90,7 @@ function buildComplianceMap(data) {
 
     return complianceMap;
 }
+
 
 /**
  * Links implementation nodes to their corresponding requirement sub-controls
