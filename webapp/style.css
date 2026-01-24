@@ -961,3 +961,28 @@ button:hover {
 .role-progress-item.current .role-progress-text {
     color: #1e40af;
 }
+/* Make the header look clickable */
+.step-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none; /* Prevents text highlighting when clicking fast */
+}
+
+/* Add an arrow icon automatically */
+.step-header::after {
+    content: '▼'; /* Down arrow for open */
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when collapsed */
+.step-header.collapsed::after {
+    transform: rotate(-90deg); /* Pointing right for collapsed */
+}
+
+/* The class that actually hides the content */
+.step-content.collapsed {
+    display: none;
+}
