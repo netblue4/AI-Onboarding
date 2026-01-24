@@ -1,4 +1,4 @@
-    class ContentRenderer {
+class ContentRenderer {
     constructor(stateManager, templateManager, dataRestore) {
         this.state = stateManager;
         this.templateManager = templateManager;
@@ -33,7 +33,6 @@
         let hasContent = false;
 
         for (const [phaseName, stepsInPhase] of Object.entries(this.state.templateData)) {
-            console.log('Processing phase:', phaseName);
             
             const phaseDiv = document.createElement('div');
             phaseDiv.className = 'phase-section';
@@ -47,35 +46,31 @@
             stepsInPhase.forEach(step => {
                 const filteredStep = this.getDeepFilteredNode(step);
                 
-                if (!filteredStep) {
-                    return;
-                }
+                if (!filteredStep) return;
 
                 const stepDiv = document.createElement('div');
                 stepDiv.className = 'step-section';
 
-                // --- [NEW START] --- Setup Collapsible Header
+                // --- START COLLAPSIBLE SETUP ---
                 const stepTitle = document.createElement('div');
-                // Added 'step-header' class for your new CSS styling
                 stepTitle.className = 'step-title step-header'; 
                 stepTitle.innerHTML = `<span>${step.StepName || 'Procedure Step'}</span>`;
                 
-                // Create a container for the actual fields/objectives
                 const stepContent = document.createElement('div');
                 stepContent.className = 'step-content';
                 
-                // Optional: Uncomment next lines if you want them closed by default
-                // stepTitle.classList.add('collapsed');
-                // stepContent.classList.add('collapsed');
+                // [ACTIVE] Default to collapsed
+                stepTitle.classList.add('collapsed');
+                stepContent.classList.add('collapsed');
 
-                // Add click handler to toggle visibility
+                // Toggle on click
                 stepTitle.onclick = () => {
                     stepTitle.classList.toggle('collapsed');
                     stepContent.classList.toggle('collapsed');
                 };
 
                 stepDiv.appendChild(stepTitle);
-                // --- [NEW END] ---
+                // --- END COLLAPSIBLE SETUP ---
 
                 // Render objectives
                 if (step.Objectives && step.Objectives.length > 0) {
@@ -83,7 +78,6 @@
                     if (handler) {
                         try {
                             const objectiveElement = handler(step.Objectives);
-                            // [CHANGED] Append to stepContent, not stepDiv
                             stepContent.appendChild(objectiveElement);
                         } catch (error) {
                             console.error('Error rendering objectives:', error);
@@ -97,10 +91,7 @@
                         try {
                             const handler = getFieldHandler(field.FieldType);
                             
-                            if (!handler) {
-                                console.warn('No handler found for field type:', field.FieldType);
-                                return;
-                            }
+                            if (!handler) return;
                             
                             const fieldElement = handler(
                                 field, 
@@ -120,10 +111,8 @@
                                 const wrapper = document.createElement('div');
                                 wrapper.className = 'field-new';
                                 wrapper.appendChild(fieldElement);
-                                // [CHANGED] Append to stepContent
                                 stepContent.appendChild(wrapper);
                             } else {
-                                // [CHANGED] Append to stepContent
                                 stepContent.appendChild(fieldElement);
                             }
 
@@ -134,8 +123,7 @@
                     });
                 }
 
-                // [CHANGED] Check stepContent length instead of stepDiv
-                // Only add the content container if it actually has stuff inside
+                // Check if content exists before appending
                 if (stepContent.children.length > 0) {
                     stepDiv.appendChild(stepContent);
                     phaseDiv.appendChild(stepDiv);
@@ -154,7 +142,7 @@
         }
     }
 
-    // ... (Keep your getDeepFilteredNode method exactly as it was) ...
+    // (Helper function remains unchanged)
     getDeepFilteredNode(node) {
         if (!node) return null;
         const isRoleFilterActive = this.state.currentRole && this.state.currentRole !== "";
