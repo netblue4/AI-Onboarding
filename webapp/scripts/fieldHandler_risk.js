@@ -75,7 +75,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             //Control status
             const select = document.createElement('select');
             select.name = sanitizeForId(controlItem.control_number) + '_status';
-            const options = ['', 'Attestation', 'Not Implemented', 'Implemented: No evidence provided', 'Implemented: Evidence provided'];
+            const options = ['', 'Attestation', 'Not Applicable', 'Not Implemented', 'Implemented: No evidence provided', 'Implemented: Evidence provided'];
     		options.forEach((optionText, index) => {
 				const option = document.createElement('option');
 				option.value = optionText;
