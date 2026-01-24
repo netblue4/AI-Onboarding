@@ -1099,7 +1099,7 @@
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Required Standard Traceability Log Metadata Schema",
               "FieldText": "This defines the minimum required metadata fields that MUST be present in every single log entry defined above. This standardizes logs for automated auditing and post-market monitoring (Art 72).",
-              "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod/Test)/AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
+              "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod-Test) AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
             }
           ]
         }

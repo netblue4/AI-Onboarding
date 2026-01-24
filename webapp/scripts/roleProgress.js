@@ -43,6 +43,7 @@ class RoleProgressTracker {
                     <div class="role-progress-fill" style="width: 0%"></div>
                 </div>
                 <div class="role-progress-text">0%</div>
+                <div class="role-progress-number">0 of 0</div>
             `;
 
             container.appendChild(item);
@@ -67,6 +68,7 @@ class RoleProgressTracker {
                 progressItem.classList.add('completed');
                 progressItem.querySelector('.role-progress-fill').style.width = '100%';
                 progressItem.querySelector('.role-progress-text').textContent = 'N/A';
+                progressItem.querySelector('.role-progress-numbet').textContent = 'N/A';
                 return;
             }
 
@@ -82,6 +84,7 @@ class RoleProgressTracker {
             // Update progress bar
             progressItem.querySelector('.role-progress-fill').style.width = percentage + '%';
             progressItem.querySelector('.role-progress-text').textContent = percentage + '%';
+            progressItem.querySelector('.role-progress-number').textContent = completedFields + ' of ' + roleFields.length;
 
             // Update status class
             progressItem.classList.remove('completed', 'in-progress', 'current');
