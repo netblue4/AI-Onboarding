@@ -24,6 +24,11 @@ class App {
         console.log('=== App Initialization Started ===');
 
         try {
+            // Step 0: Set template manager reference in roleProgressTracker
+            console.log('Step 0: Setting template manager reference...');
+            this.roleProgressTracker.setTemplateManager(this.templateManager);
+            console.log('✓ Template manager reference set');
+
             // Step 1: Load template
             console.log('Step 1: Loading template...');
             await this.templateManager.load();

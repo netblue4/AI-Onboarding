@@ -1,12 +1,19 @@
 // ============================================
-// scripts/roleProgress.js
+// scripts/roleProgress.js (FIXED)
 // ============================================
 /**
  * Manages role completion progress tracking and UI
  */
 class RoleProgressTracker {
-    constructor(stateManager, templateManager) {
+    constructor(stateManager) {
         this.state = stateManager;
+        this.templateManager = null; // Will be set later
+    }
+
+    /**
+     * Set the template manager reference (called after templateManager is created)
+     */
+    setTemplateManager(templateManager) {
         this.templateManager = templateManager;
     }
 
@@ -19,6 +26,8 @@ class RoleProgressTracker {
             console.error('role-progress-container element not found');
             return;
         }
+
+        console.log('Initializing role progress tracker');
 
         container.innerHTML = '';
 
@@ -95,7 +104,10 @@ class RoleProgressTracker {
     getFieldsForRole(role) {
         const fields = [];
 
-        if (!this.state.templateData) return fields;
+        if (!this.state.templateData) {
+            console.warn('Template data not available in roleProgressTracker');
+            return fields;
+        }
 
         for (const [phaseName, stepsInPhase] of Object.entries(this.state.templateData)) {
             stepsInPhase.forEach(step => {
@@ -143,9 +155,10 @@ class RoleProgressTracker {
             roleDropdown.value = role;
         }
         this.state.setCurrentRole(role);
+        this.update();
         
-        // Trigger content rendering (will be called from eventHandlers)
-        if (contentRenderer) {
+        // Trigger content rendering
+        if (typeof contentRenderer !== 'undefined' && contentRenderer) {
             contentRenderer.render();
         }
     }
@@ -194,4 +207,5 @@ class RoleProgressTracker {
     }
 }
 
-const roleProgressTracker = new RoleProgressTracker(state, templateManager);
+// Create global instance with just state manager (templateManager will be set later)
+const roleProgressTracker = new RoleProgressTracker(state);
