@@ -1,1 +1,178 @@
+// ============================================
+// 6. scripts/dataCapture.js
+// ============================================
+class DataCapture {
+    constructor(stateManager, templateManager) {
+        this.state = stateManager;
+        this.templateManager = templateManager;
+    }
 
+    captureAll() {
+        if (!this.state.templateData) return {};
+
+        const currentData = { ...this.state.capturedData };
+
+        for (const [phaseName, stepsInPhase] of Object.entries(this.state.templateData)) {
+            stepsInPhase.forEach(step => {
+                if (!step.Fields) return;
+
+                step.Fields.forEach(field => {
+                    this.captureField(field, currentData);
+                });
+            });
+        }
+
+        return currentData;
+    }
+
+    captureField(field, currentData) {
+        if (!field) return;
+
+        const fieldType = field.FieldType;
+        const fieldName = field.FieldName;
+
+        // Skip auto-generated and fieldGroup types
+        if (fieldType === 'Auto generated number' || fieldType === 'fieldGroup') {
+            if (field.Fields && Array.isArray(field.Fields)) {
+                field.Fields.forEach(f => this.captureField(f, currentData));
+            }
+            return;
+        }
+
+        if (!fieldName) return;
+
+        const sanitizedId = this.templateManager.sanitizeForId(fieldName);
+
+        // Handle MultiSelect (checkboxes)
+        if (fieldType && fieldType.startsWith('MultiSelect')) {
+            this.captureMultiSelect(sanitizedId, fieldName, currentData);
+        }
+        // Handle Option box (radio buttons)
+        else if (fieldType && fieldType.startsWith('Option box with values')) {
+            this.captureOptionBox(sanitizedId, fieldName, currentData);
+        }
+        // Handle risk fields
+        else if (fieldType === 'risk') {
+            this.captureRisk(field, sanitizedId, fieldName, currentData);
+        }
+        // Handle plan fields
+        else if (fieldType === 'plan') {
+            this.capturePlan(field, sanitizedId, fieldName, currentData);
+        }
+        // Handle comply fields
+        else if (fieldType === 'comply') {
+            this.captureComply(fieldName, currentData);
+        }
+        // Handle standard fields
+        else {
+            this.captureStandard(sanitizedId, fieldName, currentData);
+        }
+
+        // Recurse into nested fields
+        if (field.Fields && Array.isArray(field.Fields)) {
+            field.Fields.forEach(f => this.captureField(f, currentData));
+        }
+    }
+
+    captureMultiSelect(sanitizedId, fieldName, currentData) {
+        const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
+        if (checkboxes.length > 0) {
+            currentData[fieldName] = Array.from(checkboxes).map(cb => cb.value);
+        } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}"]`)) {
+            delete currentData[fieldName];
+        }
+    }
+
+    captureOptionBox(sanitizedId, fieldName, currentData) {
+        const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+        if (checked) {
+            currentData[fieldName] = checked.value;
+        } else if (document.querySelector(`input[name="${sanitizedId}"]`)) {
+            delete currentData[fieldName];
+        }
+    }
+
+    captureRisk(field, sanitizedId, fieldName, currentData) {
+        const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
+        if (riskSelect && riskSelect.value) {
+            currentData[fieldName] = riskSelect.value;
+        } else if (riskSelect) {
+            delete currentData[fieldName];
+        }
+
+        if (field.controls && Array.isArray(field.controls)) {
+            field.controls.forEach(control => {
+                const controlKey = this.templateManager.sanitizeForId(control.control_number);
+
+                currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
+
+                const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
+                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
+
+                const statusValue = statusElement ? statusElement.value : null;
+                const evidenceValue = evidenceElement ? evidenceElement.value : null;
+
+                if (statusValue) {
+                    currentData[`${controlKey}_status`] = statusValue;
+                } else if (statusElement) {
+                    delete currentData[`${controlKey}_status`];
+                }
+
+                if (evidenceValue) {
+                    currentData[`${controlKey}_evidence`] = evidenceValue;
+                } else if (evidenceElement) {
+                    delete currentData[`${controlKey}_evidence`];
+                }
+            });
+        }
+    }
+
+    capturePlan(field, sanitizedId, fieldName, currentData) {
+        if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
+            field.PlanCriteria.forEach((criteria, index) => {
+                const criteriaKey = `${fieldName}_criteria_${index}_evidence`;
+                const textareaElement = document.querySelector(`textarea[name="${sanitizedId}_criteria_${index}"]`);
+
+                if (textareaElement && textareaElement.value) {
+                    currentData[criteriaKey] = textareaElement.value;
+                } else if (textareaElement) {
+                    delete currentData[criteriaKey];
+                }
+            });
+        }
+    }
+
+    captureComply(fieldName, currentData) {
+        const complySelects = document.querySelectorAll('select[name$="_complystatus"]');
+        const complyData = {};
+
+        complySelects.forEach(select => {
+            const selectName = select.name;
+            if (select.value && select.value !== 'Select') {
+                complyData[selectName] = select.value;
+            }
+        });
+
+        if (Object.keys(complyData).length > 0) {
+            currentData[fieldName] = complyData;
+        } else {
+            delete currentData[fieldName];
+        }
+    }
+
+    captureStandard(sanitizedId, fieldName, currentData) {
+        const inputElement = document.getElementById(sanitizedId);
+
+        if (inputElement) {
+            if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
+                if (inputElement.value) {
+                    currentData[fieldName] = inputElement.value;
+                } else {
+                    delete currentData[fieldName];
+                }
+            }
+        }
+    }
+}
+
+const dataCapture = new DataCapture(state, templateManager);

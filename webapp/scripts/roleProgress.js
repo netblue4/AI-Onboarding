@@ -1,1 +1,197 @@
+// ============================================
+// scripts/roleProgress.js
+// ============================================
+/**
+ * Manages role completion progress tracking and UI
+ */
+class RoleProgressTracker {
+    constructor(stateManager, templateManager) {
+        this.state = stateManager;
+        this.templateManager = templateManager;
+    }
 
+    /**
+     * Initialize the role progress UI with all roles
+     */
+    initialize() {
+        const container = document.getElementById('role-progress-container');
+        if (!container) {
+            console.error('role-progress-container element not found');
+            return;
+        }
+
+        container.innerHTML = '';
+
+        CONFIG.ROLES.forEach(role => {
+            const item = document.createElement('div');
+            item.className = 'role-progress-item';
+            item.id = `progress-${role}`;
+            item.onclick = () => this.selectRole(role);
+
+            item.innerHTML = `
+                <div class="role-progress-name">${role}</div>
+                <div class="role-progress-bar">
+                    <div class="role-progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="role-progress-text">0%</div>
+            `;
+
+            container.appendChild(item);
+        });
+
+        this.update();
+    }
+
+    /**
+     * Update progress bars for all roles based on captured data
+     */
+    update() {
+        CONFIG.ROLES.forEach(role => {
+            const progressItem = document.getElementById(`progress-${role}`);
+            if (!progressItem) return;
+
+            const roleFields = this.getFieldsForRole(role);
+
+            // Handle roles with no fields
+            if (roleFields.length === 0) {
+                progressItem.classList.remove('completed', 'in-progress', 'current');
+                progressItem.classList.add('completed');
+                progressItem.querySelector('.role-progress-fill').style.width = '100%';
+                progressItem.querySelector('.role-progress-text').textContent = 'N/A';
+                return;
+            }
+
+            // Count completed fields
+            const completedFields = roleFields.filter(field => {
+                if (!field.FieldName) return false;
+                const value = this.state.capturedData[field.FieldName];
+                return value !== undefined && value !== null && value !== '';
+            }).length;
+
+            const percentage = Math.round((completedFields / roleFields.length) * 100);
+
+            // Update progress bar
+            progressItem.querySelector('.role-progress-fill').style.width = percentage + '%';
+            progressItem.querySelector('.role-progress-text').textContent = percentage + '%';
+
+            // Update status class
+            progressItem.classList.remove('completed', 'in-progress', 'current');
+            
+            if (role === this.state.currentRole) {
+                progressItem.classList.add('current');
+            } else if (percentage === 100) {
+                progressItem.classList.add('completed');
+            } else if (percentage > 0) {
+                progressItem.classList.add('in-progress');
+            }
+        });
+    }
+
+    /**
+     * Get all fields that belong to a specific role
+     * @param {string} role - The role to get fields for
+     * @returns {Array} Array of field objects for the role
+     */
+    getFieldsForRole(role) {
+        const fields = [];
+
+        if (!this.state.templateData) return fields;
+
+        for (const [phaseName, stepsInPhase] of Object.entries(this.state.templateData)) {
+            stepsInPhase.forEach(step => {
+                if (!step.Fields) return;
+
+                const extractFieldsForRole = (field) => {
+                    if (!field) return;
+
+                    // Check if field matches the role
+                    if (field.Role) {
+                        const fieldRoles = String(field.Role)
+                            .split(',')
+                            .map(r => r.trim());
+                        
+                        if (fieldRoles.includes(role)) {
+                            // Only add real fields, not auto-generated or fieldGroups
+                            if (field.FieldName && 
+                                field.FieldType !== 'Auto generated number' && 
+                                field.FieldType !== 'fieldGroup') {
+                                fields.push(field);
+                            }
+                        }
+                    }
+
+                    // Recurse into nested fields
+                    if (field.Fields && Array.isArray(field.Fields)) {
+                        field.Fields.forEach(extractFieldsForRole);
+                    }
+                };
+
+                step.Fields.forEach(extractFieldsForRole);
+            });
+        }
+
+        return fields;
+    }
+
+    /**
+     * Switch to a different role
+     * @param {string} role - The role to select
+     */
+    selectRole(role) {
+        const roleDropdown = document.getElementById('role-dropdown');
+        if (roleDropdown) {
+            roleDropdown.value = role;
+        }
+        this.state.setCurrentRole(role);
+        
+        // Trigger content rendering (will be called from eventHandlers)
+        if (contentRenderer) {
+            contentRenderer.render();
+        }
+    }
+
+    /**
+     * Get completion statistics for all roles
+     * @returns {Object} Statistics object with completion data
+     */
+    getCompletionStats() {
+        const stats = {};
+        let totalFields = 0;
+        let totalCompleted = 0;
+
+        CONFIG.ROLES.forEach(role => {
+            const roleFields = this.getFieldsForRole(role);
+            const completedFields = roleFields.filter(field => {
+                if (!field.FieldName) return false;
+                const value = this.state.capturedData[field.FieldName];
+                return value !== undefined && value !== null && value !== '';
+            }).length;
+
+            const percentage = roleFields.length > 0 
+                ? Math.round((completedFields / roleFields.length) * 100)
+                : 100;
+
+            stats[role] = {
+                total: roleFields.length,
+                completed: completedFields,
+                percentage: percentage
+            };
+
+            totalFields += roleFields.length;
+            totalCompleted += completedFields;
+        });
+
+        return {
+            byRole: stats,
+            overall: {
+                total: totalFields,
+                completed: totalCompleted,
+                percentage: totalFields > 0 
+                    ? Math.round((totalCompleted / totalFields) * 100)
+                    : 0
+            }
+        };
+    }
+}
+
+const roleProgressTracker = new RoleProgressTracker(state, templateManager);
