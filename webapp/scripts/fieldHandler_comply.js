@@ -28,30 +28,26 @@ function buildComplianceMap(data) {
     const implementationNodes = [];
     let allFields = [];
 
-    // --- FIX: Recursive helper to find fields nested inside fieldGroups ---
+    // 1. Recursive helper (Kept from previous fix)
     function collectFieldsRecursively(fields) {
         if (!fields || !Array.isArray(fields)) return;
 
         fields.forEach(field => {
-            // 1. Add the field itself to our flat list
             allFields.push(field);
-
-            // 2. If this field contains children (like a fieldGroup), recurse down
             if (field.Fields && Array.isArray(field.Fields)) {
                 collectFieldsRecursively(field.Fields);
             }
         });
     }
-    // ---------------------------------------------------------------------
 
-    // Flatten all fields recursively
+    // 2. Flatten all fields recursively
     Object.values(data).flat().forEach(step => {
         if (step.Fields) {
             collectFieldsRecursively(step.Fields);
         }
     });
 
-    // Categorize them (Logic remains the same)
+    // 3. Categorize fields
     allFields.forEach(field => {
         if (hasRequirementTrustDimension(field)) {
             requirementNodes.push(field);
@@ -60,15 +56,22 @@ function buildComplianceMap(data) {
         }
     });
 
-    // Build the compliance map (Logic remains the same)
+    // 4. Build the compliance map
     const complianceMap = new Map();
 
     requirementNodes.forEach(reqNode => {
         if (!reqNode.FieldName) return;
 
         const subControlMap = new Map();
+        
         if (reqNode.controls && Array.isArray(reqNode.controls)) {
             reqNode.controls.forEach(subControl => {
+                // --- NEW FIX: Filter out 'Not Applicable' controls ---
+                if (subControl.control_status === 'Not Applicable') {
+                    return; // Skip this iteration
+                }
+                // ----------------------------------------------------
+
                 const controlKey = extractControlKey(subControl.control_number);
                 if (controlKey) {
                     subControlMap.set(controlKey, {
@@ -79,18 +82,19 @@ function buildComplianceMap(data) {
             });
         }
 
+        // Only add the requirement node if it has relevant controls remaining
+        // (Optional: remove this check if you still want the parent header to appear even if empty)
         complianceMap.set(reqNode.FieldName, {
             parentField: reqNode,
             subControlLinks: subControlMap
         });
     });
 
-    // Link implementations to requirements
+    // 5. Link implementations (Logic remains the same)
     linkImplementations(implementationNodes, complianceMap);
 
     return complianceMap;
 }
-
 
 /**
  * Links implementation nodes to their corresponding requirement sub-controls
