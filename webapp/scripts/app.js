@@ -90,8 +90,8 @@ class App {
             console.log('Ready for user interaction');
 
         } catch (error) {
-            console.error('=== App Initialization Failed ===');
-            console.error('Error details:', error);
+            //console.error('=== App Initialization Failed ===');
+           // console.error('Error details:', error);
             
             const contentArea = document.getElementById('content-area');
             if (contentArea) {
