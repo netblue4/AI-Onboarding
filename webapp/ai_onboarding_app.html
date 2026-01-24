@@ -8,6 +8,15 @@
 </head>
 <body>
     <div class="main-container">
+    
+		<div class="role-progress-section">
+			<div class="role-progress-header">
+				<h3>Role Completion Status</h3>
+			</div>
+			<div class="role-progress-container" id="role-progress-container">
+				<!-- Progress items will be generated here -->
+			</div>
+		</div>
         <div class="controls-bar">
             <div class="control-group">
                 <label for="role-dropdown">Your Role:</label>
@@ -121,6 +130,131 @@
         const versionBanner = document.getElementById('version-banner');
         const infoBanner = document.getElementById('info-banner');
         const highlightNewBtn = document.getElementById('highlight-new-btn');
+
+		const ROLES = [
+			'Requester',
+			'Data Engineer',
+			'Compliance',
+			'Engineer',
+			'Tester',
+			'Incident Manager',
+			'Operation & Monitoring Engineer',
+			'Deployment Engineer',
+			'Approver'
+		];
+		
+		// Initialise role progress UI
+		function initializeRoleProgress() {
+			const container = document.getElementById('role-progress-container');
+			container.innerHTML = '';
+	
+			ROLES.forEach(role => {
+				const item = document.createElement('div');
+				item.className = 'role-progress-item';
+				item.id = `progress-${role}`;
+				item.onclick = () => {
+					roleDropdown.value = role;
+					currentRole = role;
+					renderContent();
+				};
+	
+				item.innerHTML = `
+					<div class="role-progress-name">${role}</div>
+					<div class="role-progress-bar">
+						<div class="role-progress-fill" style="width: 0%"></div>
+					</div>
+					<div class="role-progress-text">0%</div>
+				`;
+	
+				container.appendChild(item);
+			});
+	
+			updateRoleProgress();
+		}
+	
+		// Calculate and update progress for all roles
+		function updateRoleProgress() {
+			ROLES.forEach(role => {
+				const progressItem = document.getElementById(`progress-${role}`);
+				if (!progressItem) return;
+	
+				// Get fields for this role
+				const roleFields = getFieldsForRole(role);
+				if (roleFields.length === 0) {
+					progressItem.classList.add('completed');
+					progressItem.querySelector('.role-progress-fill').style.width = '100%';
+					progressItem.querySelector('.role-progress-text').textContent = 'N/A';
+					return;
+				}
+	
+				// Count completed fields for this role
+				const completedFields = roleFields.filter(field => {
+					if (!field.FieldName) return false;
+					return capturedData.hasOwnProperty(field.FieldName) && 
+						   capturedData[field.FieldName] !== '' && 
+						   capturedData[field.FieldName] !== null;
+				}).length;
+	
+				const percentage = Math.round((completedFields / roleFields.length) * 100);
+	
+				// Update progress bar
+				progressItem.querySelector('.role-progress-fill').style.width = percentage + '%';
+				progressItem.querySelector('.role-progress-text').textContent = percentage + '%';
+	
+				// Update status class
+				progressItem.classList.remove('completed', 'in-progress', 'current');
+				if (role === currentRole) {
+					progressItem.classList.add('current');
+				} else if (percentage === 100) {
+					progressItem.classList.add('completed');
+				} else if (percentage > 0) {
+					progressItem.classList.add('in-progress');
+				}
+			});
+		}
+	
+		// Get all fields that belong to a specific role
+		function getFieldsForRole(role) {
+			const fields = [];
+			
+			if (!templateData) return fields;
+	
+			for (const [phaseName, stepsInPhase] of Object.entries(templateData)) {
+				stepsInPhase.forEach(step => {
+					if (!step.Fields) return;
+	
+					function extractFieldsForRole(field) {
+						if (!field) return;
+	
+						// Check if field matches role
+						if (field.Role && String(field.Role).split(',').map(r => r.trim()).includes(role)) {
+							if (field.FieldName && field.FieldType !== 'Auto generated number' && field.FieldType !== 'fieldGroup') {
+								fields.push(field);
+							}
+						}
+	
+						// Recurse into nested fields
+						if (field.Fields && Array.isArray(field.Fields)) {
+							field.Fields.forEach(extractFieldsForRole);
+						}
+					}
+	
+					step.Fields.forEach(extractFieldsForRole);
+				});
+			}
+	
+			return fields;
+		}
+	
+		// Update progress after saving
+		function updateProgressAfterSave() {
+			updateRoleProgress();
+		}
+	
+		// Call this after template loads
+		function initializeProgressOnLoad() {
+			initializeRoleProgress();
+		}
 
         // Generate unique system ID
         function generateSystemId() {
