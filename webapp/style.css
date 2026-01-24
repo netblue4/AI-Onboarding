@@ -863,10 +863,13 @@ button:hover {
     letter-spacing: 0.5px;
 }
 
+
 .role-progress-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
+    gap: 8px;
+    grid-auto-flow: column;
+    grid-auto-columns: 180px; /* Keep them readable size */
+    overflow-x: auto;         /* Add a scrollbar if they don't fit */
 }
 
 .role-progress-item {
@@ -937,6 +940,11 @@ button:hover {
 }
 
 .role-progress-text {
+    font-size: 11px;
+    color: #64748b;
+    text-align: center;
+}
+.role-progress-number {
     font-size: 11px;
     color: #64748b;
     text-align: center;
