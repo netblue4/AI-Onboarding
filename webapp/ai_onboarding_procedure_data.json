@@ -451,7 +451,7 @@
 		  ]
 		},
         {
-          "Control": "[Article 27],[Art-27][Par-1],[Art-27]",
+          "Control": "[Article 27]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias,Requirement",
