@@ -325,10 +325,9 @@ function createImplementationItem(child) {
         // Loop through each control in the array
         const controlsList = child.controls.map(ctl => `
             <div style="margin-top: 5px; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #e2e8f0;">
-                <strong>${escapeHtml(ctl.control_number || '')}:</strong><br>
-                ${escapeHtml(ctl.control_description || '')}<br>
-                Status: ${escapeHtml(ctl.control_status || '')}<br>
-                Evidence: ${escapeHtml(ctl.control_evidence || '')}
+                <strong>${escapeHtml(ctl.control_number || '')}: </strong>${escapeHtml(ctl.control_description || '')}<br>
+                <strong>Status:</strong> ${escapeHtml(ctl.control_status || '')}<br>
+                <strong>Evidence:</strong> ${escapeHtml(ctl.control_evidence || '')}
             </div>
         `).join('');
 
