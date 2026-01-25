@@ -115,13 +115,19 @@ function linkImplementations(implementationNodes, complianceMap) {
                         implNode.control_status = "Not Applicable";
 
                         // 2. Iterate through the child's nested 'controls' array
-                        //if (implNode.controls && Array.isArray(implNode.controls)) {
-                        //    implNode.controls.forEach(childControl => {
-                        //        childControl.control_status = "Not Applicable";
-                        //    });
-                        //}
+                        if (implNode.controls && Array.isArray(implNode.controls)) {
+                            implNode.controls.forEach(childControl => {
+                                childControl.control_status = "Not Applicable";
+                            });
+                        }
                     }else{
                     	delete implNode.control_status;
+                    	// 2. Iterate through the child's nested 'controls' array
+                        if (implNode.controls && Array.isArray(implNode.controls)) {
+                            implNode.controls.forEach(childControl => {
+                                childControl.control_status = "";
+                            });
+                        }
                     }
                     // --- UPDATED LOGIC END ---
 
