@@ -1102,7 +1102,7 @@
           "FieldName": "Traceability Specifications",
           "Fields": [
             {
-              "Control": "[Art-12][Par-1]],[A.6.2.8]",
+              "Control": "[Art-12][Par-1],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance, Record-Keeping",
               "FieldName": "Required System Lifecycle Events",
@@ -1111,7 +1111,7 @@
               "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
-              "Control": "[Art-12][Par-1]],[A.6.2.8]",
+              "Control": "[Art-12][Par-1],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Select all Mandatory Operational Event Categories for Logging",
@@ -1120,7 +1120,7 @@
               "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
             },
             {
-              "Control": "[Art-12][Par-1]],[A.6.2.8]",
+              "Control": "[Art-12][Par-1],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Required Standard Traceability Log Metadata Schema",
