@@ -78,8 +78,10 @@ class DataCapture {
         const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
         if (checkboxes.length > 0) {
             currentData[fieldName] = Array.from(checkboxes).map(cb => cb.value);
+            fieldName.CapturedData = Array.from(checkboxes).map(cb => cb.value).toString();
         } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}"]`)) {
             delete currentData[fieldName];
+            fieldName.CapturedData = "";
         }
     }
 
@@ -87,6 +89,7 @@ class DataCapture {
         const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
         if (checked) {
             currentData[fieldName] = checked.value;
+            fieldName.CapturedData = Array.from(checkboxes).map(cb => cb.value).toString();
         } else if (document.querySelector(`input[name="${sanitizedId}"]`)) {
             delete currentData[fieldName];
         }
@@ -107,6 +110,7 @@ class DataCapture {
                 currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
 
                 const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
+                                      document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
                 const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
 
                 const statusValue = statusElement ? statusElement.value : null;
@@ -167,8 +171,10 @@ class DataCapture {
             if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
                 if (inputElement.value) {
                     currentData[fieldName] = inputElement.value;
+                    fieldName.CapturedData = inputElement.value;
                 } else {
                     delete currentData[fieldName];
+                    fieldName.CapturedData = "";
                 }
             }
         }
