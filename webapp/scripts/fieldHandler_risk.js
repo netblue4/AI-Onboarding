@@ -91,7 +91,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 			controlText.appendChild(select);	
 
     		
-    		// Check if control_status exists and starts with "MET"
+    		// Check if control_status exists and starts with "Attestation"
 			if (controlItem.control_status && controlItem.control_status.startsWith("Attestation")) {
 
         		select.value = controlItem.control_status;
