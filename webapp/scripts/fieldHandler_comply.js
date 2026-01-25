@@ -109,10 +109,10 @@ function linkImplementations(implementationNodes, complianceMap) {
 
                     // --- NEW LOGIC START ---
                     // Check if the Sub-Control is "Not Applicable"
-                    if (linkEntry.subControl && linkEntry.subControl.control_status === "Not Applicable") {
+                    //if (linkEntry.subControl && linkEntry.subControl.control_status === "Not Applicable") {
                         // Update the Child Implementation status
-                        implNode.control_status = "Not Applicable";
-                    }
+                    //    implNode.control_status = "Not Applicable";
+                    //}
                     // --- NEW LOGIC END ---
 
                     linkEntry.children.add(implNode);
@@ -327,7 +327,7 @@ function createImplementationItem(child) {
             <div style="margin-top: 5px; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #e2e8f0;">
                 <strong>${escapeHtml(ctl.control_number || '')}: </strong>${escapeHtml(ctl.control_description || '')}<br>
                 <strong>Status:</strong> ${escapeHtml(ctl.control_status || '')}<br>
-                <strong>Evidence:</strong> ${escapeHtml(ctl.control_evidence || '')}
+                </strong>Evidence:</strong>${escapeHtml(ctl.control_evidence || '')}
             </div>
         `).join('');
 
