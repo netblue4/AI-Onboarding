@@ -13,6 +13,7 @@
           "TrustDimension": "Compliance",
           "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
           "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
+          "CapturedData":"",
           "FieldType": "MultiSelect:None/Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)"
         }
       ]
@@ -30,6 +31,7 @@
           "TrustDimension": "Compliance",
           "FieldName": "Which description best defines your organization's role and activities for this AI system?",
           "FieldText": "It's very important to clearly define the organisation's activities because it will impact the AI Act’s distinction between 'Provider' (developer) and 'Deployer' (user), which comes with significantly different responsibilities. The organisation's activities are exclusively focused on operationalizing, integrating, and governing generic pre-trained LLMs and developing internal infrastructure for Retrieval-Augmented Generation (RAG), without any modification, fine-tuning, or retraining of the underlying model itself. The AI system is for internal organizational use only, and is not repackaged or distributed to external customers. The LLM is chosen as a generic, pre-trained model, stored on-premises, and never fine-tuned, retrained, Its parameters, weights, or architecture layers are not modified by the organisation's internal engineering team. Meaning it does not interact with or access any external internet datasets, ensuring data sovereignty and minimizing exposure to third-party risks. The organisation's internal engineering team’s efforts are strictly limited to building infrastructure, orchestration, and internal data pipelines for the LLM, but do not alter the core LLM architecture or its parameters.",
+          "CapturedData":"",
           "FieldType": "MultiSelect:[Deployer - Internal Build] We are a Deployer. Our activities match the description: we use a generic model for internal use only AND our development is limited to building orchestration (RAG) without modifying the core model./[Provider] We are a Provider. We are substantially modifying the core AI model (e.g., fine-tuning, retraining) OR we are distributing this system to external customers."
         }
       ]
@@ -47,6 +49,7 @@
           "TrustDimension": "Compliance",
           "FieldName": "Will the AI system be used for any of the following purposes?",
           "FieldText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
+          "CapturedData":"",
           "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings"
         },
         {
@@ -54,6 +57,7 @@
           "TrustDimension": "Compliance",
           "FieldName": "Does the AI system have specific transparency obligations (Limited Risk)?",
           "FieldText": "If the system is not high-risk, it may still be 'Limited Risk' and have specific transparency obligations to ensure users are not deceived. Please select all that apply.",
+          "CapturedData":"",
           "FieldType": "MultiSelect:Interacts directly with humans (e.g., a chatbot) and must disclose it is an AI/Generates 'deep fakes' or manipulates video, audio, image content/Used for emotion recognition or biometric categorization/Generates synthetic text published on matters of public interest"
         }
       ]
@@ -898,7 +902,8 @@
               "Role": "Requester",
               "FieldName": "AI System ID",
               "FieldText": "AI System Unique Number",
-              "FieldType": "Auto generated number"
+              "CapturedData":"",
+          	  "FieldType": "Auto generated number"
             },
             {
               "Control": "[A.6.2.3]",
@@ -906,6 +911,7 @@
               "Role": "Requester",
               "FieldName": "Name",
               "FieldText": "Name of the AI application",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -914,6 +920,7 @@
               "Role": "Requester",
               "FieldName": "Business Purpose",
               "FieldText": "What specific business problem or task does this system address?",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -922,6 +929,7 @@
               "Role": "Requester",
               "FieldName": "Use Cases",
               "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -930,6 +938,7 @@
               "Role": "Requester",
               "FieldName": "Augmented/Enhanced Tasks",
               "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -938,6 +947,7 @@
               "Role": "Requester",
               "FieldName": "Select Potential Benefits",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
             },
             {
@@ -947,6 +957,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Select the Intended User Profiles for the AI System",
               "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
+              "CapturedData":"",
               "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
             }
           ]
@@ -961,6 +972,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Repository",
               "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -969,6 +981,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Description",
               "FieldText": "Brief overview of the dataset's content and general purpose.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -977,6 +990,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Where does the data originate from?",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
             },
             {
@@ -985,6 +999,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the specific purpose(s) of the data?",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
             },
             {
@@ -993,6 +1008,8 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How will the Data be acquired and selected?",
               "FieldText": "",
+              "CapturedData":"",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
             },
             {
@@ -1009,6 +1026,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How often does the data need to be refreshed?",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
             },
             {
@@ -1017,6 +1035,8 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Secure Disposing",
               "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
+              "CapturedData":"",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1033,6 +1053,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Owner/Custodian",
               "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
+              "CapturedData":"",
               "FieldType": "TextBox"
             }
           ]
@@ -1047,6 +1068,7 @@
               "TrustDimension": "Intended Use",
               "FieldName": "Whitelist Key Phrase Categories for Permitted User Prompts",
               "FieldText": "This is the reference list of key phrases that will be allowed by the RAG Orchestrator. The RAG Orchestrator will be trained to recognize prompts similar to these examples.",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Information Retrieval and Q&A:what is, who is, where can I find, tell me about, explain the, what are the details on/Document Summarization:summarize this, give me the key points, tl;dr, provide a summary of, what are the main takeaways, create an abstract for/Content Creation and Drafting:draft an email about, write a paragraph on, create a marketing blurb for, help me write, generate a draft of, compose a message about/Policy and Procedure Guidance:what is the policy for, how do I request, what is the procedure for, explain the process of, guide me through the steps for/Onboarding and Training Support:how do I set up, what training do I need for, explain the onboarding process, guide for new hires, help me learn about/Technical Support and Troubleshooting:how to fix, I'm getting an error, troubleshoot this issue, what does this error mean, help me with this technical problem/Data Analysis and Extraction:extract all the names from, what is the total of, find the average of, pull the data for, list all the dates in, analyze the trends in"
             },
             {
@@ -1055,6 +1077,7 @@
               "TrustDimension": "Intended Use",
               "FieldName": "Blacklist Key Phrase Categories for Prohibited User Prompt",
               "FieldText": "This is a reference list of key phrases that will be blocked by the RAG Orchestrator. AI systems that support these key phrases are prohibited by the AI act.",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Manipulative or Subliminal Techniques Causing Harm:influence my decision, make me buy, change my mind, secretly persuade, subliminal message, hidden command, trick me into, deceive me/Exploitation of Vulnerabilities (e.g., age, disability):target children with ads, exploit elderly, convince a disabled person, addictive game for kids, target financially desperate, exploit vulnerability/General-Purpose Social Scoring:calculate social score, rate my behavior, trustworthiness score, classify people's value, social credit system, evaluate a person based on/Predictive Policing Based Solely on Profiling:predict who will commit a crime, crime risk assessment for a person, profile potential criminals, likelihood of reoffending, predict recidivism/Untargeted Scraping of Facial Images for Databases:scrape faces from internet, create facial recognition database, find all images of a person online, collect CCTV footage for faces, build a face dataset/Emotion Recognition in Workplace or Education:analyze employee emotions, detect student mood, tell me if my team is happy, monitor engagement with emotion, read facial expressions for performance/Biometric Categorization Using Sensitive Data (e.g., race, religion):guess race from photo, determine political opinion from text, infer religious beliefs, categorize by sexual orientation, deduce sex life/'Real-Time' Remote Biometric ID in Public Spaces:live facial recognition, track people in real-time with cameras, identify everyone in this crowd, public camera identification, real-time biometric tracking"
             }
           ]
@@ -1069,6 +1092,7 @@
               "TrustDimension": "Human Oversight",
               "FieldName": "Human Intervention Key Phrase Categories - Requiring Human Intervention",
               "FieldText": "This is a reference list of key phrases in the LLM's output that indicate it may be making a business decision or a decision with potential risks. If these phrases are detected, the system should flag the response for immediate human oversight and potential intervention, allowing an overseer to stop or override the action.",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Financial and Business Directives:approve the loan, reject the claim, allocate budget, set the price at, hire candidate, terminate contract, invest in, authorize payment, proceed with purchase/Health and Safety Determinations:the diagnosis is, you likely have, prescribe treatment, this is a medical recommendation, it is safe to proceed, declare unsafe, risk level is critical, initiate safety protocol/Eligibility and Rights-Based Judgements:grant access to, deny benefits, is eligible for, application approved, request denied, assign credit score of, this is legally compliant, classify as high-risk/Automated Action and Execution:I have executed the transfer, the system will automatically, action has been triggered, the process is now initiated, I have decided to, the final decision is/Definitive Predictions and Classifications:the outcome will be, I predict with certainty, this will happen, the final score is, this person's risk profile is, this is the correct answer, conclude that"
             }
           ]
@@ -1083,6 +1107,7 @@
               "TrustDimension": "Compliance, Record-Keeping",
               "FieldName": "Required System Lifecycle Events",
               "FieldText": "Select all infrastructure-level events that must be automatically logged to ensure full lifecycle traceability from deployment to decommissioning.",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
@@ -1091,6 +1116,7 @@
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Select all Mandatory Operational Event Categories for Logging",
               "FieldText": "Reference list of operational event categories that MUST trigger an automated log entry to satisfy EU AI Act Art. 12 (traceability over system lifetime). Engineers must ensure hooks exist in the code to capture these specific states.",
+              "CapturedData":"",
               "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
             },
             {
@@ -1099,6 +1125,7 @@
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Required Standard Traceability Log Metadata Schema",
               "FieldText": "This defines the minimum required metadata fields that MUST be present in every single log entry defined above. This standardizes logs for automated auditing and post-market monitoring (Art 72).",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod-Test) AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
             }
           ]
@@ -1123,6 +1150,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Tools Name and Version",
               "FieldText": "Name of the software, libraries, or frameworks and their Version numbers.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1131,6 +1159,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Select Tool Categories",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
@@ -1139,6 +1168,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Purpose/Use Case in Project",
               "FieldText": "How these tools will be used in the AI system's lifecycle.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             }
           ]
@@ -1153,6 +1183,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Computing Resource Name and Version",
               "FieldText": "Names of the computing resources used.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1161,6 +1192,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Category of the computing resource",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
             },
             {
@@ -1169,6 +1201,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Which parts of the AI lifecycle do these resource supports?",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Development/Training/Testing/Staging/Production/Monitoring"
             }
           ]
@@ -1193,6 +1226,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
             },
             {
@@ -1201,6 +1235,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential negative impacts on fundamental rights",
               "FieldText": "Select specifically identified risks to the vulnerable population.",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
             },
             {
@@ -1209,6 +1244,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential positive impacts on fundamental rights",
               "FieldText": "Select expected benefits for the vulnerable population.",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
             },
             {
@@ -1217,6 +1253,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Rate the severity of identified negative impacts",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
@@ -1225,6 +1262,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the severity of identified impacts",
               "FieldText": "Provide justification for the severity rating selected above.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1233,6 +1271,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
               "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1241,6 +1280,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Post-Deployment Monitoring Plan",
               "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             }
           ]
@@ -1255,6 +1295,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
             },
             {
@@ -1263,6 +1304,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Identify the primary roles of the AI system relative to human workers",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
             },
             {
@@ -1271,6 +1313,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Automated/Eliminated Tasks",
               "FieldText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1279,6 +1322,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Primary Mitigation Strategy for Displacement",
               "FieldText": "If job displacement is identified, select the primary strategies for the affected workers",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
             },
             {
@@ -1287,6 +1331,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Structured Re-skilling Program in Place",
               "FieldText": "Describe the primary strategies to address the affected workers.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1295,6 +1340,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Structured Re-skilling Program Effectiveness",
               "FieldText": "Describe the Training Effectiveness measures to evaluate the success of the primary strategies to address the affected workers.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             }
           ]
@@ -1309,6 +1355,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
             },
             {
@@ -1317,6 +1364,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Energy Consumption & Carbon Footprint Estimation",
               "FieldText": "Describe the methodology and provide the estimated energy consumption (e.g., in kWh) and carbon footprint (e.g., in tons of CO2e) for the system's lifecycle (training, validation, and deployment).",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1325,6 +1373,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
             },
             {
@@ -1333,6 +1382,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select main strategies for minimizing negative environmental impacts.",
               "FieldText": "",
+              "CapturedData":"",
               "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain"
             },
             {
@@ -1341,6 +1391,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Level of Environmental Impact",
               "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
+              "CapturedData":"",
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
@@ -1349,6 +1400,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the Environmental Impact",
               "FieldText": "Describe the degree of environmental burden/benefit.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1357,6 +1409,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Contribution to Environmental Sustainability Goals",
               "FieldText": "Does the AI system's intended application directly contribute to positive environmental outcomes (e.g., climate change modeling, energy grid optimization, biodiversity monitoring)? If yes, please describe.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             },
             {
@@ -1365,6 +1418,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Environmental Impact Monitoring and Review",
               "FieldText": "Describe the process and frequency for monitoring and reviewing the environmental performance metrics of the AI system over its lifecycle.",
+              "CapturedData":"",
               "FieldType": "TextBox"
             }
           ]
@@ -3168,6 +3222,7 @@
           "TrustDimension": "",
           "Control": "Security Approver",
           "FieldText": "Name/Role of the Security Aprover",
+          "CapturedData":"",
           "FieldType": "TextBox"
         },
         {
@@ -3176,6 +3231,7 @@
           "TrustDimension": "",
           "Control": "Security Approved",
           "FieldText": "",
+          "CapturedData":"",
           "FieldType": "Option box with values:Yes/No"
         },
         {
@@ -3184,6 +3240,7 @@
           "TrustDimension": "",
           "Control": "DPO Approver",
           "FieldText": "Name/Role of the DPO Aprover",
+          "CapturedData":"",
           "FieldType": "TextBox"
         },
         {
@@ -3192,6 +3249,7 @@
           "TrustDimension": "",
           "Control": "DPO Approved",
           "FieldText": "",
+          "CapturedData":"",
           "FieldType": "Option box with values:Yes/No"
         },
         {
@@ -3200,6 +3258,7 @@
           "TrustDimension": "",
           "Control": "Risk Approver",
           "FieldText": "Name/Role of the Risk Aprover",
+          "CapturedData":"",
           "FieldType": "TextBox"
         },
         {
@@ -3208,6 +3267,7 @@
           "TrustDimension": "",
           "Control": "Risk Approved",
           "FieldText": "",
+          "CapturedData":"",
           "FieldType": "Option box with values:Yes/No"
         },
         {
@@ -3216,6 +3276,7 @@
           "TrustDimension": "",
           "Control": "Business Approver",
           "FieldText": "Name/Role of the Business Approver",
+          "CapturedData":"",
           "FieldType": "TextBox"
         },
         {
@@ -3224,6 +3285,7 @@
           "TrustDimension": "",
           "Control": "Business Approved",
           "FieldText": "",
+          "CapturedData":"",
           "FieldType": "Option box with values:Yes/No"
         }
       ]
@@ -3391,6 +3453,7 @@
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Data Breach",
           "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
+          "CapturedData":"",
           "FieldType": "TextBox"
         },
         {
@@ -3399,6 +3462,7 @@
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Misuse",
           "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
+          "CapturedData":"",
           "FieldType": "TextBox"
         },
         {
@@ -3407,6 +3471,7 @@
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Failure",
           "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
+          "CapturedData":"",
           "FieldType": "TextBox"
         }
       ]
