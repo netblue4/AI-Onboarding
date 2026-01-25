@@ -331,29 +331,46 @@ function createImplementationItem(child) {
 
     const { typeClass, typeName } = getImplementationType(child.FieldType);
 
-
-	let controlsHtml = '';
-	if (child.control_status !== "Not Applicable") {
-		// --- NEW LOGIC: Build the Controls List ---
-			
-		if (child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
-			// Create the header
-			controlsHtml += '<div style="margin-top: 10px;"><strong>Controls:</strong></div>';
-			
-			// Loop through each control in the array
-			const controlsList = child.controls.map(ctl => `
-				<div style="margin-top: 5px; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #e2e8f0;">
-					<strong>${escapeHtml(ctl.control_number || '')}: </strong>${escapeHtml(ctl.control_description || '')}<br>
-					<strong>Status:</strong> ${escapeHtml(ctl.control_status || '')}<br>
-					</strong>Evidence:</strong>${escapeHtml(ctl.control_evidence || '')}
-				</div>
-			`).join('');
-	
-			controlsHtml += controlsList;
-		}
+    // --- 1. BUILD CONTROLS LIST (Only if status is NOT "Not Applicable") ---
+    let controlsHtml = '';
+    
+    if (child.control_status !== "Not Applicable") {
+        if (child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
+            // Create the header
+            controlsHtml += '<div style="margin-top: 10px;"><strong>Controls:</strong></div>';
+            
+            // Loop through each control in the array
+            const controlsList = child.controls.map(ctl => `
+                <div style="margin-top: 5px; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #e2e8f0;">
+                    <strong>${escapeHtml(ctl.control_number || '')}: </strong>${escapeHtml(ctl.control_description || '')}<br>
+                    <strong>Status:</strong> ${escapeHtml(ctl.control_status || '')}<br>
+                    <strong>Evidence:</strong> ${escapeHtml(ctl.control_evidence || '')}
+                </div>
+            `).join('');
+    
+            controlsHtml += controlsList;
+        }
     }
-    // ------------------------------------------
 
+    // --- 2. DETERMINE STATUS vs. RESPONSE DISPLAY ---
+    let statusOrDataHtml = '';
+
+    // If control_status exists, show it
+    if (child.control_status) {
+        statusOrDataHtml = `
+            <div class="imp-meta">
+                <strong>Status:</strong> ${escapeHtml(child.control_status)}
+            </div>`;
+    } 
+    // Otherwise, if CapturedData exists, show it as "Response"
+    else if (child.CapturedData) {
+        statusOrDataHtml = `
+            <div class="imp-meta">
+                <strong>Response:</strong> ${escapeHtml(child.CapturedData)}
+            </div>`;
+    }
+
+    // --- 3. ASSEMBLE FINAL HTML ---
     impItem.innerHTML = `
         <span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
         <div class="imp-content">
@@ -361,9 +378,9 @@ function createImplementationItem(child) {
             <div class="imp-meta">
                 <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
             </div>
-            <div class="imp-meta">
-                <strong>Status:</strong> ${escapeHtml(child.control_status)}
-            </div>            
+            
+            ${statusOrDataHtml}
+            
             ${controlsHtml}
             
         </div>

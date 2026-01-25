@@ -40,6 +40,7 @@ class DataRestore {
                 const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}"][value="${value}"]`);
                 if (checkbox) checkbox.checked = true;
             });
+            fieldName.CapturedData = Array.isArray(selectedValues).toString();
         }
     }
 
@@ -63,14 +64,12 @@ class DataRestore {
                 const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
                 if (statusElement && this.state.capturedData[`${controlKey}_status`]) {
                     statusElement.value = this.state.capturedData[`${controlKey}_status`];
-                    //update the source data so that the comply function will exclude those controls mared as not applicable
                     control.control_status = this.state.capturedData[`${controlKey}_status`]; 
                 }
 
                 const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
                 if (evidenceElement && this.state.capturedData[`${controlKey}_evidence`]) {
                     evidenceElement.value = this.state.capturedData[`${controlKey}_evidence`];
-                    //update the source data so that the comply function will exclude those controls mared as not applicable
                     control.control_evidence = this.state.capturedData[`${controlKey}_evidence`];      
                 }
             });
@@ -108,6 +107,7 @@ class DataRestore {
             const inputElement = document.getElementById(sanitizedId);
             if (inputElement) {
                 inputElement.value = this.state.capturedData[fieldName];
+                fieldName.CapturedData = inputElement.value;
             }
         }
     }
