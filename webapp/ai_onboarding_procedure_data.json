@@ -1188,7 +1188,7 @@
           "FieldName": "Fundamental Rights Impact Assessment",
           "Fields": [
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1],[Art-27][Par-1a-1b],[Art-27]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
@@ -1196,7 +1196,7 @@
               "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a=1b],[Art-27][Par-1c, 1d]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a=1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential negative impacts on fundamental rights",
@@ -1204,7 +1204,7 @@
               "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential positive impacts on fundamental rights",
@@ -1212,7 +1212,7 @@
               "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Rate the severity of identified negative impacts",
@@ -1220,7 +1220,7 @@
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the severity of identified impacts",
@@ -1228,7 +1228,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1f],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1f],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
@@ -1236,7 +1236,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d]",
+              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Post-Deployment Monitoring Plan",
