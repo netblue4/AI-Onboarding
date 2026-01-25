@@ -1428,7 +1428,7 @@
           ]
         },
 		{
-		"Control": "[Art-10][Par-3][3],[Art-10][Par-4][4],[Art-10][Par-5][5]",
+		"Control": "[Art-10][Par-3][3],[Art-10][Par-4][4],[Art-10][Par-5][5],[Art-9][Par-6][5]",
 		"FieldType": "plan",
 		"Role": "Tester",
 		"TrustDimension": "Data and Data Governance",
@@ -1527,7 +1527,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.6],[Art-10][Par-5][5]",
+          "Control": "[A.7.6],[Art-10][Par-5][5],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance,Fundamental Rights",
@@ -1589,7 +1589,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.4],[Art-15][Par-3]",
+          "Control": "[A.7.4],[Art-15][Par-3],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance",
@@ -2085,7 +2085,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.4],[Art-15][Par-3]",
+          "Control": "[A.7.4],[Art-15][Par-3],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance",
@@ -2238,7 +2238,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.5],[A.7.6]",
+          "Control": "[A.7.5],[A.7.6],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2374,7 +2374,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.6.2.6]",
+          "Control": "[A.6.2.6],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2486,7 +2486,7 @@
           ]
         },
         {
-          "Control": "[Art-10][Par-2][2],[A.6.2.4]",
+          "Control": "[Art-10][Par-2][2],[A.6.2.4],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance,Fundamental Rights,Fairness and Bias",
@@ -2683,7 +2683,7 @@
           ]
         },
         {
-          "Control": "[Art-13][Par-1],[A.6.2.4]",
+          "Control": "[Art-13][Par-1],[A.6.2.4],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Transparency and Explainability,Fundamental Rights",
@@ -2804,7 +2804,7 @@
           ]
         },
         {
-          "Control": "[Art-12][Par-3],[A.6.2.4]",
+          "Control": "[Art-12][Par-3],[A.6.2.4],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Compliance, Record-Keeping",
@@ -2896,7 +2896,7 @@
           ]
         },
         {
-          "Control": "[A.9.4],[A.6.2.4],[Art-26][Par-5]",
+          "Control": "[A.9.4],[A.6.2.4],[Art-26][Par-5],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Intended Use,Fundamental Rights",
@@ -2984,7 +2984,7 @@
           ]
         },
         {
-          "Control": "[Art-14][Par-3],[A.6.2.4],[Art-13][Par-3d]",
+          "Control": "[Art-14][Par-3],[A.6.2.4],[Art-13][Par-3d],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Human Oversight,Fundamental Rights",
