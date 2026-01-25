@@ -356,8 +356,7 @@ function createImplementationItem(child) {
     const label = child.control_status ? "Status" : "Response";
     const value = child.control_status || child.CapturedData || '';
 
-    impItem.innerHTML = `
-        <span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
+    impItem.innerHTML = `<span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
         <div class="imp-content">
             <div class="imp-title">${escapeHtml(child.FieldName)}</div>
             <div class="imp-meta">
@@ -366,10 +365,8 @@ function createImplementationItem(child) {
             <div class="imp-meta">
                 <strong>${label}:</strong> ${escapeHtml(value)}
             </div>            
-            ${controlsHtml}
-            
-        </div>
-    `;
+            ${controlsHtml}    
+        </div>`;
 
     return impItem;
 }
