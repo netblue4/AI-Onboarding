@@ -66,12 +66,6 @@ function buildComplianceMap(data) {
         
         if (reqNode.controls && Array.isArray(reqNode.controls)) {
             reqNode.controls.forEach(subControl => {
-                // --- NEW FIX: Filter out 'Not Applicable' controls ---
-                if (subControl.control_status === 'Not Applicable') {
-                    return; // Skip this iteration
-                }
-                // ----------------------------------------------------
-
                 const controlKey = extractControlKey(subControl.control_number);
                 if (controlKey) {
                     subControlMap.set(controlKey, {
