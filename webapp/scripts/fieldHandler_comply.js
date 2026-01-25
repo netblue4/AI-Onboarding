@@ -120,6 +120,8 @@ function linkImplementations(implementationNodes, complianceMap) {
                         //        childControl.control_status = "Not Applicable";
                         //    });
                         //}
+                    }else{
+                    	delete cimplNode.control_status;
                     }
                     // --- UPDATED LOGIC END ---
 
