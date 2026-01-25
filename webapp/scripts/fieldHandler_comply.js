@@ -323,23 +323,26 @@ function createImplementationItem(child) {
 
     const { typeClass, typeName } = getImplementationType(child.FieldType);
 
-    // --- NEW LOGIC: Build the Controls List ---
-    let controlsHtml = '';
-    
-    if (child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
-        // Create the header
-        controlsHtml += '<div style="margin-top: 10px;"><strong>Controls:</strong></div>';
-        
-        // Loop through each control in the array
-        const controlsList = child.controls.map(ctl => `
-            <div style="margin-top: 5px; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #e2e8f0;">
-                <strong>${escapeHtml(ctl.control_number || '')}: </strong>${escapeHtml(ctl.control_description || '')}<br>
-                <strong>Status:</strong> ${escapeHtml(ctl.control_status || '')}<br>
-                </strong>Evidence:</strong>${escapeHtml(ctl.control_evidence || '')}
-            </div>
-        `).join('');
 
-        controlsHtml += controlsList;
+	let controlsHtml = '';
+	if (child.control_status !== "Not Applicable") {
+		// --- NEW LOGIC: Build the Controls List ---
+			
+		if (child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
+			// Create the header
+			controlsHtml += '<div style="margin-top: 10px;"><strong>Controls:</strong></div>';
+			
+			// Loop through each control in the array
+			const controlsList = child.controls.map(ctl => `
+				<div style="margin-top: 5px; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #e2e8f0;">
+					<strong>${escapeHtml(ctl.control_number || '')}: </strong>${escapeHtml(ctl.control_description || '')}<br>
+					<strong>Status:</strong> ${escapeHtml(ctl.control_status || '')}<br>
+					</strong>Evidence:</strong>${escapeHtml(ctl.control_evidence || '')}
+				</div>
+			`).join('');
+	
+			controlsHtml += controlsList;
+		}
     }
     // ------------------------------------------
 
@@ -350,7 +353,9 @@ function createImplementationItem(child) {
             <div class="imp-meta">
                 <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
             </div>
-            
+            <div class="imp-meta">
+                <strong>Status:</strong> ${escapeHtml(child.control_status)}
+            </div>            
             ${controlsHtml}
             
         </div>
