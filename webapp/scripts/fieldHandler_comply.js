@@ -101,14 +101,27 @@ function linkImplementations(implementationNodes, complianceMap) {
 
         for (const [parentName, data] of complianceMap.entries()) {
             const subControlLinks = data.subControlLinks;
+            
             for (const implKey of implControlParts) {
                 if (subControlLinks.has(implKey)) {
-                    subControlLinks.get(implKey).children.add(implNode);
+                    // Get the reference to the sub-control entry
+                    const linkEntry = subControlLinks.get(implKey);
+
+                    // --- NEW LOGIC START ---
+                    // Check if the Sub-Control is "Not Applicable"
+                    if (linkEntry.subControl && linkEntry.subControl.control_status === "Not Applicable") {
+                        // Update the Child Implementation status
+                        implNode.control_status = "Not Applicable";
+                    }
+                    // --- NEW LOGIC END ---
+
+                    linkEntry.children.add(implNode);
                 }
             }
         }
     });
 }
+
 
 /**
  * Renders the compliance mapping as an interactive HTML structure
