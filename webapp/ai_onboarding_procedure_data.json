@@ -14,7 +14,7 @@
           "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
           "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
           "CapturedData":"",
-          "FieldType": "MultiSelect:None/Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)"
+          "FieldType": "MultiSelect:Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)/None"
         }
       ]
     },
@@ -50,7 +50,7 @@
           "FieldName": "Will the AI system be used for any of the following purposes?",
           "FieldText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
           "CapturedData":"",
-          "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings"
+          "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings/None"
         },
         {
           "Role": "Requester",
@@ -58,7 +58,7 @@
           "FieldName": "Does the AI system have specific transparency obligations (Limited Risk)?",
           "FieldText": "If the system is not high-risk, it may still be 'Limited Risk' and have specific transparency obligations to ensure users are not deceived. Please select all that apply.",
           "CapturedData":"",
-          "FieldType": "MultiSelect:Interacts directly with humans (e.g., a chatbot) and must disclose it is an AI/Generates 'deep fakes' or manipulates video, audio, image content/Used for emotion recognition or biometric categorization/Generates synthetic text published on matters of public interest"
+          "FieldType": "MultiSelect:Interacts directly with humans (e.g., a chatbot) and must disclose it is an AI/Generates 'deep fakes' or manipulates video, audio, image content/Used for emotion recognition or biometric categorization/Generates synthetic text published on matters of public interest/None"
         }
       ]
     },
@@ -1227,7 +1227,7 @@
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
               "FieldText": "",
               "CapturedData":"",
-              "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities"
+              "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/None"
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a=1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
@@ -1236,7 +1236,7 @@
               "FieldName": "Potential negative impacts on fundamental rights",
               "FieldText": "Select specifically identified risks to the vulnerable population.",
               "CapturedData":"",
-              "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss"
+              "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss/None"
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
@@ -1245,7 +1245,7 @@
               "FieldName": "Potential positive impacts on fundamental rights",
               "FieldText": "Select expected benefits for the vulnerable population.",
               "CapturedData":"",
-              "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency"
+              "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency/None"
             },
             {
               "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
