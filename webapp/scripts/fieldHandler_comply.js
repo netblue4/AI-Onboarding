@@ -107,13 +107,21 @@ function linkImplementations(implementationNodes, complianceMap) {
                     // Get the reference to the sub-control entry
                     const linkEntry = subControlLinks.get(implKey);
 
-                    // --- NEW LOGIC START ---
-                    // Check if the Sub-Control is "Not Applicable"
-                    //if (linkEntry.subControl && linkEntry.subControl.control_status === "Not Applicable") {
-                        // Update the Child Implementation status
-                    //    implNode.control_status = "Not Applicable";
-                    //}
-                    // --- NEW LOGIC END ---
+                    // --- UPDATED LOGIC START ---
+                    // Check if the Parent Sub-Control is "Not Applicable"
+                    if (linkEntry.subControl && linkEntry.subControl.control_status === "Not Applicable") {
+                        
+                        // 1. Update the child node's main status
+                        implNode.control_status = "Not Applicable";
+
+                        // 2. Iterate through the child's nested 'controls' array
+                        if (implNode.controls && Array.isArray(implNode.controls)) {
+                            implNode.controls.forEach(childControl => {
+                                childControl.control_status = "Not Applicable";
+                            });
+                        }
+                    }
+                    // --- UPDATED LOGIC END ---
 
                     linkEntry.children.add(implNode);
                 }
