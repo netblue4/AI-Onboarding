@@ -121,7 +121,7 @@ function linkImplementations(implementationNodes, complianceMap) {
                         //    });
                         //}
                     }else{
-                    	delete cimplNode.control_status;
+                    	delete implNode.control_status;
                     }
                     // --- UPDATED LOGIC END ---
 
