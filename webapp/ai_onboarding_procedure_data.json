@@ -70,7 +70,7 @@
           "Control": "[Article 9]",
           "FieldType": "risk",
           "Role": "Compliance",
-          "TrustDimension": "Compliance,Risk Management System,Requirement",
+          "TrustDimension": "Requirement,Compliance,Risk Management System",
           "FieldName": "Inadequate or Ineffective Risk Management",
           "RiskDescription": "",
           "controls": [
