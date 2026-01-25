@@ -115,19 +115,13 @@ function linkImplementations(implementationNodes, complianceMap) {
                         implNode.control_status = "Not Applicable";
 
                         // 2. Iterate through the child's nested 'controls' array
-                        if (implNode.controls && Array.isArray(implNode.controls)) {
-                            implNode.controls.forEach(childControl => {
-                                childControl.control_status = "Not Applicable";
-                            });
-                        }
+                        //if (implNode.controls && Array.isArray(implNode.controls)) {
+                        //    implNode.controls.forEach(childControl => {
+                        //        childControl.control_status = "Not Applicable";
+                        //    });
+                        //}
                     }else{
                     	delete implNode.control_status;
-                    	// 2. Iterate through the child's nested 'controls' array
-                        if (implNode.controls && Array.isArray(implNode.controls)) {
-                            implNode.controls.forEach(childControl => {
-                                childControl.control_status = "";
-                            });
-                        }
                     }
                     // --- UPDATED LOGIC END ---
 
@@ -223,8 +217,14 @@ function createSubControlList(subControlLinks, contentId, sanitizeForId) {
     const sortedSubControls = Array.from(subControlLinks.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
     sortedSubControls.forEach(([key, subData]) => {
-        const subItem = createSubControlItem(subData, sanitizeForId);
-        subControlList.appendChild(subItem);
+        // --- NEW LOGIC START ---
+        // Only create and append the item if the status is NOT "Not Applicable"
+        // We use ?. (optional chaining) to be safe in case subControl is undefined
+        if (subData.subControl?.control_status !== "Not Applicable") {
+            const subItem = createSubControlItem(subData, sanitizeForId);
+            subControlList.appendChild(subItem);
+        }
+        // --- NEW LOGIC END ---
     });
 
     return subControlList;
