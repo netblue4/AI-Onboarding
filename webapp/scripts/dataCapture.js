@@ -142,11 +142,14 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
                 currentData[controlKeyEntry] = control.control_number + " - " + control.control_description;
             }
             */
-            if ((statusValue || evidenceValue) !== "") {
-            	currentData[`${controlKey}`] = control.control_number + " - " + control.control_description;
-            	currentData[`${controlKey}_status`] = statusValue;
-            	currentData[`${controlKey}_evidence`] = evidenceValue;
-            }
+			if (
+				(statusValue !== null && statusValue !== "") || 
+				(evidenceValue !== null && evidenceValue !== "")
+			) {
+				currentData[`${controlKey}`] = control.control_number + " - " + control.control_description;
+				currentData[`${controlKey}_status`] = statusValue;
+				currentData[`${controlKey}_evidence`] = evidenceValue;
+			}
             
         });
     }
