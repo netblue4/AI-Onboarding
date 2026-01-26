@@ -116,7 +116,7 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
             const evidenceValue = evidenceElement ? evidenceElement.value : null;
 
             // Only update status if changed
-            if (statusValue) {
+            /*if (statusValue) {
                 if (currentData[`${controlKey}_status`] !== statusValue) {
                     currentData[`${controlKey}_status`] = statusValue;
                 }
@@ -141,6 +141,13 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
                 const controlKeyEntry = `${controlKey}:`;
                 currentData[controlKeyEntry] = control.control_number + " - " + control.control_description;
             }
+            */
+            if ((statusValue || evidenceValue) !== "") {
+            	currentData[controlKeyEntry] = control.control_number + " - " + control.control_description;
+            	currentData[`${controlKey}_status`] = statusValue;
+            	currentData[`${controlKey}_evidence`] = evidenceValue;
+            }
+            
         });
     }
 }
