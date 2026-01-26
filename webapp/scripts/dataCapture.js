@@ -143,7 +143,7 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
             }
             */
             if ((statusValue || evidenceValue) !== "") {
-            	currentData[controlKeyEntry] = control.control_number + " - " + control.control_description;
+            	currentData[`${controlKey}`] = control.control_number + " - " + control.control_description;
             	currentData[`${controlKey}_status`] = statusValue;
             	currentData[`${controlKey}_evidence`] = evidenceValue;
             }
