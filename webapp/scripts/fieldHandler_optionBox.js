@@ -1,7 +1,7 @@
 function createOptionBox(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
-    const sanitizedId = sanitizeForId(field.FieldName);
+    const sanitizedId = sanitizeForId(field.control_number);
 
     // --- 1. Create the Radio Button Group First ---
     // We'll create them in a container and append the whole container later.

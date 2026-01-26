@@ -10,7 +10,7 @@
 function createMultiSelect(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
-    const sanitizedId = sanitizeForId(field.FieldName);
+    const sanitizedId = sanitizeForId(field.control_number);
 
     // --- 1. Create the Checkbox Group ---
     const checkboxGroupContainer = document.createElement('div');
