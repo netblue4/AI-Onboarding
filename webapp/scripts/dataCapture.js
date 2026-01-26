@@ -78,7 +78,7 @@ class DataCapture {
     captureMultiSelect(field, sanitizedId, fieldName, currentData) {
         const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
         if (checkboxes.length > 0) {
-        	currentData[fieldName] = "";
+        	currentData[field.control_number] = fieldName;
 			currentData[sanitizedId] = Array.from(checkboxes).map(cb => cb.value);
         } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}"]`)) {
             delete currentData[sanitizedId];
@@ -88,7 +88,7 @@ class DataCapture {
     captureOptionBox(field, sanitizedId, fieldName, currentData) {
         const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
         if (checked) {
-            currentData[fieldName] = "";
+           currentData[field.control_number] = fieldName;
             currentData[sanitizedId] = checked.value;
         } else if (document.querySelector(`input[name="${sanitizedId}"]`)) {
             delete currentData[sanitizedId];
@@ -148,7 +148,7 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
 				(statusValue !== null && statusValue !== "") || 
 				(evidenceValue !== null && evidenceValue !== "")
 			) {
-				currentData[control.control_description]  = "";
+				currentData[field.control_number] = currentData[control.control_description]  = "";
 				currentData[`${controlKey}_status`] = statusValue;
 				currentData[`${controlKey}_evidence`] = evidenceValue;
 			}
@@ -166,7 +166,7 @@ capturePlan(field, sanitizedId, fieldName, currentData) {
             if (textareaElement && textareaElement.value) {
                 // Only update if value has changed
                 if (currentData[criteriaKey] !== textareaElement.value) {
-                    currentData[fieldName] = "";
+                    currentData[field.control_number] = fieldName;
                     currentData[criteriaKey] = textareaElement.value;
                 }
             } else if (textareaElement && currentData[criteriaKey]) {
@@ -201,7 +201,7 @@ capturePlan(field, sanitizedId, fieldName, currentData) {
         if (inputElement) {
             if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
                 if (inputElement.value) {
-                    currentData[fieldName] = "";
+                    currentData[field.control_number] = fieldName;
                     currentData[sanitizedId] = inputElement.value;
                 } else {
                     delete currentData[sanitizedId];
