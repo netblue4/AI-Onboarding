@@ -51,7 +51,7 @@ function createDropdown(field, capturedData, sanitizeForId) {
 
         // 1d. Add the detailed labels (FieldLabel, FieldText) INTO the collapsible container.
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
+        fieldLabel.textContent = field.control_number ' - ' + field.FieldName + ' (' + field.requirement_control_number + ')';
         fieldLabel.classList.add('label-bold');
         contentDiv.appendChild(fieldLabel);
 
