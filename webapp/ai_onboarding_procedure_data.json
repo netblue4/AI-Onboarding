@@ -9,6 +9,7 @@
       ],
       "Fields": [
         {
+          "RequirementControlNumber":"1.1.1",
           "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
@@ -27,6 +28,7 @@
       ],
       "Fields": [
         {
+          "RequirementControlNumber":"1.2.1",
           "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldName": "Which description best defines your organization's role and activities for this AI system?",
@@ -45,6 +47,7 @@
       ],
       "Fields": [
         {
+          "RequirementControlNumber":"1.3.1",
           "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldName": "Will the AI system be used for any of the following purposes?",
@@ -53,6 +56,7 @@
           "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings/None"
         },
         {
+          "RequirementControlNumber":"1.3.2",
           "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldName": "Does the AI system have specific transparency obligations (Limited Risk)?",
@@ -71,7 +75,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Article 9]",
+          "requirement_control_number": "[Article 9]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Requirement,Compliance,Risk Management System",
@@ -123,7 +127,7 @@
           ]
         },
         {
-          "Control": "[Article 10]",
+          "requirement_control_number": "[Article 10]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Data and Data Governance,Fairness and Bias,Requirement",
@@ -168,7 +172,7 @@
           ]
         },
         {
-          "Control": "[Article 12]",
+          "requirement_control_number": "[Article 12]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Record-Keeping,Requirement",
@@ -199,7 +203,7 @@
           ]
         },
         {
-          "Control": "[Article 13]",
+          "requirement_control_number": "[Article 13]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Transparency and Explainability,Requirement",
@@ -251,7 +255,7 @@
           ]
         },
         {
-          "Control": "[Article 14]",
+          "requirement_control_number": "[Article 14]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Human Oversight,Requirement",
@@ -302,7 +306,7 @@
           ]
         },
         {
-          "Control": "[Article 15]",
+          "requirement_control_number": "[Article 15]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Cybersecurity and Resilience,Requirement",
@@ -347,7 +351,7 @@
           ]
         },
 		{
-		  "Control": "[Article 26]",
+		  "requirement_control_number": "[Article 26]",
 		  "FieldType": "risk",
 		  "Role": "Compliance",
 		  "TrustDimension": "Compliance,Accountability,Requirement",
@@ -455,7 +459,7 @@
 		  ]
 		},
         {
-          "Control": "[Article 27]",
+          "requirement_control_number": "[Article 27]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Fundamental Rights,Fairness and Bias,Requirement",
@@ -527,7 +531,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.2 - Policies related to AI]",
+          "requirement_control_number": "[A.2 - Policies related to AI]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,AI Governance,Requirement",
@@ -558,7 +562,7 @@
           ]
         },
         {
-          "Control": "[A.3 - Internal organization]",
+          "requirement_control_number": "[A.3 - Internal organization]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,AI Governance,Requirement",
@@ -582,7 +586,7 @@
           ]
         },
         {
-          "Control": "[A.4 - Resources for AI systems]",
+          "requirement_control_number": "[A.4 - Resources for AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Requirement",
@@ -627,7 +631,7 @@
           ]
         },
         {
-          "Control": "[A.5 - Assessing impacts of AI systems]",
+          "requirement_control_number": "[A.5 - Assessing impacts of AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Fundamental Rights,Job Preservation,Environmental Sustainability,Requirement",
@@ -665,7 +669,7 @@
           ]
         },
         {
-          "Control": "[A.6 - AI system life cycle]",
+          "requirement_control_number": "[A.6 - AI system life cycle]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Requirement",
@@ -736,7 +740,7 @@
           ]
         },
         {
-          "Control": "[A.7 - Data for AI systems]",
+          "requirement_control_number": "[A.7 - Data for AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Data and Data Governance,Requirement",
@@ -781,7 +785,7 @@
           ]
         },
         {
-          "Control": "[A.8 - Information for interested parties of AI systems]",
+          "requirement_control_number": "[A.8 - Information for interested parties of AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Transparency and Explainability,Requirement",
@@ -819,7 +823,7 @@
           ]
         },
         {
-          "Control": "[A.9 - Use of AI systems]",
+          "requirement_control_number": "[A.9 - Use of AI systems]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Intended Use,Requirement",
@@ -850,7 +854,7 @@
           ]
         },
         {
-          "Control": "[A.10 Third-party and customer relationships]",
+          "requirement_control_number": "[A.10 Third-party and customer relationships]",
           "FieldType": "risk",
           "Role": "Compliance",
           "TrustDimension": "Compliance,Risk Management System,Requirement",
@@ -897,7 +901,7 @@
           "FieldName": "AI System Details",
           "Fields": [
             {
-              "Control": "[A.6.2.3]",
+              "requirement_control_number": "[A.6.2.3]",
 			  "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "AI System ID",
@@ -906,7 +910,7 @@
           	  "FieldType": "Auto generated number"
             },
             {
-              "Control": "[A.6.2.3]",
+              "requirement_control_number": "[A.6.2.3]",
 			  "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "Name",
@@ -915,7 +919,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.6.2.3]",
+              "requirement_control_number": "[A.6.2.3]",
 			  "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "Business Purpose",
@@ -924,7 +928,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.6.2.3]",
+              "requirement_control_number": "[A.6.2.3]",
 			  "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "Use Cases",
@@ -933,7 +937,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.3],[A.6.2.3],[Art-27][Par-1a-1b]",
+              "requirement_control_number": "[A.9.3],[A.6.2.3],[Art-27][Par-1a-1b]",
               "TrustDimension": "Intended Use,Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "Augmented/Enhanced Tasks",
@@ -942,7 +946,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.9.3],[A.6.2.3]",
+              "requirement_control_number": "[A.9.3],[A.6.2.3]",
               "TrustDimension": "Intended Use,Transparency and Explainability",
               "Role": "Requester",
               "FieldName": "Select Potential Benefits",
@@ -951,7 +955,7 @@
               "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
             },
             {
-              "Control": "[A.6.2.3]",
+              "requirement_control_number": "[A.6.2.3]",
               "TrustDimension": "Transparency and Explainability",
               "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
@@ -967,7 +971,7 @@
           "FieldName": "Data for AI System",
           "Fields": [
             {
-              "Control": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Repository",
@@ -976,7 +980,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Description",
@@ -985,7 +989,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2],[A.4.3],[A.7.5]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[A.7.5]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Where does the data originate from?",
@@ -994,7 +998,7 @@
               "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
             },
             {
-              "Control": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the specific purpose(s) of the data?",
@@ -1003,7 +1007,7 @@
               "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
             },
             {
-              "Control": "[A.4.2],[A.4.3],[A.7.3],[A.7.2]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[A.7.3],[A.7.2]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How will the Data be acquired and selected?",
@@ -1013,7 +1017,7 @@
               "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
             },
             {
-              "Control": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the data Retention schedules based on legal and operational requirements?",
@@ -1021,7 +1025,7 @@
               "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
             },
             {
-              "Control": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How often does the data need to be refreshed?",
@@ -1030,7 +1034,7 @@
               "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
             },
             {
-              "Control": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Secure Disposing",
@@ -1040,7 +1044,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Approximate Size",
@@ -1048,7 +1052,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Owner/Custodian",
@@ -1063,7 +1067,7 @@
           "FieldName": "Allowed & Disallowed Key Phrase Categories",
           "Fields": [
             {
-              "Control": "[A.9.4],[Art-27][Par-1a-1b],[Art-13][Par-2]",
+              "requirement_control_number": "[A.9.4],[Art-27][Par-1a-1b],[Art-13][Par-2]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Whitelist Key Phrase Categories for Permitted User Prompts",
@@ -1072,7 +1076,7 @@
               "FieldType": "MultiSelect:Information Retrieval and Q&A:what is, who is, where can I find, tell me about, explain the, what are the details on/Document Summarization:summarize this, give me the key points, tl;dr, provide a summary of, what are the main takeaways, create an abstract for/Content Creation and Drafting:draft an email about, write a paragraph on, create a marketing blurb for, help me write, generate a draft of, compose a message about/Policy and Procedure Guidance:what is the policy for, how do I request, what is the procedure for, explain the process of, guide me through the steps for/Onboarding and Training Support:how do I set up, what training do I need for, explain the onboarding process, guide for new hires, help me learn about/Technical Support and Troubleshooting:how to fix, I'm getting an error, troubleshoot this issue, what does this error mean, help me with this technical problem/Data Analysis and Extraction:extract all the names from, what is the total of, find the average of, pull the data for, list all the dates in, analyze the trends in"
             },
             {
-              "Control": "[A.9.4],[Art-27][Par-1a-1b],[Art-13][Par-2]",
+              "requirement_control_number": "[A.9.4],[Art-27][Par-1a-1b],[Art-13][Par-2]",
               "Role": "Requester",
               "TrustDimension": "Intended Use",
               "FieldName": "Blacklist Key Phrase Categories for Prohibited User Prompt",
@@ -1087,7 +1091,7 @@
           "FieldName": "Human Intervention Key Phrase Categories Requiring Human Intervention",
           "Fields": [
             {
-              "Control": "[Art-14][Par-1],[Art-27][Par-1e],[Art-13][Par-3d]",
+              "requirement_control_number": "[Art-14][Par-1],[Art-27][Par-1e],[Art-13][Par-3d]",
               "Role": "Requester",
               "TrustDimension": "Human Oversight",
               "FieldName": "Human Intervention Key Phrase Categories - Requiring Human Intervention",
@@ -1102,7 +1106,7 @@
           "FieldName": "Traceability Specifications",
           "Fields": [
             {
-              "Control": "[Art-12][Par-1],[A.6.2.8]",
+              "requirement_control_number": "[Art-12][Par-1],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance, Record-Keeping",
               "FieldName": "Required System Lifecycle Events",
@@ -1111,7 +1115,7 @@
               "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
-              "Control": "[Art-12][Par-1],[A.6.2.8]",
+              "requirement_control_number": "[Art-12][Par-1],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Select all Mandatory Operational Event Categories for Logging",
@@ -1120,7 +1124,7 @@
               "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
             },
             {
-              "Control": "[Art-12][Par-1],[A.6.2.8]",
+              "requirement_control_number": "[Art-12][Par-1],[A.6.2.8]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Required Standard Traceability Log Metadata Schema",
@@ -1145,7 +1149,7 @@
           "FieldName": "AI system's Tooling resources",
           "Fields": [
             {
-              "Control": "[A.4.2],[A.4.4]",
+              "requirement_control_number": "[A.4.2],[A.4.4]",
               "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Tools Name and Version",
@@ -1154,7 +1158,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2],[A.4.4]",
+              "requirement_control_number": "[A.4.2],[A.4.4]",
               "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Select Tool Categories",
@@ -1163,7 +1167,7 @@
               "FieldType": "MultiSelect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
-              "Control": "[A.4.2],[A.4.4]",
+              "requirement_control_number": "[A.4.2],[A.4.4]",
               "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Purpose/Use Case in Project",
@@ -1178,7 +1182,7 @@
           "FieldName": "AI Systems Computing Resources",
           "Fields": [
             {
-              "Control": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
+              "requirement_control_number": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
               "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Computing Resource Name and Version",
@@ -1187,7 +1191,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
+              "requirement_control_number": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
               "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Category of the computing resource",
@@ -1196,7 +1200,7 @@
               "FieldType": "MultiSelect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
             },
             {
-              "Control": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
+              "requirement_control_number": "[A.4.2],[A.4.5],[Art-13][Par-3c-e-f]",
               "Role": "Requester",
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Which parts of the AI lifecycle do these resource supports?",
@@ -1221,7 +1225,7 @@
           "FieldName": "Fundamental Rights Impact Assessment",
           "Fields": [
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
@@ -1230,7 +1234,7 @@
               "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/None"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a=1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a=1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential negative impacts on fundamental rights",
@@ -1239,7 +1243,7 @@
               "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss/None"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential positive impacts on fundamental rights",
@@ -1248,7 +1252,7 @@
               "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency/None"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-27][Par-1a-1b],[Art-27],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Rate the severity of identified negative impacts",
@@ -1257,7 +1261,7 @@
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-9][Par-9][6]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1c-1d],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the severity of identified impacts",
@@ -1266,7 +1270,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1f],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1f],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
@@ -1275,7 +1279,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4],[Art-27][Par-1a-1b],[Art-27][Par-1c, 1d],[Art-9][Par-9][6]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Post-Deployment Monitoring Plan",
@@ -1290,7 +1294,7 @@
           "FieldName": "Workforce Transition and Adaptation for AI Integration",
           "Fields": [
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
@@ -1299,7 +1303,7 @@
               "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Identify the primary roles of the AI system relative to human workers",
@@ -1308,7 +1312,7 @@
               "FieldType": "MultiSelect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Automated/Eliminated Tasks",
@@ -1317,7 +1321,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Primary Mitigation Strategy for Displacement",
@@ -1326,7 +1330,7 @@
               "FieldType": "MultiSelect:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Structured Re-skilling Program in Place",
@@ -1335,7 +1339,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.4]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.4]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Structured Re-skilling Program Effectiveness",
@@ -1350,7 +1354,7 @@
           "FieldName": "Environmental Sustainability of AI Systems",
           "Fields": [
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.5]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
@@ -1359,7 +1363,7 @@
               "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.5]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Energy Consumption & Carbon Footprint Estimation",
@@ -1368,7 +1372,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.5]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
@@ -1377,7 +1381,7 @@
               "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.5]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select main strategies for minimizing negative environmental impacts.",
@@ -1386,7 +1390,7 @@
               "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.5]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Level of Environmental Impact",
@@ -1395,7 +1399,7 @@
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.5]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the Environmental Impact",
@@ -1404,7 +1408,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.5]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Contribution to Environmental Sustainability Goals",
@@ -1413,7 +1417,7 @@
               "FieldType": "TextBox"
             },
             {
-              "Control": "[A.5.2],[A.5.3],[A.5.5]",
+              "requirement_control_number": "[A.5.2],[A.5.3],[A.5.5]",
               "Role": "Requester",
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Environmental Impact Monitoring and Review",
@@ -1437,7 +1441,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-1],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-1],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Data and Data Governance,Cybersecurity and Resilience",
@@ -1482,7 +1486,7 @@
           ]
         },
 		{
-		"Control": "[Art-10][Par-3][3],[Art-10][Par-4][4],[Art-10][Par-5][5],[Art-9][Par-6][5]",
+		"requirement_control_number": "[Art-10][Par-3][3],[Art-10][Par-4][4],[Art-10][Par-5][5],[Art-9][Par-6][5]",
 		"FieldType": "plan",
 		"Role": "Tester",
 		"TrustDimension": "Data and Data Governance",
@@ -1583,7 +1587,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.6],[Art-10][Par-5][5],[Art-9][Par-6][5]",
+          "requirement_control_number": "[A.7.6],[Art-10][Par-5][5],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance,Fundamental Rights",
@@ -1648,7 +1652,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.4],[Art-15][Par-3],[Art-9][Par-6][5]",
+          "requirement_control_number": "[A.7.4],[Art-15][Par-3],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance",
@@ -1833,7 +1837,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1882,7 +1886,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1906,7 +1910,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -1941,7 +1945,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-12][Par-1],[A.6.2.2],[Art-12][Par-2],[Art-26][Par-6],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-12][Par-1],[A.6.2.2],[Art-12][Par-2],[Art-26][Par-6],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Compliance, Record-Keeping",
@@ -1979,7 +1983,7 @@
           ]
         },
         {
-          "Control": "[A.9.4],[A.6.2.2],[Art-26][Par-1-3],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[A.9.4],[A.6.2.2],[Art-26][Par-1-3],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Intended Use",
@@ -2017,7 +2021,7 @@
           ]
         },
         {
-          "Control": "[Art-14][Par-2],[Art-27][Par-1e],[Art-13][Par-3d],[A.6.2.2],[Art-14][Par-5],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-14][Par-2],[Art-27][Par-1e],[Art-13][Par-3d],[A.6.2.2],[Art-14][Par-5],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Human Oversight",
@@ -2066,7 +2070,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2115,7 +2119,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2150,7 +2154,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.4],[Art-15][Par-3],[Art-9][Par-6][5]",
+          "requirement_control_number": "[A.7.4],[Art-15][Par-3],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance",
@@ -2307,7 +2311,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.7.5],[A.7.6],[Art-9][Par-6][5]",
+          "requirement_control_number": "[A.7.5],[A.7.6],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2447,7 +2451,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.6.2.6],[Art-9][Par-6][5]",
+          "requirement_control_number": "[A.6.2.6],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -2563,7 +2567,7 @@
           ]
         },
         {
-          "Control": "[Art-10][Par-2][2],[A.6.2.4],[Art-9][Par-6][5]",
+          "requirement_control_number": "[Art-10][Par-2][2],[A.6.2.4],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Data and Data Governance,Fundamental Rights,Fairness and Bias",
@@ -2765,7 +2769,7 @@
           ]
         },
         {
-          "Control": "[Art-13][Par-1],[A.6.2.4],[Art-9][Par-6][5]",
+          "requirement_control_number": "[Art-13][Par-1],[A.6.2.4],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Transparency and Explainability,Fundamental Rights",
@@ -2890,7 +2894,7 @@
           ]
         },
         {
-          "Control": "[Art-12][Par-3],[A.6.2.4],[Art-9][Par-6][5]",
+          "requirement_control_number": "[Art-12][Par-3],[A.6.2.4],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Compliance, Record-Keeping",
@@ -2984,7 +2988,7 @@
           ]
         },
         {
-          "Control": "[A.9.4],[A.6.2.4],[Art-26][Par-5],[Art-9][Par-6][5]",
+          "requirement_control_number": "[A.9.4],[A.6.2.4],[Art-26][Par-5],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Intended Use,Fundamental Rights",
@@ -3074,7 +3078,7 @@
           ]
         },
         {
-          "Control": "[Art-14][Par-3],[A.6.2.4],[Art-13][Par-3d],[Art-9][Par-6][5]",
+          "requirement_control_number": "[Art-14][Par-3],[A.6.2.4],[Art-13][Par-3d],[Art-9][Par-6][5]",
           "FieldType": "plan",
           "Role": "Tester",
           "TrustDimension": "Human Oversight,Fundamental Rights",
@@ -3302,7 +3306,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Deployment Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3448,7 +3452,7 @@
       ],
       "Fields": [
         {
-          "Control": "[A.8.4]",
+          "requirement_control_number": "[A.8.4]",
           "Role": "Incident Manager",
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Data Breach",
@@ -3457,7 +3461,7 @@
           "FieldType": "TextBox"
         },
         {
-          "Control": "[A.8.4]",
+          "requirement_control_number": "[A.8.4]",
           "Role": "Incident Manager",
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Misuse",
@@ -3466,7 +3470,7 @@
           "FieldType": "TextBox"
         },
         {
-          "Control": "[A.8.4]",
+          "requirement_control_number": "[A.8.4]",
           "Role": "Incident Manager",
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Failure",
@@ -3497,7 +3501,7 @@
       ],
       "Fields": [
         {
-          "Control": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3535,7 +3539,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",
@@ -3573,7 +3577,7 @@
           ]
         },
         {
-          "Control": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-1][1],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "TrustDimension": "Cybersecurity and Resilience",

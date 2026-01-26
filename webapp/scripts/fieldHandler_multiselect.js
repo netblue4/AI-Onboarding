@@ -77,7 +77,7 @@ function createMultiSelect(field, capturedData, sanitizeForId) {
         contentDiv.className = 'collapsible-content collapsed';
 
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.Control;
+        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
         fieldLabel.classList.add('label-bold');
         contentDiv.appendChild(fieldLabel);
 
@@ -101,7 +101,7 @@ function createMultiSelect(field, capturedData, sanitizeForId) {
         // CASE 2: Build the original FLAT structure.
 
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.Control;
+        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
         fieldLabel.classList.add('label-bold');
         fieldDiv.appendChild(fieldLabel);
 

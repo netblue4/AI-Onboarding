@@ -40,7 +40,7 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
             // but are missing "FieldType". We must infer or assume a default type 
             // for the inner fields to be rendered by the factory. 
             // Assuming default to 'TextBox' for maximum compatibility if missing.
-            const fieldType = nestedField.FieldType || nestedField.Control ? nestedField.FieldType : 'TextBox';
+            const fieldType = nestedField.FieldType || nestedField.requirement_control_number ? nestedField.FieldType : 'TextBox';
 
             // Retrieve the appropriate handler using the global 'getFieldHandler' (from fieldFactory.js)
             const handler = getFieldHandler(fieldType);

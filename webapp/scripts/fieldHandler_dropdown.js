@@ -51,7 +51,7 @@ function createDropdown(field, capturedData, sanitizeForId) {
 
         // 1d. Add the detailed labels (FieldLabel, FieldText) INTO the collapsible container.
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.Control;
+        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
         fieldLabel.classList.add('label-bold');
         contentDiv.appendChild(fieldLabel);
 
@@ -76,7 +76,7 @@ function createDropdown(field, capturedData, sanitizeForId) {
         // CASE 2: Build the original FLAT structure (no question group).
 
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.Control;
+        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
         fieldLabel.setAttribute('for', sanitizedId);
         fieldLabel.classList.add('label-bold');
         fieldDiv.appendChild(fieldLabel);

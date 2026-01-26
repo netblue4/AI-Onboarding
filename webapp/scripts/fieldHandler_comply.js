@@ -95,9 +95,9 @@ function buildComplianceMap(data) {
  */
 function linkImplementations(implementationNodes, complianceMap) {
     implementationNodes.forEach(implNode => {
-        if (!implNode.Control) return;
+        if (!implNode.requirement_control_number) return;
 
-        const implControlParts = implNode.Control.split(',').map(s => s.trim());
+        const implControlParts = implNode.requirement_control_number.split(',').map(s => s.trim());
 
         for (const [parentName, data] of complianceMap.entries()) {
             const subControlLinks = data.subControlLinks;
@@ -192,7 +192,7 @@ function createRegHeader(parent, contentId, progressPercentage) {
             <div class="progress-container" style="background:#e0e7ff; height:10px; border-radius:5px; margin-top:5px;">
                 <div class="progress-bar" style="width: ${progressPercentage}%; background-color: ${progressColor}; height:100%;"></div>
             </div>
-            <div class="reg-meta" style="font-size:0.9em; color:#64748b;">${escapeHtml(parent.Control)}</div>
+            <div class="reg-meta" style="font-size:0.9em; color:#64748b;">${escapeHtml(parent.requirement_control_number)}</div>
         </div>
     `;
 
@@ -360,7 +360,7 @@ function createImplementationItem(child) {
         <div class="imp-content">
             <div class="imp-title">${escapeHtml(child.FieldName)}</div>
             <div class="imp-meta">
-                <strong>Matches Control:</strong> ${escapeHtml(child.Control)}
+                <strong>Requirement Controls:</strong> ${escapeHtml(child.requirement_control_number)}
             </div>
             <div class="imp-meta">
                 <strong>${label}:</strong> ${escapeHtml(value)}
@@ -432,9 +432,9 @@ function hasRequirementTrustDimension(field) {
 
 function isImplementation(field) {
     if (field.FieldType === 'fieldGroup' && field.Fields && Array.isArray(field.Fields)) {
-        return field.Fields.some(f => f.Control);
+        return field.Fields.some(f => f.requirement_control_number);
     }
-    return !!field.Control;
+    return !!field.requirement_control_number;
 }
 
 function extractControlKey(str) {
@@ -456,7 +456,7 @@ function calculateProgress(subControlLinks) {
 }
 
 function generateContentId(parent) {
-    const safeIdBase = (parent.Control || parent.FieldName).replace(/[^a-zA-Z0-9_]/g, '-');
+    const safeIdBase = (parent.requirement_control_number || parent.FieldName).replace(/[^a-zA-Z0-9_]/g, '-');
     return `content-${safeIdBase}`;
 }
 

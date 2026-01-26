@@ -4,7 +4,7 @@ function createTextBox(field, capturedData, sanitizeForId) {
     const sanitizedId = sanitizeForId(field.FieldName);
 
     const label = document.createElement('label');
-    label.textContent = field.FieldName + ' - ' + field.Control;
+    label.textContent = field.FieldName + ' - ' + field.requirement_control_number;
     label.classList.add('label-bold');
     fieldDiv.appendChild(label);
 

@@ -3,7 +3,7 @@ function createDisabledLabel(field, capturedData) {
     fieldDiv.className = 'form-field';
 
     const label = document.createElement('label');
-    label.textContent = field.FieldName + ' - ' + field.Control;
+    label.textContent = field.FieldName + ' - ' + field.requirement_control_number;
     const span = document.createElement('span');
     span.className = 'auto-generated-label';
 

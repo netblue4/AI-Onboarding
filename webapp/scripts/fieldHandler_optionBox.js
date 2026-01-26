@@ -67,7 +67,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
 
         // Add the detailed labels INTO the collapsible container.
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.Control;
+        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
         fieldLabel.classList.add('label-bold');
         contentDiv.appendChild(fieldLabel);
 
@@ -92,7 +92,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         // CASE 2: Build the original FLAT structure.
 
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.Control;
+        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
         fieldLabel.classList.add('label-bold');
         fieldDiv.appendChild(fieldLabel);
 
