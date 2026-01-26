@@ -93,56 +93,76 @@ class DataCapture {
         }
     }
 
-    captureRisk(field, sanitizedId, fieldName, currentData) {
-        const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-        if (riskSelect && riskSelect.value) {
+captureRisk(field, sanitizedId, fieldName, currentData) {
+    const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
+    
+    // Only update if value exists and has changed
+    if (riskSelect && riskSelect.value) {
+        if (currentData[fieldName] !== riskSelect.value) {
             currentData[fieldName] = riskSelect.value;
-        } else if (riskSelect) {
-            delete currentData[fieldName];
         }
+    } else if (riskSelect && currentData[fieldName]) {
+        // Only delete if it previously had a value
+        delete currentData[fieldName];
+    }
 
-        if (field.controls && Array.isArray(field.controls)) {
-            field.controls.forEach(control => {
-                const controlKey = this.templateManager.sanitizeForId(control.control_number);
+    if (field.controls && Array.isArray(field.controls)) {
+        field.controls.forEach(control => {
+            const controlKey = this.templateManager.sanitizeForId(control.control_number);
+            const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
+            const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
 
-                currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
+            const statusValue = statusElement ? statusElement.value : null;
+            const evidenceValue = evidenceElement ? evidenceElement.value : null;
 
-                const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
-                                      document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
-                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
-
-                const statusValue = statusElement ? statusElement.value : null;
-                const evidenceValue = evidenceElement ? evidenceElement.value : null;
-
-                if (statusValue) {
+            // Only update status if changed
+            if (statusValue) {
+                if (currentData[`${controlKey}_status`] !== statusValue) {
                     currentData[`${controlKey}_status`] = statusValue;
-                } else if (statusElement) {
-                    delete currentData[`${controlKey}_status`];
                 }
+            } else if (statusElement && currentData[`${controlKey}_status`]) {
+                delete currentData[`${controlKey}_status`];
+            }
 
-                if (evidenceValue) {
+            // Only update evidence if changed
+            let evidenceChanged = false;
+            if (evidenceValue) {
+                if (currentData[`${controlKey}_evidence`] !== evidenceValue) {
                     currentData[`${controlKey}_evidence`] = evidenceValue;
-                } else if (evidenceElement) {
-                    delete currentData[`${controlKey}_evidence`];
+                    evidenceChanged = true;
                 }
-            });
-        }
+            } else if (evidenceElement && currentData[`${controlKey}_evidence`]) {
+                delete currentData[`${controlKey}_evidence`];
+                evidenceChanged = true;
+            }
+
+            // Only update control key if status or evidence changed
+            if (statusValue != null || evidenceValue != null) {
+                const controlKeyEntry = `${controlKey}:`;
+                currentData[controlKeyEntry] = control.control_number + " - " + control.control_description;
+            }
+        });
     }
+}
 
-    capturePlan(field, sanitizedId, fieldName, currentData) {
-        if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
-            field.PlanCriteria.forEach((criteria, index) => {
-                const criteriaKey = `${fieldName}_criteria_${index}_evidence`;
-                const textareaElement = document.querySelector(`textarea[name="${sanitizedId}_criteria_${index}"]`);
+capturePlan(field, sanitizedId, fieldName, currentData) {
+    if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
+        field.PlanCriteria.forEach((criteria, index) => {
+            const criteriaKey = `${fieldName}_criteria_${index}_evidence`;
+            const textareaElement = document.querySelector(`textarea[name="${sanitizedId}_criteria_${index}"]`);
 
-                if (textareaElement && textareaElement.value) {
+            if (textareaElement && textareaElement.value) {
+                // Only update if value has changed
+                if (currentData[criteriaKey] !== textareaElement.value) {
                     currentData[criteriaKey] = textareaElement.value;
-                } else if (textareaElement) {
-                    delete currentData[criteriaKey];
                 }
-            });
-        }
+            } else if (textareaElement && currentData[criteriaKey]) {
+                // Only delete if it previously had a value
+                delete currentData[criteriaKey];
+            }
+        });
     }
+}
 
     captureComply(fieldName, currentData) {
         const complySelects = document.querySelectorAll('select[name$="_complystatus"]');
