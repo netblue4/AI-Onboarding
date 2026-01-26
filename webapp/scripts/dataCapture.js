@@ -93,56 +93,73 @@ class DataCapture {
         }
     }
 
-    captureRisk(field, sanitizedId, fieldName, currentData) {
-        const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-        if (riskSelect && riskSelect.value) {
-            currentData[fieldName] = riskSelect.value;
-        } else if (riskSelect) {
-            delete currentData[fieldName];
-        }
-
-        if (field.controls && Array.isArray(field.controls)) {
-            field.controls.forEach(control => {
-                const controlKey = this.templateManager.sanitizeForId(control.control_number);
-
-                currentData[`${controlKey}:`] = control.control_number + " - " + control.control_description;
-
-                const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
-                                      document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
-                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
-
-                const statusValue = statusElement ? statusElement.value : null;
-                const evidenceValue = evidenceElement ? evidenceElement.value : null;
-
-                if (statusValue) {
-                    currentData[`${controlKey}_status`] = statusValue;
-                } else if (statusElement) {
-                    delete currentData[`${controlKey}_status`];
-                }
-
-                if (evidenceValue) {
-                    currentData[`${controlKey}_evidence`] = evidenceValue;
-                } else if (evidenceElement) {
-                    delete currentData[`${controlKey}_evidence`];
-                }
-            });
-        }
-    }
-
-    capturePlan(field, sanitizedId, fieldName, currentData) {
-        if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
-            field.PlanCriteria.forEach((criteria, index) => {
-                const criteriaKey = `${fieldName}_criteria_${index}_evidence`;
-                const textareaElement = document.querySelector(`textarea[name="${sanitizedId}_criteria_${index}"]`);
-
-                if (textareaElement && textareaElement.value) {
-                    currentData[criteriaKey] = textareaElement.value;
-                } else if (textareaElement) {
-                    delete currentData[criteriaKey];
-                }
-            });
-        }
-    }
+	captureRisk(field, sanitizedId, fieldName, currentData) {
+		const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
+		
+		// Only update if value exists and has changed
+		if (riskSelect && riskSelect.value) {
+			if (currentData[fieldName] !== riskSelect.value) {
+				currentData[fieldName] = riskSelect.value;
+			}
+		} else if (riskSelect && currentData[fieldName]) {
+			// Only delete if it previously had a value
+			delete currentData[fieldName];
+		}
+	
+		if (field.controls && Array.isArray(field.controls)) {
+			field.controls.forEach(control => {
+				const controlKey = this.templateManager.sanitizeForId(control.control_number);
+				const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
+				const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
+	
+				const statusValue = statusElement ? statusElement.value : null;
+				const evidenceValue = evidenceElement ? evidenceElement.value : null;
+	
+				// Only update status if changed
+				if (statusValue) {
+					if (currentData[`${controlKey}_status`] !== statusValue) {
+						currentData[`${controlKey}_status`] = statusValue;
+					}
+				} else if (statusElement && currentData[`${controlKey}_status`]) {
+					delete currentData[`${controlKey}_status`];
+				}
+	
+				// Only update evidence if changed
+				if (evidenceValue) {
+					if (currentData[`${controlKey}_evidence`] !== evidenceValue) {
+						currentData[`${controlKey}_evidence`] = evidenceValue;
+					}
+				} else if (evidenceElement && currentData[`${controlKey}_evidence`]) {
+					delete currentData[`${controlKey}_evidence`];
+				}
+	
+				// Only update control key if it doesn't exist
+				const controlKeyEntry = `${controlKey}:`;
+				if (!currentData[controlKeyEntry]) {
+					currentData[controlKeyEntry] = control.control_number + " - " + control.control_description;
+				}
+			});
+		}
+	}
+	
+	capturePlan(field, sanitizedId, fieldName, currentData) {
+		if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
+			field.PlanCriteria.forEach((criteria, index) => {
+				const criteriaKey = `${fieldName}_criteria_${index}_evidence`;
+				const textareaElement = document.querySelector(`textarea[name="${sanitizedId}_criteria_${index}"]`);
+	
+				if (textareaElement && textareaElement.value) {
+					// Only update if value has changed
+					if (currentData[criteriaKey] !== textareaElement.value) {
+						currentData[criteriaKey] = textareaElement.value;
+					}
+				} else if (textareaElement && currentData[criteriaKey]) {
+					// Only delete if it previously had a value
+					delete currentData[criteriaKey];
+				}
+			});
+		}
+	}
 
     captureComply(fieldName, currentData) {
         const complySelects = document.querySelectorAll('select[name$="_complystatus"]');

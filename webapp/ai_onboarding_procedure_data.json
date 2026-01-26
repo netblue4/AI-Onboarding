@@ -14,7 +14,7 @@
           "TrustDimension": "Compliance",
           "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
           "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
-          "control_number": "1.1.1",
+          "control_number": "[1.1.1]",
           "FieldType": "MultiSelect:Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)/None"
         }
       ]
@@ -33,7 +33,7 @@
           "TrustDimension": "Compliance",
           "FieldName": "Which description best defines your organization's role and activities for this AI system?",
           "FieldText": "It's very important to clearly define the organisation's activities because it will impact the AI Act’s distinction between 'Provider' (developer) and 'Deployer' (user), which comes with significantly different responsibilities. The organisation's activities are exclusively focused on operationalizing, integrating, and governing generic pre-trained LLMs and developing internal infrastructure for Retrieval-Augmented Generation (RAG), without any modification, fine-tuning, or retraining of the underlying model itself. The AI system is for internal organizational use only, and is not repackaged or distributed to external customers. The LLM is chosen as a generic, pre-trained model, stored on-premises, and never fine-tuned, retrained, Its parameters, weights, or architecture layers are not modified by the organisation's internal engineering team. Meaning it does not interact with or access any external internet datasets, ensuring data sovereignty and minimizing exposure to third-party risks. The organisation's internal engineering team’s efforts are strictly limited to building infrastructure, orchestration, and internal data pipelines for the LLM, but do not alter the core LLM architecture or its parameters.",
-          "control_number": "1.2.1",
+          "control_number": "[1.2.1]",
           "FieldType": "MultiSelect:[Deployer - Internal Build] We are a Deployer. Our activities match the description: we use a generic model for internal use only AND our development is limited to building orchestration (RAG) without modifying the core model./[Provider] We are a Provider. We are substantially modifying the core AI model (e.g., fine-tuning, retraining) OR we are distributing this system to external customers."
         }
       ]
@@ -52,7 +52,7 @@
           "TrustDimension": "Compliance",
           "FieldName": "Will the AI system be used for any of the following purposes?",
           "FieldText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
-          "control_number": "1.2.1",
+          "control_number": "[1.2.1]",
           "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings/None"
         },
         {
@@ -61,7 +61,7 @@
           "TrustDimension": "Compliance",
           "FieldName": "Does the AI system have specific transparency obligations (Limited Risk)?",
           "FieldText": "If the system is not high-risk, it may still be 'Limited Risk' and have specific transparency obligations to ensure users are not deceived. Please select all that apply.",
-          "control_number": "1.3.2",
+          "control_number": "[1.3.2]",
           "FieldType": "MultiSelect:Interacts directly with humans (e.g., a chatbot) and must disclose it is an AI/Generates 'deep fakes' or manipulates video, audio, image content/Used for emotion recognition or biometric categorization/Generates synthetic text published on matters of public interest/None"
         }
       ]
@@ -906,7 +906,7 @@
               "Role": "Requester",
               "FieldName": "AI System ID",
               "FieldText": "AI System Unique Number",
-          	  "control_number": "2.1.1",
+          	  "control_number": "[2.1.1]",
           	  "FieldType": "Auto generated number"
             },
             {
@@ -915,7 +915,7 @@
               "Role": "Requester",
               "FieldName": "Name",
               "FieldText": "Name of the AI application",
-              "control_number": "2.1.2",
+              "control_number": "[2.1.2]",
               "FieldType": "TextBox"
             },
             {
@@ -924,7 +924,7 @@
               "Role": "Requester",
               "FieldName": "Business Purpose",
               "FieldText": "What specific business problem or task does this system address?",
-              "control_number": "2.1.3",
+              "control_number": "[2.1.3]",
               "FieldType": "TextBox"
             },
             {
@@ -933,7 +933,7 @@
               "Role": "Requester",
               "FieldName": "Use Cases",
               "FieldText": "Describe the use cases of how the AI system will solve the specific business problem or task",
-              "control_number": "2.1.4",
+              "control_number": "[2.1.4]",
               "FieldType": "TextBox"
             },
             {
@@ -942,7 +942,7 @@
               "Role": "Requester",
               "FieldName": "Augmented/Enhanced Tasks",
               "FieldText": "List the high-value tasks that will be significantly improved, made more accurate, or accelerated by the AI system's assistance.",
-              "control_number": "2.1.5",
+              "control_number": "[2.1.5]",
               "FieldType": "TextBox"
             },
             {
@@ -951,7 +951,7 @@
               "Role": "Requester",
               "FieldName": "Select Potential Benefits",
               "FieldText": "",
-              "control_number": "2.1.6",
+              "control_number": "[2.1.6]",
               "FieldType": "MultiSelect:Faster Service/Reduced Error Rate/Increased Efficiency/Personalized Training or Upskilling/Better Decision-Making Tools"
             },
             {
@@ -961,7 +961,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Select the Intended User Profiles for the AI System",
               "FieldText": "Define the specific roles, departments, or groups of individuals who are authorized to use the system. This helps to control access and ensure the system is used by those with the appropriate context and training.",
-              "control_number": "2.1.7",
+              "control_number": "[2.1.7]",
               "FieldType": "MultiSelect:All Employees/Specific Department(s)/Management and Leadership/Technical Administrators and Developers/External Partners or Clients/Executive Leadership Only"
             }
           ]
@@ -976,7 +976,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Repository",
               "FieldText": "All data comprising the AI systems dataset will be aggregated and stored in a central data repository.  List the path of the data repository.",
-              "control_number": "2.1.8",
+              "control_number": "[2.1.8]",
               "FieldType": "TextBox"
             },
             {
@@ -985,7 +985,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Description",
               "FieldText": "Brief overview of the dataset's content and general purpose.",
-              "control_number": "2.1.9",
+              "control_number": "[2.1.9]",
               "FieldType": "TextBox"
             },
             {
@@ -994,7 +994,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Where does the data originate from?",
               "FieldText": "",
-              "control_number": "2.1.10",
+              "control_number": "[2.1.10]",
               "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
             },
             {
@@ -1003,7 +1003,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the specific purpose(s) of the data?",
               "FieldText": "",
-              "control_number": "2.1.11",
+              "control_number": "[2.1.11]",
               "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
             },
             {
@@ -1012,7 +1012,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How will the Data be acquired and selected?",
               "FieldText": "",
-              "control_number": "2.1.12",
+              "control_number": "[2.1.12]",
               "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
             },
             {
@@ -1021,7 +1021,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the data Retention schedules based on legal and operational requirements?",
               "FieldText": "",
-              "control_number": "2.1.13",
+              "control_number": "[2.1.13]",
               "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
             },
             {
@@ -1030,7 +1030,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How often does the data need to be refreshed?",
               "FieldText": "",
-              "control_number": "2.1.14",
+              "control_number": "[2.1.14]",
               "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
             },
             {
@@ -1039,7 +1039,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Secure Disposing",
               "FieldText": "Descripbe the Secure methods for disposing of obsolete or redundant data.",
-              "control_number": "2.1.15",
+              "control_number": "[2.1.15]",
               "FieldType": "TextBox"
             },
             {
@@ -1048,7 +1048,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Approximate Size",
               "FieldText": "What is the Estimated size of the data (e.g., number of records, GB, TB)?",
-              "control_number": "2.1.16",
+              "control_number": "[2.1.16]",
               "FieldType": "TextBox"
             },
             {
@@ -1057,7 +1057,7 @@
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Owner/Custodian",
               "FieldText": "Person or team responsible for the data maintenance, refresh and disposal?",
-              "control_number": "2.1.17",
+              "control_number": "[2.1.17]",
               "FieldType": "TextBox"
             }
           ]
@@ -1072,7 +1072,7 @@
               "TrustDimension": "Intended Use",
               "FieldName": "Whitelist Key Phrase Categories for Permitted User Prompts",
               "FieldText": "This is the reference list of key phrases that will be allowed by the RAG Orchestrator. The RAG Orchestrator will be trained to recognize prompts similar to these examples.",
-              "control_number": "2.1.18",
+              "control_number": "[2.1.18]",
               "FieldType": "MultiSelect:Information Retrieval and Q&A:what is, who is, where can I find, tell me about, explain the, what are the details on/Document Summarization:summarize this, give me the key points, tl;dr, provide a summary of, what are the main takeaways, create an abstract for/Content Creation and Drafting:draft an email about, write a paragraph on, create a marketing blurb for, help me write, generate a draft of, compose a message about/Policy and Procedure Guidance:what is the policy for, how do I request, what is the procedure for, explain the process of, guide me through the steps for/Onboarding and Training Support:how do I set up, what training do I need for, explain the onboarding process, guide for new hires, help me learn about/Technical Support and Troubleshooting:how to fix, I'm getting an error, troubleshoot this issue, what does this error mean, help me with this technical problem/Data Analysis and Extraction:extract all the names from, what is the total of, find the average of, pull the data for, list all the dates in, analyze the trends in"
             },
             {
@@ -1081,7 +1081,7 @@
               "TrustDimension": "Intended Use",
               "FieldName": "Blacklist Key Phrase Categories for Prohibited User Prompt",
               "FieldText": "This is a reference list of key phrases that will be blocked by the RAG Orchestrator. AI systems that support these key phrases are prohibited by the AI act.",
-              "control_number": "2.1.19",
+              "control_number": "[2.1.19]",
               "FieldType": "MultiSelect:Manipulative or Subliminal Techniques Causing Harm:influence my decision, make me buy, change my mind, secretly persuade, subliminal message, hidden command, trick me into, deceive me/Exploitation of Vulnerabilities (e.g., age, disability):target children with ads, exploit elderly, convince a disabled person, addictive game for kids, target financially desperate, exploit vulnerability/General-Purpose Social Scoring:calculate social score, rate my behavior, trustworthiness score, classify people's value, social credit system, evaluate a person based on/Predictive Policing Based Solely on Profiling:predict who will commit a crime, crime risk assessment for a person, profile potential criminals, likelihood of reoffending, predict recidivism/Untargeted Scraping of Facial Images for Databases:scrape faces from internet, create facial recognition database, find all images of a person online, collect CCTV footage for faces, build a face dataset/Emotion Recognition in Workplace or Education:analyze employee emotions, detect student mood, tell me if my team is happy, monitor engagement with emotion, read facial expressions for performance/Biometric Categorization Using Sensitive Data (e.g., race, religion):guess race from photo, determine political opinion from text, infer religious beliefs, categorize by sexual orientation, deduce sex life/'Real-Time' Remote Biometric ID in Public Spaces:live facial recognition, track people in real-time with cameras, identify everyone in this crowd, public camera identification, real-time biometric tracking"
             }
           ]
@@ -1096,7 +1096,7 @@
               "TrustDimension": "Human Oversight",
               "FieldName": "Human Intervention Key Phrase Categories - Requiring Human Intervention",
               "FieldText": "This is a reference list of key phrases in the LLM's output that indicate it may be making a business decision or a decision with potential risks. If these phrases are detected, the system should flag the response for immediate human oversight and potential intervention, allowing an overseer to stop or override the action.",
-              "control_number": "2.1.20",
+              "control_number": "[2.1.20]",
               "FieldType": "MultiSelect:Financial and Business Directives:approve the loan, reject the claim, allocate budget, set the price at, hire candidate, terminate contract, invest in, authorize payment, proceed with purchase/Health and Safety Determinations:the diagnosis is, you likely have, prescribe treatment, this is a medical recommendation, it is safe to proceed, declare unsafe, risk level is critical, initiate safety protocol/Eligibility and Rights-Based Judgements:grant access to, deny benefits, is eligible for, application approved, request denied, assign credit score of, this is legally compliant, classify as high-risk/Automated Action and Execution:I have executed the transfer, the system will automatically, action has been triggered, the process is now initiated, I have decided to, the final decision is/Definitive Predictions and Classifications:the outcome will be, I predict with certainty, this will happen, the final score is, this person's risk profile is, this is the correct answer, conclude that"
             }
           ]
@@ -1111,7 +1111,7 @@
               "TrustDimension": "Compliance, Record-Keeping",
               "FieldName": "Required System Lifecycle Events",
               "FieldText": "Select all infrastructure-level events that must be automatically logged to ensure full lifecycle traceability from deployment to decommissioning.",
-              "control_number": "2.1.21",
+              "control_number": "[2.1.21]",
               "FieldType": "MultiSelect:Deployment_Event/Model_Version_Change/Configuration_Update/System_Start_Time_UTC/System_Stop_Time_UTC/Error_Critical_Failure/Decommission_Event"
             },
             {
@@ -1120,7 +1120,7 @@
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Select all Mandatory Operational Event Categories for Logging",
               "FieldText": "Reference list of operational event categories that MUST trigger an automated log entry to satisfy EU AI Act Art. 12 (traceability over system lifetime). Engineers must ensure hooks exist in the code to capture these specific states.",
-              "control_number": "2.1.22",
+              "control_number": "[2.1.22]",
               "FieldType": "MultiSelect:System Lifecycle Events:Start-up, Shutdown, Updates/Patches, Configuration Changes/Inference Execution Events:Prompt Received, Response Generated, RAG Retrieval utilized, Confidence Score below threshold/Risk & Security Events:Prohibited Use Attempt (Blacklist trigger), Authentication Failure, Input Guardrail Rejection/Human Oversight Events (Art. 14):Human override of AI output, 'Stop' command issued by human, Expert verification of result/Error & Failure Events:System crash, Latency timeout, Model drift alert, Unavailable external service (e.g., vector DB down)"
             },
             {
@@ -1129,7 +1129,7 @@
               "TrustDimension": "Compliance,Record-Keeping",
               "FieldName": "Required Standard Traceability Log Metadata Schema",
               "FieldText": "This defines the minimum required metadata fields that MUST be present in every single log entry defined above. This standardizes logs for automated auditing and post-market monitoring (Art 72).",
-              "control_number": "2.1.23",
+              "control_number": "[2.1.23]",
               "FieldType": "MultiSelect:Core Traceability:Event_Timestamp (ISO 8601 UTC), Event_Unique_ID, Source_Component_Name, Environment (Prod-Test) AI Specific Context:Model_Version_ID, System_Configuration_Hash, Prompt_Category_Classified/Input reference (Art 12.3):Input_Data_Hash (for verification without raw storage), Reference_Database_Version_Used/Accountability (Art 12.3):User_ID (Actor initiating event), Human_Verifier_ID (if oversight action taken), Session_Trace_ID"
             }
           ]
@@ -1154,7 +1154,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Tools Name and Version",
               "FieldText": "Name of the software, libraries, or frameworks and their Version numbers.",
-              "control_number": "2.2.1",
+              "control_number": "[2.2.1]",
               "FieldType": "TextBox"
             },
             {
@@ -1163,7 +1163,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Select Tool Categories",
               "FieldText": "",
-              "control_number": "2.2.2",
+              "control_number": "[2.2.2]",
               "FieldType": "MultiSelect:Programming Language/IDE/Data Processing/ML Framework/Version Control/Deployment"
             },
             {
@@ -1172,7 +1172,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Purpose/Use Case in Project",
               "FieldText": "How these tools will be used in the AI system's lifecycle.",
-              "control_number": "2.2.3",
+              "control_number": "[2.2.3]",
               "FieldType": "TextBox"
             }
           ]
@@ -1187,7 +1187,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Computing Resource Name and Version",
               "FieldText": "Names of the computing resources used.",
-              "control_number": "2.2.4",
+              "control_number": "[2.2.4]",
               "FieldType": "TextBox"
             },
             {
@@ -1196,7 +1196,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Category of the computing resource",
               "FieldText": "",
-              "control_number": "2.2.5",
+              "control_number": "[2.2.5]",
               "FieldType": "MultiSelect:Dev Workstation/ML Training Cluster/Inference API Server/Data Lake Storage/EC2/S3/SQL Database"
             },
             {
@@ -1205,7 +1205,7 @@
               "TrustDimension": "Cybersecurity and Resilience",
               "FieldName": "Which parts of the AI lifecycle do these resource supports?",
               "FieldText": "",
-              "control_number": "2.2.6",
+              "control_number": "[2.2.6]",
               "FieldType": "MultiSelect:Development/Training/Testing/Staging/Production/Monitoring"
             }
           ]
@@ -1230,7 +1230,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
               "FieldText": "",
-              "control_number": "2.3.1",
+              "control_number": "[2.3.1]",
               "FieldType": "MultiSelect:Children/Elderly/Persons with Disabilities/Economically Disadvantaged/Ethnic Minorities/None"
             },
             {
@@ -1239,7 +1239,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential negative impacts on fundamental rights",
               "FieldText": "Select specifically identified risks to the vulnerable population.",
-              "control_number": "2.3.2",
+              "control_number": "[2.3.2]",
               "FieldType": "MultiSelect:Discrimination or Bias/Privacy Violation/Job Loss/None"
             },
             {
@@ -1248,7 +1248,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Potential positive impacts on fundamental rights",
               "FieldText": "Select expected benefits for the vulnerable population.",
-              "control_number": "2.3.3",
+              "control_number": "[2.3.3]",
               "FieldType": "MultiSelect:Enhanced Accessibility/Improved Fairness/Increased Service Efficiency/None"
             },
             {
@@ -1257,7 +1257,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Rate the severity of identified negative impacts",
               "FieldText": "",
-              "control_number": "2.3.4",
+              "control_number": "[2.3.4]",
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
@@ -1266,7 +1266,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the severity of identified impacts",
               "FieldText": "Provide justification for the severity rating selected above.",
-              "control_number": "2.3.5",
+              "control_number": "[2.3.5]",
               "FieldType": "TextBox"
             },
             {
@@ -1275,7 +1275,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Technical mechanisms implemented to mitigate negative impacts",
               "FieldText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
-              "control_number": "2.3.6",
+              "control_number": "[2.3.6]",
               "FieldType": "TextBox"
             },
             {
@@ -1284,7 +1284,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Post-Deployment Monitoring Plan",
               "FieldText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
-              "control_number": "2.3.7",
+              "control_number": "[2.3.7]",
               "FieldType": "TextBox"
             }
           ]
@@ -1299,7 +1299,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
               "FieldText": "",
-              "control_number": "2.3.8",
+              "control_number": "[2.3.8]",
               "FieldType": "MultiSelect:Employees/Customers/Analysts/Customer/Supplier/Partner/Regulator"
             },
             {
@@ -1308,7 +1308,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Identify the primary roles of the AI system relative to human workers",
               "FieldText": "",
-              "control_number": "2.3.9",
+              "control_number": "[2.3.9]",
               "FieldType": "MultiSelect:Augmentation (assisting human judgment)/Automation (replacing tasks)/Creation (enabling new tasks)"
             },
             {
@@ -1317,7 +1317,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Automated/Eliminated Tasks",
               "FieldText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
-              "control_number": "2.3.10",
+              "control_number": "[2.3.10]",
               "FieldType": "TextBox"
             },
             {
@@ -1326,7 +1326,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Primary Mitigation Strategy for Displacement",
               "FieldText": "If job displacement is identified, select the primary strategies for the affected workers",
-              "control_number": "2.3.11",
+              "control_number": "[2.3.11]",
               "FieldType": "MultiSelect:Internal Re-deployment/Transfer/Managed Attrition (No Backfill)/Voluntary Separation Package/External Layoff"
             },
             {
@@ -1335,7 +1335,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Structured Re-skilling Program in Place",
               "FieldText": "Describe the primary strategies to address the affected workers.",
-              "control_number": "2.3.12",
+              "control_number": "[2.3.12]",
               "FieldType": "TextBox"
             },
             {
@@ -1344,7 +1344,7 @@
               "TrustDimension": "Compliance,Job Preservation",
               "FieldName": "Structured Re-skilling Program Effectiveness",
               "FieldText": "Describe the Training Effectiveness measures to evaluate the success of the primary strategies to address the affected workers.",
-              "control_number": "2.3.13",
+              "control_number": "[2.3.13]",
               "FieldType": "TextBox"
             }
           ]
@@ -1359,7 +1359,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Specify the primary sources of electricity for the data centers used for training and deployment of the AI system.",
               "FieldText": "",
-              "control_number": "2.3.14",
+              "control_number": "[2.3.14]",
               "FieldType": "MultiSelect:Primarily Renewable (e.g., Solar, Wind, Hydro)/Regional Grid Mix/Primarily Fossil Fuels/Unknown or Not Specified by Provider"
             },
             {
@@ -1368,7 +1368,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Energy Consumption & Carbon Footprint Estimation",
               "FieldText": "Describe the methodology and provide the estimated energy consumption (e.g., in kWh) and carbon footprint (e.g., in tons of CO2e) for the system's lifecycle (training, validation, and deployment).",
-              "control_number": "2.3.15",
+              "control_number": "[2.3.15]",
               "FieldType": "TextBox"
             },
             {
@@ -1377,7 +1377,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select the primary strategies for managing the hardware (e.g., servers, GPUs) at the end of its useful life.",
               "FieldText": "",
-              "control_number": "2.3.16",
+              "control_number": "[2.3.16]",
               "FieldType": "MultiSelect:Certified E-waste Recycling Program/Component Refurbishment and Reuse/Return to Manufacturer for Disposal/Unmanaged Disposal"
             },
             {
@@ -1386,7 +1386,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Select main strategies for minimizing negative environmental impacts.",
               "FieldText": "",
-              "control_number": "2.3.17",
+              "control_number": "[2.3.17]",
               "FieldType": "MultiSelect:Renewable Energy Use/Model Size Optimization/Cool Data Management/E-waste Recycling/Sustainable Supply Chain"
             },
             {
@@ -1395,7 +1395,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Level of Environmental Impact",
               "FieldText": "Rate the degree of environmental burden/benefit (with rationale).",
-              "control_number": "2.3.18",
+              "control_number": "[2.3.18]",
               "FieldType": "Dropdown box with values:/Low/Medium/High"
             },
             {
@@ -1404,7 +1404,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Describe the Environmental Impact",
               "FieldText": "Describe the degree of environmental burden/benefit.",
-              "control_number": "2.3.19",
+              "control_number": "[2.3.19]",
               "FieldType": "TextBox"
             },
             {
@@ -1413,7 +1413,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Contribution to Environmental Sustainability Goals",
               "FieldText": "Does the AI system's intended application directly contribute to positive environmental outcomes (e.g., climate change modeling, energy grid optimization, biodiversity monitoring)? If yes, please describe.",
-              "control_number": "2.3.20",
+              "control_number": "[2.3.20]",
               "FieldType": "TextBox"
             },
             {
@@ -1422,7 +1422,7 @@
               "TrustDimension": "Compliance,Fundamental Rights",
               "FieldName": "Environmental Impact Monitoring and Review",
               "FieldText": "Describe the process and frequency for monitoring and reviewing the environmental performance metrics of the AI system over its lifecycle.",
-              "control_number": "2.3.21",
+              "control_number": "[2.3.21]",
               "FieldType": "TextBox"
             }
           ]
@@ -2078,28 +2078,28 @@
           "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
           "controls": [
             {
-              "control_number": "LLM05.01",
+              "control_number": "[LLM05.01]",
               "control_description": "Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
               "control_objective": "To ensure that only verified and approved components are used in the AI system, reducing the risk of introducing malicious elements from public sources.",
               "control_status": "",
               "control_evidence": "Documentation of the internal repository setup (e.g., Artifactory, private Hugging Face hub). Policy documents mandating its use. Logs showing successful mirroring and vetting processes."
             },
             {
-              "control_number": "LLM05.02",
+              "control_number": "[LLM05.02]",
               "control_description": "Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
               "control_objective": "To detect and block compromised or vulnerable components before they can be used in the development or deployment pipeline.",
               "control_status": "",
               "control_evidence": "Configuration of scanning tools (e.g., ClamAV for malware, specialised model scanners like Picklescan). Reports from these tools showing scan results for imported assets."
             },
             {
-              "control_number": "LLM05.03",
+              "control_number": "[LLM05.03]",
               "control_description": "Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
               "control_objective": "To prevent the silent substitution of legitimate components with malicious ones by ensuring only specifically approved, immutable versions are used.",
               "control_status": "",
               "control_evidence": "Requirement files (e.g., 'requirements.txt', 'poetry.lock') with pinned versions and hashes. CI/CD pipeline scripts that verify these hashes before build or deployment."
             },
             {
-              "control_number": "LLM05.04",
+              "control_number": "[LLM05.04]",
               "control_description": "Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
               "control_objective": "To evaluate the security posture of suppliers and reduce the risk of relying on poorly maintained or compromised upstream projects.",
               "control_status": "",
@@ -2248,25 +2248,25 @@
           ],
           "controls": [
             {
-              "control_number": "DATA-RET - 01",
+              "control_number": "[DATA-RET - 01]",
               "control_description": "The retrieval mechanism must achieve a Recall@5 score of > 90%, ensuring the most relevant 'golden chunk' is within the top 5 retrieved results for any given question.",
               "control_objective": "To validate the effectiveness of the vector search and ranking algorithm in identifying contextually relevant data chunks from the index.",
               "control_evidence": "A quantitative test report from a dedicated evaluation framework (e.g., Ragas, custom script) showing Recall@5, Mean Reciprocal Rank (MRR), and Precision scores across a representative test set. Documentation of the query-chunk matching methodology."
             },
             {
-              "control_number": "DATA-RET - 02",
+              "control_number": "[DATA-RET - 02]",
               "control_description": "Sensitive data retrieval must strictly adhere to the user's defined read-access permissions, ensuring no unauthorized chunks are returned from the Index.",
               "control_objective": "To prevent unauthorized access to sensitive or proprietary information, directly enforcing data security controls during the retrieval phase.",
               "control_evidence": "System logs and audit trails from security tests that demonstrate zero instances of sensitive data chunks being returned to a user with insufficient read permissions. A configuration file or policy document detailing the access control mapping (User/Role to Document/Chunk ID)."
             },
             {
-              "control_number": "DATA-RET - 03",
+              "control_number": "[DATA-RET - 03]",
               "control_description": "The end-to-end retrieval latency (query submission to chunk reception) must be below 500ms at the 95th percentile under normal load conditions.",
               "control_objective": "To ensure the RAG system is responsive and timely, especially for real-time applications, aligning with the timeliness requirement (DATA-SEN-04).",
               "control_evidence": "A load testing report (e.g., from JMeter or Locust) that measures and graphs retrieval latency metrics (P95, Average) over a sustained period of simulated concurrent users. The monitoring dashboard showing continuous compliance with the 500ms threshold."
             },
             {
-              "control_number": "DATA-RET - 04",
+              "control_number": "[DATA-RET - 04]",
               "control_description": "All retrieved chunks must retain verifiable metadata linking them back to their original source document, page number, and version.",
               "control_objective": "To preserve the data provenance (DATA-SEN-05) and version control (DATA-SEN-06) throughout the RAG process, allowing for full auditability and traceability of the generated answer.",
               "control_evidence": "A schema validation report verifying that the chunk object returned by the Orchestrator contains all required metadata fields (source_uri, page_number, chunk_id, version_tag). Test logs showing successful reverse lookups from a retrieved chunk back to the original source file."
@@ -2395,25 +2395,25 @@
           ],
           "controls": [
             {
-              "control_number": "DATA-GEN - 01",
+              "control_number": "[DATA-GEN - 01]",
               "control_description": "The generated answer must achieve a 'Faithfulness' score of > 95%, ensuring the response contains no hallucinations and is fully supported by the retrieved context chunks.",
               "control_objective": "To validate the LLM's ability to stick strictly to the facts provided in the augmented context, preventing factual errors and hallucinations.",
               "control_evidence": "A quantitative test report (e.g., Ragas, custom script) showing 'Faithfulness' and 'Answer Relevancy' scores across a representative test set. Manual review logs for 'high-risk' questions demonstrating traceability to source chunks."
             },
             {
-              "control_number": "DATA-GEN - 02",
+              "control_number": "[DATA-GEN - 02]",
               "control_description": "The LLM must not be susceptible to 'Prompt Injection' attacks that cause it to ignore system instructions or reveal confidential data from the context.",
               "control_objective": "To prevent unauthorized extraction of retrieved, but ultimately unused, sensitive data from the context, and maintain control over the LLM's behavior.",
               "control_evidence": "A penetration test report from a dedicated red-teaming exercise (including adversarial prompts) that demonstrates zero instances of system-level instruction bypass or unauthorized data disclosure. Documentation of LLM hardening techniques."
             },
             {
-              "control_number": "DATA-GEN - 03",
+              "control_number": "[DATA-GEN - 03]",
               "control_description": "The generated answer must be 'Non-Toxic' and conform to internal safety and ethical guidelines for all input queries.",
               "control_objective": "To ensure the final output is safe, unbiased, and adheres to company compliance standards, regardless of the user's potentially toxic or malicious input.",
               "control_evidence": "A quantitative test report showing the percentage of toxic or biased responses flagged by an internal safety classifier (or LLM-as-a-judge system). Policy document defining the acceptable safety thresholds."
             },
             {
-              "control_number": "DATA-GEN - 04",
+              "control_number": "[DATA-GEN - 04]",
               "control_description": "The generated response must be highly relevant and directly answer the user's question (Answer Relevancy score > 90%) while maintaining coherence and readability.",
               "control_objective": "To ensure the RAG system provides a valuable user experience by delivering direct, concise, and well-structured answers.",
               "control_evidence": "A quantitative test report showing 'Answer Relevancy' and 'Answer Correctness' metrics. A sample set of generated answers assessed by human reviewers for coherence and style."
@@ -2515,25 +2515,25 @@
           ],
           "controls": [
             {
-              "control_number": "PERF-LATENCY-01",
+              "control_number": "[PERF-LATENCY-01]",
               "control_description": "For every 'Baseline' and 'Peak' scenario in the Golden Dataset, the measured P95 response time must not exceed the specific 'Expected_P95_Latency_ms' threshold defined for that scenario.",
               "control_objective": "To ensure responsive user experience is maintained strictly according to the pre-defined Service Level Objectives (SLOs) for different traffic conditions.",
               "control_evidence": "Automated test report showing side-by-side comparison of actual vs. expected P95 latency for each executed Scenario ID."
             },
             {
-              "control_number": "PERF-STABILITY-01",
+              "control_number": "[PERF-STABILITY-01]",
               "control_description": "The actual error rate during 'Baseline' and 'Peak' scenarios must not exceed the 'Max_Error_Rate_Percent' defined in the dataset.",
               "control_objective": "To confirm system stability and prevent unacceptable levels of failed inference requests under expected load.",
               "control_evidence": "Load test summary report highlighting total request count, failure count, and calculated error percentage against the threshold."
             },
             {
-              "control_number": "PERF-RES-01",
+              "control_number": "[PERF-RES-01]",
               "control_description": "Resource utilization (CPU, Memory, GPU VRAM) must remain below established saturation points (e.g., 85%) during all non-stress scenarios.",
               "control_objective": "To ensure adequate infrastructure headroom and prevent crashing due to resource exhaustion (OOM errors).",
               "control_evidence": "Time-series monitoring graphs (e.g., Grafana/Datadog exports) overlaying resource usage with load volume during the test window."
             },
             {
-              "control_number": "PERF-DRIFT-01",
+              "control_number": "[PERF-DRIFT-01]",
               "control_description": "Performance results must not show statistically significant degradation (>10% variance) compared to the previous accepted release's benchmark for the same Golden Scenarios.",
               "control_objective": "To detect 'silent' performance regressions or code bloat that gradually erode system efficiency over multiple releases.",
               "control_evidence": "A regression trend analysis report comparing current P95/Error rates against historical test runs of the same Scenario IDs."
@@ -2703,31 +2703,31 @@
           ],
           "controls": [
             {
-              "control_number": "FAIR-CTX - 01",
+              "control_number": "[FAIR-CTX - 01]",
               "control_description": "The context for fairness analysis, including the system's purpose, favorable outcomes, and protected attributes, must be clearly defined and documented.",
               "control_objective": "To establish a clear and unambiguous framework for all subsequent fairness assessments, ensuring that tests are relevant to the system's specific use case.",
               "control_evidence": "A signed-off document specifying: 1. The AI system's intended purpose. 2. The definition of the 'favorable outcome' variable. 3. A comprehensive list of protected attributes relevant to the legal jurisdiction (e.g., GDPR in Luxembourg)."
             },
             {
-              "control_number": "FAIR-REP - 01",
+              "control_number": "[FAIR-REP - 01]",
               "control_description": "The dataset's demographic composition must be representative of the target real-world population.",
               "control_objective": "To identify and mitigate representation bias, ensuring that the dataset does not systematically under- or over-represent certain demographic groups.",
               "control_evidence": "A data profiling report that includes: 1. Visualizations (e.g., bar charts) of the distribution of all subgroups for each protected attribute. 2. A comparative analysis of these distributions against external population benchmarks (e.g., census data, applicant pool statistics)."
             },
             {
-              "control_number": "FAIR-HIST - 01",
+              "control_number": "[FAIR-HIST - 01]",
               "control_description": "The dataset must not exhibit significant statistical disparities in historical outcomes between protected groups.",
               "control_objective": "To prevent the AI model from learning and amplifying past discriminatory patterns present in the training data.",
               "control_evidence": "A historical bias analysis report demonstrating: 1. Calculation of favorable outcome rates for all subgroups. 2. Application of a statistical disparity test (e.g., the Four-Fifths Rule), with results showing that no subgroup's outcome rate is less than 80% of the most favorable group's rate."
             },
             {
-              "control_number": "FAIR-PRX - 01",
+              "control_number": "[FAIR-PRX - 01]",
               "control_description": "Features that could act as proxies for protected attributes must be identified, analyzed, and documented.",
               "control_objective": "To prevent indirect discrimination by ensuring the model does not rely on non-protected features that are highly correlated with sensitive attributes.",
               "control_evidence": "A correlation analysis report (e.g., correlation matrix, feature importance analysis) that identifies features highly correlated with protected attributes. A documented decision for the inclusion or exclusion of each identified proxy."
             },
             {
-              "control_number": "FAIR-GOV - 01",
+              "control_number": "[FAIR-GOV - 01]",
               "control_description": "A formal governance process must be in place to report on and mitigate identified fairness risks.",
               "control_objective": "To ensure accountability and a structured, auditable response to any fairness issues discovered in the dataset before model development.",
               "control_evidence": "1. A formal 'Dataset Bias Report' summarizing all findings from the context, representation, historical, and proxy analyses. 2. A documented and approved mitigation plan outlining the actions to be taken (e.g., re-sampling, re-weighting, risk acceptance)."
@@ -3226,7 +3226,7 @@
           "TrustDimension": "",
           "Control": "Security Approver",
           "FieldText": "Name/Role of the Security Aprover",
-          "control_number": "6.1.1",
+          "control_number": "[6.1.1]",
           "FieldType": "TextBox"
         },
         {
@@ -3235,7 +3235,7 @@
           "TrustDimension": "",
           "Control": "Security Approved",
           "FieldText": "",
-          "control_number": "6.1.2",
+          "control_number": "[6.1.2]",
           "FieldType": "Option box with values:Yes/No"
         },
         {
@@ -3244,7 +3244,7 @@
           "TrustDimension": "",
           "Control": "DPO Approver",
           "FieldText": "Name/Role of the DPO Aprover",
-          "control_number": "6.1.3",
+          "control_number": "[6.1.3]",
           "FieldType": "TextBox"
         },
         {
@@ -3253,7 +3253,7 @@
           "TrustDimension": "",
           "Control": "DPO Approved",
           "FieldText": "",
-          "control_number": "6.1.4",
+          "control_number": "[6.1.4]",
           "FieldType": "Option box with values:Yes/No"
         },
         {
@@ -3262,7 +3262,7 @@
           "TrustDimension": "",
           "Control": "Risk Approver",
           "FieldText": "Name/Role of the Risk Aprover",
-          "control_number": "6.1.5",
+          "control_number": "[6.1.5]",
           "FieldType": "TextBox"
         },
         {
@@ -3271,7 +3271,7 @@
           "TrustDimension": "",
           "Control": "Risk Approved",
           "FieldText": "",
-          "control_number": "6.1.6",
+          "control_number": "[6.1.6]",
           "FieldType": "Option box with values:Yes/No"
         },
         {
@@ -3280,7 +3280,7 @@
           "TrustDimension": "",
           "Control": "Business Approver",
           "FieldText": "Name/Role of the Business Approver",
-          "control_number": "6.1.7",
+          "control_number": "[6.1.7]",
           "FieldType": "TextBox"
         },
         {
@@ -3289,7 +3289,7 @@
           "TrustDimension": "",
           "Control": "Business Approved",
           "FieldText": "",
-          "control_number": "6.1.8",
+          "control_number": "[6.1.8]",
           "FieldType": "Option box with values:Yes/No"
         }
       ]
@@ -3457,7 +3457,7 @@
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Data Breach",
           "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
-          "control_number": "7.2.1",
+          "control_number": "[7.2.1]",
           "FieldType": "TextBox"
         },
         {
@@ -3466,7 +3466,7 @@
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Misuse",
           "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
-          "control_number": "7.2.2",
+          "control_number": "[7.2.2]",
           "FieldType": "TextBox"
         },
         {
@@ -3475,7 +3475,7 @@
           "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Failure",
           "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
-          "control_number": "7.2.3",
+          "control_number": "[7.2.3]",
           "FieldType": "TextBox"
         }
       ]
