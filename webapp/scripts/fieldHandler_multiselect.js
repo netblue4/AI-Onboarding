@@ -21,7 +21,7 @@ function createMultiSelect(field, capturedData, sanitizeForId) {
     const options = optionsString.split('/');
     
     // NOTE: For multi-select, the captured data should be an array of selected values.
-    const selectedValues = capturedData[field.control_number] ?? [];
+    const selectedValues = capturedData[sanitizeForId] ?? [];
 
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
