@@ -46,11 +46,11 @@ class DataCapture {
 
         // Handle MultiSelect (checkboxes)
         if (fieldType && fieldType.startsWith('MultiSelect')) {
-            this.captureMultiSelect(sanitizedId, fieldName, currentData);
+            this.captureMultiSelect(field, sanitizedId, fieldName, currentData);
         }
         // Handle Option box (radio buttons)
         else if (fieldType && fieldType.startsWith('Option box with values')) {
-            this.captureOptionBox(sanitizedId, fieldName, currentData);
+            this.captureOptionBox(field, sanitizedId, fieldName, currentData);
         }
         // Handle risk fields
         else if (fieldType === 'risk') {
@@ -66,7 +66,7 @@ class DataCapture {
         }
         // Handle standard fields
         else {
-            this.captureStandard(sanitizedId, fieldName, currentData);
+            this.captureStandard(field, sanitizedId, fieldName, currentData);
         }
 
         // Recurse into nested fields
@@ -75,19 +75,19 @@ class DataCapture {
         }
     }
 
-    captureMultiSelect(sanitizedId, fieldName, currentData) {
+    captureMultiSelect(field, sanitizedId, fieldName, currentData) {
         const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
         if (checkboxes.length > 0) {
-			currentData[sanitizedId] = fieldName + ' - ' + Array.from(checkboxes).map(cb => cb.value);
+			currentData[sanitizedId] = field.control_number + ' - ' + fieldName + ' - ' + Array.from(checkboxes).map(cb => cb.value);
         } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}"]`)) {
             delete currentData[sanitizedId];
         }
     }
 
-    captureOptionBox(sanitizedId, fieldName, currentData) {
+    captureOptionBox(field, sanitizedId, fieldName, currentData) {
         const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
         if (checked) {
-            currentData[sanitizedId] = fieldName + ' - ' + checked.value;
+            currentData[sanitizedId] = field.control_number + ' - ' + fieldName + ' - ' + checked.value;
         } else if (document.querySelector(`input[name="${sanitizedId}"]`)) {
             delete currentData[sanitizedId];
         }
@@ -162,13 +162,13 @@ class DataCapture {
         }
     }
 
-    captureStandard(sanitizedId, fieldName, currentData) {
+    captureStandard(field, sanitizedId, fieldName, currentData) {
         const inputElement = document.getElementById(sanitizedId);
 
         if (inputElement) {
             if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
                 if (inputElement.value) {
-                    currentData[sanitizedId] = fieldName + ' - ' + inputElement.value;
+                    currentData[sanitizedId] = field.control_number + ' - ' + fieldName + ' - ' + inputElement.value;
                 } else {
                     delete currentData[sanitizedId];
                 }
