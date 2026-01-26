@@ -9,7 +9,7 @@
       ],
       "Fields": [
         {
-          "RequirementControlNumber":"1.1.1",
+          "requirement_control_number": "1.1.1",
           "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
@@ -28,7 +28,7 @@
       ],
       "Fields": [
         {
-          "RequirementControlNumber":"1.2.1",
+          "requirement_control_number": "1.2.1",
           "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldName": "Which description best defines your organization's role and activities for this AI system?",
@@ -47,7 +47,7 @@
       ],
       "Fields": [
         {
-          "RequirementControlNumber":"1.3.1",
+          "requirement_control_number": "1.3.1",
           "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldName": "Will the AI system be used for any of the following purposes?",
@@ -56,7 +56,7 @@
           "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings/None"
         },
         {
-          "RequirementControlNumber":"1.3.2",
+          "requirement_control_number": "1.3.2",
           "Role": "Requester",
           "TrustDimension": "Compliance",
           "FieldName": "Does the AI system have specific transparency obligations (Limited Risk)?",
