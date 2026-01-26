@@ -34,18 +34,17 @@ class DataRestore {
         const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]`);
         allCheckboxes.forEach(cb => cb.checked = false);
 
-        const selectedValues = this.state.capturedData[fieldName];
+        const selectedValues = this.state.capturedData[sanitizedId];
         if (Array.isArray(selectedValues)) {
             selectedValues.forEach(value => {
                 const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}"][value="${value}"]`);
                 if (checkbox) checkbox.checked = true;
             });
-            fieldName.CapturedData = Array.isArray(selectedValues).toString();
         }
     }
 
     restoreOptionBox(sanitizedId, fieldName) {
-        if (this.state.capturedData.hasOwnProperty(fieldName)) {
+        if (this.state.capturedData.hasOwnProperty(sanitizedId)) {
             const radioToCheck = document.querySelector(`input[name="${sanitizedId}"][value="${this.state.capturedData[fieldName]}"]`);
             if (radioToCheck) radioToCheck.checked = true;
         }
@@ -103,11 +102,10 @@ class DataRestore {
     }
 
     restoreStandard(sanitizedId, fieldName) {
-        if (this.state.capturedData.hasOwnProperty(fieldName)) {
+        if (this.state.capturedData.hasOwnProperty(sanitizedId)) {
             const inputElement = document.getElementById(sanitizedId);
             if (inputElement) {
-                inputElement.value = this.state.capturedData[fieldName];
-                fieldName.CapturedData = inputElement.value;
+                inputElement.value = this.state.capturedData[sanitizedId];
             }
         }
     }
