@@ -128,7 +128,6 @@ class DataCapture {
 			if (evidenceValue) {
 				if (currentData[`${controlKey}_evidence`] !== evidenceValue) {
 					currentData[`${controlKey}_evidence`] = evidenceValue;
-					evidenceChanged = true;
 				}
 			} else if (evidenceElement && currentData[`${controlKey}_evidence`]) {
 				delete currentData[`${controlKey}_evidence`];
