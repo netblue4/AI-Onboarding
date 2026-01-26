@@ -18,7 +18,7 @@ function createDropdown(field, capturedData, sanitizeForId) {
         option.textContent = trimmedOption;
         select.appendChild(option);
     });
-    select.value = capturedData[field.FieldName] || options[0]?.trim();
+    select.value = capturedData[field.control_number] || options[0]?.trim();
 
 
     // --- CONDITION: Check if a collapsible structure is needed ---
