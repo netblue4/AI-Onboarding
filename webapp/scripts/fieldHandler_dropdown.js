@@ -76,7 +76,7 @@ function createDropdown(field, capturedData, sanitizeForId) {
         // CASE 2: Build the original FLAT structure (no question group).
 
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
+        fieldLabel.textContent = field.control_number + ' - ' + field.FieldName + ' (' + field.requirement_control_number + ')';
         fieldLabel.setAttribute('for', sanitizedId);
         fieldLabel.classList.add('label-bold');
         fieldDiv.appendChild(fieldLabel);
