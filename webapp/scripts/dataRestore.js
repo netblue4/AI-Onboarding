@@ -11,7 +11,7 @@ class DataRestore {
         if (!field.FieldName) return;
 
         setTimeout(() => {
-            const sanitizedId = this.templateManager.sanitizeForId(field.FieldName);
+            const sanitizedId = this.templateManager.sanitizeForId(field.control_number);
             const fieldType = field.FieldType;
 
             if (fieldType && fieldType.startsWith('MultiSelect')) {
