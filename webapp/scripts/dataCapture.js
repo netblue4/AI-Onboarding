@@ -77,18 +77,18 @@ class DataCapture {
     captureMultiSelect(sanitizedId, fieldName, currentData) {
         const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
         if (checkboxes.length > 0) {
-            currentData[fieldName] = Array.from(checkboxes).map(cb => cb.value);
+			currentData[sanitizedId] = currentData[fieldName] + ' - ' + Array.from(checkboxes).map(cb => cb.value);
         } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}"]`)) {
-            delete currentData[fieldName];
+            delete currentData[sanitizedId];
         }
     }
 
     captureOptionBox(sanitizedId, fieldName, currentData) {
         const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
         if (checked) {
-            currentData[fieldName] = checked.value;
+            currentData[sanitizedId] = currentData[fieldName] + ' - ' + checked.value;
         } else if (document.querySelector(`input[name="${sanitizedId}"]`)) {
-            delete currentData[fieldName];
+            delete currentData[sanitizedId];
         }
     }
 
@@ -167,9 +167,9 @@ class DataCapture {
         if (inputElement) {
             if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
                 if (inputElement.value) {
-                    currentData[fieldName] = inputElement.value;
+                    currentData[sanitizedId] = currentData[fieldName] + ' - ' + inputElement.value;
                 } else {
-                    delete currentData[fieldName];
+                    delete currentData[sanitizedId];
                 }
             }
         }
