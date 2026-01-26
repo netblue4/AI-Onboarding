@@ -12,7 +12,7 @@ function createTextBox(field, capturedData, sanitizeForId) {
     input.id = sanitizedId;
     input.name = sanitizedId;
     input.placeholder = field.FieldText;
-    input.value = capturedData[sanitizeForId] || ''; // Restore captured data
+    input.value = capturedData[sanitizedId] || ''; // Restore captured data
     fieldDiv.appendChild(input);
 
     return fieldDiv;
