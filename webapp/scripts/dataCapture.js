@@ -30,6 +30,7 @@ class DataCapture {
 
         const fieldType = field.FieldType;
         const fieldName = field.FieldName;
+        const fieldControlNumber = field.control_number;
 
         // Skip auto-generated and fieldGroup types
         if (fieldType === 'Auto generated number' || fieldType === 'fieldGroup') {
@@ -41,7 +42,7 @@ class DataCapture {
 
         if (!fieldName) return;
 
-        const sanitizedId = this.templateManager.sanitizeForId(fieldName);
+        const sanitizedId = this.templateManager.sanitizeForId(fieldControlNumber);
 
         // Handle MultiSelect (checkboxes)
         if (fieldType && fieldType.startsWith('MultiSelect')) {
