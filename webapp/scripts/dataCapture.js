@@ -148,7 +148,7 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
 				(statusValue !== null && statusValue !== "") || 
 				(evidenceValue !== null && evidenceValue !== "")
 			) {
-				currentData[control.control_description]
+				currentData[control.control_description] = "";
 				currentData[`${controlKey}_status`] = statusValue;
 				currentData[`${controlKey}_evidence`] = evidenceValue;
 			}
