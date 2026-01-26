@@ -106,7 +106,7 @@ class ContentRenderer {
                             }
 
                             if (field.FieldName && 
-                                this.templateManager.isFieldNew(field.control_number) && 
+                                this.templateManager.isFieldNew(field.FieldName) && 
                                 this.state.newFieldsHighlighted) {
                                 const wrapper = document.createElement('div');
                                 wrapper.className = 'field-new';
