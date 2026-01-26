@@ -10,7 +10,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
 
     const optionsString = field.FieldType.split(':')[1]?.trim() || '';
     const options = optionsString.split('/');
-    const selectedValue = capturedData[field.FieldName] ?? null;
+    const selectedValue = capturedData[field.contol_number] ?? null;
 
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
