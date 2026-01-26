@@ -125,7 +125,6 @@ class DataCapture {
 			}
 	
 			// Only update evidence if changed
-			let evidenceChanged = false;
 			if (evidenceValue) {
 				if (currentData[`${controlKey}_evidence`] !== evidenceValue) {
 					currentData[`${controlKey}_evidence`] = evidenceValue;
@@ -133,11 +132,10 @@ class DataCapture {
 				}
 			} else if (evidenceElement && currentData[`${controlKey}_evidence`]) {
 				delete currentData[`${controlKey}_evidence`];
-				evidenceChanged = true;
 			}
 	
 			// Only update control key if status or evidence changed
-			if (statusValue !== currentData[`${controlKey}_status`] || evidenceChanged) {
+			 if (statusValue != null || evidenceValue != null) {
 				const controlKeyEntry = `${controlKey}:`;
 				currentData[controlKeyEntry] = control.control_number + " - " + control.control_description;
 			}
