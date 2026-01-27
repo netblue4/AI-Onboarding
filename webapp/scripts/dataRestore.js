@@ -79,7 +79,7 @@ class DataRestore {
         if (field.controls && Array.isArray(field.controls)) {
             field.controls.forEach((criteria, index) => {
                             	
-            	const criteriaKey = this.templateManager.sanitizeForId(criteria.control_number);
+            	const controlKey = this.templateManager.sanitizeForId(criteria.control_number);
                 
                 const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
                 if (evidenceElement && this.state.capturedData[`${controlKey}_evidence`]) {
