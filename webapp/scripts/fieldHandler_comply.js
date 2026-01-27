@@ -7,7 +7,13 @@
  * @param {function} sanitizeForId - Utility function to create safe HTML IDs
  * @returns {HTMLElement} The fully constructed div element for the compliance field
  */
-function createComplyField(field, capturedData, sanitizeForId) {
+ 
+ let capturedData = null;
+ 
+function createComplyField(field, incapturedData, sanitizeForId) {
+    
+    capturedData = capturedData || {};
+    
     const webappData = window.originalWebappData;
 
     if (!webappData) {
@@ -304,7 +310,10 @@ function createStatusDropdown(subControl, sanitizeForId) {
 function createEvidenceDiv(subControl) {
     const evidenceDiv = document.createElement('div');
     evidenceDiv.className = 'auto-generated-label';
-    evidenceDiv.innerHTML = escapeHtml(subControl.control_evidence);
+    const sanitizedId = sanitizeForId(controlItem.control_number);
+    evidenceDiv.innerHTML = capturedData[`${controlKey}_evidence`];
+    sanitizeForId(subControl.control_number)
+    
     return evidenceDiv;
 }
 
