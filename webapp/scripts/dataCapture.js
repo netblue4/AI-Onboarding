@@ -160,7 +160,8 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
 capturePlan(field, sanitizedId, fieldName, currentData) {
     if (field.controls && Array.isArray(field.controls)) {
         field.controls.forEach((criteria, index) => {
-            const criteriaKey = `${sanitizedId}`;
+            const criteriaKey = this.templateManager.sanitizeForId(criteria.control_number);
+
             
             const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_evidence"]`);
             
