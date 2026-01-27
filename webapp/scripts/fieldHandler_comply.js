@@ -313,7 +313,6 @@ function createEvidenceDiv(subControl, sanitizeForId) {
     const criteriaKey = sanitizeForId(subControl.control_number);
 
     evidenceDiv.innerHTML = capturedData[`${criteriaKey}_evidence`];
-    sanitizeForId(subControl.control_number)
     
     return evidenceDiv;
 }
