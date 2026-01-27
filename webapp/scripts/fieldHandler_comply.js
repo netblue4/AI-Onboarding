@@ -341,8 +341,6 @@ function createImplementationItem(child, sanitizeForId) {
     impItem.style.marginBottom = '5px';
     
     const { typeClass, typeName } = getImplementationType(child.FieldType);
-    const label = child.control_status ? "Status" : "Response";
-    const value = child.control_status || child.CapturedData || '';
 
     // Create the badge
     const badge = document.createElement('span');
@@ -370,13 +368,16 @@ function createImplementationItem(child, sanitizeForId) {
     contentDiv.appendChild(requirementDiv);
 
     // Create status/response meta
-    const statusDiv = document.createElement('div');
-    statusDiv.className = 'imp-meta';
-    const statusStrong = document.createElement('strong');
-    statusStrong.textContent = `${label}:`;
-    statusDiv.appendChild(statusStrong);
-    statusDiv.appendChild(document.createTextNode(` ${value}`));
-    contentDiv.appendChild(statusDiv);
+	if (child.FieldType !== "risk" && child.FieldType !== "plan") {
+		const statusDiv = document.createElement('div');
+		statusDiv.className = 'imp-meta';
+		const statusStrong = document.createElement('strong');
+		statusStrong.textContent = 'Response: ';
+		statusDiv.appendChild(statusStrong);
+		const value = capturedData[sanitizeForId(child.control_number)]  
+		statusDiv.appendChild(document.createTextNode(` ${value}`));
+		contentDiv.appendChild(statusDiv);
+	}
 
     // Create controls section if applicable
     if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
