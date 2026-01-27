@@ -339,46 +339,92 @@ function createImplementationItem(child) {
     const impItem = document.createElement('li');
     impItem.className = 'imp-item';
     impItem.style.marginBottom = '5px';
-
+    
     const { typeClass, typeName } = getImplementationType(child.FieldType);
-
-
-	let controlsHtml = '';
-	if (child.control_status !== "Not Applicable") {
-		// --- NEW LOGIC: Build the Controls List ---
-			
-		if (child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
-			// Create the header
-			controlsHtml += '<div style="margin-top: 10px;"><strong>Controls:</strong></div>';
-			
-			// Loop through each control in the array
-			const controlsList = child.controls.map(ctl => `
-				<div style="margin-top: 5px; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #e2e8f0;">
-					<strong>${escapeHtml(ctl.control_number || '')}: </strong>${escapeHtml(ctl.control_description || '')}<br>
-					<strong>Status:</strong> ${escapeHtml(ctl.control_status || '')}<br>
-					</strong>Evidence:</strong>${escapeHtml(ctl.control_evidence || '')}
-				</div>
-			`).join('');
-	
-			controlsHtml += controlsList;
-		}
-    }
-    // Determine the Label and the Value
     const label = child.control_status ? "Status" : "Response";
     const value = child.control_status || child.CapturedData || '';
 
-    impItem.innerHTML = `<span class="imp-type-badge ${typeClass}">${escapeHtml(typeName)}</span>
-        <div class="imp-content">
-            <div class="imp-title">${escapeHtml(child.FieldName)}</div>
-            <div class="imp-meta">
-                <strong>Requirement Controls:</strong> ${escapeHtml(child.requirement_control_number)}
-            </div>
-            <div class="imp-meta">
-                <strong>${label}:</strong> ${escapeHtml(value)}
-            </div>            
-            ${controlsHtml}    
-        </div>`;
+    // Create the badge
+    const badge = document.createElement('span');
+    badge.className = `imp-type-badge ${typeClass}`;
+    badge.textContent = typeName;
+    impItem.appendChild(badge);
 
+    // Create the content wrapper
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'imp-content';
+
+    // Create title
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'imp-title';
+    titleDiv.textContent = child.FieldName;
+    contentDiv.appendChild(titleDiv);
+
+    // Create requirement controls meta
+    const requirementDiv = document.createElement('div');
+    requirementDiv.className = 'imp-meta';
+    const requirementStrong = document.createElement('strong');
+    requirementStrong.textContent = 'Requirement Controls:';
+    requirementDiv.appendChild(requirementStrong);
+    requirementDiv.appendChild(document.createTextNode(` ${child.requirement_control_number}`));
+    contentDiv.appendChild(requirementDiv);
+
+    // Create status/response meta
+    const statusDiv = document.createElement('div');
+    statusDiv.className = 'imp-meta';
+    const statusStrong = document.createElement('strong');
+    statusStrong.textContent = `${label}:`;
+    statusDiv.appendChild(statusStrong);
+    statusDiv.appendChild(document.createTextNode(` ${value}`));
+    contentDiv.appendChild(statusDiv);
+
+    // Create controls section if applicable
+    if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
+        // Controls header
+        const controlsHeaderDiv = document.createElement('div');
+        controlsHeaderDiv.style.marginTop = '10px';
+        const controlsHeaderStrong = document.createElement('strong');
+        controlsHeaderStrong.textContent = 'Controls:';
+        controlsHeaderDiv.appendChild(controlsHeaderStrong);
+        contentDiv.appendChild(controlsHeaderDiv);
+
+        // Controls list items
+        child.controls.forEach(ctl => {
+        
+            const controlKey = sanitizeForId(ctl.control_number);
+
+            const controlDiv = document.createElement('div');
+            controlDiv.style.marginTop = '5px';
+            controlDiv.style.marginBottom = '10px';
+            controlDiv.style.paddingLeft = '10px';
+            controlDiv.style.borderLeft = '3px solid #e2e8f0';
+
+            const controlNumberStrong = document.createElement('strong');
+            controlNumberStrong.textContent = `${ctl.control_number || ''}: `;
+            controlDiv.appendChild(controlNumberStrong);
+            controlDiv.appendChild(document.createTextNode(ctl.control_description || ''));
+
+            const brTag = document.createElement('br');
+            controlDiv.appendChild(brTag);
+
+            const statusStrong = document.createElement('strong');
+            statusStrong.textContent = 'Status: ';
+            controlDiv.appendChild(statusStrong);
+            controlDiv.appendChild(document.createTextNode(capturedData[`${controlKey}_status`]|| ''));
+
+            const brTag2 = document.createElement('br');
+            controlDiv.appendChild(brTag2);
+
+            const evidenceStrong = document.createElement('strong');
+            evidenceStrong.textContent = 'Evidence: ';
+            controlDiv.appendChild(evidenceStrong);
+            controlDiv.appendChild(document.createTextNode(capturedData[`${controlKey}_evidence`] || ''));
+
+            contentDiv.appendChild(controlDiv);
+        });
+    }
+
+    impItem.appendChild(contentDiv);
     return impItem;
 }
 
