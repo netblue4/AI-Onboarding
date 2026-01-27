@@ -220,7 +220,7 @@ function createPlan(field, capturedData, sanitizeForId) {
 
             const controlContainer = document.createElement('div');
 
-            const criteriaText = document.createElement('p');
+            const controlText = document.createElement('p');
             controlText.textContent = controlItem.control_number + " - " + controlItem.control_description;
             controlContainer.appendChild(controlText);
   
