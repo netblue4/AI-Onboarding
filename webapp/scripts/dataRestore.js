@@ -76,16 +76,15 @@ class DataRestore {
     }
 
     restorePlan(field, sanitizedId) {
-        if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
-            field.PlanCriteria.forEach((criteria, index) => {
+        if (field.controls && Array.isArray(field.controls)) {
+            field.controls.forEach((criteria, index) => {
+                            	
+            	const criteriaKey = this.templateManager.sanitizeForId(criteria.control_number);
                 
-            	const criteriaKey = `${sanitizedId}`;
-            	const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_evidence"]`);
-                
-                if (textareaElements.length > 0 && this.state.capturedData[criteriaKey]) {
-                    textareaElements[0].value = this.state.capturedData[criteriaKey];
-                    criteria.criteria_evidence = this.state.capturedData[criteriaKey];
-                }
+                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
+                if (evidenceElement && this.state.capturedData[`${controlKey}_evidence`]) {
+                    evidenceElement.value = this.state.capturedData[`${controlKey}_evidence`];
+                    control.control_evidence = this.state.capturedData[`${controlKey}_evidence`];    
             });
         }
     }
