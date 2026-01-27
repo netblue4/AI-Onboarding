@@ -84,7 +84,8 @@ class DataRestore {
                 const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
                 if (evidenceElement && this.state.capturedData[`${controlKey}_evidence`]) {
                     evidenceElement.value = this.state.capturedData[`${controlKey}_evidence`];
-                    control.control_evidence = this.state.capturedData[`${controlKey}_evidence`];    
+                    control.control_evidence = this.state.capturedData[`${controlKey}_evidence`];   
+                    } 
             });
         }
     }
