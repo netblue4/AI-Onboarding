@@ -168,7 +168,7 @@ capturePlan(field, sanitizedId, fieldName, currentData) {
             if (textareaElement && textareaElement.value) {
                 // Only update if value has changed
                 if (currentData[criteriaKey] !== textareaElement.value) {
-                    currentData[field.control_number] = fieldName;
+                    currentData[criteria.control_number] = criteria.control_description;
                     currentData[criteriaKey] = textareaElement.value;
                 }
             } else if (textareaElement && currentData[criteriaKey]) {
