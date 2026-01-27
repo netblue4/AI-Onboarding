@@ -74,7 +74,7 @@ function buildComplianceMap(data,sanitizeForId) {
         
         if (reqNode.controls && Array.isArray(reqNode.controls)) {
             reqNode.controls.forEach(subControl => {
-                const controlKey = sanitizeForId(extractControlKey(subControl.control_number));
+                const controlKey = extractControlKey(subControl.control_number);
                 if (controlKey) {
                     subControlMap.set(controlKey, {
                         subControl: subControl,
