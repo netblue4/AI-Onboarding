@@ -216,7 +216,7 @@ function createPlan(field, capturedData, sanitizeForId) {
 
     if (field.controls && Array.isArray(field.controls)) {
         field.controls.forEach(controlItem => {
-           const sanitizedId = sanitizeForId(ficontrolItemeld.control_number);
+           const sanitizedId = sanitizeForId(controlItem.control_number);
 
             const controlContainer = document.createElement('div');
 
