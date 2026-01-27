@@ -209,7 +209,7 @@ function createSubControlList(subControlLinks, contentId, sanitizeForId) {
         // --- NEW LOGIC START ---
         // Only create and append the item if the status is NOT "Not Applicable"
         // We use ?. (optional chaining) to be safe in case subControl is undefined
-        const value = capturedData[sanitizeForId(key)]  
+        const value = capturedData[sanitizeForId(key) + '_status']  
     	if (subData.subControl && value !== "Not Applicable") {
             const subItem = createSubControlItem(subData, sanitizeForId);
             subControlList.appendChild(subItem);
