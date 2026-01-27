@@ -262,7 +262,7 @@ function createSubControlItem(subData, sanitizeForId) {
 
     // Linked implementations
     if (subData.children.size > 0) {
-        const impList = createImplementationList(subData.children);
+        const impList = createImplementationList(subData.children, sanitizeForId);
         subItem.appendChild(impList);
     } else {
         const noItemsDiv = createNoItemsMessage();
@@ -320,12 +320,12 @@ function createEvidenceDiv(subControl, sanitizeForId) {
 /**
  * Creates the list of linked implementations
  */
-function createImplementationList(children) {
+function createImplementationList(children, sanitizeForId) {
     const impList = document.createElement('ul');
     impList.className = 'imp-list';
 
     children.forEach(child => {
-        const impItem = createImplementationItem(child);
+        const impItem = createImplementationItem(child, sanitizeForId);
         impList.appendChild(impItem);
     });
 
@@ -335,7 +335,7 @@ function createImplementationList(children) {
 /**
  * Creates a single implementation item
  */
-function createImplementationItem(child) {
+function createImplementationItem(child, sanitizeForId) {
     const impItem = document.createElement('li');
     impItem.className = 'imp-item';
     impItem.style.marginBottom = '5px';
