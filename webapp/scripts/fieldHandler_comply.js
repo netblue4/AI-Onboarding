@@ -16,14 +16,14 @@ function createComplyField(field, capturedData, sanitizeForId) {
         return errDiv;
     }
 
-    const complianceMap = buildComplianceMap(webappData);
+    const complianceMap = buildComplianceMap(webappData,sanitizeForId);
     return renderMapping(complianceMap, sanitizeForId);
 }
 
 /**
  * Builds a map of requirements linked to their sub-controls and implementations
  */
-function buildComplianceMap(data) {
+function buildComplianceMap(data,sanitizeForId) {
     const requirementNodes = [];
     const implementationNodes = [];
     let allFields = [];
@@ -31,6 +31,8 @@ function buildComplianceMap(data) {
     // 1. Recursive helper (Kept from previous fix)
     function collectFieldsRecursively(fields) {
         if (!fields || !Array.isArray(fields)) return;
+
+//field ID is incorrect
 
         fields.forEach(field => {
             allFields.push(field);
@@ -66,7 +68,7 @@ function buildComplianceMap(data) {
         
         if (reqNode.controls && Array.isArray(reqNode.controls)) {
             reqNode.controls.forEach(subControl => {
-                const controlKey = extractControlKey(subControl.control_number);
+                const controlKey = sanitizeForId(extractControlKey(subControl.control_number));
                 if (controlKey) {
                     subControlMap.set(controlKey, {
                         subControl: subControl,
