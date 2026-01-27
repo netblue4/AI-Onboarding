@@ -216,13 +216,17 @@ function createPlan(field, capturedData, sanitizeForId) {
 
     if (field.controls && Array.isArray(field.controls)) {
         field.controls.forEach(controlItem => {
+           const sanitizedId = sanitizeForId(ficontrolItemeld.control_number);
+
             const controlContainer = document.createElement('div');
 
             const criteriaText = document.createElement('p');
             controlText.textContent = controlItem.control_number + " - " + controlItem.control_description;
             controlContainer.appendChild(controlText);
+  
             
             const input = document.createElement('textarea');
+            input.name = sanitizedId + '_evidence';
     		input.placeholder = controlItem.control_evidence;
     		controlText.appendChild(input);
  
