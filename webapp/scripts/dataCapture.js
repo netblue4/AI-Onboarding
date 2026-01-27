@@ -169,7 +169,7 @@ capturePlan(field, sanitizedId, fieldName, currentData) {
                 // Only update if value has changed
                 if (currentData[criteriaKey] !== textareaElement.value) {
                     currentData[criteria.control_number] = criteria.control_description;
-                    currentData[criteriaKey] = textareaElement.value;
+                    currentData[`${controlKey}_evidence`] = textareaElement.value;
                 }
             } else if (textareaElement && currentData[criteriaKey]) {
                 // Only delete if it previously had a value
