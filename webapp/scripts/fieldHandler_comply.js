@@ -114,25 +114,6 @@ function linkImplementations(implementationNodes, complianceMap) {
                 if (subControlLinks.has(implKey)) {
                     // Get the reference to the sub-control entry
                     const linkEntry = subControlLinks.get(implKey);
-
-                    // --- UPDATED LOGIC START ---
-                    // Check if the Parent Sub-Control is "Not Applicable"
-                    if (linkEntry.subControl && linkEntry.subControl.control_status === "Not Applicable") {
-                        
-                        // 1. Update the child node's main status
-                        implNode.control_status = "Not Applicable";
-
-                        // 2. Iterate through the child's nested 'controls' array
-                        //if (implNode.controls && Array.isArray(implNode.controls)) {
-                        //    implNode.controls.forEach(childControl => {
-                        //        childControl.control_status = "Not Applicable";
-                        //    });
-                        //}
-                    }else{
-                    	delete implNode.control_status;
-                    }
-                    // --- UPDATED LOGIC END ---
-
                     linkEntry.children.add(implNode);
                 }
             }
@@ -176,8 +157,8 @@ function createRegulationItem(data, sanitizeForId) {
     const header = createRegHeader(data.parentField, contentId, progressPercentage);
     regItem.appendChild(header);
 
-    const content = createSubControlList(data.subControlLinks, contentId, sanitizeForId);
-    regItem.appendChild(content);
+	const content = createSubControlList(data.subControlLinks, contentId, sanitizeForId);
+	regItem.appendChild(content);
 
     return regItem;
 }
@@ -228,7 +209,8 @@ function createSubControlList(subControlLinks, contentId, sanitizeForId) {
         // --- NEW LOGIC START ---
         // Only create and append the item if the status is NOT "Not Applicable"
         // We use ?. (optional chaining) to be safe in case subControl is undefined
-        if (subData.subControl?.control_status !== "Not Applicable") {
+        const value = capturedData[sanitizeForId(key)]  
+    	if (linkEntry.subControl && value === "Not Applicable") {
             const subItem = createSubControlItem(subData, sanitizeForId);
             subControlList.appendChild(subItem);
         }
