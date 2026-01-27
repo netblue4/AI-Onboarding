@@ -158,8 +158,8 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
 }
 
 capturePlan(field, sanitizedId, fieldName, currentData) {
-    if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
-        field.PlanCriteria.forEach((criteria, index) => {
+    if (field.controls && Array.isArray(field.controls)) {
+        field.controls.forEach((criteria, index) => {
             const criteriaKey = `${sanitizedId}`;
             
             const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_evidence"]`);
