@@ -12,7 +12,7 @@
  
 function createComplyField(field, incapturedData, sanitizeForId) {
     
-    capturedData = capturedData || {};
+    capturedData = incapturedData || {};
     
     const webappData = window.originalWebappData;
 
@@ -257,7 +257,7 @@ function createSubControlItem(subData, sanitizeForId) {
     subItem.appendChild(select);
 
     // Evidence description
-    const evidenceDiv = createEvidenceDiv(subData.subControl);
+    const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId);
     subItem.appendChild(evidenceDiv);
 
     // Linked implementations
@@ -307,11 +307,12 @@ function createStatusDropdown(subControl, sanitizeForId) {
 /**
  * Creates the evidence/description div
  */
-function createEvidenceDiv(subControl) {
+function createEvidenceDiv(subControl, sanitizeForId) {
     const evidenceDiv = document.createElement('div');
     evidenceDiv.className = 'auto-generated-label';
-    const sanitizedId = sanitizeForId(controlItem.control_number);
-    evidenceDiv.innerHTML = capturedData[`${controlKey}_evidence`];
+    const criteriaKey = sanitizeForId(subControl.control_number);
+
+    evidenceDiv.innerHTML = capturedData[`${criteriaKey}_evidence`];
     sanitizeForId(subControl.control_number)
     
     return evidenceDiv;
