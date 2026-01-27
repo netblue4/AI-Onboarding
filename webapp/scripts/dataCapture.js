@@ -160,9 +160,10 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
 capturePlan(field, sanitizedId, fieldName, currentData) {
     if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
         field.PlanCriteria.forEach((criteria, index) => {
-            const criteriaKey = `${fieldName}_criteria_${index}_evidence`;
-            const textareaElement = document.querySelector(`textarea[name="${sanitizedId}_criteria_${index}"]`);
-
+            const criteriaKey = `${sanitizedId}`;
+            
+            const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_evidence"]`);
+            
             if (textareaElement && textareaElement.value) {
                 // Only update if value has changed
                 if (currentData[criteriaKey] !== textareaElement.value) {

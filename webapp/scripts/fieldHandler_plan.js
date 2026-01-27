@@ -199,10 +199,10 @@ function createPlan(field, capturedData, sanitizeForId) {
  */
 
     // Add the criteria label  inside the collapsible area
-    const planCriteriaLabel = document.createElement('label');
-    planCriteriaLabel.textContent = "Criteria";
-    planCriteriaLabel.className = 'label-bold';
-    contentDiv.appendChild(planCriteriaLabel);
+    const planControliaLabel = document.createElement('label');
+    planControliaLabel.textContent = "Criteria";
+    planControliaLabel.className = 'label-bold';
+    contentDiv.appendChild(planControliaLabel);
     
     // Add separator
     const separator = document.createElement('hr');
@@ -211,25 +211,25 @@ function createPlan(field, capturedData, sanitizeForId) {
 
 
     // Crreate the criteria  div
-    const criteriaDiv = document.createElement('div');  
+    const controlDiv = document.createElement('div');  
 
 
-    if (field.PlanCriteria && Array.isArray(field.PlanCriteria)) {
-        field.PlanCriteria.forEach(criteriaItem => {
-            const criteriaContainer = document.createElement('div');
+    if (field.controls && Array.isArray(field.controls)) {
+        field.controls.forEach(controlItem => {
+            const controlContainer = document.createElement('div');
 
             const criteriaText = document.createElement('p');
-            criteriaText.textContent = criteriaItem.criteria;
-            criteriaContainer.appendChild(criteriaText);
+            controlText.textContent = controlItem.control_number + " - " + controlItem.control_description;
+            controlContainer.appendChild(controlText);
             
             const input = document.createElement('textarea');
-    		input.placeholder = criteriaItem.criteria_evidence;
-    		criteriaText.appendChild(input);
+    		input.placeholder = controlItem.control_evidence;
+    		controlText.appendChild(input);
  
-            criteriaDiv.appendChild(criteriaContainer);
+            controlDiv.appendChild(controlContainer);
         });
     }
-    contentDiv.appendChild(criteriaDiv);
+    contentDiv.appendChild(controlDiv);
 
     
 
