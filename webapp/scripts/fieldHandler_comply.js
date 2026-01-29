@@ -143,7 +143,8 @@ function renderMapping(complianceMap, sanitizeForId) {
 
     return container;
 }
-
+    	
+    	
 /**
  * Creates a single regulation item with header and collapsible content
  */
@@ -206,15 +207,10 @@ function createSubControlList(subControlLinks, contentId, sanitizeForId) {
     const sortedSubControls = Array.from(subControlLinks.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
     sortedSubControls.forEach(([key, subData]) => {
-        // --- NEW LOGIC START ---
-        // Only create and append the item if the status is NOT "Not Applicable"
-        // We use ?. (optional chaining) to be safe in case subControl is undefined
-        const value = capturedData[sanitizeForId(key) + '_status']  
-    	if (subData.subControl && value !== "Not Applicable") {
-            const subItem = createSubControlItem(subData, sanitizeForId);
-            subControlList.appendChild(subItem);
-        }
-        // --- NEW LOGIC END ---
+
+    const subItem = createSubControlItem(subData, sanitizeForId);
+    subControlList.appendChild(subItem);
+    
     });
 
     return subControlList;
@@ -242,16 +238,22 @@ function createSubControlItem(subData, sanitizeForId) {
     const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId);
     subItem.appendChild(evidenceDiv);
 
-    // Linked implementations
-    if (subData.children.size > 0) {
-        const impList = createImplementationList(subData.children, sanitizeForId);
-        subItem.appendChild(impList);
-    } else {
-        const noItemsDiv = createNoItemsMessage();
-        subItem.appendChild(noItemsDiv);
-    }
-
+	// --- NEW LOGIC START ---
+	// Only create and append the item if the status is NOT "Not Applicable"
+	// We use ?. (optional chaining) to be safe in case subControl is undefined
+	const value = capturedData[sanitizeForId(subData.subControl.control_number) + '_status']  
+	if (subData.subControl && value !== "Not Applicable") {
+		// Linked implementations
+		if (subData.children.size > 0) {
+			const impList = createImplementationList(subData.children, sanitizeForId);
+			subItem.appendChild(impList);
+		} else {
+			const noItemsDiv = createNoItemsMessage();
+			subItem.appendChild(noItemsDiv);
+		}
+	}
     return subItem;
+    
 }
 
 /**
@@ -274,12 +276,15 @@ function createStatusDropdown(subControl, sanitizeForId) {
     select.style.borderRadius = '4px';
     select.style.border = '1px solid #ccc';
     select.name = sanitizeForId(subControl.control_number) + '_complystatus';
+	const value = capturedData[sanitizeForId(subControl.control_number) + '_status']  
 
-    const options = ['Select', 'N/A', 'Met', 'Not Met', 'Partially Met'];
+    const options = ['Select', 'Not Applicable', 'Met', 'Not Met', 'Partially Met'];
     options.forEach((optionText) => {
         const option = document.createElement('option');
         option.value = optionText;
-        option.textContent = optionText;
+		if (value == optionText) {
+			option.selected = true;
+		}        option.textContent = optionText;
         select.appendChild(option);
     });
 
