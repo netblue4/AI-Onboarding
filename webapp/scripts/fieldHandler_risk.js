@@ -28,7 +28,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     
     fieldDiv.appendChild(headerDiv);
 
-	const radioInput = document.createElement('select');
+/*	const radioInput = document.createElement('select');
 	radioInput.name = sanitizeForId(field.FieldName);
 	const options = ['Select', 'Applicable', 'Not Applicable'];
 	options.forEach((optionText, index) => {
@@ -38,7 +38,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 		radioInput.appendChild(option);
 	});
     fieldDiv.appendChild(radioInput);
-
+*/
     // Create the collapsible container for the detailed information
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
@@ -75,7 +75,14 @@ function createRisk(field, capturedData, sanitizeForId) {
             //Control status
             const select = document.createElement('select');
             select.name = sanitizeForId(controlItem.control_number) + '_status';
-            const options = ['', 'Attestation', 'Not Applicable', 'Not Implemented', 'Implemented: No evidence provided', 'Implemented: Evidence provided'];
+                         
+            if state.currentRole === "Engineer" {
+				const options = ['', 'Not Implemented', 'Implemented'];
+            }
+            if state.currentRole === "Compliance" {
+				const options = ['', 'Attestation', 'Not Applicable'];
+            }
+            
     		options.forEach((optionText, index) => {
 				const option = document.createElement('option');
 				option.value = optionText;
