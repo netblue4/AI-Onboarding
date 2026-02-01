@@ -596,8 +596,10 @@ function calculateProgress(subControlLinks, sanitizeForId) {
                     const responseKey = sanitizeForId(child.control_number) + "_response";
                     const responseVal = capturedData[responseKey];
                     
-                    if (responseVal && responseVal.trim() !== '') {
-                        localTotalImplementationFieldsWithResponse++;
+                    if (responseVal){
+						if (responseVal.trim() !== '') {
+							localTotalImplementationFieldsWithResponse++;
+						}
                     }
                 }
 
@@ -611,8 +613,10 @@ function calculateProgress(subControlLinks, sanitizeForId) {
                         const ctlKey = sanitizeForId(ctl.control_number) + '_evidence';
                         const evidenceVal = capturedData[ctlKey];
                         
-                        if (evidenceVal && evidenceVal.trim() !== '') {
-                            localTotalImplementationControlsWithEvidence++;
+                        if (evidenceVal) {
+							if (evidenceVal.trim() !== '') {
+								localTotalImplementationControlsWithEvidence++;
+							}
                         }
                     });
                 }
