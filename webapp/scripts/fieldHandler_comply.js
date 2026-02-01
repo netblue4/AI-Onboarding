@@ -7,12 +7,23 @@
  * @param {function} sanitizeForId - Utility function to create safe HTML IDs
  * @returns {HTMLElement} The fully constructed div element for the compliance field
  */
- 
- let capturedData = null;
+
+// --- GLOBAL VARIABLES ---
+let capturedData = null;
+let totalControls = 0;
+let totalApplicableControls = 0;
+let totalImplementationControls = 0;
+let totalImplementationControlsWithEvidence = 0;
  
 function createComplyField(field, incapturedData, sanitizeForId) {
     
     capturedData = incapturedData || {};
+    
+    // Reset global counters on every render
+    totalControls = 0;
+    totalApplicableControls = 0;
+    totalImplementationControls = 0;
+    totalImplementationControlsWithEvidence = 0;
     
     const webappData = window.originalWebappData;
 
@@ -23,7 +34,17 @@ function createComplyField(field, incapturedData, sanitizeForId) {
     }
 
     const complianceMap = buildComplianceMap(webappData,sanitizeForId);
-    return renderMapping(complianceMap, sanitizeForId);
+    const renderedElement = renderMapping(complianceMap, sanitizeForId);
+
+    // Optional: Log global totals for verification
+    console.log("Global Compliance Totals:", {
+        totalControls,
+        totalApplicableControls,
+        totalImplementationControls,
+        totalImplementationControlsWithEvidence
+    });
+
+    return renderedElement;
 }
 
 /**
@@ -34,11 +55,9 @@ function buildComplianceMap(data,sanitizeForId) {
     const implementationNodes = [];
     let allFields = [];
 
-    // 1. Recursive helper (Kept from previous fix)
+    // 1. Recursive helper
     function collectFieldsRecursively(fields) {
         if (!fields || !Array.isArray(fields)) return;
-
-//field ID is incorrect
 
         fields.forEach(field => {
             allFields.push(field);
@@ -84,15 +103,13 @@ function buildComplianceMap(data,sanitizeForId) {
             });
         }
 
-        // Only add the requirement node if it has relevant controls remaining
-        // (Optional: remove this check if you still want the parent header to appear even if empty)
         complianceMap.set(reqNode.FieldName, {
             parentField: reqNode,
             subControlLinks: subControlMap
         });
     });
 
-    // 5. Link implementations (Logic remains the same)
+    // 5. Link implementations
     linkImplementations(implementationNodes, complianceMap);
 
     return complianceMap;
@@ -152,10 +169,13 @@ function createRegulationItem(data, sanitizeForId) {
     const regItem = document.createElement('div');
     regItem.className = 'reg-item';
 
-    const { progressPercentage, matchedControls, totalControls } = calculateProgress(data.subControlLinks);
+    // Calculate the 4 variables specifically for this Regulation/Article
+    const stats = calculateProgress(data.subControlLinks, sanitizeForId);
+    
     const contentId = generateContentId(data.parentField);
 
-    const header = createRegHeader(data.parentField, contentId, progressPercentage);
+    // Pass the stats object to the header creator
+    const header = createRegHeader(data.parentField, contentId, stats);
     regItem.appendChild(header);
 
 	const content = createSubControlList(data.subControlLinks, contentId, sanitizeForId);
@@ -165,24 +185,35 @@ function createRegulationItem(data, sanitizeForId) {
 }
 
 /**
- * Creates the collapsible header with toggle icon and progress bar
+ * Creates the collapsible header displaying the 4 variables
  */
-function createRegHeader(parent, contentId, progressPercentage) {
+function createRegHeader(parent, contentId, stats) {
     const regHeader = document.createElement('div');
     regHeader.className = 'reg-header';
     regHeader.setAttribute('data-target', `#${contentId}`);
     regHeader.style.cursor = 'pointer';
 
-    const progressColor = progressPercentage >= 100 ? 'var(--success-color, #22c55e)' : 'var(--primary-color, #2563eb)';
-
     regHeader.innerHTML = `
         <div class="toggle-icon" style="margin-right:10px; font-weight:bold;">+</div>
         <div class="reg-header-content" style="flex-grow:1;">
             <div class="reg-title" style="font-weight:bold; color:#1e40af;">${escapeHtml(parent.FieldName)}</div>
-            <div class="progress-container" style="background:#e0e7ff; height:10px; border-radius:5px; margin-top:5px;">
-                <div class="progress-bar" style="width: ${progressPercentage}%; background-color: ${progressColor}; height:100%;"></div>
+            
+            <div class="stats-container" style="display:flex; flex-wrap:wrap; gap:15px; margin-top:5px; font-size:0.85em; color:#475569;">
+                <div title="Total Controls defined by the Article">
+                    <strong>Total:</strong> ${stats.totalControls}
+                </div>
+                <div title="Total Applicable Controls">
+                    <strong>Applicable:</strong> ${stats.totalApplicableControls}
+                </div>
+                <div title="Total Implementation Controls">
+                    <strong>Imp. Controls:</strong> ${stats.totalImplementationControls}
+                </div>
+                <div title="Implementation Controls with Evidence">
+                    <strong>Evidence:</strong> ${stats.totalImplementationControlsWithEvidence}
+                </div>
             </div>
-            <div class="reg-meta" style="font-size:0.9em; color:#64748b;">${escapeHtml(parent.requirement_control_number)}</div>
+
+            <div class="reg-meta" style="font-size:0.9em; color:#64748b; margin-top:2px;">${escapeHtml(parent.requirement_control_number)}</div>
         </div>
     `;
 
@@ -220,6 +251,9 @@ function createSubControlList(subControlLinks, contentId, sanitizeForId) {
  * Creates a single sub-control item with status dropdown and linked implementations
  */
 function createSubControlItem(subData, sanitizeForId) {
+    // --- GLOBAL COUNT: TOTAL CONTROLS ---
+    totalControls++;
+
     const subItem = document.createElement('li');
     subItem.className = 'sub-control-item';
     subItem.style.listStyle = 'none';
@@ -233,6 +267,9 @@ function createSubControlItem(subData, sanitizeForId) {
 	const value = capturedData[sanitizeForId(subData.subControl.control_number) + '_status']  
 	
 	if (value !== "Not Applicable") {
+        // --- GLOBAL COUNT: APPLICABLE CONTROLS ---
+        totalApplicableControls++;
+
 		// Status dropdown
 		const select = createStatusDropdown(subData.subControl, sanitizeForId);
 		subItem.appendChild(select);
@@ -242,9 +279,7 @@ function createSubControlItem(subData, sanitizeForId) {
     const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId);
     subItem.appendChild(evidenceDiv);
 
-	// --- NEW LOGIC START ---
 	// Only create and append the item if the status is NOT "Not Applicable"
-	// We use ?. (optional chaining) to be safe in case subControl is undefined
 	if (subData.subControl && value !== "Not Applicable") {
 		// Linked implementations
 		if (subData.children.size > 0) {
@@ -256,7 +291,6 @@ function createSubControlItem(subData, sanitizeForId) {
 		}
 	}
     return subItem;
-    
 }
 
 /**
@@ -383,6 +417,15 @@ function createImplementationItem(child, sanitizeForId) {
         child.controls.forEach(ctl => {
         
             const controlKey = sanitizeForId(ctl.control_number);
+            const evidenceVal = capturedData[`${controlKey}_evidence`];
+
+            // --- GLOBAL COUNT: IMP CONTROLS ---
+            totalImplementationControls++;
+
+            // --- GLOBAL COUNT: EVIDENCE ---
+            if (evidenceVal && evidenceVal.trim() !== '') {
+                totalImplementationControlsWithEvidence++;
+            }
 
             const controlDiv = document.createElement('div');
             controlDiv.style.marginTop = '5px';
@@ -409,7 +452,7 @@ function createImplementationItem(child, sanitizeForId) {
             const evidenceStrong = document.createElement('strong');
             evidenceStrong.textContent = 'Evidence: ';
             controlDiv.appendChild(evidenceStrong);
-            controlDiv.appendChild(document.createTextNode(capturedData[`${controlKey}_evidence`] || ''));
+            controlDiv.appendChild(document.createTextNode(evidenceVal || ''));
 
             contentDiv.appendChild(controlDiv);
         });
@@ -491,16 +534,56 @@ function extractControlKey(str) {
     return (key.startsWith('[') && key.endsWith(']')) ? key : null;
 }
 
-function calculateProgress(subControlLinks) {
-    const totalControls = subControlLinks.size;
-    let matchedControls = 0;
+/**
+ * Calculates the 4 variables specifically for a given Regulation/Article
+ * This allows the header to display the correct stats before the content is fully rendered
+ */
+function calculateProgress(subControlLinks, sanitizeForId) {
+    let localTotalControls = 0;
+    let localTotalApplicableControls = 0;
+    let localTotalImplementationControls = 0;
+    let localTotalImplementationControlsWithEvidence = 0;
 
-    subControlLinks.forEach(d => {
-        if (d.children.size > 0) matchedControls++;
+    subControlLinks.forEach((subData) => {
+        // 1. Count Total Controls
+        localTotalControls++;
+
+        // 2. Count Applicable Controls
+        const controlNum = subData.subControl.control_number;
+        const statusVal = capturedData[sanitizeForId(controlNum) + '_status'];
+        
+        if (statusVal !== "Not Applicable") {
+            localTotalApplicableControls++;
+        }
+
+        // 3. Count Implementation Controls & Evidence (Looping through children)
+        if (subData.children) {
+            subData.children.forEach(child => {
+                // We check if the implementation child itself is applicable
+                if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
+                    child.controls.forEach(ctl => {
+                        // Increment Implementation Controls
+                        localTotalImplementationControls++;
+
+                        // Check Evidence
+                        const ctlKey = sanitizeForId(ctl.control_number) + '_evidence';
+                        const evidenceVal = capturedData[ctlKey];
+                        
+                        if (evidenceVal && evidenceVal.trim() !== '') {
+                            localTotalImplementationControlsWithEvidence++;
+                        }
+                    });
+                }
+            });
+        }
     });
 
-    const progressPercentage = totalControls > 0 ? (matchedControls / totalControls) * 100 : 100;
-    return { progressPercentage, matchedControls, totalControls };
+    return { 
+        totalControls: localTotalControls, 
+        totalApplicableControls: localTotalApplicableControls, 
+        totalImplementationControls: localTotalImplementationControls, 
+        totalImplementationControlsWithEvidence: localTotalImplementationControlsWithEvidence 
+    };
 }
 
 function generateContentId(parent) {
