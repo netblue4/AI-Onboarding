@@ -302,7 +302,7 @@ function createEvidenceDiv(subControl, sanitizeForId) {
 	const statusvalue = capturedData[`${criteriaKey}_status`]; 
 	const evidencevalue = capturedData[`${criteriaKey}_evidence`];  
 
-    evidenceDiv.innerHTML = '<strong>' statusvalue + "</strong></br>" + evidencevalue ;
+    evidenceDiv.innerHTML = '<strong>' + statusvalue + "</strong></br>" + evidencevalue ;
     
     return evidenceDiv;
 }
