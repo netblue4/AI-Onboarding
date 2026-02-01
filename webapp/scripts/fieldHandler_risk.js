@@ -37,7 +37,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 		option.textContent = optionText;
 		radioInput.appendChild(option);
 	});
-    //fieldDiv.appendChild(radioInput);
+    fieldDiv.appendChild(radioInput);
 
     // Create the collapsible container for the detailed information
     const contentDiv = document.createElement('div');
