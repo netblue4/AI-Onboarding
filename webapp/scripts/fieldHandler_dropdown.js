@@ -1,7 +1,7 @@
 function createDropdown(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
-    const sanitizedId = sanitizeForId(field.control_number);
+    const sanitizedId = sanitizeForId(field.control_number) + "_response";
 
     // --- Create the Dropdown Select Element First ---
     // It will be appended in the correct position by the logic below.

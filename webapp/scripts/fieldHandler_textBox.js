@@ -1,7 +1,7 @@
 function createTextBox(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
-    const sanitizedId = sanitizeForId(field.control_number);
+    const sanitizedId = sanitizeForId(field.control_number) + "_response";
 
     const label = document.createElement('label');
     label.textContent = field.control_number + ' - ' + field.FieldName + ' (' + field.requirement_control_number + ')';
