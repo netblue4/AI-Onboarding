@@ -235,8 +235,8 @@ function createSubControlItem(subData, sanitizeForId) {
     subItem.appendChild(select);
 
     // Evidence description
-    const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId);
-    subItem.appendChild(evidenceDiv);
+    //const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId);
+    //subItem.appendChild(evidenceDiv);
 
 	// --- NEW LOGIC START ---
 	// Only create and append the item if the status is NOT "Not Applicable"
