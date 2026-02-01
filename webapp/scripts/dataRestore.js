@@ -31,13 +31,13 @@ class DataRestore {
     }
 
     restoreMultiSelect(sanitizedId, fieldName) {
-        const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]`);
+        const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]`);
         allCheckboxes.forEach(cb => cb.checked = false);
 
         const selectedValues = this.state.capturedData[sanitizedId];
         if (Array.isArray(selectedValues)) {
             selectedValues.forEach(value => {
-                const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}"][value="${value}"]`);
+                const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"][value="${value}"]`);
                 if (checkbox) checkbox.checked = true;
             });
         }
@@ -45,7 +45,7 @@ class DataRestore {
 
     restoreOptionBox(sanitizedId, fieldName) {
         if (this.state.capturedData.hasOwnProperty(sanitizedId)) {
-            const radioToCheck = document.querySelector(`input[name="${sanitizedId}"][value="${this.state.capturedData[fieldName]}"]`);
+            const radioToCheck = document.querySelector(`input[name="${sanitizedId}_response"][value="${this.state.capturedData[fieldName]}"]`);
             if (radioToCheck) radioToCheck.checked = true;
         }
     }
@@ -103,10 +103,10 @@ class DataRestore {
     }
 
     restoreStandard(sanitizedId, fieldName) {
-        if (this.state.capturedData.hasOwnProperty(sanitizedId)) {
-            const inputElement = document.getElementById(sanitizedId);
+        if (this.state.capturedData.hasOwnProperty(sanitizedId + "_response")) {
+            const inputElement = document.getElementById(sanitizedId + "_response");
             if (inputElement) {
-                inputElement.value = this.state.capturedData[sanitizedId];
+                inputElement.value = this.state.capturedData[sanitizedId + "_response"];
             }
         }
     }

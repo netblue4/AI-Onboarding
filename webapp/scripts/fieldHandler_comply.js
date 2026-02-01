@@ -398,7 +398,7 @@ function createImplementationItem(child, sanitizeForId) {
 		const statusStrong = document.createElement('strong');
 		statusStrong.textContent = 'Response: ';
 		statusDiv.appendChild(statusStrong);
-		const value = capturedData[sanitizeForId(child.control_number)]  
+		const value = capturedData[sanitizeForId(child.control_number) + "_response"]  
 		statusDiv.appendChild(document.createTextNode(` ${value}`));
 		contentDiv.appendChild(statusDiv);
 	}

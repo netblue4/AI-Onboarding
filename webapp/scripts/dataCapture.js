@@ -79,7 +79,7 @@ class DataCapture {
         const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
         if (checkboxes.length > 0) {
         	currentData[field.control_number] = fieldName;
-			currentData[sanitizedId] = Array.from(checkboxes).map(cb => cb.value);
+			currentData[sanitizedId + "_response"] = Array.from(checkboxes).map(cb => cb.value);
         } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}"]`)) {
             delete currentData[sanitizedId];
         }
@@ -89,7 +89,7 @@ class DataCapture {
         const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
         if (checked) {
            currentData[field.control_number] = fieldName;
-            currentData[sanitizedId] = checked.value;
+            currentData[sanitizedId + "_response"] = checked.value;
         } else if (document.querySelector(`input[name="${sanitizedId}"]`)) {
             delete currentData[sanitizedId];
         }
@@ -204,7 +204,7 @@ capturePlan(field, sanitizedId, fieldName, currentData) {
             if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
                 if (inputElement.value) {
                     currentData[field.control_number] = fieldName;
-                    currentData[sanitizedId] = inputElement.value;
+                    currentData[sanitizedId + "_response"] = inputElement.value;
                 } else {
                     delete currentData[sanitizedId];
                 }
