@@ -868,7 +868,7 @@ button:hover {
     display: grid;
     gap: 8px;
     grid-auto-flow: column;
-    grid-auto-columns: 150px; /* Keep them readable size */
+    grid-auto-columns: 140px; /* Keep them readable size */
     overflow-x: auto;         /* Add a scrollbar if they don't fit */
 }
 
