@@ -412,7 +412,7 @@ function createImplementationItem(child, sanitizeForId) {
     // Create status/response meta
 	if (child.FieldType !== "risk" && child.FieldType !== "plan") {
         
-        // --- NEW: GLOBAL COUNT FOR IMPLEMENTATION FIELDS (Parent Items) ---
+        // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS (Parent Items) ---
         totalImplementationFields++;
 
 		const statusDiv = document.createElement('div');
@@ -424,8 +424,9 @@ function createImplementationItem(child, sanitizeForId) {
 		statusDiv.appendChild(document.createTextNode(` ${value}`));
 		contentDiv.appendChild(statusDiv);
 
-        // --- NEW: GLOBAL COUNT FOR IMPLEMENTATION FIELDS RESPONSE ---
-        if (value && value.trim() !== '') {
+        // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS RESPONSE ---
+        // FIX: Using helper function to handle Arrays vs Strings
+        if (hasContent(value)) {
             totalImplementationFieldsWithResponse++;
         }
 	}
@@ -450,7 +451,8 @@ function createImplementationItem(child, sanitizeForId) {
             totalImplementationControls++;
 
             // --- GLOBAL COUNT: EVIDENCE (Child Controls) ---
-            if (evidenceVal && evidenceVal.trim() !== '') {
+            // FIX: Using helper function to handle Arrays vs Strings
+            if (hasContent(evidenceVal)) {
                 totalImplementationControlsWithEvidence++;
             }
 
@@ -543,6 +545,15 @@ function toggleContent(content, icon, header) {
 
 // --- UTILITY FUNCTIONS ---
 
+/**
+ * Safely checks if a value has content (handles Strings and Arrays)
+ */
+function hasContent(val) {
+    if (!val) return false;
+    if (Array.isArray(val)) return val.length > 0;
+    return String(val).trim() !== '';
+}
+
 function hasRequirementTrustDimension(field) {
     if (!field || !field.TrustDimension) return false;
     return field.TrustDimension.includes('Requirement');
@@ -589,17 +600,16 @@ function calculateProgress(subControlLinks, sanitizeForId) {
         if (subData.children) {
             subData.children.forEach(child => {
                 
-                // --- NEW: Count Implementation FIELDS (Parent Items) ---
+                // --- Count Implementation FIELDS (Parent Items) ---
                 if (child.FieldType !== "risk" && child.FieldType !== "plan") {
                     localTotalImplementationFields++;
                     
                     const responseKey = sanitizeForId(child.control_number) + "_response";
                     const responseVal = capturedData[responseKey];
                     
-                    if (responseVal){
-						if (responseVal.trim() !== '') {
-							localTotalImplementationFieldsWithResponse++;
-						}
+                    // FIX: Using helper function to handle Arrays vs Strings
+                    if (hasContent(responseVal)) {
+                        localTotalImplementationFieldsWithResponse++;
                     }
                 }
 
@@ -613,10 +623,9 @@ function calculateProgress(subControlLinks, sanitizeForId) {
                         const ctlKey = sanitizeForId(ctl.control_number) + '_evidence';
                         const evidenceVal = capturedData[ctlKey];
                         
-                        if (evidenceVal) {
-							if (evidenceVal.trim() !== '') {
-								localTotalImplementationControlsWithEvidence++;
-							}
+                        // FIX: Using helper function to handle Arrays vs Strings
+                        if (hasContent(evidenceVal)) {
+                            localTotalImplementationControlsWithEvidence++;
                         }
                     });
                 }
