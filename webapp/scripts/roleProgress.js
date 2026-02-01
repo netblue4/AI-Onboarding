@@ -75,8 +75,18 @@ class RoleProgressTracker {
             // Count completed fields
             const completedFields = roleFields.filter(field => {
                 if (!field.FieldName) return false;
-                const value = this.state.capturedData[field.FieldName];
-                return value !== undefined && value !== null && value !== '';
+                
+                
+					const statusvalue = capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
+					const evidencesvalue = capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
+					const value = capturedData[templateManager.sanitizeForId(field.control_number)];
+					
+					const isStatusValid = statusvalue !== undefined && statusvalue !== null && statusvalue !== '';
+					const isEvidenceValid = evidencesvalue !== undefined && evidencesvalue !== null && evidencesvalue !== '';
+					const isValueValid = value !== undefined && value !== null && value !== '';
+					
+					return isStatusValid || isEvidenceValid || isValueValid;
+
             }).length;
 
             const percentage = Math.round((completedFields / roleFields.length) * 100);
@@ -179,8 +189,15 @@ class RoleProgressTracker {
             const roleFields = this.getFieldsForRole(role);
             const completedFields = roleFields.filter(field => {
                 if (!field.FieldName) return false;
-                const value = this.state.capturedData[field.FieldName];
-                return value !== undefined && value !== null && value !== '';
+					const statusvalue = capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
+					const evidencesvalue = capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
+					const value = capturedData[templateManager.sanitizeForId(field.control_number)];
+					
+					const isStatusValid = statusvalue !== undefined && statusvalue !== null && statusvalue !== '';
+					const isEvidenceValid = evidencesvalue !== undefined && evidencesvalue !== null && evidencesvalue !== '';
+					const isValueValid = value !== undefined && value !== null && value !== '';
+					
+					return isStatusValid || isEvidenceValid || isValueValid;
             }).length;
 
             const percentage = roleFields.length > 0 
