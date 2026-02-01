@@ -76,10 +76,10 @@ function createRisk(field, capturedData, sanitizeForId) {
             const select = document.createElement('select');
             select.name = sanitizeForId(controlItem.control_number) + '_status';
                          
-            if state.currentRole === "Engineer" {
+            if (state.currentRole === "Engineer") {
 				const options = ['', 'Not Implemented', 'Implemented'];
             }
-            if state.currentRole === "Compliance" {
+            if (state.currentRole === "Compliance") {
 				const options = ['', 'Attestation', 'Not Applicable'];
             }
             
