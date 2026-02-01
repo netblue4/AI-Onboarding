@@ -77,9 +77,9 @@ class RoleProgressTracker {
                 if (!field.FieldName) return false;
                 
                 
-					const statusvalue = capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
-					const evidencesvalue = capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
-					const value = capturedData[templateManager.sanitizeForId(field.control_number)];
+					const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
+					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
+					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number)];
 					
 					const isStatusValid = statusvalue !== undefined && statusvalue !== null && statusvalue !== '';
 					const isEvidenceValid = evidencesvalue !== undefined && evidencesvalue !== null && evidencesvalue !== '';
@@ -189,9 +189,9 @@ class RoleProgressTracker {
             const roleFields = this.getFieldsForRole(role);
             const completedFields = roleFields.filter(field => {
                 if (!field.FieldName) return false;
-					const statusvalue = capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
-					const evidencesvalue = capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
-					const value = capturedData[templateManager.sanitizeForId(field.control_number)];
+					const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
+					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
+					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number)];
 					
 					const isStatusValid = statusvalue !== undefined && statusvalue !== null && statusvalue !== '';
 					const isEvidenceValid = evidencesvalue !== undefined && evidencesvalue !== null && evidencesvalue !== '';
