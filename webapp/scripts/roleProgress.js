@@ -153,10 +153,10 @@ class RoleProgressTracker {
      * @param {string} role - The role to select
      */
     selectRole(role) {
-        const roleDropdown = document.getElementById('role-dropdown');
-        if (roleDropdown) {
-            roleDropdown.value = role;
-        }
+        //const roleDropdown = document.getElementById('role-dropdown');
+       // if (roleDropdown) {
+       //     roleDropdown.value = role;
+       // }
         this.state.setCurrentRole(role);
         this.update();
         

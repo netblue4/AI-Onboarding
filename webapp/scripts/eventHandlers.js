@@ -31,7 +31,7 @@ class EventHandlers {
 
         console.log('EventHandlers.setup() called');
 
-        const roleDropdown = document.getElementById('role-dropdown');
+        //const roleDropdown = document.getElementById('role-dropdown');
         const dimensionDropdown = document.getElementById('dimension-dropdown');
         const systemIdInput = document.getElementById('system-id-input');
         const fileInput = document.getElementById('file-input');
@@ -41,6 +41,7 @@ class EventHandlers {
         const versionBanner = document.getElementById('version-banner');
         const highlightNewBtn = document.getElementById('highlight-new-btn');
 
+        /*
         // Validate required elements exist
         if (!roleDropdown || !saveBtn) {
             console.error('Required UI elements not found');
@@ -54,7 +55,7 @@ class EventHandlers {
             this.contentRenderer.render();
             this.roleProgressTracker.update();
         });
-
+*/
         // ===== DIMENSION DROPDOWN =====
         if (dimensionDropdown) {
             dimensionDropdown.addEventListener('change', (e) => {
