@@ -10,8 +10,16 @@
 
 // --- GLOBAL VARIABLES ---
 let capturedData = null;
+
+// 1. Requirement / Article Counters
 let totalControls = 0;
 let totalApplicableControls = 0;
+
+// 2. Implementation Field Counters (Parent Items)
+let totalImplementationFields = 0;
+let totalImplementationFieldsWithResponse = 0;
+
+// 3. Implementation Control Counters (Nested Children)
 let totalImplementationControls = 0;
 let totalImplementationControlsWithEvidence = 0;
  
@@ -22,6 +30,8 @@ function createComplyField(field, incapturedData, sanitizeForId) {
     // Reset global counters on every render
     totalControls = 0;
     totalApplicableControls = 0;
+    totalImplementationFields = 0;
+    totalImplementationFieldsWithResponse = 0;
     totalImplementationControls = 0;
     totalImplementationControlsWithEvidence = 0;
     
@@ -40,6 +50,8 @@ function createComplyField(field, incapturedData, sanitizeForId) {
     console.log("Global Compliance Totals:", {
         totalControls,
         totalApplicableControls,
+        totalImplementationFields,
+        totalImplementationFieldsWithResponse,
         totalImplementationControls,
         totalImplementationControlsWithEvidence
     });
@@ -169,7 +181,7 @@ function createRegulationItem(data, sanitizeForId) {
     const regItem = document.createElement('div');
     regItem.className = 'reg-item';
 
-    // Calculate the 4 variables specifically for this Regulation/Article
+    // Calculate the 6 variables specifically for this Regulation/Article
     const stats = calculateProgress(data.subControlLinks, sanitizeForId);
     
     const contentId = generateContentId(data.parentField);
@@ -185,7 +197,7 @@ function createRegulationItem(data, sanitizeForId) {
 }
 
 /**
- * Creates the collapsible header displaying the 4 variables
+ * Creates the collapsible header displaying the 6 variables
  */
 function createRegHeader(parent, contentId, stats) {
     const regHeader = document.createElement('div');
@@ -200,12 +212,18 @@ function createRegHeader(parent, contentId, stats) {
             
             <div class="stats-container" style="display:flex; flex-wrap:wrap; gap:15px; margin-top:5px; font-size:0.85em; color:#475569;">
                 <div title="Total Controls defined by the Article">
-                    <strong>Total:</strong> ${stats.totalControls}
+                    <strong>Total Req:</strong> ${stats.totalControls}
                 </div>
                 <div title="Total Applicable Controls">
                     <strong>Applicable:</strong> ${stats.totalApplicableControls}
                 </div>
-                <div title="Total Implementation Controls">
+                <div style="border-left: 1px solid #ccc; padding-left: 10px;" title="Total Implementation Fields (Parent Items)">
+                     <strong>Imp. Fields:</strong> ${stats.totalImplementationFields}
+                </div>
+                <div title="Implementation Fields with Response">
+                     <strong>Responses:</strong> ${stats.totalImplementationFieldsWithResponse}
+                </div>
+                <div style="border-left: 1px solid #ccc; padding-left: 10px;" title="Total Implementation Controls (Child Items)">
                     <strong>Imp. Controls:</strong> ${stats.totalImplementationControls}
                 </div>
                 <div title="Implementation Controls with Evidence">
@@ -393,8 +411,9 @@ function createImplementationItem(child, sanitizeForId) {
 
     // Create status/response meta
 	if (child.FieldType !== "risk" && child.FieldType !== "plan") {
-        // --- MODIFIED: GLOBAL COUNT FOR IMPLEMENTATION CONTROLS (Parent Items) ---
-        totalImplementationControls++;
+        
+        // --- NEW: GLOBAL COUNT FOR IMPLEMENTATION FIELDS (Parent Items) ---
+        totalImplementationFields++;
 
 		const statusDiv = document.createElement('div');
 		statusDiv.className = 'imp-meta';
@@ -405,9 +424,9 @@ function createImplementationItem(child, sanitizeForId) {
 		statusDiv.appendChild(document.createTextNode(` ${value}`));
 		contentDiv.appendChild(statusDiv);
 
-        // --- MODIFIED: GLOBAL COUNT FOR EVIDENCE (Parent Items) ---
+        // --- NEW: GLOBAL COUNT FOR IMPLEMENTATION FIELDS RESPONSE ---
         if (value && value.trim() !== '') {
-            totalImplementationControlsWithEvidence++;
+            totalImplementationFieldsWithResponse++;
         }
 	}
 
@@ -543,12 +562,14 @@ function extractControlKey(str) {
 }
 
 /**
- * Calculates the 4 variables specifically for a given Regulation/Article
+ * Calculates the 6 variables specifically for a given Regulation/Article
  * This allows the header to display the correct stats before the content is fully rendered
  */
 function calculateProgress(subControlLinks, sanitizeForId) {
     let localTotalControls = 0;
     let localTotalApplicableControls = 0;
+    let localTotalImplementationFields = 0;
+    let localTotalImplementationFieldsWithResponse = 0;
     let localTotalImplementationControls = 0;
     let localTotalImplementationControlsWithEvidence = 0;
 
@@ -564,24 +585,23 @@ function calculateProgress(subControlLinks, sanitizeForId) {
             localTotalApplicableControls++;
         }
 
-        // 3. Count Implementation Controls & Evidence (Looping through children)
+        // 3. Loop through linked implementations
         if (subData.children) {
             subData.children.forEach(child => {
                 
-                // --- MODIFIED: Count Non-Risk/Plan Implementations (Parent Items) ---
+                // --- NEW: Count Implementation FIELDS (Parent Items) ---
                 if (child.FieldType !== "risk" && child.FieldType !== "plan") {
-                    localTotalImplementationControls++;
+                    localTotalImplementationFields++;
                     
                     const responseKey = sanitizeForId(child.control_number) + "_response";
                     const responseVal = capturedData[responseKey];
                     
                     if (responseVal && responseVal.trim() !== '') {
-                        localTotalImplementationControlsWithEvidence++;
+                        localTotalImplementationFieldsWithResponse++;
                     }
                 }
 
-                // --- Count Nested Controls (Child Controls) ---
-                // We check if the implementation child itself is applicable
+                // --- Count Nested Implementation CONTROLS (Child Items) ---
                 if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
                     child.controls.forEach(ctl => {
                         // Increment Implementation Controls
@@ -602,7 +622,9 @@ function calculateProgress(subControlLinks, sanitizeForId) {
 
     return { 
         totalControls: localTotalControls, 
-        totalApplicableControls: localTotalApplicableControls, 
+        totalApplicableControls: localTotalApplicableControls,
+        totalImplementationFields: localTotalImplementationFields,
+        totalImplementationFieldsWithResponse: localTotalImplementationFieldsWithResponse,
         totalImplementationControls: localTotalImplementationControls, 
         totalImplementationControlsWithEvidence: localTotalImplementationControlsWithEvidence 
     };
