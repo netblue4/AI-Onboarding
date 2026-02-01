@@ -79,7 +79,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 			let options;
 			
 			if (state.currentRole === "Compliance") {
-				options = ['', 'Attestation', 'Not Applicable'];
+				options = ['', 'Applicable', 'Not Applicable'];
 			} else {
 				options = ['', 'Not Applicable', 'Implemented with evidence'];
 			}
@@ -99,8 +99,8 @@ function createRisk(field, capturedData, sanitizeForId) {
 			controlText.appendChild(select);	
 
     		
-    		// Check if control_status exists and starts with "Attestation"
-			if (controlItem.control_status && controlItem.control_status.startsWith("Attestation")) {
+    		// Check if control_status exists and starts with "Applicable"
+			if (controlItem.control_status && controlItem.control_status.startsWith("Applicable")) {
 
         		select.value = controlItem.control_status;
 
