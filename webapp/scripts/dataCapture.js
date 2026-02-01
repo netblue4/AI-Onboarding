@@ -86,11 +86,11 @@ class DataCapture {
     }
 
     captureOptionBox(field, sanitizedId, fieldName, currentData) {
-        const checked = document.querySelector(`input[name="${sanitizedId}_response""]:checked`);
+        const checked = document.querySelector(`input[name="${sanitizedId}_response"]:checked`);
         if (checked) {
            currentData[field.control_number] = fieldName;
             currentData[sanitizedId + "_response"] = checked.value;
-        } else if (document.querySelector(`input[name="${sanitizedId}_response""]`)) {
+        } else if (document.querySelector(`input[name="${sanitizedId}_response"]`)) {
             delete currentData[sanitizedId] + "_response";
         }
     }
