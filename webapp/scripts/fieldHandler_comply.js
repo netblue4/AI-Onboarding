@@ -276,15 +276,12 @@ function createStatusDropdown(subControl, sanitizeForId) {
     select.style.borderRadius = '4px';
     select.style.border = '1px solid #ccc';
     select.name = sanitizeForId(subControl.control_number) + '_complystatus';
-	const value = capturedData[sanitizeForId(subControl.control_number) + '_status']  
 
-    const options = ['Select', 'Not Applicable', 'Met', 'Not Met', 'Partially Met'];
+    const options = ['Select', 'Met', 'Not Met', 'Partially Met'];
     options.forEach((optionText) => {
         const option = document.createElement('option');
-        option.value = optionText;
-		if (value == optionText) {
-			option.selected = true;
-		}        option.textContent = optionText;
+        option.value = optionText;   
+		option.textContent = optionText;
         select.appendChild(option);
     });
 
@@ -299,7 +296,10 @@ function createEvidenceDiv(subControl, sanitizeForId) {
     evidenceDiv.className = 'auto-generated-label';
     const criteriaKey = sanitizeForId(subControl.control_number);
 
-    evidenceDiv.innerHTML = capturedData[`${criteriaKey}_evidence`];
+	const statusvalue = capturedData[`${criteriaKey}_status`]; 
+	const evidencevalue = capturedData[`${criteriaKey}_evidence`];  
+
+    evidenceDiv.innerHTML = 'SOA:' + "</br>" + statusvalue + "</br>" + "Evidence:" + "</br>" + evidencevalue ;
     
     return evidenceDiv;
 }
