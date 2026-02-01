@@ -425,7 +425,6 @@ function createImplementationItem(child, sanitizeForId) {
 		contentDiv.appendChild(statusDiv);
 
         // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS RESPONSE ---
-        // FIX: Using helper function to handle Arrays vs Strings
         if (hasContent(value)) {
             totalImplementationFieldsWithResponse++;
         }
@@ -451,7 +450,6 @@ function createImplementationItem(child, sanitizeForId) {
             totalImplementationControls++;
 
             // --- GLOBAL COUNT: EVIDENCE (Child Controls) ---
-            // FIX: Using helper function to handle Arrays vs Strings
             if (hasContent(evidenceVal)) {
                 totalImplementationControlsWithEvidence++;
             }
@@ -592,44 +590,43 @@ function calculateProgress(subControlLinks, sanitizeForId) {
         const controlNum = subData.subControl.control_number;
         const statusVal = capturedData[sanitizeForId(controlNum) + '_status'];
         
+        // --- KEY CHANGE: ONLY COUNT IMPLEMENTATIONS IF THE REQUIREMENT IS APPLICABLE ---
         if (statusVal !== "Not Applicable") {
             localTotalApplicableControls++;
-        }
 
-        // 3. Loop through linked implementations
-        if (subData.children) {
-            subData.children.forEach(child => {
-                
-                // --- Count Implementation FIELDS (Parent Items) ---
-                if (child.FieldType !== "risk" && child.FieldType !== "plan") {
-                    localTotalImplementationFields++;
+            // 3. Loop through linked implementations (MOVED INSIDE THE IF BLOCK)
+            if (subData.children) {
+                subData.children.forEach(child => {
                     
-                    const responseKey = sanitizeForId(child.control_number) + "_response";
-                    const responseVal = capturedData[responseKey];
-                    
-                    // FIX: Using helper function to handle Arrays vs Strings
-                    if (hasContent(responseVal)) {
-                        localTotalImplementationFieldsWithResponse++;
-                    }
-                }
-
-                // --- Count Nested Implementation CONTROLS (Child Items) ---
-                if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
-                    child.controls.forEach(ctl => {
-                        // Increment Implementation Controls
-                        localTotalImplementationControls++;
-
-                        // Check Evidence
-                        const ctlKey = sanitizeForId(ctl.control_number) + '_evidence';
-                        const evidenceVal = capturedData[ctlKey];
+                    // --- Count Implementation FIELDS (Parent Items) ---
+                    if (child.FieldType !== "risk" && child.FieldType !== "plan") {
+                        localTotalImplementationFields++;
                         
-                        // FIX: Using helper function to handle Arrays vs Strings
-                        if (hasContent(evidenceVal)) {
-                            localTotalImplementationControlsWithEvidence++;
+                        const responseKey = sanitizeForId(child.control_number) + "_response";
+                        const responseVal = capturedData[responseKey];
+                        
+                        if (hasContent(responseVal)) {
+                            localTotalImplementationFieldsWithResponse++;
                         }
-                    });
-                }
-            });
+                    }
+
+                    // --- Count Nested Implementation CONTROLS (Child Items) ---
+                    if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
+                        child.controls.forEach(ctl => {
+                            // Increment Implementation Controls
+                            localTotalImplementationControls++;
+
+                            // Check Evidence
+                            const ctlKey = sanitizeForId(ctl.control_number) + '_evidence';
+                            const evidenceVal = capturedData[ctlKey];
+                            
+                            if (hasContent(evidenceVal)) {
+                                localTotalImplementationControlsWithEvidence++;
+                            }
+                        });
+                    }
+                });
+            }
         }
     });
 
