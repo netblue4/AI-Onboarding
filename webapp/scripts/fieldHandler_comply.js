@@ -393,14 +393,22 @@ function createImplementationItem(child, sanitizeForId) {
 
     // Create status/response meta
 	if (child.FieldType !== "risk" && child.FieldType !== "plan") {
+        // --- MODIFIED: GLOBAL COUNT FOR IMPLEMENTATION CONTROLS (Parent Items) ---
+        totalImplementationControls++;
+
 		const statusDiv = document.createElement('div');
 		statusDiv.className = 'imp-meta';
 		const statusStrong = document.createElement('strong');
 		statusStrong.textContent = 'Response: ';
 		statusDiv.appendChild(statusStrong);
-		const value = capturedData[sanitizeForId(child.control_number) + "_response"]  
+		const value = capturedData[sanitizeForId(child.control_number) + "_response"];
 		statusDiv.appendChild(document.createTextNode(` ${value}`));
 		contentDiv.appendChild(statusDiv);
+
+        // --- MODIFIED: GLOBAL COUNT FOR EVIDENCE (Parent Items) ---
+        if (value && value.trim() !== '') {
+            totalImplementationControlsWithEvidence++;
+        }
 	}
 
     // Create controls section if applicable
@@ -419,10 +427,10 @@ function createImplementationItem(child, sanitizeForId) {
             const controlKey = sanitizeForId(ctl.control_number);
             const evidenceVal = capturedData[`${controlKey}_evidence`];
 
-            // --- GLOBAL COUNT: IMP CONTROLS ---
+            // --- GLOBAL COUNT: IMP CONTROLS (Child Controls) ---
             totalImplementationControls++;
 
-            // --- GLOBAL COUNT: EVIDENCE ---
+            // --- GLOBAL COUNT: EVIDENCE (Child Controls) ---
             if (evidenceVal && evidenceVal.trim() !== '') {
                 totalImplementationControlsWithEvidence++;
             }
@@ -559,6 +567,20 @@ function calculateProgress(subControlLinks, sanitizeForId) {
         // 3. Count Implementation Controls & Evidence (Looping through children)
         if (subData.children) {
             subData.children.forEach(child => {
+                
+                // --- MODIFIED: Count Non-Risk/Plan Implementations (Parent Items) ---
+                if (child.FieldType !== "risk" && child.FieldType !== "plan") {
+                    localTotalImplementationControls++;
+                    
+                    const responseKey = sanitizeForId(child.control_number) + "_response";
+                    const responseVal = capturedData[responseKey];
+                    
+                    if (responseVal && responseVal.trim() !== '') {
+                        localTotalImplementationControlsWithEvidence++;
+                    }
+                }
+
+                // --- Count Nested Controls (Child Controls) ---
                 // We check if the implementation child itself is applicable
                 if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
                     child.controls.forEach(ctl => {
