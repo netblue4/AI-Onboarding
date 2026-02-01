@@ -76,22 +76,22 @@ class DataCapture {
     }
 
     captureMultiSelect(field, sanitizedId, fieldName, currentData) {
-        const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}"]:checked`);
+        const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]:checked`);
         if (checkboxes.length > 0) {
         	currentData[field.control_number] = fieldName;
 			currentData[sanitizedId + "_response"] = Array.from(checkboxes).map(cb => cb.value);
-        } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}"]`)) {
-            delete currentData[sanitizedId];
+        } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"]`)) {
+            delete currentData[sanitizedId + "_response"];
         }
     }
 
     captureOptionBox(field, sanitizedId, fieldName, currentData) {
-        const checked = document.querySelector(`input[name="${sanitizedId}"]:checked`);
+        const checked = document.querySelector(`input[name="${sanitizedId}_response""]:checked`);
         if (checked) {
            currentData[field.control_number] = fieldName;
             currentData[sanitizedId + "_response"] = checked.value;
-        } else if (document.querySelector(`input[name="${sanitizedId}"]`)) {
-            delete currentData[sanitizedId];
+        } else if (document.querySelector(`input[name="${sanitizedId}_response""]`)) {
+            delete currentData[sanitizedId] + "_response";
         }
     }
 
