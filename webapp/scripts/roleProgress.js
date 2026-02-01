@@ -65,7 +65,7 @@ class RoleProgressTracker {
             if (roleFields.length === 0) {
                 progressItem.classList.remove('completed', 'in-progress', 'current');
                 progressItem.classList.add('completed');
-                //progressItem.querySelector('.role-progress-fill').style.width = '100%';
+                progressItem.querySelector('.role-progress-fill').style.width = '100%';
                 //progressItem.querySelector('.role-progress-text').textContent = 'N/A';
                 progressItem.querySelector('.role-progress-numbet').textContent = 'N/A';
                 return;
@@ -91,7 +91,7 @@ class RoleProgressTracker {
             const percentage = Math.round((completedFields / roleFields.length) * 100);
 
             // Update progress bar
-            //progressItem.querySelector('.role-progress-fill').style.width = percentage + '%';
+            progressItem.querySelector('.role-progress-fill').style.width = percentage + '%';
             //progressItem.querySelector('.role-progress-text').textContent = percentage + '%';
             progressItem.querySelector('.role-progress-number').textContent = completedFields + ' of ' + roleFields.length;
 
