@@ -230,9 +230,13 @@ function createSubControlItem(subData, sanitizeForId) {
     const titleDiv = createSubControlTitle(subData.subControl);
     subItem.appendChild(titleDiv);
 
-    // Status dropdown
-    const select = createStatusDropdown(subData.subControl, sanitizeForId);
-    subItem.appendChild(select);
+	const value = capturedData[sanitizeForId(subData.subControl.control_number) + '_status']  
+	
+	if (value !== "Not Applicable") {
+		// Status dropdown
+		const select = createStatusDropdown(subData.subControl, sanitizeForId);
+		subItem.appendChild(select);
+    }
 
     // Evidence description
     const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId);
@@ -241,7 +245,6 @@ function createSubControlItem(subData, sanitizeForId) {
 	// --- NEW LOGIC START ---
 	// Only create and append the item if the status is NOT "Not Applicable"
 	// We use ?. (optional chaining) to be safe in case subControl is undefined
-	const value = capturedData[sanitizeForId(subData.subControl.control_number) + '_status']  
 	if (subData.subControl && value !== "Not Applicable") {
 		// Linked implementations
 		if (subData.children.size > 0) {
@@ -299,7 +302,7 @@ function createEvidenceDiv(subControl, sanitizeForId) {
 	const statusvalue = capturedData[`${criteriaKey}_status`]; 
 	const evidencevalue = capturedData[`${criteriaKey}_evidence`];  
 
-    evidenceDiv.innerHTML = 'SOA:' + "</br>" + statusvalue + "</br>" + "Evidence:" + "</br>" + evidencevalue ;
+    evidenceDiv.innerHTML = '<strong>' statusvalue + "</strong></br>" + evidencevalue ;
     
     return evidenceDiv;
 }
