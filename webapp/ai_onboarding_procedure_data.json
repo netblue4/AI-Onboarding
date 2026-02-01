@@ -971,7 +971,7 @@
           "FieldName": "Data for AI System",
           "Fields": [
             {
-              "requirement_control_number": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Repository",
@@ -980,7 +980,7 @@
               "FieldType": "TextBox"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Dataset Description",
@@ -989,7 +989,7 @@
               "FieldType": "TextBox"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3],[A.7.5]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[A.7.5],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Where does the data originate from?",
@@ -998,7 +998,7 @@
               "FieldType": "MultiSelect:Internal database/Third-party vendor/Public repository/Synthetic generation"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the specific purpose(s) of the data?",
@@ -1007,7 +1007,7 @@
               "FieldType": "Dropdown box with values:/Training data/Validation data/Test data/Production data"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3],[A.7.3],[A.7.2]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[A.7.3],[A.7.2],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How will the Data be acquired and selected?",
@@ -1016,7 +1016,7 @@
               "FieldType": "MultiSelect:Extracted from internal company databases (e.g., CRM, ERP)/Sourced from a publicly available dataset/Purchased or licensed from a third-party data provider/Collected directly from users with explicit consent/Scraped from public websites in compliance with terms of service/Streamed from IoT sensors or application logs/Artificially generated (synthetic data)/Selected based on defined quality and relevance criteria/Manually curated by subject matter experts/Sampled to ensure fair representation of subgroups (stratified sampling)/A combination of multiple sources"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "What is the data Retention schedules based on legal and operational requirements?",
@@ -1025,7 +1025,7 @@
               "FieldType": "Dropdown box with values:/1 Year/5 Years/10 Years"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "How often does the data need to be refreshed?",
@@ -1034,7 +1034,7 @@
               "FieldType": "MultiSelect:Adhoc based on regulatory changes/Monthly/Quarterly/Yearly"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Secure Disposing",
@@ -1043,7 +1043,7 @@
               "FieldType": "TextBox"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Approximate Size",
@@ -1052,7 +1052,7 @@
               "FieldType": "TextBox"
             },
             {
-              "requirement_control_number": "[A.4.2],[A.4.3]",
+              "requirement_control_number": "[A.4.2],[A.4.3],[Art-10][Par-2][1]",
               "Role": "Data Engineer",
               "TrustDimension": "Data and Data Governance",
               "FieldName": "Owner/Custodian",
