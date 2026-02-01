@@ -198,7 +198,7 @@ capturePlan(field, sanitizedId, fieldName, currentData) {
     }
 
     captureStandard(field, sanitizedId, fieldName, currentData) {
-        const inputElement = document.getElementById(sanitizedId);
+        const inputElement = document.getElementById(sanitizedId + "_response");
 
         if (inputElement) {
             if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
