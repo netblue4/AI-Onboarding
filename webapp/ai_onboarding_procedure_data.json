@@ -1,72 +1,6 @@
 {
   "1. Compliance Requirements": [
     {
-      "StepName": "1.1. EU AI Act: Prohibited AI Practices Assessment",
-      "Objectives": [
-        {
-          "Objective": "A mandatory screening to ensure the AI system does not fall into the category of 'Prohibited AI Practices' as defined by the EU AI Act (e.g., systems that manipulate behavior or exploit vulnerabilities)."
-        }
-      ],
-      "Fields": [
-        {
-          "requirement_control_number": "[Art-9][Par-1][1]",
-          "Role": "Requester",
-          "TrustDimension": "Compliance",
-          "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
-          "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
-          "control_number": "[1.1.1]",
-          "FieldType": "MultiSelect:Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)/None"
-        }
-      ]
-    },
-    {
-      "StepName": "1.2. EU AI Act: Role Classification (Provider vs. Deployer)",
-      "Objectives": [
-        {
-          "Objective": "Defining the organization’s legal responsibility for the AI system. This step determines whether the entity is acting as the Provider (the developer/manufacturer) or the Deployer (the user/operator) of the system, which dictates the scope of subsequent obligations."
-        }
-      ],
-      "Fields": [
-        {
-          "requirement_control_number": "[Art-9][Par-1][1]",
-          "Role": "Requester",
-          "TrustDimension": "Compliance",
-          "FieldName": "Which description best defines your organization's role and activities for this AI system?",
-          "FieldText": "It's very important to clearly define the organisation's activities because it will impact the AI Act’s distinction between 'Provider' (developer) and 'Deployer' (user), which comes with significantly different responsibilities. The organisation's activities are exclusively focused on operationalizing, integrating, and governing generic pre-trained LLMs and developing internal infrastructure for Retrieval-Augmented Generation (RAG), without any modification, fine-tuning, or retraining of the underlying model itself. The AI system is for internal organizational use only, and is not repackaged or distributed to external customers. The LLM is chosen as a generic, pre-trained model, stored on-premises, and never fine-tuned, retrained, Its parameters, weights, or architecture layers are not modified by the organisation's internal engineering team. Meaning it does not interact with or access any external internet datasets, ensuring data sovereignty and minimizing exposure to third-party risks. The organisation's internal engineering team’s efforts are strictly limited to building infrastructure, orchestration, and internal data pipelines for the LLM, but do not alter the core LLM architecture or its parameters.",
-          "control_number": "[1.2.1]",
-          "FieldType": "MultiSelect:[Deployer - Internal Build] We are a Deployer. Our activities match the description: we use a generic model for internal use only AND our development is limited to building orchestration (RAG) without modifying the core model./[Provider] We are a Provider. We are substantially modifying the core AI model (e.g., fine-tuning, retraining) OR we are distributing this system to external customers."
-        }
-      ]
-    },
-    {
-      "StepName": "1.3. EU AI Act: High-Risk System Classification",
-      "Objectives": [
-        {
-          "Objective": "A critical step involving the legal classification of the AI system to determine if it meets the criteria for a High-Risk AI System. This classification triggers a significantly higher level of scrutiny and more detailed compliance requirements."
-        }
-      ],
-      "Fields": [
-        {
-          "requirement_control_number": "[Art-9][Par-1][1]",
-          "Role": "Requester",
-          "TrustDimension": "Compliance",
-          "FieldName": "Will the AI system be used for any of the following purposes?",
-          "FieldText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
-          "control_number": "[1.3.1]",
-          "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings/None"
-        },
-        {
-          "requirement_control_number": "[Art-9][Par-1][1]",
-          "Role": "Requester",
-          "TrustDimension": "Compliance",
-          "FieldName": "Does the AI system have specific transparency obligations (Limited Risk)?",
-          "FieldText": "If the system is not high-risk, it may still be 'Limited Risk' and have specific transparency obligations to ensure users are not deceived. Please select all that apply.",
-          "control_number": "[1.3.2]",
-          "FieldType": "MultiSelect:Interacts directly with humans (e.g., a chatbot) and must disclose it is an AI/Generates 'deep fakes' or manipulates video, audio, image content/Used for emotion recognition or biometric categorization/Generates synthetic text published on matters of public interest/None"
-        }
-      ]
-    },
-    {
       "StepName": "1.4. AI Act - Provider & Deployer Requirements for High-Risk AI Systems",
       "Objectives": [
         {
@@ -1431,6 +1365,72 @@
     }
   ],
   "3. Build": [
+    {
+      "StepName": "1.1. EU AI Act: Prohibited AI Practices Assessment",
+      "Objectives": [
+        {
+          "Objective": "A mandatory screening to ensure the AI system does not fall into the category of 'Prohibited AI Practices' as defined by the EU AI Act (e.g., systems that manipulate behavior or exploit vulnerabilities)."
+        }
+      ],
+      "Fields": [
+        {
+          "requirement_control_number": "[Art-9][Par-1][1]",
+          "Role": "Requester",
+          "TrustDimension": "Compliance",
+          "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
+          "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
+          "control_number": "[1.1.1]",
+          "FieldType": "MultiSelect:Manipulating human behavior to cause physical or psychological harm/Exploiting vulnerabilities of specific groups (e.g., age, disability) to cause harm/General-purpose social scoring by public authorities/Real-time remote biometric identification in public spaces for law enforcement (outside of strictly defined exceptions)/None"
+        }
+      ]
+    },
+    {
+      "StepName": "1.2. EU AI Act: Role Classification (Provider vs. Deployer)",
+      "Objectives": [
+        {
+          "Objective": "Defining the organization’s legal responsibility for the AI system. This step determines whether the entity is acting as the Provider (the developer/manufacturer) or the Deployer (the user/operator) of the system, which dictates the scope of subsequent obligations."
+        }
+      ],
+      "Fields": [
+        {
+          "requirement_control_number": "[Art-9][Par-1][1]",
+          "Role": "Requester",
+          "TrustDimension": "Compliance",
+          "FieldName": "Which description best defines your organization's role and activities for this AI system?",
+          "FieldText": "It's very important to clearly define the organisation's activities because it will impact the AI Act’s distinction between 'Provider' (developer) and 'Deployer' (user), which comes with significantly different responsibilities. The organisation's activities are exclusively focused on operationalizing, integrating, and governing generic pre-trained LLMs and developing internal infrastructure for Retrieval-Augmented Generation (RAG), without any modification, fine-tuning, or retraining of the underlying model itself. The AI system is for internal organizational use only, and is not repackaged or distributed to external customers. The LLM is chosen as a generic, pre-trained model, stored on-premises, and never fine-tuned, retrained, Its parameters, weights, or architecture layers are not modified by the organisation's internal engineering team. Meaning it does not interact with or access any external internet datasets, ensuring data sovereignty and minimizing exposure to third-party risks. The organisation's internal engineering team’s efforts are strictly limited to building infrastructure, orchestration, and internal data pipelines for the LLM, but do not alter the core LLM architecture or its parameters.",
+          "control_number": "[1.2.1]",
+          "FieldType": "MultiSelect:[Deployer - Internal Build] We are a Deployer. Our activities match the description: we use a generic model for internal use only AND our development is limited to building orchestration (RAG) without modifying the core model./[Provider] We are a Provider. We are substantially modifying the core AI model (e.g., fine-tuning, retraining) OR we are distributing this system to external customers."
+        }
+      ]
+    },
+    {
+      "StepName": "1.3. EU AI Act: High-Risk System Classification",
+      "Objectives": [
+        {
+          "Objective": "A critical step involving the legal classification of the AI system to determine if it meets the criteria for a High-Risk AI System. This classification triggers a significantly higher level of scrutiny and more detailed compliance requirements."
+        }
+      ],
+      "Fields": [
+        {
+          "requirement_control_number": "[Art-9][Par-1][1]",
+          "Role": "Requester",
+          "TrustDimension": "Compliance",
+          "FieldName": "Will the AI system be used for any of the following purposes?",
+          "FieldText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
+          "control_number": "[1.3.1]",
+          "FieldType": "MultiSelect:As a safety component in a regulated product (e.g., medical devices, cars, toys)/Biometric identification or categorisation of people/Management of critical infrastructure (e.g., water, gas, electricity)/Determining access to education or scoring exams/Recruitment, promotion, or employee performance management/Assessing creditworthiness or eligibility for public benefits/Law enforcement purposes (e.g., risk assessment, evidence evaluation)/Migration, asylum, and border control management/Assisting judicial authorities in legal proceedings/None"
+        },
+        {
+          "requirement_control_number": "[Art-9][Par-1][1]",
+          "Role": "Requester",
+          "TrustDimension": "Compliance",
+          "FieldName": "Does the AI system have specific transparency obligations (Limited Risk)?",
+          "FieldText": "If the system is not high-risk, it may still be 'Limited Risk' and have specific transparency obligations to ensure users are not deceived. Please select all that apply.",
+          "control_number": "[1.3.2]",
+          "FieldType": "MultiSelect:Interacts directly with humans (e.g., a chatbot) and must disclose it is an AI/Generates 'deep fakes' or manipulates video, audio, image content/Used for emotion recognition or biometric categorization/Generates synthetic text published on matters of public interest/None"
+        }
+      ]
+    },    
     {
       "StepName": "3.1. - Internal Data Sources",
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
