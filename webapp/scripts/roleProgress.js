@@ -78,7 +78,7 @@ class RoleProgressTracker {
                 
 					const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
 					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
-					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number)];
+					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_response'];
 					
 					const isStatusValid = statusvalue !== undefined && statusvalue !== null && statusvalue !== '';
 					const isEvidenceValid = evidencesvalue !== undefined && evidencesvalue !== null && evidencesvalue !== '';
