@@ -34,7 +34,7 @@ class DataRestore {
         const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]`);
         allCheckboxes.forEach(cb => cb.checked = false);
 
-        const selectedValues = this.state.capturedData[sanitizedId];
+        const selectedValues = this.state.capturedData[sanitizedId + "_response"];
         if (Array.isArray(selectedValues)) {
             selectedValues.forEach(value => {
                 const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"][value="${value}"]`);
