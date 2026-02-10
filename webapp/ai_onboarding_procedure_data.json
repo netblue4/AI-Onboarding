@@ -1,6 +1,5 @@
 {
   "1. Compliance Requirements": [
-
     {
       "StepName": "Article 13",
       "Objectives": [
@@ -20,11 +19,92 @@
               "FieldName": "Intended Purpose",
               "FieldText": "Clear, documented declaration of what the system is designed to do.",
               "FieldType": "requirement"
-            }
+            },
+            {
+              "requirement_control_number": "[2]",
+			  "TrustDimension": "Requirement",
+              "Role": "Compliance",
+              "FieldName": "Limitations",
+              "FieldText": "Documentation of known "blind spots," error conditions, or scenarios where the AI may fail.",
+              "FieldType": "requirement"
+            },
+            {
+              "requirement_control_number": "[3]",
+			  "TrustDimension": "Requirement",
+              "Role": "Compliance",
+              "FieldName": "Instructions for Use",
+              "FieldText": "High-quality documentation that is clear, accessible, and provided in a digital/readable format..",
+              "FieldType": "requirement"
+            }            
+          ]
+        },
+        {
+          "FieldType": "fieldGroup",
+          "FieldName": "Logging",
+          "Fields": [
+            {
+              "requirement_control_number": "[1]",
+			  "TrustDimension": "Requirement",
+              "Role": "Compliance",
+              "FieldName": "Event Recording",
+              "FieldText": "Automated, immutable recording of start/end times, input data, and all system decisions.",
+              "FieldType": "requirement"
+            },
+            {
+              "requirement_control_number": "[2]",
+			  "TrustDimension": "Requirement",
+              "Role": "Compliance",
+              "FieldName": "Traceability",
+              "FieldText": "Ensuring logs allow for the full "reconstruction" of events if a failure or accident occurs.",
+              "FieldType": "requirement"
+            },
+            {
+              "requirement_control_number": "[3]",
+			  "TrustDimension": "Requirement",
+              "Role": "Compliance",
+              "FieldName": "Interpretability",
+              "FieldText": "Ensuring outputs provide sufficient context for a human to understand the "why" behind a decision.",
+              "FieldType": "requirement"
+            }                         
           ]
         }
       ]
     },
+	{
+      "StepName": "Article 14",
+      "Objectives": [
+        {
+          "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
+        }
+      ],
+      "Fields": [
+        {
+          "FieldType": "fieldGroup",
+          "FieldName": "Human Oversight",
+          "Fields": [
+            {
+              "requirement_control_number": "[1]",
+			  "TrustDimension": "Requirement",
+              "Role": "Compliance",
+              "FieldName": "Automation Bias Prevention",
+              "FieldText": "UI design that explicitly warns humans not to over-rely on AI suggestions.",
+              "FieldType": "requirement"
+            },
+            {
+              "requirement_control_number": "[2]",
+			  "TrustDimension": "Requirement",
+              "Role": "Compliance",
+              "FieldName": "Intervention Tools",
+              "FieldText": "Inclusion of technical "Override" or "Stop" mechanisms (the "Kill Switch").",
+              "FieldType": "requirement"
+            }            
+          ]
+        }  
+	  ]
+	},      
+
+
+
 
 
 
