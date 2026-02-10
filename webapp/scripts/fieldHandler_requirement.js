@@ -20,7 +20,7 @@ function createRequirement(field, capturedData, sanitizeForId) {
 		option.textContent = optionText;
 		
 		// Set selected if it matches the control_status
-		if (controlItem.soa && optionText === controlItem.soa) {
+		if (field.soa && optionText === field.soa) {
 			option.selected = true;
 		}
 		
