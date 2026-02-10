@@ -1,5 +1,33 @@
 {
   "1. Compliance Requirements": [
+
+    {
+      "StepName": "Article 13",
+      "Objectives": [
+        {
+          "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
+        }
+      ],
+      "Fields": [
+        {
+          "FieldType": "fieldGroup",
+          "FieldName": "Transparency",
+          "Fields": [
+            {
+              "requirement_control_number": "[1]",
+			  "TrustDimension": "Requirement",
+              "Role": "Compliance",
+              "FieldName": "Intended Purpose",
+              "FieldText": "Clear, documented declaration of what the system is designed to do.",
+              "FieldType": "TextBox"
+            }
+          ]
+        }
+      ]
+    },
+
+
+
     {
       "StepName": "1.1. EU AI Act: Prohibited AI Practices Assessment",
       "Objectives": [
