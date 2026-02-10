@@ -67,7 +67,7 @@ class DataRestore {
     }
 
 	restoreRequirement(field, sanitizedId){	
-        if (this.state.currentData[sanitizedId  + '_soa') { 
+        if (this.state.currentData[sanitizedId  + '_soa']) { 
             const requirementSelect = document.querySelector(`select[name="${sanitizedId}_soa"]`);
             if (requirementSelect) requirementSelect.value = this.state.capturedData[sanitizedId + '_soa'];
         }	
