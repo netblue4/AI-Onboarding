@@ -8,6 +8,20 @@ class DataRestore {
     }
 
     restoreFieldValues(field) {
+    
+        const fieldType = field.FieldType;
+        const fieldName = field.FieldName;
+        const fieldControlNumber = field.control_number;
+
+        // Skip auto-generated and fieldGroup types
+        if (fieldType === 'Auto generated number' || fieldType === 'fieldGroup') {
+            if (field.Fields && Array.isArray(field.Fields)) {
+                field.Fields.forEach(f => this.captureField(f, currentData));
+            }
+            return;
+        }
+    
+    
         if (!field.FieldName) return;
 
         setTimeout(() => {
