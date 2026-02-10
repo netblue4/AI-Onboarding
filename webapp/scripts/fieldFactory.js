@@ -16,6 +16,7 @@ function getFieldHandler(fieldType) {
         'plan':createPlan,
         'fieldGroup':createFieldGroup,
         'comply':createComplyField,
+        'requirement':createRequirement,
     };
     
     if (exactMatchHandlers[fieldType]) {

@@ -19,7 +19,7 @@
               "Role": "Compliance",
               "FieldName": "Intended Purpose",
               "FieldText": "Clear, documented declaration of what the system is designed to do.",
-              "FieldType": "TextBox"
+              "FieldType": "Requirement"
             }
           ]
         }
