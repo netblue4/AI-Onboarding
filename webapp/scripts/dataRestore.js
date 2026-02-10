@@ -53,7 +53,7 @@ class DataRestore {
     }
 
 	restoreRequirement(field, sanitizedId){	
-        if (this.state.currentData[control.requirement_control_number]) { 
+        if (this.state.currentData[field.requirement_control_number]) { 
             const requirementSelect = document.querySelector(`select[name="${sanitizedId}_soa"]`);
             if (requirementSelect) requirementSelect.value = this.state.capturedData[field.requirement_control_number];
         }	
