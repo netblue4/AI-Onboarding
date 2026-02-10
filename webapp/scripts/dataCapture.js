@@ -100,16 +100,16 @@ class DataCapture {
     }
 
 captureRequirement(field, sanitizedId, fieldName, currentData) {
-    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_soa"]`);
+    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_requirement__soa"]`);
     // Only update if value exists and has changed
     if (requirementSelect && requirementSelect.value) {
-        if (currentData[sanitizedId + '_soa'] !== requirementSelect.value) {
+        if (currentData[sanitizedId + '_requirement__soa'] !== requirementSelect.value) {
             currentData[sanitizedId + '_requirement'] = field.FieldName +': ' + field.FieldText;
-            currentData[sanitizedId + '_soa'] = requirementSelect.value;
+            currentData[sanitizedId + '_requirement__soa'] = requirementSelect.value;
         }
-    } else if (requirementSelect && currentData[sanitizedId + '_soa']) {
+    } else if (requirementSelect && currentData[sanitizedId + '_requirement__soa']) {
         // Only delete if it previously had a value
-        delete currentData[sanitizedId + '_soa'];
+        delete currentData[sanitizedId + '_requirement__soa'];
         delete currentData[sanitizedId + '_requirement']
     }
 }
