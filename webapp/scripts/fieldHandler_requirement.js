@@ -1,7 +1,7 @@
 function createRequirement(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
-    const sanitizedId = sanitizeForId(field.control_number) + "_response";
+    const sanitizedId = sanitizeForId(field.control_number) + "_requirement";
 
     const label = document.createElement('label');
     label.textContent = field.FieldName + ' (' + field.requirement_control_number + ')';
