@@ -104,7 +104,7 @@ captureRequirement(field, sanitizedId, fieldName, currentData) {
     // Only update if value exists and has changed
     if (requirementSelect && requirementSelect.value) {
         if (currentData[sanitizedId + '_soa'] !== requirementSelect.value) {
-            currentData[field.requirement_control_number + '_requirement'] = field.FieldName +': ' + field.FieldText;
+            currentData[sanitizedId] = field.FieldName +': ' + field.FieldText;
             currentData[sanitizedId + '_soa'] = requirementSelect.value;
         }
     } else if (requirementSelect && currentData[sanitizedId + '_soa']) {
