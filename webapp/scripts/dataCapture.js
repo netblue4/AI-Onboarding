@@ -52,6 +52,10 @@ class DataCapture {
         else if (fieldType && fieldType.startsWith('Option box with values')) {
             this.captureOptionBox(field, sanitizedId, fieldName, currentData);
         }
+        // Handle requirement fields
+        else if (fieldType === 'requirement') {
+            this.captureRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number) + "_requirement", fieldName, currentData);
+            
         // Handle risk fields
         else if (fieldType === 'risk') {
             this.captureRisk(field, sanitizedId, fieldName, currentData);
@@ -95,6 +99,20 @@ class DataCapture {
         }
     }
 
+captureRequirement(field, sanitizedId, fieldName, currentData) {
+    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_soa"]`);
+    // Only update if value exists and has changed
+    if (requirementSelect && requirementSelect.value) {
+        if (currentData[sanitizedId + '_soa'] !== requirementSelect.value) {
+            currentData[control.requirement_control_number] = control.FieldName +': ' + control.FieldText;
+            currentData[sanitizedId + '_soa'] = requirementSelect.value;
+        }
+    } else if (requirementSelect && currentData[sanitizedId + '_soa']) {
+        // Only delete if it previously had a value
+        delete currentData[sanitizedId + '_soa'];
+        delete currentData[control.requirement_control_number]
+    }
+}
 captureRisk(field, sanitizedId, fieldName, currentData) {
     const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
     
@@ -117,33 +135,6 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
             const statusValue = statusElement ? statusElement.value : null;
             const evidenceValue = evidenceElement ? evidenceElement.value : null;
 
-            // Only update status if changed
-            /*if (statusValue) {
-                if (currentData[`${controlKey}_status`] !== statusValue) {
-                    currentData[`${controlKey}_status`] = statusValue;
-                }
-            } else if (statusElement && currentData[`${controlKey}_status`]) {
-                delete currentData[`${controlKey}_status`];
-            }
-
-            // Only update evidence if changed
-            let evidenceChanged = false;
-            if (evidenceValue) {
-                if (currentData[`${controlKey}_evidence`] !== evidenceValue) {
-                    currentData[`${controlKey}_evidence`] = evidenceValue;
-                    evidenceChanged = true;
-                }
-            } else if (evidenceElement && currentData[`${controlKey}_evidence`]) {
-                delete currentData[`${controlKey}_evidence`];
-                evidenceChanged = true;
-            }
-
-            // Only update control key if status or evidence changed
-            if (statusValue != null || evidenceValue != null) {
-                const controlKeyEntry = `${controlKey}:`;
-                currentData[controlKeyEntry] = control.control_number + " - " + control.control_description;
-            }
-            */
 			if (
 				(statusValue !== null && statusValue !== "") || 
 				(evidenceValue !== null && evidenceValue !== "")

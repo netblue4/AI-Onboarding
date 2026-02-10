@@ -18,6 +18,8 @@ class DataRestore {
                 this.restoreMultiSelect(sanitizedId, field.FieldName);
             } else if (fieldType && fieldType.startsWith('Option box with values')) {
                 this.restoreOptionBox(sanitizedId, field.FieldName);
+            } else if (fieldType === 'requirement') {
+                this.restoreRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number) + "_requirement");
             } else if (fieldType === 'risk') {
                 this.restoreRisk(field, sanitizedId);
             } else if (fieldType === 'plan') {
@@ -50,6 +52,13 @@ class DataRestore {
         }
     }
 
+	restoreRequirement(field, sanitizedId){	
+        if (this.state.currentData[control.requirement_control_number]) { 
+            const requirementSelect = document.querySelector(`select[name="${sanitizedId}_soa"]`);
+            if (requirementSelect) requirementSelect.value = this.state.capturedData[field.requirement_control_number];
+        }	
+	}
+	
     restoreRisk(field, sanitizedId) {
         if (this.state.capturedData[field.FieldName]) {
             const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
