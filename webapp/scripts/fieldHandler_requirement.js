@@ -1,7 +1,7 @@
 function createRequirement(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
-    const sanitizedId = sanitizeForId(field.requirement_control_number) + "_requirement";
+    const sanitizedId = sanitizeForId(field.requirement_control_number);
 
     const label = document.createElement('label');
     label.textContent = field.FieldName + ' (' + field.requirement_control_number + ')';
@@ -10,7 +10,7 @@ function createRequirement(field, capturedData, sanitizeForId) {
     
 	//Control status
 	const select = document.createElement('select');
-	select.name = sanitizedId + '_soa';
+	select.name = sanitizedId + '_requirement__soa';
 	
 	const options = ['', 'Applicable', 'Not Applicable'];
 				
