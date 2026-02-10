@@ -33,7 +33,7 @@ class DataRestore {
             } else if (fieldType && fieldType.startsWith('Option box with values')) {
                 this.restoreOptionBox(sanitizedId, field.FieldName);
             } else if (fieldType === 'requirement') {
-                this.restoreRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number) + '_requirement');
+                this.restoreRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number));
             } else if (fieldType === 'risk') {
                 this.restoreRisk(field, sanitizedId);
             } else if (fieldType === 'plan') {
@@ -67,9 +67,9 @@ class DataRestore {
     }
 
 	restoreRequirement(field, sanitizedId){	
-        if (this.state.currentData[field.requirement_control_number + '_requirement']) { 
+        if (this.state.currentData[sanitizedId  + '_soa') { 
             const requirementSelect = document.querySelector(`select[name="${sanitizedId}_soa"]`);
-            if (requirementSelect) requirementSelect.value = this.state.capturedData[field.requirement_control_number + '_requirement'];
+            if (requirementSelect) requirementSelect.value = this.state.capturedData[sanitizedId + '_soa'];
         }	
 	}
 	

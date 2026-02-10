@@ -54,7 +54,7 @@ class DataCapture {
         }
         // Handle requirement fields
         else if (fieldType === 'requirement') {
-            this.captureRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number) + '_requirement', fieldName, currentData);
+            this.captureRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number), fieldName, currentData);
         }    
         // Handle risk fields
         else if (fieldType === 'risk') {
@@ -104,13 +104,13 @@ captureRequirement(field, sanitizedId, fieldName, currentData) {
     // Only update if value exists and has changed
     if (requirementSelect && requirementSelect.value) {
         if (currentData[sanitizedId + '_soa'] !== requirementSelect.value) {
-            currentData[sanitizedId] = field.FieldName +': ' + field.FieldText;
+            currentData[sanitizedId + '_requirement'] = field.FieldName +': ' + field.FieldText;
             currentData[sanitizedId + '_soa'] = requirementSelect.value;
         }
     } else if (requirementSelect && currentData[sanitizedId + '_soa']) {
         // Only delete if it previously had a value
         delete currentData[sanitizedId + '_soa'];
-        delete currentData[control.requirement_control_number + '_requirement']
+        delete currentData[sanitizedId + '_requirement']
     }
 }
 captureRisk(field, sanitizedId, fieldName, currentData) {
