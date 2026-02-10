@@ -25,7 +25,7 @@
 			  "TrustDimension": "Requirement",
               "Role": "Compliance",
               "FieldName": "Limitations",
-              "FieldText": "Documentation of known "blind spots," error conditions, or scenarios where the AI may fail.",
+              "FieldText": "Documentation of known 'blind spots', error conditions, or scenarios where the AI may fail.",
               "FieldType": "requirement"
             },
             {
@@ -55,7 +55,7 @@
 			  "TrustDimension": "Requirement",
               "Role": "Compliance",
               "FieldName": "Traceability",
-              "FieldText": "Ensuring logs allow for the full "reconstruction" of events if a failure or accident occurs.",
+              "FieldText": "Ensuring logs allow for the full 'reconstruction' of events if a failure or accident occurs.",
               "FieldType": "requirement"
             },
             {
@@ -63,7 +63,7 @@
 			  "TrustDimension": "Requirement",
               "Role": "Compliance",
               "FieldName": "Interpretability",
-              "FieldText": "Ensuring outputs provide sufficient context for a human to understand the "why" behind a decision.",
+              "FieldText": "Ensuring outputs provide sufficient context for a human to understand the 'why' behind a decision.",
               "FieldType": "requirement"
             }                         
           ]
@@ -95,7 +95,7 @@
 			  "TrustDimension": "Requirement",
               "Role": "Compliance",
               "FieldName": "Intervention Tools",
-              "FieldText": "Inclusion of technical "Override" or "Stop" mechanisms (the "Kill Switch").",
+              "FieldText": "Inclusion of technical 'Override' or 'Stop' mechanisms (the 'Kill Switch').",
               "FieldType": "requirement"
             }            
           ]
