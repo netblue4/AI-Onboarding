@@ -553,8 +553,21 @@ function hasContent(val) {
 }
 
 function hasRequirementTrustDimension(field) {
-    if (!field || !field.TrustDimension) return false;
-    return field.TrustDimension.includes('Requirement');
+    // 1. Safety check: if field is null/undefined, return false immediately
+    if (!field) return false;
+
+    // 2. Check the new condition (GieldType)
+    if (field.FieldType === "requirement") {
+        return true;
+    }
+
+    // 3. Check the original condition (TrustDimension)
+    // We must check if field.TrustDimension exists before calling .includes()
+    if (field.TrustDimension && field.TrustDimension.includes('Requirement')) {
+        return true;
+    }
+
+    return false;
 }
 
 function isImplementation(field) {
