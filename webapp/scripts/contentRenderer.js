@@ -89,8 +89,8 @@ class ContentRenderer {
                 if (filteredStep.Fields && filteredStep.Fields.length > 0) {
                     filteredStep.Fields.forEach(field => {
                         try {
-                        	const sanitizeId = this.templateManager.sanitizeForId(field.requirement_control_number;
-							if (this.state.capturedData[sanitizeId +'_requirement__soa')] === 'Not Applicable') { 
+                        	const sanitizeId = this.templateManager.sanitizeForId(field.requirement_control_number);
+							if (this.state.capturedData[sanitizeId + '_requirement__soa'] === 'Not Applicable') { 
 								return
 							}	
                         
