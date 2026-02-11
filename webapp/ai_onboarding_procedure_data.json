@@ -14,7 +14,6 @@
           "Fields": [
             {
               "requirement_control_number": "[18229-1.1]",
-			  "TrustDimension": "Requirement",
               "Role": "Compliance",
               "FieldName": "Intended Purpose",
               "FieldText": "Clear, documented declaration of what the system is designed to do.",
@@ -23,7 +22,6 @@
             },
             {
               "requirement_control_number": "[18229-1.2]",
-			  "TrustDimension": "Requirement",
               "Role": "Compliance",
               "FieldName": "Limitations",
               "FieldText": "Documentation of known 'blind spots', error conditions, or scenarios where the AI may fail.",
@@ -32,7 +30,6 @@
             },
             {
               "requirement_control_number": "[18229-1.3]",
-			  "TrustDimension": "Requirement",
               "Role": "Compliance",
               "FieldName": "Instructions for Use",
               "FieldText": "High-quality documentation that is clear, accessible, and provided in a digital/readable format.",
@@ -46,8 +43,7 @@
           "FieldName": "Logging",
           "Fields": [
             {
-              "requirement_control_number": "[1]",
-			  "TrustDimension": "Requirement",
+              "requirement_control_number": "[18229-1.4]",
               "Role": "Compliance",
               "FieldName": "Event Recording",
               "FieldText": "Automated, immutable recording of start/end times, input data, and all system decisions.",
@@ -55,8 +51,7 @@
               "soa": "Applicable"
             },
             {
-              "requirement_control_number": "[18229-1.4]",
-			  "TrustDimension": "Requirement",
+              "requirement_control_number": "[18229-1.5]",
               "Role": "Compliance",
               "FieldName": "Traceability",
               "FieldText": "Ensuring logs allow for the full 'reconstruction' of events if a failure or accident occurs.",
@@ -80,8 +75,7 @@
           "FieldName": "Human Oversight",
           "Fields": [
             {
-              "requirement_control_number": "[18229-1.1]",
-			  "TrustDimension": "Requirement",
+              "requirement_control_number": "[18229-1.6]",
               "Role": "Compliance",
               "FieldName": "Automation Bias Prevention",
               "FieldText": "UI design that explicitly warns humans not to over-rely on AI suggestions.",
@@ -89,8 +83,7 @@
               "soa": "Applicable"
             },
             {
-              "requirement_control_number": "[18229-1.2]",
-			  "TrustDimension": "Requirement",
+              "requirement_control_number": "[18229-1.7]",
               "Role": "Compliance",
               "FieldName": "Intervention Tools",
               "FieldText": "Inclusion of technical 'Override' or 'Stop' mechanisms (the 'Kill Switch').",
@@ -98,8 +91,7 @@
               "soa": "Applicable"
             },
             {
-              "requirement_control_number": "[18229-1.3]",
-			  "TrustDimension": "Requirement",
+              "requirement_control_number": "[18229-1.8]",
               "Role": "Compliance",
               "FieldName": "Interpretability",
               "FieldText": "Ensuring outputs provide sufficient context for a human to understand the 'why' behind a decision.",
@@ -124,16 +116,14 @@
     "Fields": [
       {
         "requirement_control_number": "[18282.1]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Adversarial Attacks",
         "FieldText": "Defense against 'evasion attacks' where crafted input data is designed to fool the model's logic.",
         "FieldType": "requirement",
-              "soa": "Applicable"
+        "soa": "Applicable"
       },
       {
         "requirement_control_number": "[18282.2]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Data Poisoning",
         "FieldText": "Protecting the training and RAG ingestion pipelines so malicious data doesn't corrupt the knowledge base.",
@@ -142,7 +132,6 @@
       },
       {
         "requirement_control_number": "[18282.3]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Model Inversion",
         "FieldText": "Preventing 'extraction' attacks where unauthorized parties try to 'steal' the model or training data via API queries.",
@@ -157,7 +146,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18282.4]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Secure Development",
         "FieldText": "Procedures ensuring the code, RAG orchestrator, and model are built in a hardened, isolated environment.",
@@ -166,7 +154,6 @@
       },
       {
         "requirement_control_number": "[18282.5]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Supply Chain Security",
         "FieldText": "Verifying the security and integrity of third-party libraries, pre-trained models, and external data sources.",
@@ -181,7 +168,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18282.6]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Access Control",
         "FieldText": "Standard identity management (RBAC/MFA) for who can modify model weights or access proprietary data.",
@@ -190,7 +176,6 @@
       },
       {
         "requirement_control_number": "[18282.7]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Model Robustness",
         "FieldText": "Ensuring the system remains secure and stable even when encountering 'noise' or unexpected data patterns.",
@@ -205,7 +190,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18282.8]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Anomaly Detection",
         "FieldText": "Continuous monitoring of AI inputs and outputs for signs of a cyberattack, such as prompt injection.",
@@ -220,7 +204,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18229-2.9]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Metric Selection",
         "FieldText": "Selecting the appropriate 'yardstick' (e.g., F1-score for classification or Mean Absolute Error for regression) for the specific use case.",
@@ -229,7 +212,6 @@
       },
       {
         "requirement_control_number": "[18229-2.10]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Validation",
         "FieldText": "Rigorous testing to prove accuracy scores are not 'overfitted' to training data and remain valid on unseen data.",
@@ -238,7 +220,6 @@
       },
       {
         "requirement_control_number": "[18229-2.11]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Declaration",
         "FieldText": "Explicitly stating the achieved accuracy levels and metrics within the formal Instructions for Use.",
@@ -253,7 +234,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18229-2.12]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Consistency",
         "FieldText": "Continuous monitoring to detect if accuracy 'drifts' or degrades after the system is in production.",
@@ -262,7 +242,6 @@
       },
       {
         "requirement_control_number": "[18229-2.13]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Benchmarking",
         "FieldText": "Comparing AI performance against human expert benchmarks or recognized industry standards.",
@@ -277,7 +256,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18229-2.14]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Verification Methods",
         "FieldText": "Detailed documentation of the training/testing data split and the statistical methods used to verify results.",
@@ -292,7 +270,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18229-3.15]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Input Noise",
         "FieldText": "Ensuring the AI can handle corrupted inputs (e.g., typos, sensor errors, or blurry data) without crashing.",
@@ -301,7 +278,6 @@
       },
       {
         "requirement_control_number": "[18229-3.16]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Environment Changes",
         "FieldText": "Maintaining system functionality during external shifts, such as poor lighting or network latency.",
@@ -310,7 +286,6 @@
       },
       {
         "requirement_control_number": "[18229-3.17]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Feedback Loops",
         "FieldText": "Implementing technical barriers to prevent the AI from learning from its own biased or incorrect outputs over time.",
@@ -325,7 +300,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18229-3.18]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Graceful Degradation",
         "FieldText": "Designing the system to fail safely (e.g., a 'safe state' or limited functionality mode) rather than an abrupt collapse.",
@@ -334,7 +308,6 @@
       },
       {
         "requirement_control_number": "[18229-3.19]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Technical Redundancy",
         "FieldText": "Utilizing backup modules or 'sanity check' algorithms to catch and mitigate AI errors in real-time.",
@@ -349,7 +322,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18229-3.20]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Output Reliability",
         "FieldText": "Ensuring the AI produces consistent, non-random outputs when given the exact same inputs.",
@@ -360,7 +332,6 @@
   }
 ]
 	},      
-
 	{
       "StepName": "Article 10",
       "Objectives": [
@@ -375,7 +346,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18284.1]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Design Choices",
         "FieldText": "Documenting the rationale behind data selection, including intended purpose and suitability assessments.",
@@ -384,7 +354,6 @@
       },
       {
         "requirement_control_number": "[18284.2]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Data Origin",
         "FieldText": "Tracking the source and legal basis (provenance) of data collection and preparation.",
@@ -393,7 +362,6 @@
       },
       {
         "requirement_control_number": "[18284.3]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Data Preparation Operations",
         "FieldText": "Standardizing processes for annotation, labeling, cleaning, enrichment, and aggregation.",
@@ -408,7 +376,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18284.4]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Representativeness",
         "FieldText": "Statistical proof (e.g., distribution analysis) that data reflects specific geographical, contextual, and behavioral settings.",
@@ -417,7 +384,6 @@
       },
       {
         "requirement_control_number": "[18284.5]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Completeness",
         "FieldText": "Identifying and addressing 'data gaps' or missing information that could prevent regulatory compliance.",
@@ -426,7 +392,6 @@
       },
       {
         "requirement_control_number": "[18284.6]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Accuracy / Correctness",
         "FieldText": "Implementing methods to detect and mitigate errors in labels and noise in the raw data.",
@@ -441,7 +406,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18284.7]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Dataset Splitting",
         "FieldText": "Establishing strict rules for training, validation, and testing splits to ensure unbiased performance evaluation.",
@@ -450,7 +414,6 @@
       },
       {
         "requirement_control_number": "[18284.8]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Data Retention",
         "FieldText": "Policies for storage duration (typically 10 years for documentation) and secure decommissioning mechanisms.",
@@ -465,7 +428,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18284.9]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Formulation",
         "FieldText": "Explicit documentation of what the data is intended to measure and represent (e.g., 'past history as a predictor').",
@@ -480,7 +442,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18283.1]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Representativeness",
         "FieldText": "Ensuring training, validation, and testing datasets proportionally cover all relevant subgroups (e.g., age, gender, ethnicity) to prevent under-representation bias.",
@@ -489,7 +450,6 @@
       },
       {
         "requirement_control_number": "[18283.2]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Bias Metrics",
         "FieldText": "Applying specific mathematical tests, such as Disparate Impact or Equalized Odds, to provide a quantitative proof that the model does not favor one group over another.",
@@ -498,7 +458,6 @@
       },
       {
         "requirement_control_number": "[18283.3]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Proxy Identification",
         "FieldText": "Identifying and analyzing 'hidden' variables (e.g., zip codes) that correlate with protected traits to prevent indirect discrimination.",
@@ -513,7 +472,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18283.7]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Multi-stakeholder Input",
         "FieldText": "Engaging diverse teams to define 'fairness' for specific use cases, ensuring the system respects different societal and functional settings.",
@@ -522,7 +480,6 @@
       },
       {
         "requirement_control_number": "[18283.8]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Fundamental Rights",
         "FieldText": "Directly linking bias mitigation measures to the protection of fundamental rights and the prevention of discrimination prohibited under Union law.",
@@ -547,7 +504,6 @@
     "Fields": [
       {
         "requirement_control_number": "[24970.1]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Routine Operation",
         "FieldText": "Automated recording of standard system activity, including precise start/end timestamps and user usage sessions.",
@@ -556,7 +512,6 @@
       },
       {
         "requirement_control_number": "[24970.2]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Monitoring Events",
         "FieldText": "Capturing automated performance benchmarks, safety checks, and anomalies triggered by the system's internal observability tools.",
@@ -565,7 +520,6 @@
       },
       {
         "requirement_control_number": "[24970.3]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Human Intervention",
         "FieldText": "Recording every instance of a user overriding, editing, or stopping an AI output, directly linking to Article 14 oversight duties.",
@@ -580,7 +534,6 @@
     "Fields": [
       {
         "requirement_control_number": "[24970.4]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "System State",
         "FieldText": "Snapshots of current model parameters, version IDs, and configuration hashes at the exact time a decision or output was generated.",
@@ -589,7 +542,6 @@
       },
       {
         "requirement_control_number": "[24970.5]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Input/Output Data",
         "FieldText": "Recording the specific user prompts and retrieved knowledge chunks that led to a high-risk or decision-making output.",
@@ -598,7 +550,6 @@
       },
       {
         "requirement_control_number": "[24970.6]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Errors & Failures",
         "FieldText": "Detailed diagnostic data including error codes, messages, severity levels, and the fallback mechanisms activated during a crash.",
@@ -613,7 +564,6 @@
     "Fields": [
       {
         "requirement_control_number": "[24970.7]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Tamper Resistance",
         "FieldText": "Using technical controls like Write-Once-Read-Many (WORM) storage or cryptographic hashes to ensure logs cannot be altered after creation.",
@@ -622,7 +572,6 @@
       },
       {
         "requirement_control_number": "[24970.8]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Retention Periods",
         "FieldText": "Maintaining logs for at least 6 months (per Article 26(6)) or longer as mandated by sector-specific EU or national laws.",
@@ -631,7 +580,6 @@
       },
       {
         "requirement_control_number": "[24970.9]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Privacy",
         "FieldText": "Balancing full traceability with GDPR requirements through data minimization, such as anonymizing user IDs where appropriate.",
@@ -656,7 +604,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18285.1]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Internal Control (Annex VI)",
         "FieldText": "Allows providers of many high-risk systems (e.g., education, employment) to self-assess compliance if they strictly follow harmonized standards.",
@@ -665,7 +612,6 @@
       },
       {
         "requirement_control_number": "[18285.2]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Third-Party Assessment (Annex VII)",
         "FieldText": "Mandates an audit by a 'Notified Body' for critical systems (e.g., biometrics) or cases where harmonized standards were not fully applied.",
@@ -680,7 +626,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18285.3]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Design Phase",
         "FieldText": "Formal review of the Risk Management System to ensure safety was engineered into the initial concept (prEN 18228).",
@@ -689,7 +634,6 @@
       },
       {
         "requirement_control_number": "[18285.4]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Development Phase",
         "FieldText": "Technical audit of Data Governance and quality metrics to ensure the model's foundation is sound (prEN 18284).",
@@ -698,7 +642,6 @@
       },
       {
         "requirement_control_number": "[18285.5]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Post-Market Phase",
         "FieldText": "Verification that the automated Monitoring and Logging systems are functioning in the live environment (prEN ISO/IEC 24970).",
@@ -713,7 +656,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18285.6]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Competence",
         "FieldText": "Defines the specific technical expertise required for auditors, including understanding neural networks, bias detection, and AI-specific risks.",
@@ -722,7 +664,6 @@
       },
       {
         "requirement_control_number": "[18285.7]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Independence",
         "FieldText": "Establishes strict rules to ensure auditors remain impartial and free from any conflict of interest with the AI provider.",
@@ -747,7 +688,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18286.1]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Compliance Strategy",
         "FieldText": "A formal plan for how the organization will maintain conformity (including modifications to the AI).",
@@ -756,7 +696,6 @@
       },
       {
         "requirement_control_number": "[18286.2]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Accountability Framework",
         "FieldText": "Defining clear roles and management responsibilities for AI safety.",
@@ -771,7 +710,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18286.3]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Design & Development",
         "FieldText": "Procedures for design control, verification, and validation.",
@@ -780,7 +718,6 @@
       },
       {
         "requirement_control_number": "[18286.4]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Resource Management",
         "FieldText": "Ensuring the right human and technical resources (e.g., compute power, specialized staff) are available.",
@@ -795,7 +732,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18286.5]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Post-Market Monitoring (PMM)",
         "FieldText": "A system to collect and analyze data on the AI's performance once it is in the hands of users.",
@@ -804,7 +740,6 @@
       },
       {
         "requirement_control_number": "[18286.6]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Incident Reporting",
         "FieldText": "Procedures for reporting 'serious incidents' to national authorities within strict timelines.",
@@ -819,7 +754,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18286.7]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Technical Documentation",
         "FieldText": "Maintaining the 'Technical File' required by Article 11.",
@@ -828,7 +762,6 @@
       },
       {
         "requirement_control_number": "[18286.8]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Record-Keeping",
         "FieldText": "Systems for storing logs and version-controlled documentation for at least 10 years.",
@@ -853,7 +786,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18286.1]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Compliance Strategy",
         "FieldText": "A formal plan for how the organization will maintain conformity (including modifications to the AI).",
@@ -862,7 +794,6 @@
       },
       {
         "requirement_control_number": "[18286.2]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Accountability Framework",
         "FieldText": "Defining clear roles and management responsibilities for AI safety.",
@@ -877,7 +808,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18286.3]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Design & Development",
         "FieldText": "Procedures for design control, verification, and validation.",
@@ -886,7 +816,6 @@
       },
       {
         "requirement_control_number": "[18286.4]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Resource Management",
         "FieldText": "Ensuring the right human and technical resources (e.g., compute power, specialized staff) are available.",
@@ -901,7 +830,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18286.5]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Post-Market Monitoring (PMM)",
         "FieldText": "A system to collect and analyze data on the AI's performance once it is in the hands of users.",
@@ -910,7 +838,6 @@
       },
       {
         "requirement_control_number": "[18286.6]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Incident Reporting",
         "FieldText": "Procedures for reporting 'serious incidents' to national authorities within strict timelines.",
@@ -925,7 +852,6 @@
     "Fields": [
       {
         "requirement_control_number": "[18286.7]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Technical Documentation",
         "FieldText": "Maintaining the 'Technical File' required by Article 11.",
@@ -934,7 +860,6 @@
       },
       {
         "requirement_control_number": "[18286.8]",
-        "TrustDimension": "Requirement",
         "Role": "Compliance",
         "FieldName": "Record-Keeping",
         "FieldText": "Systems for storing logs and version-controlled documentation for at least 10 years.",
@@ -956,7 +881,7 @@
       ],
       "Fields": [
         {
-          "requirement_control_number": "[Art-9][Par-1][1]",
+          "requirement_control_number": "[18283.8]",
           "Role": "Requester",
           "FieldName": "Will the AI system be used for any of the following prohibited purposes?",
           "FieldText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
@@ -1701,7 +1626,7 @@
     {
       "control_number": "[LOG-OPS-01]",
       "control_description": "Implement 'Full-Context Structured Logging' (JSON format) that captures the exact Input Prompt, Retrieved Context Chunks (with Source IDs), Model Parameters (Temperature, Version), and the Final Output for every user interaction.",
-      "control_objective": "To satisfy [18229-1.4] (Traceability), [18229-1.5] (Interpretability), [24970.5] (Input/Output), and [24970.4] (System State). This ensures we can reconstruct the exact 'why' and 'how' of any specific decision.",
+      "control_objective": "To satisfy [18229-1.5] (Traceability), [18229-1.5] (Interpretability), [24970.5] (Input/Output), and [24970.4] (System State). This ensures we can reconstruct the exact 'why' and 'how' of any specific decision.",
       "control_status": "",
       "control_evidence": "Log schema definitions showing fields for 'correlation_id', 'model_config_hash', 'prompt_text', and 'retrieved_document_ids'."
     },
@@ -1729,7 +1654,7 @@
   ]
 },
         {
-  "requirement_control_number": "[18229-1.4],[24970.2],[24970.9]",
+  "requirement_control_number": "[18229-1.5],[24970.2],[24970.9]",
   "FieldType": "plan",
   "Role": "Tester",
   "FieldName": "[TEST-LOG-01] - Observability, Traceability & Privacy Audit",
@@ -1739,7 +1664,7 @@
       "ID": "LOG-TRC-01",
       "Query": "Perform a 'Reconstruction Drill': Given a specific Transaction ID from a past error, retrieve the full chain of events (User Prompt -> Vector Query -> Retrieved Chunks -> LLM Output).",
       "Expected_Outcome": "Pass (All 4 stages are present and linked by the same Correlation ID).",
-      "Rationale_Summary": "Validates [18229-1.4] Traceability. Confirms that we can 'replay' the incident to understand why it happened."
+      "Rationale_Summary": "Validates [18229-1.5] Traceability. Confirms that we can 'replay' the incident to understand why it happened."
     },
     {
       "ID": "LOG-MON-01",
@@ -1757,7 +1682,7 @@
       "ID": "LOG-MON-02",
       "Query": "Force a 'Model Crash' (send a malformed API payload) to generate a 500 error.",
       "Expected_Outcome": "Pass (Log captures the specific Error Code, Stack Trace, and the Fallback response sent to the user).",
-      "Rationale_Summary": "Validates [24970.2] & [18229-1.4]. Ensures that when things break, the system records *why*."
+      "Rationale_Summary": "Validates [24970.2] & [18229-1.5]. Ensures that when things break, the system records *why*."
     }
   ],
   "controls": [
@@ -1785,7 +1710,7 @@
     },
     {
       "step": "VAL-LOG-03: Locate the 'Error 500' event from the synthetic traffic and trace its 'Correlation ID' backwards to the input.",
-      "step_objective": "To prove [18229-1.4] Traceability."
+      "step_objective": "To prove [18229-1.5] Traceability."
     },
     {
       "step": "VAL-LOG-04: Review the 'Alert History' to confirm that the simulated Latency Spike triggered a notification.",
@@ -1794,7 +1719,7 @@
   ]
 },
         {
-  "requirement_control_number": "[18229-1.1],[18229-1.2],[18229-1.2],[18229-1.3]",
+  "requirement_control_number": "[18229-1.6],[18229-1.7],[18229-1.8]",
   "FieldType": "risk",
   "Role": "Engineer",
   "FieldName": "Implementation Specs: Human Oversight & Control",
@@ -1891,7 +1816,6 @@
           "requirement_control_number": "[18282.5]",
           "FieldType": "risk",
           "Role": "Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
           "FieldName": "LLM05 Model Supply Chain Attack",
           "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
           "controls": [
@@ -2072,7 +1996,6 @@
         {
           "FieldName": "AI System Security Approver",
           "Role": "Approver",
-          "TrustDimension": "",
           "Control": "Security Approver",
           "FieldText": "Name/Role of the Security Aprover",
           "control_number": "[6.1.1]",
@@ -2081,7 +2004,6 @@
         {
           "FieldName": "AI System Security Approval",
           "Role": "Approver",
-          "TrustDimension": "",
           "Control": "Security Approved",
           "FieldText": "",
           "control_number": "[6.1.2]",
@@ -2090,7 +2012,6 @@
         {
           "FieldName": "AI System DPO Approver",
           "Role": "Approver",
-          "TrustDimension": "",
           "Control": "DPO Approver",
           "FieldText": "Name/Role of the DPO Aprover",
           "control_number": "[6.1.3]",
@@ -2099,7 +2020,6 @@
         {
           "FieldName": "AI System DPO Approval",
           "Role": "Approver",
-          "TrustDimension": "",
           "Control": "DPO Approved",
           "FieldText": "",
           "control_number": "[6.1.4]",
@@ -2108,7 +2028,6 @@
         {
           "FieldName": "AI System Risk Approver",
           "Role": "Approver",
-          "TrustDimension": "",
           "Control": "Risk Approver",
           "FieldText": "Name/Role of the Risk Aprover",
           "control_number": "[6.1.5]",
@@ -2117,7 +2036,6 @@
         {
           "FieldName": "AI System Risk Approval",
           "Role": "Approver",
-          "TrustDimension": "",
           "Control": "Risk Approved",
           "FieldText": "",
           "control_number": "[6.1.6]",
@@ -2126,7 +2044,6 @@
         {
           "FieldName": "AI System Business Approver",
           "Role": "Approver",
-          "TrustDimension": "",
           "Control": "Business Approver",
           "FieldText": "Name/Role of the Business Approver",
           "control_number": "[6.1.7]",
@@ -2135,7 +2052,6 @@
         {
           "FieldName": "AI System Business Approval",
           "Role": "Approver",
-          "TrustDimension": "",
           "Control": "Business Approved",
           "FieldText": "",
           "control_number": "[6.1.8]",
@@ -2158,7 +2074,6 @@
           "requirement_control_number": "[Art-15][Par-5],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Deployment Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
           "FieldName": "Insecure AI component Packaging",
           "RiskDescription": "Failure to properly secure the lifecycle and runtime environment of containerized AI components—including insecure container **registries**, weak **access controls**, unhardened **host operating systems**, and poorly configured **container security context**—creates a significant attack surface. This could allow an attacker to **tamper with model code/artifacts** during transit or storage, **exfiltrate secrets**, achieve **privilege escalation** from a compromised container to the host, or exploit **unrestricted network access** to conduct lateral movement and **Denial of Service (DoS)**.",
           "controls": [
@@ -2303,7 +2218,6 @@
         {
           "requirement_control_number": "[A.8.4]",
           "Role": "Incident Manager",
-          "TrustDimension": "Transparency and Explainability",
           "FieldName": "Data Breach",
           "FieldText": "Describe how incidents related to \"Unintended exposure of training data\" will be comunicated.",
           "control_number": "[7.2.1]",
@@ -2312,7 +2226,6 @@
         {
           "requirement_control_number": "[A.8.4]",
           "Role": "Incident Manager",
-          "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Misuse",
           "FieldText": "Describe how incidents related to \"AI model used outside intended scope\" will be comunicated.",
           "control_number": "[7.2.2]",
@@ -2321,7 +2234,6 @@
         {
           "requirement_control_number": "[A.8.4]",
           "Role": "Incident Manager",
-          "TrustDimension": "Transparency and Explainability",
           "FieldName": "Model Failure",
           "FieldText": "Describe how incidents related to \"False predictions causing harm\" will be comunicated.",
           "control_number": "[7.2.3]",
@@ -2353,7 +2265,6 @@
           "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
           "FieldName": "Insufficient Scalability Management",
           "RiskDescription": "Failure to design the system so it can easily grow (scale) will result in crashes or extreme slowness when too many users try to access it at once, or when we add too much new data to its knowledge base.",
           "controls": [
@@ -2391,7 +2302,6 @@
           "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
           "FieldName": "[C.3.6] - Poor Management of AI System Changes and Updates",
           "RiskDescription": "Failure to manage the lifecycle of the AI system, including **changes to its underlying data, code, or model artifacts**, due to a lack of automated **validation, testing, version control, and formal change management**, could lead to the deployment of an **unstable, non-reproducible, or poor-performing** model. This results in **service degradation**, potential **compliance issues** from undocumented changes, and the inability to reliably **rollback** to a previous stable state.",
           "controls": [
@@ -2429,7 +2339,6 @@
           "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
-          "TrustDimension": "Cybersecurity and Resilience",
           "FieldName": "Inadequate Security Monitoring and Threat Detection",
           "RiskDescription": "Failure to adequately monitor the generative AI architecture—including user prompts, LLM responses, internal data processing, and component-to-component network traffic—could result in the **undetected successful exploitation** of vulnerabilities like prompt injection, leading to **data exfiltration** of proprietary information from the vector store, **model misuse** for unauthorized tasks, or **system compromise** via malicious document ingestion or **lateral movement** across the internal services.",
           "controls": [
