@@ -67,7 +67,7 @@ class RoleProgressTracker {
                 progressItem.classList.add('completed');
                 progressItem.querySelector('.role-progress-fill').style.width = '100%';
                 //progressItem.querySelector('.role-progress-text').textContent = 'N/A';
-                progressItem.querySelector('.role-progress-numbet').textContent = 'N/A';
+                progressItem.querySelector('.role-progress-number').textContent = 'N/A';
                 return;
             }
 
