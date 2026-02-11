@@ -124,7 +124,7 @@ function buildComplianceMap(data, sanitizeForId) {
     // 4. Pass 2: Link implementation nodes (Risk, Plan, or Field) to the requirements
     allFields.forEach(implNode => {
         // Only link if it has a requirement_control_number and isn't the requirement itself
-        if (isImplementation(implNode) && !isRequirementField(implNode)) {
+        if (isImplementation(implNode) && !isRequirementField(implNode) && implNode.requirement_control_number) {
             const implControlParts = implNode.requirement_control_number.split(',').map(s => s.trim());
 
             complianceMap.forEach((data) => {
