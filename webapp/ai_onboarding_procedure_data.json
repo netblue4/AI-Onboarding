@@ -1126,7 +1126,7 @@
   "Fields": [
     {
       "requirement_control_number": "[18229-2.14]",
-      "Role": "Requester",
+      "Role": "Data Engineer",
       "FieldName": "Data Split Strategy",
       "FieldText": "Specify the ratio of data used for Training, Validation, and Testing (e.g., 70/15/15) and the method used (e.g., Random, Stratified, Temporal).",
       "control_number": "[2.4.1]",
@@ -1134,7 +1134,7 @@
     },
     {
       "requirement_control_number": "[18229-2.14]",
-      "Role": "Requester",
+      "Role": "Data Engineer",
       "FieldName": "Statistical Verification Methods",
       "FieldText": "List the statistical tests or metrics used to verify system results (e.g., F1 Score, RMSE, P-values, Confidence Intervals).",
       "control_number": "[2.4.2]",
@@ -1142,7 +1142,7 @@
     },
     {
       "requirement_control_number": "[18284.1]",
-      "Role": "Requester",
+      "Role": "Data Engineer",
       "FieldName": "Data Selection Rationale",
       "FieldText": "Explain why this specific dataset was chosen and how its features align with the AI's intended purpose.",
       "control_number": "[2.4.3]",
@@ -1150,7 +1150,7 @@
     },
     {
       "requirement_control_number": "[18284.2]",
-      "Role": "Requester",
+      "Role": "Data Engineer",
       "FieldName": "Data Provenance and Legal Basis",
       "FieldText": "Identify the original source of the data and the legal justification for its use (e.g., Consent, Legitimate Interest, Public Domain).",
       "control_number": "[2.4.4]",
@@ -1158,7 +1158,7 @@
     },
     {
       "requirement_control_number": "[18284.3]",
-      "Role": "Requester",
+      "Role": "Data Engineer",
       "FieldName": "Preparation Operations Log",
       "FieldText": "Select the operations performed during data preparation.",
       "control_number": "[2.4.5]",
@@ -1166,7 +1166,7 @@
     },
     {
       "requirement_control_number": "[18284.3]",
-      "Role": "Requester",
+      "Role": "Data Engineer",
       "FieldName": "Annotation Quality Control",
       "FieldText": "Describe the process used to ensure the accuracy of labels or annotations (e.g., Double-blind review, Inter-rater reliability checks).",
       "control_number": "[2.4.6]",
