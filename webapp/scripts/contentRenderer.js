@@ -89,6 +89,12 @@ class ContentRenderer {
                 if (filteredStep.Fields && filteredStep.Fields.length > 0) {
                     filteredStep.Fields.forEach(field => {
                         try {
+                        
+							if (this.templateManager.sanitizeForId(field.requirement_control_number +'_requirement__soa') === 'Not Applicable') { 
+								return
+							}	
+                        
+                        
                             const handler = getFieldHandler(field.FieldType);
                             
                             if (!handler) return;

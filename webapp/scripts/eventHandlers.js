@@ -41,21 +41,6 @@ class EventHandlers {
         const versionBanner = document.getElementById('version-banner');
         const highlightNewBtn = document.getElementById('highlight-new-btn');
 
-        /*
-        // Validate required elements exist
-        if (!roleDropdown || !saveBtn) {
-            console.error('Required UI elements not found');
-            return;
-        }
-
-        // ===== ROLE DROPDOWN =====
-        roleDropdown.addEventListener('change', (e) => {
-            console.log('Role changed to:', e.target.value);
-            this.state.setCurrentRole(e.target.value);
-            this.contentRenderer.render();
-            this.roleProgressTracker.update();
-        });
-*/
         // ===== DIMENSION DROPDOWN =====
         if (dimensionDropdown) {
             dimensionDropdown.addEventListener('change', (e) => {
