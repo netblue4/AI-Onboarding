@@ -60,17 +60,16 @@ function createComplyField(field, incapturedData, sanitizeForId) {
 }
 
 /**
- * Builds a map of requirements linked to their sub-controls and implementations
+ * Builds a map of requirements linked to their sub-controls and implementations.
+ * Fixed to support the new JSON structure where 'requirement' is a FieldType.
  */
-function buildComplianceMap(data,sanitizeForId) {
-    const requirementNodes = [];
-    const implementationNodes = [];
+function buildComplianceMap(data, sanitizeForId) {
+    const complianceMap = new Map();
     let allFields = [];
 
-    // 1. Recursive helper
+    // 1. Recursive helper to flatten all fields from the JSON
     function collectFieldsRecursively(fields) {
         if (!fields || !Array.isArray(fields)) return;
-
         fields.forEach(field => {
             allFields.push(field);
             if (field.Fields && Array.isArray(field.Fields)) {
@@ -79,75 +78,67 @@ function buildComplianceMap(data,sanitizeForId) {
         });
     }
 
-    // 2. Flatten all fields recursively
+    // 2. Process every section (Compliance, Define, Build, etc.)
     Object.values(data).flat().forEach(step => {
-        if (step.Fields) {
-            collectFieldsRecursively(step.Fields);
-        }
+        if (step.Fields) collectFieldsRecursively(step.Fields);
     });
 
-    // 3. Categorize fields
+    // 3. Pass 1: Identify all "Requirement" nodes to build the map structure
     allFields.forEach(field => {
-        if (hasRequirementTrustDimension(field)) {
-            requirementNodes.push(field);
-        } else if (isImplementation(field)) {
-            implementationNodes.push(field);
-        }
-    });
-
-    // 4. Build the compliance map
-    const complianceMap = new Map();
-
-    requirementNodes.forEach(reqNode => {
-        if (!reqNode.FieldName) return;
-
-        const subControlMap = new Map();
-        
-        if (reqNode.controls && Array.isArray(reqNode.controls)) {
-            reqNode.controls.forEach(subControl => {
-                const controlKey = extractControlKey(subControl.control_number);
-                if (controlKey) {
-                    subControlMap.set(controlKey, {
-                        subControl: subControl,
-                        children: new Set()
-                    });
-                }
-            });
-        }
-
-        complianceMap.set(reqNode.FieldName, {
-            parentField: reqNode,
-            subControlLinks: subControlMap
-        });
-    });
-
-    // 5. Link implementations
-    linkImplementations(implementationNodes, complianceMap);
-
-    return complianceMap;
-}
-
-/**
- * Links implementation nodes to their corresponding requirement sub-controls
- */
-function linkImplementations(implementationNodes, complianceMap) {
-    implementationNodes.forEach(implNode => {
-        if (!implNode.requirement_control_number) return;
-
-        const implControlParts = implNode.requirement_control_number.split(',').map(s => s.trim());
-
-        for (const [parentName, data] of complianceMap.entries()) {
-            const subControlLinks = data.subControlLinks;
+        if (isRequirementField(field)) {
+            const controlKey = field.requirement_control_number; // e.g., "[18229-1.1]"
             
-            for (const implKey of implControlParts) {
-                if (subControlLinks.has(implKey)) {
-                    // Get the reference to the sub-control entry
-                    const linkEntry = subControlLinks.get(implKey);
-                    linkEntry.children.add(implNode);
-                }
+            if (!complianceMap.has(field.FieldName)) {
+                complianceMap.set(field.FieldName, {
+                    parentField: field,
+                    subControlLinks: new Map()
+                });
+            }
+
+            const dataEntry = complianceMap.get(field.FieldName);
+            
+            // Check if there are nested controls (Article 15 style) or just the field itself (Article 13 style)
+            if (field.controls && Array.isArray(field.controls)) {
+                field.controls.forEach(subControl => {
+                    const subKey = extractControlKey(subControl.control_number);
+                    if (subKey) {
+                        dataEntry.subControlLinks.set(subKey, {
+                            subControl: subControl,
+                            children: new Set()
+                        });
+                    }
+                });
+            } else {
+                // FALLBACK: Use the requirement control number as the mapping key
+                dataEntry.subControlLinks.set(controlKey, {
+                    subControl: {
+                        control_number: controlKey,
+                        control_description: field.FieldText || "Requirement Detail",
+                    },
+                    children: new Set()
+                });
             }
         }
     });
+
+    // 4. Pass 2: Link implementation nodes (Risk, Plan, or Field) to the requirements
+    allFields.forEach(implNode => {
+        // Only link if it has a requirement_control_number and isn't the requirement itself
+        if (isImplementation(implNode) && !isRequirementField(implNode)) {
+            const implControlParts = implNode.requirement_control_number.split(',').map(s => s.trim());
+
+            complianceMap.forEach((data) => {
+                const subControlLinks = data.subControlLinks;
+                implControlParts.forEach(implKey => {
+                    if (subControlLinks.has(implKey)) {
+                        subControlLinks.get(implKey).children.add(implNode);
+                    }
+                });
+            });
+        }
+    });
+
+    return complianceMap;
 }
 
 
@@ -552,7 +543,7 @@ function hasContent(val) {
     return String(val).trim() !== '';
 }
 
-function hasRequirementTrustDimension(field) {
+function isRequirementField(field) {
     // 1. Safety check: if field is null/undefined, return false immediately
     if (!field) return false;
 
@@ -560,13 +551,6 @@ function hasRequirementTrustDimension(field) {
     if (field.FieldType === "requirement") {
         return true;
     }
-
-    // 3. Check the original condition (TrustDimension)
-    // We must check if field.TrustDimension exists before calling .includes()
-    if (field.TrustDimension && field.TrustDimension.includes('Requirement')) {
-        return true;
-    }
-
     return false;
 }
 
