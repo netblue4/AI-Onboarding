@@ -118,63 +118,66 @@ class RoleProgressTracker {
      * @param {string} role - The role to get fields for
      * @returns {Array} Array of field objects for the role
      */
-    getFieldsForRole(role) {
-        const fields = [];
+getFieldsForRole(role) {
+    const fields = [];
+    if (!this.state.templateData) return fields;
 
-        if (!this.state.templateData) {
-            console.warn('Template data not available in roleProgressTracker');
-            return fields;
-        }
+    for (const [phaseName, stepsInPhase] of Object.entries(this.state.templateData)) {
+        stepsInPhase.forEach(step => {
+            if (!step.Fields) return;
 
-        for (const [phaseName, stepsInPhase] of Object.entries(this.state.templateData)) {
-            stepsInPhase.forEach(step => {
-                if (!step.Fields) return;
+            // Added 'isAuthorized' parameter to pass role-match down to children
+            const extractFieldsForRole = (field, isAuthorized = false) => {
+                if (!field) return;
 
-                const extractFieldsForRole = (field) => {
-                    if (!field) return;
+                // 1. Check/Update Authorization
+                let currentFieldAuthorized = isAuthorized;
+                if (field.Role) {
+                    const fieldRoles = String(field.Role).split(',').map(r => r.trim());
+                    currentFieldAuthorized = fieldRoles.includes(role);
+                }
 
+                // 2. Process the field if authorized
+                if (currentFieldAuthorized) {
+                    // Check if it's a "leaf" node we want to count/display
+                    // We now ALLOW 'risk' and 'plan' if they are top-level items
+                    const isDisplayable = field.FieldName && 
+                                        field.FieldType !== 'Auto generated number' && 
+                                        field.FieldType !== 'fieldGroup';
 
-                    // Check if field matches the role
-                    if (field.Role) {
-                        const fieldRoles = String(field.Role)
-                            .split(',')
-                            .map(r => r.trim());
+                    if (isDisplayable) {
+                        const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+                        const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
                         
-                        if (fieldRoles.includes(role)) {
-							// REMOVED 'risk' and 'plan' from the exclusion list
-							if (field.FieldName && 
-								field.FieldType !== 'Auto generated number' && 
-								field.FieldType !== 'fieldGroup') { 
-								
-								// Logic for SOA / Requirement filtering
-								const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-								const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-								
-								if ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement') { 
-									return;
-								}	
-					
-								fields.push(field);
-							}
-						}
-
+                        // Validation logic
+                        if ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement') { 
+                            // Skip
+                        } else {
+                            fields.push(field);
+                        }
                     }
+                }
 
-                    // Recurse into nested fields
-                    if (field.Fields && Array.isArray(field.Fields)) {
-                        field.Fields.forEach(extractFieldsForRole);
-                    }
-                    if (field.controls && Array.isArray(field.controls)) {
-                        field.controls.forEach(extractFieldsForRole);
-                    }                    
-                };
+                // 3. Recurse: Pass the 'currentFieldAuthorized' status down
+                if (field.Fields && Array.isArray(field.Fields)) {
+                    field.Fields.forEach(f => extractFieldsForRole(f, currentFieldAuthorized));
+                }
+                if (field.controls && Array.isArray(field.controls)) {
+                    // This is the key: if the 'risk' matched the role, 
+                    // the controls are now authorized by default.
+                    field.controls.forEach(c => extractFieldsForRole(c, currentFieldAuthorized));
+                }
+                // Also handle the 'TestDataset' array found in 'plan' types
+                if (field.TestDataset && Array.isArray(field.TestDataset)) {
+                    field.TestDataset.forEach(t => extractFieldsForRole(t, currentFieldAuthorized));
+                }
+            };
 
-                step.Fields.forEach(extractFieldsForRole);
-            });
-        }
-
-        return fields;
+            step.Fields.forEach(f => extractFieldsForRole(f));
+        });
     }
+    return fields;
+}
 
     /**
      * Switch to a different role
