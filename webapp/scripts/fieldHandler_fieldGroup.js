@@ -35,7 +35,7 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
 			//Then do not display the field, unless its a requirement.
 			const sanitizeId = sanitizeForId(nestedField.requirement_control_number);
 			const soa = capturedData[sanitizeId + '_requirement__soa'];
-			if (soa === 'Not Applicable' || soa === '' && nestedField.FieldType != 'requirement') { 
+			if ((soa === 'Not Applicable' || soa === '') && nestedField.FieldType != 'requirement') { 
 				return
 			}	
         
