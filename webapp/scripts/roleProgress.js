@@ -127,7 +127,7 @@ getFieldsForRole(role) {
             if (!step.Fields) return;
 
             // Added 'isAuthorized' parameter to pass role-match down to children
-            const extractFieldsForRole = (field, isAuthorized = false) => {
+            const extractFieldsForRole = (field, isAuthorized = false, isControl = false) => {
                 if (!field) return;
 
                 // 1. Check/Update Authorization
@@ -145,17 +145,9 @@ getFieldsForRole(role) {
                                         field.FieldType !== 'Auto generated number' && 
                                         field.FieldType !== 'fieldGroup';
 
-                    if (isDisplayable || field.control_evidence) {
-                        const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-                        const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                        
-                        // Validation logic
-                        if ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement') { 
-                            // Skip
-                        } else {
+                    if (isDisplayable || isControl) {
                             fields.push(field);
-                    }
-                }
+					}
 
                 // 3. Recurse: Pass the 'currentFieldAuthorized' status down
                 if (field.Fields && Array.isArray(field.Fields)) {
@@ -166,7 +158,17 @@ getFieldsForRole(role) {
                     // the controls are now authorized by default.
                     const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
                     const isInRole = currfieldRoles.includes(role);
-                    field.controls.forEach(c => extractFieldsForRole(c, currentFieldAuthorized));
+                    
+					const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+					const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+					
+					// Validation logic
+					const isApplicable =  ((!so}a || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement')
+                    
+                    
+                    if(isInRole && isApplicable) {
+						field.controls.forEach(c => extractFieldsForRole(c, true, true));
+                    }
                 }
                 // Also handle the 'TestDataset' array found in 'plan' types
                 if (field.TestDataset && Array.isArray(field.TestDataset)) {
