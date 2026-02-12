@@ -75,16 +75,20 @@ class RoleProgressTracker {
             const completedFields = roleFields.filter(field => {
                 if (!field.FieldName) return false;
                 
+				//If the field is associated with a requirement that has been marked as 'Not Applicable' 
+				//Then do not count the field, unless its a requirement.
+				const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+				if (this.state.capturedData[sanitizeId + '_requirement__soa'] === 'Not Applicable' && field.FieldType != 'requirement') { 
+					return false;
+				}	                
+                
                  	let statusvalue = 0;
                  	if(field.FieldType != 'requirement'){
                  		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
                  	} else {
                  		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.requirement_control_number) + '_requirement__soa'];
                  	}
-
                 
-                
-					//const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
 					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
 					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_response'];
 					
