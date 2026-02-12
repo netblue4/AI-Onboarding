@@ -78,7 +78,8 @@ class RoleProgressTracker {
 				//If the field is associated with a requirement that has been marked as 'Not Applicable' 
 				//Then do not count the field, unless its a requirement.
 				const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-				if (this.state.capturedData[sanitizeId + '_requirement__soa'] === 'Not Applicable' && field.FieldType != 'requirement') { 
+				const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+			    if (soa === 'Not Applicable' || soa === '' && nestedField.FieldType != 'requirement') { 
 					return false;
 				}	                
                 

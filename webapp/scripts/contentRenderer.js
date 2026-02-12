@@ -93,7 +93,8 @@ class ContentRenderer {
 							//Then do not display the risk.
 							//The same logic is applied to other field types in the 'fieldHandler_filedgroup.js
                         	const sanitizeId = this.templateManager.sanitizeForId(field.requirement_control_number);
-							if (this.state.capturedData[sanitizeId + '_requirement__soa'] === 'Not Applicable') { 
+                        	const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+							if (soa === 'Not Applicable' || soa === '') { 
 								return
 							}	
                         
