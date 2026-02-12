@@ -141,13 +141,19 @@ getFieldsForRole(role) {
                 if (currentFieldAuthorized) {
 						// Check if it's a "leaf" node we want to count/display
 						// We now ALLOW 'risk' and 'plan' if they are top-level items
-						const isDisplayable = ((field.FieldName && 
+						const isDisplayable = (field.FieldName && 
 											field.FieldType !== 'Auto generated number' && 
-											field.FieldType !== 'fieldGroup') || field.control_evidenc);
+											field.FieldType !== 'fieldGroup') || field.control_evidenc;
 	
 						if (isDisplayable) fields.push(field);
                     }
                 }
+
+
+
+
+
+
 
                 // 3. Recurse: Pass the 'currentFieldAuthorized' status down
                 if (field.Fields && Array.isArray(field.Fields)) {
