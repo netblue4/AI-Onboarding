@@ -137,17 +137,24 @@ getFieldsForRole(role) {
                     currentFieldAuthorized = fieldRoles.includes(role);
                 }
 
-                // 2. Process the field if authorized
+				// 2. Process the field if authorized
                 if (currentFieldAuthorized) {
-						// Check if it's a "leaf" node we want to count/display
-						// We now ALLOW 'risk' and 'plan' if they are top-level items
-						const isDisplayable = field.FieldName && 
-											field.FieldType !== 'Auto generated number' && 
-											field.FieldType !== 'fieldGroup';
-	
-						if (isDisplayable) {
-						   fields.push(field);
-						}
+                    // Check if it's a "leaf" node we want to count/display
+                    // We now ALLOW 'risk' and 'plan' if they are top-level items
+                    const isDisplayable = field.FieldName && 
+                                        field.FieldType !== 'Auto generated number' && 
+                                        field.FieldType !== 'fieldGroup';
+
+                    if (isDisplayable) {
+                        const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+                        const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                        
+                        // Validation logic
+                        if ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement') { 
+                            // Skip
+                        } else {
+                            fields.push(field);
+                        }
                     }
                 }
 
