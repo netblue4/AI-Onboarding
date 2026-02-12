@@ -163,7 +163,7 @@ getFieldsForRole(role) {
 					const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
 					
 					// Validation logic
-					const isApplicable =  ((!so}a || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement')
+					const isApplicable =  ((!so}a || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement');
                     
                     
                     if(isInRole && isApplicable) {
