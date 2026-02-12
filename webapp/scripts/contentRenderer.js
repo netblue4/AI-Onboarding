@@ -89,15 +89,17 @@ class ContentRenderer {
                 if (filteredStep.Fields && filteredStep.Fields.length > 0) {
                     filteredStep.Fields.forEach(field => {
                         try {
-							//If the risk is associated with a requirement that has been marked as 'Not Applicable' 
-							//Then do not display the risk.
-							//The same logic is applied to other field types in the 'fieldHandler_filedgroup.js
-                        	const sanitizeId = this.templateManager.sanitizeForId(field.requirement_control_number);
-                        	const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-							if (!soa || soa === 'Not Applicable' || soa === 'Select') { 
-								return
+							
+							if(field.requirement_control_number){
+								//If the risk is associated with a requirement that has been marked as 'Not Applicable' 
+								//Then do not display the risk.
+								//The same logic is applied to other field types in the 'fieldHandler_filedgroup.js
+								const sanitizeId = this.templateManager.sanitizeForId(field.requirement_control_number);
+								const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+								if (!soa || soa === 'Not Applicable' || soa === 'Select') { 
+									return
+								}
 							}	
-                        
                         
                             const handler = getFieldHandler(field.FieldType);
                             
