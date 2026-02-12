@@ -18,7 +18,7 @@
               "FieldName": "Intended Purpose",
               "FieldText": "Clear, documented declaration of what the system is designed to do.",
               "FieldType": "requirement",
-              "soa": "Applicable"
+              "soa": ""
             },
             {
               "requirement_control_number": "[18229-1.2]",
