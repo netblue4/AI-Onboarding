@@ -30,6 +30,14 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
     // 3. Iterate through the nested 'controls' array
     if (field.Fields && Array.isArray(field.Fields)) {
         field.Fields.forEach(nestedField => {
+        
+        	//If the field is associated with a requirement that has been marked as 'Not Applicable' 
+			//Then do not display the field. 
+			const sanitizeId = sanitizeForId(nestedField.requirement_control_number);
+			if (capturedData[sanitizeId + '_requirement__soa'] === 'Not Applicable') { 
+				return
+			}	
+        
             if (!nestedField.FieldType) {
                 // If a nested field uses 'Control' instead of 'FieldType' for control flow, 
                 // we'll assume a standard TextBox if no type is explicitly defined.
