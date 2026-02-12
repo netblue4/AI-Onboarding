@@ -146,15 +146,7 @@ getFieldsForRole(role) {
                                         field.FieldType !== 'fieldGroup';
 
                     if (isDisplayable || field.control_evidence) {
-                        const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-                        const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                        
-                        // Validation logic
-                        if ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement') { 
-                            // Skip
-                        } else {
                             fields.push(field);
-                        }
                     }
                 }
 
