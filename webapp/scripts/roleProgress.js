@@ -139,15 +139,13 @@ getFieldsForRole(role) {
 
                 // 2. Process the field if authorized
                 if (currentFieldAuthorized) {
-                    // Check if it's a "leaf" node we want to count/display
-                    // We now ALLOW 'risk' and 'plan' if they are top-level items
-                    const isDisplayable = ((field.FieldName && 
-                                        field.FieldType !== 'Auto generated number' && 
-                                        field.FieldType !== 'fieldGroup') || field.control_evidence);
-
-                    if (isDisplayable) {
-                            fields.push(field);
-                        }
+						// Check if it's a "leaf" node we want to count/display
+						// We now ALLOW 'risk' and 'plan' if they are top-level items
+						const isDisplayable = ((field.FieldName && 
+											field.FieldType !== 'Auto generated number' && 
+											field.FieldType !== 'fieldGroup') || field.control_evidenc);
+	
+						if (isDisplayable) fields.push(field);
                     }
                 }
 
@@ -169,7 +167,7 @@ getFieldsForRole(role) {
             };
 
             step.Fields.forEach(f => extractFieldsForRole(f));
-        });
+        );
     }
     return fields;
 }
