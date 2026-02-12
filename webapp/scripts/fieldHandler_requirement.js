@@ -12,7 +12,7 @@ function createRequirement(field, capturedData, sanitizeForId) {
 	const select = document.createElement('select');
 	select.name = sanitizedId + '_requirement__soa';
 	
-	const options = ['', 'Applicable', 'Not Applicable'];
+	const options = ['Select', 'Applicable', 'Not Applicable'];
 				
 	options.forEach((optionText, index) => {
 		const option = document.createElement('option');
