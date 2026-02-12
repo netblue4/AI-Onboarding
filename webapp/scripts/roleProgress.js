@@ -141,9 +141,9 @@ getFieldsForRole(role) {
                 if (currentFieldAuthorized) {
                     // Check if it's a "leaf" node we want to count/display
                     // We now ALLOW 'risk' and 'plan' if they are top-level items
-                    const isDisplayable = field.FieldName && 
+                    const isDisplayable = ((field.FieldName && 
                                         field.FieldType !== 'Auto generated number' && 
-                                        field.FieldType !== 'fieldGroup';
+                                        field.FieldType !== 'fieldGroup') || field.control_evidence);
 
                     if (isDisplayable) {
                         const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
