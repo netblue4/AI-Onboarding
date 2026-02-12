@@ -94,7 +94,7 @@ class ContentRenderer {
 							//The same logic is applied to other field types in the 'fieldHandler_filedgroup.js
                         	const sanitizeId = this.templateManager.sanitizeForId(field.requirement_control_number);
                         	const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-							if (soa === 'Not Applicable' || soa === 'Select') { 
+							if (!soa && soa === 'Not Applicable' || soa === 'Select') { 
 								return
 							}	
                         
