@@ -141,11 +141,11 @@ getFieldsForRole(role) {
                 if (currentFieldAuthorized) {
 						// Check if it's a "leaf" node we want to count/display
 						// We now ALLOW 'risk' and 'plan' if they are top-level items
-						const isDisplayable = (field.FieldName && 
+						const isDisplayable = field.FieldName && 
 											field.FieldType !== 'Auto generated number' && 
-											field.FieldType !== 'fieldGroup') || field.control_evidenc;
+											field.FieldType !== 'fieldGroup';
 	
-						if (isDisplayable) fields.push(field);
+						if (isDisplayable || field.control_evidenc) fields.push(field);
                     }
                 }
 
