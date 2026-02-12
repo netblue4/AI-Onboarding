@@ -145,7 +145,7 @@ getFieldsForRole(role) {
                                         field.FieldType !== 'Auto generated number' && 
                                         field.FieldType !== 'fieldGroup';
 
-                    if (isDisplayable) {
+                    if (isDisplayable || field.control_evidence) {
                         const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
                         const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
                         
