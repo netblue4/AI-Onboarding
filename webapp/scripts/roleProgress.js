@@ -145,7 +145,9 @@ getFieldsForRole(role) {
 											field.FieldType !== 'Auto generated number' && 
 											field.FieldType !== 'fieldGroup';
 	
-						if (isDisplayable || field.control_evidenc) fields.push(field);
+						if (isDisplayable) {
+						   fields.push(field);
+						}
                     }
                 }
 
