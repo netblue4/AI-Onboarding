@@ -152,7 +152,7 @@ class RoleProgressTracker {
 								//Then do not count the field, unless its a requirement.
 								const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
 								const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-								if ((!soa || soa === 'Not Applicable' || soa === '') && field.FieldType != 'requirement') { 
+								if ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement') { 
 									return;
 								}	
 					
