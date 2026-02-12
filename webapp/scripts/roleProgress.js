@@ -73,15 +73,7 @@ class RoleProgressTracker {
 
             // Count completed fields
             const completedFields = roleFields.filter(field => {
-                if (!field.FieldName) return false;
-                
-				//If the field is associated with a requirement that has been marked as 'Not Applicable' 
-				//Then do not count the field, unless its a requirement.
-				const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-				const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-			    if ((!soa || soa === 'Not Applicable' || soa === '') && field.FieldType != 'requirement') { 
-					return false;
-				}	                
+                if (!field.FieldName) return false;                
                 
                  	let statusvalue = 0;
                  	if(field.FieldType != 'requirement'){
@@ -141,6 +133,16 @@ class RoleProgressTracker {
                 const extractFieldsForRole = (field) => {
                     if (!field) return;
 
+
+					//If the field is associated with a requirement that has been marked as 'Not Applicable' 
+					//Then do not count the field, unless its a requirement.
+					const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+					const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+					if ((!soa || soa === 'Not Applicable' || soa === '') && field.FieldType != 'requirement') { 
+						return;
+					}	
+
+
                     // Check if field matches the role
                     if (field.Role) {
                         const fieldRoles = String(field.Role)
@@ -151,7 +153,9 @@ class RoleProgressTracker {
                             // Only add real fields, not auto-generated or fieldGroups
                             if (field.FieldName && 
                                 field.FieldType !== 'Auto generated number' && 
-                                field.FieldType !== 'fieldGroup') {
+                                field.FieldType !== 'fieldGroup' &&
+                                field.FieldType !== 'risk' &&
+                                field.FieldType !== 'plan') {
                                 fields.push(field);
                             }
                         }
@@ -161,6 +165,9 @@ class RoleProgressTracker {
                     if (field.Fields && Array.isArray(field.Fields)) {
                         field.Fields.forEach(extractFieldsForRole);
                     }
+                    if (field.controls && Array.isArray(field.controls)) {
+                        field.controls.forEach(extractFieldsForRole);
+                    }                    
                 };
 
                 step.Fields.forEach(extractFieldsForRole);
