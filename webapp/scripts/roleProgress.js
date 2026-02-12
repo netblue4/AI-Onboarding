@@ -134,15 +134,6 @@ class RoleProgressTracker {
                     if (!field) return;
 
 
-					//If the field is associated with a requirement that has been marked as 'Not Applicable' 
-					//Then do not count the field, unless its a requirement.
-					const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-					const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-					if ((!soa || soa === 'Not Applicable' || soa === '') && field.FieldType != 'requirement') { 
-						return;
-					}	
-
-
                     // Check if field matches the role
                     if (field.Role) {
                         const fieldRoles = String(field.Role)
@@ -155,7 +146,16 @@ class RoleProgressTracker {
                                 field.FieldType !== 'Auto generated number' && 
                                 field.FieldType !== 'fieldGroup' &&
                                 field.FieldType !== 'risk' &&
-                                field.FieldType !== 'plan') {
+                                field.FieldType !== 'plan') { 
+                                
+								//If the field is associated with a requirement that has been marked as 'Not Applicable' 
+								//Then do not count the field, unless its a requirement.
+								const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+								const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+								if ((!soa || soa === 'Not Applicable' || soa === '') && field.FieldType != 'requirement') { 
+									return;
+								}	
+					
                                 fields.push(field);
                             }
                         }
