@@ -31,7 +31,7 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
     if (field.Fields && Array.isArray(field.Fields)) {
         field.Fields.forEach(nestedField => {
         
-        if(field.requirement_control_number){
+        if(nestedField.requirement_control_number){
         	//If the field is associated with a requirement that has been marked as 'Not Applicable' 
 			//Then do not display the field, unless its a requirement.
 			const sanitizeId = sanitizeForId(nestedField.requirement_control_number);
