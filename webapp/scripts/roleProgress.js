@@ -80,6 +80,7 @@ class RoleProgressTracker {
                  		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
                  	} else {
                  		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.requirement_control_number) + '_requirement__soa'];
+                 		if(!statusvalue) statusvalue = field.soa;
                  	}
                 
 					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
