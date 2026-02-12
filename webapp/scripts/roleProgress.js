@@ -161,33 +161,29 @@ getFieldsForRole(role) {
                 && field.FieldType != 'Auto generated number')
                 
                 // 2. Process the field if authorized
-                if(!currentInRole) return;
-                if (!isApplicableControl || !currentIsRequirement || !isValidField) return;
-                
-                fields.push(field);
-
+                if(currentInRole) {
+					if (isApplicableControl || currentIsRequirement || isValidField) {
+						fields.push(field);
+					}
+				}
 
                 // 3. Recurse: Pass the 'currentFieldAuthorized' status down
                 if (field.Fields && Array.isArray(field.Fields)) {
-                    field.Fields.forEach(f => extractFieldsForRole(f, false));
+                    const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
+                    const isInRole = currfieldRoles.includes(role);
+                    const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement');                     
+                    field.Fields.forEach(f => extractFieldsForRole(f, isInRole,false, false, isApplicable));
                 }
 
                 if (field.controls && Array.isArray(field.controls)) {
                     const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
                     const isInRole = currfieldRoles.includes(role);
-                    
                     const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
                     const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    
                     const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement');                     
-                    
-                    if(isInRole && isApplicable) {
-                        field.controls.forEach(c => extractFieldsForRole(c, isInRole, true, false, isApplicable));
-                    }
-                }
-
-                if (field.TestDataset && Array.isArray(field.TestDataset)) {
-                    field.TestDataset.forEach(t => extractFieldsForRole(t, currentFieldAuthorized));
+                    field.controls.forEach(c => extractFieldsForRole(c, isInRole, true, false, isApplicable));
                 }
             };
 
