@@ -102,7 +102,7 @@ class DataCapture {
 captureRequirement(field, sanitizedId, fieldName, currentData) {
     const requirementSelect = document.querySelector(`select[name="${sanitizedId}_requirement__soa"]`);
     // Only update if value exists and has changed
-    if requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
+    if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
         if (currentData[sanitizedId + '_requirement__soa'] !== requirementSelect.value) {
             currentData[sanitizedId + '_requirement'] = field.FieldName +': ' + field.FieldText;
             currentData[sanitizedId + '_requirement__soa'] = requirementSelect.value;
