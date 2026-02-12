@@ -126,30 +126,50 @@ getFieldsForRole(role) {
         stepsInPhase.forEach(step => {
             if (!step.Fields) return;
 
-            const extractFieldsForRole = (field, isAuthorized = false, isControl = false) => {
+            const extractFieldsForRole = (field, isInRole = false, isControl = false, isRequirement = false, isApplicable = false) => {
                 if (!field) return;
 
-                // 1. Check/Update Authorization
-                let currentFieldAuthorized = isAuthorized;
+                // 1. Check/Update inRole
+                let currentInRole = isInRole;
                 if (field.Role) {
                     const fieldRoles = String(field.Role).split(',').map(r => r.trim());
-                    currentFieldAuthorized = fieldRoles.includes(role);
+                    currentInRole = fieldRoles.includes(role);
                 }
-
+                
+                let currentIsRequirement = isRequirement;
+                if (field.FieldType === 'requirement') {
+                    currentIsRequirement = true;
+                }             
+                   
+                let currentIsControl = isControl;
+                if (field.control_evidence) {
+                    currentIsControl = true;
+                } 
+                
+                let currentIsApplicable = isApplicable;
+                if (field.requirement_control_number) {
+                    const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    currentIsApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement'); 
+                } 
+                
+                const isApplicableControl = (currentIsControl && currentIsApplicable);
+                
+                const isValidField = (field.FieldType != 'fieldGroup' 
+                && field.FieldType != 'risk' 
+                && field.FieldType != 'plan'
+                && field.FieldType != 'Auto generated number')
+                
                 // 2. Process the field if authorized
-                if (currentFieldAuthorized) {
-                    const isDisplayable = field.FieldName && 
-                                        field.FieldType !== 'Auto generated number' && 
-                                        field.FieldType !== 'fieldGroup';
+                if(!currentInRole) return;
+                if (!isApplicableControl || !currentIsRequirement || !isValidField) return;
+                
+                fields.push(field);
 
-                    if (isDisplayable || isControl) {
-                        fields.push(field);
-                    }
-                } // <--- THIS WAS THE MISSING BRACE
 
                 // 3. Recurse: Pass the 'currentFieldAuthorized' status down
                 if (field.Fields && Array.isArray(field.Fields)) {
-                    field.Fields.forEach(f => extractFieldsForRole(f, currentFieldAuthorized));
+                    field.Fields.forEach(f => extractFieldsForRole(f, false));
                 }
 
                 if (field.controls && Array.isArray(field.controls)) {
@@ -162,7 +182,7 @@ getFieldsForRole(role) {
                     const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement');                     
                     
                     if(isInRole && isApplicable) {
-                        field.controls.forEach(c => extractFieldsForRole(c, true, true));
+                        field.controls.forEach(c => extractFieldsForRole(c, isInRole, true, false, isApplicable));
                     }
                 }
 
