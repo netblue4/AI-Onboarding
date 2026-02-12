@@ -139,23 +139,24 @@ getFieldsForRole(role) {
 
                 // 2. Process the field if authorized
                 if (currentFieldAuthorized) {
-						// Check if it's a "leaf" node we want to count/display
-						// We now ALLOW 'risk' and 'plan' if they are top-level items
-						const isDisplayable = field.FieldName && 
-											field.FieldType !== 'Auto generated number' && 
-											field.FieldType !== 'fieldGroup';
-	
-						if (isDisplayable || field.control_evidenc) {
-						   fields.push(field);
-						}
+                    // Check if it's a "leaf" node we want to count/display
+                    // We now ALLOW 'risk' and 'plan' if they are top-level items
+                    const isDisplayable = field.FieldName && 
+                                        field.FieldType !== 'Auto generated number' && 
+                                        field.FieldType !== 'fieldGroup';
+
+                    if (isDisplayable) {
+                        const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+                        const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                        
+                        // Validation logic
+                        if ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement') { 
+                            // Skip
+                        } else {
+                            fields.push(field);
+                        }
                     }
                 }
-
-
-
-
-
-
 
                 // 3. Recurse: Pass the 'currentFieldAuthorized' status down
                 if (field.Fields && Array.isArray(field.Fields)) {
@@ -164,8 +165,7 @@ getFieldsForRole(role) {
                 if (field.controls && Array.isArray(field.controls)) {
                     // This is the key: if the 'risk' matched the role, 
                     // the controls are now authorized by default.
-
-                    field.controls.forEach(c => extractFieldsForRole(c, isInRole));
+                    field.controls.forEach(c => extractFieldsForRole(c, currentFieldAuthorized));
                 }
                 // Also handle the 'TestDataset' array found in 'plan' types
                 if (field.TestDataset && Array.isArray(field.TestDataset)) {
@@ -174,10 +174,13 @@ getFieldsForRole(role) {
             };
 
             step.Fields.forEach(f => extractFieldsForRole(f));
-        );
+        });
     }
     return fields;
 }
+
+//                    const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
+//                    const isInRole = currfieldRoles.includes(role);
 
     /**
      * Switch to a different role
