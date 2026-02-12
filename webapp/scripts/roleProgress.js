@@ -165,6 +165,8 @@ getFieldsForRole(role) {
                 if (field.controls && Array.isArray(field.controls)) {
                     // This is the key: if the 'risk' matched the role, 
                     // the controls are now authorized by default.
+                    const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
+                    const isInRole = currfieldRoles.includes(role);
                     field.controls.forEach(c => extractFieldsForRole(c, currentFieldAuthorized));
                 }
                 // Also handle the 'TestDataset' array found in 'plan' types
