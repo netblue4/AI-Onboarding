@@ -31,7 +31,15 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
     if (field.Fields && Array.isArray(field.Fields)) {
         field.Fields.forEach(nestedField => {
         
-
+        if(nestedField.requirement_control_number){
+        	//If the field is associated with a requirement that has been marked as 'Not Applicable' 
+			//Then do not display the field, unless its a requirement.
+			const sanitizeId = sanitizeForId(nestedField.requirement_control_number);
+			const soa = capturedData[sanitizeId + '_requirement__soa'];
+			if ((!soa || soa === 'Not Applicable' || soa === 'Select') && nestedField.FieldType != 'requirement') { 
+				return
+			}	
+		}
         
             if (!nestedField.FieldType) {
                 // If a nested field uses 'Control' instead of 'FieldType' for control flow, 
