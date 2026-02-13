@@ -213,7 +213,7 @@ class ContentRenderer {
         let filteredChildren = [];
         if (node.Fields && Array.isArray(node.Fields)) {
                     const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
-                    const isInRole = currfieldRoles.includes(role);
+                    const isInRole = currfieldRoles.includes(his.state.currentRole);
                     const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
                     const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
                     const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
@@ -226,7 +226,7 @@ class ContentRenderer {
         }
 		if (node.controls && Array.isArray(node.controls)) {
 		            const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
-                    const isInRole = currfieldRoles.includes(role);
+                    const isInRole = currfieldRoles.includes(his.state.currentRole);
                     const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
                     const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
                     const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
