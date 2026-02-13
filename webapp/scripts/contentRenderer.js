@@ -7,63 +7,37 @@ class ContentRenderer {
 
 
 	renderAIAssessmentView() {
-		const contentArea = document.getElementById('content-area');
+		console.log('Rendering AI Assessment View');
 		
-		// 1. Basic Validation
-		if (!contentArea || !this.state.templateData || !this.state.currentRole) {
-			contentArea.innerHTML = '<div class="empty-state"><h2>Error or No Role Selected</h2></div>';
-			return;
-		}
+		const contentArea = document.getElementById('content-area');
+		if (!contentArea) return;
 	
+		// 1. Clear previous content
 		contentArea.innerHTML = '';
-		let hasContent = false;
+		
+		try {
+			// 2. Get the specialized handler
+			const handler = getFieldHandler('comply');
+			
+			if (handler) {
+				// 3. Call the handler. 
+				// Note: Since we aren't looping, we pass null or a global config 
+				// if the handler is already "data-aware".
+				const assessmentElement = handler(
+					null, 
+					this.state.capturedData, 
+					this.templateManager.sanitizeForId.bind(this.templateManager)
+				);
 	
-		// Create a container for the flattened list
-		const assessmentList = document.createElement('div');
-		assessmentList.className = 'assessment-view-list';
-	
-		// 2. We still need to find the fields within the data structure
-		for (const [phaseName, stepsInPhase] of Object.entries(this.state.templateData)) {
-			stepsInPhase.forEach(step => {
-				// Use your existing filter logic to respect roles/permissions
-				const filteredStep = this.getDeepFilteredNode(step);
-				if (!filteredStep || !filteredStep.Fields) return;
-	
-				filteredStep.Fields.forEach(field => {
-					// 3. TARGET SPECIFIC FIELD TYPE: Only process 'comply' fields
-					if (field.FieldType === 'comply') {
-						try {
-							const handler = getFieldHandler('comply');
-							if (!handler) return;
-	
-							const fieldElement = handler(
-								field, 
-								this.state.capturedData, 
-								this.templateManager.sanitizeForId.bind(this.templateManager)
-							);
-	
-							if (fieldElement) {
-								// Restore saved values
-								if (field.FieldName) {
-									this.dataRestore.restoreFieldValues(field);
-								}
-	
-								// Append directly to the main list (ignoring step/phase divs)
-								assessmentList.appendChild(fieldElement);
-								hasContent = true;
-							}
-						} catch (error) {
-							console.error('Error rendering comply field:', field.FieldName, error);
-						}
-					}
-				});
-			});
-		}
-	
-		if (hasContent) {
-			contentArea.appendChild(assessmentList);
-		} else {
-			contentArea.innerHTML = '<div class="empty-state"><h2>No Compliance Fields</h2><p>No assessment fields found for this role.</p></div>';
+				if (assessmentElement) {
+					contentArea.appendChild(assessmentElement);
+				} else {
+					contentArea.innerHTML = '<div class="empty-state">No assessment data found.</div>';
+				}
+			}
+		} catch (error) {
+			console.error('Error in AI Assessment rendering:', error);
+			contentArea.innerHTML = '<div class="error">Failed to render assessment view.</div>';
 		}
 	}
 	
