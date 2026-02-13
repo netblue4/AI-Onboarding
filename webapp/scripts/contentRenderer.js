@@ -155,7 +155,7 @@ class ContentRenderer {
     }
 
     // (Helper function remains unchanged)
-    getDeepFilteredNode(node) {
+    getDeepFilteredNode(node, isInRole = false, isControl = false, isRequirement = false, isApplicable = false) {
         if (!node) return null;
         const isRoleFilterActive = this.state.currentRole && this.state.currentRole !== "";
         const isDimFilterActive = this.state.currentDimension && this.state.currentDimension !== "";
@@ -171,6 +171,36 @@ class ContentRenderer {
                 const nodeRoles = String(node.Role).split(',').map(r => r.trim());
                 if (!nodeRoles.includes(this.state.currentRole)) matchesDirectly = false;
             }
+            
+            
+                let currentIsRequirement = false;
+                if (node.FieldType === 'requirement') {
+                    currentIsRequirement = true;
+                }             
+                   
+                let currentIsControl = false;
+                if (node.control_evidence) {
+                    currentIsControl = true;
+                } 
+                
+                let currentIsApplicable = false;
+                if (node.requirement_control_number) {
+                    const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
+                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    currentIsApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement'); 
+                } 
+                
+                const isApplicableControl = (currentIsControl && currentIsApplicable);
+                
+                const isValidField = (node.FieldType != 'fieldGroup' 
+                && node.FieldType != 'risk' 
+                && node.FieldType != 'plan'
+                && node.FieldType != 'Auto generated number')           
+            
+				if (!isApplicableControl || !currentIsRequirement || !isValidField) {
+					matchesDirectly = false;
+				}
+             
         }
 
         if (isDimFilterActive && matchesDirectly) {
@@ -182,9 +212,28 @@ class ContentRenderer {
 
         let filteredChildren = [];
         if (node.Fields && Array.isArray(node.Fields)) {
+                    const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
+                    const isInRole = currfieldRoles.includes(role);
+                    const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
+                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
+
+
+
             filteredChildren = node.Fields
-                .map(child => this.getDeepFilteredNode(child))
+                .map(child => this.getDeepFilteredNode(child, isInRole,false, false, isApplicable))
                 .filter(child => child !== null);
+        }
+		if (node.controls && Array.isArray(node.controls)) {
+		            const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
+                    const isInRole = currfieldRoles.includes(role);
+                    const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
+                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
+
+	         filteredChildren = node.controls
+			.map(child => this.getDeepFilteredNode(child, isInRole, true, false, isApplicable))
+			.filter(child => child !== null);
         }
 
         if (matchesDirectly) {

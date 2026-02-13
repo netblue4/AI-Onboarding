@@ -12,7 +12,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Transparency",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-1.1]",
               "FieldName": "Intended Purpose",
@@ -40,7 +40,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Logging",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-1.4]",
               "FieldName": "Event Recording",
@@ -71,7 +71,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Human Oversight",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-1.6]",
               "FieldName": "Automation Bias Prevention",
@@ -109,7 +109,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Threat Mitigation",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18282.1]",
               
@@ -138,7 +138,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "System Integrity",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18282.4]",
               "FieldName": "Secure Development",
@@ -159,7 +159,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Infrastructure",
           "Role": "Compliance",
-		  "Fields": [
+		  "controls": [
             {
               "requirement_control_number": "[18282.6]",
               "FieldName": "Access Control",
@@ -180,7 +180,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Defense-in-Depth",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18282.8]",
               "FieldName": "Anomaly Detection",
@@ -194,7 +194,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Metric Requirements",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-2.9]",
               "FieldName": "Metric Selection",
@@ -222,7 +222,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Lifecycle Performance",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-2.12]",
               "FieldName": "Consistency",
@@ -243,7 +243,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Technical Documentation",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-2.14]",
               "FieldName": "Verification Methods",
@@ -257,7 +257,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Resilience Factors",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-3.15]",
               "FieldName": "Input Noise",
@@ -285,7 +285,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Fail-Safe Mechanisms",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-3.18]",
               "FieldName": "Graceful Degradation",
@@ -306,7 +306,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Reproducibility",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-3.20]",
               "FieldName": "Output Reliability",
@@ -330,7 +330,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Governance Practices",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18284.1]",
               "FieldName": "Design Choices",
@@ -358,7 +358,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Quality Metrics",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18284.4]",
               "FieldName": "Representativeness",
@@ -386,7 +386,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Lifecycle Requirements",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18284.7]",
               "FieldName": "Dataset Splitting",
@@ -407,7 +407,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Assumptions",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18284.9]",
               "FieldName": "Formulation",
@@ -421,7 +421,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Bias Detection",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18283.1]",
               "FieldName": "Representativeness",
@@ -449,7 +449,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Human & Social Context",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18283.7]",
               "FieldName": "Multi-stakeholder Input",
@@ -480,7 +480,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Logging Triggers",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[24970.1]",
               "FieldName": "Routine Operation",
@@ -508,7 +508,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Captured Information",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[24970.4]",
               "FieldName": "System State",
@@ -536,7 +536,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Storage & Governance",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[24970.7]",
               "FieldName": "Tamper Resistance",
@@ -574,7 +574,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Assessment Paths",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18285.1]",
               "FieldName": "Internal Control (Annex VI)",
@@ -595,7 +595,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Mapping to Lifecycle",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18285.3]",
               "FieldName": "Design Phase",
@@ -623,7 +623,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Auditor Requirements",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18285.6]",
               "FieldName": "Competence",
@@ -654,7 +654,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Organizational Strategy",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18286.1]",
               "FieldName": "Compliance Strategy",
@@ -675,7 +675,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Operational Controls",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18286.3]",
               "FieldName": "Design & Development",
@@ -696,7 +696,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Post-Launch Duties",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18286.5]",
               "FieldName": "Post-Market Monitoring (PMM)",
@@ -717,7 +717,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Documentation & Records",
           "Role": "Compliance",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18286.7]",
               "FieldName": "Technical Documentation",
@@ -748,7 +748,7 @@
 		  "FieldType": "fieldGroup",
 		  "FieldName": "Key Risk Iterations",
 		  "Role": "Compliance",
-		  "Fields": [
+		  "controls": [
 			{
 			  "requirement_control_number": "[18228-1]",
 			  "FieldName": "Identification",
@@ -776,7 +776,7 @@
 		  "FieldType": "fieldGroup",
 		  "FieldName": "Mitigation Hierarchy",
 		  "Role": "Compliance",
-		  "Fields": [
+		  "controls": [
 			{
 			  "requirement_control_number": "[18228-4]",
 			  "FieldName": "1. Elimination",
@@ -878,7 +878,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Transparency Details",
           "Role": "Requester",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-1.1]",
               "FieldName": "Documented Intended Purpose",
@@ -930,7 +930,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Multi-stakeholder Fairness Definition",
           "Role": "Requester",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18283.7]",
               "FieldName": "Stakeholder Group Representation",
@@ -975,7 +975,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Data Governance and Verification",
           "Role": "Data Engineer",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18229-2.14]",
               "FieldName": "Data Split Strategy",
@@ -1034,7 +1034,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Fundamental Rights Impact Assessment",
           "Role": "Requester",
-          "Fields": [
+          "controls": [
             {
               "requirement_control_number": "[18283.8]",
               "FieldName": "Select the at-risk group(s) impacted by the AI system",
@@ -1090,7 +1090,7 @@
           "FieldType": "fieldGroup",
           "FieldName": "Workforce Transition and Adaptation for AI Integration",
           "Role": "Requester",
-		  "Fields": [
+		  "controls": [
             {
               "requirement_control_number": "[18283.8]",
               "FieldName": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
