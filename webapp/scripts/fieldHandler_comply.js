@@ -116,7 +116,7 @@ function buildComplianceMap(data, sanitizeForId) {
                         if (controlKey) {
                             // --- APPLICABILITY CHECK START ---
                             const sanitizeId = sanitizeForId(controlKey);
-                            const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                            const soa = capturedData[sanitizeId + '_requirement__soa'];
                             
                             // Only add to the map if it is marked as Applicable
                             if (soa === 'Applicable') {
