@@ -146,12 +146,22 @@ getFieldsForRole(role) {
                     currentIsControl = true;
                 } 
                 
-                let currentIsApplicable = false;
-                if (field.requirement_control_number) {
-                    const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    currentIsApplicable = (soa === 'Applicable'|| currentIsRequirement); 
-                } 
+				let currentIsApplicable = false;
+				if (field.requirement_control_number) {
+					// 1. Split the string into an array of IDs and trim whitespace
+					const controlIds = String(field.requirement_control_number).split(',').map(id => id.trim());
+				
+					// 2. Check if at least one ID is 'Applicable'
+					// This exits immediately (returns true) the moment it finds a match
+					const hasAnyApplicable = controlIds.some(id => {
+						const sanitizeId = templateManager.sanitizeForId(id);
+						const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+						return soa === 'Applicable';
+					});
+				
+					// 3. Set the final applicability status
+					currentIsApplicable = hasAnyApplicable || currentIsRequirement;
+				}
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
                 
@@ -174,6 +184,12 @@ getFieldsForRole(role) {
 				//}
 
                 // 3. Recurse: Pass the 'currentFieldAuthorized' status down
+                if (field.Fields && Array.isArray(field.Fields)) {
+                    const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
+                    const isInRole = currfieldRoles.includes(role);
+                    field.Fields.forEach(f => extractFieldsForRole(f, isInRole));
+                }
+                
                 if (field.Fields && Array.isArray(field.Fields)) {
 					// 1. Convert the Role string into a clean array of roles
 					const currfieldRoles = String(field.Role || "").split(',').map(r => r.trim());
