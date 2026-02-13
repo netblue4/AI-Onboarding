@@ -72,67 +72,64 @@ function buildComplianceMap(data, sanitizeForId) {
     const complianceMap = new Map();
     let allFields = [];
 
-    // 1. Recursive helper to flatten all fields from the JSON
-    // UPDATED: Now recurses into 'controls' as well, as requirements live there now.
+    // 1. Recursive helper to flatten all fields
     function collectFieldsRecursively(fields) {
         if (!fields || !Array.isArray(fields)) return;
         fields.forEach(field => {
             allFields.push(field);
-            
-            // Recurse into standard nesting
             if (field.Fields && Array.isArray(field.Fields)) {
                 collectFieldsRecursively(field.Fields);
             }
-            
-            // Recurse into 'controls' (New structure stores Requirements here)
             if (field.controls && Array.isArray(field.controls)) {
                 collectFieldsRecursively(field.controls);
             }
         });
     }
 
-    // 2. Process every section (Compliance, Define, Build, etc.)
+    // 2. Process every section
     Object.values(data).flat().forEach(step => {
         if (step.Fields) collectFieldsRecursively(step.Fields);
     });
 
-    // 3. Pass 1: Identify "Regulation/Group" nodes to build the map structure
-    // We look for 'fieldGroup' items that contain 'controls' which are 'requirements'.
+    // 3. Pass 1: Identify "Regulation/Group" nodes
     allFields.forEach(field => {
-        
-        // Identify a Compliance Group (The Parent Header)
         if (field.FieldType === 'fieldGroup' && field.controls && Array.isArray(field.controls)) {
             
-            // Check if this group actually contains requirements (to separate it from other fieldGroups)
             const containsRequirements = field.controls.some(c => c.FieldType === 'requirement');
 
             if (containsRequirements) {
-                // Initialize the Map Entry for this Group (e.g. "Transparency")
+                // Initialize the Map Entry
                 if (!complianceMap.has(field.FieldName)) {
                     complianceMap.set(field.FieldName, {
-                        parentField: field, // The fieldGroup itself
+                        parentField: field,
                         subControlLinks: new Map()
                     });
                 }
 
                 const dataEntry = complianceMap.get(field.FieldName);
 
-                // Populate Sub-Controls from the 'controls' array
+                // Populate Sub-Controls ONLY if "Applicable"
                 field.controls.forEach(req => {
                     if (req.FieldType === 'requirement') {
-                        // Use requirement_control_number as the unique key
                         const controlKey = req.requirement_control_number; 
                         
                         if (controlKey) {
-                            dataEntry.subControlLinks.set(controlKey, {
-                                subControl: {
-                                    // Map new JSON properties to internal names expected by renderer
-                                    control_number: controlKey,
-                                    control_description: req.FieldText || req.FieldName, 
-                                    original_obj: req
-                                },
-                                children: new Set()
-                            });
+                            // --- APPLICABILITY CHECK START ---
+                            const sanitizeId = sanitizeForId(controlKey);
+                            const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                            
+                            // Only add to the map if it is marked as Applicable
+                            if (soa === 'Applicable') {
+                                dataEntry.subControlLinks.set(controlKey, {
+                                    subControl: {
+                                        control_number: controlKey,
+                                        control_description: req.FieldText || req.FieldName, 
+                                        original_obj: req
+                                    },
+                                    children: new Set()
+                                });
+                            }
+                            // --- APPLICABILITY CHECK END ---
                         }
                     }
                 });
@@ -142,10 +139,7 @@ function buildComplianceMap(data, sanitizeForId) {
 
     // 4. Pass 2: Link implementation nodes (Risk, Plan) to the requirements
     allFields.forEach(implNode => {
-        // Implementation nodes have a requirement_control_number link, but are NOT requirements themselves.
         if (implNode.requirement_control_number && implNode.FieldType !== 'requirement') {
-            
-            // Handle comma-separated links (e.g. "[18284.4],[18284.5]")
             const implControlParts = String(implNode.requirement_control_number).split(',').map(s => s.trim());
 
             complianceMap.forEach((data) => {
@@ -158,6 +152,13 @@ function buildComplianceMap(data, sanitizeForId) {
             });
         }
     });
+
+    // 5. Cleanup: Remove groups that have no applicable sub-controls
+    for (const [groupName, entry] of complianceMap.entries()) {
+        if (entry.subControlLinks.size === 0) {
+            complianceMap.delete(groupName);
+        }
+    }
 
     return complianceMap;
 }
