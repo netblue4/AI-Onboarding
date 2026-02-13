@@ -154,12 +154,14 @@ getFieldsForRole(role) {
                 } 
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
-                const isApplicableField = (!currentIsControl && currentIsApplicable);
                 
                 const isValidField = (field.FieldType != 'fieldGroup' 
                 && field.FieldType != 'risk' 
                 && field.FieldType != 'plan'
                 && field.FieldType != 'Auto generated number')
+                
+                const isApplicableField = (!currentIsControl && (currentIsApplicable || isValidField));
+                
                 
                 // 2. Process the field if authorized
                 if(currentInRole && (isApplicableControl || isApplicableField)) {

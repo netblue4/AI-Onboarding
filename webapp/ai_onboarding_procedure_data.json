@@ -1159,13 +1159,13 @@
       ],
       "Fields": [
         {
-          "requirement_control_number": "[18284.3]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "Data Preparation Integrity Failure",
           "RiskDescription": "The risk that inconsistencies or errors during data preparation (annotation, cleaning, enrichment) introduce noise, bias, or structural flaws into the dataset. This includes 'Label Noise' (incorrect tags), 'Over-Cleaning' (stripping valuable context), or 'Enrichment Hallucination' (adding false metadata), all of which degrade the retrieval accuracy and factual reliability of the RAG system.",
           "controls": [
             {
+              "requirement_control_number": "[18284.3]",
               "control_number": "[PREP-RISK-01]",
               "control_description": "Implement automated 'Schema Validation' and 'Data Type Enforcement' scripts immediately after any cleaning or enrichment step to ensure the output strictly matches the defined data model (e.g., checking that dates are valid ISO-8601 strings, not random text).",
               "control_objective": "To prevent structural corruption where cleaning scripts accidentally break the data format, causing downstream ingestion failures.",
@@ -1173,6 +1173,7 @@
               "control_evidence": "Logs from the ETL pipeline showing 'Schema Validation Passed' events for each batch; code snippets of the validation logic (e.g., Pydantic models or JSON Schema definitions)."
             },
             {
+              "requirement_control_number": "[18284.3]",
               "control_number": "[PREP-RISK-02]",
               "control_description": "Establish a 'Golden Set' validation protocol for data labeling/annotation. A subset of the data (e.g., 10%) must be reviewed by a human expert or a consensus algorithm (e.g., majority vote among 3 labelers) to measure Inter-Rater Reliability (IRR).",
               "control_objective": "To detect and mitigate 'Label Noise' where subjective or erroneous tags mislead the vector retrieval engine.",
@@ -1180,6 +1181,7 @@
               "control_evidence": "A 'Quality Report' generated for each annotation batch showing the calculated IRR score (e.g., Cohen's Kappa > 0.8) and the rejection rate of poor-quality labels."
             },
             {
+              "requirement_control_number": "[18284.3]",
               "control_number": "[PREP-RISK-03]",
               "control_description": "When using automated enrichment (e.g., using an LLM to generate summaries or keywords for chunks), strictly enforce a 'Confidence Threshold'. Any generated metadata with a confidence score below the defined threshold must be discarded or flagged for manual review.",
               "control_objective": "To prevent 'Enrichment Hallucination' where the system indexes false metadata (e.g., tagging a document with the wrong topic), which would permanently corrupt search results.",
@@ -1189,13 +1191,13 @@
           ]
         },
         {
-          "requirement_control_number": "[18282.2]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "RAG Ingestion Poisoning (Vector Manipulation)",
           "RiskDescription": "The risk that malicious or low-quality data is processed through the .3.2 pipeline, leading to corrupted vector embeddings. This can result in 'Adversarial Retrieval,' where the AI retrieves poisoned chunks that seem mathematically relevant but contain false information or indirect prompt injections designed to hijack the model's output.",
           "controls": [
             {
+          "requirement_control_number": "[18282.2]",
               "control_number": "[RAG-SEC-01]",
               "control_description": "Implement automated text sanitization and PII masking during the data processing pipeline before vectorization to strip hidden control characters or adversarial triggers.",
               "control_objective": "To prevent technical exploits and ensure only clean, authorized data is used to generate embeddings.",
@@ -1203,6 +1205,7 @@
               "control_evidence": "Code snippets showing the sanitization function in the ingestion script and logs showing the filtering of blocked characters/patterns."
             },
             {
+          "requirement_control_number": "[18282.2]",
               "control_number": "[RAG-SEC-02]",
               "control_description": "Apply 'Embedding Integrity Checks' using cosine similarity thresholds against a baseline 'Clean' cluster. Any chunk that generates a vector significantly distant from the expected semantic domain must be quarantined.",
               "control_objective": "To detect 'Outlier Poisoning' where a document is designed to be a 'Global Centroid' (attracting a wide range of unrelated queries).",
@@ -1210,6 +1213,7 @@
               "control_evidence": "Vector database monitoring logs showing 'Distance Alert' triggers and the quarantine status of flagged embeddings."
             },
             {
+          "requirement_control_number": "[18282.2]",
               "control_number": "[RAG-SEC-03]",
               "control_description": "Enforce a signed 'Data Origin' check at the pipeline entry. The .3.2 process must only accept data packets with a valid cryptographic signature from approved source systems (e.g., SharePoint/Confluence API).",
               "control_objective": "To prevent unauthorized 'Side-Loading' of data into the RAG knowledge base through insecure API endpoints.",
@@ -1218,7 +1222,6 @@
           ]
         },
         {
-          "requirement_control_number": "[18282.2]",
           "FieldType": "plan",
           "Role": "Tester",
           "FieldName": "[TEST-RAG-02] - RAG Ingestion & Vector Integrity Audit",
@@ -1245,6 +1248,7 @@
           ],
           "controls": [
             {
+              "requirement_control_number": "[18282.2]",
               "control_number": "[RAG-TEST-01]",
               "control_description": "The RAG pipeline must generate a 'Failed Ingestion Report' for all rejected or quarantined documents.",
               "control_objective": "To provide a clear audit trail of prevented poisoning attempts.",
@@ -1271,7 +1275,6 @@
           ]
         },
         {
-          "requirement_control_number": "[18284.4],[18284.5],[18284.6]",
           "FieldType": "plan",
           "Role": "Tester",
           "FieldName": "[TEST-DQ-VEC-01] - Vector Pipeline Data Quality Audit",
@@ -1304,12 +1307,14 @@
           ],
           "controls": [
             {
-              "control_number": "[DQ-CTRL-01]",
+               "requirement_control_number": "[18284.4],[18284.5],[18284.6]",
+         "control_number": "[DQ-CTRL-01]",
               "control_description": "The pipeline must implement a 'Data Quality Gate' (DQG) that blocks the vectorization of any batch where the 'Garbage Density' exceeds 5%.",
               "control_objective": "To prevent low-quality data from polluting the expensive vector index.",
               "control_evidence": "Pipeline execution logs showing a 'Batch Rejected' event due to DQG threshold violation."
             },
             {
+          "requirement_control_number": "[18284.4],[18284.5],[18284.6]",
               "control_number": "[DQ-CTRL-02]",
               "control_description": "Use 'Stratified Sampling' logic during ingestion to ensure that under-represented categories (e.g., 'Safety Procedures') are flagged if they fall below a minimum volume threshold.",
               "control_objective": "To proactively alert the Data Owner about Representativeness gaps (18284.4).",
@@ -1336,7 +1341,6 @@
           ]
         },
         {
-          "requirement_control_number": "[18283.1],[18283.2],[18283.3]",
           "FieldType": "plan",
           "Role": "Tester",
           "FieldName": "[TEST-BIAS-VEC-01] - Algorithmic Bias & Representation Audit",
@@ -1369,12 +1373,14 @@
           ],
           "controls": [
             {
+          "requirement_control_number": "[18283.1],[18283.2],[18283.3]",
               "control_number": "[BIAS-CTRL-01]",
               "control_description": "Implement 'Reweighting/Resampling' logic in the ingestion pipeline. If a subgroup is under-represented (as per BIAS-REP-01), the pipeline must up-sample those documents or flag the dataset for augmentation.",
               "control_objective": "To automatically correct representational skews before they become baked into the vector index.",
               "control_evidence": "Ingestion logs showing 'Resampling Active' and the calculated weight multipliers for minority classes."
             },
             {
+          "requirement_control_number": "[18283.1],[18283.2],[18283.3]",
               "control_number": "[BIAS-CTRL-02]",
               "control_description": "Apply 'Proxy Masking' filter. A regex-based sanitizer must scrub or generalize specific high-risk fields (like full Zip Codes -> 3-digit prefix) before vectorization.",
               "control_objective": "To eliminate [18283.3] Proxy Risks at the source.",
@@ -1405,13 +1411,13 @@
           ]
         },
         {
-          "requirement_control_number": "[18284.7]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "Data Leakage & Index Contamination",
           "RiskDescription": "The risk that data reserved for performance evaluation (Validation/Test sets) is accidentally processed and ingested into the production Vector Index. In a RAG pipeline, this 'Data Leakage' creates a self-fulfilling prophecy: the system retrieves the correct answer because the 'Test Answer' key exists in the database, inflating accuracy metrics (e.g., Recall/Precision) and masking retrieval failures for novel, unseen user queries.",
           "controls": [
             {
+          "requirement_control_number": "[18284.7]",
               "control_number": "[SPLIT-RISK-01]",
               "control_description": "Implement a 'Strict Exclusion Filter' at the ingestion source (Component .3.2) that cross-references all incoming document IDs against a 'Reserved Test Set' registry. Any document flagged as part of the evaluation set must be automatically blocked from vectorization.",
               "control_objective": "To physically prevent the 'Golden Set' (Ground Truth) documents from polluting the searchable knowledge base, ensuring that evaluation metrics reflect true generalization.",
@@ -1419,6 +1425,7 @@
               "control_evidence": "Ingestion logs showing 'Skipped - Reserved for Testing' status for specific document IDs; configuration files listing the excluded directories or file hashes."
             },
             {
+          "requirement_control_number": "[18284.7]",
               "control_number": "[SPLIT-RISK-02]",
               "control_description": "Enforce 'Temporal Splitting' for time-sensitive data ingestion. Ensure that the Vector Index is populated only with data available *before* a specific cutoff date, while the Test Set consists of questions/documents created *after* that date.",
               "control_objective": "To simulate real-world conditions where the system must answer questions based on past knowledge without foreseeing future events (preventing look-ahead bias).",
@@ -1426,6 +1433,7 @@
               "control_evidence": "Metadata timestamps in the Vector DB verifying that no record exists with a creation_date > [Cutoff_Date]."
             },
             {
+          "requirement_control_number": "[18284.7]",
               "control_number": "[SPLIT-RISK-03]",
               "control_description": "Perform 'De-Duplication Hashing' during the vectorization pipeline. Before embedding a chunk, calculate its content hash (e.g., MD5/SHA) and compare it against the hashes of the Test Set Q&A pairs. If a match is found (meaning the answer is already in the test set), alert the engineer.",
               "control_objective": "To catch 'Implicit Leakage' where a document in the training set is technically a different file but contains identical text to a document in the test set.",
@@ -1446,13 +1454,13 @@
       ],
       "Fields": [
         {
-          "requirement_control_number": "[18282.7]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "LLM04 Model Denial of Service",
           "RiskDescription": "Failure to enforce capacity constraints, such as **API rate limits** on user requests and limits on **task queue sizes** for actions triggered by LLM responses, could lead to a **Denial of Service (DoS)** condition. This allows a malicious or unconstrained user to **overwhelm the LLM endpoint** or the downstream processing system, resulting in **service unavailability**, **high latency**, and **resource exhaustion**.",
           "controls": [
             {
+          "requirement_control_number": "[18282.7]",
               "control_number": "[LLM04][3]",
               "control_description": "Enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe.",
               "control_objective": "To control the rate of requests and prevent overwhelming the LLM with a high volume of concurrent requests.",
@@ -1460,6 +1468,7 @@
               "control_evidence": "Screenshots of the API gateway configuration, relevant code snippets defining the rate limits, or test results showing that requests are blocked after the limit is exceeded."
             },
             {
+          "requirement_control_number": "[18282.7]",
               "control_number": "[LLM04][4]",
               "control_description": "Limit the number of queued actions and the number of total actions in a system reacting to LLM responses.",
               "control_objective": "To prevent the accumulation of excessive workload and ensure that the system can effectively process LLM responses without becoming overwhelmed.",
@@ -1469,13 +1478,13 @@
           ]
         },
         {
-          "requirement_control_number": "[18282.5]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "LLM05: Supply Chain Vulnerabilities",
           "RiskDescription": "Insufficient visibility into third-party dependencies and **unvetted external components** (such as plugins) introduces **supply chain vulnerabilities** into the AI system. Without maintaining a **Software Bill of Materials (SBOM)** and a formal **plugin vetting process**, the system risks incorporating **malicious or unpatched code**, which could lead to **system compromise**, **data leakage**, or **exploitation** by external parties.",
           "controls": [
             {
+          "requirement_control_number": "[18282.5]",
               "control_number": "[LLM05][2]",
               "control_description": "Only use reputable plugins that have been tested for application requirements.",
               "control_objective": "Minimise plugin-related vulnerabilities.",
@@ -1483,6 +1492,7 @@
               "control_evidence": "A documented plugin vetting process, test results from plugin security assessments, and a list of approved plugins."
             },
             {
+          "requirement_control_number": "[18282.5]",
               "control_number": "[LLM05][4]",
               "control_description": "Maintain an up-to-date inventory using a Software Bill of Materials (SBOM).",
               "control_objective": "Track and manage components.",
@@ -1492,13 +1502,13 @@
           ]
         },
         {
-          "requirement_control_number": "[18282.8]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "LLM01 Prompt Injection",
           "RiskDescription": "Failure to properly **validate and sanitize** user inputs before they are processed by the RAG Orchestrator and sent to the LLM exposes the system to **Prompt Injection** attacks. An attacker could exploit this vulnerability to bypass the system's intended behavior, resulting in **unauthorized information disclosure** (e.g., data exfiltration via the LLM response), **denial of service**, or **unintended execution** of functions/code.",
           "controls": [
             {
+          "requirement_control_number": "[18282.8]",
               "control_number": "[LLM01][1]",
               "control_description": "All user inputs within the UI must be validated to prevent the injection of malicious code.",
               "control_objective": "Prevent attackers from exploiting vulnerabilities in the UI to inject malicious code and compromise the AI system.",
@@ -1506,6 +1516,7 @@
               "control_evidence": "Unit test results demonstrating the rejection of malicious payloads (e.g., XSS, command injection strings)."
             },
             {
+          "requirement_control_number": "[18282.8]",
               "control_number": "[LLM01][2]",
               "control_description": "Implement input sanitization techniques to remove harmful characters from user inputs.",
               "control_objective": "Further mitigate the risk of malicious code injection attempts through the UI.",
@@ -1526,13 +1537,13 @@
       ],
       "Fields": [
         {
-          "requirement_control_number": "[18229-1.4],[18229-1.5],[24970.1],[24970.2],[24970.4],[24970.5],[24970.6],[24970.7],[24970.8],[24970.9]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "Observability, Accountability & Traceability Failure",
           "RiskDescription": "The risk that the AI system operates as an unaccountable 'Black Box,' failing to capture the necessary telemetry to reconstruct events, explain decisions, or prove compliance. This includes the inability to trace a specific output back to its source data, failure to detect real-time anomalies, or the loss/tampering of critical audit logs, leading to regulatory violations of the EU AI Act and ISO 24970 standards.",
           "controls": [
             {
+          "requirement_control_number": "[18229-1.4],[18229-1.5],[24970.1],[24970.2],[24970.4],[24970.5],[24970.6],[24970.7],[24970.8],[24970.9]",
               "control_number": "[LOG-OPS-01]",
               "control_description": "Implement 'Full-Context Structured Logging' (JSON format) that captures the exact Input Prompt, Retrieved Context Chunks (with Source IDs), Model Parameters (Temperature, Version), and the Final Output for every user interaction.",
               "control_objective": "To satisfy [18229-1.5] (Traceability), [18229-1.5] (Interpretability), [24970.5] (Input/Output), and [24970.4] (System State). This ensures we can reconstruct the exact 'why' and 'how' of any specific decision.",
@@ -1540,6 +1551,7 @@
               "control_evidence": "Log schema definitions showing fields for 'correlation_id', 'model_config_hash', 'prompt_text', and 'retrieved_document_ids'."
             },
             {
+          "requirement_control_number": "[18229-1.4],[18229-1.5],[24970.1],[24970.2],[24970.4],[24970.5],[24970.6],[24970.7],[24970.8],[24970.9]",
               "control_number": "[LOG-OPS-02]",
               "control_description": "Deploy an 'Observability Agent' within the pipeline to automatically record routine start/end timestamps, session durations, error codes with stack traces, and performance anomalies (e.g., latency spikes).",
               "control_objective": "To satisfy [24970.1] (Routine Operation), [24970.2] (Monitoring Events), and [24970.6] (Errors & Failures). This ensures operational health is monitored and failures are diagnosed instantly.",
@@ -1547,6 +1559,7 @@
               "control_evidence": "Dashboard screenshots (e.g., Grafana/Datadog) showing real-time error rate tracking and distinct session logs with precise timestamps."
             },
             {
+          "requirement_control_number": "[18229-1.4],[18229-1.5],[24970.1],[24970.2],[24970.4],[24970.5],[24970.6],[24970.7],[24970.8],[24970.9]",
               "control_number": "[LOG-SEC-01]",
               "control_description": "Configure the centralized logging storage with 'WORM' (Write-Once-Read-Many) immutability locks and enable a 'PII Redaction Filter' at the ingestion point to mask sensitive user data before storage.",
               "control_objective": "To satisfy [24970.7] (Tamper Resistance) and [24970.9] (Privacy). This ensures logs cannot be altered by attackers to hide evidence, nor do they become a liability by storing unencrypted personal data.",
@@ -1554,6 +1567,7 @@
               "control_evidence": "Infrastructure configuration (e.g., Terraform) showing Object Lock enabled and unit tests proving the redaction of email/phone patterns."
             },
             {
+          "requirement_control_number": "[18229-1.4],[18229-1.5],[24970.1],[24970.2],[24970.4],[24970.5],[24970.6],[24970.7],[24970.8],[24970.9]",
               "control_number": "[LOG-GOV-01]",
               "control_description": "Establish an automated 'Data Lifecycle Policy' on the log archives that enforces a minimum retention period (e.g., 6 months) followed by secure deletion or archival.",
               "control_objective": "To satisfy [24970.8] (Retention Periods). Ensures compliance with Article 26(6) without indefinite storage costs.",
@@ -1563,7 +1577,6 @@
           ]
         },
         {
-          "requirement_control_number": "[18229-1.5],[24970.2],[24970.9]",
           "FieldType": "plan",
           "Role": "Tester",
           "FieldName": "[TEST-LOG-01] - Observability, Traceability & Privacy Audit",
@@ -1596,12 +1609,14 @@
           ],
           "controls": [
             {
+          "requirement_control_number": "[18229-1.5],[24970.2],[24970.9]",
               "control_number": "[LOG-TEST-01]",
               "control_description": "The logging pipeline must utilize a 'Correlation ID' middleware that tags every microservice request involved in a single user interaction.",
               "control_objective": "To enable the 'Reconstruction' of fragmented events across distributed systems.",
               "control_evidence": "A 'Trace View' export showing a single ID spanning the Ingestion, Retrieval, and Generation logs."
             },
             {
+          "requirement_control_number": "[18229-1.5],[24970.2],[24970.9]",
               "control_number": "[LOG-TEST-02]",
               "control_description": "The log storage bucket must have 'Object Lock' (WORM) enabled to prevent modification of the audit trails.",
               "control_objective": "To ensure the integrity of the evidence (Traceability).",
@@ -1628,13 +1643,13 @@
           ]
         },
         {
-          "requirement_control_number": "[18229-1.6],[18229-1.7],[18229-1.8]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "Implementation Specs: Human Oversight & Control",
           "RiskDescription": "Technical implementation of UI safeguards and backend control flow to prevent 'Runaway AI' and ensure user awareness. Failure to implement these strictly as defined results in an uncontrollable application state.",
           "controls": [
             {
+          "requirement_control_number": "[18229-1.6],[18229-1.7],[18229-1.8]",
               "control_number": "[DEV-TASK-UI-01]",
               "control_description": "Frontend Component: Implement a persistent `<DisclaimerBanner />` component fixed between the chat window and the input bar. It must contain the hardcoded string: 'AI generated content may be inaccurate. Please verify important information.'",
               "control_objective": "Satisfies [1] (Automation Bias). Hardcodes the warning into the view layer so it cannot be bypassed by model behavior.",
@@ -1642,6 +1657,7 @@
               "control_evidence": "Link to the PR (Pull Request) containing the `DisclaimerBanner.tsx` or `.vue` file."
             },
             {
+          "requirement_control_number": "[18229-1.6],[18229-1.7],[18229-1.8]",
               "control_number": "[DEV-TASK-API-01]",
               "control_description": "Backend API: Implement a `POST /api/chat/abort` endpoint (or WebSocket `abort` event). This handler must immediately set the `stop_signal` flag to TRUE for the active session ID, breaking the token generation loop in the LLM service.",
               "control_objective": "Satisfies [2] (Kill Switch). Provides a programmatic way to sever the connection to the LLM.",
@@ -1649,6 +1665,7 @@
               "control_evidence": "Code snippet of the Python/Node.js generator function showing the `if stop_signal: break` check inside the streaming loop."
             },
             {
+          "requirement_control_number": "[18229-1.6],[18229-1.7],[18229-1.8]",
               "control_number": "[DEV-TASK-PROMPT-01]",
               "control_description": "System Prompt Engineering: Update the `system_message` template to include: 'You must cite your sources. Format every claim as: [Claim] (Source: ID). If no source is found in the context, state that you do not know.'",
               "control_objective": "Satisfies [18229-1.3] (Interpretability). Forces the model to output structured references that the UI can parse.",
@@ -1658,7 +1675,6 @@
           ]
         },
         {
-          "requirement_control_number": "[18229-1.1],[18229-1.2],[18229-1.2],[18229-1.3]",
           "FieldType": "plan",
           "Role": "Tester",
           "FieldName": "[TEST-HOC-01] - Human Oversight & Control Validation",
@@ -1685,6 +1701,7 @@
           ],
           "controls": [
             {
+          "requirement_control_number": "[18229-1.1],[18229-1.2],[18229-1.2],[18229-1.3]",
               "control_number": "[HOC-TEST-01]",
               "control_description": "The 'Kill Switch' must operate on a separate thread or priority interrupt to ensure it works even if the main AI process is frozen or looping.",
               "control_objective": "To ensure reliability of the Intervention Tool.",
@@ -1722,13 +1739,13 @@
       ],
       "Fields": [
         {
-          "requirement_control_number": "[18282.5]",
           "FieldType": "risk",
           "Role": "Engineer",
           "FieldName": "LLM05 Model Supply Chain Attack",
           "RiskDescription": "Reliance on **untrusted third-party models**, libraries, or datasets from public repositories creates a critical supply chain risk. An attacker can compromise these upstream resources by injecting **malicious code** (e.g., in model weights or serialised files like 'pickle'), introducing **backdoors**, or **poisoning** training data. This can lead to complete **system compromise**, **unauthorised access** to sensitive data processed by the model, or **manipulated model behaviour**.",
           "controls": [
             {
+          "requirement_control_number": "[18282.5]",
               "control_number": "[LLM05.01]",
               "control_description": "Establish a trusted internal repository for all approved models, libraries, and datasets, mirroring only necessary external resources after vetting.",
               "control_objective": "To ensure that only verified and approved components are used in the AI system, reducing the risk of introducing malicious elements from public sources.",
@@ -1736,6 +1753,7 @@
               "control_evidence": "Documentation of the internal repository setup (e.g., Artifactory, private Hugging Face hub). Policy documents mandating its use. Logs showing successful mirroring and vetting processes."
             },
             {
+          "requirement_control_number": "[18282.5]",
               "control_number": "[LLM05.02]",
               "control_description": "Implement automated scanning of all third-party model files and dependencies for known vulnerabilities and malware before they are added to the internal repository.",
               "control_objective": "To detect and block compromised or vulnerable components before they can be used in the development or deployment pipeline.",
@@ -1743,6 +1761,7 @@
               "control_evidence": "Configuration of scanning tools (e.g., ClamAV for malware, specialised model scanners like Picklescan). Reports from these tools showing scan results for imported assets."
             },
             {
+          "requirement_control_number": "[18282.5]",
               "control_number": "[LLM05.03]",
               "control_description": "Enforce strict version pinning and cryptographic hash verification for all external models and libraries used in build and deployment pipelines.",
               "control_objective": "To prevent the silent substitution of legitimate components with malicious ones by ensuring only specifically approved, immutable versions are used.",
@@ -1750,6 +1769,7 @@
               "control_evidence": "Requirement files (e.g., 'requirements.txt', 'poetry.lock') with pinned versions and hashes. CI/CD pipeline scripts that verify these hashes before build or deployment."
             },
             {
+          "requirement_control_number": "[18282.5]",
               "control_number": "[LLM05.04]",
               "control_description": "Conduct regular security assessments and due diligence on third-party vendors and maintainers of critical AI components.",
               "control_objective": "To evaluate the security posture of suppliers and reduce the risk of relying on poorly maintained or compromised upstream projects.",
@@ -1771,7 +1791,6 @@
       ],
       "Fields": [
         {
-          "requirement_control_number": "[24970.2],[18286.5]",
           "FieldType": "plan",
           "Role": "Tester",
           "FieldName": "Performance & Load Test Plan",
@@ -1820,24 +1839,28 @@
           ],
           "controls": [
             {
+          "requirement_control_number": "[24970.2],[18286.5]",
               "control_number": "[PERF-LATENCY-01]",
               "control_description": "For every 'Baseline' and 'Peak' scenario in the Golden Dataset, the measured P95 response time must not exceed the specific 'Expected_P95_Latency_ms' threshold defined for that scenario.",
               "control_objective": "To ensure responsive user experience is maintained strictly according to the pre-defined Service Level Objectives (SLOs) for different traffic conditions.",
               "control_evidence": "Automated test report showing side-by-side comparison of actual vs. expected P95 latency for each executed Scenario ID."
             },
             {
+          "requirement_control_number": "[24970.2],[18286.5]",
               "control_number": "[PERF-STABILITY-01]",
               "control_description": "The actual error rate during 'Baseline' and 'Peak' scenarios must not exceed the 'Max_Error_Rate_Percent' defined in the dataset.",
               "control_objective": "To confirm system stability and prevent unacceptable levels of failed inference requests under expected load.",
               "control_evidence": "Load test summary report highlighting total request count, failure count, and calculated error percentage against the threshold."
             },
             {
+          "requirement_control_number": "[24970.2],[18286.5]",
               "control_number": "[PERF-RES-01]",
               "control_description": "Resource utilization (CPU, Memory, GPU VRAM) must remain below established saturation points (e.g., 85%) during all non-stress scenarios.",
               "control_objective": "To ensure adequate infrastructure headroom and prevent crashing due to resource exhaustion (OOM errors).",
               "control_evidence": "Time-series monitoring graphs (e.g., Grafana/Datadog exports) overlaying resource usage with load volume during the test window."
             },
             {
+          "requirement_control_number": "[24970.2],[18286.5]",
               "control_number": "[PERF-DRIFT-01]",
               "control_description": "Performance results must not show statistically significant degradation (>10% variance) compared to the previous accepted release's benchmark for the same Golden Scenarios.",
               "control_objective": "To detect 'silent' performance regressions or code bloat that gradually erode system efficiency over multiple releases.",
@@ -1980,13 +2003,13 @@
       ],
       "Fields": [
         {
-          "requirement_control_number": "[18282.4]",
           "FieldType": "risk",
           "Role": "Deployment Engineer",
           "FieldName": "Insecure AI component Packaging",
           "RiskDescription": "Failure to properly secure the lifecycle and runtime environment of containerized AI components—including insecure container **registries**, weak **access controls**, unhardened **host operating systems**, and poorly configured **container security context**—creates a significant attack surface. This could allow an attacker to **tamper with model code/artifacts** during transit or storage, **exfiltrate secrets**, achieve **privilege escalation** from a compromised container to the host, or exploit **unrestricted network access** to conduct lateral movement and **Denial of Service (DoS)**.",
           "controls": [
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.02",
               "control_description": "Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
               "control_objective": "To safeguard the integrity and confidentiality of container images and code during transit to and from registries.",
@@ -1994,6 +2017,7 @@
               "control_evidence": "Configuration files for development tools, orchestrators (e.g., Kubernetes), and container runtimes demonstrating the use of TLS-encrypted connections (e.g., registry URLs starting with 'https://')."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.03",
               "control_description": "Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
               "control_objective": "To maintain the security and integrity of container images in registries by eliminating outdated and vulnerable images.",
@@ -2001,6 +2025,7 @@
               "control_evidence": "Configuration of the automated pruning job (e.g., a CronJob manifest) and execution logs showing that vulnerable or old images have been successfully removed."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.04",
               "control_description": "Enforce read/write access control for registries containing proprietary or sensitive container images.",
               "control_objective": "To restrict unauthorised access and modifications to container images stored in registries.",
@@ -2008,6 +2033,7 @@
               "control_evidence": "Screenshots or configuration exports of the registry's Role-Based Access Control (RBAC) settings, showing defined user roles and their permissions for specific repositories."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.05",
               "control_description": "Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
               "control_objective": "To ensure secure and controlled access to administrative accounts within the cluster.",
@@ -2015,6 +2041,7 @@
               "control_evidence": "Identity Provider (IdP) configuration showing MFA is enforced for the cluster administrator group, and the orchestrator's authentication configuration file pointing to the SSO provider (e.g., OIDC or SAML settings)."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.06",
               "control_description": "Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
               "control_objective": "To maintain distinct network environments for different levels of data sensitivity, enhancing overall network security.",
@@ -2022,6 +2049,7 @@
               "control_evidence": "Copies of network policy manifests (e.g., Kubernetes 'NetworkPolicy' YAML files) or firewall rules that define and enforce network segmentation."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.07",
               "control_description": "Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
               "control_objective": "To ensure that deployments are conducted on secure, appropriate hosts in alignment with their security needs.",
@@ -2029,6 +2057,7 @@
               "control_evidence": "Orchestrator deployment configurations (e.g., YAML files) showing the use of node selectors, taints, and tolerations to restrict pods to specific nodes."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.12",
               "control_description": "Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
               "control_objective": "To minimise vulnerabilities and enhance the security of the host operating systems used in containerised environments.",
@@ -2036,6 +2065,7 @@
               "control_evidence": "Patch management reports, host configuration files showing a minimal OS install (e.g., CIS hardened image), disabled services, and read-only file system settings. A Software Bill of Materials (SBOM) for the host OS."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.13",
               "control_description": "Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
               "control_objective": "To segregate containerised workloads from non-containerised ones, reducing the risk of cross-contamination and attacks.",
@@ -2043,6 +2073,7 @@
               "control_evidence": "Host inventory documentation or orchestrator node labels and taints that dedicate specific hosts exclusively to containerised workloads."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.14",
               "control_description": "Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
               "control_objective": "To restrict container access to the host's file system, preventing unauthorised access or manipulation of sensitive data.",
@@ -2050,6 +2081,7 @@
               "control_evidence": "Pod security policies or admission controller configurations that enforce restrictions on hostPath volumes. Deployment manifests showing the container 'securityContext' is configured with minimal permissions."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.16",
               "control_description": "Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
               "control_objective": "To safeguard the environment from untrusted or potentially harmful container images.",
@@ -2057,6 +2089,7 @@
               "control_evidence": "Configuration of an admission controller (e.g., OPA Gatekeeper, Kyverno) that implements a policy to only allow images from an approved list of registries."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.17",
               "control_description": "Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
               "control_objective": "To enhance network security by controlling container access and isolating sensitive workloads.",
@@ -2064,6 +2097,7 @@
               "control_evidence": "Network policy manifests (e.g., Kubernetes 'NetworkPolicy') or service mesh configurations (e.g., Istio 'AuthorizationPolicy') that define granular ingress and egress rules for pods."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.18",
               "control_description": "Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
               "control_objective": "To prevent runtime attacks by ensuring container configurations remain unchanged after deployment.",
@@ -2071,6 +2105,7 @@
               "control_evidence": "Deployment manifests showing the container's root file system is set to read-only ('readOnlyRootFilesystem: true'). CI/CD pipeline configuration demonstrating that changes are deployed by building and shipping a new image."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.19",
               "control_description": "Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
               "control_objective": "To ensure the secure operation of APIs",
@@ -2078,6 +2113,7 @@
               "control_evidence": "API gateway configuration files or screenshots demonstrating the enforcement of authentication, authorisation (e.g., access control lists), and rate-limiting policies."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.20",
               "control_description": "Images should be configured to run as non-privileged users.",
               "control_objective": "To enhance security by minimising the potential impact of a security breach from a containerised environment.",
@@ -2085,6 +2121,7 @@
               "control_evidence": "The 'Dockerfile' showing the 'USER' instruction is used. The deployment manifest showing the 'securityContext' specifies 'runAsNonRoot: true' and a non-zero 'runAsUser' ID."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.21",
               "control_description": "Secrets should be stored outside of images and provided dynamically at runtime as needed.",
               "control_objective": "To protect sensitive information like credentials and keys by managing them securely and separately from container images.",
@@ -2092,6 +2129,7 @@
               "control_evidence": "Review of the 'Dockerfile' to confirm no secrets are present. Orchestrator manifests showing that secrets are mounted from a secure source (e.g., Kubernetes Secrets, HashiCorp Vault) at runtime."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.22",
               "control_description": "Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
               "control_objective": "To enhance container and host security by limiting access and preventing unauthorised privilege escalation.",
@@ -2099,6 +2137,7 @@
               "control_evidence": "Host-level AppArmor or SELinux profiles. Container-level pod security standards or custom admission controller policies that restrict privileged operations."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.23",
               "control_description": "Utilise built-in security features of your containerisation platform.",
               "control_objective": "To leverage platform-specific security features to enhance the security posture of containerised applications.",
@@ -2106,6 +2145,7 @@
               "control_evidence": "A document or report detailing the enabled platform-specific security features, such as Kubernetes Pod Security Standards, Security Contexts, and RBAC configurations."
             },
             {
+          "requirement_control_number": "[18282.4]",
               "control_number": "PROTE.24",
               "control_description": "Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
               "control_objective": "To prevent containers from over-utilising system resources, thereby safeguarding against resource exhaustion and DoS attacks.",
@@ -2171,13 +2211,13 @@
       ],
       "Fields": [
         {
-          "requirement_control_number": "[18286.5]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "FieldName": "Insufficient Scalability Management",
           "RiskDescription": "Failure to design the system so it can easily grow (scale) will result in crashes or extreme slowness when too many users try to access it at once, or when we add too much new data to its knowledge base.",
           "controls": [
             {
+          "requirement_control_number": "[18286.5]",
               "control_number": "[SC][1]",
               "control_description": "Independent Automatic Growth: Configure the main application and the AI model to grow (auto-scale) separately from one another. They use different types of computer resources, so one getting busy shouldn't force the other to grow unnecessarily.",
               "control_objective": "To ensure we don't waste expensive AI hardware just because basic website traffic is high, and vice versa.",
@@ -2185,6 +2225,7 @@
               "control_evidence": "Test results showing the main application adding more servers while the AI model stays stable (and vice versa) under different types of stress."
             },
             {
+          "requirement_control_number": "[18286.5]",
               "control_number": "[SC][2]",
               "control_description": "'Stateless' Servers: Design the system so individual servers don't remember specific user conversations locally. All conversation history must be stored in a central, shared location accessible by all servers.",
               "control_objective": "To ensure that if one server fails mid-conversation, another can instantly take over without the user noticing any interruption.",
@@ -2192,6 +2233,7 @@
               "control_evidence": "A test report demonstrating that users don't lose their chat history even if we deliberately turn off the specific server they were talking to."
             },
             {
+          "requirement_control_number": "[18286.5]",
               "control_number": "[SC][3]",
               "control_description": "Expandable Knowledge Base: Build the search database so it can handle more simultaneous questions by adding more servers to it (horizontal scaling), rather than just trying to make one single server more powerful.",
               "control_objective": "To prevent knowledge searches from becoming slow as more employees use the system at the same time.",
@@ -2199,6 +2241,7 @@
               "control_evidence": "Performance benchmarks showing that search speed remains fast even when the number of simultaneous users doubles."
             },
             {
+          "requirement_control_number": "[18286.5]",
               "control_number": "[SC][4]",
               "control_description": "Background Data Processing: Use a 'waiting line' (queue) system for adding new documents to the knowledge base. This ensures new information is processed in the background without clogging up the live system for active users.",
               "control_objective": "To ensure we can upload massive amounts of new company data without slowing down the chat service for people currently using it.",
@@ -2208,13 +2251,13 @@
           ]
         },
         {
-          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "FieldName": "[C.3.6] - Poor Management of AI System Changes and Updates",
           "RiskDescription": "Failure to manage the lifecycle of the AI system, including **changes to its underlying data, code, or model artifacts**, due to a lack of automated **validation, testing, version control, and formal change management**, could lead to the deployment of an **unstable, non-reproducible, or poor-performing** model. This results in **service degradation**, potential **compliance issues** from undocumented changes, and the inability to reliably **rollback** to a previous stable state.",
           "controls": [
             {
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
               "control_number": "[C.3.6][BP-10]",
               "control_description": "Implement a CI/CD pipeline that automates the testing and deployment of AI model updates. The pipeline must enforce a sequence of validation gates (e.g., unit tests, data validation, integration tests, and model performance evaluation on a holdout dataset) before allowing a deployment.",
               "control_objective": "To automate quality assurance, reduce human error, and ensure that only thoroughly vetted and validated model updates are promoted to production.",
@@ -2222,6 +2265,7 @@
               "control_evidence": "The CI/CD pipeline configuration file (e.g., `gitlab-ci.yml`, Jenkinsfile). Test reports and logs generated by the pipeline showing successful completion of all gates. A deployment manifest that references the specific model version and code commit hash deployed."
             },
             {
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
               "control_number": "[C.3.6][BP-11]",
               "control_description": "Utilize a version control system that atomically bundles code, data schemas/references, and model artifacts for each release. Every production deployment must be linked to a single, immutable commit hash or tag.",
               "control_objective": "To ensure complete reproducibility of any deployed AI system version and enable reliable, one-step rollbacks to a previous stable state.",
@@ -2229,6 +2273,7 @@
               "control_evidence": "Git repository history showing tagged releases. A `dvc.yaml` or similar data versioning file that pins data versions to specific code commits. Deployment logs explicitly stating the commit hash or tag being deployed for each release."
             },
             {
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
               "control_number": "[C.3.6][BP-13]",
               "control_description": "All data ingestion pipelines must include an automated data validation gate. This gate must verify data schemas, check for statistical drift in key features, and validate data quality against predefined rules before new data is accepted into the training dataset.",
               "control_objective": "To prevent model performance degradation caused by upstream data source changes, ensuring data integrity, consistency, and stability across model versions.",
@@ -2236,6 +2281,7 @@
               "control_evidence": "Configuration files for a data validation tool (e.g., Great Expectations, Pandera). CI/CD logs showing the successful execution of the data validation step. Generated data quality reports and drift analysis dashboards."
             },
             {
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
               "control_number": "[C.3.6][BP-14]",
               "control_description": "Any modification to the production dataset within the central data repository (as defined in control A.4.2, A.4.3), including additions, deletions, or schema changes, must be executed through a formal change management ticket that requires peer review and explicit approval from a designated data owner.",
               "control_objective": "To maintain the integrity, traceability, and quality of the training dataset by preventing unauthorized or undocumented changes that could adversely affect model performance and reliability.",
@@ -2245,13 +2291,13 @@
           ]
         },
         {
-          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
           "FieldType": "risk",
           "Role": "Operation & Monitoring Engineer",
           "FieldName": "Inadequate Security Monitoring and Threat Detection",
           "RiskDescription": "Failure to adequately monitor the generative AI architecture—including user prompts, LLM responses, internal data processing, and component-to-component network traffic—could result in the **undetected successful exploitation** of vulnerabilities like prompt injection, leading to **data exfiltration** of proprietary information from the vector store, **model misuse** for unauthorized tasks, or **system compromise** via malicious document ingestion or **lateral movement** across the internal services.",
           "controls": [
             {
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
               "control_number": "[STM][1]",
               "control_description": "Implement logging for all prompts sent to the RAG Orchestrator and the final augmented prompts sent to the LLM. All LLM responses must also be logged before being sent to the user. These logs must be streamed to a centralized SIEM for analysis.",
               "control_objective": "To create an auditable trail for detecting and investigating prompt injection attacks, data exfiltration attempts, and misuse of the generative model's capabilities.",
@@ -2259,6 +2305,7 @@
               "control_evidence": "SIEM dashboard showing ingested prompt and response logs. A documented alert rule that triggers on signatures of known prompt injection techniques (e.g., 'ignore previous instructions'). Code review demonstrating the logging calls within the RAG Orchestrator."
             },
             {
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
               "control_number": "[STM][2]",
               "control_description": "The Data Processing Pipeline must integrate a file scanning mechanism (e.g., ClamAV) to inspect all internal proprietary documents *before* text extraction. Any documents flagged as malicious must be quarantined, and an alert must be generated.",
               "control_objective": "To prevent the ingestion of weaponized documents that could exploit vulnerabilities in the processing pipeline or poison the permanent vector index with malicious content.",
@@ -2266,6 +2313,7 @@
               "control_evidence": "Logs from the file scanner showing files being successfully scanned or quarantined. An example security alert generated by a malicious test file. The pipeline's configuration file or code showing the integration of the scanning step."
             },
             {
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
               "control_number": "[STM][3]",
               "control_description": "Enable and centralize audit logs from the Permanent Index (vector database). Configure alerts for anomalous query patterns, such as an unusually high volume of retrieval requests from a single user or attempts to enumerate large portions of the index.",
               "control_objective": "To detect attempts to exfiltrate large amounts of proprietary data from the knowledge base or unauthorized attempts to access restricted data segments.",
@@ -2273,6 +2321,7 @@
               "control_evidence": "Vector database configuration file with auditing enabled. Screenshots of the SIEM dashboard displaying query logs. A documented alert rule that triggers on a high-frequency query threshold from a single source IP or user account."
             },
             {
+          "requirement_control_number": "[Art-15][Par-4],[A.6.2.2],[Art-9][Par-2][2],[Art-9][Par-2][3],[Art-9][Par-5][4]",
               "control_number": "[STM][4]",
               "control_description": "Deploy network flow logging for traffic between all internal components (UI, RAG Orchestrator, LLM, Vector DB). Establish a baseline of normal traffic patterns and configure alerts for deviations, such as unexpected connections or unusually large data payloads.",
               "control_objective": "To detect potential lateral movement by an attacker or compromised components within the architecture, particularly to and from the isolated LLM.",
