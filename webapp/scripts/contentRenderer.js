@@ -24,7 +24,6 @@ class ContentRenderer {
 				// Note: Since we aren't looping, we pass null or a global config 
 				// if the handler is already "data-aware".
 				const assessmentElement = handler(
-					null, 
 					this.state.capturedData, 
 					this.templateManager.sanitizeForId.bind(this.templateManager)
 				);
