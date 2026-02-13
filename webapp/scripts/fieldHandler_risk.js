@@ -9,19 +9,6 @@
  * @returns {HTMLElement} The fully constructed div element for the form field.
  */
 function createRisk(field, capturedData, sanitizeForId) {
-
-
-	//If the risk is associated with a requirement that has been marked as 'Not Applicable' 
-	//Then do not display the risk.
-	//The same logic is applied to other field types in the 'fieldHandler_filedgroup.js
-	const sanitizeId = sanitizeForId(field.requirement_control_number);
-	const soa = capturedData[sanitizeId + '_requirement__soa'];
-	if (!soa || soa === 'Not Applicable' || soa === 'Select') { 
-		return
-	}	
-
-
-
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
    // --- 2. Build the Collapsible Structure ---
