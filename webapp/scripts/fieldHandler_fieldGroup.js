@@ -28,7 +28,7 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
     groupContainer.appendChild(fieldsWrapper);
 
     // 3. Iterate through the nested 'controls' array
-    if (field.Fields && Array.isArray(field.Fields)) {
+    if (field.controls && Array.isArray(field.Fields)) {
         field.Fields.forEach(nestedField => {
         
         if(nestedField.requirement_control_number){
