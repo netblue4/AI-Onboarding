@@ -1,6 +1,8 @@
 /**
  * Creates a compliance mapping field that links requirements to their implementations
  * and displays status tracking with collapsible sections.
+ * * UPDATED: To support new JSON structure where Requirements are inside 'controls' arrays
+ * of FieldGroups.
  *
  * @param {object} field - The field object from the JSON data
  * @param {object} capturedData - Previously saved data to pre-fill the form
@@ -43,7 +45,7 @@ function createComplyField(field, incapturedData, sanitizeForId) {
         return errDiv;
     }
 
-    const complianceMap = buildComplianceMap(webappData,sanitizeForId);
+    const complianceMap = buildComplianceMap(webappData, sanitizeForId);
     const renderedElement = renderMapping(complianceMap, sanitizeForId);
 
     // Optional: Log global totals for verification
@@ -60,20 +62,31 @@ function createComplyField(field, incapturedData, sanitizeForId) {
 }
 
 /**
- * Builds a map of requirements linked to their sub-controls and implementations.
- * Fixed to support the new JSON structure where 'requirement' is a FieldType.
+ * Builds a map of regulations (parents) linked to requirements (sub-controls) 
+ * and implementations (children).
+ * * REWRITTEN for New Structure:
+ * Parent = fieldGroup (e.g. "Transparency")
+ * SubControl = Item inside fieldGroup.controls (e.g. "[18229-1.1] Intended Purpose")
  */
 function buildComplianceMap(data, sanitizeForId) {
     const complianceMap = new Map();
     let allFields = [];
 
     // 1. Recursive helper to flatten all fields from the JSON
+    // UPDATED: Now recurses into 'controls' as well, as requirements live there now.
     function collectFieldsRecursively(fields) {
         if (!fields || !Array.isArray(fields)) return;
         fields.forEach(field => {
             allFields.push(field);
+            
+            // Recurse into standard nesting
             if (field.Fields && Array.isArray(field.Fields)) {
                 collectFieldsRecursively(field.Fields);
+            }
+            
+            // Recurse into 'controls' (New structure stores Requirements here)
+            if (field.controls && Array.isArray(field.controls)) {
+                collectFieldsRecursively(field.controls);
             }
         });
     }
@@ -83,49 +96,57 @@ function buildComplianceMap(data, sanitizeForId) {
         if (step.Fields) collectFieldsRecursively(step.Fields);
     });
 
-    // 3. Pass 1: Identify all "Requirement" nodes to build the map structure
+    // 3. Pass 1: Identify "Regulation/Group" nodes to build the map structure
+    // We look for 'fieldGroup' items that contain 'controls' which are 'requirements'.
     allFields.forEach(field => {
-        if (isRequirementField(field)) {
-            const controlKey = field.requirement_control_number; // e.g., "[18229-1.1]"
+        
+        // Identify a Compliance Group (The Parent Header)
+        if (field.FieldType === 'fieldGroup' && field.controls && Array.isArray(field.controls)) {
             
-            if (!complianceMap.has(field.FieldName)) {
-                complianceMap.set(field.FieldName, {
-                    parentField: field,
-                    subControlLinks: new Map()
-                });
-            }
+            // Check if this group actually contains requirements (to separate it from other fieldGroups)
+            const containsRequirements = field.controls.some(c => c.FieldType === 'requirement');
 
-            const dataEntry = complianceMap.get(field.FieldName);
-            
-            // Check if there are nested controls (Article 15 style) or just the field itself (Article 13 style)
-            if (field.controls && Array.isArray(field.controls)) {
-                field.controls.forEach(subControl => {
-                    const subKey = extractControlKey(subControl.control_number);
-                    if (subKey) {
-                        dataEntry.subControlLinks.set(subKey, {
-                            subControl: subControl,
-                            children: new Set()
-                        });
+            if (containsRequirements) {
+                // Initialize the Map Entry for this Group (e.g. "Transparency")
+                if (!complianceMap.has(field.FieldName)) {
+                    complianceMap.set(field.FieldName, {
+                        parentField: field, // The fieldGroup itself
+                        subControlLinks: new Map()
+                    });
+                }
+
+                const dataEntry = complianceMap.get(field.FieldName);
+
+                // Populate Sub-Controls from the 'controls' array
+                field.controls.forEach(req => {
+                    if (req.FieldType === 'requirement') {
+                        // Use requirement_control_number as the unique key
+                        const controlKey = req.requirement_control_number; 
+                        
+                        if (controlKey) {
+                            dataEntry.subControlLinks.set(controlKey, {
+                                subControl: {
+                                    // Map new JSON properties to internal names expected by renderer
+                                    control_number: controlKey,
+                                    control_description: req.FieldText || req.FieldName, 
+                                    original_obj: req
+                                },
+                                children: new Set()
+                            });
+                        }
                     }
-                });
-            } else {
-                // FALLBACK: Use the requirement control number as the mapping key
-                dataEntry.subControlLinks.set(controlKey, {
-                    subControl: {
-                        control_number: controlKey,
-                        control_description: field.FieldText || "Requirement Detail",
-                    },
-                    children: new Set()
                 });
             }
         }
     });
 
-    // 4. Pass 2: Link implementation nodes (Risk, Plan, or Field) to the requirements
+    // 4. Pass 2: Link implementation nodes (Risk, Plan) to the requirements
     allFields.forEach(implNode => {
-        // Only link if it has a requirement_control_number and isn't the requirement itself
-        if (isImplementation(implNode) && !isRequirementField(implNode) && implNode.requirement_control_number) {
-            const implControlParts = implNode.requirement_control_number.split(',').map(s => s.trim());
+        // Implementation nodes have a requirement_control_number link, but are NOT requirements themselves.
+        if (implNode.requirement_control_number && implNode.FieldType !== 'requirement') {
+            
+            // Handle comma-separated links (e.g. "[18284.4],[18284.5]")
+            const implControlParts = String(implNode.requirement_control_number).split(',').map(s => s.trim());
 
             complianceMap.forEach((data) => {
                 const subControlLinks = data.subControlLinks;
@@ -152,7 +173,7 @@ function renderMapping(complianceMap, sanitizeForId) {
     attachToggleListener(container);
 
     if (complianceMap.size === 0) {
-        container.innerHTML = '<p>No "Requirement" nodes found.</p>';
+        container.innerHTML = '<p>No Compliance Requirements found in the data.</p>';
         return container;
     }
 
@@ -175,6 +196,7 @@ function createRegulationItem(data, sanitizeForId) {
     // Calculate the 6 variables specifically for this Regulation/Article
     const stats = calculateProgress(data.subControlLinks, sanitizeForId);
     
+    // For unique ID, use the parent FieldName (e.g. Transparency)
     const contentId = generateContentId(data.parentField);
 
     // Pass the stats object to the header creator
@@ -195,6 +217,10 @@ function createRegHeader(parent, contentId, stats) {
     regHeader.className = 'reg-header';
     regHeader.setAttribute('data-target', `#${contentId}`);
     regHeader.style.cursor = 'pointer';
+
+    // In new JSON, FieldGroup doesn't have a requirement_control_number usually, 
+    // so we fall back to empty string or Role if needed.
+    const metaText = parent.requirement_control_number || parent.Role || "";
 
     regHeader.innerHTML = `
         <div class="toggle-icon" style="margin-right:10px; font-weight:bold;">+</div>
@@ -222,7 +248,7 @@ function createRegHeader(parent, contentId, stats) {
                 </div>
             </div>
 
-            <div class="reg-meta" style="font-size:0.9em; color:#64748b; margin-top:2px;">${escapeHtml(parent.requirement_control_number)}</div>
+            <div class="reg-meta" style="font-size:0.9em; color:#64748b; margin-top:2px;">${escapeHtml(metaText)}</div>
         </div>
     `;
 
@@ -345,7 +371,7 @@ function createEvidenceDiv(subControl, sanitizeForId) {
 	const statusvalue = capturedData[`${criteriaKey}_status`]; 
 	const evidencevalue = capturedData[`${criteriaKey}_evidence`];  
 
-    evidenceDiv.innerHTML = '<strong>' + statusvalue + "</strong></br>" + evidencevalue ;
+    evidenceDiv.innerHTML = '<strong>' + (statusvalue || '') + "</strong></br>" + (evidencevalue || '');
     
     return evidenceDiv;
 }
@@ -412,7 +438,7 @@ function createImplementationItem(child, sanitizeForId) {
 		statusStrong.textContent = 'Response: ';
 		statusDiv.appendChild(statusStrong);
 		const value = capturedData[sanitizeForId(child.control_number) + "_response"];
-		statusDiv.appendChild(document.createTextNode(` ${value}`));
+		statusDiv.appendChild(document.createTextNode(` ${value || ''}`));
 		contentDiv.appendChild(statusDiv);
 
         // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS RESPONSE ---
@@ -543,28 +569,28 @@ function hasContent(val) {
     return String(val).trim() !== '';
 }
 
-function isRequirementField(field) {
-    // 1. Safety check: if field is null/undefined, return false immediately
-    if (!field) return false;
-
-    // 2. Check the new condition (GieldType)
-    if (field.FieldType === "requirement") {
-        return true;
-    }
-    return false;
+function generateContentId(parent) {
+    // New JSON uses 'FieldName' for Groups (e.g. Transparency)
+    const base = parent.FieldName || "group"; 
+    const safeIdBase = base.replace(/[^a-zA-Z0-9_]/g, '-');
+    return `content-${safeIdBase}`;
 }
 
-function isImplementation(field) {
-    if (field.FieldType === 'fieldGroup' && field.Fields && Array.isArray(field.Fields)) {
-        return field.Fields.some(f => f.requirement_control_number);
-    }
-    return !!field.requirement_control_number;
+function getImplementationType(fieldType) {
+    const typeMap = {
+        'risk': { typeClass: 'type-risk', typeName: 'risk' },
+        'plan': { typeClass: 'type-plan', typeName: 'plan' },
+    };
+    return typeMap[fieldType] || { typeClass: 'type-other', typeName: 'FIELD' };
 }
 
-function extractControlKey(str) {
-    if (!str) return null;
-    const key = str.split(' - ')[0].trim();
-    return (key.startsWith('[') && key.endsWith(']')) ? key : null;
+function escapeHtml(unsafe) {
+    if (typeof unsafe !== 'string') return unsafe || '';
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
 }
 
 /**
@@ -587,11 +613,11 @@ function calculateProgress(subControlLinks, sanitizeForId) {
         const controlNum = subData.subControl.control_number;
         const statusVal = capturedData[sanitizeForId(controlNum) + '_status'];
         
-        // --- KEY CHANGE: ONLY COUNT IMPLEMENTATIONS IF THE REQUIREMENT IS APPLICABLE ---
+        // --- ONLY COUNT IMPLEMENTATIONS IF THE REQUIREMENT IS APPLICABLE ---
         if (statusVal !== "Not Applicable") {
             localTotalApplicableControls++;
 
-            // 3. Loop through linked implementations (MOVED INSIDE THE IF BLOCK)
+            // 3. Loop through linked implementations
             if (subData.children) {
                 subData.children.forEach(child => {
                     
@@ -635,26 +661,4 @@ function calculateProgress(subControlLinks, sanitizeForId) {
         totalImplementationControls: localTotalImplementationControls, 
         totalImplementationControlsWithEvidence: localTotalImplementationControlsWithEvidence 
     };
-}
-
-function generateContentId(parent) {
-    const safeIdBase = (parent.requirement_control_number || parent.FieldName).replace(/[^a-zA-Z0-9_]/g, '-');
-    return `content-${safeIdBase}`;
-}
-
-function getImplementationType(fieldType) {
-    const typeMap = {
-        'risk': { typeClass: 'type-risk', typeName: 'risk' },
-        'plan': { typeClass: 'type-plan', typeName: 'plan' },
-    };
-    return typeMap[fieldType] || { typeClass: 'type-other', typeName: 'FIELD' };
-}
-
-function escapeHtml(unsafe) {
-    if (typeof unsafe !== 'string') return unsafe;
-    return unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
 }
