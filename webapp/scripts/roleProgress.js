@@ -232,7 +232,13 @@ getFieldsForRole(role) {
         
         // Trigger content rendering
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
-            contentRenderer.render();
+        
+			if (this.state.currentRole === "Approver" ) {
+				contentRenderer.renderAIAssessmentView(state.capturedData, templateManager.sanitizeForId);
+			} else {
+				contentRenderer.render();
+			}
+
         }
     }
 

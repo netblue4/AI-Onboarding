@@ -5,6 +5,11 @@ class ContentRenderer {
         this.dataRestore = dataRestore;
     }
 
+
+	renderAIAssessmentView() {
+	
+	}
+	
     render() {
         console.log('ContentRenderer.render() called with role:', this.state.currentRole);
         
@@ -90,12 +95,7 @@ class ContentRenderer {
                     filteredStep.Fields.forEach(field => {
                         try {
                   
-							let handler = '';
-							if (this.state.currentRole === "Approver" ) {
-								handler = getFieldHandler('comply');
-							} else {
-							    handler = getFieldHandler(field.FieldType);
-                            }
+                            const handler = getFieldHandler(field.FieldType);
                             
                             if (!handler) return;
                             
@@ -123,10 +123,6 @@ class ContentRenderer {
                             }
 
                             phaseHasContent = true;
-                            
-                            if (this.state.currentRole === "Approver" ) {
-								return;
-                            }
                         } catch (error) {
                             console.error('Error rendering field:', field.FieldName, error);
                         }
