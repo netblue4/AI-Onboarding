@@ -190,13 +190,15 @@ class ContentRenderer {
                 } 
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
+                const isApplicableField = (!currentIsControl && currentIsApplicable);
+
                 
                 //const isValidField = (node.FieldType != 'fieldGroup' 
                 //&& node.FieldType != 'risk' 
                 //&& node.FieldType != 'plan'
                 //&& node.FieldType != 'Auto generated number')           
             
-				if (currentInRole && (currentIsApplicable || currentIsRequirement)) {
+				if (currentInRole && (currentIsApplicable || currentIsRequirement || isApplicableField)) {
 					matchesDirectly = true;
 				}
              
