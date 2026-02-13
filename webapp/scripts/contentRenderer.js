@@ -171,12 +171,22 @@ class ContentRenderer {
                     currentIsControl = true;
                 } 
                 
-                let currentIsApplicable = false;
-                if (node.requirement_control_number) {
-                    const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
-                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    currentIsApplicable = (soa === 'Applicable'|| currentIsRequirement); 
-                } 
+				let currentIsApplicable = false;
+				
+				if (node.requirement_control_number) {
+					// 1. Split the string by comma and trim any whitespace
+					const controlNumbers = String(node.requirement_control_number).split(',').map(id => id.trim());
+				
+					// 2. Use .some() to check if at least one ID satisfies the condition
+					const hasApplicableControl = controlNumbers.some(id => {
+						const sanitizeId = templateManager.sanitizeForId(id);
+						const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+						return soa === 'Applicable';
+					});
+				
+					// 3. Set applicability based on the check or the requirement status
+					currentIsApplicable = hasApplicableControl || currentIsRequirement;
+				}
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
                 const isApplicableField = (!currentIsControl && currentIsApplicable);
