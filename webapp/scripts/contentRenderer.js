@@ -155,7 +155,7 @@ class ContentRenderer {
     }
 
     // (Helper function remains unchanged)
-    getDeepFilteredNode(node, isInRole = false, isControl = false, isRequirement = false, isApplicable = false) {
+    getDeepFilteredNode(node, isInRole = false) {
         if (!node) return null;
         const isRoleFilterActive = this.state.currentRole && this.state.currentRole !== "";
         const isDimFilterActive = this.state.currentDimension && this.state.currentDimension !== "";
@@ -186,7 +186,7 @@ class ContentRenderer {
                 if (node.requirement_control_number) {
                     const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
                     const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    currentIsApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement'); 
+                    currentIsApplicable = (soa === 'Applicable'|| currentIsRequirement); 
                 } 
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
@@ -213,25 +213,25 @@ class ContentRenderer {
         if (node.Fields && Array.isArray(node.Fields)) {
                     const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
                     const isInRole = currfieldRoles.includes(this.state.currentRole);
-                    const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
-                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
+                    //const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
+                    //const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    //const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
 
 
 
             filteredChildren = node.Fields
-                .map(child => this.getDeepFilteredNode(child, isInRole,false, false, isApplicable))
+                .map(child => this.getDeepFilteredNode(child, isInRole))
                 .filter(child => child !== null);
         }
 		if (node.controls && Array.isArray(node.controls)) {
 		            const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
                     const isInRole = currfieldRoles.includes(this.state.currentRole);
-                    const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
-                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
+                    //const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
+                    //const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    //const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
 
 	         filteredChildren = node.controls
-			.map(child => this.getDeepFilteredNode(child, isInRole, true, false, isApplicable))
+			.map(child => this.getDeepFilteredNode(child, isInRole))
 			.filter(child => child !== null);
         }
 

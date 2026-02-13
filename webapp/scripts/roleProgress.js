@@ -126,7 +126,7 @@ getFieldsForRole(role) {
         stepsInPhase.forEach(step => {
             if (!step.Fields) return;
 
-            const extractFieldsForRole = (field, isInRole = false, isControl = false, isRequirement = false, isApplicable = false) => {
+            const extractFieldsForRole = (field, isInRole = false) => {
                 if (!field) return;
 
                 // 1. Check/Update inRole
@@ -150,7 +150,7 @@ getFieldsForRole(role) {
                 if (field.requirement_control_number) {
                     const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
                     const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    currentIsApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement'); 
+                    currentIsApplicable = (soa === 'Applicable'|| currentIsRequirement); 
                 } 
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
@@ -171,19 +171,19 @@ getFieldsForRole(role) {
                 if (field.Fields && Array.isArray(field.Fields)) {
                     const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
                     const isInRole = currfieldRoles.includes(role);
-                    const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement');                     
-                    field.Fields.forEach(f => extractFieldsForRole(f, isInRole,false, false, isApplicable));
+                    //const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+                    //const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    //const isApplicable = ((!soa || soa !== 'Not Applicable' || soa !== 'Select') || field.FieldType != 'requirement');                     
+                    field.Fields.forEach(f => extractFieldsForRole(f, isInRole));
                 }
 
                 if (field.controls && Array.isArray(field.controls)) {
                     const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
                     const isInRole = currfieldRoles.includes(role);
-                    const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-                    const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && field.FieldType != 'requirement');                     
-                    field.controls.forEach(c => extractFieldsForRole(c, isInRole, true, false, isApplicable));
+                    //const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
+                    //const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+                    //const isApplicable = ((!soa || soa !== 'Not Applicable' || soa !== 'Select') || field.FieldType != 'requirement');                     
+                    field.controls.forEach(c => extractFieldsForRole(c, isInRole));
                 }
             };
 
