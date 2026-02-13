@@ -70,7 +70,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             const controlContainer = document.createElement('div');
 
             const controlText = document.createElement('p');
-            controlText.textContent = controlItem.control_number + " - " + controlItem.control_description ' (' + field.requirement_control_number + ')';
+            controlText.textContent = controlItem.control_number + " - " + controlItem.control_description + ' (' + field.requirement_control_number + ')';
             controlContainer.appendChild(controlText);  	
             
             //Control status
