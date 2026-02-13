@@ -90,7 +90,12 @@ class ContentRenderer {
                     filteredStep.Fields.forEach(field => {
                         try {
                   
-                            const handler = getFieldHandler(field.FieldType);
+							let handler = '';
+							if (this.state.currentRole === "Approver" ) {
+								handler = getFieldHandler('comply');
+							} else {
+							    handler = getFieldHandler(field.FieldType);
+                            }
                             
                             if (!handler) return;
                             
