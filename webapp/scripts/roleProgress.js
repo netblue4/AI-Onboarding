@@ -160,7 +160,7 @@ getFieldsForRole(role) {
                 && field.FieldType != 'plan'
                 && field.FieldType != 'Auto generated number')
                 
-                const isApplicableField = (!currentIsControl && (currentIsApplicable || isValidField));
+                const isApplicableField = (!currentIsControl && (currentIsApplicable));
                 
                 
                 // 2. Process the field if authorized
