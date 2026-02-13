@@ -192,12 +192,6 @@ class ContentRenderer {
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
                 const isApplicableField = (!currentIsControl && currentIsApplicable);
 
-                
-                //const isValidField = (node.FieldType != 'fieldGroup' 
-                //&& node.FieldType != 'risk' 
-                //&& node.FieldType != 'plan'
-                //&& node.FieldType != 'Auto generated number')           
-            
 				if (currentInRole && (currentIsApplicable || currentIsRequirement || isApplicableField)) {
 					matchesDirectly = true;
 				}
@@ -213,28 +207,18 @@ class ContentRenderer {
 
         let filteredChildren = [];
         if (node.Fields && Array.isArray(node.Fields)) {
-                    const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
-                    const isInRole = currfieldRoles.includes(this.state.currentRole);
-                    //const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
-                    //const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    //const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
-
-
-
+            const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
+            const isInRole = currfieldRoles.includes(this.state.currentRole);
             filteredChildren = node.Fields
                 .map(child => this.getDeepFilteredNode(child, isInRole))
                 .filter(child => child !== null);
         }
 		if (node.controls && Array.isArray(node.controls)) {
-		            const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
-                    const isInRole = currfieldRoles.includes(this.state.currentRole);
-                    //const sanitizeId = templateManager.sanitizeForId(node.requirement_control_number);
-                    //const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    //const isApplicable = ((!soa || soa === 'Not Applicable' || soa === 'Select') && node.FieldType != 'requirement');                     
-
+		     const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
+             const isInRole = currfieldRoles.includes(this.state.currentRole);
 	         filteredChildren = node.controls
-			.map(child => this.getDeepFilteredNode(child, isInRole))
-			.filter(child => child !== null);
+				.map(child => this.getDeepFilteredNode(child, isInRole))
+				.filter(child => child !== null);
         }
 
         if (matchesDirectly) {

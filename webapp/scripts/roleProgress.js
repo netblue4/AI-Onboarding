@@ -162,28 +162,25 @@ getFieldsForRole(role) {
                 && field.FieldType != 'Auto generated number')
                 
                 // 2. Process the field if authorized
-                if(currentInRole) {
-					if (isApplicableControl || currentIsRequirement || isValidField || isApplicableField) {
+                if(currentInRole && isApplicableControl) {
 						fields.push(field);
-					}
 				}
+                //if(currentInRole) {
+				//	if (isApplicableControl || currentIsRequirement || isValidField || isApplicableField) {
+				//		fields.push(field);
+				//	}
+				//}
 
                 // 3. Recurse: Pass the 'currentFieldAuthorized' status down
                 if (field.Fields && Array.isArray(field.Fields)) {
                     const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
                     const isInRole = currfieldRoles.includes(role);
-                    //const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-                    //const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    //const isApplicable = ((!soa || soa !== 'Not Applicable' || soa !== 'Select') || field.FieldType != 'requirement');                     
                     field.Fields.forEach(f => extractFieldsForRole(f, isInRole));
                 }
 
                 if (field.controls && Array.isArray(field.controls)) {
                     const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
                     const isInRole = currfieldRoles.includes(role);
-                    //const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
-                    //const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
-                    //const isApplicable = ((!soa || soa !== 'Not Applicable' || soa !== 'Select') || field.FieldType != 'requirement');                     
                     field.controls.forEach(c => extractFieldsForRole(c, isInRole));
                 }
             };
