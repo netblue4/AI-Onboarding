@@ -167,8 +167,8 @@ class ContentRenderer {
         if (isRoleFilterActive) {
 
                 let currentInRole = isInRole;
-                if (field.Role) {
-                    const fieldRoles = String(field.Role).split(',').map(r => r.trim());
+                if (node.Role) {
+                    const fieldRoles = String(node.Role).split(',').map(r => r.trim());
                     currentInRole = fieldRoles.includes(this.state.currentRole);
                 }
             
@@ -191,10 +191,10 @@ class ContentRenderer {
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
                 
-                const isValidField = (node.FieldType != 'fieldGroup' 
-                && node.FieldType != 'risk' 
-                && node.FieldType != 'plan'
-                && node.FieldType != 'Auto generated number')           
+                //const isValidField = (node.FieldType != 'fieldGroup' 
+                //&& node.FieldType != 'risk' 
+                //&& node.FieldType != 'plan'
+                //&& node.FieldType != 'Auto generated number')           
             
 				if (currentInRole && (isApplicableControl || currentIsRequirement || isValidField)) {
 					matchesDirectly = true;
