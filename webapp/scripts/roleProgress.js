@@ -234,7 +234,7 @@ getFieldsForRole(role) {
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
         
 			if (this.state.currentRole === "Approver" ) {
-				contentRenderer.renderAIAssessmentView(state.capturedData, templateManager.sanitizeForId);
+				contentRenderer.renderAIAssessmentView(state.capturedData, templateManager.sanitizeForId.bind(this.templateManager));
 			} else {
 				contentRenderer.render();
 			}
