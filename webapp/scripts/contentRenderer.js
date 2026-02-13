@@ -196,7 +196,7 @@ class ContentRenderer {
                 //&& node.FieldType != 'plan'
                 //&& node.FieldType != 'Auto generated number')           
             
-				if (currentInRole && (isApplicableControl || currentIsRequirement)) {
+				if (currentInRole && (currentIsApplicable || currentIsRequirement)) {
 					matchesDirectly = true;
 				}
              
