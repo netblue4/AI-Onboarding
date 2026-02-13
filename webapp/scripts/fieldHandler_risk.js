@@ -22,7 +22,7 @@ function createRisk(field, capturedData, sanitizeForId) {
     headerDiv.appendChild(icon);
 
     const questionLabel = document.createElement('label');
-    questionLabel.textContent = field.FieldName.trim() + ' (' + field.requirement_control_number + ')'; // The main risk title
+    questionLabel.textContent = field.FieldName.trim(); // The main risk title
     questionLabel.className = 'label-bold';
     headerDiv.appendChild(questionLabel);
     
@@ -70,7 +70,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             const controlContainer = document.createElement('div');
 
             const controlText = document.createElement('p');
-            controlText.textContent = controlItem.control_number + " - " + controlItem.control_description;
+            controlText.textContent = controlItem.control_number + " - " + controlItem.control_description ' (' + field.requirement_control_number + ')';
             controlContainer.appendChild(controlText);  	
             
             //Control status
