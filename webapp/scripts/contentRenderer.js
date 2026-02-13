@@ -171,8 +171,7 @@ class ContentRenderer {
                     currentIsControl = true;
                 } 
                 
-				let currentIsApplicable = false;
-				
+				let currentIsApplicable = false;				
 				if (node.requirement_control_number) {
 					// 1. Split the string by comma and trim any whitespace
 					const controlNumbers = String(node.requirement_control_number).split(',').map(id => id.trim());
