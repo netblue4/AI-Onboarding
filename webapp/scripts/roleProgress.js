@@ -136,17 +136,17 @@ getFieldsForRole(role) {
                     currentInRole = fieldRoles.includes(role);
                 }
                 
-                let currentIsRequirement = isRequirement;
+                let currentIsRequirement = false;
                 if (field.FieldType === 'requirement') {
                     currentIsRequirement = true;
                 }             
                    
-                let currentIsControl = isControl;
+                let currentIsControl = false;
                 if (field.control_evidence) {
                     currentIsControl = true;
                 } 
                 
-                let currentIsApplicable = isApplicable;
+                let currentIsApplicable = false;
                 if (field.requirement_control_number) {
                     const sanitizeId = templateManager.sanitizeForId(field.requirement_control_number);
                     const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
