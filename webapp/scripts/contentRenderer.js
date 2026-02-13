@@ -90,7 +90,12 @@ class ContentRenderer {
                     filteredStep.Fields.forEach(field => {
                         try {
                   
-                            const handler = getFieldHandler(field.FieldType);
+							let handler = '';
+							if (this.state.currentRole === "Approver" ) {
+								handler = getFieldHandler('comply');
+							} else {
+							    handler = getFieldHandler(field.FieldType);
+                            }
                             
                             if (!handler) return;
                             
@@ -118,6 +123,10 @@ class ContentRenderer {
                             }
 
                             phaseHasContent = true;
+                            
+                            if (this.state.currentRole === "Approver" ) {
+								return;
+                            }
                         } catch (error) {
                             console.error('Error rendering field:', field.FieldName, error);
                         }
