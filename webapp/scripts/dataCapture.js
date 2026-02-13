@@ -34,8 +34,8 @@ class DataCapture {
 
         // Skip auto-generated and fieldGroup types
         if (fieldType === 'Auto generated number' || fieldType === 'fieldGroup') {
-            if (field.Fields && Array.isArray(field.Fields)) {
-                field.Fields.forEach(f => this.captureField(f, currentData));
+            if (field.controls && Array.isArray(field.controls)) {
+                field.controls.forEach(f => this.captureField(f, currentData));
             }
             return;
         }
