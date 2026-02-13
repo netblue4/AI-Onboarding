@@ -180,12 +180,6 @@ class ContentRenderer {
             if (!isComplyOverride && !matchesSelection) matchesDirectly = false;
         }
 
-        let filteredChildren = [];
-        if (node.Fields && Array.isArray(node.Fields)) {
-            filteredChildren = node.Fields
-                .map(child => this.getDeepFilteredNode(child))
-                .filter(child => child !== null);
-        }
 
         if (matchesDirectly) {
             return { ...node, Fields: filteredChildren };
