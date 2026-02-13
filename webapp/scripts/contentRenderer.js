@@ -161,9 +161,6 @@ class ContentRenderer {
                     currentInRole = fieldRoles.includes(this.state.currentRole);
                 }
                 
-                if(this.state.currentRole === "Approver" && node.Role !== "Compliance") {
-					currentInRole = true;
-                }
             
                 let currentIsRequirement = false;
                 if (node.FieldType === 'requirement') {
@@ -193,6 +190,11 @@ class ContentRenderer {
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
                 const isApplicableField = (!currentIsControl && currentIsApplicable);
+
+
+                if (this.state.currentRole === "Approver" && !currentIsRequirement) {
+					currentInRole = true;
+                }
 
 				if (currentInRole && (currentIsApplicable || currentIsRequirement || isApplicableField)) {
 					matchesDirectly = true;
