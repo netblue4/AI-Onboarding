@@ -160,6 +160,10 @@ class ContentRenderer {
                     const fieldRoles = String(node.Role).split(',').map(r => r.trim());
                     currentInRole = fieldRoles.includes(this.state.currentRole);
                 }
+                
+                if(this.state.currentRole === "Approver") {
+					currentInRole = true;
+                }
             
                 let currentIsRequirement = false;
                 if (node.FieldType === 'requirement') {
@@ -196,12 +200,12 @@ class ContentRenderer {
              
         }
 
-        if (isDimFilterActive && matchesDirectly) {
-            const nodeDims = node.TrustDimension ? String(node.TrustDimension).split(',').map(d => d.trim()) : [];
-            const isComplyOverride = nodeDims.includes("Comply");
-            const matchesSelection = nodeDims.includes(this.state.currentDimension);
-            if (!isComplyOverride && !matchesSelection) matchesDirectly = false;
-        }
+        //if (isDimFilterActive && matchesDirectly) {
+        //    const nodeDims = node.TrustDimension ? String(node.TrustDimension).split(',').map(d => d.trim()) : [];
+        //    const isComplyOverride = nodeDims.includes("Comply");
+        //    const matchesSelection = nodeDims.includes(this.state.currentDimension);
+        //    if (!isComplyOverride && !matchesSelection) matchesDirectly = false;
+        //}
 
         let filteredChildren = [];
         if (node.Fields && Array.isArray(node.Fields)) {
