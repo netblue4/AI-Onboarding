@@ -162,7 +162,7 @@ getFieldsForRole(role) {
                 && field.FieldType != 'Auto generated number')
                 
                 // 2. Process the field if authorized
-                if(currentInRole && isApplicableControl) {
+                if(currentInRole && (isApplicableControl || isApplicableField) {
 						fields.push(field);
 				}
                 //if(currentInRole) {
