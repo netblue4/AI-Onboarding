@@ -162,16 +162,15 @@ class ContentRenderer {
 
         if (!isRoleFilterActive && !isDimFilterActive) return node;
 
-        let matchesDirectly = true;
+        let matchesDirectly = false;
 
         if (isRoleFilterActive) {
-            if (!node.Role) {
-                matchesDirectly = false;
-            } else {
-                const nodeRoles = String(node.Role).split(',').map(r => r.trim());
-                if (!nodeRoles.includes(this.state.currentRole)) matchesDirectly = false;
-            }
-            
+
+                let currentInRole = isInRole;
+                if (field.Role) {
+                    const fieldRoles = String(field.Role).split(',').map(r => r.trim());
+                    currentInRole = fieldRoles.includes(this.state.currentRole);
+                }
             
                 let currentIsRequirement = false;
                 if (node.FieldType === 'requirement') {
@@ -197,8 +196,8 @@ class ContentRenderer {
                 && node.FieldType != 'plan'
                 && node.FieldType != 'Auto generated number')           
             
-				if (!isApplicableControl || !currentIsRequirement || !isValidField) {
-					matchesDirectly = false;
+				if (currentInRole && (isApplicableControl || currentIsRequirement || isValidField)) {
+					matchesDirectly = true;
 				}
              
         }
