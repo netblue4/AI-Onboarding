@@ -161,7 +161,7 @@ class ContentRenderer {
                     currentInRole = fieldRoles.includes(this.state.currentRole);
                 }
                 
-                if(this.state.currentRole === "Approver") {
+                if(this.state.currentRole === "Approver" && node.Role !== "Compliance") {
 					currentInRole = true;
                 }
             
