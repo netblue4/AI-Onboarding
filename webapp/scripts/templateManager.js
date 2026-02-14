@@ -125,7 +125,7 @@ class TemplateManager {
 					
 						if (field.controls && Array.isArray(field.controls)) {
 							field.controls.forEach(control => {
-								const controlKey = this.templateManager.sanitizeForId(control.control_number);
+								const controlKey = this.sanitizeForId(control.control_number);
 								const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
 								const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
 					
