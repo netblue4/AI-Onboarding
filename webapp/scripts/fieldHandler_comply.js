@@ -108,37 +108,40 @@ function buildComplianceMap(data, sanitizeForId) {
 
                 const dataEntry = complianceMap.get(field.jkName);
 
-					// Populate Sub-Controls ONLY if "Applicable"
-					field.controls.forEach(req => {
-						if (req.jkType === 'requirement') {
-							const controlKey = req.requirement_control_number; 
-							
-							if (controlKey) {
-								// --- APPLICABILITY CHECK START ---
-								const sanitizeId = sanitizeForId(controlKey);
-								const soa = capturedData[sanitizeId + '_requirement__soa'];
-								
-								// Only add to the map if it is marked as Applicable
-								if (soa === 'Applicable') {
-									dataEntry.subControlLinks.set(controlKey, {
-										subControl: {
-											// Specific fields requested
-											requirement_control_number: req.requirement_control_number,
-											control_number: req.control_number,
-											jkName: req.jkName,
-											jkText: req.jkText, 
-											jkType: req.jkType,
-											jkObjective: req.jkObjective,
-											jkImplementationStatus: req.jkImplementationStatus,
-											jkImplementationEvidence: req.jkImplementationEvidence,
-										},
-										children: new Set()
-									});
-								}
-								// --- APPLICABILITY CHECK END ---
-							}
-						}
-					});
+// Populate Sub-Controls ONLY if "Applicable"
+                field.controls.forEach(req => {
+                    if (req.jkType === 'requirement') {
+                        const controlKey = req.requirement_control_number; 
+                        
+                        if (controlKey) {
+                            // --- APPLICABILITY CHECK START ---
+                            const sanitizeId = sanitizeForId(controlKey);
+                            const soa = capturedData[sanitizeId + '_requirement__soa'];
+                            
+                            // Only add to the map if it is marked as Applicable
+                            if (soa === 'Applicable') {
+                                dataEntry.subControlLinks.set(controlKey, {
+                                    subControl: {
+                                        // Specific fields requested
+                                        requirement_control_number: req.requirement_control_number,
+                                        control_number: req.control_number || controlKey,
+                                        jkName: req.jkName,
+                                        jkText: req.jkText, 
+                                        jkType: req.jkType,
+                                        jkObjective: req.jkObjective,
+                                        jkImplementationStatus: req.jkImplementationStatus,
+                                        jkImplementationEvidence: req.jkImplementationEvidence,
+                                        
+                                        // Keep these for backward compatibility with your existing script
+                                        control_description: req.jkText || req.jkName,
+                                        original_obj: req
+                                    },
+                                    children: new Set()
+                                });
+                            }
+                            // --- APPLICABILITY CHECK END ---
+                        }
+                    }
                 });
             }
         }
