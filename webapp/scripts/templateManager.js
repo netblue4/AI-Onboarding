@@ -103,12 +103,11 @@ class TemplateManager {
 							if (this.state.capturedData[sanitizedId + '_jkSoa'] !== select.value) {
 								this.state.capturedData[sanitizedId + '_requirement'] = field.jkName + ': ' + field.jkText;
 								this.state.capturedData[sanitizedId + '_jkSoa'] = select.value;
+							} else if (select && this.state.currentData[sanitizedId + '_jkSoa']) {
+								// Only delete if it previously had a value
+								delete this.state.currentData[sanitizedId + '_jkSoa'];
+								delete this.state.currentData[sanitizedId + '_requirement']
 							}
-						} else if (select && select.value === 'Select') {
-							// Clean up state if user reverts to 'Select'
-							delete this.state.capturedData[sanitizedId + '_jkSoa'];
-							delete this.state.capturedData[sanitizedId + '_requirement'];
-						}
 						break;
 	
 					case "risk_control":
