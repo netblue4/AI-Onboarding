@@ -598,6 +598,7 @@ button:hover {
 
 .type-risk { background-color: #fee2e2; color: #991b1b; }
 .type-plan { background-color: #dcfce7; color: #166534; }
+.type-multiSelect { background-color: #e0e7ff; color: #166534; }
 .type-other { background-color: #e2e8f0; color: #475569; } /* New badge for other types */
 
 .imp-content {

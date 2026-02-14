@@ -436,17 +436,17 @@ function createImplementationItem(child, sanitizeForId) {
     // Create title
     const titleDiv = document.createElement('div');
     titleDiv.className = 'imp-title';
-    titleDiv.textContent = child.jkName;
+    titleDiv.textContent = child.jkName + ': ' + child.jkText;
     contentDiv.appendChild(titleDiv);
 
     // Create requirement controls meta
-    const requirementDiv = document.createElement('div');
-    requirementDiv.className = 'imp-meta';
-    const requirementStrong = document.createElement('strong');
-    requirementStrong.textContent = 'Requirement Controls:';
-    requirementDiv.appendChild(requirementStrong);
-    requirementDiv.appendChild(document.createTextNode(` ${child.requirement_control_number}`));
-    contentDiv.appendChild(requirementDiv);
+    //const requirementDiv = document.createElement('div');
+    //requirementDiv.className = 'imp-meta';
+    //const requirementStrong = document.createElement('strong');
+    //requirementStrong.textContent = 'Requirement Controls:';
+    //requirementDiv.appendChild(requirementStrong);
+    //requirementDiv.appendChild(document.createTextNode(` ${child.requirement_control_number}`));
+    //contentDiv.appendChild(requirementDiv);
 
     // Create status/response meta
 	if (child.jkType !== "risk" && child.jkType !== "plan") {
@@ -457,12 +457,21 @@ function createImplementationItem(child, sanitizeForId) {
 		const statusDiv = document.createElement('div');
 		statusDiv.className = 'imp-meta';
 		const statusStrong = document.createElement('strong');
-		statusStrong.textContent = 'Response: ';
+		statusStrong.textContent = 'Implementation status: ';
 		statusDiv.appendChild(statusStrong);
-		const value = capturedData[sanitizeForId(child.control_number) + "_response"];
+		const value = capturedData[sanitizeForId(child.control_number) + "_status"];
 		statusDiv.appendChild(document.createTextNode(` ${value || ''}`));
 		contentDiv.appendChild(statusDiv);
 
+		const evidenceDiv = document.createElement('div');
+		evidenceDiv.className = 'imp-meta';
+		const evidenceStrong = document.createElement('strong');
+		evidenceStrong.textContent = 'Implementation evidence: ';
+		evidenceDiv.appendChild(evidenceStrong);
+		const value = capturedData[sanitizeForId(child.control_number) + "_response"];
+		evidenceDiv.appendChild(document.createTextNode(` ${value || ''}`));
+		contentDiv.appendChild(evidenceDiv);
+		
         // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS RESPONSE ---
         if (hasContent(value)) {
             totalImplementationFieldsWithResponse++;
@@ -600,10 +609,11 @@ function generateContentId(parent) {
 
 function getImplementationType(fieldType) {
     const typeMap = {
-        'risk': { typeClass: 'type-risk', typeName: 'risk' },
-        'plan': { typeClass: 'type-plan', typeName: 'plan' },
+        'risk_control': { typeClass: 'type-risk', typeName: 'Risk treatment' },
+        'test_control': { typeClass: 'type-plan', typeName: 'Test' },
+        'MultiSelect': { typeClass: 'type-multiSelect', typeName: 'MultiSelect' },
     };
-    return typeMap[fieldType] || { typeClass: 'type-other', typeName: 'FIELD' };
+    return typeMap[fieldType] || { typeClass: 'type-other', typeName: 'Field' };
 }
 
 function escapeHtml(unsafe) {
