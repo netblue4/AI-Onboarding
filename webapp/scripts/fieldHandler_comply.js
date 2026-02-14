@@ -391,7 +391,7 @@ function createEvidenceDiv(subControl, sanitizeForId) {
     const criteriaKey = sanitizeForId(subControl.control_number);
 
 	const statusvalue = capturedData[`${criteriaKey}_jkImplementationStatus`]; 
-	const evidencevalue = capturedData[`${criteriaKey}_evidence`];  
+	const evidencevalue = capturedData[`${criteriaKey}_jkImplementationEvidence`];  
 
     evidenceDiv.innerHTML = '<strong>' + (statusvalue || '') + "</strong></br>" + (evidencevalue || '');
     
@@ -468,7 +468,7 @@ function createImplementationItem(child, sanitizeForId) {
 		const evidenceStrong = document.createElement('strong');
 		evidenceStrong.textContent = 'Implementation evidence: ';
 		evidenceDiv.appendChild(evidenceStrong);
-		const evidencevalue = capturedData[sanitizeForId(child.control_number) + "_response"];
+		const evidencevalue = capturedData[sanitizeForId(child.control_number) + "_jkImplementationEvudence"];
 		evidenceDiv.appendChild(document.createTextNode(` ${evidencevalue || ''}`));
 		contentDiv.appendChild(evidenceDiv);
 		
@@ -492,7 +492,7 @@ function createImplementationItem(child, sanitizeForId) {
         child.controls.forEach(ctl => {
         
             const controlKey = sanitizeForId(ctl.control_number);
-            const evidenceVal = capturedData[`${controlKey}_evidence`];
+            const evidenceVal = capturedData[`${controlKey}_jkImplementationEvidence`];
 
             // --- GLOBAL COUNT: IMP CONTROLS (Child Controls) ---
             totalImplementationControls++;
