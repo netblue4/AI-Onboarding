@@ -1,104 +1,65 @@
 /**
- * Creates a compliance mapping field that links requirements to their implementations
- * and displays status tracking with collapsible sections.
- * * UPDATED: To support new JSON structure where Requirements are inside 'controls' arrays
- * of FieldGroups.
- *
- * @param {object} field - The field object from the JSON data
- * @param {object} capturedData - Previously saved data to pre-fill the form
- * @param {function} sanitizeForId - Utility function to create safe HTML IDs
- * @returns {HTMLElement} The fully constructed div element for the compliance field
+ * scripts/fieldHandler_comply.js
+ * * Manages the compliance mapping view.
+ * Uses direct JSON keys (jkName, jkText, jkObjective).
  */
 
 // --- GLOBAL VARIABLES ---
 let capturedData = null;
 
-// 1. Requirement / Article Counters
-let totalControls = 0;
-let totalApplicableControls = 0;
-
-// 2. Implementation Field Counters (Parent Items)
-let totalImplementationFields = 0;
-let totalImplementationFieldsWithResponse = 0;
-
-// 3. Implementation Control Counters (Nested Children)
-let totalImplementationControls = 0;
-let totalImplementationControlsWithEvidence = 0;
- 
+/**
+ * Main entry point called by the app to create the Comply tab content.
+ */
 function createComplyField(incapturedData, sanitizeForId) {
-    
     capturedData = incapturedData || {};
     
-    // Reset global counters on every render
-    totalControls = 0;
-    totalApplicableControls = 0;
-    totalImplementationFields = 0;
-    totalImplementationFieldsWithResponse = 0;
-    totalImplementationControls = 0;
-    totalImplementationControlsWithEvidence = 0;
-    
+    // Get the global data loaded by templateManager.js
     const webappData = window.originalWebappData;
 
     if (!webappData) {
         const errDiv = document.createElement('div');
-        errDiv.innerHTML = "<p style='color:red'>Error: Data not found. Please ensure window.originalWebappData is set in the main HTML file.</p>";
+        errDiv.style.color = 'red';
+        errDiv.style.padding = '20px';
+        errDiv.textContent = "Error: Original webapp data not found. Please reload.";
         return errDiv;
     }
 
+    // 1. Organize the data into a Map
     const complianceMap = buildComplianceMap(webappData, sanitizeForId);
-    const renderedElement = renderMapping(complianceMap, sanitizeForId);
-
-    // Optional: Log global totals for verification
-    console.log("Global Compliance Totals:", {
-        totalControls,
-        totalApplicableControls,
-        totalImplementationFields,
-        totalImplementationFieldsWithResponse,
-        totalImplementationControls,
-        totalImplementationControlsWithEvidence
-    });
-
-    return renderedElement;
+    
+    // 2. Turn that Map into HTML elements
+    return renderMapping(complianceMap, sanitizeForId);
 }
 
 /**
- * Builds a map of regulations (parents) linked to requirements (sub-controls) 
- * and implementations (children).
- * * REWRITTEN for New Structure:
- * Parent = fieldGroup (e.g. "Transparency")
- * SubControl = Item inside fieldGroup.controls (e.g. "[18229-1.1] Intended Purpose")
+ * Iterates through the JSON to find 'requirement' nodes.
  */
 function buildComplianceMap(data, sanitizeForId) {
     const complianceMap = new Map();
     let allFields = [];
 
-    // 1. Recursive helper to flatten all fields
+    // Helper to find all fields in your specific JSON structure
     function collectFieldsRecursively(fields) {
         if (!fields || !Array.isArray(fields)) return;
         fields.forEach(field => {
             allFields.push(field);
-            if (field.Fields && Array.isArray(field.Fields)) {
-                collectFieldsRecursively(field.Fields);
-            }
-            if (field.controls && Array.isArray(field.controls)) {
-                collectFieldsRecursively(field.controls);
-            }
+            // Look in standard nested fields and the 'controls' array
+            if (field.Fields) collectFieldsRecursively(field.Fields);
+            if (field.controls) collectFieldsRecursively(field.controls);
         });
     }
 
-    // 2. Process every section
+    // Flatten the sections (Compliance, Define, etc.) into one list
     Object.values(data).flat().forEach(step => {
         if (step.Fields) collectFieldsRecursively(step.Fields);
     });
 
-    // 3. Pass 1: Identify "Regulation/Group" nodes
+    // Pass 1: Find Group headers (fieldGroups)
     allFields.forEach(field => {
-        if (field.jkType === 'fieldGroup' && field.controls && Array.isArray(field.controls)) {
-            
-            const containsRequirements = field.controls.some(c => c.jkType === 'requirement');
+        if (field.jkType === 'fieldGroup' && field.controls) {
+            const hasReqs = field.controls.some(c => c.jkType === 'requirement');
 
-            if (containsRequirements) {
-                // Initialize the Map Entry
+            if (hasReqs) {
                 if (!complianceMap.has(field.jkName)) {
                     complianceMap.set(field.jkName, {
                         parentField: field,
@@ -106,30 +67,20 @@ function buildComplianceMap(data, sanitizeForId) {
                     });
                 }
 
-                const dataEntry = complianceMap.get(field.jkName);
+                const entry = complianceMap.get(field.jkName);
 
-                // Populate Sub-Controls ONLY if "Applicable"
                 field.controls.forEach(req => {
                     if (req.jkType === 'requirement') {
                         const controlKey = req.requirement_control_number; 
-                        
                         if (controlKey) {
-                            // --- APPLICABILITY CHECK START ---
-                            const sanitizeId = sanitizeForId(controlKey);
-                            const soa = capturedData[sanitizeId + '_requirement__soa'];
-                            
-                            // Only add to the map if it is marked as Applicable
+                            // Only show if the user marked it as 'Applicable' in earlier steps
+                            const soa = capturedData[sanitizeForId(controlKey) + '_requirement__soa'];
                             if (soa === 'Applicable') {
-                                dataEntry.subControlLinks.set(controlKey, {
-                                    subControl: {
-                                        control_number: controlKey,
-                                        control_description: req.jkText || req.jkName, 
-                                        original_obj: req
-                                    },
+                                entry.subControlLinks.set(controlKey, {
+                                    requirementNode: req, 
                                     children: new Set()
                                 });
                             }
-                            // --- APPLICABILITY CHECK END ---
                         }
                     }
                 });
@@ -137,529 +88,191 @@ function buildComplianceMap(data, sanitizeForId) {
         }
     });
 
-    // 4. Pass 2: Link implementation nodes (Risk, Plan) to the requirements
+    // Pass 2: Link Risks or Test Plans to these requirements
     allFields.forEach(implNode => {
         if (implNode.requirement_control_number && implNode.jkType !== 'requirement') {
-            const implControlParts = String(implNode.requirement_control_number).split(',').map(s => s.trim());
-
-            complianceMap.forEach((data) => {
-                const subControlLinks = data.subControlLinks;
-                implControlParts.forEach(implKey => {
-                    if (subControlLinks.has(implKey)) {
-                        subControlLinks.get(implKey).children.add(implNode);
+            const keys = String(implNode.requirement_control_number).split(',').map(s => s.trim());
+            complianceMap.forEach((groupData) => {
+                keys.forEach(key => {
+                    if (groupData.subControlLinks.has(key)) {
+                        groupData.subControlLinks.get(key).children.add(implNode);
                     }
                 });
             });
         }
     });
 
-    // 5. Cleanup: Remove groups that have no applicable sub-controls
-    for (const [groupName, entry] of complianceMap.entries()) {
-        if (entry.subControlLinks.size === 0) {
-            complianceMap.delete(groupName);
-        }
-    }
-
     return complianceMap;
 }
 
-
 /**
- * Renders the compliance mapping as an interactive HTML structure
+ * Builds the top-level container for the Comply view.
  */
 function renderMapping(complianceMap, sanitizeForId) {
     const container = document.createElement('div');
     container.className = 'mapping-container';
-
-    attachToggleListener(container);
+    container.style.fontFamily = 'sans-serif';
 
     if (complianceMap.size === 0) {
-        container.innerHTML = '<p>No Compliance Requirements found in the data.</p>';
+        const p = document.createElement('p');
+        p.textContent = 'No applicable compliance requirements to display. Please ensure requirements are marked as "Applicable" in the previous steps.';
+        p.style.padding = '20px';
+        container.appendChild(p);
         return container;
     }
 
-    complianceMap.forEach((data, parentFieldName) => {
-        const regItem = createRegulationItem(data, sanitizeForId);
-        container.appendChild(regItem);
+    complianceMap.forEach((data) => {
+        container.appendChild(createRegulationItem(data, sanitizeForId));
     });
 
     return container;
 }
-    	
-    	
+
 /**
- * Creates a single regulation item with header and collapsible content
+ * Creates a collapsible group (e.g., "Transparency").
  */
 function createRegulationItem(data, sanitizeForId) {
     const regItem = document.createElement('div');
     regItem.className = 'reg-item';
+    regItem.style.marginBottom = '10px';
+    regItem.style.border = '1px solid #ddd';
+    regItem.style.borderRadius = '8px';
 
-    // Calculate the 6 variables specifically for this Regulation/Article
-    const stats = calculateProgress(data.subControlLinks, sanitizeForId);
-    
-    // For unique ID, use the parent FieldName (e.g. Transparency)
-    const contentId = generateContentId(data.parentField);
+    const contentId = `content-${sanitizeForId(data.parentField.jkName)}`;
 
-    // Pass the stats object to the header creator
-    const header = createRegHeader(data.parentField, contentId, stats);
+    // Header (Clickable)
+    const header = document.createElement('div');
+    header.style.padding = '15px';
+    header.style.backgroundColor = '#f1f5f9';
+    header.style.cursor = 'pointer';
+    header.style.display = 'flex';
+    header.style.justifyContent = 'space-between';
+    header.style.alignItems = 'center';
+
+    const title = document.createElement('strong');
+    title.textContent = data.parentField.jkName;
+    title.style.color = '#1e40af';
+
+    const icon = document.createElement('span');
+    icon.textContent = '+';
+    icon.className = 'toggle-icon';
+
+    header.appendChild(title);
+    header.appendChild(icon);
+
+    // List of Requirements
+    const list = document.createElement('ul');
+    list.id = contentId;
+    list.style.display = 'none'; // Hidden by default
+    list.style.margin = '0';
+    list.style.padding = '0';
+    list.style.listStyle = 'none';
+
+    Array.from(data.subControlLinks.entries())
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .forEach(([key, subData]) => {
+            list.appendChild(createSubControlItem(subData, sanitizeForId));
+        });
+
+    // Toggle logic
+    header.onclick = () => {
+        const isHidden = list.style.display === 'none';
+        list.style.display = isHidden ? 'block' : 'none';
+        icon.textContent = isHidden ? '−' : '+';
+    };
+
     regItem.appendChild(header);
-
-	const content = createSubControlList(data.subControlLinks, contentId, sanitizeForId);
-	regItem.appendChild(content);
+    regItem.appendChild(list);
 
     return regItem;
 }
 
 /**
- * Creates the collapsible header displaying the 6 variables
- */
-function createRegHeader(parent, contentId, stats) {
-    const regHeader = document.createElement('div');
-    regHeader.className = 'reg-header';
-    regHeader.setAttribute('data-target', `#${contentId}`);
-    regHeader.style.cursor = 'pointer';
-
-    // In new JSON, FieldGroup doesn't have a requirement_control_number usually, 
-    // so we fall back to empty string or Role if needed.
-    const metaText = parent.requirement_control_number || parent.Role || "";
-
-    regHeader.innerHTML = `
-        <div class="toggle-icon" style="margin-right:10px; font-weight:bold;">+</div>
-        <div class="reg-header-content" style="flex-grow:1;">
-            <div class="reg-title" style="font-weight:bold; color:#1e40af;">${escapeHtml(parent.jkName)}</div>
-            
-            <div class="stats-container" style="display:flex; flex-wrap:wrap; gap:15px; margin-top:5px; font-size:0.85em; color:#475569;">
-                <div title="Total Controls defined by the Article">
-                    <strong>Total Req:</strong> ${stats.totalControls}
-                </div>
-                <div title="Total Applicable Controls">
-                    <strong>Applicable:</strong> ${stats.totalApplicableControls}
-                </div>
-                <div style="border-left: 1px solid #ccc; padding-left: 10px;" title="Total Implementation Fields (Parent Items)">
-                     <strong>Imp. Fields:</strong> ${stats.totalImplementationFields}
-                </div>
-                <div title="Implementation Fields with Response">
-                     <strong>Responses:</strong> ${stats.totalImplementationFieldsWithResponse}
-                </div>
-                <div style="border-left: 1px solid #ccc; padding-left: 10px;" title="Total Implementation Controls (Child Items)">
-                    <strong>Imp. Controls:</strong> ${stats.totalImplementationControls}
-                </div>
-                <div title="Implementation Controls with Evidence">
-                    <strong>Evidence:</strong> ${stats.totalImplementationControlsWithEvidence}
-                </div>
-            </div>
-
-            <div class="reg-meta" style="font-size:0.9em; color:#64748b; margin-top:2px;">${escapeHtml(metaText)}</div>
-        </div>
-    `;
-
-    return regHeader;
-}
-
-/**
- * Creates the collapsible content area with sub-controls
- */
-function createSubControlList(subControlLinks, contentId, sanitizeForId) {
-    const subControlList = document.createElement('ul');
-    subControlList.className = 'sub-control-list';
-    subControlList.id = contentId;
-    subControlList.style.display = 'none';
-    subControlList.style.padding = '0';
-
-    if (subControlLinks.size === 0) {
-        subControlList.innerHTML = '<li class="sub-control-item" style="padding:10px;">No sub-controls.</li>';
-        return subControlList;
-    }
-
-    const sortedSubControls = Array.from(subControlLinks.entries()).sort((a, b) => a[0].localeCompare(b[0]));
-
-    sortedSubControls.forEach(([key, subData]) => {
-
-    const subItem = createSubControlItem(subData, sanitizeForId);
-    subControlList.appendChild(subItem);
-    
-    });
-
-    return subControlList;
-}
-
-/**
- * Creates a single sub-control item with status dropdown and linked implementations
+ * Creates a single requirement row with the Info/Hover icon.
  */
 function createSubControlItem(subData, sanitizeForId) {
-    // --- GLOBAL COUNT: TOTAL CONTROLS ---
-    totalControls++;
+    const node = subData.requirementNode; 
+    const controlId = node.requirement_control_number;
 
-    const subItem = document.createElement('li');
-    subItem.className = 'sub-control-item';
-    subItem.style.listStyle = 'none';
-    subItem.style.padding = '10px';
-    subItem.style.borderTop = '1px solid #eee';
+    const li = document.createElement('li');
+    li.style.padding = '15px';
+    li.style.borderTop = '1px solid #eee';
 
-    // Title
-    const titleDiv = createSubControlTitle(subData.subControl);
-    subItem.appendChild(titleDiv);
+    // 1. Text Wrapper
+    const textContainer = document.createElement('div');
+    textContainer.style.display = 'flex';
+    textContainer.style.alignItems = 'flex-start';
+    textContainer.style.gap = '8px';
 
-	const value = capturedData[sanitizeForId(subData.subControl.control_number) + '_status']  
-	
-	if (value !== "Not Applicable") {
-        // --- GLOBAL COUNT: APPLICABLE CONTROLS ---
-        totalApplicableControls++;
-
-		// Status dropdown
-		const select = createStatusDropdown(subData.subControl, sanitizeForId);
-		subItem.appendChild(select);
+    // Hover Icon for jkObjective
+    if (node.jkObjective) {
+        const infoIcon = document.createElement('span');
+        infoIcon.textContent = ' ⓘ';
+        infoIcon.style.color = '#3b82f6';
+        infoIcon.style.cursor = 'help';
+        infoIcon.style.fontSize = '1.1em';
+        infoIcon.title = `Objective: ${node.jkObjective}`; // Browser tooltip
+        textContainer.appendChild(infoIcon);
     }
 
-    // Evidence description
-    const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId);
-    subItem.appendChild(evidenceDiv);
-
-	// Only create and append the item if the status is NOT "Not Applicable"
-	if (subData.subControl && value !== "Not Applicable") {
-		// Linked implementations
-		if (subData.children.size > 0) {
-			const impList = createImplementationList(subData.children, sanitizeForId);
-			subItem.appendChild(impList);
-		} else {
-			const noItemsDiv = createNoItemsMessage();
-			subItem.appendChild(noItemsDiv);
-		}
-	}
-    return subItem;
-}
-
-/**
- * Creates the sub-control title element
- */
-function createSubControlTitle(subControl) {
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'sub-control-title';
-    titleDiv.innerHTML = `<strong>${escapeHtml(subControl.control_number)}</strong> - ${escapeHtml(subControl.jkText)}`;
-    return titleDiv;
-}
-
-/**
- * Creates the status dropdown select element
- */
-function createStatusDropdown(subControl, sanitizeForId) {
-    const select = document.createElement('select');
-    select.style.margin = '5px 0 10px 0';
-    select.style.padding = '4px';
-    select.style.borderRadius = '4px';
-    select.style.border = '1px solid #ccc';
-    select.name = sanitizeForId(subControl.control_number) + '_complystatus';
-
-    const options = ['Select', 'Met', 'Not Met', 'Partially Met'];
-    options.forEach((optionText) => {
-        const option = document.createElement('option');
-        option.value = optionText;   
-		option.textContent = optionText;
-        select.appendChild(option);
-    });
-
-    return select;
-}
-
-/**
- * Creates the evidence/description div
- */
-function createEvidenceDiv(subControl, sanitizeForId) {
-    const evidenceDiv = document.createElement('div');
-    evidenceDiv.className = 'auto-generated-label';
-    const criteriaKey = sanitizeForId(subControl.control_number);
-
-	const statusvalue = capturedData[`${criteriaKey}_status`]; 
-	const evidencevalue = capturedData[`${criteriaKey}_evidence`];  
-
-    evidenceDiv.innerHTML = '<strong>' + (statusvalue || '') + "</strong></br>" + (evidencevalue || '');
+    const label = document.createElement('div');
     
-    return evidenceDiv;
-}
-
-/**
- * Creates the list of linked implementations
- */
-function createImplementationList(children, sanitizeForId) {
-    const impList = document.createElement('ul');
-    impList.className = 'imp-list';
-
-    children.forEach(child => {
-        const impItem = createImplementationItem(child, sanitizeForId);
-        impList.appendChild(impItem);
-    });
-
-    return impList;
-}
-
-/**
- * Creates a single implementation item
- */
-function createImplementationItem(child, sanitizeForId) {
-    const impItem = document.createElement('li');
-    impItem.className = 'imp-item';
-    impItem.style.marginBottom = '5px';
+    const boldId = document.createElement('strong');
+    boldId.textContent = controlId;
     
-    const { typeClass, typeName } = getImplementationType(child.jkType);
+    const boldName = document.createElement('strong');
+    boldName.textContent = ` - ${node.jkName}: `;
 
-    // Create the badge
-    const badge = document.createElement('span');
-    badge.className = `imp-type-badge ${typeClass}`;
-    badge.textContent = typeName;
-    impItem.appendChild(badge);
+    const description = document.createElement('span');
+    description.textContent = node.jkText;
 
-    // Create the content wrapper
-    const contentDiv = document.createElement('div');
-    contentDiv.className = 'imp-content';
+    label.appendChild(boldId);
+    label.appendChild(boldName);
+    label.appendChild(description);
+    textContainer.appendChild(label);
+    li.appendChild(textContainer);
 
-    // Create title
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'imp-title';
-    titleDiv.textContent = child.jkName;
-    contentDiv.appendChild(titleDiv);
+    // 2. Results (Status and Evidence from capturedData)
+    const resultsDiv = document.createElement('div');
+    resultsDiv.style.marginTop = '10px';
+    resultsDiv.style.padding = '10px';
+    resultsDiv.style.backgroundColor = '#f8fafc';
+    resultsDiv.style.borderRadius = '6px';
+    resultsDiv.style.borderLeft = '4px solid #cbd5e1';
 
-    // Create requirement controls meta
-    const requirementDiv = document.createElement('div');
-    requirementDiv.className = 'imp-meta';
-    const requirementStrong = document.createElement('strong');
-    requirementStrong.textContent = 'Requirement Controls:';
-    requirementDiv.appendChild(requirementStrong);
-    requirementDiv.appendChild(document.createTextNode(` ${child.requirement_control_number}`));
-    contentDiv.appendChild(requirementDiv);
+    const status = document.createElement('div');
+    status.style.fontWeight = 'bold';
+    status.style.fontSize = '0.85em';
+    status.style.color = '#334155';
+    status.textContent = `Status: ${capturedData[sanitizeForId(controlId) + '_status'] || 'N/A'}`;
 
-    // Create status/response meta
-	if (child.jkType !== "risk" && child.jkType !== "plan") {
+    const evidence = document.createElement('div');
+    evidence.style.fontSize = '0.9em';
+    evidence.style.color = '#64748b';
+    evidence.style.fontStyle = 'italic';
+    evidence.style.marginTop = '4px';
+    evidence.textContent = capturedData[sanitizeForId(controlId) + '_evidence'] || 'No evidence provided.';
+
+    resultsDiv.appendChild(status);
+    resultsDiv.appendChild(evidence);
+    li.appendChild(resultsDiv);
+
+    // 3. Linked Implementations (Risks/Plans)
+    if (subData.children.size > 0) {
+        const childUl = document.createElement('ul');
+        childUl.style.marginTop = '10px';
+        childUl.style.paddingLeft = '20px';
         
-        // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS (Parent Items) ---
-        totalImplementationFields++;
-
-		const statusDiv = document.createElement('div');
-		statusDiv.className = 'imp-meta';
-		const statusStrong = document.createElement('strong');
-		statusStrong.textContent = 'Response: ';
-		statusDiv.appendChild(statusStrong);
-		const value = capturedData[sanitizeForId(child.control_number) + "_response"];
-		statusDiv.appendChild(document.createTextNode(` ${value || ''}`));
-		contentDiv.appendChild(statusDiv);
-
-        // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS RESPONSE ---
-        if (hasContent(value)) {
-            totalImplementationFieldsWithResponse++;
-        }
-	}
-
-    // Create controls section if applicable
-    if (child.jkImplementationStatus !== "Not Applicable" && child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
-        // Controls header
-        const controlsHeaderDiv = document.createElement('div');
-        controlsHeaderDiv.style.marginTop = '10px';
-        const controlsHeaderStrong = document.createElement('strong');
-        controlsHeaderStrong.textContent = 'Controls:';
-        controlsHeaderDiv.appendChild(controlsHeaderStrong);
-        contentDiv.appendChild(controlsHeaderDiv);
-
-        // Controls list items
-        child.controls.forEach(ctl => {
-        
-            const controlKey = sanitizeForId(ctl.control_number);
-            const evidenceVal = capturedData[`${controlKey}_evidence`];
-
-            // --- GLOBAL COUNT: IMP CONTROLS (Child Controls) ---
-            totalImplementationControls++;
-
-            // --- GLOBAL COUNT: EVIDENCE (Child Controls) ---
-            if (hasContent(evidenceVal)) {
-                totalImplementationControlsWithEvidence++;
-            }
-
-            const controlDiv = document.createElement('div');
-            controlDiv.style.marginTop = '5px';
-            controlDiv.style.marginBottom = '10px';
-            controlDiv.style.paddingLeft = '10px';
-            controlDiv.style.borderLeft = '3px solid #e2e8f0';
-
-            const controlNumberStrong = document.createElement('strong');
-            controlNumberStrong.textContent = `${ctl.control_number || ''}: `;
-            controlDiv.appendChild(controlNumberStrong);
-            controlDiv.appendChild(document.createTextNode(ctl.jkText || ''));
-
-            const brTag = document.createElement('br');
-            controlDiv.appendChild(brTag);
-
-            const statusStrong = document.createElement('strong');
-            statusStrong.textContent = 'Status: ';
-            controlDiv.appendChild(statusStrong);
-            controlDiv.appendChild(document.createTextNode(capturedData[`${controlKey}_status`]|| ''));
-
-            const brTag2 = document.createElement('br');
-            controlDiv.appendChild(brTag2);
-
-            const evidenceStrong = document.createElement('strong');
-            evidenceStrong.textContent = 'Evidence: ';
-            controlDiv.appendChild(evidenceStrong);
-            controlDiv.appendChild(document.createTextNode(evidenceVal || ''));
-
-            contentDiv.appendChild(controlDiv);
+        subData.children.forEach(child => {
+            const childLi = document.createElement('li');
+            childLi.style.fontSize = '0.85em';
+            childLi.style.color = '#475569';
+            childLi.style.marginBottom = '4px';
+            childLi.textContent = `Linked [${child.jkType}]: ${child.jkName}`;
+            childUl.appendChild(childLi);
         });
+        li.appendChild(childUl);
     }
 
-    impItem.appendChild(contentDiv);
-    return impItem;
-}
-
-/**
- * Creates the "No linked items" message
- */
-function createNoItemsMessage() {
-    const noItemsDiv = document.createElement('div');
-    noItemsDiv.style.color = '#999';
-    noItemsDiv.style.fontStyle = 'italic';
-    noItemsDiv.textContent = 'No linked items.';
-    return noItemsDiv;
-}
-
-/**
- * Attaches the click listener for collapsible toggle functionality
- */
-function attachToggleListener(container) {
-    container.addEventListener('click', event => {
-        const header = event.target.closest('.reg-header');
-        if (!header) return;
-
-        const targetId = header.getAttribute('data-target');
-        if (!targetId) return;
-
-        const content = container.querySelector(targetId);
-        const icon = header.querySelector('.toggle-icon');
-
-        if (content && icon) {
-            toggleContent(content, icon, header);
-        }
-    });
-}
-
-/**
- * Toggles the visibility of collapsible content
- */
-function toggleContent(content, icon, header) {
-    const isExpanded = content.classList.toggle('expanded');
-
-    if (isExpanded) {
-        icon.textContent = '−';
-        icon.classList.add('expanded');
-        header.setAttribute('aria-expanded', 'true');
-        content.setAttribute('aria-hidden', 'false');
-        content.style.display = 'block';
-    } else {
-        icon.textContent = '+';
-        icon.classList.remove('expanded');
-        header.setAttribute('aria-expanded', 'false');
-        content.setAttribute('aria-hidden', 'true');
-        content.style.display = 'none';
-    }
-}
-
-// --- UTILITY FUNCTIONS ---
-
-/**
- * Safely checks if a value has content (handles Strings and Arrays)
- */
-function hasContent(val) {
-    if (!val) return false;
-    if (Array.isArray(val)) return val.length > 0;
-    return String(val).trim() !== '';
-}
-
-function generateContentId(parent) {
-    // New JSON uses 'FieldName' for Groups (e.g. Transparency)
-    const base = parent.jkName || "group"; 
-    const safeIdBase = base.replace(/[^a-zA-Z0-9_]/g, '-');
-    return `content-${safeIdBase}`;
-}
-
-function getImplementationType(fieldType) {
-    const typeMap = {
-        'risk': { typeClass: 'type-risk', typeName: 'risk' },
-        'plan': { typeClass: 'type-plan', typeName: 'plan' },
-    };
-    return typeMap[fieldType] || { typeClass: 'type-other', typeName: 'FIELD' };
-}
-
-function escapeHtml(unsafe) {
-    if (typeof unsafe !== 'string') return unsafe || '';
-    return unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-}
-
-/**
- * Calculates the 6 variables specifically for a given Regulation/Article
- * This allows the header to display the correct stats before the content is fully rendered
- */
-function calculateProgress(subControlLinks, sanitizeForId) {
-    let localTotalControls = 0;
-    let localTotalApplicableControls = 0;
-    let localTotalImplementationFields = 0;
-    let localTotalImplementationFieldsWithResponse = 0;
-    let localTotalImplementationControls = 0;
-    let localTotalImplementationControlsWithEvidence = 0;
-
-    subControlLinks.forEach((subData) => {
-        // 1. Count Total Controls
-        localTotalControls++;
-
-        // 2. Count Applicable Controls
-        const controlNum = subData.subControl.control_number;
-        const statusVal = capturedData[sanitizeForId(controlNum) + '_status'];
-        
-        // --- ONLY COUNT IMPLEMENTATIONS IF THE REQUIREMENT IS APPLICABLE ---
-        if (statusVal !== "Not Applicable") {
-            localTotalApplicableControls++;
-
-            // 3. Loop through linked implementations
-            if (subData.children) {
-                subData.children.forEach(child => {
-                    
-                    // --- Count Implementation FIELDS (Parent Items) ---
-                    if (child.jkType !== "risk" && child.jkType !== "plan") {
-                        localTotalImplementationFields++;
-                        
-                        const responseKey = sanitizeForId(child.control_number) + "_response";
-                        const responseVal = capturedData[responseKey];
-                        
-                        if (hasContent(responseVal)) {
-                            localTotalImplementationFieldsWithResponse++;
-                        }
-                    }
-
-                    // --- Count Nested Implementation CONTROLS (Child Items) ---
-                    if (child.jkImplementationStatus !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
-                        child.controls.forEach(ctl => {
-                            // Increment Implementation Controls
-                            localTotalImplementationControls++;
-
-                            // Check Evidence
-                            const ctlKey = sanitizeForId(ctl.control_number) + '_evidence';
-                            const evidenceVal = capturedData[ctlKey];
-                            
-                            if (hasContent(evidenceVal)) {
-                                localTotalImplementationControlsWithEvidence++;
-                            }
-                        });
-                    }
-                });
-            }
-        }
-    });
-
-    return { 
-        totalControls: localTotalControls, 
-        totalApplicableControls: localTotalApplicableControls,
-        totalImplementationFields: localTotalImplementationFields,
-        totalImplementationFieldsWithResponse: localTotalImplementationFieldsWithResponse,
-        totalImplementationControls: localTotalImplementationControls, 
-        totalImplementationControlsWithEvidence: localTotalImplementationControlsWithEvidence 
-    };
+    return li;
 }
