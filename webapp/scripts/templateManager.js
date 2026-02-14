@@ -99,14 +99,14 @@ class TemplateManager {
 						
 						// Only update if value exists and is not the default 'Select'
 						if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
-							if (this.state.currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
-								this.state.currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
-								this.state.currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
+							if (this.state.capturedData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
+								this.state.capturedData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
+								this.state.capturedData[sanitizedId + '_jkSoa'] = requirementSelect.value;
 							}
 						} else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
 							// Only delete if it previously had a value
-							delete this.state.currentData[sanitizedId + '_jkSoa'];
-							delete this.state.currentData[sanitizedId + '_requirement']
+							delete this.state.capturedData[sanitizedId + '_jkSoa'];
+							delete this.state.capturedData[sanitizedId + '_requirement']
 						}
 						break;
 	
