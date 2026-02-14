@@ -25,8 +25,7 @@ class ContentRenderer {
 				// if the handler is already "data-aware".
 				const assessmentElement = handler(
 					this.state.capturedData, 
-					this.templateManager.sanitizeForId.bind(this.templateManager),
-					this.templateManager.fieldInspector.bind(this.templateManager)
+					this.templateManager.sanitizeForId.bind(this.templateManager)
 				);
 	
 				if (assessmentElement) {
