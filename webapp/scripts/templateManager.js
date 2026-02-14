@@ -83,7 +83,7 @@ class TemplateManager {
 	 * @param {string} operation - Either "captureData" or "retrieveData".
 	 * @returns {void}
 	 */
-	fieldHelper(field, operation) {
+	fieldHelper(field, operation, currentData) {
 		if (!field || !field.jkType) return null;
 	
 		// Clean the type (e.g., "MultiSelect:PDF" -> "MultiSelect")
@@ -99,14 +99,14 @@ class TemplateManager {
 						
 						// Only update if value exists and is not the default 'Select'
 						if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
-							if (this.state.capturedData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
-								this.state.capturedData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
-								this.state.capturedData[sanitizedId + '_jkSoa'] = requirementSelect.value;
+							if (currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
+								currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
+								currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
 							}
-						} else if (requirementSelect && this.state.capturedData[sanitizedId + '_jkSoa']) {
+						} else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
 							// Only delete if it previously had a value
-							delete this.state.capturedData[sanitizedId + '_jkSoa'];
-							delete this.state.capturedData[sanitizedId + '_requirement']
+							delete currentData[sanitizedId + '_jkSoa'];
+							delete currentData[sanitizedId + '_requirement']
 						}
 						break;
 	

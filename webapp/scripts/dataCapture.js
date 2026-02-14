@@ -54,7 +54,7 @@ class DataCapture {
         }
         // Handle requirement fields
         else if (fieldType === 'requirement') {
-            this.templateManager.fieldHelper(field,"captureData");
+            this.templateManager.fieldHelper(field,"captureData", currentData);
             //this.captureRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number), fieldName, currentData);
         }    
         // Handle risk fields
