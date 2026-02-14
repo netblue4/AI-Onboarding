@@ -8,7 +8,7 @@
  * @param {function} sanitizeForId - A utility function to create a safe string for use as an HTML ID.
  * @returns {HTMLElement} The fully constructed div element for the form field.
  */
-function createPlan(field, capturedData, sanitizeForId) {
+function createPlan(field, capturedData, sanitizeForId, fieldInspector) {
     // Main container for the entire field
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
@@ -226,7 +226,7 @@ function createPlan(field, capturedData, sanitizeForId) {
   
             
             const input = document.createElement('textarea');
-            input.name = sanitizedId + '_evidence';
+            input.name = sanitizedId + '_jkImplementationEvidence';
     		input.placeholder = controlItem.jkImplementationEvidence;
     		controlText.appendChild(input);
  

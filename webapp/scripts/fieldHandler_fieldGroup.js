@@ -9,7 +9,7 @@
  * @param {function} sanitizeForId - The function used to sanitize field names for HTML IDs.
  * @returns {HTMLElement} The complete field group container element.
  */
-function createFieldGroup(field, capturedData, sanitizeForId) {
+function createFieldGroup(field, capturedData, sanitizeForId, fieldInspector) {
     // 1. Create the main container for the group box
     const groupContainer = document.createElement('div');
     groupContainer.className = 'field-group-container'; // Class for styling the box
@@ -35,7 +35,7 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
         	//If the field is associated with a requirement that has been marked as 'Not Applicable' 
 			//Then do not display the field, unless its a requirement.
 			const sanitizeId = sanitizeForId(nestedField.requirement_control_number);
-			const soa = capturedData[sanitizeId + '_requirement__soa'];
+			const soa = capturedData[sanitizeId + '_jkSoa'];
 			if ((!soa || soa === 'Not Applicable' || soa === 'Select') && nestedField.jkType != 'requirement') { 
 				return
 			}	

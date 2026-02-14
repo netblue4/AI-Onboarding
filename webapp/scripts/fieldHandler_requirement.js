@@ -1,4 +1,4 @@
-function createRequirement(field, capturedData, sanitizeForId) {
+function createRequirement(field, capturedData, sanitizeForId, fieldInspector) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.requirement_control_number);
@@ -10,7 +10,7 @@ function createRequirement(field, capturedData, sanitizeForId) {
     
 	//Control status
 	const select = document.createElement('select');
-	select.name = sanitizedId + '_requirement__soa';
+	select.name = sanitizedId + '_jkSoa';
 	
 	const options = ['Select', 'Applicable', 'Not Applicable'];
 				
@@ -19,7 +19,7 @@ function createRequirement(field, capturedData, sanitizeForId) {
 		option.value = optionText;
 		option.textContent = optionText;
 		
-		// Set selected if it matches the control_status
+		// Set selected if it matches the control_jkImplementationStatus
 		if (field.jkSoa && optionText === field.jkSoa) {
 			option.selected = true;
 		}

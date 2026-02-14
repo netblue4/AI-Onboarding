@@ -76,6 +76,35 @@ class TemplateManager {
         return text.replace(/[^a-zA-Z0-9_]/g, '_');
     }
 
+
+	/**
+	 * Returns a property value from a specific field object based on its jkType.
+	 * * @param {string} targetType - The type to verify (e.g., "MultiSelect", "requirement")
+	 * @param {string} property - The property name to retrieve (e.g., "jkObjective")
+	 * @param {object} field - The actual field object/node to query
+	 * @returns {*} The value of the property if the type matches, otherwise null.
+	 */
+	function fieldInspector(targetType, property, field) {
+		// 1. Safety check: ensure the field exists and has a jkType
+		if (!field || !field.jkType) {
+			return null;
+		}
+	
+		// 2. Clean the jkType from the field (e.g., "MultiSelect:PDF" -> "MultiSelect")
+		// This ensures it matches the targetType you passed in.
+		const cleanFieldType = String(field.jkType).split(':')[0];
+	
+		// 3. If the types match, return the requested property
+		if (cleanFieldType === targetType) {
+			// We check both the exact property name and a lowercase version 
+			// to handle inconsistencies like "jkObjective" vs "JkObjective"
+			return field[property] || field[property.charAt(0).toUpperCase() + property.slice(1)] || null;
+		}
+	
+		return null;
+	}
+
+
     /**
      * Check if a field is new (wasn't in the previous template version)
      * @param {string} fieldName - The field name to check

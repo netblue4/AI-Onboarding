@@ -7,7 +7,7 @@
  * @param {function} sanitizeForId - A utility function to create safe element IDs.
  * @returns {HTMLElement} The fully constructed DOM element for the multi-select field.
  */
-function createMultiSelect(field, capturedData, sanitizeForId) {
+function createMultiSelect(field, capturedData, sanitizeForId, fieldInspector) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.control_number) + "_response";

@@ -100,16 +100,16 @@ class DataCapture {
     }
 
 captureRequirement(field, sanitizedId, fieldName, currentData) {
-    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_requirement__soa"]`);
+    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
     // Only update if value exists and has changed
     if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
-        if (currentData[sanitizedId + '_requirement__soa'] !== requirementSelect.value) {
+        if (currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
             currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
-            currentData[sanitizedId + '_requirement__soa'] = requirementSelect.value;
+            currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
         }
-    } else if (requirementSelect && currentData[sanitizedId + '_requirement__soa']) {
+    } else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
         // Only delete if it previously had a value
-        delete currentData[sanitizedId + '_requirement__soa'];
+        delete currentData[sanitizedId + '_jkSoa'];
         delete currentData[sanitizedId + '_requirement']
     }
 }
@@ -129,8 +129,8 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
     if (field.controls && Array.isArray(field.controls)) {
         field.controls.forEach(control => {
             const controlKey = this.templateManager.sanitizeForId(control.control_number);
-            const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
-            const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
+            const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
+            const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
 
             const statusValue = statusElement ? statusElement.value : null;
             const evidenceValue = evidenceElement ? evidenceElement.value : null;
@@ -140,8 +140,8 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
 				(evidenceValue !== null && evidenceValue !== "")
 			) {
 				currentData[control.control_number] = control.jkText;
-				currentData[`${controlKey}_status`] = statusValue;
-				currentData[`${controlKey}_evidence`] = evidenceValue;
+				currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
+				currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
 			}
             
         });
@@ -154,13 +154,13 @@ capturePlan(field, sanitizedId, fieldName, currentData) {
             const criteriaKey = this.templateManager.sanitizeForId(criteria.control_number);
 
             
-            const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_evidence"]`);
+            const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_jkImplementationEvidence"]`);
             
             if (textareaElement && textareaElement.value) {
                 // Only update if value has changed
                 if (currentData[criteriaKey] !== textareaElement.value) {
                     currentData[criteria.control_number] = criteria.jkText;
-                    currentData[`${criteriaKey}_evidence`] = textareaElement.value;
+                    currentData[`${criteriaKey}_jkImplementationEvidence`] = textareaElement.value;
                 }
             } else if (textareaElement && currentData[criteriaKey]) {
                 // Only delete if it previously had a value

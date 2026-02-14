@@ -77,9 +77,9 @@ class RoleProgressTracker {
                 
                  	let statusvalue = 0;
                  	if(field.jkType != 'requirement'){
-                 		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
+                 		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_jkImplementationStatus'];
                  	} else {
-                 		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.requirement_control_number) + '_requirement__soa'];
+                 		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.requirement_control_number) + '_jkSoa'];
                  	}
                 
 					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
@@ -155,7 +155,7 @@ getFieldsForRole(role) {
 					// This exits immediately (returns true) the moment it finds a match
 					const hasAnyApplicable = controlIds.some(id => {
 						const sanitizeId = templateManager.sanitizeForId(id);
-						const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+						const soa = this.state.capturedData[sanitizeId + '_jkSoa'];
 						return soa === 'Applicable';
 					});
 				
@@ -255,7 +255,7 @@ getFieldsForRole(role) {
             const roleFields = this.getFieldsForRole(role);
             const completedFields = roleFields.filter(field => {
                 if (!field.jkName) return false;
-					const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
+					const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_jkImplementationStatus'];
 					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
 					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number)];
 					

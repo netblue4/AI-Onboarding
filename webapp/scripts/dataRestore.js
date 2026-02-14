@@ -67,9 +67,9 @@ class DataRestore {
     }
 
 	restoreRequirement(field, sanitizedId){	
-        if (this.state.capturedData[sanitizedId  + '_requirement__soa']) { 
-            const requirementSelect = document.querySelector(`select[name="${sanitizedId}_requirement__soa"]`);
-            if (requirementSelect) requirementSelect.value = this.state.capturedData[sanitizedId + '_requirement__soa'];
+        if (this.state.capturedData[sanitizedId  + '_jkSoa']) { 
+            const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+            if (requirementSelect) requirementSelect.value = this.state.capturedData[sanitizedId + '_jkSoa'];
         }	
 	}
 	
@@ -83,16 +83,14 @@ class DataRestore {
             field.controls.forEach(control => {
                 const controlKey = this.templateManager.sanitizeForId(control.control_number);
 
-                const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
-                if (statusElement && this.state.capturedData[`${controlKey}_status`]) {
-                    statusElement.value = this.state.capturedData[`${controlKey}_status`];
-                    //control.jkImplementationStatus = this.state.capturedData[`${controlKey}_status`]; 
+                const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
+                if (statusElement && this.state.capturedData[`${controlKey}_jkImplementationStatus`]) {
+                    statusElement.value = this.state.capturedData[`${controlKey}_jkImplementationStatus`];
                 }
 
-                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
-                if (evidenceElement && this.state.capturedData[`${controlKey}_evidence`]) {
-                    evidenceElement.value = this.state.capturedData[`${controlKey}_evidence`];
-                    //control.jkImplementationEvidence = this.state.capturedData[`${controlKey}_evidence`];      
+                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+                if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
+                    evidenceElement.value = this.state.capturedData[`${controlKey}_jkImplementationEvidence`];
                 }
             });
         }
@@ -104,10 +102,9 @@ class DataRestore {
                             	
             	const controlKey = this.templateManager.sanitizeForId(criteria.control_number);
                 
-                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
-                if (evidenceElement && this.state.capturedData[`${controlKey}_evidence`]) {
-                    evidenceElement.value = this.state.capturedData[`${controlKey}_evidence`];
-                    //criteria.jkImplementationEvidence = this.state.capturedData[`${controlKey}_evidence`];   
+                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+                if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
+                    evidenceElement.value = this.state.capturedData[`${controlKey}_jkImplementationEvidence`];
                 } 
             });
         }

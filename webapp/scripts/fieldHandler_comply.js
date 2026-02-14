@@ -25,7 +25,7 @@ let totalImplementationFieldsWithResponse = 0;
 let totalImplementationControls = 0;
 let totalImplementationControlsWithEvidence = 0;
  
-function createComplyField(incapturedData, sanitizeForId) {
+function createComplyField(incapturedData, sanitizeForId,fieldInspector) {
     
     capturedData = incapturedData || {};
     
@@ -116,7 +116,7 @@ function buildComplianceMap(data, sanitizeForId) {
                         if (controlKey) {
                             // --- APPLICABILITY CHECK START ---
                             const sanitizeId = sanitizeForId(controlKey);
-                            const soa = capturedData[sanitizeId + '_requirement__soa'];
+                            const soa = capturedData[sanitizeId + '_jkSoa'];
                             
                             // Only add to the map if it is marked as Applicable
                             if (soa === 'Applicable') {
@@ -310,7 +310,7 @@ function createSubControlItem(subData, sanitizeForId) {
     const titleDiv = createSubControlTitle(subData.subControl);
     subItem.appendChild(titleDiv);
 
-	const value = capturedData[sanitizeForId(subData.subControl.control_number) + '_status']  
+	const value = capturedData[sanitizeForId(subData.subControl.control_number) + '_jkImplementationStatus']  
 	
 	if (value !== "Not Applicable") {
         // --- GLOBAL COUNT: APPLICABLE CONTROLS ---
@@ -390,7 +390,7 @@ function createEvidenceDiv(subControl, sanitizeForId) {
     evidenceDiv.className = 'auto-generated-label';
     const criteriaKey = sanitizeForId(subControl.control_number);
 
-	const statusvalue = capturedData[`${criteriaKey}_status`]; 
+	const statusvalue = capturedData[`${criteriaKey}_jkImplementationStatus`]; 
 	const evidencevalue = capturedData[`${criteriaKey}_evidence`];  
 
     evidenceDiv.innerHTML = '<strong>' + (statusvalue || '') + "</strong></br>" + (evidencevalue || '');
@@ -459,7 +459,7 @@ function createImplementationItem(child, sanitizeForId) {
 		const statusStrong = document.createElement('strong');
 		statusStrong.textContent = 'Implementation status: ';
 		statusDiv.appendChild(statusStrong);
-		const value = capturedData[sanitizeForId(child.control_number) + "_status"];
+		const value = capturedData[sanitizeForId(child.control_number) + "_jkImplementationStatus"];
 		statusDiv.appendChild(document.createTextNode(` ${value || ''}`));
 		contentDiv.appendChild(statusDiv);
 
@@ -519,7 +519,7 @@ function createImplementationItem(child, sanitizeForId) {
             const statusStrong = document.createElement('strong');
             statusStrong.textContent = 'Status: ';
             controlDiv.appendChild(statusStrong);
-            controlDiv.appendChild(document.createTextNode(capturedData[`${controlKey}_status`]|| ''));
+            controlDiv.appendChild(document.createTextNode(capturedData[`${controlKey}_jkImplementationStatus`]|| ''));
 
             const brTag2 = document.createElement('br');
             controlDiv.appendChild(brTag2);
@@ -609,9 +609,9 @@ function generateContentId(parent) {
 
 function getImplementationType(fieldType) {
     const typeMap = {
-        'risk_control': { typeClass: 'type-risk', typeName: 'Risk treatment' },
+        'risk_control': { typeClass: 'type-risk', typeName: 'Risk' },
         'test_control': { typeClass: 'type-plan', typeName: 'Test' },
-        'MultiSelect': { typeClass: 'type-multiSelect', typeName: 'MultiSelect' },
+        'MultiSelect': { typeClass: 'type-multiSelect', typeName: 'Multi' },
     };
     return typeMap[fieldType] || { typeClass: 'type-other', typeName: 'Field' };
 }
@@ -643,7 +643,7 @@ function calculateProgress(subControlLinks, sanitizeForId) {
 
         // 2. Count Applicable Controls
         const controlNum = subData.subControl.control_number;
-        const statusVal = capturedData[sanitizeForId(controlNum) + '_status'];
+        const statusVal = capturedData[sanitizeForId(controlNum) + '_jkSoa'];
         
         // --- ONLY COUNT IMPLEMENTATIONS IF THE REQUIREMENT IS APPLICABLE ---
         if (statusVal !== "Not Applicable") {

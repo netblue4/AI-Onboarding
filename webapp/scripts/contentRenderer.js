@@ -25,7 +25,8 @@ class ContentRenderer {
 				// if the handler is already "data-aware".
 				const assessmentElement = handler(
 					this.state.capturedData, 
-					this.templateManager.sanitizeForId.bind(this.templateManager)
+					this.templateManager.sanitizeForId.bind(this.templateManager),
+					this.templateManager.fieldInspector.bind(this.templateManager)
 				);
 	
 				if (assessmentElement) {
@@ -215,7 +216,7 @@ class ContentRenderer {
 					// 2. Use .some() to check if at least one ID satisfies the condition
 					const hasApplicableControl = controlNumbers.some(id => {
 						const sanitizeId = templateManager.sanitizeForId(id);
-						const soa = this.state.capturedData[sanitizeId + '_requirement__soa'];
+						const soa = this.state.capturedData[sanitizeId + '_jkSoa'];
 						return soa === 'Applicable';
 					});
 				

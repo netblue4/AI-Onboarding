@@ -8,7 +8,7 @@
  * @param {function} sanitizeForId - A utility function to create a safe string for use as an HTML ID.
  * @returns {HTMLElement} The fully constructed div element for the form field.
  */
-function createRisk(field, capturedData, sanitizeForId) {
+function createRisk(field, capturedData, sanitizeForId, fieldInspector) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
    // --- 2. Build the Collapsible Structure ---
@@ -75,7 +75,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             
             //Control status
             const select = document.createElement('select');
-            select.name = sanitizeForId(controlItem.control_number) + '_status';
+            select.name = sanitizeForId(controlItem.control_number) + '_jkImplementationStatus';
 			
 			let options;
 			
@@ -90,7 +90,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 				option.value = optionText;
 				option.textContent = optionText;
 				
-				// Set selected if it matches the control_status
+				// Set selected if it matches the control_jkImplementationStatus
 				if (controlItem.jkImplementationStatus && optionText === controlItem.jkImplementationStatus) {
 					option.selected = true;
 				}
@@ -100,14 +100,14 @@ function createRisk(field, capturedData, sanitizeForId) {
 			controlText.appendChild(select);	
 
     		
-    		// Check if control_status exists and starts with "Applicable"
+    		// Check if control_jkImplementationStatus exists and starts with "Applicable"
 			if (controlItem.jkImplementationStatus && controlItem.jkImplementationStatus.startsWith("Applicable")) {
 
         		select.value = controlItem.jkImplementationStatus;
 
 				const textarea = document.createElement('textarea');
 				textarea.classList.add('form-field'); // Ensure the class matches your query
-				textarea.name = sanitizeForId(controlItem.control_number) + '_evidence';
+				textarea.name = sanitizeForId(controlItem.control_number) + '_jkImplementationEvidence';
 				textarea.value = controlItem.jkImplementationEvidence; // Use .value for inputs
 				textarea.disabled = true;
 	
@@ -119,7 +119,7 @@ function createRisk(field, capturedData, sanitizeForId) {
         		select.value = options[0]?.trim();
 				
 				const input = document.createElement('textarea');
-				input.name = sanitizeForId(controlItem.control_number) + '_evidence';
+				input.name = sanitizeForId(controlItem.control_number) + '_jkImplementationEvidence';
 				input.placeholder = controlItem.jkImplementationEvidence;
 
 				controlText.appendChild(input); // Nest span inside label
