@@ -43,136 +43,13 @@ class DataCapture {
         if (!fieldName) return;
 
         const sanitizedId = this.templateManager.sanitizeForId(fieldControlNumber);
-
-        // Handle MultiSelect (checkboxes)
-        if (fieldType && fieldType.startsWith('MultiSelect')) {
-            this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
-            //this.captureMultiSelect(field, sanitizedId, fieldName, currentData);
-        }
-        // Handle Option box (radio buttons)
-        //else if (fieldType && fieldType.startsWith('Option box with values')) {
-        //    this.captureOptionBox(field, sanitizedId, fieldName, currentData);
-        //}
-        // Handle requirement fields
-        else if (fieldType === 'requirement') {
-            this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
-            //this.captureRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number), fieldName, currentData);
-        }    
-        // Handle risk fields
-        else if (fieldType === 'risk') {
-             this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
-            //this.captureRisk(field, sanitizedId, fieldName, currentData);
-        }
-        // Handle plan fields
-        else if (fieldType === 'plan') {
-            this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
-            //this.capturePlan(field, sanitizedId, fieldName, currentData);
-        }
-        // Handle comply fields
-        else if (fieldType === 'comply') {
-            this.captureComply(fieldName, currentData);
-        }
-        // Handle standard fields
-        else {
-            this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
-        }
+        this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
 
         // Recurse into nested fields
         if (field.Fields && Array.isArray(field.Fields)) {
             field.Fields.forEach(f => this.captureField(f, currentData));
         }
     }
-
-//    captureMultiSelect(field, sanitizedId, fieldName, currentData) {
-//        const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]:checked`);
-//        if (checkboxes.length > 0) {
-//        	currentData[field.control_number] = fieldName;
-//			currentData[sanitizedId + "_response"] = Array.from(checkboxes).map(cb => cb.value);
-//        } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"]`)) {
-//            delete currentData[sanitizedId + "_response"];
-//        }
-//    }
-
-    captureOptionBox(field, sanitizedId, fieldName, currentData) {
-        const checked = document.querySelector(`input[name="${sanitizedId}_response"]:checked`);
-        if (checked) {
-           currentData[field.control_number] = fieldName;
-            currentData[sanitizedId + "_response"] = checked.value;
-        } else if (document.querySelector(`input[name="${sanitizedId}_response"]`)) {
-            delete currentData[sanitizedId] + "_response";
-        }
-    }
-
-//captureRequirement(field, sanitizedId, fieldName, currentData) {
-    //const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
-    // Only update if value exists and has changed
-    //if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
-    //    if (currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
-    //        currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
-    //        currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
-    //    }
-    //} else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
-    //    // Only delete if it previously had a value
-    //    delete currentData[sanitizedId + '_jkSoa'];
-     //   delete currentData[sanitizedId + '_requirement']
-    //}
-//}
-//captureRisk(field, sanitizedId, fieldName, currentData) {
-//    const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-//    
-//    // Only update if value exists and has changed
-//    if (riskSelect && riskSelect.value) {
-//        if (currentData[fieldName] !== riskSelect.value) {
-//            currentData[fieldName] = riskSelect.value;
-//        }
-//    } else if (riskSelect && currentData[fieldName]) {
-//        // Only delete if it previously had a value
-//        delete currentData[fieldName];
-//    }
-//
-//    if (field.controls && Array.isArray(field.controls)) {
-//        field.controls.forEach(control => {
-//            const controlKey = this.templateManager.sanitizeForId(control.control_number);
-//            const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
-//            const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
-//
-//            const statusValue = statusElement ? statusElement.value : null;
-//            const evidenceValue = evidenceElement ? evidenceElement.value : null;
-//
-//			if (
-//				(statusValue !== null && statusValue !== "") || 
-//				(evidenceValue !== null && evidenceValue !== "")
-//			) {
-//				currentData[control.control_number] = control.jkText;
-//				currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
-//				currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
-//			}
-            
-//        });
-//    }
-//}
-
-//capturePlan(field, sanitizedId, fieldName, currentData) {
-//    if (field.controls && Array.isArray(field.controls)) {
-//        field.controls.forEach((criteria, index) => {
-//            const criteriaKey = this.templateManager.sanitizeForId(criteria.control_number);
-//
-//            
-//            const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_jkImplementationEvidence"]`);
-//            
-//            if (textareaElement && textareaElement.value) {
-//                // Only update if value has changed
-//                if (currentData[criteriaKey] !== textareaElement.value) {
-//                    currentData[criteria.control_number] = criteria.jkText;
-//                    currentData[`${criteriaKey}_jkImplementationEvidence`] = textareaElement.value;
-//                }
-//            } else if (textareaElement && currentData[criteriaKey]) {
-//                // Only delete if it previously had a value
-//                delete currentData[criteriaKey];
-//            }
-//        });
-//    }
-//}
 
     captureComply(fieldName, currentData) {
         const complySelects = document.querySelectorAll('select[name$="_complystatus"]');
@@ -192,20 +69,6 @@ class DataCapture {
         }
     }
 
-//    captureStandard(field, sanitizedId, fieldName, currentData) {
-//        const inputElement = document.getElementById(sanitizedId + "_response");
-//
- //       if (inputElement) {
- //           if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
- //               if (inputElement.value) {
-//                    currentData[field.control_number] = fieldName;
-//                    currentData[sanitizedId + "_response"] = inputElement.value;
-//                } else {
-//                    delete currentData[sanitizedId];
-//                }
-//            }
-//        }
-//    }
 }
 
 const dataCapture = new DataCapture(state, templateManager);
