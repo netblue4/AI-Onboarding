@@ -111,36 +111,20 @@ class TemplateManager {
 						break;
 	
 					case "risk":
-						const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-						
-						// Only update if value exists and has changed
-						if (riskSelect && riskSelect.value) {
-							if (currentData[fieldName] !== riskSelect.value) {
-								currentData[fieldName] = riskSelect.value;
-							}
-						} else if (riskSelect && currentData[fieldName]) {
-							// Only delete if it previously had a value
-							delete currentData[fieldName];
-						}
-					
 						if (field.controls && Array.isArray(field.controls)) {
 							field.controls.forEach(control => {
 								const controlKey = this.sanitizeForId(control.control_number);
 								const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
 								const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
 					
-								const statusValue = statusElement ? statusElement.value : null;
-								const evidenceValue = evidenceElement ? evidenceElement.value : null;
+								const statusValue = statusElement ? statusElement.value : "Select";
+								const evidenceValue = evidenceElement ? evidenceElement.value : "";
 					
-								if (
-									(statusValue !== null && statusValue !== "") || 
-									(evidenceValue !== null && evidenceValue !== "")
-								) {
+								if ((statusValue !== "Select") || (evidenceValue !== "")) {
 									currentData[control.control_number] = control.jkText;
 									currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
 									currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
 								}
-								
 							});
 						}	
 						break;
@@ -172,11 +156,6 @@ class TemplateManager {
 						break;
 	
 					case "risk":
-						if (this.state.capturedData[field.jkName]) {
-							const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-							if (riskSelect) riskSelect.value = this.state.capturedData[field.jkName];
-						}
-				
 						if (field.controls && Array.isArray(field.controls)) {
 							field.controls.forEach(control => {
 								const controlKey = this.templateManager.sanitizeForId(control.control_number);
