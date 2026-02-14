@@ -112,7 +112,7 @@ class TemplateManager {
 	
 					case "risk":
 					case "plan":
-						currentData[control.jkName] = control.jkText;
+						currentData[field.jkName] = field.jkText;
 						if (field.controls && Array.isArray(field.controls)) {
 							field.controls.forEach(control => {
 								const controlKey = this.sanitizeForId(control.control_number);
