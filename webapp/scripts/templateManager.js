@@ -130,16 +130,29 @@ class TemplateManager {
 						}	
 						break;
 						
-					default:
-						const sanitizedId_default = this.sanitizeForId(field.control_number);
-						const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_default}_response"]:checked`);
+					case "MultiSelect":
+						const sanitizedId_mul = this.sanitizeForId(field.control_number);
+						const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_mul}_response"]:checked`);
 						if (checkboxes.length > 0) {
-							currentData[sanitizedId_default + "_response"] = Array.from(checkboxes).map(cb => cb.value);
-						} else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId_default}_response"]`)) {
-							delete currentData[sanitizedId_default + "_response"];
+							currentData[sanitizedId_mul + "_response"] = Array.from(checkboxes).map(cb => cb.value);
+						} else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId_mul}_response"]`)) {
+							delete currentData[sanitizedId_mul + "_response"];
 						}						
 						break;
 						
+				    default:	
+						const sanitizedId_default = this.sanitizeForId(field.control_number);
+						const inputElement = document.getElementById(sanitizedId_default + "_response");
+						if (inputElement) {
+							if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
+								if (inputElement.value) {
+									currentData[field.control_number] = fieldName;
+									currentData[sanitizedId_default + "_response"] = inputElement.value;
+								} else {
+									delete currentData[sanitizedId_default];
+								}
+							}
+						}						
 				}
 				break; // Break for "captureData" case
 	
@@ -175,19 +188,29 @@ class TemplateManager {
 						}					
 						break;
 							
-					default:
-						const sanitizedId_default = this.sanitizeForId(field.control_number);
-						const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_default}_response"]`);
+					case "MultiSelect":
+						const sanitizedId_mul = this.sanitizeForId(field.control_number);
+						const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_mul}_response"]`);
 						allCheckboxes.forEach(cb => cb.checked = false);
 				
-						const selectedValues = this.state.capturedData[sanitizedId_default + "_response"];
+						const selectedValues = this.state.capturedData[sanitizedId_mul + "_response"];
 						if (Array.isArray(selectedValues)) {
 							selectedValues.forEach(value => {
-								const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId_default}_response"][value="${value}"]`);
+								const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId_mul}_response"][value="${value}"]`);
 								if (checkbox) checkbox.checked = true;
 							});
 						}					
 						break;
+						
+				    default:	
+				        const sanitizedId_default = this.sanitizeForId(field.control_number);
+						if (this.state.capturedData[sanitizedId_default + "_response"]) {
+							const inputElement = document.getElementById(sanitizedId_default + "_response");
+							if (inputElement) {
+								inputElement.value = this.state.capturedData[sanitizedId + "_response"];
+							}
+						}
+				      return null;
 						
 				}
 				break; // Break for "retrieveData" case
