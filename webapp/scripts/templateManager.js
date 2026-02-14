@@ -131,12 +131,12 @@ class TemplateManager {
 						break;
 						
 					default:
-						const sanitizedId = this.sanitizeForId(field.control_number) + "_response";
-						const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]:checked`);
+						const sanitizedId_default = this.sanitizeForId(field.control_number) + "_response";
+						const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_default}_response"]:checked`);
 						if (checkboxes.length > 0) {
-							currentData[sanitizedId + "_response"] = Array.from(checkboxes).map(cb => cb.value);
-						} else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"]`)) {
-							delete currentData[sanitizedId + "_response"];
+							currentData[sanitizedId_default + "_response"] = Array.from(checkboxes).map(cb => cb.value);
+						} else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId_default}_response"]`)) {
+							delete currentData[sanitizedId_default + "_response"];
 						}						
 						break;
 						
@@ -176,14 +176,14 @@ class TemplateManager {
 						break;
 							
 					default:
-						const sanitizedId = this.sanitizeForId(field.control_number) + "_response";
-						const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]`);
+						const sanitizedId_default = this.sanitizeForId(field.control_number) + "_response";
+						const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_default}_response"]`);
 						allCheckboxes.forEach(cb => cb.checked = false);
 				
-						const selectedValues = this.state.capturedData[sanitizedId + "_response"];
+						const selectedValues = this.state.capturedData[sanitizedId_default + "_response"];
 						if (Array.isArray(selectedValues)) {
 							selectedValues.forEach(value => {
-								const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"][value="${value}"]`);
+								const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId_default}_response"][value="${value}"]`);
 								if (checkbox) checkbox.checked = true;
 							});
 						}					
