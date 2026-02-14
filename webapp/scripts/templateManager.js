@@ -103,7 +103,7 @@ class TemplateManager {
 								this.state.capturedData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
 								this.state.capturedData[sanitizedId + '_jkSoa'] = requirementSelect.value;
 							}
-						} else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
+						} else if (requirementSelect && capturedData[sanitizedId + '_jkSoa']) {
 							// Only delete if it previously had a value
 							delete this.state.capturedData[sanitizedId + '_jkSoa'];
 							delete this.state.capturedData[sanitizedId + '_requirement']
