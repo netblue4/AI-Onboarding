@@ -29,7 +29,7 @@ class DataRestore {
             const fieldType = field.jkType;
 
             if (fieldType && fieldType.startsWith('MultiSelect')) {
-                this.restoreMultiSelect(sanitizedId, field.jkName);
+                this.templateManager.fieldHelper(field, fieldType, "retrieveData");
             } else if (fieldType && fieldType.startsWith('Option box with values')) {
                 this.restoreOptionBox(sanitizedId, field.jkName);
             } else if (fieldType === 'requirement') {
@@ -46,18 +46,18 @@ class DataRestore {
         }, 100);
     }
 
-    restoreMultiSelect(sanitizedId, fieldName) {
-        const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]`);
-        allCheckboxes.forEach(cb => cb.checked = false);
-
-        const selectedValues = this.state.capturedData[sanitizedId + "_response"];
-        if (Array.isArray(selectedValues)) {
-            selectedValues.forEach(value => {
-                const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"][value="${value}"]`);
-                if (checkbox) checkbox.checked = true;
-            });
-        }
-    }
+//    restoreMultiSelect(sanitizedId, fieldName) {
+//        const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]`);
+//        allCheckboxes.forEach(cb => cb.checked = false);
+//
+//        const selectedValues = this.state.capturedData[sanitizedId + "_response"];
+//        if (Array.isArray(selectedValues)) {
+//            selectedValues.forEach(value => {
+//                const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"][value="${value}"]`);
+//                if (checkbox) checkbox.checked = true;
+//            });
+//        }
+//    }
 
     restoreOptionBox(sanitizedId, fieldName) {
         if (this.state.capturedData.hasOwnProperty(sanitizedId)) {

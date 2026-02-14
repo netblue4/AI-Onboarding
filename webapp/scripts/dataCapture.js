@@ -46,12 +46,13 @@ class DataCapture {
 
         // Handle MultiSelect (checkboxes)
         if (fieldType && fieldType.startsWith('MultiSelect')) {
-            this.captureMultiSelect(field, sanitizedId, fieldName, currentData);
+            this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
+            //this.captureMultiSelect(field, sanitizedId, fieldName, currentData);
         }
         // Handle Option box (radio buttons)
-        else if (fieldType && fieldType.startsWith('Option box with values')) {
-            this.captureOptionBox(field, sanitizedId, fieldName, currentData);
-        }
+        //else if (fieldType && fieldType.startsWith('Option box with values')) {
+        //    this.captureOptionBox(field, sanitizedId, fieldName, currentData);
+        //}
         // Handle requirement fields
         else if (fieldType === 'requirement') {
             this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
@@ -82,15 +83,15 @@ class DataCapture {
         }
     }
 
-    captureMultiSelect(field, sanitizedId, fieldName, currentData) {
-        const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]:checked`);
-        if (checkboxes.length > 0) {
-        	currentData[field.control_number] = fieldName;
-			currentData[sanitizedId + "_response"] = Array.from(checkboxes).map(cb => cb.value);
-        } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"]`)) {
-            delete currentData[sanitizedId + "_response"];
-        }
-    }
+//    captureMultiSelect(field, sanitizedId, fieldName, currentData) {
+//        const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId}_response"]:checked`);
+//        if (checkboxes.length > 0) {
+//        	currentData[field.control_number] = fieldName;
+//			currentData[sanitizedId + "_response"] = Array.from(checkboxes).map(cb => cb.value);
+//        } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId}_response"]`)) {
+//            delete currentData[sanitizedId + "_response"];
+//        }
+//    }
 
     captureOptionBox(field, sanitizedId, fieldName, currentData) {
         const checked = document.querySelector(`input[name="${sanitizedId}_response"]:checked`);
