@@ -72,30 +72,30 @@ class DataRestore {
         //    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
         //    if (requirementSelect) requirementSelect.value = this.state.capturedData[sanitizedId + '_jkSoa'];
         //}	
-	}
+	//}
 	
-    restoreRisk(field, sanitizedId) {
-        if (this.state.capturedData[field.jkName]) {
-            const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-            if (riskSelect) riskSelect.value = this.state.capturedData[field.jkName];
-        }
-
-        if (field.controls && Array.isArray(field.controls)) {
-            field.controls.forEach(control => {
-                const controlKey = this.templateManager.sanitizeForId(control.control_number);
-
-                const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
-                if (statusElement && this.state.capturedData[`${controlKey}_jkImplementationStatus`]) {
-                    statusElement.value = this.state.capturedData[`${controlKey}_jkImplementationStatus`];
-                }
-
-                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
-                if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
-                    evidenceElement.value = this.state.capturedData[`${controlKey}_jkImplementationEvidence`];
-                }
-            });
-        }
-    }
+    //restoreRisk(field, sanitizedId) {
+    //    if (this.state.capturedData[field.jkName]) {
+    //        const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
+    //        if (riskSelect) riskSelect.value = this.state.capturedData[field.jkName];
+    //    }
+//
+//        if (field.controls && Array.isArray(field.controls)) {
+//            field.controls.forEach(control => {
+//                const controlKey = this.templateManager.sanitizeForId(control.control_number);
+//
+//                const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
+//                if (statusElement && this.state.capturedData[`${controlKey}_jkImplementationStatus`]) {
+//                    statusElement.value = this.state.capturedData[`${controlKey}_jkImplementationStatus`];
+//                }
+//
+//                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+//                if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
+//                    evidenceElement.value = this.state.capturedData[`${controlKey}_jkImplementationEvidence`];
+//                }
+//            });
+//        }
+//    }
 
     restorePlan(field, sanitizedId) {
         if (field.controls && Array.isArray(field.controls)) {

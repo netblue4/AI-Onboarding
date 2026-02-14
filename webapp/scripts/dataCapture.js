@@ -115,40 +115,40 @@ class DataCapture {
      //   delete currentData[sanitizedId + '_requirement']
     //}
 //}
-captureRisk(field, sanitizedId, fieldName, currentData) {
-    const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-    
-    // Only update if value exists and has changed
-    if (riskSelect && riskSelect.value) {
-        if (currentData[fieldName] !== riskSelect.value) {
-            currentData[fieldName] = riskSelect.value;
-        }
-    } else if (riskSelect && currentData[fieldName]) {
-        // Only delete if it previously had a value
-        delete currentData[fieldName];
-    }
-
-    if (field.controls && Array.isArray(field.controls)) {
-        field.controls.forEach(control => {
-            const controlKey = this.templateManager.sanitizeForId(control.control_number);
-            const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
-            const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
-
-            const statusValue = statusElement ? statusElement.value : null;
-            const evidenceValue = evidenceElement ? evidenceElement.value : null;
-
-			if (
-				(statusValue !== null && statusValue !== "") || 
-				(evidenceValue !== null && evidenceValue !== "")
-			) {
-				currentData[control.control_number] = control.jkText;
-				currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
-				currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
-			}
+//captureRisk(field, sanitizedId, fieldName, currentData) {
+//    const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
+//    
+//    // Only update if value exists and has changed
+//    if (riskSelect && riskSelect.value) {
+//        if (currentData[fieldName] !== riskSelect.value) {
+//            currentData[fieldName] = riskSelect.value;
+//        }
+//    } else if (riskSelect && currentData[fieldName]) {
+//        // Only delete if it previously had a value
+//        delete currentData[fieldName];
+//    }
+//
+//    if (field.controls && Array.isArray(field.controls)) {
+//        field.controls.forEach(control => {
+//            const controlKey = this.templateManager.sanitizeForId(control.control_number);
+//            const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
+//            const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+//
+//            const statusValue = statusElement ? statusElement.value : null;
+//            const evidenceValue = evidenceElement ? evidenceElement.value : null;
+//
+//			if (
+//				(statusValue !== null && statusValue !== "") || 
+//				(evidenceValue !== null && evidenceValue !== "")
+//			) {
+//				currentData[control.control_number] = control.jkText;
+//				currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
+//				currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
+//			}
             
-        });
-    }
-}
+//        });
+//    }
+//}
 
 capturePlan(field, sanitizedId, fieldName, currentData) {
     if (field.controls && Array.isArray(field.controls)) {
