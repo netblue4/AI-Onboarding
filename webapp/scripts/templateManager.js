@@ -95,7 +95,7 @@ class TemplateManager {
 					case "requirement":
 						// Use 'this.' to call class methods
 						const sanitizedId = this.sanitizeForId(field.requirement_control_number);
-						const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+						const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
 						
 						// Only update if value exists and is not the default 'Select'
 						if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
