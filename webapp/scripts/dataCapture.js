@@ -54,12 +54,13 @@ class DataCapture {
         }
         // Handle requirement fields
         else if (fieldType === 'requirement') {
-            this.templateManager.fieldHelper(field,"captureData", currentData);
+            this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
             //this.captureRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number), fieldName, currentData);
         }    
         // Handle risk fields
         else if (fieldType === 'risk') {
-            this.captureRisk(field, sanitizedId, fieldName, currentData);
+             this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
+            //this.captureRisk(field, sanitizedId, fieldName, currentData);
         }
         // Handle plan fields
         else if (fieldType === 'plan') {
@@ -100,20 +101,20 @@ class DataCapture {
         }
     }
 
-captureRequirement(field, sanitizedId, fieldName, currentData) {
-    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+//captureRequirement(field, sanitizedId, fieldName, currentData) {
+    //const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
     // Only update if value exists and has changed
-    if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
-        if (currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
-            currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
-            currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
-        }
-    } else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
-        // Only delete if it previously had a value
-        delete currentData[sanitizedId + '_jkSoa'];
-        delete currentData[sanitizedId + '_requirement']
-    }
-}
+    //if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
+    //    if (currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
+    //        currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
+    //        currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
+    //    }
+    //} else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
+    //    // Only delete if it previously had a value
+    //    delete currentData[sanitizedId + '_jkSoa'];
+     //   delete currentData[sanitizedId + '_requirement']
+    //}
+//}
 captureRisk(field, sanitizedId, fieldName, currentData) {
     const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
     

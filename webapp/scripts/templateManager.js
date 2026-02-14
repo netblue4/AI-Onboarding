@@ -83,7 +83,7 @@ class TemplateManager {
 	 * @param {string} operation - Either "captureData" or "retrieveData".
 	 * @returns {void}
 	 */
-	fieldHelper(field, operation, currentData) {
+	fieldHelper(field, fieldType, operation, currentData = null) {
 		if (!field || !field.jkType) return null;
 	
 		// Clean the type (e.g., "MultiSelect:PDF" -> "MultiSelect")
@@ -110,7 +110,41 @@ class TemplateManager {
 						}
 						break;
 	
-					case "risk_control":
+					case "risk":
+						const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
+						
+						// Only update if value exists and has changed
+						if (riskSelect && riskSelect.value) {
+							if (currentData[fieldName] !== riskSelect.value) {
+								currentData[fieldName] = riskSelect.value;
+							}
+						} else if (riskSelect && currentData[fieldName]) {
+							// Only delete if it previously had a value
+							delete currentData[fieldName];
+						}
+					
+						if (field.controls && Array.isArray(field.controls)) {
+							field.controls.forEach(control => {
+								const controlKey = this.templateManager.sanitizeForId(control.control_number);
+								const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
+								const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+					
+								const statusValue = statusElement ? statusElement.value : null;
+								const evidenceValue = evidenceElement ? evidenceElement.value : null;
+					
+								if (
+									(statusValue !== null && statusValue !== "") || 
+									(evidenceValue !== null && evidenceValue !== "")
+								) {
+									currentData[control.control_number] = control.jkText;
+									currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
+									currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
+								}
+								
+							});
+						}	
+						break;
+						
 					case "test_control":
 					case "MultiSelect":
 					case "TextBox":
@@ -137,7 +171,29 @@ class TemplateManager {
 						}
 						break;
 	
-					case "risk_control":
+					case "risk":
+						if (this.state.capturedData[field.jkName]) {
+							const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
+							if (riskSelect) riskSelect.value = this.state.capturedData[field.jkName];
+						}
+				
+						if (field.controls && Array.isArray(field.controls)) {
+							field.controls.forEach(control => {
+								const controlKey = this.templateManager.sanitizeForId(control.control_number);
+				
+								const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
+								if (statusElement && this.state.capturedData[`${controlKey}_jkImplementationStatus`]) {
+									statusElement.value = this.state.capturedData[`${controlKey}_jkImplementationStatus`];
+								}
+				
+								const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+								if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
+									evidenceElement.value = this.state.capturedData[`${controlKey}_jkImplementationEvidence`];
+								}
+							});
+						}					
+						break;
+						
 					case "test_control":
 					case "MultiSelect":
 					case "TextBox":

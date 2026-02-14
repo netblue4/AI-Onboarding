@@ -33,9 +33,9 @@ class DataRestore {
             } else if (fieldType && fieldType.startsWith('Option box with values')) {
                 this.restoreOptionBox(sanitizedId, field.jkName);
             } else if (fieldType === 'requirement') {
-                this.restoreRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number));
+                this.templateManager.fieldHelper(field, fieldType, "retrieveData");
             } else if (fieldType === 'risk') {
-                this.restoreRisk(field, sanitizedId);
+                this.templateManager.fieldHelper(field, fieldType, "retrieveData");
             } else if (fieldType === 'plan') {
                 this.restorePlan(field, sanitizedId);
             } else if (fieldType === 'comply') {
@@ -66,8 +66,8 @@ class DataRestore {
         }
     }
 
-	restoreRequirement(field, sanitizedId){	
-        this.templateManager.fieldHelper(field,"retrieveData");
+	//restoreRequirement(field, sanitizedId){	
+    //    this.templateManager.fieldHelper(field,"retrieveData");
         //if (this.state.capturedData[sanitizedId  + '_jkSoa']) { 
         //    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
         //    if (requirementSelect) requirementSelect.value = this.state.capturedData[sanitizedId + '_jkSoa'];
