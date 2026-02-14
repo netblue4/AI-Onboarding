@@ -84,7 +84,7 @@ class TemplateManager {
 	 * @param {object} field - The actual field object/node to query
 	 * @returns {*} The value of the property if the type matches, otherwise null.
 	 */
-	function fieldInspector(targetType, property, field) {
+	fieldInspector(targetType, property, field) {
 		// 1. Safety check: ensure the field exists and has a jkType
 		if (!field || !field.jkType) {
 			return null;
