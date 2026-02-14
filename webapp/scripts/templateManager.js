@@ -80,8 +80,8 @@ class TemplateManager {
 	/**
 	 * Handles data operations on a specific field node based on its jkType.
 	 * * @param {object} field - The actual JSON field object/node.
-	 * @param {string} operation - Either "dataStore" or "dataRetrieve".
-	 * @returns {*} The specific data value or storage ID associated with that type.
+	 * @param {string} operation - Either "captureData" or "retrieveData".
+	 * @returns {void}
 	 */
 	fieldHelper(field, operation) {
 		if (!field || !field.jkType) return null;
@@ -91,47 +91,66 @@ class TemplateManager {
 	
 		switch (operation) {
 			case "captureData":
-				// Logic to determine which ID to use for saving data in StateManager
 				switch (cleanType) {
 					case "requirement":
-						const sanitizedId = sanitizeForId(field.requirement_control_number);
+						// Use 'this.' to call class methods
+						const sanitizedId = this.sanitizeForId(field.requirement_control_number);
 						const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
-						// Only update if value exists and has changed
-						if (select && (select.value && select.value != 'Select')) {
-							if (this.state.currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
-								this.state.currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
-								this.state.currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
+						
+						// Only update if value exists and is not the default 'Select'
+						if (select && select.value && select.value !== 'Select') {
+							// Ensure we aren't duplicating work if data is the same
+							if (this.state.capturedData[sanitizedId + '_jkSoa'] !== select.value) {
+								this.state.capturedData[sanitizedId + '_requirement'] = field.jkName + ': ' + field.jkText;
+								this.state.capturedData[sanitizedId + '_jkSoa'] = select.value;
+							}
+						} else if (select && select.value === 'Select') {
+							// Clean up state if user reverts to 'Select'
+							delete this.state.capturedData[sanitizedId + '_jkSoa'];
+							delete this.state.capturedData[sanitizedId + '_requirement'];
+						}
+						break;
+	
+					case "risk_control":
+					case "test_control":
+					case "MultiSelect":
+					case "TextBox":
+					case "Option box":
+					case "Dropdown box":
+						// Add logic here for other types as needed
+						break;
+	
+					default:
+						break;
+				}
+				break; // Break for "captureData" case
+	
+			case "retrieveData":
+				switch (cleanType) {
+					case "requirement":
+						const sanitizedId = this.sanitizeForId(field.requirement_control_number);
+						// Check if we have saved data in the state
+						if (this.state.capturedData && this.state.capturedData[sanitizedId + '_jkSoa']) { 
+							const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+							if (select) {
+								select.value = this.state.capturedData[sanitizedId + '_jkSoa'];
 							}
 						}
-						if (select && this.state.currentData[sanitizedId + '_jkSoa'] && select.value != 'Select') {
-							delete this.state.currentData[sanitizedId + '_jkSoa'];
-							delete this.state.currentData[sanitizedId + '_requirement']
-						}
+						break;
+	
 					case "risk_control":
 					case "test_control":
 					case "MultiSelect":
 					case "TextBox":
 					case "Option box":
 					case "Dropdown box":
+						break;
+	
 					default:
+						break;
 				}
-			case "retrieveData":
-				// Logic to determine which ID to use for saving data in StateManager
-				switch (cleanType) {
-					case "requirement":
-						const sanitizedId = sanitizeForId(field.requirement_control_number);
-						if (this.state.capturedData[sanitizedId  + '_jkSoa']) { 
-							const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
-							if (select) select.value = this.state.capturedData[sanitizedId + '_jkSoa'];
-						}	
-					case "risk_control":
-					case "test_control":
-					case "MultiSelect":
-					case "TextBox":
-					case "Option box":
-					case "Dropdown box":
-					default:
-				}
+				break; // Break for "retrieveData" case
+	
 			default:
 				console.warn("Unknown operation:", operation);
 				return null;
