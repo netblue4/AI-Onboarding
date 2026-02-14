@@ -64,7 +64,8 @@ class DataCapture {
         }
         // Handle plan fields
         else if (fieldType === 'plan') {
-            this.capturePlan(field, sanitizedId, fieldName, currentData);
+            this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
+            //this.capturePlan(field, sanitizedId, fieldName, currentData);
         }
         // Handle comply fields
         else if (fieldType === 'comply') {
@@ -150,27 +151,27 @@ class DataCapture {
 //    }
 //}
 
-capturePlan(field, sanitizedId, fieldName, currentData) {
-    if (field.controls && Array.isArray(field.controls)) {
-        field.controls.forEach((criteria, index) => {
-            const criteriaKey = this.templateManager.sanitizeForId(criteria.control_number);
-
-            
-            const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_jkImplementationEvidence"]`);
-            
-            if (textareaElement && textareaElement.value) {
-                // Only update if value has changed
-                if (currentData[criteriaKey] !== textareaElement.value) {
-                    currentData[criteria.control_number] = criteria.jkText;
-                    currentData[`${criteriaKey}_jkImplementationEvidence`] = textareaElement.value;
-                }
-            } else if (textareaElement && currentData[criteriaKey]) {
-                // Only delete if it previously had a value
-                delete currentData[criteriaKey];
-            }
-        });
-    }
-}
+//capturePlan(field, sanitizedId, fieldName, currentData) {
+//    if (field.controls && Array.isArray(field.controls)) {
+//        field.controls.forEach((criteria, index) => {
+//            const criteriaKey = this.templateManager.sanitizeForId(criteria.control_number);
+//
+//            
+//            const textareaElement = document.querySelector(`textarea[name="${criteriaKey}_jkImplementationEvidence"]`);
+//            
+//            if (textareaElement && textareaElement.value) {
+//                // Only update if value has changed
+//                if (currentData[criteriaKey] !== textareaElement.value) {
+//                    currentData[criteria.control_number] = criteria.jkText;
+//                    currentData[`${criteriaKey}_jkImplementationEvidence`] = textareaElement.value;
+//                }
+//            } else if (textareaElement && currentData[criteriaKey]) {
+//                // Only delete if it previously had a value
+//                delete currentData[criteriaKey];
+//            }
+//        });
+//    }
+//}
 
     captureComply(fieldName, currentData) {
         const complySelects = document.querySelectorAll('select[name$="_complystatus"]');

@@ -111,6 +111,8 @@ class TemplateManager {
 						break;
 	
 					case "risk":
+					case "plan":
+						currentData[control.jkName] = control.jkText;
 						if (field.controls && Array.isArray(field.controls)) {
 							field.controls.forEach(control => {
 								const controlKey = this.sanitizeForId(control.control_number);
@@ -121,7 +123,7 @@ class TemplateManager {
 								const evidenceValue = evidenceElement ? evidenceElement.value : "";
 					
 								if ((statusValue !== "Select") || (evidenceValue !== "")) {
-									currentData[control.control_number] = control.jkText;
+									currentData[controlKey] = control.jkText;
 									currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
 									currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
 								}
@@ -129,7 +131,6 @@ class TemplateManager {
 						}	
 						break;
 						
-					case "test_control":
 					case "MultiSelect":
 					case "TextBox":
 					case "Option box":
@@ -156,6 +157,7 @@ class TemplateManager {
 						break;
 	
 					case "risk":
+					case "plan":
 						if (field.controls && Array.isArray(field.controls)) {
 							field.controls.forEach(control => {
 								const controlKey = this.templateManager.sanitizeForId(control.control_number);
@@ -174,6 +176,8 @@ class TemplateManager {
 						break;
 						
 					case "test_control":
+					
+				
 					case "MultiSelect":
 					case "TextBox":
 					case "Option box":

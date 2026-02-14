@@ -37,7 +37,7 @@ class DataRestore {
             } else if (fieldType === 'risk') {
                 this.templateManager.fieldHelper(field, fieldType, "retrieveData");
             } else if (fieldType === 'plan') {
-                this.restorePlan(field, sanitizedId);
+                this.templateManager.fieldHelper(field, fieldType, "retrieveData");
             } else if (fieldType === 'comply') {
                 this.restoreComply(field.jkName);
             } else {
@@ -97,19 +97,19 @@ class DataRestore {
 //        }
 //    }
 
-    restorePlan(field, sanitizedId) {
-        if (field.controls && Array.isArray(field.controls)) {
-            field.controls.forEach((criteria, index) => {
-                            	
-            	const controlKey = this.templateManager.sanitizeForId(criteria.control_number);
-                
-                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
-                if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
-                    evidenceElement.value = this.state.capturedData[`${controlKey}_jkImplementationEvidence`];
-                } 
-            });
-        }
-    }
+//    restorePlan(field, sanitizedId) {
+//        if (field.controls && Array.isArray(field.controls)) {
+//            field.controls.forEach((criteria, index) => {
+//                            	
+//            	const controlKey = this.templateManager.sanitizeForId(criteria.control_number);
+//                
+//                const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+//                if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
+//                    evidenceElement.value = this.state.capturedData[`${controlKey}_jkImplementationEvidence`];
+//                } 
+//            });
+//        }
+//    }
 
     restoreComply(fieldName) {
         const complyData = this.state.capturedData[fieldName];
