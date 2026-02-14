@@ -131,7 +131,7 @@ class TemplateManager {
 						break;
 						
 					default:
-						const sanitizedId_default = this.sanitizeForId(field.control_number) + "_response";
+						const sanitizedId_default = this.sanitizeForId(field.control_number);
 						const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_default}_response"]:checked`);
 						if (checkboxes.length > 0) {
 							currentData[sanitizedId_default + "_response"] = Array.from(checkboxes).map(cb => cb.value);
@@ -176,7 +176,7 @@ class TemplateManager {
 						break;
 							
 					default:
-						const sanitizedId_default = this.sanitizeForId(field.control_number) + "_response";
+						const sanitizedId_default = this.sanitizeForId(field.control_number);
 						const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_default}_response"]`);
 						allCheckboxes.forEach(cb => cb.checked = false);
 				
