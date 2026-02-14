@@ -74,7 +74,7 @@ class DataCapture {
         }
         // Handle standard fields
         else {
-            this.captureStandard(field, sanitizedId, fieldName, currentData);
+            this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
         }
 
         // Recurse into nested fields
@@ -192,20 +192,20 @@ class DataCapture {
         }
     }
 
-    captureStandard(field, sanitizedId, fieldName, currentData) {
-        const inputElement = document.getElementById(sanitizedId + "_response");
-
-        if (inputElement) {
-            if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
-                if (inputElement.value) {
-                    currentData[field.control_number] = fieldName;
-                    currentData[sanitizedId + "_response"] = inputElement.value;
-                } else {
-                    delete currentData[sanitizedId];
-                }
-            }
-        }
-    }
+//    captureStandard(field, sanitizedId, fieldName, currentData) {
+//        const inputElement = document.getElementById(sanitizedId + "_response");
+//
+ //       if (inputElement) {
+ //           if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
+ //               if (inputElement.value) {
+//                    currentData[field.control_number] = fieldName;
+//                    currentData[sanitizedId + "_response"] = inputElement.value;
+//                } else {
+//                    delete currentData[sanitizedId];
+//                }
+//            }
+//        }
+//    }
 }
 
 const dataCapture = new DataCapture(state, templateManager);

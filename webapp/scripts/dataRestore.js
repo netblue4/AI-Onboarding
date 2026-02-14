@@ -41,7 +41,7 @@ class DataRestore {
             } else if (fieldType === 'comply') {
                 this.restoreComply(field.jkName);
             } else {
-                this.restoreStandard(sanitizedId, field.jkName);
+                this.templateManager.fieldHelper(field, fieldType, "retrieveData");
             }
         }, 100);
     }
@@ -123,14 +123,14 @@ class DataRestore {
         }
     }
 
-    restoreStandard(sanitizedId, fieldName) {
-        if (this.state.capturedData.hasOwnProperty(sanitizedId + "_response")) {
-            const inputElement = document.getElementById(sanitizedId + "_response");
-            if (inputElement) {
-                inputElement.value = this.state.capturedData[sanitizedId + "_response"];
-            }
-        }
-    }
+//    restoreStandard(sanitizedId, fieldName) {
+//        if (this.state.capturedData.hasOwnProperty(sanitizedId + "_response")) {
+//            const inputElement = document.getElementById(sanitizedId + "_response");
+//            if (inputElement) {
+//                inputElement.value = this.state.capturedData[sanitizedId + "_response"];
+//            }
+//        }
+//    }
 }
 
 const dataRestore = new DataRestore(state, templateManager);
