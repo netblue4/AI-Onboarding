@@ -98,16 +98,16 @@ class TemplateManager {
 						const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
 						
 						// Only update if value exists and is not the default 'Select'
-						if (select && select.value && select.value !== 'Select') {
-							// Ensure we aren't duplicating work if data is the same
-							if (this.state.capturedData[sanitizedId + '_jkSoa'] !== select.value) {
-								this.state.capturedData[sanitizedId + '_requirement'] = field.jkName + ': ' + field.jkText;
-								this.state.capturedData[sanitizedId + '_jkSoa'] = select.value;
-							} { else if (select && this.state.currentData[sanitizedId + '_jkSoa']) {
-								// Only delete if it previously had a value
-								delete this.state.currentData[sanitizedId + '_jkSoa'];
-								delete this.state.currentData[sanitizedId + '_requirement']
+						if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
+							if (this.state.currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
+								this.state.currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
+								this.state.currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
 							}
+						} else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
+							// Only delete if it previously had a value
+							delete this.state.currentData[sanitizedId + '_jkSoa'];
+							delete this.state.currentData[sanitizedId + '_requirement']
+						}
 						break;
 	
 					case "risk_control":
