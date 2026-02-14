@@ -67,10 +67,11 @@ class DataRestore {
     }
 
 	restoreRequirement(field, sanitizedId){	
-        if (this.state.capturedData[sanitizedId  + '_jkSoa']) { 
-            const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
-            if (requirementSelect) requirementSelect.value = this.state.capturedData[sanitizedId + '_jkSoa'];
-        }	
+        this.templateManager.fieldHelper(field,"retrieveData");
+        //if (this.state.capturedData[sanitizedId  + '_jkSoa']) { 
+        //    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+        //    if (requirementSelect) requirementSelect.value = this.state.capturedData[sanitizedId + '_jkSoa'];
+        //}	
 	}
 	
     restoreRisk(field, sanitizedId) {

@@ -78,31 +78,93 @@ class TemplateManager {
 
 
 	/**
-	 * Returns a property value from a specific field object based on its jkType.
-	 * * @param {string} targetType - The type to verify (e.g., "MultiSelect", "requirement")
-	 * @param {string} property - The property name to retrieve (e.g., "jkObjective")
-	 * @param {object} field - The actual field object/node to query
-	 * @returns {*} The value of the property if the type matches, otherwise null.
+	 * Handles data operations on a specific field node based on its jkType.
+	 * * @param {object} field - The actual JSON field object/node.
+	 * @param {string} operation - Either "dataStore" or "dataRetrieve".
+	 * @returns {*} The specific data value or storage ID associated with that type.
 	 */
-	fieldInspector(targetType, property, field) {
-		// 1. Safety check: ensure the field exists and has a jkType
-		if (!field || !field.jkType) {
-			return null;
+	fieldHelper(field, operation) {
+		if (!field || !field.jkType) return null;
+	
+		// Clean the type (e.g., "MultiSelect:PDF" -> "MultiSelect")
+		const cleanType = String(field.jkType).split(':')[0];
+	
+		switch (operation) {
+			case "captureData":
+				// Logic to determine which ID to use for saving data in StateManager
+				switch (cleanType) {
+					case "requirement":
+						const sanitizedId = sanitizeForId(field.requirement_control_number);
+						const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+						// Only update if value exists and has changed
+						if (select && (select.value && select.value != 'Select')) {
+							if (this.state.currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
+								this.state.currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
+								this.state.currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
+							}
+						}
+						if (select && this.state.currentData[sanitizedId + '_jkSoa'] && select.value != 'Select') {
+							delete this.state.currentData[sanitizedId + '_jkSoa'];
+							delete this.state.currentData[sanitizedId + '_requirement']
+						}
+					case "risk_control":
+					case "test_control":
+					case "MultiSelect":
+					case "TextBox":
+					case "Option box":
+					case "Dropdown box":
+					default:
+				}
+			case "retrieveData":
+				// Logic to determine which ID to use for saving data in StateManager
+				switch (cleanType) {
+					case "requirement":
+						const sanitizedId = sanitizeForId(field.requirement_control_number);
+						if (this.state.capturedData[sanitizedId  + '_jkSoa']) { 
+							const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+							if (select) select.value = this.state.capturedData[sanitizedId + '_jkSoa'];
+						}	
+					case "risk_control":
+					case "test_control":
+					case "MultiSelect":
+					case "TextBox":
+					case "Option box":
+					case "Dropdown box":
+					default:
+				}
+			default:
+				console.warn("Unknown operation:", operation);
+				return null;
 		}
-	
-		// 2. Clean the jkType from the field (e.g., "MultiSelect:PDF" -> "MultiSelect")
-		// This ensures it matches the targetType you passed in.
-		const cleanFieldType = String(field.jkType).split(':')[0];
-	
-		// 3. If the types match, return the requested property
-		if (cleanFieldType === targetType) {
-			// We check both the exact property name and a lowercase version 
-			// to handle inconsistencies like "jkObjective" vs "JkObjective"
-			return field[property] || field[property.charAt(0).toUpperCase() + property.slice(1)] || null;
-		}
-	
-		return null;
 	}
+	
+	//const myJkTypes = [
+	//	"requirement",      // Standard compliance requirement
+	//	"fieldGroup",       // A container for other fields or controls
+	//	"MultiSelect",      // Fields with multiple options (e.g., "MultiSelect:PDF/Manual")
+	//	"TextBox",          // Standard text entry fields
+	//	"Option box",       // Yes/No selection boxes
+	//	"Dropdown box",     // Selection list (e.g., Low/Medium/High)
+	//	"risk",             // High-level risk definition
+	//	"risk_control",     // Specific control addressing a risk
+	//	"plan",             // Test or implementation plan
+	//	"test_control",     // Specific control for a test plan
+	//	"comply"            // The special field type for the compliance mapping
+	//];
+			
+	 //     //potential property values to query
+	 //     "requirement_control_number": 
+	 //     "control_number": 
+	 //     “jkName" 
+	 //     “jkText": 
+	 //     "jkType”: "test_control"
+	 //     “jkObjective”: 
+	 //     
+	 //     “jkImplementationStatus" 
+	 //     “jkImplementationEvidence": 
+	 //     “jkSoa": 	
+	 //     "_response"	
+	
 
 
     /**
