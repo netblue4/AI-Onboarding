@@ -146,7 +146,6 @@ class TemplateManager {
 						if (inputElement) {
 							if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
 								if (inputElement.value) {
-									currentData[field.control_number] = fieldName;
 									currentData[sanitizedId_default + "_response"] = inputElement.value;
 								} else {
 									delete currentData[sanitizedId_default];
@@ -207,7 +206,7 @@ class TemplateManager {
 						if (this.state.capturedData[sanitizedId_default + "_response"]) {
 							const inputElement = document.getElementById(sanitizedId_default + "_response");
 							if (inputElement) {
-								inputElement.value = this.state.capturedData[sanitizedId + "_response"];
+								inputElement.value = this.state.capturedData[sanitizedId_default + "_response"];
 							}
 						}
 				      return null;
