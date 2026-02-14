@@ -93,24 +93,24 @@ function buildComplianceMap(data, sanitizeForId) {
 
     // 3. Pass 1: Identify "Regulation/Group" nodes
     allFields.forEach(field => {
-        if (field.FieldType === 'fieldGroup' && field.controls && Array.isArray(field.controls)) {
+        if (field.jkType === 'fieldGroup' && field.controls && Array.isArray(field.controls)) {
             
-            const containsRequirements = field.controls.some(c => c.FieldType === 'requirement');
+            const containsRequirements = field.controls.some(c => c.jkType === 'requirement');
 
             if (containsRequirements) {
                 // Initialize the Map Entry
-                if (!complianceMap.has(field.FieldName)) {
-                    complianceMap.set(field.FieldName, {
+                if (!complianceMap.has(field.jkName)) {
+                    complianceMap.set(field.jkName, {
                         parentField: field,
                         subControlLinks: new Map()
                     });
                 }
 
-                const dataEntry = complianceMap.get(field.FieldName);
+                const dataEntry = complianceMap.get(field.jkName);
 
                 // Populate Sub-Controls ONLY if "Applicable"
                 field.controls.forEach(req => {
-                    if (req.FieldType === 'requirement') {
+                    if (req.jkType === 'requirement') {
                         const controlKey = req.requirement_control_number; 
                         
                         if (controlKey) {
@@ -123,7 +123,7 @@ function buildComplianceMap(data, sanitizeForId) {
                                 dataEntry.subControlLinks.set(controlKey, {
                                     subControl: {
                                         control_number: controlKey,
-                                        control_description: req.FieldText || req.FieldName, 
+                                        control_description: req.jkText || req.jkName, 
                                         original_obj: req
                                     },
                                     children: new Set()
@@ -139,7 +139,7 @@ function buildComplianceMap(data, sanitizeForId) {
 
     // 4. Pass 2: Link implementation nodes (Risk, Plan) to the requirements
     allFields.forEach(implNode => {
-        if (implNode.requirement_control_number && implNode.FieldType !== 'requirement') {
+        if (implNode.requirement_control_number && implNode.jkType !== 'requirement') {
             const implControlParts = String(implNode.requirement_control_number).split(',').map(s => s.trim());
 
             complianceMap.forEach((data) => {
@@ -226,7 +226,7 @@ function createRegHeader(parent, contentId, stats) {
     regHeader.innerHTML = `
         <div class="toggle-icon" style="margin-right:10px; font-weight:bold;">+</div>
         <div class="reg-header-content" style="flex-grow:1;">
-            <div class="reg-title" style="font-weight:bold; color:#1e40af;">${escapeHtml(parent.FieldName)}</div>
+            <div class="reg-title" style="font-weight:bold; color:#1e40af;">${escapeHtml(parent.jkName)}</div>
             
             <div class="stats-container" style="display:flex; flex-wrap:wrap; gap:15px; margin-top:5px; font-size:0.85em; color:#475569;">
                 <div title="Total Controls defined by the Article">
@@ -335,7 +335,7 @@ function createSubControlItem(subData, sanitizeForId) {
 function createSubControlTitle(subControl) {
     const titleDiv = document.createElement('div');
     titleDiv.className = 'sub-control-title';
-    titleDiv.innerHTML = `<strong>${escapeHtml(subControl.control_number)}</strong> - ${escapeHtml(subControl.control_description)}`;
+    titleDiv.innerHTML = `<strong>${escapeHtml(subControl.control_number)}</strong> - ${escapeHtml(subControl.jkText)}`;
     return titleDiv;
 }
 
@@ -400,7 +400,7 @@ function createImplementationItem(child, sanitizeForId) {
     impItem.className = 'imp-item';
     impItem.style.marginBottom = '5px';
     
-    const { typeClass, typeName } = getImplementationType(child.FieldType);
+    const { typeClass, typeName } = getImplementationType(child.jkType);
 
     // Create the badge
     const badge = document.createElement('span');
@@ -415,7 +415,7 @@ function createImplementationItem(child, sanitizeForId) {
     // Create title
     const titleDiv = document.createElement('div');
     titleDiv.className = 'imp-title';
-    titleDiv.textContent = child.FieldName;
+    titleDiv.textContent = child.jkName;
     contentDiv.appendChild(titleDiv);
 
     // Create requirement controls meta
@@ -428,7 +428,7 @@ function createImplementationItem(child, sanitizeForId) {
     contentDiv.appendChild(requirementDiv);
 
     // Create status/response meta
-	if (child.FieldType !== "risk" && child.FieldType !== "plan") {
+	if (child.jkType !== "risk" && child.jkType !== "plan") {
         
         // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS (Parent Items) ---
         totalImplementationFields++;
@@ -449,7 +449,7 @@ function createImplementationItem(child, sanitizeForId) {
 	}
 
     // Create controls section if applicable
-    if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
+    if (child.jkImplementationStatus !== "Not Applicable" && child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
         // Controls header
         const controlsHeaderDiv = document.createElement('div');
         controlsHeaderDiv.style.marginTop = '10px';
@@ -481,7 +481,7 @@ function createImplementationItem(child, sanitizeForId) {
             const controlNumberStrong = document.createElement('strong');
             controlNumberStrong.textContent = `${ctl.control_number || ''}: `;
             controlDiv.appendChild(controlNumberStrong);
-            controlDiv.appendChild(document.createTextNode(ctl.control_description || ''));
+            controlDiv.appendChild(document.createTextNode(ctl.jkText || ''));
 
             const brTag = document.createElement('br');
             controlDiv.appendChild(brTag);
@@ -572,7 +572,7 @@ function hasContent(val) {
 
 function generateContentId(parent) {
     // New JSON uses 'FieldName' for Groups (e.g. Transparency)
-    const base = parent.FieldName || "group"; 
+    const base = parent.jkName || "group"; 
     const safeIdBase = base.replace(/[^a-zA-Z0-9_]/g, '-');
     return `content-${safeIdBase}`;
 }
@@ -623,7 +623,7 @@ function calculateProgress(subControlLinks, sanitizeForId) {
                 subData.children.forEach(child => {
                     
                     // --- Count Implementation FIELDS (Parent Items) ---
-                    if (child.FieldType !== "risk" && child.FieldType !== "plan") {
+                    if (child.jkType !== "risk" && child.jkType !== "plan") {
                         localTotalImplementationFields++;
                         
                         const responseKey = sanitizeForId(child.control_number) + "_response";
@@ -635,7 +635,7 @@ function calculateProgress(subControlLinks, sanitizeForId) {
                     }
 
                     // --- Count Nested Implementation CONTROLS (Child Items) ---
-                    if (child.control_status !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
+                    if (child.jkImplementationStatus !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
                         child.controls.forEach(ctl => {
                             // Increment Implementation Controls
                             localTotalImplementationControls++;

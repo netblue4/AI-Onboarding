@@ -8,7 +8,7 @@ function createOptionBox(field, capturedData, sanitizeForId) {
     const radioGroupContainer = document.createElement('div');
     radioGroupContainer.className = 'radio-group-container';
 
-    const optionsString = field.FieldType.split(':')[1]?.trim() || '';
+    const optionsString = field.jkType.split(':')[1]?.trim() || '';
     const options = optionsString.split('/');
     const selectedValue = capturedData[sanitizedId] ?? null;
 
@@ -67,12 +67,12 @@ function createOptionBox(field, capturedData, sanitizeForId) {
 
         // Add the detailed labels INTO the collapsible container.
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.FieldName + ' - ' + field.requirement_control_number;
+        fieldLabel.textContent = field.jkName + ' - ' + field.requirement_control_number;
         fieldLabel.classList.add('label-bold');
         contentDiv.appendChild(fieldLabel);
 
-        if (field.FieldText && typeof field.FieldText === 'string') {
-            field.FieldText.split('||').forEach(lineText => {
+        if (field.jkText && typeof field.jkText === 'string') {
+            field.jkText.split('||').forEach(lineText => {
                 const textLabel = document.createElement('label');
                 textLabel.textContent = lineText.trim();
                 textLabel.classList.add('multiline-label');
@@ -92,12 +92,12 @@ function createOptionBox(field, capturedData, sanitizeForId) {
         // CASE 2: Build the original FLAT structure.
 
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.control_number + ' - ' + field.FieldName + ' (' + field.requirement_control_number + ')';
+        fieldLabel.textContent = field.control_number + ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
         fieldLabel.classList.add('label-bold');
         fieldDiv.appendChild(fieldLabel);
 
-        if (field.FieldText && typeof field.FieldText === 'string') {
-            field.FieldText.split('||').forEach(lineText => {
+        if (field.jkText && typeof field.jkText === 'string') {
+            field.jkText.split('||').forEach(lineText => {
                 const textLabel = document.createElement('label');
                 textLabel.textContent = lineText.trim();
                 textLabel.classList.add('multiline-label');

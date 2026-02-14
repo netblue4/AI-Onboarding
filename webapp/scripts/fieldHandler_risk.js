@@ -22,14 +22,14 @@ function createRisk(field, capturedData, sanitizeForId) {
     headerDiv.appendChild(icon);
 
     const questionLabel = document.createElement('label');
-    questionLabel.textContent = field.FieldName.trim(); // The main risk title
+    questionLabel.textContent = field.jkName.trim(); // The main risk title
     questionLabel.className = 'label-bold';
     headerDiv.appendChild(questionLabel);
     
     fieldDiv.appendChild(headerDiv);
 
 /*	const radioInput = document.createElement('select');
-	radioInput.name = sanitizeForId(field.FieldName);
+	radioInput.name = sanitizeForId(field.jkName);
 	const options = ['Select', 'Applicable', 'Not Applicable'];
 	options.forEach((optionText, index) => {
 		const option = document.createElement('option');
@@ -70,7 +70,7 @@ function createRisk(field, capturedData, sanitizeForId) {
             const controlContainer = document.createElement('div');
 
             const controlText = document.createElement('p');
-            controlText.textContent = controlItem.control_number + " - " + controlItem.control_description + ' (' + field.requirement_control_number + ')';
+            controlText.textContent = controlItem.control_number + " - " + controlItem.jkText + ' (' + field.requirement_control_number + ')';
             controlContainer.appendChild(controlText);  	
             
             //Control status
@@ -91,7 +91,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 				option.textContent = optionText;
 				
 				// Set selected if it matches the control_status
-				if (controlItem.control_status && optionText === controlItem.control_status) {
+				if (controlItem.jkImplementationStatus && optionText === controlItem.jkImplementationStatus) {
 					option.selected = true;
 				}
 				
@@ -101,14 +101,14 @@ function createRisk(field, capturedData, sanitizeForId) {
 
     		
     		// Check if control_status exists and starts with "Applicable"
-			if (controlItem.control_status && controlItem.control_status.startsWith("Applicable")) {
+			if (controlItem.jkImplementationStatus && controlItem.jkImplementationStatus.startsWith("Applicable")) {
 
-        		select.value = controlItem.control_status;
+        		select.value = controlItem.jkImplementationStatus;
 
 				const textarea = document.createElement('textarea');
 				textarea.classList.add('form-field'); // Ensure the class matches your query
 				textarea.name = sanitizeForId(controlItem.control_number) + '_evidence';
-				textarea.value = controlItem.control_evidence; // Use .value for inputs
+				textarea.value = controlItem.jkImplementationEvidence; // Use .value for inputs
 				textarea.disabled = true;
 	
 				controlText.appendChild(textarea); // Nest span inside label
@@ -120,7 +120,7 @@ function createRisk(field, capturedData, sanitizeForId) {
 				
 				const input = document.createElement('textarea');
 				input.name = sanitizeForId(controlItem.control_number) + '_evidence';
-				input.placeholder = controlItem.control_evidence;
+				input.placeholder = controlItem.jkImplementationEvidence;
 
 				controlText.appendChild(input); // Nest span inside label
 				//controlContainer.appendChild(input);

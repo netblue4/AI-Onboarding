@@ -15,10 +15,10 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
     groupContainer.className = 'field-group-container'; // Class for styling the box
 
     // 2. Create and set the Group Title (Legend/Header)
-    if (field.FieldName) {
+    if (field.jkName) {
         const groupTitle = document.createElement('h3');
         groupTitle.className = 'field-group-title';
-        groupTitle.textContent = field.FieldName;
+        groupTitle.textContent = field.jkName;
         groupContainer.appendChild(groupTitle);
     }
     
@@ -36,22 +36,22 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
 			//Then do not display the field, unless its a requirement.
 			const sanitizeId = sanitizeForId(nestedField.requirement_control_number);
 			const soa = capturedData[sanitizeId + '_requirement__soa'];
-			if ((!soa || soa === 'Not Applicable' || soa === 'Select') && nestedField.FieldType != 'requirement') { 
+			if ((!soa || soa === 'Not Applicable' || soa === 'Select') && nestedField.jkType != 'requirement') { 
 				return
 			}	
 		}
         
-            if (!nestedField.FieldType) {
+            if (!nestedField.jkType) {
                 // If a nested field uses 'Control' instead of 'FieldType' for control flow, 
                 // we'll assume a standard TextBox if no type is explicitly defined.
-                nestedField.FieldType = nestedField.FieldType || 'TextBox'; 
+                nestedField.jkType = nestedField.jkType || 'TextBox'; 
             }
             
-            // Note: In your JSON example for "fieldGroup", the nested items use "Control" and "FieldName" 
-            // but are missing "FieldType". We must infer or assume a default type 
+            // Note: In your JSON example for "fieldGroup", the nested items use "Control" and "jkName" 
+            // but are missing "jkType". We must infer or assume a default type 
             // for the inner fields to be rendered by the factory. 
             // Assuming default to 'TextBox' for maximum compatibility if missing.
-            const fieldType = nestedField.FieldType || nestedField.requirement_control_number ? nestedField.FieldType : 'TextBox';
+            const fieldType = nestedField.jkType || nestedField.requirement_control_number ? nestedField.jkType : 'TextBox';
 
             // Retrieve the appropriate handler using the global 'getFieldHandler' (from fieldFactory.js)
             const handler = getFieldHandler(fieldType);
@@ -64,7 +64,7 @@ function createFieldGroup(field, capturedData, sanitizeForId) {
                 console.warn(`[FieldGroup]: No handler found for nested FieldType: ${fieldType}`);
                 // Optional: add a placeholder for clarity
                 const warning = document.createElement('p');
-                warning.textContent = `[Warning: No handler for ${fieldType} for field ${nestedField.FieldName}]`;
+                warning.textContent = `[Warning: No handler for ${fieldType} for field ${nestedField.jkName}]`;
                 fieldsWrapper.appendChild(warning);
             }
         });

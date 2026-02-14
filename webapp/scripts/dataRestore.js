@@ -9,8 +9,8 @@ class DataRestore {
 
     restoreFieldValues(field) {
     
-        const fieldType = field.FieldType;
-        const fieldName = field.FieldName;
+        const fieldType = field.jkType;
+        const fieldName = field.jkName;
         const fieldControlNumber = field.control_number;
 
         // Skip auto-generated and fieldGroup types
@@ -22,16 +22,16 @@ class DataRestore {
         }
     
     
-        if (!field.FieldName) return;
+        if (!field.jkName) return;
 
         setTimeout(() => {
             const sanitizedId = this.templateManager.sanitizeForId(field.control_number);
-            const fieldType = field.FieldType;
+            const fieldType = field.jkType;
 
             if (fieldType && fieldType.startsWith('MultiSelect')) {
-                this.restoreMultiSelect(sanitizedId, field.FieldName);
+                this.restoreMultiSelect(sanitizedId, field.jkName);
             } else if (fieldType && fieldType.startsWith('Option box with values')) {
-                this.restoreOptionBox(sanitizedId, field.FieldName);
+                this.restoreOptionBox(sanitizedId, field.jkName);
             } else if (fieldType === 'requirement') {
                 this.restoreRequirement(field, this.templateManager.sanitizeForId(field.requirement_control_number));
             } else if (fieldType === 'risk') {
@@ -39,9 +39,9 @@ class DataRestore {
             } else if (fieldType === 'plan') {
                 this.restorePlan(field, sanitizedId);
             } else if (fieldType === 'comply') {
-                this.restoreComply(field.FieldName);
+                this.restoreComply(field.jkName);
             } else {
-                this.restoreStandard(sanitizedId, field.FieldName);
+                this.restoreStandard(sanitizedId, field.jkName);
             }
         }, 100);
     }
@@ -74,9 +74,9 @@ class DataRestore {
 	}
 	
     restoreRisk(field, sanitizedId) {
-        if (this.state.capturedData[field.FieldName]) {
+        if (this.state.capturedData[field.jkName]) {
             const riskSelect = document.querySelector(`select[name="${sanitizedId}"]`);
-            if (riskSelect) riskSelect.value = this.state.capturedData[field.FieldName];
+            if (riskSelect) riskSelect.value = this.state.capturedData[field.jkName];
         }
 
         if (field.controls && Array.isArray(field.controls)) {
@@ -86,13 +86,13 @@ class DataRestore {
                 const statusElement = document.querySelector(`select[name="${controlKey}_status"]`);
                 if (statusElement && this.state.capturedData[`${controlKey}_status`]) {
                     statusElement.value = this.state.capturedData[`${controlKey}_status`];
-                    //control.control_status = this.state.capturedData[`${controlKey}_status`]; 
+                    //control.jkImplementationStatus = this.state.capturedData[`${controlKey}_status`]; 
                 }
 
                 const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
                 if (evidenceElement && this.state.capturedData[`${controlKey}_evidence`]) {
                     evidenceElement.value = this.state.capturedData[`${controlKey}_evidence`];
-                    //control.control_evidence = this.state.capturedData[`${controlKey}_evidence`];      
+                    //control.jkImplementationEvidence = this.state.capturedData[`${controlKey}_evidence`];      
                 }
             });
         }
@@ -107,7 +107,7 @@ class DataRestore {
                 const evidenceElement = document.querySelector(`textarea[name="${controlKey}_evidence"]`);
                 if (evidenceElement && this.state.capturedData[`${controlKey}_evidence`]) {
                     evidenceElement.value = this.state.capturedData[`${controlKey}_evidence`];
-                    //criteria.control_evidence = this.state.capturedData[`${controlKey}_evidence`];   
+                    //criteria.jkImplementationEvidence = this.state.capturedData[`${controlKey}_evidence`];   
                 } 
             });
         }

@@ -28,8 +28,8 @@ class DataCapture {
     captureField(field, currentData) {
         if (!field) return;
 
-        const fieldType = field.FieldType;
-        const fieldName = field.FieldName;
+        const fieldType = field.jkType;
+        const fieldName = field.jkName;
         const fieldControlNumber = field.control_number;
 
         // Skip auto-generated and fieldGroup types
@@ -104,7 +104,7 @@ captureRequirement(field, sanitizedId, fieldName, currentData) {
     // Only update if value exists and has changed
     if (requirementSelect && (requirementSelect.value && requirementSelect.value != 'Select')) {
         if (currentData[sanitizedId + '_requirement__soa'] !== requirementSelect.value) {
-            currentData[sanitizedId + '_requirement'] = field.FieldName +': ' + field.FieldText;
+            currentData[sanitizedId + '_requirement'] = field.jkName +': ' + field.jkText;
             currentData[sanitizedId + '_requirement__soa'] = requirementSelect.value;
         }
     } else if (requirementSelect && currentData[sanitizedId + '_requirement__soa']) {
@@ -139,7 +139,7 @@ captureRisk(field, sanitizedId, fieldName, currentData) {
 				(statusValue !== null && statusValue !== "") || 
 				(evidenceValue !== null && evidenceValue !== "")
 			) {
-				currentData[control.control_number] = control.control_description;
+				currentData[control.control_number] = control.jkText;
 				currentData[`${controlKey}_status`] = statusValue;
 				currentData[`${controlKey}_evidence`] = evidenceValue;
 			}
@@ -159,7 +159,7 @@ capturePlan(field, sanitizedId, fieldName, currentData) {
             if (textareaElement && textareaElement.value) {
                 // Only update if value has changed
                 if (currentData[criteriaKey] !== textareaElement.value) {
-                    currentData[criteria.control_number] = criteria.control_description;
+                    currentData[criteria.control_number] = criteria.jkText;
                     currentData[`${criteriaKey}_evidence`] = textareaElement.value;
                 }
             } else if (textareaElement && currentData[criteriaKey]) {

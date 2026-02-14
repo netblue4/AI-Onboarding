@@ -47,10 +47,10 @@ class TemplateManager {
 
                 const extractNames = (field) => {
                     // Add field name if it's a real field (not auto-generated or fieldGroup)
-                    if (field.FieldName && 
-                        field.FieldType !== 'Auto generated number' && 
-                        field.FieldType !== 'fieldGroup') {
-                        fieldNames.add(field.FieldName);
+                    if (field.jkName && 
+                        field.jkType !== 'Auto generated number' && 
+                        field.jkType !== 'fieldGroup') {
+                        fieldNames.add(field.jkName);
                     }
                     
                     // Recurse into nested fields

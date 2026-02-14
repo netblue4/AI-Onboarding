@@ -4,7 +4,7 @@ function createRequirement(field, capturedData, sanitizeForId) {
     const sanitizedId = sanitizeForId(field.requirement_control_number);
 
     const label = document.createElement('label');
-    label.textContent = field.FieldName + ' (' + field.requirement_control_number + ')';
+    label.textContent = field.jkName + ' (' + field.requirement_control_number + ')';
     label.classList.add('label-bold');
     fieldDiv.appendChild(label);
     
@@ -20,7 +20,7 @@ function createRequirement(field, capturedData, sanitizeForId) {
 		option.textContent = optionText;
 		
 		// Set selected if it matches the control_status
-		if (field.soa && optionText === field.soa) {
+		if (field.jkSoa && optionText === field.jkSoa) {
 			option.selected = true;
 		}
 		
@@ -31,7 +31,7 @@ function createRequirement(field, capturedData, sanitizeForId) {
     const input = document.createElement('textarea');
     input.id = sanitizedId;
     input.name = sanitizedId;
-    input.value = field.FieldText;
+    input.value = field.jkText;
     fieldDiv.appendChild(input);
 
     return fieldDiv;

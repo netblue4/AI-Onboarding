@@ -125,7 +125,7 @@ class ContentRenderer {
                     filteredStep.Fields.forEach(field => {
                         try {
                   
-                            const handler = getFieldHandler(field.FieldType);
+                            const handler = getFieldHandler(field.jkType);
                             
                             if (!handler) return;
                             
@@ -137,11 +137,11 @@ class ContentRenderer {
 
                             if (!fieldElement) return;
 
-                            if (field.FieldName) {
+                            if (field.jkName) {
                                 this.dataRestore.restoreFieldValues(field);
                             }
 
-                            if (field.FieldName && 
+                            if (field.jkName && 
                                 this.templateManager.isFieldNew(field.control_number) && 
                                 this.state.newFieldsHighlighted) {
                                 const wrapper = document.createElement('div');
@@ -154,7 +154,7 @@ class ContentRenderer {
 
                             phaseHasContent = true;
                         } catch (error) {
-                            console.error('Error rendering field:', field.FieldName, error);
+                            console.error('Error rendering field:', field.jkName, error);
                         }
                     });
                 }
@@ -198,12 +198,12 @@ class ContentRenderer {
                 
             
                 let currentIsRequirement = false;
-                if (node.FieldType === 'requirement') {
+                if (node.jkType === 'requirement') {
                     currentIsRequirement = true;
                 }             
                    
                 let currentIsControl = false;
-                if (node.control_evidence) {
+                if (node.jkImplementationEvidence) {
                     currentIsControl = true;
                 } 
                 

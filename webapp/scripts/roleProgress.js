@@ -73,10 +73,10 @@ class RoleProgressTracker {
 
             // Count completed fields
             const completedFields = roleFields.filter(field => {
-                if (!field.FieldName) return false;                
+                if (!field.jkName) return false;                
                 
                  	let statusvalue = 0;
-                 	if(field.FieldType != 'requirement'){
+                 	if(field.jkType != 'requirement'){
                  		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
                  	} else {
                  		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.requirement_control_number) + '_requirement__soa'];
@@ -137,12 +137,12 @@ getFieldsForRole(role) {
                 }
                 
                 let currentIsRequirement = false;
-                if (field.FieldType === 'requirement') {
+                if (field.jkType === 'requirement') {
                     currentIsRequirement = true;
                 }             
                    
                 let currentIsControl = false;
-                if (field.control_evidence) {
+                if (field.jkImplementationEvidence) {
                     currentIsControl = true;
                 } 
                 
@@ -165,10 +165,10 @@ getFieldsForRole(role) {
                 
                 const isApplicableControl = (currentIsControl && currentIsApplicable);
                 
-                const isValidField = (field.FieldType != 'fieldGroup' 
-                && field.FieldType != 'risk' 
-                && field.FieldType != 'plan'
-                && field.FieldType != 'Auto generated number')
+                const isValidField = (field.jkType != 'fieldGroup' 
+                && field.jkType != 'risk' 
+                && field.jkType != 'plan'
+                && field.jkType != 'Auto generated number')
                 
                 const isApplicableField = (!currentIsControl && (currentIsApplicable));
                 
@@ -254,7 +254,7 @@ getFieldsForRole(role) {
         CONFIG.ROLES.forEach(role => {
             const roleFields = this.getFieldsForRole(role);
             const completedFields = roleFields.filter(field => {
-                if (!field.FieldName) return false;
+                if (!field.jkName) return false;
 					const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_status'];
 					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
 					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number)];

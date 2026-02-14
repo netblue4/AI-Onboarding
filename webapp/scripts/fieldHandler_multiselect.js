@@ -17,7 +17,7 @@ function createMultiSelect(field, capturedData, sanitizeForId) {
     checkboxGroupContainer.className = 'checkbox-group-container'; // CHANGED: Renamed for clarity
 
     // CHANGED: Logic to parse options from "MultiSelect:" string
-    const optionsString = field.FieldType.substring(field.FieldType.indexOf(':') + 1).trim() || '';
+    const optionsString = field.jkType.substring(field.jkType.indexOf(':') + 1).trim() || '';
     const options = optionsString.split('/');
     
     // NOTE: For multi-select, the captured data should be an array of selected values.
@@ -77,12 +77,12 @@ function createMultiSelect(field, capturedData, sanitizeForId) {
         contentDiv.className = 'collapsible-content collapsed';
 
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.control_number + ' - ' + field.FieldName + ' (' + field.requirement_control_number + ')';
+        fieldLabel.textContent = field.control_number + ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
         fieldLabel.classList.add('label-bold');
         contentDiv.appendChild(fieldLabel);
 
-        if (field.FieldText && typeof field.FieldText === 'string') {
-            field.FieldText.split('||').forEach(lineText => {
+        if (field.jkText && typeof field.jkText === 'string') {
+            field.jkText.split('||').forEach(lineText => {
                 const textLabel = document.createElement('label');
                 textLabel.textContent = lineText.trim();
                 textLabel.classList.add('multiline-label');
@@ -101,12 +101,12 @@ function createMultiSelect(field, capturedData, sanitizeForId) {
         // CASE 2: Build the original FLAT structure.
 
         const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.control_number + ' - ' + field.FieldName + ' (' + field.requirement_control_number + ')';
+        fieldLabel.textContent = field.control_number + ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
         fieldLabel.classList.add('label-bold');
         fieldDiv.appendChild(fieldLabel);
 
-        if (field.FieldText && typeof field.FieldText === 'string') {
-            field.FieldText.split('||').forEach(lineText => {
+        if (field.jkText && typeof field.jkText === 'string') {
+            field.jkText.split('||').forEach(lineText => {
                 const textLabel = document.createElement('label');
                 textLabel.textContent = lineText.trim();
                 textLabel.classList.add('multiline-label');

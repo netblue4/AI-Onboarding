@@ -25,7 +25,7 @@ function createPlan(field, capturedData, sanitizeForId) {
     headerDiv.appendChild(icon);
 
     const planFieldNameLabel = document.createElement('label');
-    planFieldNameLabel.textContent = field.FieldName.trim() + ' (' + field.requirement_control_number +')'; // The main risk title
+    planFieldNameLabel.textContent = field.jkName.trim() + ' (' + field.requirement_control_number +')'; // The main risk title
     planFieldNameLabel.className = 'label-bold';
     headerDiv.appendChild(planFieldNameLabel);
 
@@ -221,13 +221,13 @@ function createPlan(field, capturedData, sanitizeForId) {
             const controlContainer = document.createElement('div');
 
             const controlText = document.createElement('p');
-            controlText.textContent = controlItem.control_number + " - " + controlItem.control_description;
+            controlText.textContent = controlItem.control_number + " - " + controlItem.jkText;
             controlContainer.appendChild(controlText);
   
             
             const input = document.createElement('textarea');
             input.name = sanitizedId + '_evidence';
-    		input.placeholder = controlItem.control_evidence;
+    		input.placeholder = controlItem.jkImplementationEvidence;
     		controlText.appendChild(input);
  
             controlDiv.appendChild(controlContainer);
