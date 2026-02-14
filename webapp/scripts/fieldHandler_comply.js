@@ -468,8 +468,8 @@ function createImplementationItem(child, sanitizeForId) {
 		const evidenceStrong = document.createElement('strong');
 		evidenceStrong.textContent = 'Implementation evidence: ';
 		evidenceDiv.appendChild(evidenceStrong);
-		const value = capturedData[sanitizeForId(child.control_number) + "_response"];
-		evidenceDiv.appendChild(document.createTextNode(` ${value || ''}`));
+		const evidencevalue = capturedData[sanitizeForId(child.control_number) + "_response"];
+		evidenceDiv.appendChild(document.createTextNode(` ${evidencevalue || ''}`));
 		contentDiv.appendChild(evidenceDiv);
 		
         // --- GLOBAL COUNT FOR IMPLEMENTATION FIELDS RESPONSE ---
