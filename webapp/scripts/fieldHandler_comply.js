@@ -421,7 +421,7 @@ function createImplementationItem(child, sanitizeForId) {
     impItem.className = 'imp-item';
     impItem.style.marginBottom = '5px';
     
-    const { typeClass, typeName } = getImplementationType(child.jkType);
+    const { typeClass, typeName } = getImplementationType(child.jkType.split(':')[0];
 
     // Create the badge
     const badge = document.createElement('span');
@@ -436,7 +436,7 @@ function createImplementationItem(child, sanitizeForId) {
     // Create title
     const titleDiv = document.createElement('div');
     titleDiv.className = 'imp-title';
-    titleDiv.textContent = child.jkName + ': ' + child.jkText;
+    titleDiv.textContent = child.control_number + ': ' + child.jkText;
     contentDiv.appendChild(titleDiv);
 
     // Create requirement controls meta
