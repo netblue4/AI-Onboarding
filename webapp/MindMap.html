@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Compliance Mind Map</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc; margin: 0; overflow: hidden; }
+        #controls { position: absolute; top: 20px; left: 20px; z-index: 10; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border: 1px solid #e2e8f0; }
+        .node circle { fill: #fff; stroke: #1e40af; stroke-width: 2.5px; }
+        .node text { font-size: 12px; font-weight: 500; fill: #334155; }
+        .link { fill: none; stroke: #cbd5e1; stroke-width: 1.5px; }
+        
+        /* Node Type Styling */
+        .node-regulation circle { fill: #dbeafe; stroke: #1e40af; }
+        .node-requirement circle { fill: #fef08a; stroke: #a16207; }
+        .node-risk circle { fill: #fee2e2; stroke: #b91c1c; }
+        .node-plan circle { fill: #dcfce7; stroke: #15803d; }
+        .node-control circle { fill: #f1f5f9; stroke: #475569; }
+
+        .tooltip { position: absolute; padding: 10px; background: rgba(30, 41, 59, 0.95); color: white; border-radius: 5px; font-size: 12px; pointer-events: none; max-width: 300px; z-index: 20; line-height: 1.4; }
+        h3 { margin: 0 0 10px 0; color: #1e40af; font-size: 16px; }
+        .legend-item { display: flex; align-items: center; font-size: 12px; margin-bottom: 4px; }
+        .legend-color { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; border: 1px solid #333; }
+    </style>
+</head>
+<body>
+
+<div id="controls">
+    <h3>AI Act Gap Analyzer</h3>
+    <div class="legend">
+        <div class="legend-item"><div class="legend-color" style="background:#dbeafe"></div> Regulation (Article Group)</div>
+        <div class="legend-item"><div class="legend-color" style="background:#fef08a"></div> Requirement (The "What")</div>
+        <div class="legend-item"><div class="legend-color" style="background:#fee2e2"></div> Risk (The "Why")</div>
+        <div class="legend-item"><div class="legend-color" style="background:#dcfce7"></div> Test Plan (The "How")</div>
+        <div class="legend-item"><div class="legend-color" style="background:#f1f5f9"></div> Implementation Control</div>
+    </div>
+    <p style="font-size: 11px; color: #64748b; margin-top: 10px;">Drag to pan, Scroll to zoom.<br>Hover for details.</p>
+</div>
+
+<div id="mindmap"></div>
+
+<script>
+/**
+ * Logic inspired by your fieldHandler_comply.js
+ * Builds a hierarchical graph based on requirement_control_number
+ */
+async function initMindMap() {
+    // In a real app, you'd fetch your ai_onboarding_procedure_data.json here
+    const data = await fetch('ai_onboarding_procedure_data.json').then(r => r.json());
+    
+    const root = { name: "AI Compliance Root", children: [] };
+    const requirementMap = new Map();
+
+    // 1. Pass: Find all FieldGroups and Requirements (The Parents)
+    Object.values(data).flat().forEach(step => {
+        if (!step.Fields) return;
+        step.Fields.forEach(group => {
+            if (group.jkType === 'fieldGroup') {
+                const regNode = { 
+                    name: group.jkName, 
+                    type: 'regulation', 
+                    children: [], 
+                    details: group.Role 
+                };
+                root.children.push(regNode);
+
+                if (group.controls) {
+                    group.controls.forEach(ctrl => {
+                        if (ctrl.jkType === 'requirement') {
+                            const reqNode = {
+                                id: ctrl.requirement_control_number,
+                                name: ctrl.jkName,
+                                type: 'requirement',
+                                children: [],
+                                details: ctrl.jkText
+                            };
+                            regNode.children.push(reqNode);
+                            requirementMap.set(ctrl.requirement_control_number, reqNode);
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    // 2. Pass: Map Risks and Plans to Requirements
+    Object.values(data).flat().forEach(step => {
+        if (!step.Fields) return;
+        step.Fields.forEach(item => {
+            if (item.requirement_control_number && item.jkType !== 'requirement') {
+                // Handle multi-mapping (comma separated)
+                const keys = String(item.requirement_control_number).split(',').map(s => s.trim());
+                
+                keys.forEach(key => {
+                    if (requirementMap.has(key)) {
+                        const implNode = {
+                            name: item.jkName || item.StepName,
+                            type: item.jkType === 'risk' ? 'risk' : 'plan',
+                            details: item.RiskDescription || item.PlanObjective,
+                            children: []
+                        };
+                        
+                        // 3. Pass: Add Nested Controls to Risks/Plans
+                        if (item.controls) {
+                            item.controls.forEach(c => {
+                                implNode.children.push({
+                                    name: c.jkName,
+                                    type: 'control',
+                                    details: c.jkText
+                                });
+                            });
+                        }
+                        requirementMap.get(key).children.push(implNode);
+                    }
+                });
+            }
+        });
+    });
+
+    renderD3(root);
+}
+
+function renderD3(data) {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const margin = {top: 20, right: 120, bottom: 20, left: 120};
+
+    const svg = d3.select("#mindmap").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .call(d3.zoom().on("zoom", (event) => {
+            g.attr("transform", event.transform);
+        }))
+        .append("g");
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const tree = d3.tree().nodeSize([40, 300]);
+    const root = d3.hierarchy(data);
+    tree(root);
+
+    // Links
+    g.selectAll(".link")
+        .data(root.links())
+        .enter().append("path")
+        .attr("class", "link")
+        .attr("d", d3.linkHorizontal()
+            .x(d => d.y)
+            .y(d => d.x));
+
+    // Nodes
+    const node = g.selectAll(".node")
+        .data(root.descendants())
+        .enter().append("g")
+        .attr("class", d => `node node-${d.data.type}`)
+        .attr("transform", d => `translate(${d.y},${d.x})`);
+
+    node.append("circle").attr("r", 6);
+
+    node.append("text")
+        .attr("dy", "0.31em")
+        .attr("x", d => d.children ? -10 : 10)
+        .attr("text-anchor", d => d.children ? "end" : "start")
+        .text(d => d.data.name.length > 40 ? d.data.name.substring(0, 37) + "..." : d.data.name);
+
+    // Tooltip logic
+    const tooltip = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
+
+    node.on("mouseover", (event, d) => {
+        tooltip.transition().duration(200).style("opacity", .9);
+        tooltip.html(`<strong>${d.data.name}</strong><br/>${d.data.details || ''}`)
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 28) + "px");
+    })
+    .on("mouseout", () => {
+        tooltip.transition().duration(500).style("opacity", 0);
+    });
+}
+
+initMindMap();
+</script>
+</body>
+</html>
