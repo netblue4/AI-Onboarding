@@ -75,7 +75,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                             const soa = fieldStoredValue(req, false);
                             
                             // Only include applicable requirements
-                            if (soa === 'Applicable') {
+                            if (soa === 'Applicable' || !soa) {
                                 dataEntry.requirements.set(controlKey, {
                                     requirement: req,
                                     implementations: new Set()

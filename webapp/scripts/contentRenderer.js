@@ -28,6 +28,8 @@ class ContentRenderer {
 					this.templateManager.fieldStoredValue.bind(this.templateManager)
 				);
 	
+				console.log('Mindmap Element produced:', mindmapElement); // Add this!
+	
 				if (mindmapElement) {
 					contentArea.appendChild(mindmapElement);
 				} else {
