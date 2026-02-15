@@ -191,7 +191,7 @@ function renderMapping(complianceMap, sanitizeForId, fieldStoredValue) {
     }
 
     complianceMap.forEach((data, parentFieldName) => {
-        const regItem = createRegulationItem(data, sanitizeForId);
+        const regItem = createRegulationItem(data, sanitizeForId, fieldStoredValue);
         container.appendChild(regItem);
     });
 
@@ -202,12 +202,12 @@ function renderMapping(complianceMap, sanitizeForId, fieldStoredValue) {
 /**
  * Creates a single regulation item with header and collapsible content
  */
-function createRegulationItem(data, sanitizeForId) {
+function createRegulationItem(data, sanitizeForId, fieldStoredValue) {
     const regItem = document.createElement('div');
     regItem.className = 'reg-item';
 
     // Calculate the 6 variables specifically for this Regulation/Article
-    const stats = calculateProgress(data.subControlLinks, sanitizeForId);
+    const stats = calculateProgress(data.subControlLinks, sanitizeForId, fieldStoredValue);
     
     // For unique ID, use the parent FieldName (e.g. Transparency)
     const contentId = generateContentId(data.parentField);
@@ -216,7 +216,7 @@ function createRegulationItem(data, sanitizeForId) {
     const header = createRegHeader(data.parentField, contentId, stats);
     regItem.appendChild(header);
 
-	const content = createSubControlList(data.subControlLinks, contentId, sanitizeForId);
+	const content = createSubControlList(data.subControlLinks, contentId, sanitizeForId, fieldStoredValue);
 	regItem.appendChild(content);
 
     return regItem;
@@ -271,7 +271,7 @@ function createRegHeader(parent, contentId, stats) {
 /**
  * Creates the collapsible content area with sub-controls
  */
-function createSubControlList(subControlLinks, contentId, sanitizeForId) {
+function createSubControlList(subControlLinks, contentId, sanitizeForId, fieldStoredValue) {
     const subControlList = document.createElement('ul');
     subControlList.className = 'sub-control-list';
     subControlList.id = contentId;
@@ -287,7 +287,7 @@ function createSubControlList(subControlLinks, contentId, sanitizeForId) {
 
     sortedSubControls.forEach(([key, subData]) => {
 
-    const subItem = createSubControlItem(subData, sanitizeForId);
+    const subItem = createSubControlItem(subData, sanitizeForId, fieldStoredValue);
     subControlList.appendChild(subItem);
     
     });
@@ -298,7 +298,7 @@ function createSubControlList(subControlLinks, contentId, sanitizeForId) {
 /**
  * Creates a single sub-control item with status dropdown and linked implementations
  */
-function createSubControlItem(subData, sanitizeForId) {
+function createSubControlItem(subData, sanitizeForId, fieldStoredValue) {
     // --- GLOBAL COUNT: TOTAL CONTROLS ---
     totalControls++;
 
@@ -325,14 +325,14 @@ function createSubControlItem(subData, sanitizeForId) {
     }
 
     // Evidence description
-    const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId);
+    const evidenceDiv = createEvidenceDiv(subData.subControl, sanitizeForId, fieldStoredValue);
     subItem.appendChild(evidenceDiv);
 
 	// Only create and append the item if the status is NOT "Not Applicable"
 	if (subData.subControl && value !== "Not Applicable") {
 		// Linked implementations
 		if (subData.children.size > 0) {
-			const impList = createImplementationList(subData.children, sanitizeForId);
+			const impList = createImplementationList(subData.children, sanitizeForId, fieldStoredValue);
 			subItem.appendChild(impList);
 		} else {
 			const noItemsDiv = createNoItemsMessage();
@@ -366,7 +366,7 @@ function createSubControlTitle(subControl) {
 /**
  * Creates the status dropdown select element
  */
-function createStatusDropdown(subControl, sanitizeForId) {
+function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue) {
     const select = document.createElement('select');
     select.style.margin = '5px 0 10px 0';
     select.style.padding = '4px';
@@ -388,7 +388,7 @@ function createStatusDropdown(subControl, sanitizeForId) {
 /**
  * Creates the evidence/description div
  */
-function createEvidenceDiv(subControl, sanitizeForId) {
+function createEvidenceDiv(subControl, sanitizeForId, fieldStoredValue) {
     const evidenceDiv = document.createElement('div');
     evidenceDiv.className = 'auto-generated-label';
     const criteriaKey = sanitizeForId(subControl.control_number);
@@ -412,7 +412,7 @@ function createImplementationList(children, sanitizeForId) {
     impList.className = 'imp-list';
 
     children.forEach(child => {
-        const impItem = createImplementationItem(child, sanitizeForId);
+        const impItem = createImplementationItem(child, sanitizeForId, fieldStoredValue);
         impList.appendChild(impItem);
     });
 
@@ -422,7 +422,7 @@ function createImplementationList(children, sanitizeForId) {
 /**
  * Creates a single implementation item
  */
-function createImplementationItem(child, sanitizeForId) {
+function createImplementationItem(child, sanitizeForId, fieldStoredValue, fieldStoredValue) {
     const impItem = document.createElement('li');
     impItem.className = 'imp-item';
     impItem.style.marginBottom = '5px';
@@ -647,7 +647,7 @@ function escapeHtml(unsafe) {
  * Calculates the 6 variables specifically for a given Regulation/Article
  * This allows the header to display the correct stats before the content is fully rendered
  */
-function calculateProgress(subControlLinks, sanitizeForId) {
+function calculateProgress(subControlLinks, sanitizeForId, fieldStoredValue) {
     let localTotalControls = 0;
     let localTotalApplicableControls = 0;
     let localTotalImplementationFields = 0;
