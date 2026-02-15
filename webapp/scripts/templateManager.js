@@ -124,11 +124,6 @@ class TemplateManager {
 				  return null;
 			}
 			break; // Break for "retrieveData" case
-	
-		default:
-			console.warn("Unknown operation:", operation);
-			return null;
-	
 	}
 
 
