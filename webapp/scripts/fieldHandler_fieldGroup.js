@@ -9,7 +9,7 @@
  * @param {function} sanitizeForId - The function used to sanitize field names for HTML IDs.
  * @returns {HTMLElement} The complete field group container element.
  */
-function createFieldGroup(field, capturedData, sanitizeForId, fieldInspector) {
+function createFieldGroup(field, capturedData, sanitizeForId, fieldStoredValue) {
     // 1. Create the main container for the group box
     const groupContainer = document.createElement('div');
     groupContainer.className = 'field-group-container'; // Class for styling the box

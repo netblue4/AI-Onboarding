@@ -133,7 +133,8 @@ class ContentRenderer {
                             const fieldElement = handler(
                                 field, 
                                 this.state.capturedData, 
-                                this.templateManager.sanitizeForId.bind(this.templateManager)
+                                this.templateManager.sanitizeForId.bind(this.templateManager),
+					            this.templateManager.fieldStoredValue.bind(this.templateManager)
                             );
 
                             if (!fieldElement) return;

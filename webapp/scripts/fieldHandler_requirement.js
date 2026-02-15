@@ -1,4 +1,4 @@
-function createRequirement(field, capturedData, sanitizeForId, fieldInspector) {
+function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.requirement_control_number);

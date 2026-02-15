@@ -8,7 +8,7 @@
  * @param {function} sanitizeForId - A utility function to create a safe string for use as an HTML ID.
  * @returns {HTMLElement} The fully constructed div element for the form field.
  */
-function createRisk(field, capturedData, sanitizeForId, fieldInspector) {
+function createRisk(field, capturedData, sanitizeForId, fieldStoredValue) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
    // --- 2. Build the Collapsible Structure ---

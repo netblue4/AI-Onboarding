@@ -1,4 +1,4 @@
-function createTextBox(field, capturedData, sanitizeForId, fieldInspector) {
+function createTextBox(field, capturedData, sanitizeForId, fieldStoredValue) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.control_number) + "_response";

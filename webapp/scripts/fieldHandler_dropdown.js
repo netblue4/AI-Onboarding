@@ -1,4 +1,4 @@
-function createDropdown(field, capturedData, sanitizeForId, fieldInspector) {
+function createDropdown(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.control_number) + "_response";

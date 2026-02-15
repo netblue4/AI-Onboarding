@@ -104,25 +104,31 @@ class TemplateManager {
 	 //     “jkSoa": 	
 	 //     "_response"	
 	 
-	fieldStoredValue(field, currentData, implementationStatus = false) {
+	fieldStoredValue(field, implementationStatus = false) {
+		if (!field || !field.jkType) return null;
+	
 		// Clean the type (e.g., "MultiSelect:PDF" -> "MultiSelect")
 		const cleanType = String(field.jkType).split(':')[0];
-			switch (cleanType) {
-				case "requirement":
-					return capturedData[this.sanitizeForId(field.requirement_control_number) + '_jkSoa'];	
-					break;
-				case "MultiSelect":
-				    return this.state.capturedData[this.sanitizeForId(field.control_number) + "_response"];
-					break;
-				case "risk_control":
-				case "test_control":	
-					if(implementationStatus) return capturedData[this.sanitizeForId(field.control_number) + "_jkImplementationStatus"];
-					return capturedData[this.sanitizeForId(field.control_number) + "_jkImplementationEvidence"];				
-					break;
-				default:	
-				    return capturedData[this.sanitizeForId(field.control_number) + "_response"];
-				  return null;
-			}
+		const sanitizedId = this.sanitizeForId(field.requirement_control_number || field.control_number);
+	
+		switch (cleanType) {
+			case "requirement":
+				// Use this.state.capturedData to access the managed state
+				return this.state.capturedData[sanitizedId + '_jkSoa'];	
+				
+			case "MultiSelect":
+				return this.state.capturedData[sanitizedId + "_response"];
+	
+			case "risk_control":
+			case "test_control":	
+				if (implementationStatus) {
+					return this.state.capturedData[sanitizedId + "_jkImplementationStatus"];
+				}
+				return this.state.capturedData[sanitizedId + "_jkImplementationEvidence"];				
+	
+			default:	
+				return this.state.capturedData[sanitizedId + "_response"] || null;
+		}
 	}
 
 

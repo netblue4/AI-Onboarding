@@ -1,4 +1,4 @@
-function createOptionBox(field, capturedData, sanitizeForId, fieldInspector) {
+function createOptionBox(field, capturedData, sanitizeForId) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.control_number);

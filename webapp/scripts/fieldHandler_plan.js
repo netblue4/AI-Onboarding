@@ -8,7 +8,7 @@
  * @param {function} sanitizeForId - A utility function to create a safe string for use as an HTML ID.
  * @returns {HTMLElement} The fully constructed div element for the form field.
  */
-function createPlan(field, capturedData, sanitizeForId, fieldInspector) {
+function createPlan(field, capturedData, sanitizeForId, fieldStoredValue) {
     // Main container for the entire field
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
