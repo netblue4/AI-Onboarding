@@ -77,6 +77,61 @@ class TemplateManager {
     }
 
 
+	//const myJkTypes = [
+	//	"requirement",      // Standard compliance requirement
+	//	"fieldGroup",       // A container for other fields or controls
+	//	"MultiSelect",      // Fields with multiple options (e.g., "MultiSelect:PDF/Manual")
+	//	"TextBox",          // Standard text entry fields
+	//	"Option box",       // Yes/No selection boxes
+	//	"Dropdown box",     // Selection list (e.g., Low/Medium/High)
+	//	"risk",             // High-level risk definition
+	//	"risk_control",     // Specific control addressing a risk
+	//	"plan",             // Test or implementation plan
+	//	"test_control",     // Specific control for a test plan
+	//	"comply"            // The special field type for the compliance mapping
+	//];
+			
+	 //     //potential property values to query
+	 //     "requirement_control_number": 
+	 //     "control_number": 
+	 //     “jkName" 
+	 //     “jkText": 
+	 //     "jkType”: "test_control"
+	 //     “jkObjective”: 
+	 //     
+	 //     “jkImplementationStatus" 
+	 //     “jkImplementationEvidence": 
+	 //     “jkSoa": 	
+	 //     "_response"	
+	 
+	fieldStoredValue(field, currentData, implementationStatus = false) {
+		// Clean the type (e.g., "MultiSelect:PDF" -> "MultiSelect")
+		const cleanType = String(field.jkType).split(':')[0];
+			switch (cleanType) {
+				case "requirement":
+					return capturedData[this.sanitizeForId(field.requirement_control_number) + '_jkSoa'];	
+					break;
+				case "MultiSelect":
+				    return this.state.capturedData[this.sanitizeForId(field.control_number) + "_response"];
+					break;
+				case "risk_control":
+				case "test_control":	
+					if(implementationStatus) return capturedData[this.sanitizeForId(field.control_number) + "_jkImplementationStatus"];
+					return capturedData[this.sanitizeForId(field.control_number) + "_jkImplementationEvidence"];				
+					break;
+				default:	
+				    return capturedData[this.sanitizeForId(field.control_number) + "_response"];
+				  return null;
+			}
+			break; // Break for "retrieveData" case
+	
+		default:
+			console.warn("Unknown operation:", operation);
+			return null;
+	
+	}
+
+
 	/**
 	 * Handles data operations on a specific field node based on its jkType.
 	 * * @param {object} field - The actual JSON field object/node.
@@ -220,34 +275,6 @@ class TemplateManager {
 		}
 	}
 	
-	//const myJkTypes = [
-	//	"requirement",      // Standard compliance requirement
-	//	"fieldGroup",       // A container for other fields or controls
-	//	"MultiSelect",      // Fields with multiple options (e.g., "MultiSelect:PDF/Manual")
-	//	"TextBox",          // Standard text entry fields
-	//	"Option box",       // Yes/No selection boxes
-	//	"Dropdown box",     // Selection list (e.g., Low/Medium/High)
-	//	"risk",             // High-level risk definition
-	//	"risk_control",     // Specific control addressing a risk
-	//	"plan",             // Test or implementation plan
-	//	"test_control",     // Specific control for a test plan
-	//	"comply"            // The special field type for the compliance mapping
-	//];
-			
-	 //     //potential property values to query
-	 //     "requirement_control_number": 
-	 //     "control_number": 
-	 //     “jkName" 
-	 //     “jkText": 
-	 //     "jkType”: "test_control"
-	 //     “jkObjective”: 
-	 //     
-	 //     “jkImplementationStatus" 
-	 //     “jkImplementationEvidence": 
-	 //     “jkSoa": 	
-	 //     "_response"	
-	
-
 
     /**
      * Check if a field is new (wasn't in the previous template version)

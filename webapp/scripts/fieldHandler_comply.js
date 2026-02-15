@@ -116,7 +116,9 @@ function buildComplianceMap(data, sanitizeForId) {
                         if (controlKey) {
                             // --- APPLICABILITY CHECK START ---
                             const sanitizeId = sanitizeForId(controlKey);
-                            const soa = capturedData[sanitizeId + '_jkSoa'];
+                            const soa = this.templateManager.fieldStoredValue(req, capturedData, false);
+                            //capturedData[sanitizeId + '_jkSoa'];
+                            
                             
                             // Only add to the map if it is marked as Applicable
                             if (soa === 'Applicable') {
@@ -310,7 +312,8 @@ function createSubControlItem(subData, sanitizeForId) {
     const titleDiv = createSubControlTitle(subData.subControl);
     subItem.appendChild(titleDiv);
 
-	const value = capturedData[sanitizeForId(subData.subControl.control_number) + '_jkImplementationStatus']  
+	const value = this.templateManager.fieldStoredValue(subData.subControl, capturedData, true);
+	//capturedData[sanitizeForId(subData.subControl.control_number) + '_jkImplementationStatus']  
 	
 	if (value !== "Not Applicable") {
         // --- GLOBAL COUNT: APPLICABLE CONTROLS ---
@@ -390,8 +393,11 @@ function createEvidenceDiv(subControl, sanitizeForId) {
     evidenceDiv.className = 'auto-generated-label';
     const criteriaKey = sanitizeForId(subControl.control_number);
 
-	const statusvalue = capturedData[`${criteriaKey}_jkImplementationStatus`]; 
-	const evidencevalue = capturedData[`${criteriaKey}_jkImplementationEvidence`];  
+	const statusvalue = this.templateManager.fieldStoredValue(subControl, capturedData, true);
+	//capturedData[`${criteriaKey}_jkImplementationStatus`]; 
+	
+	const evidencevalue = this.templateManager.fieldStoredValue(subControl, capturedData, false);
+	//capturedData[`${criteriaKey}_jkImplementationEvidence`];  
 
     evidenceDiv.innerHTML = '<strong>' + (statusvalue || '') + "</strong></br>" + (evidencevalue || '');
     
@@ -459,7 +465,10 @@ function createImplementationItem(child, sanitizeForId) {
 		const statusStrong = document.createElement('strong');
 		statusStrong.textContent = 'Implementation status: ';
 		statusDiv.appendChild(statusStrong);
-		const value = capturedData[sanitizeForId(child.control_number) + "_jkImplementationStatus"];
+		
+		const value = this.templateManager.fieldStoredValue(child, capturedData, true);
+		//capturedData[sanitizeForId(child.control_number) + "_jkImplementationStatus"];
+		
 		statusDiv.appendChild(document.createTextNode(` ${value || ''}`));
 		contentDiv.appendChild(statusDiv);
 
@@ -468,7 +477,12 @@ function createImplementationItem(child, sanitizeForId) {
 		const evidenceStrong = document.createElement('strong');
 		evidenceStrong.textContent = 'Implementation evidence: ';
 		evidenceDiv.appendChild(evidenceStrong);
-		const evidencevalue = capturedData[sanitizeForId(child.control_number) + "_jkImplementationEvidence"];
+		
+		const evidencevalue = this.templateManager.fieldStoredValue(child, capturedData, false);
+		//capturedData[sanitizeForId(child.control_number) + "_jkImplementationEvidence"];
+		
+		
+		
 		evidenceDiv.appendChild(document.createTextNode(` ${evidencevalue || ''}`));
 		contentDiv.appendChild(evidenceDiv);
 		
@@ -492,7 +506,8 @@ function createImplementationItem(child, sanitizeForId) {
         child.controls.forEach(ctl => {
         
             const controlKey = sanitizeForId(ctl.control_number);
-            const evidenceVal = capturedData[`${controlKey}_jkImplementationEvidence`];
+            const evidenceVal = this.templateManager.fieldStoredValue(ctl, capturedData, false);
+            //capturedData[`${controlKey}_jkImplementationEvidence`];
 
             // --- GLOBAL COUNT: IMP CONTROLS (Child Controls) ---
             totalImplementationControls++;
@@ -519,7 +534,10 @@ function createImplementationItem(child, sanitizeForId) {
             const statusStrong = document.createElement('strong');
             statusStrong.textContent = 'Status: ';
             controlDiv.appendChild(statusStrong);
-            controlDiv.appendChild(document.createTextNode(capturedData[`${controlKey}_jkImplementationStatus`]|| ''));
+            controlDiv.appendChild(document.createTextNode(
+            this.templateManager.fieldStoredValue(ctl, capturedData, true);
+            //capturedData[`${controlKey}_jkImplementationStatus`]
+            || ''));
 
             const brTag2 = document.createElement('br');
             controlDiv.appendChild(brTag2);
@@ -643,7 +661,8 @@ function calculateProgress(subControlLinks, sanitizeForId) {
 
         // 2. Count Applicable Controls
         const controlNum = subData.subControl.control_number;
-        const statusVal = capturedData[sanitizeForId(controlNum) + '_jkSoa'];
+        const statusVal = this.templateManager.fieldStoredValue(subData.subControl, capturedData);
+        //capturedData[sanitizeForId(controlNum) + '_jkSoa'];
         
         // --- ONLY COUNT IMPLEMENTATIONS IF THE REQUIREMENT IS APPLICABLE ---
         if (statusVal !== "Not Applicable") {
@@ -658,7 +677,8 @@ function calculateProgress(subControlLinks, sanitizeForId) {
                         localTotalImplementationFields++;
                         
                         const responseKey = sanitizeForId(child.control_number) + "_response";
-                        const responseVal = capturedData[responseKey];
+                        const responseVal = this.templateManager.fieldStoredValue(child, capturedData);
+                        //capturedData[responseKey];
                         
                         if (hasContent(responseVal)) {
                             localTotalImplementationFieldsWithResponse++;
@@ -673,7 +693,8 @@ function calculateProgress(subControlLinks, sanitizeForId) {
 
                             // Check Evidence
                             const ctlKey = sanitizeForId(ctl.control_number) + '_evidence';
-                            const evidenceVal = capturedData[ctlKey];
+                            const evidenceVal = this.templateManager.fieldStoredValue(ctl, capturedData);
+                            //capturedData[ctlKey];
                             
                             if (hasContent(evidenceVal)) {
                                 localTotalImplementationControlsWithEvidence++;
