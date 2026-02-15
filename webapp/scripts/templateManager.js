@@ -123,7 +123,6 @@ class TemplateManager {
 				    return capturedData[this.sanitizeForId(field.control_number) + "_response"];
 				  return null;
 			}
-			break; // Break for "retrieveData" case
 	}
 
 
