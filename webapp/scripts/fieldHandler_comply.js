@@ -45,8 +45,8 @@ function createComplyField(incapturedData, sanitizeForId, fieldStoredValue) {
         return errDiv;
     }
 
-    const complianceMap = buildComplianceMap(webappData, sanitizeForId);
-    const renderedElement = renderMapping(complianceMap, sanitizeForId);
+    const complianceMap = buildComplianceMap(webappData, sanitizeForId, fieldStoredValue);
+    const renderedElement = renderMapping(complianceMap, sanitizeForId, fieldStoredValue);
 
     // Optional: Log global totals for verification
     console.log("Global Compliance Totals:", {
@@ -68,7 +68,7 @@ function createComplyField(incapturedData, sanitizeForId, fieldStoredValue) {
  * Parent = fieldGroup (e.g. "Transparency")
  * SubControl = Item inside fieldGroup.controls (e.g. "[18229-1.1] Intended Purpose")
  */
-function buildComplianceMap(data, sanitizeForId) {
+function buildComplianceMap(data, sanitizeForId, fieldStoredValue) {
     const complianceMap = new Map();
     let allFields = [];
 
@@ -179,7 +179,7 @@ function buildComplianceMap(data, sanitizeForId) {
 /**
  * Renders the compliance mapping as an interactive HTML structure
  */
-function renderMapping(complianceMap, sanitizeForId) {
+function renderMapping(complianceMap, sanitizeForId, fieldStoredValue) {
     const container = document.createElement('div');
     container.className = 'mapping-container';
 
