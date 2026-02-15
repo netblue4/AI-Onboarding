@@ -422,7 +422,7 @@ function createImplementationList(children, sanitizeForId, fieldStoredValue) {
 /**
  * Creates a single implementation item
  */
-function createImplementationItem(child, sanitizeForId, fieldStoredValue, fieldStoredValue) {
+function createImplementationItem(child, sanitizeForId, fieldStoredValue) {
     const impItem = document.createElement('li');
     impItem.className = 'imp-item';
     impItem.style.marginBottom = '5px';
