@@ -407,7 +407,7 @@ function createEvidenceDiv(subControl, sanitizeForId, fieldStoredValue) {
 /**
  * Creates the list of linked implementations
  */
-function createImplementationList(children, sanitizeForId) {
+function createImplementationList(children, sanitizeForId, fieldStoredValue) {
     const impList = document.createElement('ul');
     impList.className = 'imp-list';
 
