@@ -233,17 +233,21 @@ getFieldsForRole(role) {
         // Trigger content rendering
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
         
-			if(this.state.currentRole === "Requirements Map"){
-			    contentRenderer.renderMindMap();
-			}
-			if (this.state.currentRole === "Approver" ) {
+			if (this.state.currentRole === "Requirements Map") {
+				// Only render the Mind Map
+				contentRenderer.renderMindMap();
+			} 
+			else if (this.state.currentRole === "Approver") {
+				// Only render the AI Assessment View
 				contentRenderer.renderAIAssessmentView();
-			} else {
+			} 
+			else {
+				// Default: Render the standard assessment fields
 				contentRenderer.render();
 			}
 
-        }
-    }
+		}
+	}
 
     /**
      * Get completion statistics for all roles
