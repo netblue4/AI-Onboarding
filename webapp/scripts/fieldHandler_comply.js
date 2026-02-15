@@ -427,7 +427,8 @@ function createImplementationItem(child, sanitizeForId, fieldStoredValue) {
     impItem.className = 'imp-item';
     impItem.style.marginBottom = '5px';
     
-    const { typeClass, typeName } = getImplementationType(child.jkType.split(':')[0]);
+    const ftype = child.jkType.split(':')[0];
+    const { typeClass, typeName } = getImplementationType(ftype);
 
     // Create the badge
     const badge = document.createElement('span');
