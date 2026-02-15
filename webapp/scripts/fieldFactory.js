@@ -1,7 +1,7 @@
 /**
  * Finds the correct rendering function based on the field's type.
  * @param {string} fieldType - The FieldType from the JSON data.
- * @returns {Function|null} The function to render the field, or null if not found.
+ * @returns {Function|null} The function to render the field, or null if not found
  */
 function getFieldHandler(fieldType) {
     if (!fieldType) return null;

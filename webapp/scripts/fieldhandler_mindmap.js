@@ -5,7 +5,7 @@
  * @param {object} capturedData - Previously saved data to determine applicability and status
  * @param {function} sanitizeForId - Utility function to create safe HTML IDs
  * @param {function} fieldStoredValue - Function to retrieve stored field values
- * @returns {HTMLElement} The fully constructed mind map container element
+ * @returns {HTMLElement} The fully constructed mind map container element.
  */
 
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
