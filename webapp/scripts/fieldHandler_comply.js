@@ -446,14 +446,6 @@ function createImplementationItem(child, sanitizeForId, fieldStoredValue) {
     titleDiv.textContent = child.control_number + ': ' + child.jkText;
     contentDiv.appendChild(titleDiv);
 
-    // Create requirement controls meta
-    //const requirementDiv = document.createElement('div');
-    //requirementDiv.className = 'imp-meta';
-    //const requirementStrong = document.createElement('strong');
-    //requirementStrong.textContent = 'Requirement Controls:';
-    //requirementDiv.appendChild(requirementStrong);
-    //requirementDiv.appendChild(document.createTextNode(` ${child.requirement_control_number}`));
-    //contentDiv.appendChild(requirementDiv);
 
     // Create status/response meta
 	if (child.jkType !== "risk" && child.jkType !== "plan") {
