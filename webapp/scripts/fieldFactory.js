@@ -16,8 +16,8 @@ function getFieldHandler(fieldType) {
         'plan':createPlan,
         'fieldGroup':createFieldGroup,
         'comply':createComplyField,
+        'mindmap': createMindMap,
         'requirement':createRequirement,
-        'mindmap':createMindMap,
     };
     
     if (exactMatchHandlers[fieldType]) {
