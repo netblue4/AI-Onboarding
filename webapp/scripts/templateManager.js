@@ -109,24 +109,23 @@ class TemplateManager {
 	
 		// Clean the type (e.g., "MultiSelect:PDF" -> "MultiSelect")
 		const cleanType = String(field.jkType).split(':')[0];
-		const sanitizedId = this.sanitizeForId(field.requirement_control_number || field.control_number);
-	
+	    let sanitizedId = 0;
 		switch (cleanType) {
 			case "requirement":
-				// Use this.state.capturedData to access the managed state
+			    sanitizedId = this.sanitizeForId(field.requirement_control_number);
 				return this.state.capturedData[sanitizedId + '_jkSoa'];	
-				
 			case "MultiSelect":
+			    sanitizedId = this.sanitizeForId(field.control_number);
 				return this.state.capturedData[sanitizedId + "_response"];
-	
 			case "risk_control":
 			case "test_control":	
+			    sanitizedId = this.sanitizeForId(field.control_number);
 				if (implementationStatus) {
 					return this.state.capturedData[sanitizedId + "_jkImplementationStatus"];
 				}
 				return this.state.capturedData[sanitizedId + "_jkImplementationEvidence"];				
-	
 			default:	
+			    sanitizedId = this.sanitizeForId(field.control_number);
 				return this.state.capturedData[sanitizedId + "_response"] || null;
 		}
 	}
