@@ -233,6 +233,9 @@ getFieldsForRole(role) {
         // Trigger content rendering
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
         
+			if(this.state.currentRole === "Requirements Map"){
+			    contentRenderer.renderMindMap();
+			}
 			if (this.state.currentRole === "Approver" ) {
 				contentRenderer.renderAIAssessmentView();
 			} else {

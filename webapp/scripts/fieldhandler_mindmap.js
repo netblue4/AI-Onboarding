@@ -8,7 +8,7 @@
  * @returns {HTMLElement} The fully constructed mind map container element
  */
 
-function createMindmapField(incapturedData, sanitizeForId, fieldStoredValue) {
+function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
     const capturedData = incapturedData || {};
     
     const webappData = window.originalWebappData;

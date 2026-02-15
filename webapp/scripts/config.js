@@ -19,7 +19,8 @@ const CONFIG = {
         'Incident Manager',
         'Operation & Monitoring Engineer',
         'Deployment Engineer',
-        'Approver'
+        'Approver',
+        'Requirements Map'
     ],
     
     // UI messages
