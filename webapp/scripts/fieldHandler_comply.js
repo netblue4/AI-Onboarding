@@ -535,7 +535,7 @@ function createImplementationItem(child, sanitizeForId) {
             statusStrong.textContent = 'Status: ';
             controlDiv.appendChild(statusStrong);
             controlDiv.appendChild(document.createTextNode(
-            this.templateManager.fieldStoredValue(ctl, capturedData, true);
+            this.templateManager.fieldStoredValue(ctl, capturedData, true)
             //capturedData[`${controlKey}_jkImplementationStatus`]
             || ''));
 
