@@ -233,7 +233,7 @@ getFieldsForRole(role) {
         // Trigger content rendering
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
         
-			if (this.state.currentRole === "Requirements Map") {
+			if (this.state.currentRole === "Compliance Map") {
 				// Only render the Mind Map
 				contentRenderer.renderMindMap();
 			} 

@@ -12,15 +12,14 @@ const CONFIG = {
     // Role definitions
     ROLES: [
         'Compliance',
+        'Compliance Map'
         'Requester',
         'Data Engineer',
         'Engineer',
         'Tester',
-        'Incident Manager',
-        'Operation & Monitoring Engineer',
-        'Deployment Engineer',
+        'Deployment',
+        'Operation',
         'Approver',
-        'Requirements Map'
     ],
     
     // UI messages

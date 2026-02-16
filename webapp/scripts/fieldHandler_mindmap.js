@@ -131,7 +131,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     controls.appendChild(createBtn('⟲', 'Reset View', () => { scale = 1; translateX = 0; translateY = 0; updateTransform(); }));
     
     // COLLAPSE ALL
-    controls.appendChild(createBtn('收', 'Collapse All', () => {
+    controls.appendChild(createBtn('><', 'Collapse All', () => {
         container.querySelectorAll('.node-children-container').forEach(el => el.style.display = 'none');
         container.querySelectorAll('.expand-btn').forEach(el => el.textContent = '>');
         requestAnimationFrame(() => drawAllConnections(container));

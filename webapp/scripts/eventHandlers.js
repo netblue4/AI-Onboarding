@@ -35,6 +35,7 @@ class EventHandlers {
         const dimensionDropdown = document.getElementById('dimension-dropdown');
         const systemIdInput = document.getElementById('system-id-input');
         const fileInput = document.getElementById('file-input');
+        const compliancemapBtn = document.getElementById('compliancemap-btn');
         const saveBtn = document.getElementById('save-btn');
         const downloadBtn = document.getElementById('download-btn');
         const infoBanner = document.getElementById('info-banner');
@@ -56,6 +57,72 @@ class EventHandlers {
                 this.state.setSystemId(e.target.value);
             });
         }
+        
+        // ===== COMPLIANE MAP BUTTON =====
+        compliancemapBtn.addEventListener('click', () => {
+            console.log('Load Compliance map button clicked');
+
+
+
+
+
+
+
+
+
+
+		
+		const contentArea = document.getElementById('content-area');
+		if (!contentArea) return;
+	
+		// 1. Clear previous content
+		contentArea.innerHTML = '';
+		
+		try {
+			// 2. Get the specialized handler
+			const handler = getFieldHandler('mindmap');
+			
+			if (handler) {
+				// 3. Call the handler. 
+				// Note: Since we aren't looping, we pass null or a global config 
+				// if the handler is already "data-aware".
+				const mindmapElement = handler(
+					this.state.capturedData, 
+					this.templateManager.sanitizeForId.bind(this.templateManager),
+					this.templateManager.fieldStoredValue.bind(this.templateManager)
+				);
+	
+				console.log('Mindmap Element produced:', mindmapElement); // Add this!
+	
+				if (mindmapElement) {
+					contentArea.appendChild(mindmapElement);
+				} else {
+					contentArea.innerHTML = '<div class="empty-state">No mindmap data found.</div>';
+				}
+			}
+		} catch (error) {
+			console.error('Error in Mindmap rendering:', error);
+			contentArea.innerHTML = '<div class="error">Failed to render mindmap view.</div>';
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
 
         // ===== SAVE PROGRESS BUTTON =====
         saveBtn.addEventListener('click', () => {

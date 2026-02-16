@@ -2319,7 +2319,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "Incident Reporting",
-          "Role": "Incident Manager",
+          "Role": "Operation",
           "controls": [
             {
               "requirement_control_number": "[18286.6]",
@@ -2371,7 +2371,7 @@
       "Fields": [
         {
           "jkType": "risk",
-          "Role": "Operation & Monitoring Engineer",
+          "Role": "Operation",
           "jkName": "Insufficient Scalability Management",
           "RiskDescription": "Failure to design the system so it can easily grow (scale) will result in crashes or extreme slowness when too many users try to access it at once, or when we add too much new data to its knowledge base.",
           "controls": [
@@ -2419,7 +2419,7 @@
         },
         {
           "jkType": "risk",
-          "Role": "Operation & Monitoring Engineer",
+          "Role": "Operation",
           "jkName": "Poor Management of AI System Changes and Updates",
           "RiskDescription": "Failure to manage the lifecycle of the AI system, including **changes to its underlying data, code, or model artifacts**, due to a lack of automated **validation, testing, version control, and formal change management**, could lead to the deployment of an **unstable, non-reproducible, or poor-performing** model. This results in **service degradation**, potential **compliance issues** from undocumented changes, and the inability to reliably **rollback** to a previous stable state.",
           "controls": [
