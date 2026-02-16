@@ -1,5 +1,5 @@
 /**
- * MindMap Handler: Tree-style visualization with Compliance Color-Coding
+ * MindMap Handler: Tree-style visualization with Compliance Color-Coding, Zoom, and Pan
  */
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
     const webappData = window.originalWebappData;
@@ -41,7 +41,6 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                 field.controls.forEach(req => {
                     if (req.jkType === 'requirement') {
                         const controlKey = req.requirement_control_number;
-                        // Logic Sync: Mirroring Compliance Map applicability check
                         const soaStatus = fieldStoredValue(req, false);
                         if (controlKey && soaStatus === 'Applicable') {
                             dataEntry.requirements.set(controlKey, { 
@@ -76,20 +75,95 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
 }
 
 /**
- * Main Rendering Function
+ * Main Rendering Function with Zoom/Pan Controller
  */
 function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValue) {
+    const viewport = document.createElement('div');
+    viewport.className = 'mindmap-viewport';
+    viewport.style.cssText = `
+        position: relative; width: 100%; height: 85vh; 
+        background: #2d333b; overflow: hidden; cursor: grab;
+        border-radius: 8px; border: 1px solid #444c56;
+    `;
+
+    // The inner container that actually transforms
     const container = document.createElement('div');
     container.className = 'mindmap-canvas';
     container.style.cssText = `
-        position: relative; width: 100%; min-height: 800px; 
-        background: #2d333b; overflow: auto; padding: 100px;
-        display: flex; align-items: flex-start; font-family: 'Segoe UI', sans-serif;
+        position: absolute; width: 5000px; height: 5000px;
+        top: 0; left: 0; transform-origin: 0 0;
+        display: flex; align-items: flex-start; padding: 200px;
+    `;
+    viewport.appendChild(container);
+
+    // Zoom/Pan State
+    let scale = 1;
+    let translateX = 0;
+    let translateY = 0;
+    let isDragging = false;
+    let startX, startY;
+
+    const updateTransform = () => {
+        container.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    };
+
+    // --- ZOOM/PAN CONTROLS UI ---
+    const controls = document.createElement('div');
+    controls.style.cssText = `
+        position: absolute; top: 20px; right: 20px; z-index: 1000;
+        display: flex; gap: 10px;
     `;
 
+    const createBtn = (icon, title, action) => {
+        const btn = document.createElement('button');
+        btn.innerHTML = icon;
+        btn.title = title;
+        btn.style.cssText = `
+            background: #374151; color: white; border: 1px solid #4b5563;
+            padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 14px;
+        `;
+        btn.onclick = (e) => { e.stopPropagation(); action(); };
+        return btn;
+    };
+
+    controls.appendChild(createBtn('+', 'Zoom In', () => { scale = Math.min(scale + 0.1, 2); updateTransform(); }));
+    controls.appendChild(createBtn('-', 'Zoom Out', () => { scale = Math.max(scale - 0.1, 0.3); updateTransform(); }));
+    controls.appendChild(createBtn('⟲', 'Reset View', () => { scale = 1; translateX = 0; translateY = 0; updateTransform(); }));
+    
+    // COLLAPSE ALL
+    controls.appendChild(createBtn('收', 'Collapse All', () => {
+        container.querySelectorAll('.node-children-container').forEach(el => el.style.display = 'none');
+        container.querySelectorAll('.expand-btn').forEach(el => el.textContent = '>');
+        requestAnimationFrame(() => drawAllConnections(container));
+    }));
+
+    viewport.appendChild(controls);
+
+    // --- MOUSE EVENTS FOR PANNING ---
+    viewport.onmousedown = (e) => {
+        if (e.target.closest('.mindmap-card') || e.target.closest('button')) return;
+        isDragging = true;
+        viewport.style.cursor = 'grabbing';
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+    };
+
+    window.onmousemove = (e) => {
+        if (!isDragging) return;
+        translateX = e.clientX - startX;
+        translateY = e.clientY - startY;
+        updateTransform();
+    };
+
+    window.onmouseup = () => {
+        isDragging = false;
+        viewport.style.cursor = 'grab';
+    };
+
+    // --- RENDERING TREE ---
     const svgLayer = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svgLayer.id = "mindmap-svg";
-    svgLayer.style.cssText = "position:absolute; top:0; left:0; pointer-events:none; z-index: 1;";
+    svgLayer.style.cssText = "position:absolute; top:0; left:0; pointer-events:none; z-index: 1; width: 100%; height: 100%;";
     container.appendChild(svgLayer);
 
     const treeRoot = document.createElement('div');
@@ -105,7 +179,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     mindmapData.forEach((data, groupName) => {
         const groupWrapper = document.createElement('div');
         groupWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
-        
         const groupNode = createNodeCard(groupName, "#374151", true);
         groupWrapper.appendChild(groupNode);
 
@@ -117,7 +190,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             const reqWrapper = document.createElement('div');
             reqWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
 
-            // Calculate Compliance Stats
             let totalImpControls = 0;
             let totalWithEvidence = 0;
             reqData.implementations.forEach(impl => {
@@ -125,21 +197,15 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 if (fieldStoredValue(impl, false)) totalWithEvidence++;
             });
 
-            // Determine Requirement Node Color
-            let reqColor = "#2c3e50"; // Default
+            let reqColor = "#2c3e50";
             if (totalImpControls > 0) {
-                if (totalWithEvidence === totalImpControls) reqColor = "#238636"; // Green (Full)
-                else if (totalWithEvidence > 0) reqColor = "#9e6a03"; // Yellow (Partial)
-                else reqColor = "#a31d23"; // Red (None)
+                if (totalWithEvidence === totalImpControls) reqColor = "#238636";
+                else if (totalWithEvidence > 0) reqColor = "#9e6a03";
+                else reqColor = "#a31d23";
             }
 
             const reqLabel = `[${reqKey}]: ${reqData.requirement.jkName || 'Requirement'}`;
-            const reqTooltip = `REQUIREMENT DATA:\n` +
-                               `Description: ${reqData.requirement.jkText || 'N/A'}\n\n` +
-                               `COMPLIANCE STATS:\n` +
-                               `• Total Requirements: 1\n` + 
-                               `• Total Implementation Controls: ${totalImpControls}\n` +
-                               `• Controls with Evidence: ${totalWithEvidence}`;
+            const reqTooltip = `REQUIREMENT DATA:\nDescription: ${reqData.requirement.jkText || 'N/A'}\n\nCOMPLIANCE STATS:\n• Total Requirements: 1\n• Total Implementation Controls: ${totalImpControls}\n• Controls with Evidence: ${totalWithEvidence}`;
             
             const reqNode = createNodeCard(reqLabel, reqColor, (totalImpControls > 0), reqTooltip);
             reqWrapper.appendChild(reqNode);
@@ -149,17 +215,11 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             implsContainer.style.cssText = "display: none; flex-direction: column; gap: 10px; margin-left: 100px;";
 
             reqData.implementations.forEach(impl => {
-                const status = fieldStoredValue(impl, true);
+                const status = fieldStoredValue(impl, true) || 'Not Set';
                 const evidence = fieldStoredValue(impl, false) || '';
-                
-                // Color implementation node based on evidence presence
                 const implColor = evidence ? "#1a7f37" : "#161b22"; 
-
                 const implLabel = `${impl.control_number || 'Field'}: ${impl.jkName || 'Implementation'}`;
-                const implTooltip = `IMPLEMENTATION DETAILS:\n` +
-                                    `• Status: ${status}\n` +
-                                    `• Evidence: ${evidence}`;
-                
+                const implTooltip = `IMPLEMENTATION DETAILS:\n• Status: ${status}\n• Evidence: ${evidence || 'No evidence provided.'}`;
                 const implNode = createNodeCard(implLabel, implColor, false, implTooltip);
                 implsContainer.appendChild(implNode);
             });
@@ -200,11 +260,13 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         requestAnimationFrame(() => drawAllConnections(container));
     };
 
-    window.addEventListener('resize', () => drawAllConnections(container));
     setTimeout(() => drawAllConnections(container), 100);
-    return container;
+    return viewport;
 }
 
+/**
+ * Creates a styled node card
+ */
 function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) {
     const card = document.createElement('div');
     card.className = "mindmap-card";
@@ -214,7 +276,7 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
         box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative;
         border: 1px solid rgba(255,255,255,0.1); display: flex;
         justify-content: space-between; align-items: center;
-        flex-shrink: 0; z-index: 5; margin: 5px 0; transition: all 0.2s ease;
+        flex-shrink: 0; z-index: 5; margin: 5px 0; transition: transform 0.2s ease;
     `;
     
     const label = document.createElement('span');
@@ -241,35 +303,16 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
         tooltip.textContent = tooltipText;
         card.appendChild(tooltip);
 
-        const show = () => {
-            tooltip.style.visibility = 'visible';
-            tooltip.style.opacity = '1';
-            tooltip.style.pointerEvents = 'auto';
-            card.style.transform = 'scale(1.02)';
-            card.style.borderColor = 'rgba(255,255,255,0.4)';
-        };
-
-        const hide = () => {
-            if (!isPinned) {
-                tooltip.style.visibility = 'hidden';
-                tooltip.style.opacity = '0';
-                tooltip.style.pointerEvents = 'none';
-                card.style.transform = 'scale(1)';
-                card.style.borderColor = 'rgba(255,255,255,0.1)';
-            }
-        };
+        const show = () => { tooltip.style.visibility = 'visible'; tooltip.style.opacity = '1'; tooltip.style.pointerEvents = 'auto'; card.style.transform = 'scale(1.02)'; };
+        const hide = () => { if (!isPinned) { tooltip.style.visibility = 'hidden'; tooltip.style.opacity = '0'; tooltip.style.pointerEvents = 'none'; card.style.transform = 'scale(1)'; } };
 
         card.onmouseenter = show;
         card.onmouseleave = hide;
-        card.onclick = () => {
+        card.onclick = (e) => {
+            e.stopPropagation();
             isPinned = !isPinned;
-            if (isPinned) {
-                show();
-                card.style.boxShadow = '0 0 0 2px #58a6ff';
-            } else {
-                card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
-                hide();
-            }
+            if (isPinned) { show(); card.style.boxShadow = '0 0 0 2px #58a6ff'; } 
+            else { card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)'; hide(); }
         };
     }
 
@@ -282,32 +325,33 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
             display: flex; align-items: center; justify-content: center;
             border-radius: 4px; cursor: pointer; font-family: monospace; font-size: 14px;
         `;
-        btn.addEventListener('click', (e) => e.stopPropagation());
+        btn.onclick = (e) => e.stopPropagation();
         card.appendChild(btn);
     }
     return card;
 }
 
+/**
+ * Enhanced Line Drawing
+ */
 function drawAllConnections(container) {
     const svg = container.querySelector('#mindmap-svg');
     if (!svg) return;
-    svg.setAttribute('width', container.scrollWidth);
-    svg.setAttribute('height', container.scrollHeight);
     svg.innerHTML = '';
-    const containerRect = container.getBoundingClientRect();
     const cards = container.querySelectorAll('.mindmap-card');
     cards.forEach(card => {
         const subContainer = card.parentElement.querySelector('.node-children-container');
         if (subContainer && subContainer.style.display === 'flex') {
-            const cardRect = card.getBoundingClientRect();
-            const startX = (cardRect.right - containerRect.left) + container.scrollLeft;
-            const startY = (cardRect.top - containerRect.top + (cardRect.height / 2)) + container.scrollTop;
+            const startX = card.offsetLeft + card.offsetWidth;
+            const startY = card.offsetTop + (card.offsetHeight / 2);
+
             Array.from(subContainer.children).forEach(childWrapper => {
                 const targetCard = childWrapper.classList.contains('mindmap-card') ? childWrapper : childWrapper.querySelector('.mindmap-card');
                 if (!targetCard) return;
-                const targetRect = targetCard.getBoundingClientRect();
-                const endX = (targetRect.left - containerRect.left) + container.scrollLeft;
-                const endY = (targetRect.top - containerRect.top + (targetRect.height / 2)) + container.scrollTop;
+
+                const endX = targetCard.closest('.node-children-container').offsetLeft + targetCard.offsetLeft;
+                const endY = targetCard.closest('.node-children-container').offsetTop + targetCard.offsetTop + (targetCard.offsetHeight / 2);
+
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 const midX = startX + (endX - startX) * 0.4;
                 path.setAttribute("d", `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
