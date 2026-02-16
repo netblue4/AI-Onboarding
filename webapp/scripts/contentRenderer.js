@@ -4,43 +4,6 @@ class ContentRenderer {
         this.templateManager = templateManager;
         this.dataRestore = dataRestore;
     }
-
-	renderMindMap() {
-		console.log('Rendering MindMap');
-		
-		const contentArea = document.getElementById('content-area');
-		if (!contentArea) return;
-	
-		// 1. Clear previous content
-		contentArea.innerHTML = '';
-		
-		try {
-			// 2. Get the specialized handler
-			const handler = getFieldHandler('mindmap');
-			
-			if (handler) {
-				// 3. Call the handler. 
-				// Note: Since we aren't looping, we pass null or a global config 
-				// if the handler is already "data-aware".
-				const mindmapElement = handler(
-					this.state.capturedData, 
-					this.templateManager.sanitizeForId.bind(this.templateManager),
-					this.templateManager.fieldStoredValue.bind(this.templateManager)
-				);
-	
-				console.log('Mindmap Element produced:', mindmapElement); // Add this!
-	
-				if (mindmapElement) {
-					contentArea.appendChild(mindmapElement);
-				} else {
-					contentArea.innerHTML = '<div class="empty-state">No mindmap data found.</div>';
-				}
-			}
-		} catch (error) {
-			console.error('Error in Mindmap rendering:', error);
-			contentArea.innerHTML = '<div class="error">Failed to render mindmap view.</div>';
-		}
-	}
 	
 	renderAIAssessmentView() {
 		console.log('Rendering AI Assessment View');
