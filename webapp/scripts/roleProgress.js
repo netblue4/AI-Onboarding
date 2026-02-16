@@ -233,7 +233,7 @@ getFieldsForRole(role) {
         // Trigger content rendering
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
         
-			else if (this.state.currentRole === "Approver") {
+		    if (this.state.currentRole === "Approver") {
 				// Only render the AI Assessment View
 				contentRenderer.renderAIAssessmentView();
 			} 
