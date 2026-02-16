@@ -1,23 +1,16 @@
 /**
- * Creates an interactive mind map visualization that links requirements to their implementations.
- * This version uses a radial layout with expandable branches.
+ * MindMap Handler: Tree-style hierarchical visualization
  */
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
-    const capturedData = incapturedData || {};
     const webappData = window.originalWebappData;
-    
-    if (!webappData) {
-        const errDiv = document.createElement('div');
-        errDiv.innerHTML = "<p style='color:red'>Error: Data not found. Please ensure window.originalWebappData is set.</p>";
-        return errDiv;
-    }
+    if (!webappData) return document.createElement('div');
 
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-    return renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValue);
+    return renderMindmap(mindmapData, incapturedData || {}, sanitizeForId, fieldStoredValue);
 }
 
 /**
- * Builds the hierarchical data structure (Remains consistent with your logic)
+ * Data Processing Logic
  */
 function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
     const mindmapData = new Map();
@@ -70,124 +63,140 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
         }
     });
 
-    for (const [groupName, entry] of mindmapData.entries()) {
-        if (entry.requirements.size === 0) mindmapData.delete(groupName);
-    }
-
     return mindmapData;
 }
 
 /**
- * Renders the Radial Mind Map
+ * Main Rendering Function
  */
 function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValue) {
     const container = document.createElement('div');
     container.className = 'mindmap-canvas';
     container.style.cssText = `
         position: relative; width: 100%; min-height: 800px; 
-        background: #f8fafc; overflow: hidden; display: flex; 
-        justify-content: center; align-items: center; font-family: sans-serif;
+        background: #2d333b; overflow: auto; padding: 100px;
+        display: flex; align-items: flex-start; font-family: 'Segoe UI', sans-serif;
     `;
 
-    if (mindmapData.size === 0) {
-        container.innerHTML = '<p style="color:#64748b;">No applicable requirements found.</p>';
-        return container;
-    }
+    const svgLayer = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svgLayer.id = "mindmap-svg";
+    svgLayer.style.cssText = "position:absolute; top:0; left:0; width:3000px; height:3000px; pointer-events:none;";
+    container.appendChild(svgLayer);
 
-    const wrapper = document.createElement('div');
-    wrapper.id = 'mindmap-wrapper';
-    wrapper.style.cssText = 'position: relative; width: 1px; height: 1px;';
+    const treeRoot = document.createElement('div');
+    treeRoot.style.cssText = "position: relative; display: flex; align-items: center;";
+    
+    // 1. Create Root Node (The "International Public Law" equivalent)
+    const rootNode = createNodeCard("AI Compliance Assessment", "#4b5e71");
+    treeRoot.appendChild(rootNode);
 
-    const centralHub = document.createElement('div');
-    centralHub.style.cssText = `
-        position: absolute; transform: translate(-50%, -50%);
-        width: 120px; height: 120px; background: #1e293b; color: white;
-        border-radius: 50%; display: flex; align-items: center; 
-        justify-content: center; font-weight: bold; z-index: 100;
-        box-shadow: 0 0 20px rgba(0,0,0,0.2); text-align: center;
-    `;
-    centralHub.innerHTML = "AI Compliance<br>Map";
-    wrapper.appendChild(centralHub);
+    // 2. Container for the next level
+    const childrenContainer = document.createElement('div');
+    childrenContainer.style.cssText = "display: flex; flex-direction: column; gap: 20px; margin-left: 80px;";
+    
+    mindmapData.forEach((data, groupName) => {
+        const groupWrapper = document.createElement('div');
+        groupWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
+        
+        const groupNode = createNodeCard(groupName, "#374151", true);
+        groupWrapper.appendChild(groupNode);
 
-    const groups = Array.from(mindmapData.entries());
-    const radius = 280;
-
-    groups.forEach(([groupName, data], index) => {
-        const angle = (index / groups.length) * (2 * Math.PI);
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * radius;
-
-        const line = createSvgLine(0, 0, x, y);
-        wrapper.appendChild(line);
-
-        const groupNode = createNode(groupName, x, y, '#6366f1', () => {
-            toggleBranch(groupNode, data.requirements, x, y, angle, '#f43f5e');
+        const subChildren = document.createElement('div');
+        subChildren.style.cssText = "display: none; flex-direction: column; gap: 15px; margin-left: 80px;";
+        
+        data.requirements.forEach((reqData, reqKey) => {
+            const reqNode = createNodeCard(`${reqKey}: ${reqData.requirement.jkName || 'Requirement'}`, "#1e293b", reqData.implementations.size > 0);
+            subChildren.appendChild(reqNode);
+            
+            // Implementation logic could go deeper here...
         });
-        wrapper.appendChild(groupNode);
+
+        groupWrapper.appendChild(subChildren);
+        
+        // Expansion Logic
+        groupNode.querySelector('.expand-btn').onclick = () => {
+            const isOpen = subChildren.style.display === 'flex';
+            subChildren.style.display = isOpen ? 'none' : 'flex';
+            groupNode.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
+            setTimeout(() => drawAllConnections(svgLayer, container), 10);
+        };
+
+        childrenContainer.appendChild(groupWrapper);
     });
 
-    container.appendChild(wrapper);
+    treeRoot.appendChild(childrenContainer);
+    container.appendChild(treeRoot);
+
+    // Initial draw
+    setTimeout(() => drawAllConnections(svgLayer, container), 50);
+
     return container;
 }
 
-function createNode(label, x, y, color, onClick) {
-    const node = document.createElement('div');
-    node.style.cssText = `
-        position: absolute; left: ${x}px; top: ${y}px;
-        transform: translate(-50%, -50%); background: ${color};
-        color: white; padding: 10px 18px; border-radius: 20px;
-        cursor: pointer; white-space: nowrap; font-size: 13px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 10;
-        transition: all 0.2s ease;
+/**
+ * Creates a styled node card matching the image
+ */
+function createNodeCard(text, bgColor, hasChildren = false) {
+    const card = document.createElement('div');
+    card.className = "mindmap-card";
+    card.style.cssText = `
+        background: ${bgColor}; color: #adbac7; padding: 12px 24px;
+        border-radius: 8px; font-size: 14px; min-width: 180px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3); position: relative;
+        border: 1px solid rgba(255,255,255,0.1); display: flex;
+        justify-content: space-between; align-items: center;
     `;
-    node.textContent = label.length > 30 ? label.substring(0, 30) + '...' : label;
-    node.onclick = (e) => { e.stopPropagation(); onClick(); };
-    return node;
-}
-
-function createSvgLine(x1, y1, x2, y2) {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.style.cssText = `position: absolute; top: 0; left: 0; overflow: visible; pointer-events: none;`;
-    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", x1); line.setAttribute("y1", y1);
-    line.setAttribute("x2", x2); line.setAttribute("y2", y2);
-    line.setAttribute("stroke", "#cbd5e1"); line.setAttribute("stroke-width", "2");
-    svg.appendChild(line);
-    return svg;
-}
-
-function toggleBranch(parentNode, childrenMap, parentX, parentY, parentAngle, color) {
-    const isExpanded = parentNode.getAttribute('data-expanded') === 'true';
     
-    if (isExpanded) {
-        const branchId = parentNode.getAttribute('data-branch-id');
-        document.querySelectorAll(`[data-parent-id="${branchId}"]`).forEach(el => el.remove());
-        parentNode.setAttribute('data-expanded', 'false');
-        return;
+    const label = document.createElement('span');
+    label.textContent = text.length > 40 ? text.substring(0, 40) + '...' : text;
+    card.appendChild(label);
+
+    if (hasChildren) {
+        const btn = document.createElement('div');
+        btn.className = "expand-btn";
+        btn.textContent = ">";
+        btn.style.cssText = "margin-left: 10px; cursor: pointer; opacity: 0.7; font-weight: bold;";
+        card.appendChild(btn);
     }
 
-    const branchId = 'branch-' + Math.random().toString(36).substr(2, 9);
-    parentNode.setAttribute('data-branch-id', branchId);
-    parentNode.setAttribute('data-expanded', 'true');
+    return card;
+}
 
-    const children = Array.from(childrenMap.entries());
-    const spread = Math.PI / 2; 
-    const startAngle = parentAngle - spread / 2;
+/**
+ * Draws the curved lines between cards
+ */
+function drawAllConnections(svg, container) {
+    svg.innerHTML = '';
+    const cards = container.querySelectorAll('.mindmap-card');
+    
+    cards.forEach(card => {
+        const parentWrapper = card.parentElement;
+        const subContainer = parentWrapper.querySelector('div');
+        
+        if (subContainer && subContainer.style.display === 'flex') {
+            const children = subContainer.children;
+            const startX = card.offsetLeft + card.offsetWidth;
+            const startY = card.offsetTop + (card.offsetHeight / 2);
 
-    children.forEach(([key, data], index) => {
-        const angle = startAngle + (index / (children.length || 1)) * spread;
-        const dist = 200;
-        const childX = parentX + Math.cos(angle) * dist;
-        const childY = parentY + Math.sin(angle) * dist;
+            Array.from(children).forEach(child => {
+                // Find the actual card inside the child wrapper if nested
+                const targetCard = child.classList.contains('mindmap-card') ? child : child.querySelector('.mindmap-card');
+                if (!targetCard) return;
 
-        const line = createSvgLine(parentX, parentY, childX, childY);
-        line.setAttribute('data-parent-id', branchId);
-        parentNode.parentNode.appendChild(line);
+                const endX = targetCard.getBoundingClientRect().left - container.getBoundingClientRect().left;
+                const endY = (targetCard.getBoundingClientRect().top - container.getBoundingClientRect().top) + (targetCard.offsetHeight / 2);
 
-        const childNode = createNode(key, childX, childY, color, () => {
-            alert(`ID: ${key}\n${data.requirement.jkText || 'No description'}`);
-        });
-        childNode.setAttribute('data-parent-id', branchId);
-        parentNode.parentNode.appendChild(childNode);
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                const cp1x = startX + (endX - startX) / 2;
+                const d = `M ${startX} ${startY} C ${cp1x} ${startY}, ${cp1x} ${endY}, ${endX} ${endY}`;
+                
+                path.setAttribute("d", d);
+                path.setAttribute("stroke", "#6e7681");
+                path.setAttribute("stroke-width", "2");
+                path.setAttribute("fill", "none");
+                path.setAttribute("opacity", "0.5");
+                svg.appendChild(path);
+            });
+        }
     });
 }
