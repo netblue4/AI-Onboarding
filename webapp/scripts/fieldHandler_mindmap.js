@@ -1,5 +1,5 @@
 /**
- * MindMap Handler: Full-depth tree visualization (Groups -> Requirements -> Controls)
+ * MindMap Handler: Tree-style visualization with interactive Tooltips
  */
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
     const webappData = window.originalWebappData;
@@ -10,7 +10,7 @@ function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
 }
 
 /**
- * Data Processing Logic (Maintains your existing logic for mapping)
+ * Data Processing Logic
  */
 function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
     const mindmapData = new Map();
@@ -113,23 +113,27 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
             const hasImplementations = reqData.implementations.size > 0;
             const reqLabel = `[${reqKey}]: ${reqData.requirement.jkName || 'Requirement'}`;
-            const reqNode = createNodeCard(reqLabel, "#2c3e50", hasImplementations);
+            // Add Requirement text to tooltip as well
+            const reqTooltip = reqData.requirement.jkText || 'No detailed text available.';
+            
+            const reqNode = createNodeCard(reqLabel, "#2c3e50", hasImplementations, reqTooltip);
             reqWrapper.appendChild(reqNode);
 
             const implsContainer = document.createElement('div');
             implsContainer.className = "node-children-container";
             implsContainer.style.cssText = "display: none; flex-direction: column; gap: 10px; margin-left: 100px;";
 
-            // 4. IMPLEMENTATIONS/CONTROLS LEVEL
+            // 4. IMPLEMENTATIONS/CONTROLS LEVEL (Updated per request)
             reqData.implementations.forEach(impl => {
-                const implLabel = `${impl.control_number || 'Field'}: ${impl.jkName || impl.jkText || 'Implementation'}`;
-                const implNode = createNodeCard(implLabel, "#161b22", false);
+                const implLabel = `${impl.control_number || 'Field'}: ${impl.jkName || 'Implementation'}`;
+                const implTooltip = impl.jkText || 'No additional description available.';
+                
+                const implNode = createNodeCard(implLabel, "#161b22", false, implTooltip);
                 implsContainer.appendChild(implNode);
             });
 
             reqWrapper.appendChild(implsContainer);
 
-            // Toggle Requirement -> Implementations
             if (hasImplementations) {
                 reqNode.querySelector('.expand-btn').onclick = (e) => {
                     e.stopPropagation();
@@ -139,13 +143,11 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                     requestAnimationFrame(() => drawAllConnections(container));
                 };
             }
-
             reqsContainer.appendChild(reqWrapper);
         });
 
         groupWrapper.appendChild(reqsContainer);
         
-        // Toggle Group -> Requirements
         groupNode.querySelector('.expand-btn').onclick = (e) => {
             e.stopPropagation();
             const isOpen = reqsContainer.style.display === 'flex';
@@ -160,7 +162,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     treeRoot.appendChild(groupsContainer);
     container.appendChild(treeRoot);
 
-    // Toggle Root -> Groups
     rootNode.querySelector('.expand-btn').onclick = (e) => {
         e.stopPropagation();
         const isOpen = groupsContainer.style.display === 'flex';
@@ -175,7 +176,10 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     return container;
 }
 
-function createNodeCard(text, bgColor, hasChildren = false) {
+/**
+ * Creates a styled node card with a "pin-able" tooltip
+ */
+function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) {
     const card = document.createElement('div');
     card.className = "mindmap-card";
     card.style.cssText = `
@@ -185,12 +189,68 @@ function createNodeCard(text, bgColor, hasChildren = false) {
         border: 1px solid rgba(255,255,255,0.1); display: flex;
         justify-content: space-between; align-items: center;
         flex-shrink: 0; z-index: 5; margin: 5px 0;
+        transition: all 0.2s ease;
     `;
     
     const label = document.createElement('span');
     label.textContent = text.length > 65 ? text.substring(0, 65) + '...' : text;
     label.style.cssText = "pointer-events: none; line-height: 1.4;";
     card.appendChild(label);
+
+    if (tooltipText) {
+        let isPinned = false;
+
+        const infoIcon = document.createElement('div');
+        infoIcon.innerHTML = 'ⓘ';
+        infoIcon.style.cssText = "margin-left: 8px; opacity: 0.5; font-size: 14px; cursor: help;";
+        card.appendChild(infoIcon);
+
+        const tooltip = document.createElement('div');
+        tooltip.className = 'mindmap-tooltip';
+        tooltip.textContent = tooltipText;
+        tooltip.style.cssText = `
+            visibility: hidden; position: absolute; bottom: 120%; left: 50%;
+            transform: translateX(-50%); width: 280px; background-color: #1c2128;
+            color: #adbac7; text-align: left; padding: 12px; border-radius: 6px;
+            border: 1px solid #444c56; box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            z-index: 100; font-size: 11px; line-height: 1.5; pointer-events: none;
+            opacity: 0; transition: opacity 0.3s, visibility 0.3s;
+        `;
+        card.appendChild(tooltip);
+
+        const show = () => {
+            tooltip.style.visibility = 'visible';
+            tooltip.style.opacity = '1';
+            tooltip.style.pointerEvents = 'auto'; // Enable selection
+            card.style.transform = 'scale(1.02)';
+            card.style.borderColor = 'rgba(255,255,255,0.4)';
+        };
+
+        const hide = () => {
+            if (!isPinned) {
+                tooltip.style.visibility = 'hidden';
+                tooltip.style.opacity = '0';
+                tooltip.style.pointerEvents = 'none';
+                card.style.transform = 'scale(1)';
+                card.style.borderColor = 'rgba(255,255,255,0.1)';
+            }
+        };
+
+        card.onmouseenter = show;
+        card.onmouseleave = hide;
+
+        // Toggle pinning on click
+        card.onclick = () => {
+            isPinned = !isPinned;
+            if (isPinned) {
+                show();
+                card.style.boxShadow = '0 0 0 2px #58a6ff'; // Blue glow for pinned
+            } else {
+                card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+                hide();
+            }
+        };
+    }
 
     if (hasChildren) {
         const btn = document.createElement('div');
@@ -201,6 +261,8 @@ function createNodeCard(text, bgColor, hasChildren = false) {
             display: flex; align-items: center; justify-content: center;
             border-radius: 4px; cursor: pointer; font-family: monospace; font-size: 14px;
         `;
+        // Ensure expansion doesn't conflict with pinning
+        btn.addEventListener('click', (e) => e.stopPropagation());
         card.appendChild(btn);
     }
 
@@ -222,13 +284,11 @@ function drawAllConnections(container) {
         const parentWrapper = card.parentElement;
         const subContainer = parentWrapper.querySelector('.node-children-container');
         
-        // If subContainer is expanded, draw lines to its direct children
         if (subContainer && subContainer.style.display === 'flex') {
             const cardRect = card.getBoundingClientRect();
             const startX = (cardRect.right - containerRect.left) + container.scrollLeft;
             const startY = (cardRect.top - containerRect.top + (cardRect.height / 2)) + container.scrollTop;
 
-            // Iterate over the wrappers in the sub-container to find the cards
             Array.from(subContainer.children).forEach(childWrapper => {
                 const targetCard = childWrapper.classList.contains('mindmap-card') 
                                    ? childWrapper 
