@@ -332,29 +332,56 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
 }
 
 /**
- * Enhanced Line Drawing
+ * Enhanced Line Drawing: Fixes coordinates for Zoom & Pan
  */
 function drawAllConnections(container) {
     const svg = container.querySelector('#mindmap-svg');
     if (!svg) return;
+
+    // 1. Clear previous lines
     svg.innerHTML = '';
+
+    // 2. Get the current scale from the container's transform style
+    // We need this to "un-scale" coordinates so they stay pinned to nodes
+    const style = window.getComputedStyle(container);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    const currentScale = matrix.a; // The 'a' value is the horizontal scale
+
+    const containerRect = container.getBoundingClientRect();
     const cards = container.querySelectorAll('.mindmap-card');
+
     cards.forEach(card => {
         const subContainer = card.parentElement.querySelector('.node-children-container');
+        
+        // Only draw lines if the branch is expanded
         if (subContainer && subContainer.style.display === 'flex') {
-            const startX = card.offsetLeft + card.offsetWidth;
-            const startY = card.offsetTop + (card.offsetHeight / 2);
+            const cardRect = card.getBoundingClientRect();
+
+            // Calculate Start Point (Right-center of parent card)
+            // We subtract containerRect to get local coords, then divide by scale
+            const startX = (cardRect.right - containerRect.left) / currentScale;
+            const startY = (cardRect.top - containerRect.top + (cardRect.height / 2)) / currentScale;
 
             Array.from(subContainer.children).forEach(childWrapper => {
-                const targetCard = childWrapper.classList.contains('mindmap-card') ? childWrapper : childWrapper.querySelector('.mindmap-card');
+                const targetCard = childWrapper.classList.contains('mindmap-card') 
+                                   ? childWrapper 
+                                   : childWrapper.querySelector('.mindmap-card');
+                
                 if (!targetCard) return;
 
-                const endX = targetCard.closest('.node-children-container').offsetLeft + targetCard.offsetLeft;
-                const endY = targetCard.closest('.node-children-container').offsetTop + targetCard.offsetTop + (targetCard.offsetHeight / 2);
+                const targetRect = targetCard.getBoundingClientRect();
 
+                // Calculate End Point (Left-center of child card)
+                const endX = (targetRect.left - containerRect.left) / currentScale;
+                const endY = (targetRect.top - containerRect.top + (targetRect.height / 2)) / currentScale;
+
+                // Draw the Cubic Bezier curve
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 const midX = startX + (endX - startX) * 0.4;
-                path.setAttribute("d", `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
+                
+                const d = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
+                
+                path.setAttribute("d", d);
                 path.setAttribute("stroke", "#444c56");
                 path.setAttribute("stroke-width", "1.5");
                 path.setAttribute("fill", "none");
