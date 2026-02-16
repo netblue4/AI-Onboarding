@@ -115,7 +115,10 @@ class TemplateManager {
 			    sanitizedId = this.sanitizeForId(field.requirement_control_number);
 				return this.state.capturedData[sanitizedId + '_jkSoa'];	
 			case "MultiSelect":
-			    sanitizedId = this.sanitizeForId(field.control_number);
+				if (implementationStatus) {
+					return null;
+				}
+				sanitizedId = this.sanitizeForId(field.control_number);
 				return this.state.capturedData[sanitizedId + "_response"];
 			case "risk_control":
 			case "test_control":	
@@ -125,7 +128,10 @@ class TemplateManager {
 				}
 				return this.state.capturedData[sanitizedId + "_jkImplementationEvidence"];				
 			default:	
-			    sanitizedId = this.sanitizeForId(field.control_number);
+				if (implementationStatus) {
+					return null;
+				}
+				sanitizedId = this.sanitizeForId(field.control_number);
 				return this.state.capturedData[sanitizedId + "_response"] || null;
 		}
 	}
