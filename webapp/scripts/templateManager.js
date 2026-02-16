@@ -116,7 +116,7 @@ class TemplateManager {
 				return this.state.capturedData[sanitizedId + '_jkSoa'];	
 			case "MultiSelect":
 				if (implementationStatus) {
-					return null;
+					return "";
 				}
 				sanitizedId = this.sanitizeForId(field.control_number);
 				return this.state.capturedData[sanitizedId + "_response"];
@@ -129,7 +129,7 @@ class TemplateManager {
 				return this.state.capturedData[sanitizedId + "_jkImplementationEvidence"];				
 			default:	
 				if (implementationStatus) {
-					return null;
+					return "";
 				}
 				sanitizedId = this.sanitizeForId(field.control_number);
 				return this.state.capturedData[sanitizedId + "_response"] || null;

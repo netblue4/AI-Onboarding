@@ -149,7 +149,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             implsContainer.style.cssText = "display: none; flex-direction: column; gap: 10px; margin-left: 100px;";
 
             reqData.implementations.forEach(impl => {
-                const status = fieldStoredValue(impl, true) || 'Not Set';
+                const status = fieldStoredValue(impl, true);
                 const evidence = fieldStoredValue(impl, false) || '';
                 
                 // Color implementation node based on evidence presence
@@ -158,7 +158,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 const implLabel = `${impl.control_number || 'Field'}: ${impl.jkName || 'Implementation'}`;
                 const implTooltip = `IMPLEMENTATION DETAILS:\n` +
                                     `• Status: ${status}\n` +
-                                    `• Evidence: ${evidence || 'No evidence provided.'}`;
+                                    `• Evidence: ${evidence}`;
                 
                 const implNode = createNodeCard(implLabel, implColor, false, implTooltip);
                 implsContainer.appendChild(implNode);
