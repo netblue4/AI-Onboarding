@@ -179,7 +179,7 @@ class EventHandlers {
                         
                         
                         
-                        compliancemapBtn.className = "btn-primary";
+                        compliancemapBtn.classList.toggle("btn-primary");
                         
                         
                         
