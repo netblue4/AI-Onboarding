@@ -88,8 +88,8 @@ class EventHandlers {
 				// if the handler is already "data-aware".
 				const mindmapElement = handler(
 					this.state.capturedData, 
-					this.templateManager.sanitizeForId.bind(this.templateManager),
-					this.templateManager.fieldStoredValue.bind(this.templateManager)
+					templateManager.sanitizeForId.bind(templateManager),
+					templateManager.fieldStoredValue.bind(templateManager)
 				);
 	
 				console.log('Mindmap Element produced:', mindmapElement); // Add this!
