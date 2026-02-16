@@ -233,10 +233,6 @@ getFieldsForRole(role) {
         // Trigger content rendering
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
         
-			if (this.state.currentRole === "Compliance Map") {
-				// Only render the Mind Map
-				contentRenderer.renderMindMap();
-			} 
 			else if (this.state.currentRole === "Approver") {
 				// Only render the AI Assessment View
 				contentRenderer.renderAIAssessmentView();
