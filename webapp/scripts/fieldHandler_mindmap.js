@@ -1,5 +1,5 @@
 /**
- * MindMap Handler: Tree-style visualization with Compliance Dashboard Header
+ * MindMap Handler: Compliance Dashboard with Group-Level Stats and Zoom/Pan
  */
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
     const webappData = window.originalWebappData;
@@ -41,7 +41,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                 field.controls.forEach(req => {
                     if (req.jkType === 'requirement') {
                         const controlKey = req.requirement_control_number;
-                        const soaStatus = fieldStoredValue(req, false); //
+                        const soaStatus = fieldStoredValue(req, false);
                         if (controlKey && soaStatus === 'Applicable') {
                             dataEntry.requirements.set(controlKey, { 
                                 requirement: req, 
@@ -75,10 +75,9 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
 }
 
 /**
- * Main Rendering Function with Dashboard Header and Zoom/Pan
+ * Main Rendering Function with Global Dashboard
  */
 function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValue) {
-    // VIEWPORT
     const viewport = document.createElement('div');
     viewport.className = 'mindmap-viewport';
     viewport.style.cssText = `
@@ -95,7 +94,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         group.requirements.forEach(req => {
             req.implementations.forEach(impl => {
                 totalControls++;
-                if (fieldStoredValue(impl, false)) totalWithEvidence++; //
+                if (fieldStoredValue(impl, false)) totalWithEvidence++;
             });
         });
     });
@@ -121,7 +120,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     `;
     viewport.appendChild(dashboard);
 
-    // INNER CANVAS
     const container = document.createElement('div');
     container.className = 'mindmap-canvas';
     container.style.cssText = `
@@ -134,9 +132,10 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     let scale = 1, translateX = 0, translateY = 0, isDragging = false, startX, startY;
     const updateTransform = () => container.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 
-    // CONTROLS UI
+    // --- FIXED CONTROLS UI ---
     const controls = document.createElement('div');
     controls.style.cssText = "position: absolute; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;";
+    
     const createBtn = (icon, title, action) => {
         const btn = document.createElement('button');
         btn.innerHTML = icon; btn.title = title;
@@ -144,9 +143,12 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         btn.onclick = (e) => { e.stopPropagation(); action(); };
         return btn;
     };
+
     controls.appendChild(createBtn('+', 'Zoom In', () => { scale = Math.min(scale + 0.1, 2); updateTransform(); }));
     controls.appendChild(createBtn('-', 'Zoom Out', () => { scale = Math.max(scale - 0.1, 0.3); updateTransform(); }));
     controls.appendChild(createBtn('⟲', 'Reset', () => { scale = 1; translateX = 0; translateY = 0; updateTransform(); }));
+    
+    // FIX: Removed ReferenceError by resetting ALL expand buttons via selector
     controls.appendChild(createBtn('><', 'Collapse All', () => {
         container.querySelectorAll('.node-children-container').forEach(el => el.style.display = 'none');
         container.querySelectorAll('.expand-btn').forEach(el => el.textContent = '>');
@@ -159,7 +161,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     window.onmousemove = (e) => { if (!isDragging) return; translateX = e.clientX - startX; translateY = e.clientY - startY; updateTransform(); };
     window.onmouseup = () => isDragging = false;
 
-    // SVG LAYER
     const svgLayer = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svgLayer.id = "mindmap-svg";
     svgLayer.style.cssText = "position:absolute; top:0; left:0; pointer-events:none; z-index: 1; width:100%; height:100%;";
@@ -167,24 +168,25 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
     const treeRoot = document.createElement('div');
     treeRoot.style.cssText = "position: relative; display: flex; align-items: center; z-index: 2;";
-    treeRoot.appendChild(createNodeCard("AI Compliance Assessment", "#4b5e71", true));
+    const assessmentRoot = createNodeCard("AI Compliance Assessment", "#4b5e71", true);
+    treeRoot.appendChild(assessmentRoot);
 
     const groupsContainer = document.createElement('div');
     groupsContainer.className = "node-children-container";
     groupsContainer.style.cssText = "display: flex; flex-direction: column; gap: 30px; margin-left: 100px;";
     
-    // TREE RENDERING
     mindmapData.forEach((data, groupName) => {
         const groupWrapper = document.createElement('div');
         groupWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
 
+        // --- NEW: Calculate Group Stats ---
         let groupTotalReqs = data.requirements.size;
         let groupTotalImpControls = 0;
         let groupTotalWithEvidence = 0;
         data.requirements.forEach(req => {
             req.implementations.forEach(impl => {
                 groupTotalImpControls++;
-                if (fieldStoredValue(impl, false)) groupTotalWithEvidence++; //
+                if (fieldStoredValue(impl, false)) groupTotalWithEvidence++;
             });
         });
 
@@ -194,14 +196,15 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
         const reqsContainer = document.createElement('div');
         reqsContainer.className = "node-children-container";
-        reqsContainer.style.cssText = "display: none; flex-direction: column; gap: 20px; margin-left: 100px;";
+        reqsContainer.style.display = 'none'; // Default collapsed
+        reqsContainer.style.cssText += "flex-direction: column; gap: 20px; margin-left: 100px;";
         
         data.requirements.forEach((reqData, reqKey) => {
             const reqWrapper = document.createElement('div');
             reqWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
             let reqImpCount = reqData.implementations.size;
             let reqEvidCount = 0;
-            reqData.implementations.forEach(impl => { if (fieldStoredValue(impl, false)) reqEvidCount++; }); //
+            reqData.implementations.forEach(impl => { if (fieldStoredValue(impl, false)) reqEvidCount++; });
 
             let reqColor = "#2c3e50";
             if (reqImpCount > 0) {
@@ -210,16 +213,18 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 else reqColor = "#a31d23";
             }
 
+            // --- REFACTORED: Tooltip now ONLY has Requirement Data ---
             const reqNode = createNodeCard(`[${reqKey}]: ${reqData.requirement.jkName || 'Requirement'}`, reqColor, (reqImpCount > 0), `REQUIREMENT DATA:\nDescription: ${reqData.requirement.jkText || 'N/A'}`);
             reqWrapper.appendChild(reqNode);
 
             const implsContainer = document.createElement('div');
             implsContainer.className = "node-children-container";
-            implsContainer.style.cssText = "display: none; flex-direction: column; gap: 10px; margin-left: 100px;";
+            implsContainer.style.display = 'none';
+            implsContainer.style.cssText += "flex-direction: column; gap: 10px; margin-left: 100px;";
 
             reqData.implementations.forEach(impl => {
-                const evidence = fieldStoredValue(impl, false) || ''; //
-                const implTooltip = `IMPLEMENTATION DETAILS:\n• Status: ${fieldStoredValue(impl, true) || 'Not Set'}\n• Evidence: ${evidence || 'No evidence provided.'}`; //
+                const evidence = fieldStoredValue(impl, false) || '';
+                const implTooltip = `IMPLEMENTATION DETAILS:\n• Status: ${fieldStoredValue(impl, true) || 'Not Set'}\n• Evidence: ${evidence || 'No evidence provided.'}`;
                 implsContainer.appendChild(createNodeCard(`${impl.control_number || 'Field'}: ${impl.jkName || 'Implementation'}`, evidence ? "#1a7f37" : "#161b22", false, implTooltip));
             });
 
@@ -249,11 +254,11 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
     treeRoot.appendChild(groupsContainer);
     container.appendChild(treeRoot);
-    rootNode.querySelector('.expand-btn').onclick = (e) => {
+    assessmentRoot.querySelector('.expand-btn').onclick = (e) => {
         e.stopPropagation();
         const isOpen = groupsContainer.style.display === 'flex';
         groupsContainer.style.display = isOpen ? 'none' : 'flex';
-        rootNode.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
+        assessmentRoot.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
         requestAnimationFrame(() => drawAllConnections(container));
     };
 
@@ -261,7 +266,9 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     return viewport;
 }
 
-// createNodeCard and drawAllConnections logic remain consistent from previous iteration.
+/**
+ * Creates a styled node card with a "pin-able" tooltip
+ */
 function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) {
     const card = document.createElement('div');
     card.className = "mindmap-card";
@@ -302,6 +309,9 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
     return card;
 }
 
+/**
+ * Line Drawing logic accounting for current Zoom scale
+ */
 function drawAllConnections(container) {
     const svg = container.querySelector('#mindmap-svg');
     if (!svg) return;
