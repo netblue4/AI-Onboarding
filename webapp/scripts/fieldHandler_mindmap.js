@@ -1,5 +1,5 @@
 /**
- * MindMap Handler: Tree-style visualization with StepName level, Dashboard, and Tooltips
+ * MindMap Handler: Tree-style visualization with StepName level and Dashboard
  * Hierarchy: Root -> StepName -> Group -> Requirement -> Implementation
  */
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
@@ -11,7 +11,7 @@ function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
 }
 
 /**
- * Data Processing: Groups data by StepName
+ * Data Processing: Groups requirements by StepName
  */
 function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
     const mindmapData = new Map(); 
@@ -67,7 +67,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                         implKeys.forEach(key => {
                             if (group.requirements.has(key)) {
                                 const reqEntry = group.requirements.get(key);
-                                // Load implementation only if Requirement is Applicable
+                                // Implementation added only if Requirement is Applicable
                                 if (fieldStoredValue(reqEntry.requirement, false) === 'Applicable') {
                                     reqEntry.implementations.add(implNode);
                                 }
@@ -78,13 +78,6 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
             });
         });
     });
-
-    for (const [stepName, groups] of mindmapData.entries()) {
-        groups.forEach((gData, gName) => {
-            if (gData.requirements.size === 0) groups.delete(gName);
-        });
-        if (groups.size === 0) mindmapData.delete(stepName);
-    }
 
     return mindmapData;
 }
@@ -144,6 +137,8 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     };
     controls.appendChild(createBtn('+', 'Zoom In', () => { scale = Math.min(scale + 0.1, 2); updateTransform(); }));
     controls.appendChild(createBtn('-', 'Zoom Out', () => { scale = Math.max(scale - 0.1, 0.3); updateTransform(); }));
+    
+    // FIX: Using global selector to avoid ReferenceError on rootNode
     controls.appendChild(createBtn('收', 'Collapse All', () => {
         container.querySelectorAll('.node-children-container').forEach(el => el.style.display = 'none');
         container.querySelectorAll('.expand-btn').forEach(el => el.textContent = '>');
@@ -151,7 +146,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     }));
     viewport.appendChild(controls);
 
-    // Pan Event Listeners
+    // Pan Handlers
     viewport.onmousedown = (e) => { if (e.target.closest('.mindmap-card') || e.target.closest('button')) return; isDragging = true; startX = e.clientX - translateX; startY = e.clientY - translateY; };
     window.onmousemove = (e) => { if (!isDragging) return; translateX = e.clientX - startX; translateY = e.clientY - startY; updateTransform(); };
     window.onmouseup = () => isDragging = false;
@@ -163,7 +158,8 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
     const treeRoot = document.createElement('div');
     treeRoot.style.cssText = "position: relative; display: flex; align-items: center; z-index: 2;";
-    treeRoot.appendChild(createNodeCard("AI Compliance Assessment", "#4b5e71", true));
+    const rootCard = createNodeCard("AI Compliance Assessment", "#4b5e71", true);
+    treeRoot.appendChild(rootCard);
 
     const stepsContainer = document.createElement('div');
     stepsContainer.className = "node-children-container";
@@ -174,7 +170,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         const stepWrapper = document.createElement('div');
         stepWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
         
-        // Calculate Step Stats for Tooltip
         let sReqs = 0, sImps = 0, sEvid = 0;
         groups.forEach(g => {
             sReqs += g.requirements.size;
@@ -184,8 +179,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             });
         });
 
-        const stepTooltip = `STEP COMPLIANCE:\n• Requirements: ${sReqs}\n• Controls: ${sImps}\n• Completed: ${sEvid}`;
-        const stepNode = createNodeCard(stepName, "#2c3e50", true, stepTooltip);
+        const stepNode = createNodeCard(stepName, "#2c3e50", true, `STEP COMPLIANCE:\n• Requirements: ${sReqs}\n• Controls: ${sImps}\n• Completed: ${sEvid}`);
         stepWrapper.appendChild(stepNode);
 
         const groupsContainer = document.createElement('div');
@@ -198,15 +192,13 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             const groupWrapper = document.createElement('div');
             groupWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
             
-            // Calculate Group Stats for Tooltip
             let gImps = 0, gEvid = 0;
             gData.requirements.forEach(r => {
                 gImps += r.implementations.size;
                 r.implementations.forEach(i => { if (fieldStoredValue(i, false)) gEvid++; });
             });
-            const groupTooltip = `GROUP STATS:\n• Requirements: ${gData.requirements.size}\n• Controls: ${gImps}\n• Evidence: ${gEvid}`;
             
-            const groupNode = createNodeCard(groupName, "#374151", true, groupTooltip);
+            const groupNode = createNodeCard(groupName, "#374151", true, `GROUP STATS:\n• Requirements: ${gData.requirements.size}\n• Controls: ${gImps}\n• Evidence: ${gEvid}`);
             groupWrapper.appendChild(groupNode);
 
             const reqsContainer = document.createElement('div');
@@ -275,11 +267,11 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
     treeRoot.appendChild(stepsContainer);
     container.appendChild(treeRoot);
-    rootNode.querySelector('.expand-btn').onclick = (e) => {
+    rootCard.querySelector('.expand-btn').onclick = (e) => {
         e.stopPropagation();
         const isOpen = stepsContainer.style.display === 'flex';
         stepsContainer.style.display = isOpen ? 'none' : 'flex';
-        rootNode.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
+        rootCard.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
         requestAnimationFrame(() => drawAllConnections(container));
     };
 
@@ -288,7 +280,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 }
 
 /**
- * Creates a styled node card
+ * Node Card Creation
  */
 function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) {
     const card = document.createElement('div');
@@ -330,7 +322,7 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
 }
 
 /**
- * Line Drawing
+ * Line Connections
  */
 function drawAllConnections(container) {
     const svg = container.querySelector('#mindmap-svg');
