@@ -1,5 +1,6 @@
 /**
  * MindMap Handler: Compliance Dashboard with Group-Level Stats and Zoom/Pan
+ * UPDATED: Added detailed tooltips for the Implementation (last level) nodes.
  */
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
     const webappData = window.originalWebappData;
@@ -148,15 +149,13 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     controls.appendChild(createBtn('-', 'Zoom Out', () => { scale = Math.max(scale - 0.1, 0.3); updateTransform(); }));
     controls.appendChild(createBtn('⟲', 'Reset', () => { scale = 1; translateX = 0; translateY = 0; updateTransform(); }));
     
-    // FIX: Removed ReferenceError by resetting ALL expand buttons via selector
-    controls.appendChild(createBtn('><', 'Collapse All', () => {
+    controls.appendChild(createBtn('收', 'Collapse All', () => {
         container.querySelectorAll('.node-children-container').forEach(el => el.style.display = 'none');
         container.querySelectorAll('.expand-btn').forEach(el => el.textContent = '>');
         requestAnimationFrame(() => drawAllConnections(container));
     }));
     viewport.appendChild(controls);
 
-    // PANNING
     viewport.onmousedown = (e) => { if (e.target.closest('.mindmap-card') || e.target.closest('button')) return; isDragging = true; startX = e.clientX - translateX; startY = e.clientY - translateY; };
     window.onmousemove = (e) => { if (!isDragging) return; translateX = e.clientX - startX; translateY = e.clientY - startY; updateTransform(); };
     window.onmouseup = () => isDragging = false;
@@ -179,7 +178,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         const groupWrapper = document.createElement('div');
         groupWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
 
-        // --- NEW: Calculate Group Stats ---
         let groupTotalReqs = data.requirements.size;
         let groupTotalImpControls = 0;
         let groupTotalWithEvidence = 0;
@@ -196,7 +194,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
         const reqsContainer = document.createElement('div');
         reqsContainer.className = "node-children-container";
-        reqsContainer.style.display = 'none'; // Default collapsed
+        reqsContainer.style.display = 'none'; 
         reqsContainer.style.cssText += "flex-direction: column; gap: 20px; margin-left: 100px;";
         
         data.requirements.forEach((reqData, reqKey) => {
@@ -213,7 +211,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 else reqColor = "#a31d23";
             }
 
-            // --- REFACTORED: Tooltip now ONLY has Requirement Data ---
             const reqNode = createNodeCard(`[${reqKey}]: ${reqData.requirement.jkName || 'Requirement'}`, reqColor, (reqImpCount > 0), `REQUIREMENT DATA:\nDescription: ${reqData.requirement.jkText || 'N/A'}`);
             reqWrapper.appendChild(reqNode);
 
@@ -224,7 +221,14 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
             reqData.implementations.forEach(impl => {
                 const evidence = fieldStoredValue(impl, false) || '';
-                const implTooltip = `IMPLEMENTATION DETAILS:\n• Status: ${fieldStoredValue(impl, true) || 'Not Set'}\n• Evidence: ${evidence || 'No evidence provided.'}`;
+                // NEW: Added jkType and jkText to the implementation tooltip
+                const implTooltip = `IMPLEMENTATION DATA:\n` +
+                                    `• Type: ${impl.jkType || 'N/A'}\n` +
+                                    `• Description: ${impl.jkText || 'No description provided.'}\n\n` +
+                                    `PROGRESS STATUS:\n` +
+                                    `• Status: ${fieldStoredValue(impl, true) || 'Not Set'}\n` +
+                                    `• Evidence: ${evidence || 'No evidence provided.'}`;
+                
                 implsContainer.appendChild(createNodeCard(`${impl.control_number || 'Field'}: ${impl.jkName || 'Implementation'}`, evidence ? "#1a7f37" : "#161b22", false, implTooltip));
             });
 
