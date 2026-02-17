@@ -20,7 +20,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
         steps.forEach(step => {
             const stepName = step.StepName || "General Procedure";
             
-            if (!mindmapData.has(stepName)) {
+            if (!mindmapData.has(stepName) && stepName.startsWith('Article')) {
                 mindmapData.set(stepName, new Map());
             }
             const stepGroups = mindmapData.get(stepName);
@@ -40,7 +40,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                 if (field.jkType === 'fieldGroup' && field.controls) {
                     const containsReqs = field.controls.some(c => c.jkType === 'requirement');
                     if (containsReqs) {
-                        if (!stepGroups.has(field.jkName)) {
+                        if (!stepGroups.has(field.jkName) && field.jkName.) {
                             stepGroups.set(field.jkName, { requirements: new Map() });
                         }
                         const groupEntry = stepGroups.get(field.jkName);
