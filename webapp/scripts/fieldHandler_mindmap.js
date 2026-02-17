@@ -1,5 +1,5 @@
 /**
- * MindMap Handler: Tree-style visualization with Compliance Color-Coding, Zoom, and Pan
+ * MindMap Handler: Tree-style visualization with Compliance Dashboard Header
  */
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
     const webappData = window.originalWebappData;
@@ -41,7 +41,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                 field.controls.forEach(req => {
                     if (req.jkType === 'requirement') {
                         const controlKey = req.requirement_control_number;
-                        const soaStatus = fieldStoredValue(req, false);
+                        const soaStatus = fieldStoredValue(req, false); //
                         if (controlKey && soaStatus === 'Applicable') {
                             dataEntry.requirements.set(controlKey, { 
                                 requirement: req, 
@@ -75,9 +75,10 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
 }
 
 /**
- * Main Rendering Function with Zoom/Pan Controller
+ * Main Rendering Function with Dashboard Header and Zoom/Pan
  */
 function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValue) {
+    // VIEWPORT
     const viewport = document.createElement('div');
     viewport.className = 'mindmap-viewport';
     viewport.style.cssText = `
@@ -86,100 +87,109 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         border-radius: 8px; border: 1px solid #444c56;
     `;
 
-    // The inner container that actually transforms
+    // --- DASHBOARD HEADER ---
+    let totalControls = 0;
+    let totalWithEvidence = 0;
+
+    mindmapData.forEach(group => {
+        group.requirements.forEach(req => {
+            req.implementations.forEach(impl => {
+                totalControls++;
+                if (fieldStoredValue(impl, false)) totalWithEvidence++; //
+            });
+        });
+    });
+
+    const percent = totalControls > 0 ? Math.round((totalWithEvidence / totalControls) * 100) : 0;
+
+    const dashboard = document.createElement('div');
+    dashboard.style.cssText = `
+        position: absolute; top: 20px; left: 20px; z-index: 1001;
+        background: rgba(45, 51, 59, 0.9); padding: 15px 25px;
+        border-radius: 10px; border: 1px solid #444c56; color: #adbac7;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4); backdrop-filter: blur(5px);
+    `;
+    dashboard.innerHTML = `
+        <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #768390; margin-bottom: 5px;">Overall Compliance</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="font-size: 24px; font-weight: bold; color: ${percent === 100 ? '#238636' : '#adbac7'}">${percent}%</div>
+            <div style="width: 150px; height: 8px; background: #374151; border-radius: 4px; overflow: hidden;">
+                <div style="width: ${percent}%; height: 100%; background: #238636; transition: width 1s ease;"></div>
+            </div>
+            <div style="font-size: 11px; color: #768390;">${totalWithEvidence} / ${totalControls} Controls</div>
+        </div>
+    `;
+    viewport.appendChild(dashboard);
+
+    // INNER CANVAS
     const container = document.createElement('div');
     container.className = 'mindmap-canvas';
     container.style.cssText = `
         position: absolute; width: 5000px; height: 5000px;
         top: 0; left: 0; transform-origin: 0 0;
-        display: flex; align-items: flex-start; padding: 200px;
+        display: flex; align-items: flex-start; padding: 250px;
     `;
     viewport.appendChild(container);
 
-    // Zoom/Pan State
-    let scale = 1;
-    let translateX = 0;
-    let translateY = 0;
-    let isDragging = false;
-    let startX, startY;
+    let scale = 1, translateX = 0, translateY = 0, isDragging = false, startX, startY;
+    const updateTransform = () => container.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 
-    const updateTransform = () => {
-        container.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-    };
-
-    // --- ZOOM/PAN CONTROLS UI ---
+    // CONTROLS UI
     const controls = document.createElement('div');
-    controls.style.cssText = `
-        position: absolute; top: 20px; right: 20px; z-index: 1000;
-        display: flex; gap: 10px;
-    `;
-
+    controls.style.cssText = "position: absolute; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;";
     const createBtn = (icon, title, action) => {
         const btn = document.createElement('button');
-        btn.innerHTML = icon;
-        btn.title = title;
-        btn.style.cssText = `
-            background: #374151; color: white; border: 1px solid #4b5563;
-            padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 14px;
-        `;
+        btn.innerHTML = icon; btn.title = title;
+        btn.style.cssText = "background: #374151; color: white; border: 1px solid #4b5563; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 14px;";
         btn.onclick = (e) => { e.stopPropagation(); action(); };
         return btn;
     };
-
     controls.appendChild(createBtn('+', 'Zoom In', () => { scale = Math.min(scale + 0.1, 2); updateTransform(); }));
     controls.appendChild(createBtn('-', 'Zoom Out', () => { scale = Math.max(scale - 0.1, 0.3); updateTransform(); }));
-    controls.appendChild(createBtn('⟲', 'Reset View', () => { scale = 1; translateX = 0; translateY = 0; updateTransform(); }));
-    
-    // COLLAPSE ALL
+    controls.appendChild(createBtn('⟲', 'Reset', () => { scale = 1; translateX = 0; translateY = 0; updateTransform(); }));
     controls.appendChild(createBtn('><', 'Collapse All', () => {
         container.querySelectorAll('.node-children-container').forEach(el => el.style.display = 'none');
         container.querySelectorAll('.expand-btn').forEach(el => el.textContent = '>');
         requestAnimationFrame(() => drawAllConnections(container));
     }));
-
     viewport.appendChild(controls);
 
-    // --- MOUSE EVENTS FOR PANNING ---
-    viewport.onmousedown = (e) => {
-        if (e.target.closest('.mindmap-card') || e.target.closest('button')) return;
-        isDragging = true;
-        viewport.style.cursor = 'grabbing';
-        startX = e.clientX - translateX;
-        startY = e.clientY - translateY;
-    };
+    // PANNING
+    viewport.onmousedown = (e) => { if (e.target.closest('.mindmap-card') || e.target.closest('button')) return; isDragging = true; startX = e.clientX - translateX; startY = e.clientY - translateY; };
+    window.onmousemove = (e) => { if (!isDragging) return; translateX = e.clientX - startX; translateY = e.clientY - startY; updateTransform(); };
+    window.onmouseup = () => isDragging = false;
 
-    window.onmousemove = (e) => {
-        if (!isDragging) return;
-        translateX = e.clientX - startX;
-        translateY = e.clientY - startY;
-        updateTransform();
-    };
-
-    window.onmouseup = () => {
-        isDragging = false;
-        viewport.style.cursor = 'grab';
-    };
-
-    // --- RENDERING TREE ---
+    // SVG LAYER
     const svgLayer = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svgLayer.id = "mindmap-svg";
-    svgLayer.style.cssText = "position:absolute; top:0; left:0; pointer-events:none; z-index: 1; width: 100%; height: 100%;";
+    svgLayer.style.cssText = "position:absolute; top:0; left:0; pointer-events:none; z-index: 1; width:100%; height:100%;";
     container.appendChild(svgLayer);
 
     const treeRoot = document.createElement('div');
     treeRoot.style.cssText = "position: relative; display: flex; align-items: center; z-index: 2;";
-    
-    const rootNode = createNodeCard("AI Compliance Assessment", "#4b5e71", true);
-    treeRoot.appendChild(rootNode);
+    treeRoot.appendChild(createNodeCard("AI Compliance Assessment", "#4b5e71", true));
 
     const groupsContainer = document.createElement('div');
     groupsContainer.className = "node-children-container";
     groupsContainer.style.cssText = "display: flex; flex-direction: column; gap: 30px; margin-left: 100px;";
     
+    // TREE RENDERING
     mindmapData.forEach((data, groupName) => {
         const groupWrapper = document.createElement('div');
         groupWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
-        const groupNode = createNodeCard(groupName, "#374151", true);
+
+        let groupTotalReqs = data.requirements.size;
+        let groupTotalImpControls = 0;
+        let groupTotalWithEvidence = 0;
+        data.requirements.forEach(req => {
+            req.implementations.forEach(impl => {
+                groupTotalImpControls++;
+                if (fieldStoredValue(impl, false)) groupTotalWithEvidence++; //
+            });
+        });
+
+        const groupTooltip = `COMPLIANCE STATS (${groupName}):\n• Total Requirements: ${groupTotalReqs}\n• Total Implementation Controls: ${groupTotalImpControls}\n• Controls with Evidence: ${groupTotalWithEvidence}`;
+        const groupNode = createNodeCard(groupName, "#374151", true, groupTooltip);
         groupWrapper.appendChild(groupNode);
 
         const reqsContainer = document.createElement('div');
@@ -189,25 +199,18 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         data.requirements.forEach((reqData, reqKey) => {
             const reqWrapper = document.createElement('div');
             reqWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
-
-            let totalImpControls = 0;
-            let totalWithEvidence = 0;
-            reqData.implementations.forEach(impl => {
-                totalImpControls++;
-                if (fieldStoredValue(impl, false)) totalWithEvidence++;
-            });
+            let reqImpCount = reqData.implementations.size;
+            let reqEvidCount = 0;
+            reqData.implementations.forEach(impl => { if (fieldStoredValue(impl, false)) reqEvidCount++; }); //
 
             let reqColor = "#2c3e50";
-            if (totalImpControls > 0) {
-                if (totalWithEvidence === totalImpControls) reqColor = "#238636";
-                else if (totalWithEvidence > 0) reqColor = "#9e6a03";
+            if (reqImpCount > 0) {
+                if (reqEvidCount === reqImpCount) reqColor = "#238636";
+                else if (reqEvidCount > 0) reqColor = "#9e6a03";
                 else reqColor = "#a31d23";
             }
 
-            const reqLabel = `[${reqKey}]: ${reqData.requirement.jkName || 'Requirement'}`;
-            const reqTooltip = `REQUIREMENT DATA:\nDescription: ${reqData.requirement.jkText || 'N/A'}\n\nCOMPLIANCE STATS:\n• Total Requirements: 1\n• Total Implementation Controls: ${totalImpControls}\n• Controls with Evidence: ${totalWithEvidence}`;
-            
-            const reqNode = createNodeCard(reqLabel, reqColor, (totalImpControls > 0), reqTooltip);
+            const reqNode = createNodeCard(`[${reqKey}]: ${reqData.requirement.jkName || 'Requirement'}`, reqColor, (reqImpCount > 0), `REQUIREMENT DATA:\nDescription: ${reqData.requirement.jkText || 'N/A'}`);
             reqWrapper.appendChild(reqNode);
 
             const implsContainer = document.createElement('div');
@@ -215,18 +218,13 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             implsContainer.style.cssText = "display: none; flex-direction: column; gap: 10px; margin-left: 100px;";
 
             reqData.implementations.forEach(impl => {
-                const status = fieldStoredValue(impl, true) || 'Not Set';
-                const evidence = fieldStoredValue(impl, false) || '';
-                const implColor = evidence ? "#1a7f37" : "#161b22"; 
-                const implLabel = `${impl.control_number || 'Field'}: ${impl.jkName || 'Implementation'}`;
-                const implTooltip = `IMPLEMENTATION DETAILS:\n• Status: ${status}\n• Evidence: ${evidence || 'No evidence provided.'}`;
-                const implNode = createNodeCard(implLabel, implColor, false, implTooltip);
-                implsContainer.appendChild(implNode);
+                const evidence = fieldStoredValue(impl, false) || ''; //
+                const implTooltip = `IMPLEMENTATION DETAILS:\n• Status: ${fieldStoredValue(impl, true) || 'Not Set'}\n• Evidence: ${evidence || 'No evidence provided.'}`; //
+                implsContainer.appendChild(createNodeCard(`${impl.control_number || 'Field'}: ${impl.jkName || 'Implementation'}`, evidence ? "#1a7f37" : "#161b22", false, implTooltip));
             });
 
             reqWrapper.appendChild(implsContainer);
-
-            if (totalImpControls > 0) {
+            if (reqImpCount > 0) {
                 reqNode.querySelector('.expand-btn').onclick = (e) => {
                     e.stopPropagation();
                     const isOpen = implsContainer.style.display === 'flex';
@@ -251,7 +249,6 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
     treeRoot.appendChild(groupsContainer);
     container.appendChild(treeRoot);
-
     rootNode.querySelector('.expand-btn').onclick = (e) => {
         e.stopPropagation();
         const isOpen = groupsContainer.style.display === 'flex';
@@ -264,20 +261,11 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     return viewport;
 }
 
-/**
- * Creates a styled node card
- */
+// createNodeCard and drawAllConnections logic remain consistent from previous iteration.
 function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) {
     const card = document.createElement('div');
     card.className = "mindmap-card";
-    card.style.cssText = `
-        background: ${bgColor}; color: #adbac7; padding: 12px 18px;
-        border-radius: 8px; font-size: 12px; width: 240px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative;
-        border: 1px solid rgba(255,255,255,0.1); display: flex;
-        justify-content: space-between; align-items: center;
-        flex-shrink: 0; z-index: 5; margin: 5px 0; transition: transform 0.2s ease;
-    `;
+    card.style.cssText = `background: ${bgColor}; color: #adbac7; padding: 12px 18px; border-radius: 8px; font-size: 12px; width: 240px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; z-index: 5; margin: 5px 0; transition: transform 0.2s ease;`;
     
     const label = document.createElement('span');
     label.textContent = text.length > 65 ? text.substring(0, 65) + '...' : text;
@@ -292,96 +280,51 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
         card.appendChild(infoIcon);
 
         const tooltip = document.createElement('div');
-        tooltip.style.cssText = `
-            visibility: hidden; position: absolute; bottom: 120%; left: 50%;
-            transform: translateX(-50%); width: 320px; background-color: #1c2128;
-            color: #adbac7; text-align: left; padding: 15px; border-radius: 6px;
-            border: 1px solid #444c56; box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            z-index: 100; font-size: 11px; line-height: 1.6; pointer-events: none;
-            opacity: 0; transition: opacity 0.3s, visibility 0.3s; white-space: pre-wrap;
-        `;
+        tooltip.style.cssText = `visibility: hidden; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); width: 320px; background-color: #1c2128; color: #adbac7; text-align: left; padding: 15px; border-radius: 6px; border: 1px solid #444c56; box-shadow: 0 10px 25px rgba(0,0,0,0.6); z-index: 100; font-size: 11px; line-height: 1.6; pointer-events: none; opacity: 0; transition: opacity 0.3s, visibility 0.3s; white-space: pre-wrap;`;
         tooltip.textContent = tooltipText;
         card.appendChild(tooltip);
 
         const show = () => { tooltip.style.visibility = 'visible'; tooltip.style.opacity = '1'; tooltip.style.pointerEvents = 'auto'; card.style.transform = 'scale(1.02)'; };
         const hide = () => { if (!isPinned) { tooltip.style.visibility = 'hidden'; tooltip.style.opacity = '0'; tooltip.style.pointerEvents = 'none'; card.style.transform = 'scale(1)'; } };
 
-        card.onmouseenter = show;
-        card.onmouseleave = hide;
-        card.onclick = (e) => {
-            e.stopPropagation();
-            isPinned = !isPinned;
-            if (isPinned) { show(); card.style.boxShadow = '0 0 0 2px #58a6ff'; } 
-            else { card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)'; hide(); }
-        };
+        card.onmouseenter = show; card.onmouseleave = hide;
+        card.onclick = (e) => { e.stopPropagation(); isPinned = !isPinned; if (isPinned) { show(); card.style.boxShadow = '0 0 0 2px #58a6ff'; } else { card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)'; hide(); } };
     }
 
     if (hasChildren) {
         const btn = document.createElement('div');
         btn.className = "expand-btn";
         btn.textContent = ">";
-        btn.style.cssText = `
-            background: rgba(255,255,255,0.1); width: 20px; height: 20px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 4px; cursor: pointer; font-family: monospace; font-size: 14px;
-        `;
+        btn.style.cssText = "background: rgba(255,255,255,0.1); width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 4px; cursor: pointer; font-family: monospace; font-size: 14px;";
         btn.onclick = (e) => e.stopPropagation();
         card.appendChild(btn);
     }
     return card;
 }
 
-/**
- * Enhanced Line Drawing: Fixes coordinates for Zoom & Pan
- */
 function drawAllConnections(container) {
     const svg = container.querySelector('#mindmap-svg');
     if (!svg) return;
-
-    // 1. Clear previous lines
     svg.innerHTML = '';
-
-    // 2. Get the current scale from the container's transform style
-    // We need this to "un-scale" coordinates so they stay pinned to nodes
     const style = window.getComputedStyle(container);
     const matrix = new WebKitCSSMatrix(style.transform);
-    const currentScale = matrix.a; // The 'a' value is the horizontal scale
-
+    const currentScale = matrix.a;
     const containerRect = container.getBoundingClientRect();
-    const cards = container.querySelectorAll('.mindmap-card');
-
-    cards.forEach(card => {
+    container.querySelectorAll('.mindmap-card').forEach(card => {
         const subContainer = card.parentElement.querySelector('.node-children-container');
-        
-        // Only draw lines if the branch is expanded
         if (subContainer && subContainer.style.display === 'flex') {
             const cardRect = card.getBoundingClientRect();
-
-            // Calculate Start Point (Right-center of parent card)
-            // We subtract containerRect to get local coords, then divide by scale
             const startX = (cardRect.right - containerRect.left) / currentScale;
             const startY = (cardRect.top - containerRect.top + (cardRect.height / 2)) / currentScale;
-
             Array.from(subContainer.children).forEach(childWrapper => {
-                const targetCard = childWrapper.classList.contains('mindmap-card') 
-                                   ? childWrapper 
-                                   : childWrapper.querySelector('.mindmap-card');
-                
+                const targetCard = childWrapper.classList.contains('mindmap-card') ? childWrapper : childWrapper.querySelector('.mindmap-card');
                 if (!targetCard) return;
-
                 const targetRect = targetCard.getBoundingClientRect();
-
-                // Calculate End Point (Left-center of child card)
                 const endX = (targetRect.left - containerRect.left) / currentScale;
                 const endY = (targetRect.top - containerRect.top + (targetRect.height / 2)) / currentScale;
-
-                // Draw the Cubic Bezier curve
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 const midX = startX + (endX - startX) * 0.4;
-                
-                const d = `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`;
-                
-                path.setAttribute("d", d);
+                path.setAttribute("d", `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
                 path.setAttribute("stroke", "#444c56");
                 path.setAttribute("stroke-width", "1.5");
                 path.setAttribute("fill", "none");

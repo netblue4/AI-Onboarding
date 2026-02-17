@@ -173,21 +173,8 @@ class EventHandlers {
                         this.roleProgressTracker.update();
                         alert(CONFIG.MESSAGES.FILE_LOADED);
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        compliancemapBtn.classList.remove("btn-primary");
                         compliancemapBtn.className = "btn-primary";
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                                              
                     })
                     .catch(error => {
                         console.error('Error loading file:', error);
