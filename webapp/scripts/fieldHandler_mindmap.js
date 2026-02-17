@@ -298,12 +298,32 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 }
 
 /**
- * Creates a styled node card
+ * Creates a styled node card with a green border indicating children
  */
 function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) {
     const card = document.createElement('div');
     card.className = "mindmap-card";
-    card.style.cssText = `background: ${bgColor}; color: #adbac7; padding: 12px 18px; border-radius: 8px; font-size: 11px; width: 220px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; z-index: 5; margin: 5px 0; transition: transform 0.2s ease;`;
+
+    // Set border style based on whether the node has children
+    const borderColor = hasChildren ? "#238636" : "rgba(255,255,255,0.1)";
+    const borderWidth = hasChildren ? "2px" : "1px";
+
+    card.style.cssText = `
+    background: ${bgColor}; 
+    color: #adbac7; 
+    padding: 12px 18px; 
+    border-radius: 8px; 
+    font-size: 11px; 
+    width: 220px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+    position: relative; 
+    border: ${borderWidth} solid ${borderColor}; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    flex-shrink: 0; z-index: 5; 
+    margin: 5px 0; 
+    transition: transform 0.2s ease;`;
     
     const label = document.createElement('span');
     label.textContent = text.length > 55 ? text.substring(0, 55) + '...' : text;
@@ -328,14 +348,14 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
         card.onclick = (e) => { e.stopPropagation(); isPinned = !isPinned; if (isPinned) { show(); card.style.boxShadow = '0 0 0 2px #58a6ff'; } else { card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)'; hide(); } };
     }
 
-    if (hasChildren) {
-        const btn = document.createElement('div');
-        btn.className = "expand-btn";
-        btn.textContent = ">";
-        btn.style.cssText = "background: rgba(255,255,255,0.1); width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 4px; cursor: pointer;";
-        btn.onclick = (e) => e.stopPropagation();
-        card.appendChild(btn);
-    }
+    // Logic changed to always display the expansion button
+    const btn = document.createElement('div');
+    btn.className = "expand-btn";
+    btn.textContent = ">";
+    btn.style.cssText = "background: rgba(255,255,255,0.1); width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 4px; cursor: pointer;";
+    btn.onclick = (e) => e.stopPropagation();
+    card.appendChild(btn);
+    
     return card;
 }
 
