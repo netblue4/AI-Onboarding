@@ -187,7 +187,8 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         });
         const stepTooltip = `STEP COMPLIANCE:\n• Requirements: ${sReqs}\n• Controls: ${sImps}\n• Completed: ${sEvid}`;
         const stepHasImplementations = (sImps > 0);
-        const stepNode = createNodeCard(stepName, "#2c3e50", stepHasImplementations, stepTooltip);
+        const stepColor = (stepHasImplementations ? "#238636" : "#9e6a03") : "#444c56";
+        const stepNode = createNodeCard(stepName, stepColor, stepHasImplementations, stepTooltip);
         stepWrapper.appendChild(stepNode);
 
         const groupsContainer = document.createElement('div');
@@ -207,7 +208,9 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             });
             const groupTooltip = `GROUP STATS:\n• Requirements: ${gData.requirements.size}\n• Controls: ${gImps}\n• Evidence: ${gEvid}`;
 			const groupHasImplementations = (gImps > 0);
-            const groupNode = createNodeCard(groupName, "#374151", groupHasImplementations, groupTooltip);
+			const groupColor = (groupHasImplementations ? "#238636" : "#9e6a03") : "#444c56";
+
+            const groupNode = createNodeCard(groupName, groupColor, groupHasImplementations, groupTooltip);
             groupWrapper.appendChild(groupNode);
 
             const reqsContainer = document.createElement('div');
@@ -305,11 +308,11 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
     card.className = "mindmap-card";
 
     // Set border style based on whether the node has children
-    const borderColor = hasChildren ? "#238636" : "rgba(255,255,255,0.1)";
+    //const borderColor = hasChildren ? "#238636" : "rgba(255,255,255,0.1)";
     const borderWidth = hasChildren ? "2px" : "1px";
 
     card.style.cssText = `
-    background: ${bgColor}; 
+    background: "#2c3e50"; 
     color: #adbac7; 
     padding: 12px 18px; 
     border-radius: 8px; 
@@ -317,7 +320,7 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
     width: 220px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
     position: relative; 
-    border: ${borderWidth} solid ${borderColor}; 
+    border: ${borderWidth} solid ${bgColor}; 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
@@ -337,7 +340,25 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
         card.appendChild(infoIcon);
 
         const tooltip = document.createElement('div');
-        tooltip.style.cssText = `visibility: hidden; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); width: 280px; background-color: #1c2128; color: #adbac7; text-align: left; padding: 12px; border-radius: 6px; border: 1px solid #444c56; box-shadow: 0 10px 25px rgba(0,0,0,0.6); z-index: 100; font-size: 11px; line-height: 1.5; pointer-events: none; opacity: 0; transition: opacity 0.3s; white-space: pre-wrap;`;
+        tooltip.style.cssText = `
+        visibility: hidden; 
+        position: absolute; 
+        bottom: 120%; 
+        left: 50%; transform: translateX(-50%); 
+        width: 280px; 
+        background-color: #1c2128; 
+        color: #adbac7; text-align: 
+        left; padding: 12px; 
+        border-radius: 6px; 
+        border: 1px solid #444c56; 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.6); 
+        z-index: 100; font-size: 11px; 
+        line-height: 1.5; 
+        pointer-events: none; 
+        opacity: 0; transition: 
+        opacity 0.3s; 
+        white-space: pre-wrap;`;
+        
         tooltip.textContent = tooltipText;
         card.appendChild(tooltip);
 
