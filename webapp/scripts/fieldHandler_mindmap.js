@@ -15,20 +15,20 @@ function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
  */
 function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
     const mindmapData = new Map(); 
-    const globalRequirementMap = new Map(); // For cross-step linking
+    const globalRequirementMap = new Map(); // Index for linking implementations
     const allImplementationNodes = [];
 
-    // Pass 1: Build the hierarchy and a global requirement index
     Object.entries(data).forEach(([phaseName, steps]) => {
         steps.forEach(step => {
             const stepName = step.StepName || "General Procedure";
-            if (!stepName.trim().startsWith('Article')) return;
+            const isArticleStep = stepName.trim().startsWith('Article');
 
-            if (!mindmapData.has(stepName)) {
+            // 1. Initialize hierarchy structure ONLY if it's an Article step
+            if (isArticleStep && !mindmapData.has(stepName)) {
                 mindmapData.set(stepName, new Map());
             }
-            const stepGroups = mindmapData.get(stepName);
 
+            // 2. Recursively collect fields from EVERY step
             let stepFields = [];
             function collect(fields) {
                 if (!fields || !Array.isArray(fields)) return;
@@ -41,42 +41,46 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
             collect(step.Fields);
 
             stepFields.forEach(field => {
-                // Collect Requirements
-                if (field.jkType === 'fieldGroup' && field.controls) {
-                    const containsReqs = field.controls.some(c => c.jkType === 'requirement');
-                    if (containsReqs) {
-                        if (!stepGroups.has(field.jkName)) {
-                            stepGroups.set(field.jkName, { requirements: new Map() });
-                        }
-                        const groupEntry = stepGroups.get(field.jkName);
-
-                        field.controls.forEach(req => {
-                            if (req.jkType === 'requirement') {
-                                const controlKey = req.requirement_control_number;
-                                if (controlKey) {
-                                    const reqEntry = { requirement: req, implementations: new Set() };
-                                    groupEntry.requirements.set(controlKey, reqEntry);
-                                    globalRequirementMap.set(controlKey, reqEntry); // Index globally
-                                }
+                // 3. Process Requirements ONLY if in an Article step
+                if (isArticleStep) {
+                    const stepGroups = mindmapData.get(stepName);
+                    if (field.jkType === 'fieldGroup' && field.controls) {
+                        const containsReqs = field.controls.some(c => c.jkType === 'requirement');
+                        if (containsReqs) {
+                            if (!stepGroups.has(field.jkName)) {
+                                stepGroups.set(field.jkName, { requirements: new Map() });
                             }
-                        });
+                            const groupEntry = stepGroups.get(field.jkName);
+
+                            field.controls.forEach(req => {
+                                if (req.jkType === 'requirement') {
+                                    const controlKey = req.requirement_control_number;
+                                    if (controlKey) {
+                                        const reqEntry = { requirement: req, implementations: new Set() };
+                                        groupEntry.requirements.set(controlKey, reqEntry);
+                                        globalRequirementMap.set(controlKey, reqEntry); // Index globally
+                                    }
+                                }
+                            });
+                        }
                     }
-                    // Collect potential Implementations
-					if (field.requirement_control_number && field.jkType !== 'requirement') {
-						allImplementationNodes.push(field);
-					}
+                }
+
+                // 4. Collect potential Implementations from EVERY step (regardless of name)
+                if (field.requirement_control_number && field.jkType !== 'requirement') {
+                    allImplementationNodes.push(field);
                 }
             });
         });
     });
 
-    // Pass 2: GLOBAL LINKING - Link implementations to requirements across all steps
+    // Pass 2: GLOBAL LINKING - Link implementations to indexed requirements
     allImplementationNodes.forEach(implNode => {
         const implKeys = String(implNode.requirement_control_number).split(',').map(s => s.trim());
         implKeys.forEach(key => {
             if (globalRequirementMap.has(key)) {
                 const reqEntry = globalRequirementMap.get(key);
-                // Only load if Requirement is marked Applicable
+                // Respect applicability logic
                 if (fieldStoredValue(reqEntry.requirement, false) === 'Applicable') {
                     reqEntry.implementations.add(implNode);
                 }
@@ -95,7 +99,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     viewport.className = 'mindmap-viewport';
     viewport.style.cssText = `position: relative; width: 100%; height: 85vh; background: #2d333b; overflow: hidden; cursor: grab; border-radius: 8px; border: 1px solid #444c56;`;
 
-    // --- DASHBOARD HEADER ---
+    // Dashboard Header
     let totalControls = 0, totalWithEvidence = 0;
     mindmapData.forEach(stepGroups => {
         stepGroups.forEach(gData => {
@@ -135,7 +139,8 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     controls.style.cssText = "position: absolute; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px;";
     const createBtn = (icon, title, action) => {
         const btn = document.createElement('button');
-        btn.innerHTML = icon; btn.style.cssText = "background: #374151; color: white; border: 1px solid #4b5563; padding: 8px 12px; border-radius: 6px; cursor: pointer;";
+        btn.innerHTML = icon; btn.title = title;
+        btn.style.cssText = "background: #374151; color: white; border: 1px solid #4b5563; padding: 8px 12px; border-radius: 6px; cursor: pointer;";
         btn.onclick = (e) => { e.stopPropagation(); action(); };
         return btn;
     };
@@ -284,7 +289,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 }
 
 /**
- * Creates a styled node card with a "pin-able" tooltip
+ * Creates a styled node card
  */
 function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) {
     const card = document.createElement('div');
@@ -326,40 +331,28 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
 }
 
 /**
- * Fixed Line Drawing logic for all hierarchy levels
+ * Line Drawing logic accounting for current Zoom scale
  */
 function drawAllConnections(container) {
     const svg = container.querySelector('#mindmap-svg');
     if (!svg) return;
     svg.innerHTML = '';
-    
     const style = window.getComputedStyle(container);
     const matrix = new WebKitCSSMatrix(style.transform);
     const currentScale = matrix.a;
     const containerRect = container.getBoundingClientRect();
-
     container.querySelectorAll('.mindmap-card').forEach(card => {
         const subContainer = card.parentElement.querySelector('.node-children-container');
         if (subContainer && subContainer.style.display === 'flex') {
             const cardRect = card.getBoundingClientRect();
-            
-            // Calculate Start position relative to the scaled container
             const startX = (cardRect.right - containerRect.left) / currentScale;
             const startY = (cardRect.top - containerRect.top + (cardRect.height / 2)) / currentScale;
-
             Array.from(subContainer.children).forEach(childWrapper => {
-                const targetCard = childWrapper.classList.contains('mindmap-card') 
-                                   ? childWrapper 
-                                   : childWrapper.querySelector('.mindmap-card');
-                
+                const targetCard = childWrapper.classList.contains('mindmap-card') ? childWrapper : childWrapper.querySelector('.mindmap-card');
                 if (!targetCard) return;
-
                 const targetRect = targetCard.getBoundingClientRect();
-                
-                // Calculate End position relative to the scaled container
                 const endX = (targetRect.left - containerRect.left) / currentScale;
                 const endY = (targetRect.top - containerRect.top + (targetRect.height / 2)) / currentScale;
-
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 const midX = startX + (endX - startX) * 0.4;
                 path.setAttribute("d", `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
