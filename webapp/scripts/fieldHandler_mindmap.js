@@ -348,14 +348,14 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
         card.onclick = (e) => { e.stopPropagation(); isPinned = !isPinned; if (isPinned) { show(); card.style.boxShadow = '0 0 0 2px #58a6ff'; } else { card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)'; hide(); } };
     }
 
-    // Logic changed to always display the expansion button
-    const btn = document.createElement('div');
-    btn.className = "expand-btn";
-    btn.textContent = ">";
-    btn.style.cssText = "background: rgba(255,255,255,0.1); width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 4px; cursor: pointer;";
-    btn.onclick = (e) => e.stopPropagation();
-    card.appendChild(btn);
-    
+    if (hasChildren) {
+		const btn = document.createElement('div');
+		btn.className = "expand-btn";
+		btn.textContent = ">";
+		btn.style.cssText = "background: rgba(255,255,255,0.1); width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 4px; cursor: pointer;";
+		btn.onclick = (e) => e.stopPropagation();
+		card.appendChild(btn);
+    }
     return card;
 }
 
