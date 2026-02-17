@@ -253,13 +253,16 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             });
 
             groupWrapper.appendChild(reqsContainer);
-            groupNode.querySelector('.expand-btn').onclick = (e) => {
-                e.stopPropagation();
-                const isOpen = reqsContainer.style.display === 'flex';
-                reqsContainer.style.display = isOpen ? 'none' : 'flex';
-                groupNode.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
-                requestAnimationFrame(() => drawAllConnections(container));
-            };
+            const groupExpandBtn = groupNode.querySelector('.expand-btn');
+            if (groupExpandBtn){
+				groupNode.querySelector('.expand-btn').onclick = (e) => {
+					e.stopPropagation();
+					const isOpen = reqsContainer.style.display === 'flex';
+					reqsContainer.style.display = isOpen ? 'none' : 'flex';
+					groupNode.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
+					requestAnimationFrame(() => drawAllConnections(container));
+				};
+            }
             groupsContainer.appendChild(groupWrapper);
         });
 
