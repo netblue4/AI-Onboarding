@@ -61,10 +61,10 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                             }
                         });
                     }
-                }
-                // Collect potential Implementations
-                if (field.requirement_control_number && field.jkType !== 'requirement') {
-                    allImplementationNodes.push(field);
+                    // Collect potential Implementations
+					if (field.requirement_control_number && field.jkType !== 'requirement') {
+						allImplementationNodes.push(field);
+					}
                 }
             });
         });
