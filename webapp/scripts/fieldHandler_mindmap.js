@@ -146,7 +146,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     };
     controls.appendChild(createBtn('+', 'Zoom In', () => { scale = Math.min(scale + 0.1, 2); updateTransform(); }));
     controls.appendChild(createBtn('-', 'Zoom Out', () => { scale = Math.max(scale - 0.1, 0.3); updateTransform(); }));
-    controls.appendChild(createBtn('收', 'Collapse All', () => {
+    controls.appendChild(createBtn('><', 'Collapse All', () => {
         container.querySelectorAll('.node-children-container').forEach(el => el.style.display = 'none');
         container.querySelectorAll('.expand-btn').forEach(el => el.textContent = '>');
         requestAnimationFrame(() => drawAllConnections(container));
@@ -186,8 +186,8 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             });
         });
         const stepTooltip = `STEP COMPLIANCE:\n• Requirements: ${sReqs}\n• Controls: ${sImps}\n• Completed: ${sEvid}`;
-
-        const stepNode = createNodeCard(stepName, "#2c3e50", true, stepTooltip);
+        const stepHasImplementations = (sImps > 0);
+        const stepNode = createNodeCard(stepName, "#2c3e50", stepHasImplementations, stepTooltip);
         stepWrapper.appendChild(stepNode);
 
         const groupsContainer = document.createElement('div');
@@ -206,8 +206,8 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 r.implementations.forEach(i => { if (fieldStoredValue(i, false)) gEvid++; });
             });
             const groupTooltip = `GROUP STATS:\n• Requirements: ${gData.requirements.size}\n• Controls: ${gImps}\n• Evidence: ${gEvid}`;
-
-            const groupNode = createNodeCard(groupName, "#374151", true, groupTooltip);
+			const groupHasImplementations = (gImps > 0);
+            const groupNode = createNodeCard(groupName, "#374151", groupHasImplementations, groupTooltip);
             groupWrapper.appendChild(groupNode);
 
             const reqsContainer = document.createElement('div');
