@@ -1,6 +1,6 @@
 /**
- * MindMap Handler: Tree-style visualization with Articles Filter, Dashboard, and Zoom/Pan
- * Hierarchy: Root -> Step (Articles Only) -> Group -> Requirement -> Implementation
+ * MindMap Handler: Tree-style visualization with StepName level and Dashboard
+ * Hierarchy: Root -> StepName (Articles) -> Group -> Requirement -> Implementation
  */
 function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
     const webappData = window.originalWebappData;
@@ -11,7 +11,7 @@ function createMindMap(incapturedData, sanitizeForId, fieldStoredValue) {
 }
 
 /**
- * Data Processing: Groups requirements by StepName and filters for 'Article'
+ * Data Processing: Groups requirements by StepName and links implementations
  */
 function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
     const mindmapData = new Map(); 
@@ -39,7 +39,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
             }
             collect(step.Fields);
 
-            // Level 2 & 3: Groups and Requirements
+            // Level 2 & 3: Map Groups and their Requirements
             stepFields.forEach(field => {
                 if (field.jkType === 'fieldGroup' && field.controls) {
                     const containsReqs = field.controls.some(c => c.jkType === 'requirement');
@@ -64,14 +64,16 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                 }
             });
 
-            // Level 4: Implementations (Added only if parent Requirement is 'Applicable')
+            // Level 4: Link Implementations to those specific Requirements
             stepFields.forEach(implNode => {
                 if (implNode.requirement_control_number && implNode.jkType !== 'requirement') {
                     const implKeys = String(implNode.requirement_control_number).split(',').map(s => s.trim());
+                    
                     stepGroups.forEach(group => {
                         implKeys.forEach(key => {
                             if (group.requirements.has(key)) {
                                 const reqEntry = group.requirements.get(key);
+                                // Only link if parent Requirement is 'Applicable'
                                 if (fieldStoredValue(reqEntry.requirement, false) === 'Applicable') {
                                     reqEntry.implementations.add(implNode);
                                 }
@@ -142,7 +144,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
     controls.appendChild(createBtn('+', 'Zoom In', () => { scale = Math.min(scale + 0.1, 2); updateTransform(); }));
     controls.appendChild(createBtn('-', 'Zoom Out', () => { scale = Math.max(scale - 0.1, 0.3); updateTransform(); }));
     
-    // FIX: Using global selectors to reset buttons during Collapse All
+    // FIX: Removed ReferenceError by resetting ALL expand buttons via selector
     controls.appendChild(createBtn('收', 'Collapse All', () => {
         container.querySelectorAll('.node-children-container').forEach(el => el.style.display = 'none');
         container.querySelectorAll('.expand-btn').forEach(el => el.textContent = '>');
@@ -162,8 +164,8 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
     const treeRoot = document.createElement('div');
     treeRoot.style.cssText = "position: relative; display: flex; align-items: center; z-index: 2;";
-    const rootNodeCard = createNodeCard("AI Compliance Assessment", "#4b5e71", true);
-    treeRoot.appendChild(rootNodeCard);
+    const rootCard = createNodeCard("AI Compliance Assessment", "#4b5e71", true);
+    treeRoot.appendChild(rootCard);
 
     const stepsContainer = document.createElement('div');
     stepsContainer.className = "node-children-container";
@@ -174,6 +176,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         const stepWrapper = document.createElement('div');
         stepWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
         
+        // Step Stats for Tooltip
         let sReqs = 0, sImps = 0, sEvid = 0;
         groups.forEach(g => {
             sReqs += g.requirements.size;
@@ -200,6 +203,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 gImps += r.implementations.size;
                 r.implementations.forEach(i => { if (fieldStoredValue(i, false)) gEvid++; });
             });
+            
             const groupNode = createNodeCard(groupName, "#374151", true, `GROUP STATS:\n• Requirements: ${gData.requirements.size}\n• Controls: ${gImps}\n• Evidence: ${gEvid}`);
             groupWrapper.appendChild(groupNode);
 
@@ -212,7 +216,9 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 const reqWrapper = document.createElement('div');
                 reqWrapper.style.cssText = "display: flex; align-items: center; position: relative;";
                 
-                let reqColor = fieldStoredValue(reqEntry.requirement, false) === 'Applicable' ? "#238636" : "#444c56";
+                const hasEvidence = reqEntry.implementations.size > 0 && Array.from(reqEntry.implementations).every(i => fieldStoredValue(i, false));
+                let reqColor = fieldStoredValue(reqEntry.requirement, false) === 'Applicable' ? (hasEvidence ? "#238636" : "#9e6a03") : "#444c56";
+                
                 const reqNode = createNodeCard(`[${reqKey}]: ${reqEntry.requirement.jkName}`, reqColor, (reqEntry.implementations.size > 0), `REQUIREMENT DATA:\n${reqEntry.requirement.jkText}`);
                 reqWrapper.appendChild(reqNode);
 
@@ -221,6 +227,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 implsContainer.style.display = 'none';
                 implsContainer.style.cssText += "flex-direction: column; gap: 10px; margin-left: 100px;";
 
+                // LEVEL 4: Render the actual Implementation nodes
                 reqEntry.implementations.forEach(impl => {
                     const status = fieldStoredValue(impl, true) || 'Not Set';
                     const evidence = fieldStoredValue(impl, false) || 'No evidence provided.';
@@ -265,11 +272,11 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
 
     treeRoot.appendChild(stepsContainer);
     container.appendChild(treeRoot);
-    rootNodeCard.querySelector('.expand-btn').onclick = (e) => {
+    rootCard.querySelector('.expand-btn').onclick = (e) => {
         e.stopPropagation();
         const isOpen = stepsContainer.style.display === 'flex';
         stepsContainer.style.display = isOpen ? 'none' : 'flex';
-        rootNodeCard.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
+        rootCard.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
         requestAnimationFrame(() => drawAllConnections(container));
     };
 
@@ -320,14 +327,14 @@ function createNodeCard(text, bgColor, hasChildren = false, tooltipText = null) 
 }
 
 /**
- * Line Connections (Robust Zoom & Pan support)
+ * Line Connections (Ensures Requirements connect to Implementations)
  */
 function drawAllConnections(container) {
     const svg = container.querySelector('#mindmap-svg');
     if (!svg) return;
     svg.innerHTML = '';
     
-    // Get current zoom scale from container transform matrix
+    // Account for current zoom scale
     const style = window.getComputedStyle(container);
     const matrix = new WebKitCSSMatrix(style.transform);
     const currentScale = matrix.a;
@@ -337,12 +344,11 @@ function drawAllConnections(container) {
         const subContainer = card.parentElement.querySelector('.node-children-container');
         if (subContainer && subContainer.style.display === 'flex') {
             const cardRect = card.getBoundingClientRect();
-            // Local Start position (unscaled)
+            // Calculate Start position relative to the scaled container
             const startX = (cardRect.right - containerRect.left) / currentScale;
             const startY = (cardRect.top - containerRect.top + (cardRect.height / 2)) / currentScale;
 
             Array.from(subContainer.children).forEach(childWrapper => {
-                // Handle cases where children are either direct cards or nested in wrappers
                 const targetCard = childWrapper.classList.contains('mindmap-card') 
                                    ? childWrapper 
                                    : childWrapper.querySelector('.mindmap-card');
@@ -350,7 +356,7 @@ function drawAllConnections(container) {
                 if (!targetCard) return;
 
                 const targetRect = targetCard.getBoundingClientRect();
-                // Local End position (unscaled)
+                // Calculate End position relative to the scaled container
                 const endX = (targetRect.left - containerRect.left) / currentScale;
                 const endY = (targetRect.top - containerRect.top + (targetRect.height / 2)) / currentScale;
 
