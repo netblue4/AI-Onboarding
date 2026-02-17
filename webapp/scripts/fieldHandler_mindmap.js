@@ -187,7 +187,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         });
         const stepTooltip = `STEP COMPLIANCE:\n• Requirements: ${sReqs}\n• Controls: ${sImps}\n• Completed: ${sEvid}`;
         const stepHasImplementations = (sImps > 0);
-        const stepColor = sReqs > 0 ? (stepHasImplementations ? "#238636" : "#9e6a03") : "#444c56";
+        const stepColor = sReqs > 0 ? "#238636" : "#444c56";
         const stepNode = createNodeCard(stepName, stepColor, stepHasImplementations, stepTooltip);
         stepWrapper.appendChild(stepNode);
 
@@ -208,7 +208,7 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             });
             const groupTooltip = `GROUP STATS:\n• Requirements: ${gData.requirements.size}\n• Controls: ${gImps}\n• Evidence: ${gEvid}`;
 			const groupHasImplementations = (gImps > 0);
-			const groupColor = gData.requirements.size > 0 ?(groupHasImplementations ? "#238636" : "#9e6a03") : "#444c56";
+			const groupColor = gData.requirements.size > 0 ? "#238636" : "#444c56";
             const groupNode = createNodeCard(groupName, groupColor, groupHasImplementations, groupTooltip);
             groupWrapper.appendChild(groupNode);
 
