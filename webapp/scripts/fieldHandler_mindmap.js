@@ -267,25 +267,31 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
         });
 
         stepWrapper.appendChild(groupsContainer);
-        stepNode.querySelector('.expand-btn').onclick = (e) => {
-            e.stopPropagation();
-            const isOpen = groupsContainer.style.display === 'flex';
-            groupsContainer.style.display = isOpen ? 'none' : 'flex';
-            stepNode.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
-            requestAnimationFrame(() => drawAllConnections(container));
-        };
+        const stepExpandBtn = stepNode.querySelector('.expand-btn');
+        if (stepExpandBtn){
+			stepNode.querySelector('.expand-btn').onclick = (e) => {
+				e.stopPropagation();
+				const isOpen = groupsContainer.style.display === 'flex';
+				groupsContainer.style.display = isOpen ? 'none' : 'flex';
+				stepNode.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
+				requestAnimationFrame(() => drawAllConnections(container));
+			};
+        }
         stepsContainer.appendChild(stepWrapper);
     });
 
     treeRoot.appendChild(stepsContainer);
     container.appendChild(treeRoot);
-    rootNode.querySelector('.expand-btn').onclick = (e) => {
+	const rootExpandBtn = rootNode.querySelector('.expand-btn');
+	if (rootExpandBtn){
+        rootNode.querySelector('.expand-btn').onclick = (e) => {
         e.stopPropagation();
         const isOpen = stepsContainer.style.display === 'flex';
         stepsContainer.style.display = isOpen ? 'none' : 'flex';
         rootNode.querySelector('.expand-btn').textContent = isOpen ? '>' : '<';
         requestAnimationFrame(() => drawAllConnections(container));
     };
+    }
 
     setTimeout(() => drawAllConnections(container), 100);
     return viewport;
