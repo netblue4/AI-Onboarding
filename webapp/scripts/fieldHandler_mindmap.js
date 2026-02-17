@@ -20,7 +20,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
         steps.forEach(step => {
             const stepName = step.StepName || "General Procedure";
             
-            if (!mindmapData.has(stepName) && stepName.startsWith('Article')) {
+            if (!mindmapData.has(stepName)) {
                 mindmapData.set(stepName, new Map());
             }
             const stepGroups = mindmapData.get(stepName);
