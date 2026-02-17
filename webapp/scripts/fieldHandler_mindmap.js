@@ -43,7 +43,7 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                     if (req.jkType === 'requirement') {
                         const controlKey = req.requirement_control_number;
                         const soaStatus = fieldStoredValue(req, false);
-                        if (controlKey && soaStatus === 'Applicable') {
+                        if (controlKey){// && soaStatus === 'Applicable') {
                             dataEntry.requirements.set(controlKey, { 
                                 requirement: req, 
                                 implementations: new Set() 
@@ -61,7 +61,11 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
             mindmapData.forEach((data) => {
                 implControlParts.forEach(implKey => {
                     if (data.requirements.has(implKey)) {
-                        data.requirements.get(implKey).implementations.add(implNode);
+                        const parentRequirement = data.requirements.has(implKey);
+                        const soaStatus = fieldStoredValue(parentRequirement, false);
+                        if (soaStatus == 'Applicable'){
+                            data.requirements.get(implKey).implementations.add(implNode);
+                        }
                     }
                 });
             });
