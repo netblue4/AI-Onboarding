@@ -355,7 +355,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Quality Metrics",
+          "jkName": "Done - Quality Metrics",
           "Role": "Compliance",
           "controls": [
             {
@@ -383,7 +383,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Lifecycle Requirements",
+          "jkName": "Done - Lifecycle Requirements",
           "Role": "Compliance",
           "controls": [
             {
@@ -404,7 +404,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Assumptions",
+          "jkName": "Done - Assumptions",
           "Role": "Compliance",
           "controls": [
             {
@@ -446,7 +446,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Human & Social Context",
+          "jkName": "Human & Social Context",
           "Role": "Compliance",
           "controls": [
             {
@@ -477,7 +477,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Logging Triggers",
+          "jkName": "Logging Triggers",
           "Role": "Compliance",
           "controls": [
             {
@@ -526,7 +526,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "DOne - Storage & Governance",
+          "jkName": "Done - Storage & Governance",
           "Role": "Compliance",
           "controls": [
             {
@@ -859,18 +859,6 @@
       ]
     },
     {
-      "StepName": "New - 2.1. - AI system's intended use, limitations and Human oversight",
-      "Objectives": [
-        {
-          "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
-        }
-      ],
-      "Fields": [
-
-
-      ]
-    },
-    {
       "StepName": "New - 2.3. - Fairness Definition",
       "Objectives": [
         {
@@ -878,45 +866,7 @@
         }
       ],
       "Fields": [
-        {
-          "jkType": "fieldGroup",
-          "jkName": "Multi-stakeholder Fairness Definition",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18283.7]",
-              "control_number": "[2.3.1]",
-              "jkName": "Stakeholder Group Representation",
-              "jkText": "Select the diverse teams or groups involved in defining the fairness criteria for this use case.",
-              "jkType": "MultiSelect:Legal and Compliance/DEI Office/End-Users/Data Science Team/External Ethics Board/Representative Community Groups/Subject Matter Experts",
-              "jkObjective": "To ensure a multi-disciplinary and inclusive approach to defining fairness, incorporating diverse perspectives and legal requirements."
-            },
-            {
-              "requirement_control_number": "[18283.7]",
-              "control_number": "[2.3.2]",
-              "jkName": "Definition of Fairness",
-              "jkText": "Summarize the agreed-upon definition of 'fairness' for this specific system (e.g., equal opportunity, demographic parity, or individual fairness).",
-              "jkType": "TextBox",
-              "jkObjective": "To establish a clear, measurable benchmark for fairness that aligns with the specific goals and risks of the AI system."
-            },
-            {
-              "requirement_control_number": "[18283.7]",
-              "control_number": "[2.3.3]",
-              "jkName": "Societal and Functional Context",
-              "jkText": "Describe how the fairness definition accounts for the specific societal setting where the AI will be deployed (e.g., cultural nuances, vulnerable populations).",
-              "jkType": "TextBox",
-              "jkObjective": "To contextualize fairness within the actual deployment environment, ensuring protections for vulnerable groups and adherence to local cultural standards."
-            },
-            {
-              "requirement_control_number": "[18283.7]",
-              "control_number": "[2.3.4]",
-              "jkName": "Engagement Methodology",
-              "jkText": "How was the input gathered from these stakeholders?",
-              "jkType": "MultiSelect:Workshops/Surveys/Focus Groups/Formal Oversight Committee/Public Consultation",
-              "jkObjective": "To validate the robustness and transparency of the stakeholder engagement process used to determine ethical criteria."
-            }
-          ]
-        }
+
       ]
     },
     {
@@ -927,61 +877,8 @@
         }
       ],
       "Fields": [
-        {
-          "jkType": "fieldGroup",
-          "jkName": "Data Governance and Verification",
-          "Role": "Data Engineer",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-2.14]",
-              "control_number": "[2.4.1]",
-              "jkName": "Data Split Strategy",
-              "jkText": "Specify the ratio of data used for Training, Validation, and Testing (e.g., 70/15/15) and the method used (e.g., Random, Stratified, Temporal).",
-              "jkType": "TextBox",
-              "jkObjective": "To ensure the model is evaluated on unseen data to prevent overfitting and provide a realistic estimate of real-world performance."
-            },
-            {
-              "requirement_control_number": "[18229-2.14]",
-              "control_number": "[2.4.2]",
-              "jkName": "Statistical Verification Methods",
-              "jkText": "List the statistical tests or metrics used to verify system results (e.g., F1 Score, RMSE, P-values, Confidence Intervals).",
-              "jkType": "TextBox",
-              "jkObjective": "To establish objective, mathematically sound criteria for assessing the accuracy and reliability of the AI system's outputs."
-            },
-            {
-              "requirement_control_number": "[18284.1]",
-              "control_number": "[2.4.3]",
-              "jkName": "Data Selection Rationale",
-              "jkText": "Explain why this specific dataset was chosen and how its features align with the AI's intended purpose.",
-              "jkType": "TextBox",
-              "jkObjective": "To justify that the underlying data is relevant and representative of the problem the AI is designed to solve."
-            },
-            {
-              "requirement_control_number": "[18284.2]",
-              "control_number": "[2.4.4]",
-              "jkName": "Data Provenance and Legal Basis",
-              "jkText": "Identify the original source of the data and the legal justification for its use (e.g., Consent, Legitimate Interest, Public Domain).",
-              "jkType": "TextBox",
-              "jkObjective": "To ensure data privacy compliance and establish a clear lineage of data ownership and usage rights."
-            },
-            {
-              "requirement_control_number": "[18284.3]",
-              "control_number": "[2.4.5]",
-              "jkName": "Preparation Operations Log",
-              "jkText": "Select the operations performed during data preparation.",
-              "jkType": "MultiSelect:Anonymization/Labeling and Annotation/Outlier Removal/Data Enrichment/Standardization and Normalization/Aggregation",
-              "jkObjective": "To maintain transparency regarding how raw data was transformed and cleaned before being used for model development."
-            },
-            {
-              "requirement_control_number": "[18284.3]",
-              "control_number": "[2.4.6]",
-              "jkName": "Annotation Quality Control",
-              "jkText": "Describe the process used to ensure the accuracy of labels or annotations (e.g., Double-blind review, Inter-rater reliability checks).",
-              "jkType": "TextBox",
-              "jkObjective": "To verify the integrity of ground-truth labels, which directly impacts the supervised learning quality and model precision."
-            }
-          ]
-        }
+
+
       ]
     },
     {
@@ -1122,7 +1019,46 @@
           "Objective": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base."
         }
       ],
-      "Fields": []
+      "Fields": [
+  {
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Dataset Lifecycle Integrity Failure",
+  "RiskDescription": "The Vector Store and Embedding Model are at risk from 'Lifecycle Integrity Failure' — a condition where the datasets that built and populate the system are split incorrectly, retained beyond or below their legal period, or built on assumptions that have never been stated or tested. 'Split Contamination' occurs when the test partition is accessible to the training pipeline, producing accuracy scores that are technically correct but do not reflect unseen-data performance. 'Retention Violation' occurs when data is kept longer than its legal basis permits or destroyed before the 10-year documentation minimum, creating simultaneous GDPR and regulatory audit risk. 'Assumption Drift' occurs when the real-world conditions the system was built to model — such as the assumption that historical data predicts current behaviour — change without any mechanism detecting that the assumption is no longer valid.",
+  "controls": [
+    {
+      "requirement_control_number": "[18284.7]",
+      "control_number": "[5.3.R1]",
+      "jkName": "Split Contamination Prevention",
+      "jkText": "Store the test partition of every training dataset in a separate repository with a dedicated access control policy that explicitly denies read access to all training pipeline service accounts. Enforce the split at creation time using a stratified random assignment script that outputs a SHA-256 hash for each partition. Re-verify the SHA-256 hash of the test partition before every evaluation run. If the hash does not match, abort the evaluation, lock the test repository, raise a contamination alert to the engineering team, and treat all previously generated accuracy scores as invalid until a clean split is reconstructed and re-evaluated.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Split Contamination' where the test partition is read by the training pipeline, producing inflated accuracy scores that do not reflect the Embedding Model's ability to handle genuinely unseen production queries.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Split Integrity Report' generated before every evaluation run showing the SHA-256 hash at partition creation, the re-verified hash immediately before evaluation (both must match), the test repository access control list (must contain zero training pipeline service accounts), and a zero count of evaluations run on a contaminated test partition."
+    },
+    {
+      "requirement_control_number": "[18284.8]",
+      "control_number": "[5.3.R2]",
+      "jkName": "Retention Schedule Enforcement",
+      "jkText": "Configure the data lifecycle manager to apply a retention tag to every dataset and documentation artefact at the point of creation, recording the retention period, the legal basis, and the scheduled deletion date in ISO-8601 format. Set automated deletion jobs to run on the scheduled deletion date for all data categories where retention has expired. For personal data subject to GDPR, configure the deletion job to execute cryptographic erasure [destroying the encryption key used to protect the data, rendering it permanently unreadable without physically deleting the storage medium] as the decommission method. Send a retention expiry notification to the data owner 30 days before each scheduled deletion. Log every deletion event with the dataset name, deletion method, deletion timestamp, and the engineer ID that approved the deletion.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Retention Violation' where personal data is retained beyond its GDPR-compliant period or documentation is destroyed before the 10-year minimum, creating simultaneous regulatory liability on both ends of the retention window.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Retention Compliance Report' generated monthly showing every active dataset, its retention tag, scheduled deletion date, deletion method, and — for executed deletions — the deletion timestamp, decommission method used, and approving engineer ID, with a zero count of datasets retained beyond their scheduled deletion date."
+    },
+    {
+      "requirement_control_number": "[18284.9]",
+      "control_number": "[5.4.R1]",
+      "jkName": "Assumption Validity Monitor",
+      "jkText": "Configure the Orchestrator to run a weekly assumption validity check against every assumption declared in fieldGroup [5.4.1]. For each assumption, define a measurable proxy metric that signals whether the assumption still holds — for example, if the assumption is 'HR policy documents in the Vector Store are current', the proxy metric is the age of the oldest document in the Vector Store measured against the source system's last-modified date. Set a staleness threshold for each proxy metric (e.g., 'alert if any document is more than 30 days older than its source system version'). Fire an assumption breach alert when any proxy metric exceeds its threshold and log the assumption statement, the proxy metric value, the threshold breached, and the UTC timestamp.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Assumption Drift' where the real-world conditions the system's data was built to represent change without any mechanism detecting that a core data assumption is no longer valid, causing the Retriever to return results that were correct at training time but are wrong in the current context.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A weekly 'Assumption Validity Report' showing every declared assumption, its proxy metric value, its threshold, the check result (pass or breach), and a zero count of assumption breaches that did not trigger an alert within one monitoring cycle."
+    }
+  ]
+}
+      ]
     },
     {
       "StepName": "New - 3.2. - Data Processing Pipeline (Vectorise proprietary data)",
@@ -1180,7 +1116,348 @@
       "jkImplementationEvidence": "A 'Benchmark Comparison Report' generated on every deployment showing the benchmark name, benchmark score, system score, classification result, and — for any 'Below Benchmark' result — the engineer override decision, engineer ID, and justification text."
     }
   ]
+},
+{
+  "jkType": "plan",
+  "Role": "Tester",
+  "jkName": "New - [TEST-BIAS-01] - Bias Detection and Fairness Validation",
+  "PlanObjective": "This plan validates that the data ingestion pipeline enforces subgroup coverage thresholds, proxy correlation screens, and quantitative bias metric gates before any dataset reaches the Embedding Model or Vector Store — and that every bias control is linked to a current, multi-stakeholder fairness definition and a mapped fundamental rights obligation. Tests BIAS-P-01 through BIAS-P-03 are Resilience Risk tests verifying that missing or misconfigured bias gates produce measurable pipeline failures. Tests BIAS-P-04 and BIAS-P-05 are Trust Risk tests verifying that the system cannot be deployed with an undocumented fairness definition or unmapped fundamental rights obligations.",
+  "TestDataset": [
+    {
+      "ID": "BIAS-P-01",
+      "Query": "Attempt to ingest a dataset into the Embedding Model training pipeline where one protected subgroup — for example, Age 60+ — has only 120 records, below the 500-record minimum threshold. Confirm whether the Subgroup Representation Gate blocks the ingestion and writes the coverage gap to the coverage gap register.",
+      "Expected_Outcome": "Pass (Subgroup Coverage Report records the subgroup name as 'Age 60+', actual sample count as 120, threshold as 500, ingestion gate decision as 'Rejected', and confirms zero records from the dataset were written to the Embedding Model training pipeline or Vector Store — with the gap logged to the coverage gap register).",
+      "Rationale_Summary": "This test blocks 'Coverage Gap' where a dataset with a statistically underrepresented protected subgroup bypasses the ingestion gate and enters the Embedding Model training pipeline, causing the model to produce systematically worse outputs for that group."
+    },
+    {
+      "ID": "BIAS-P-02",
+      "Query": "Run the bias evaluation pipeline against a model evaluation dataset engineered to produce a Disparate Impact Ratio of 0.72 for one protected subgroup pair — below the 0.80 minimum threshold. Confirm whether the deployment gate blocks the release and logs the failing subgroup pair and score.",
+      "Expected_Outcome": "Pass (Bias Metric Evaluation Report records the metric as 'Disparate Impact Ratio', the score as 0.72 for the identified subgroup pair, the threshold as 0.80, the deployment gate result as 'Blocked', and confirms zero deployment actions were taken — with the failing subgroup pair and score logged and no engineering override present unless a logged override decision with engineer ID and justification is recorded).",
+      "Rationale_Summary": "This test blocks 'Metric Blindness' where a Disparate Impact Ratio below the four-fifths rule threshold passes the deployment gate undetected, releasing a model that produces legally significant discriminatory outcomes for a protected subgroup."
+    },
+    {
+      "ID": "BIAS-P-03",
+      "Query": "Submit a dataset containing a variable — for example, 'PostcodeDistrict' — with a Pearson correlation coefficient of 0.78 against the protected characteristic 'Ethnicity'. Confirm whether the proxy correlation screen flags the variable, records the correlation coefficient, and blocks ingestion until an action (remove, transform, or retain with justification) is applied.",
+      "Expected_Outcome": "Pass (Proxy Correlation Screening Report records 'PostcodeDistrict' as a flagged proxy candidate with a Pearson correlation coefficient of 0.78 against 'Ethnicity', confirms ingestion was blocked pending an action decision, and shows the action taken — remove, transform, or retain with logged justification — with a zero count of proxy variables above the 0.70 threshold ingested without a recorded action decision).",
+      "Rationale_Summary": "This test blocks 'Proxy Leakage' where a variable that encodes a protected characteristic indirectly enters the Embedding Model training pipeline without a correlation screen flagging it, causing the model to learn discriminatory associations invisible in the data schema."
+    },
+    {
+      "ID": "BIAS-P-04",
+      "Query": "Attempt to trigger a deployment approval for this system without a Fairness Definition Record in the AI governance register. Confirm whether the deployment gate blocks the release and whether the block reason is logged as 'Missing Fairness Definition Record'.",
+      "Expected_Outcome": "Pass (Fairness Definition Record validation check records 'No Fairness Definition Record found' as the gate result, confirms the deployment was blocked, and logs the block reason as 'Missing Fairness Definition Record' — with a zero count of deployments approved without a current, version-numbered Fairness Definition Record linked to the Bias Metric Evaluation Report).",
+      "Rationale_Summary": "This test blocks 'Contextual Fairness Failure' where bias metric thresholds are applied without a documented multi-stakeholder fairness definition, causing the system to optimise for a mathematical standard that does not reflect the fairness expectations of the affected communities."
+    },
+    {
+      "ID": "BIAS-P-05",
+      "Query": "Remove the Fundamental Rights Mapping entry for one bias control — for example, delete the mapping for control [6.1.R1] — and trigger a deployment approval check. Confirm whether the Fundamental Rights Linkage Gate detects the missing mapping and blocks the deployment.",
+      "Expected_Outcome": "Pass (Fundamental Rights Mapping Report records control [6.1.R1] as 'No Fundamental Right Mapped', confirms the deployment was blocked, and logs the unmapped control number — with a zero count of bias controls deployed without at least one mapped fundamental right entry in the current Fundamental Rights Mapping version).",
+      "Rationale_Summary": "This test blocks 'Contextual Fairness Failure' where a bias control is deployed with no documented link to the fundamental right it protects, making it impossible for auditors or affected individuals to verify the legal basis for that control."
+    }
+  ],
+  "controls": [
+    {
+      "requirement_control_number": "[18283.1]",
+      "control_number": "[6.1.T1]",
+      "jkName": "Subgroup Coverage Report",
+      "jkText": "Produce a 'Subgroup Coverage Report' after each run of BIAS-P-01, listing every protected subgroup, its actual sample count, the 500-record threshold result, the ingestion gate decision, and the coverage gap register entry for every rejected subgroup.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-subgroup coverage record proving that every ingestion job was evaluated against the minimum sample threshold and that no dataset with an underrepresented protected subgroup entered the Embedding Model training pipeline without a logged override decision.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Subgroup Coverage Report' showing sample count per protected subgroup, threshold result, ingestion gate decision, and a zero count of datasets ingested with any protected subgroup below 500 records without a logged engineering override containing engineer ID and written justification."
+    },
+    {
+      "requirement_control_number": "[18283.2]",
+      "control_number": "[6.1.T2]",
+      "jkName": "Bias Metric Evaluation Report",
+      "jkText": "Produce a 'Bias Metric Evaluation Report' after each run of BIAS-P-02, listing the metric name, score per protected subgroup pair, threshold applied, deployment gate result, and — for any blocked deployment — the failing subgroup pair, score, and presence or absence of a logged engineering override decision.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-deployment fairness measurement record proving that every model release was evaluated against a quantitative bias metric and that no deployment with a Disparate Impact Ratio below 0.80 or Equalized Odds difference above 0.05 was approved without a logged engineering override.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Bias Metric Evaluation Report' showing metric name, score per subgroup pair, threshold result, deployment gate decision, and a zero count of deployments that proceeded with a failing bias metric score without a logged engineer ID and justification text."
+    },
+    {
+      "requirement_control_number": "[18283.3]",
+      "control_number": "[6.1.T3]",
+      "jkName": "Proxy Correlation Screening Report",
+      "jkText": "Produce a 'Proxy Correlation Screening Report' after each run of BIAS-P-03, listing every variable screened, the Pearson correlation coefficient against each protected characteristic, the flag status for every variable above the 0.70 threshold, and the action taken — remove, transform, or retain with logged justification.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-variable correlation record proving that every dataset was screened for proxy variables before ingestion and that every flagged proxy candidate was actioned before any data entered the Embedding Model training pipeline.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Proxy Correlation Screening Report' showing variable name, Pearson correlation coefficient per protected characteristic, flag status, action taken, and a zero count of proxy variables above the 0.70 threshold ingested without a recorded action decision."
+    },
+    {
+      "requirement_control_number": "[18283.7]",
+      "control_number": "[6.2.T1]",
+      "jkName": "Fairness Definition Completeness Report",
+      "jkText": "Produce a 'Fairness Definition Completeness Report' after each run of BIAS-P-04, showing the Fairness Definition Record version number, the testable fairness statement, the stakeholder role list with group affiliations and contribution dates, the record age in days, and the deployment gate result.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a versioned governance record proving that every deployment was linked to a current, multi-stakeholder fairness definition reviewed within the preceding 12 months.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Fairness Definition Completeness Report' showing Fairness Definition Record version number, stakeholder roles and contribution dates, record age in days (must be ≤ 365), deployment gate result, and a zero count of deployments approved without a current Fairness Definition Record linked by version number to the Bias Metric Evaluation Report."
+    },
+    {
+      "requirement_control_number": "[18283.8]",
+      "control_number": "[6.2.T2]",
+      "jkName": "Fundamental Rights Mapping Report",
+      "jkText": "Produce a 'Fundamental Rights Mapping Report' after each run of BIAS-P-05, listing every bias control number, the fundamental right mapped to it, the EU legal basis article, the mapping validation result per control, and the deployment gate decision.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a control-level rights mapping record proving that every bias control deployed in this system is traceable to at least one specific fundamental rights obligation under EU law.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Fundamental Rights Mapping Report' showing every bias control number, mapped fundamental right, EU legal basis article, mapping validation result, and a zero count of bias controls deployed without at least one mapped fundamental right entry."
+    }
+  ]
+},
+{
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Data Governance Documentation Failure",
+  "RiskDescription": "The Vector Store and Embedding Model are at risk from 'Provenance Collapse' — a condition where the data ingested into the Vector Store or used to train the Embedding Model has no documented selection rationale, no recorded legal basis, and no traceable preparation history. When provenance [the documented chain of origin, legal permission, and transformation history for every dataset] is absent, three compounding failures occur: the organisation cannot prove it had the legal right to use the data, engineers cannot trace a retrieval quality problem back to the pipeline operation that introduced it, and auditors cannot verify that the data was fit for the declared purpose. A system built on undocumented data is not a data problem — it is an unauditable system.",
+  "controls": [
+    {
+      "requirement_control_number": "[18284.1]",
+      "control_number": "[5.1.R1]",
+      "jkName": "Data Selection Rationale Gate",
+      "jkText": "Configure the data ingestion pipeline to reject any dataset that does not have a completed selection rationale record in the data governance register before it is processed by the Embedding Model or written to the Vector Store. Implement the check as a pre-ingestion validation step that queries the governance register for the dataset name, suitability assessment method, and assessment completion date. If any of the three fields are missing or null, abort the ingestion job, log the dataset name and the missing fields, and return an error to the pipeline operator. Do not allow a manual override of this gate without a documented engineering decision logged with an engineer ID.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Provenance Collapse' where a dataset enters the Vector Store or Embedding Model training pipeline without a documented fitness-for-purpose assessment, making it impossible to justify the data selection decision to an auditor.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Data Governance Gate Report' generated on every ingestion run showing the dataset name, governance register check result, missing fields (must be zero for all passing datasets), and a zero count of datasets ingested without a completed selection rationale record."
+    },
+    {
+      "requirement_control_number": "[18284.2]",
+      "control_number": "[5.1.R2]",
+      "jkName": "Provenance Chain Validation",
+      "jkText": "Configure the data ingestion pipeline to validate the provenance record for every dataset before ingestion. The provenance record must contain: dataset name, source system or third-party provider, legal basis with the specific article reference (e.g., 'Article 6(1)(f) GDPR'), collection date in ISO-8601 format, and — for third-party datasets — the data transfer agreement reference number. Compute a SHA-256 hash of the completed provenance record at validation time and store the hash alongside the dataset in the Vector Store metadata. Re-verify the hash on every subsequent read of the dataset to detect any post-ingestion modification to the provenance record.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Provenance Collapse' where a dataset is ingested without a verified legal basis, exposing the organisation to GDPR liability and making it impossible for an auditor to confirm the data was lawfully obtained and used.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Provenance Validation Report' generated on every ingestion run showing the dataset name, all five required provenance fields, the SHA-256 hash of the provenance record, and a zero count of datasets ingested with a missing legal basis or unverified provenance hash."
+    },
+    {
+      "requirement_control_number": "[18284.3]",
+      "control_number": "[5.1.R3]",
+      "jkName": "Pipeline Operation Audit Log",
+      "jkText": "Configure every data preparation operation — annotation, labelling, cleaning, enrichment, and aggregation — to write a structured log entry immediately on completion. Each entry must contain: operation name, tool name and version, input dataset hash, output dataset hash, record count in, record count out, records rejected and rejection reason, and the UTC timestamp of completion. Store all pipeline operation logs in the same immutable log store defined in risk control [3.3.R1]. If the output dataset hash does not match the expected hash on the next pipeline step's read, abort the step and raise an alert.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Provenance Collapse' where a data quality issue in the Embedding Model or Vector Store cannot be traced back to the specific preparation operation that introduced it, because no operation-level audit trail exists.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Data Preparation Audit Log' generated on every pipeline run showing one entry per operation, all eight required fields populated, input and output dataset hashes, and a zero count of pipeline steps that advanced without a confirmed log entry."
+    }
+  ]
+},
+{
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Data Quality Measurement Failure",
+  "RiskDescription": "The Embedding Model and Vector Store are at risk from 'Silent Data Bias' — a condition where the data used to build the system has passed ingestion but has never been statistically tested for representativeness, completeness, or label accuracy. Silent Data Bias has three distinct modes: 'Coverage Gap', where an entire user population segment, language, or query type is absent from the training and retrieval data, causing the Retriever to return zero or irrelevant results for that segment; 'Label Noise', where incorrect or inconsistent human-assigned labels corrupt the Embedding Model's learned associations, causing semantically wrong retrieval results that appear confident; and 'Completeness Blindness', where missing data fields pass validation checks because no completeness threshold was defined, allowing structurally incomplete records to train the Embedding Model or populate the Vector Store.",
+  "controls": [
+    {
+      "requirement_control_number": "[18284.4]",
+      "control_number": "[5.2.R1]",
+      "jkName": "Representativeness Distribution Check",
+      "jkText": "Configure the data quality pipeline to run a distribution analysis on every dataset before it enters the Embedding Model training pipeline or is written to the Vector Store. The analysis must compute: class or category frequency distribution, geographic coverage count, language coverage count, and query type stratification. Set the minimum sample threshold at 500 records per category, language, and geographic region. Flag every segment that falls below 500 records as a coverage gap and write it to the data gap register. Block ingestion of any dataset where more than 10% of defined population segments fall below the minimum threshold.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Coverage Gap' where an underrepresented population segment, language, or query type causes the Retriever to return systematically poor results for that group without any quality gate detecting the gap before deployment.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Distribution Analysis Report' generated on every dataset ingestion showing frequency distribution per category, geographic coverage count, language coverage count, the count of segments below the 500-record threshold, and a zero count of datasets ingested where more than 10% of population segments fell below threshold."
+    },
+    {
+      "requirement_control_number": "[18284.5]",
+      "control_number": "[5.2.R2]",
+      "jkName": "Completeness Threshold Enforcement",
+      "jkText": "Configure the data quality pipeline to compute a completeness score [the percentage of required fields that contain a valid, non-null value] for every record in a dataset before ingestion. Set the minimum record-level completeness threshold at ≥ 95% — any record where more than 5% of required fields are null or missing must be rejected and written to the data gap register with the missing field names. Set the dataset-level completeness threshold at ≥ 98% — reject the entire dataset ingestion job if more than 2% of records fail the record-level check, and require a human engineering decision to override the rejection.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Completeness Blindness' where structurally incomplete records enter the Vector Store or Embedding Model training pipeline because no completeness threshold was defined or enforced at ingestion time.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Completeness Threshold Report' generated on every ingestion run showing the record-level completeness score per dataset, the count of records rejected for missing fields, the dataset-level pass or fail result, and a zero count of datasets ingested with a dataset-level completeness score below 98%."
+    },
+    {
+      "requirement_control_number": "[18284.6]",
+      "control_number": "[5.2.R3]",
+      "jkName": "Label Quality Gate",
+      "jkText": "Configure the annotation pipeline to compute an inter-annotator agreement score using Cohen's Kappa for two-annotator workflows or Krippendorff's Alpha for three or more annotators on every annotation batch before the labelled data is released to the Embedding Model training pipeline. Set the minimum acceptable score at ≥ 0.80 for both metrics. Reject any annotation batch scoring below 0.80, flag the specific label categories that drove the disagreement, and route the rejected batch to a re-annotation queue. Do not allow rejected batches to enter the training pipeline under any circumstance — there is no override for a label quality failure.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Label Noise' where incorrect or inconsistent human-assigned labels enter the Embedding Model training pipeline, corrupting the model's learned semantic associations and degrading Retriever accuracy on production queries.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Label Quality Report' generated on every annotation batch showing the Cohen's Kappa or Krippendorff's Alpha score, the label categories evaluated, the batch pass or fail result, and a zero count of annotation batches scoring below 0.80 that were released to the Embedding Model training pipeline."
+    }
+  ]
+},
+{
+  "jkType": "plan",
+  "Role": "Tester",
+  "jkName": "New - [TEST-DGP-01] - Data Governance and Provenance Audit",
+  "PlanObjective": "This plan validates that the data ingestion pipeline enforces governance gate checks, provenance records, label quality thresholds, and split integrity controls before any dataset reaches the Embedding Model or Vector Store — and that the assumption validity monitor detects real-world condition changes before they degrade production retrieval quality. This is a Resilience Risk test — it verifies that missing, incomplete, or contaminated data produces a measurable, detectable pipeline failure rather than a silent quality degradation.",
+  "TestDataset": [
+    {
+      "ID": "DGP-P-01",
+      "Query": "Attempt to ingest a dataset into the Vector Store that has no entry in the data governance register — no selection rationale, no suitability assessment, and no assessment completion date. Confirm whether the ingestion pipeline blocks the job and logs the missing fields.",
+      "Expected_Outcome": "Pass (Data Governance Gate Report records the dataset name, lists all three missing governance fields, confirms the ingestion job was aborted before any data reached the Vector Store, and shows a zero count of records written to the Vector Store from the ungoverned dataset).",
+      "Rationale_Summary": "This test blocks 'Provenance Collapse' where a dataset without a documented selection rationale enters the Vector Store, making it impossible for an auditor to verify the data was chosen for fitness of purpose rather than convenience."
+    },
+    {
+      "ID": "DGP-P-02",
+      "Query": "Attempt to ingest a dataset with a provenance record that is missing the legal basis field. Confirm the pipeline validation step detects the missing field, aborts the ingestion, and does not write a SHA-256 provenance hash to the Vector Store metadata.",
+      "Expected_Outcome": "Pass (Provenance Validation Report records the dataset name, identifies the missing legal basis field, confirms the ingestion was aborted, and shows no SHA-256 provenance hash written to the Vector Store metadata for the rejected dataset).",
+      "Rationale_Summary": "This test blocks 'Provenance Collapse' from legal basis gaps — where a dataset with no documented legal permission enters the Vector Store, exposing the organisation to GDPR liability with no audit trail of the gap."
+    },
+    {
+      "ID": "DGP-P-03",
+      "Query": "Submit an annotation batch to the label quality gate with a deliberately low inter-annotator agreement score — set two annotators to disagree on 25% of labels, producing a Cohen's Kappa score of approximately 0.60. Confirm the batch is rejected, the disagreeing label categories are flagged, and the batch is routed to the re-annotation queue.",
+      "Expected_Outcome": "Pass (Label Quality Report records a Cohen's Kappa score of approximately 0.60, confirms the batch was rejected and not released to the Embedding Model training pipeline, lists the specific label categories that drove disagreement, and shows the batch status as 'Routed to Re-annotation Queue').",
+      "Rationale_Summary": "This test blocks 'Label Noise' where an annotation batch with unacceptably inconsistent labels is released to the Embedding Model training pipeline, corrupting the model's learned semantic associations and degrading Retriever accuracy."
+    },
+    {
+      "ID": "DGP-P-04",
+      "Query": "Simulate 'Split Contamination' by temporarily granting a training pipeline service account read access to the test partition repository, then run the pre-evaluation SHA-256 hash verification check. Confirm whether the access control violation is detected and the evaluation is aborted.",
+      "Expected_Outcome": "Pass (Split Integrity Report shows the test repository access control list contains the training pipeline service account, confirms the evaluation was aborted before any test data was read, a contamination alert was raised to the engineering team, and all previously generated accuracy scores are flagged as requiring re-validation).",
+      "Rationale_Summary": "This test blocks 'Split Contamination' where a training pipeline service account gains read access to the test partition, inflating accuracy scores and hiding the Embedding Model's true performance on unseen data."
+    },
+    {
+      "ID": "DGP-P-05",
+      "Query": "Trigger an assumption breach by artificially ageing a document in the Vector Store beyond the staleness threshold declared for the 'data currency' assumption in fieldGroup [5.4.1]. Run the weekly assumption validity check and confirm whether a breach alert is fired within one monitoring cycle.",
+      "Expected_Outcome": "Pass (Assumption Validity Report records the assumption statement, the proxy metric value exceeding the staleness threshold, the threshold value, and confirms an assumption breach alert was sent to the engineering team within one monitoring cycle — with the breach event timestamped and linked to the specific document ID that triggered it).",
+      "Rationale_Summary": "This test blocks 'Assumption Drift' where outdated Vector Store content silently invalidates a core data assumption without any monitoring mechanism detecting or alerting on the condition."
+    },
+    {
+      "ID": "DGP-P-06",
+      "Query": "Verify the retention schedule enforcement by identifying a dataset whose scheduled deletion date has passed and confirming whether the automated deletion job executed, the decommission method used matches the data category's declared method in fieldGroup [5.3.2], and the deletion event was logged with the required fields.",
+      "Expected_Outcome": "Pass (Retention Compliance Report shows the dataset name, scheduled deletion date, actual deletion timestamp, decommission method used — must match the declared method — approving engineer ID, and confirms a zero count of datasets retained beyond their scheduled deletion date at the time of the check).",
+      "Rationale_Summary": "This test blocks 'Retention Violation' where a dataset is retained beyond its legally mandated period without detection, creating GDPR liability and regulatory audit exposure that compounds silently with every day the data remains in storage."
+    }
+  ],
+  "controls": [
+    {
+      "requirement_control_number": "[18284.1]",
+      "control_number": "[5.1.T1]",
+      "jkName": "Data Governance Gate Report",
+      "jkText": "Produce a 'Data Governance Gate Report' after each run of DGP-P-01, listing the dataset name, the three governance register fields checked, the check result per field, and the ingestion gate decision — aborted or passed.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-dataset governance record proving that every ingestion job was evaluated against a completed selection rationale before any data reached the Vector Store.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Data Governance Gate Report' showing dataset name, all three governance fields checked, check result per field, and a zero count of datasets that passed the gate with any governance field missing or null."
+    },
+    {
+      "requirement_control_number": "[18284.2]",
+      "control_number": "[5.1.T2]",
+      "jkName": "Provenance Validation Report",
+      "jkText": "Produce a 'Provenance Validation Report' after each run of DGP-P-02, listing the dataset name, all five provenance fields checked, the SHA-256 hash result, and the ingestion gate decision.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a hash-verified provenance record proving that every ingested dataset has a complete, legally grounded provenance chain stored in the Vector Store metadata.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Provenance Validation Report' showing all five provenance fields, SHA-256 hash at ingestion, and a zero count of datasets ingested with a missing legal basis or unverified provenance hash."
+    },
+    {
+      "requirement_control_number": "[18284.6]",
+      "control_number": "[5.2.T1]",
+      "jkName": "Label Quality Gate Report",
+      "jkText": "Produce a 'Label Quality Report' after each run of DGP-P-03, listing the annotation batch ID, the inter-annotator agreement score, the disagreeing label categories, the batch pass or fail result, and the re-annotation queue status.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-batch label quality record proving that no annotation batch scoring below 0.80 was released to the Embedding Model training pipeline.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Label Quality Report' showing batch ID, Cohen's Kappa or Krippendorff's Alpha score, disagreeing label categories, and a zero count of batches scoring below 0.80 released to the Embedding Model training pipeline."
+    },
+    {
+      "requirement_control_number": "[18284.7]",
+      "control_number": "[5.3.T1]",
+      "jkName": "Split Integrity Report",
+      "jkText": "Produce a 'Split Integrity Report' before each evaluation run covering DGP-P-04, showing the SHA-256 hash at partition creation, the re-verified hash before evaluation, the hash comparison result, and the test repository access control list.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a hash-verified split integrity record proving the test partition was not accessed or modified by the training pipeline before evaluation.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Split Integrity Report' showing both SHA-256 hashes (must match), repository access control list (must contain zero training pipeline service accounts), and a zero count of evaluations run on a contaminated test partition."
+    },
+    {
+      "requirement_control_number": "[18284.9]",
+      "control_number": "[5.4.T1]",
+      "jkName": "Assumption Validity Report",
+      "jkText": "Produce a weekly 'Assumption Validity Report' covering DGP-P-05, listing every declared assumption, its proxy metric value, its threshold, the check result, and the alert status for any breach detected within the monitoring cycle.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a weekly assumption monitoring record proving that every declared data assumption was evaluated against a measurable proxy metric and that every breach triggered an alert within one monitoring cycle.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Assumption Validity Report' showing every declared assumption, proxy metric value, threshold, check result, and a zero count of assumption breaches that did not trigger an alert within one monitoring cycle."
+    },
+    {
+      "requirement_control_number": "[18284.8]",
+      "control_number": "[5.3.T2]",
+      "jkName": "Retention Compliance Report",
+      "jkText": "Produce a monthly 'Retention Compliance Report' covering DGP-P-06, listing every active dataset, its retention tag, scheduled deletion date, actual deletion timestamp where applicable, decommission method used, and approving engineer ID.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a monthly retention audit record proving that every dataset was deleted on its scheduled date using the declared decommission method, with a zero count of datasets retained beyond their legally mandated period.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Retention Compliance Report' showing scheduled deletion date, actual deletion timestamp, decommission method (must match declared method), approving engineer ID, and a zero count of datasets retained beyond their scheduled deletion date."
+    }
+  ]
+},
+{
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Subgroup Coverage Failure",
+  "RiskDescription": "The Embedding Model and Vector Store are at risk from 'Representation Collapse' — a condition where one or more legally protected subgroups are statistically underrepresented in the training and retrieval data, and no bias metric gate exists to detect the resulting discriminatory output before it reaches users. Representation Collapse has two compounding modes: 'Coverage Gap', where a protected subgroup falls below the minimum sample threshold during data ingestion and no gate blocks the dataset from entering the Embedding Model training pipeline; and 'Metric Blindness', where a bias metric is applied but its threshold is set too loosely or the wrong metric is selected for the use case, allowing a Disparate Impact Ratio below 0.80 to pass undetected. The result is a system that is technically operational but produces systematically worse outcomes for a legally protected group — a discriminatory output that carries regulatory liability under EU non-discrimination law.",
+  "controls": [
+    {
+      "requirement_control_number": "[18283.1]",
+      "control_number": "[6.1.R1]",
+      "jkName": "Subgroup Representation Gate",
+      "jkText": "Configure the data ingestion pipeline to compute the sample count per protected subgroup for every dataset before it enters the Embedding Model training pipeline or is written to the Vector Store. Set the minimum sample threshold at 500 records per protected subgroup declared in fieldGroup [6.1.1]. Reject any dataset where one or more protected subgroups fall below the 500-record threshold. Write the subgroup name, actual sample count, and threshold to the coverage gap register. Do not allow a manual override of the rejection without a documented engineering decision logged with an engineer ID and a written justification stating which fundamental right is at risk and why the gap is accepted.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Coverage Gap' where a dataset with statistically underrepresented protected subgroups enters the Embedding Model training pipeline, causing the model to learn associations that produce systematically worse outputs for that group.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Subgroup Coverage Report' generated on every ingestion run showing the sample count per protected subgroup, the threshold result per subgroup, the ingestion gate decision, and a zero count of datasets ingested with any protected subgroup below the 500-record threshold without a logged engineering override decision."
+    },
+    {
+      "requirement_control_number": "[18283.2]",
+      "control_number": "[6.1.R2]",
+      "jkName": "Disparate Impact Detection Gate",
+      "jkText": "Configure the bias evaluation pipeline to compute the bias metric declared in fieldGroup [6.1.2] against every model evaluation run before deployment. For Disparate Impact Ratio, set the minimum acceptable score at ≥ 0.80 — a score below 0.80 means the least-favoured group receives a positive outcome less than 80% as often as the most-favoured group, which constitutes legally significant discrimination under the four-fifths rule. For Equalized Odds, set the maximum acceptable difference in true positive rate or false positive rate between any two protected groups at ≤ 0.05. Block deployment if either threshold is breached. Log the metric name, score per subgroup pair, threshold result, and deployment gate decision for every evaluation run.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Metric Blindness' where the Embedding Model or LLM (Generator) produces discriminatory outputs for a protected subgroup that pass through deployment because no quantitative fairness gate was applied or the threshold was set too loosely to detect the disparity.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Bias Metric Evaluation Report' generated on every deployment run showing the metric name, score per protected subgroup pair, threshold applied, deployment gate result, and a zero count of deployments that proceeded with a Disparate Impact Ratio below 0.80 or an Equalized Odds difference above 0.05 without a logged engineering override."
+    }
+  ]
+},
+{
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Proxy Discrimination Propagation Failure",
+  "RiskDescription": "The Embedding Model and Vector Store are at risk from 'Proxy Leakage' — a condition where a variable in the training data or retrieval inputs encodes a protected characteristic indirectly, and no screening step removes or monitors it before it influences the model's learned associations. 'Proxy Leakage' is more dangerous than direct discrimination because it is invisible in the data schema — a postcode field does not say 'ethnicity', a job title field does not say 'gender', but both can function as near-perfect proxies for those protected characteristics in a sufficiently granular dataset. When a proxy variable is ingested into the Embedding Model without a correlation screen, the model learns the proxy as a legitimate signal, and every retrieval result or generated output that uses that signal is a discriminatory output with no audit trail showing how the discrimination was introduced.",
+  "controls": [
+    {
+      "requirement_control_number": "[18283.3]",
+      "control_number": "[6.1.R3]",
+      "jkName": "Proxy Correlation Screening",
+      "jkText": "Configure the data preparation pipeline to run a proxy correlation screen on every dataset before it enters the Embedding Model training pipeline or is written to the Vector Store. For every non-protected variable in the dataset, compute the Pearson correlation coefficient [a number between -1 and +1 that measures how closely two variables move together — a value above 0.70 or below -0.70 means the two variables are strongly linked] against every protected characteristic declared in fieldGroup [6.1.1]. Flag any variable with an absolute correlation coefficient of ≥ 0.70 against any protected characteristic as a proxy candidate. For each flagged proxy candidate, apply one of three actions: remove the variable from the dataset, apply feature transformation [a mathematical operation that reduces the variable's correlation with the protected characteristic while preserving its predictive signal], or retain with a documented justification logged with an engineer ID. Do not ingest any dataset containing an unflagged proxy variable — the screen must run before every ingestion, not once at project start.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Proxy Leakage' where a variable that encodes a protected characteristic indirectly enters the Embedding Model training pipeline without detection, causing the model to learn discriminatory associations that cannot be traced back to any named protected characteristic in the data.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Proxy Correlation Screening Report' generated on every ingestion run showing every variable screened, the Pearson correlation coefficient against each protected characteristic, the flag status for each variable above the 0.70 threshold, the action taken (removed, transformed, or retained with justification), and a zero count of datasets ingested containing a proxy variable that was flagged but not actioned."
+    }
+  ]
+},
+{
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Feedback Loop Contamination Failure",
+  "RiskDescription": "The Vector Store and Embedding Model are at risk from 'Self-Reinforcement Contamination' — a condition where outputs generated by the LLM (Generator) are re-ingested into the Vector Store or used to retrain the Embedding Model without human review, causing the system to progressively learn from and amplify its own errors and biases. Self-Reinforcement Contamination is a Trust Risk because the system continues to function technically — queries are processed, responses are returned — while the quality of those responses degrades silently with each contamination cycle. The danger compounds because each contaminated ingestion increases the proportion of AI-generated content in the Vector Store, reducing the influence of the original human-verified source documents and making the contamination progressively harder to detect and reverse without a full Vector Store rebuild.",
+  "controls": [
+    {
+      "requirement_control_number": "[18229-3.17]",
+      "control_number": "[7.1.R3]",
+      "jkName": "Feedback Isolation Barrier",
+      "jkText": "Configure the data ingestion pipeline to query the provenance register for every document submitted for ingestion before it is processed by the Embedding Model or written to the Vector Store. Reject any document whose provenance source field matches the LLM (Generator) output store path or domain. Additionally, tag every LLM (Generator) output at generation time with a cryptographic marker — compute a SHA-256 hash of the output prefixed with a fixed 'AI-GENERATED:' string and store the marker in the output metadata. Configure the ingestion pipeline to check for this marker on every inbound document and reject any document where the marker is present. Log every rejection with the document hash, the rejection reason ('AI-generated source' or 'Provenance match'), and the UTC timestamp. Route rejected documents to a human review queue — do not delete them, as they may be legitimate feedback that a human reviewer should assess.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Self-Reinforcement Contamination' where LLM (Generator) outputs re-enter the Vector Store or Embedding Model training pipeline without human review, causing the system to progressively reinforce and amplify errors and biases already present in its own outputs.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Feedback Isolation Log' generated on every ingestion run showing every document evaluated, the provenance check result, the AI-generated marker check result, the count of documents routed to the human review queue, and a zero count of AI-generated documents ingested into the Vector Store or Embedding Model training pipeline without a logged human approval."
+    }
+  ]
 }
+
+
+
+
+
 
       ]
     },
@@ -1193,6 +1470,112 @@
         }
       ],
       "Fields": [
+{
+  "jkType": "plan",
+  "Role": "Tester",
+  "jkName": "New - [TEST-ROB-01] - Robustness, Fail-Safe, and Reproducibility Validation",
+  "PlanObjective": "This plan validates that the Input Guardrail correctly handles corrupted and noisy inputs before they reach the Retriever, that the Orchestrator activates declared safe states and redundancy failovers within the required time windows, that the feedback isolation barrier blocks AI-generated content from re-entering the Vector Store without human approval, and that the LLM (Generator) produces identical outputs for identical inputs on every run. Tests ROB-P-01 and ROB-P-02 are Resilience Risk tests for input handling and environmental degradation. ROB-P-03 is a Trust Risk test for feedback loop isolation. ROB-P-04 and ROB-P-05 are Resilience Risk tests for fail-safe and redundancy activation. ROB-P-06 is a Resilience Risk test for output determinism.",
+  "TestDataset": [
+    {
+      "ID": "ROB-P-01",
+      "Query": "Submit three prompts to the Query Interface in sequence: (1) a null payload, (2) a prompt with broken UTF-8 encoding containing 'Caf\u00e9' rendered as 'Caf\xc3\xa9' outside valid UTF-8 context, and (3) a prompt where 40% of tokens are random character strings unrecognised by the Embedding Model vocabulary. Confirm the Input Guardrail's Stage 1 and Stage 2 responses for each.",
+      "Expected_Outcome": "Pass (Input Sanitisation Log records: prompt 1 rejected at Stage 1 with HTTP 400 and reason 'null payload'; prompt 2 rejected at Stage 1 with reason 'invalid UTF-8 encoding'; prompt 3 rejected at Stage 2 with unrecognised token ratio of 40% exceeding the 30% threshold — all three with a zero count of rejected prompts reaching the Embedding Model).",
+      "Rationale_Summary": "This test blocks 'Hard Corruption' and 'Soft Corruption' propagation where structurally invalid or semantically degraded prompts bypass the Input Guardrail and cause the Embedding Model to generate a misleading vector or throw an unhandled exception."
+    },
+    {
+      "ID": "ROB-P-02",
+      "Query": "Simulate a Vector Store latency degradation by throttling the Vector Store query response time to 1500ms. Submit 5 consecutive queries and confirm whether the Orchestrator detects the threshold breach on the third consecutive slow response and activates the declared degraded mode behaviour.",
+      "Expected_Outcome": "Pass (Environment Degradation Log records latency values for all 5 queries, confirms the degraded mode trigger fired on the third consecutive response exceeding the declared threshold, the degraded mode behaviour was activated with timestamp, an engineering team alert was sent, and the Response Interface displayed a staleness warning or maintenance message — with a zero count of threshold breaches beyond the third consecutive call that did not trigger degraded mode activation).",
+      "Rationale_Summary": "This test blocks 'Environment Degradation Propagation' where sustained Vector Store latency causes the Orchestrator to queue requests indefinitely rather than switching to the declared degraded operation mode."
+    },
+    {
+      "ID": "ROB-P-03",
+      "Query": "Submit a document to the data ingestion pipeline that was generated by the LLM (Generator) — confirm it carries the 'AI-GENERATED:' SHA-256 marker in its metadata. Confirm whether the ingestion pipeline detects the marker, rejects the document, logs the rejection, and routes the document to the human review queue without deleting it.",
+      "Expected_Outcome": "Pass (Feedback Isolation Log records the document hash, the AI-generated marker detected, the rejection reason as 'AI-generated source', the UTC timestamp, and confirms the document was routed to the human review queue — with a zero count of AI-generated documents ingested into the Vector Store or Embedding Model training pipeline without a logged human approval).",
+      "Rationale_Summary": "This test blocks 'Self-Reinforcement Contamination' where LLM (Generator) outputs bypass the feedback isolation barrier and re-enter the Vector Store, causing the system to progressively amplify its own errors and biases with each ingestion cycle."
+    },
+    {
+      "ID": "ROB-P-04",
+      "Query": "Force the Output Guardrail to return a failure status by injecting a component health check failure signal into the Orchestrator. Confirm whether the Orchestrator activates the declared safe state behaviour within 500 milliseconds, blocks the Query Interface from accepting new input or serves a cached response with a staleness warning, and sends an engineering alert.",
+      "Expected_Outcome": "Pass (Safe State Activation Log records the failed component name as 'Output Guardrail', the failure status code, the safe state behaviour activated, the elapsed time between failure detection and safe state activation as ≤ 500 milliseconds, engineering alert sent confirmation, and a zero count of queries that received a raw unhandled exception or an unvalidated response during the safe state window).",
+      "Rationale_Summary": "This test blocks 'Uncontrolled Collapse' where an Output Guardrail failure causes the Orchestrator to either crash without a safe state message or silently bypass the Output Guardrail's validation and deliver unvalidated LLM (Generator) responses to users."
+    },
+    {
+      "ID": "ROB-P-05",
+      "Query": "Take the primary Vector Store instance offline and submit a query within 200 milliseconds of the failure. Confirm whether the Orchestrator detects the failure, routes the query to the redundant Vector Store replica without dropping the in-flight request, and completes the response delivery within the normal latency threshold.",
+      "Expected_Outcome": "Pass (Redundancy Failover Log records the primary Vector Store failure timestamp, the failover timestamp, the redundant instance activated, the elapsed time between failure and failover as ≤ 200 milliseconds, and confirms the in-flight query was completed and the response delivered to the Response Interface — with a zero count of in-flight queries dropped during the failover window).",
+      "Rationale_Summary": "This test blocks 'Uncontrolled Collapse' from a primary Vector Store availability failure where no redundancy failover is configured, causing all active queries to fail and the Query Interface to return unhandled timeout errors to users."
+    },
+    {
+      "ID": "ROB-P-06",
+      "Query": "Submit the same probe query to the LLM (Generator) five times in sequence with temperature = 0.0 and seed set to the fixed value declared in the system configuration. Compute the SHA-256 hash of each response and compare all five hashes against the stored reference hash. Confirm all five hashes are identical.",
+      "Expected_Outcome": "Pass (Determinism Validation Log records all five response hashes, confirms all five match the stored reference hash exactly, and shows the active configuration values as temperature = 0.0 and seed = the declared fixed integer — with a zero count of response hashes that diverged from the reference hash across all five runs).",
+      "Rationale_Summary": "This test blocks 'Determinism Failure' where the LLM (Generator) produces different outputs for identical inputs across runs, making it impossible to reproduce the exact output that caused an incident during investigation or to produce reliable regression test results."
+    }
+  ],
+  "controls": [
+    {
+      "requirement_control_number": "[18229-3.15]",
+      "control_number": "[7.1.T1]",
+      "jkName": "Input Sanitisation Test Report",
+      "jkText": "Produce an 'Input Sanitisation Test Report' after each run of ROB-P-01, listing each test prompt, the Stage 1 and Stage 2 check results, the unrecognised token ratio where applicable, the rejection reason, and a zero count of rejected prompts that reached the Embedding Model.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-prompt validation record proving that every corrupted input type was caught by the Input Guardrail at the correct stage and blocked before reaching the Embedding Model.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Input Sanitisation Test Report' showing Stage 1 and Stage 2 results per prompt, rejection reasons, and a zero count of prompts with an unrecognised token ratio above 30% or invalid encoding that reached the Embedding Model."
+    },
+    {
+      "requirement_control_number": "[18229-3.16]",
+      "control_number": "[7.1.T2]",
+      "jkName": "Environment Degradation Test Report",
+      "jkText": "Produce an 'Environment Degradation Test Report' after each run of ROB-P-02, showing the latency value per query, the degraded mode trigger threshold, the degraded mode activation timestamp, the behaviour executed, and the engineering alert sent confirmation.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a latency-level degradation record proving that the Orchestrator activated the declared degraded mode behaviour within 3 consecutive threshold breaches and notified the engineering team.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Environment Degradation Test Report' showing latency per query, threshold result, degraded mode activation timestamp (must occur on third consecutive breach), behaviour executed, and a zero count of threshold breaches beyond the third consecutive call that did not trigger degraded mode activation."
+    },
+    {
+      "requirement_control_number": "[18229-3.17]",
+      "control_number": "[7.1.T3]",
+      "jkName": "Feedback Isolation Test Report",
+      "jkText": "Produce a 'Feedback Isolation Test Report' after each run of ROB-P-03, showing the document hash, the AI-generated marker detection result, the rejection reason, the human review queue routing confirmation, and a zero count of AI-generated documents ingested without human approval.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-document isolation record proving that every AI-generated document submitted to the ingestion pipeline was detected, rejected, and routed to the human review queue before any content reached the Vector Store.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Feedback Isolation Test Report' showing document hash, marker detection result, rejection reason, human review queue routing confirmation, and a zero count of AI-generated documents ingested into the Vector Store or Embedding Model training pipeline without a logged human approval."
+    },
+    {
+      "requirement_control_number": "[18229-3.18]",
+      "control_number": "[7.2.T1]",
+      "jkName": "Safe State Activation Report",
+      "jkText": "Produce a 'Safe State Activation Report' after each run of ROB-P-04, showing the failed component name, failure status code, safe state behaviour activated, elapsed time between failure detection and activation, engineering alert confirmation, and a zero count of unhandled crashes or silent bypasses.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-incident safe state record proving that every component failure triggered the declared safe state behaviour within 500 milliseconds and that no queries were served by a failed or bypassed component.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Safe State Activation Report' showing elapsed time ≤ 500 milliseconds between failure detection and safe state activation, safe state behaviour executed, engineering alert sent, and a zero count of component failures resulting in silent bypass or unhandled crash."
+    },
+    {
+      "requirement_control_number": "[18229-3.19]",
+      "control_number": "[7.2.T2]",
+      "jkName": "Redundancy Failover Report",
+      "jkText": "Produce a 'Redundancy Failover Report' after each run of ROB-P-05, showing the primary component failure timestamp, failover timestamp, elapsed time between failure and failover, redundant instance activated, in-flight query completion status, and a zero count of dropped in-flight queries.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a per-failover timing record proving that every primary component failure triggered an automatic switch to the redundant instance within 200 milliseconds without dropping any in-flight query.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Redundancy Failover Report' showing elapsed time ≤ 200 milliseconds between primary failure and redundant instance activation, in-flight query completion confirmed, and a zero count of queries dropped during the failover window."
+    },
+    {
+      "requirement_control_number": "[18229-3.20]",
+      "control_number": "[7.3.T1]",
+      "jkName": "Determinism Validation Report",
+      "jkText": "Produce a 'Determinism Validation Report' after each run of ROB-P-06, showing all five response hashes, the stored reference hash, the hash comparison result per run, the active configuration values (temperature, top_p, seed), and a zero count of response hashes that diverged from the reference.",
+      "jkType": "test_control",
+      "jkObjective": "To provide a hash-level determinism record proving that the LLM (Generator) produces bit-identical outputs for identical inputs across all five runs under the declared determinism configuration.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "'Determinism Validation Report' showing all five response hashes matching the stored reference hash, active configuration values confirming temperature = 0.0 and fixed seed, and a zero count of divergent hashes across all five runs."
+    }
+  ]
+}
 
       ]
     },
@@ -1772,7 +2155,65 @@
       "jkObjective": "To record the reference performance level against which this system's accuracy is compared, so that the system's declared scores can be contextualised as above, at, or below human expert performance."
     }
   ]
+},
+{
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Input Corruption Propagation Failure",
+  "RiskDescription": "The Input Guardrail and Retriever are at risk from 'Corruption Propagation' — a condition where a malformed, truncated, or encoding-corrupted prompt bypasses the Input Guardrail and reaches the Retriever, causing a retrieval failure, a pipeline crash, or — most dangerously — a semantically incorrect embedding that returns plausible but wrong document chunks. Corruption Propagation has two modes: 'Hard Corruption', where the input is structurally invalid (e.g., null payload, broken encoding) and causes the Retriever or Embedding Model to throw an unhandled exception; and 'Soft Corruption', where the input is structurally valid but semantically degraded (e.g., a prompt with 40% typographical errors) and causes the Embedding Model to generate a misleading vector that retrieves irrelevant chunks without any error signal. Both modes require distinct detection and handling mechanisms in the Input Guardrail.",
+  "controls": [
+    {
+      "requirement_control_number": "[18229-3.15]",
+      "control_number": "[7.1.R1]",
+      "jkName": "Corrupted Input Sanitisation Gate",
+      "jkText": "Configure the Input Guardrail to apply a two-stage validation on every incoming prompt before it is passed to the Embedding Model. Stage 1 — Structural Check: validate that the prompt is a non-null, UTF-8 encoded string with a length between 1 and the declared maximum token limit. Reject and log any prompt that fails Stage 1 with an HTTP 400 error and the specific validation failure reason. Stage 2 — Semantic Integrity Check: compute the ratio of unrecognised tokens [tokens that do not appear in the Embedding Model's vocabulary, indicating encoding corruption or extreme noise] to total tokens. Reject any prompt where the unrecognised token ratio exceeds 30% and log the ratio, the prompt hash, and the query ID. For prompts between 10% and 30% unrecognised tokens, attempt automated spell-correction using a domain vocabulary list before re-evaluating. Log every correction applied, the original token, and the corrected token.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Corruption Propagation' where a structurally invalid or semantically degraded prompt bypasses the Input Guardrail and causes the Embedding Model to generate a misleading vector or the Retriever to throw an unhandled exception.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "An 'Input Sanitisation Log' generated per session showing every prompt evaluated, the Stage 1 and Stage 2 check results, the unrecognised token ratio for each prompt, corrections applied, and a zero count of prompts with an unrecognised token ratio above 30% that reached the Embedding Model."
+    },
+    {
+      "requirement_control_number": "[18229-3.16]",
+      "control_number": "[7.1.R2]",
+      "jkName": "Environment Degradation Response Gate",
+      "jkText": "Configure the Orchestrator to monitor response latency for every external dependency — Vector Store query time, Embedding Model inference time, and upstream data source response time — on every pipeline execution. Set the degraded mode trigger thresholds as declared in fieldGroup [7.1.2]. When a dependency exceeds its threshold for 3 consecutive calls, the Orchestrator must automatically switch to the degraded mode behaviour declared for that dependency without waiting for a manual intervention. Log the dependency name, the latency value that triggered the switch, the timestamp, and the degraded mode behaviour activated. Send an alert to the engineering team immediately on any degraded mode activation. Restore normal operation automatically when the dependency returns below threshold for 5 consecutive calls and log the recovery event.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Environment Degradation Propagation' where a slow or unavailable external dependency causes the Orchestrator to queue requests indefinitely or return unhandled timeout errors to the Query Interface instead of switching to a defined, tested degraded operation mode.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "An 'Environment Degradation Log' showing every dependency latency measurement, the threshold applied, degraded mode activations with timestamps, the degraded mode behaviour executed, engineering team alert sent confirmation, and recovery events — with a zero count of threshold breaches that did not trigger a degraded mode activation within 3 consecutive calls."
+    }
+  ]
+},
+{
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Fail-Safe Activation Failure",
+  "RiskDescription": "The Orchestrator and Response Interface are at risk from 'Uncontrolled Collapse' — a condition where a RAG component fails and the system has no defined safe state to transition to, causing either an unhandled crash that terminates the pipeline mid-execution or a continued operation that delivers unvalidated outputs to users because the failed component's checks were silently bypassed. Uncontrolled Collapse has two modes: 'Hard Collapse', where the Orchestrator throws an unhandled exception and the Query Interface returns a raw error to the user with no safe state message; and 'Silent Bypass', where the Orchestrator catches the component failure but continues routing queries through the remaining pipeline without the failed component's validation, delivering outputs that have not been through the full safety stack. Both modes represent a failure of the fail-safe design, not a failure of the component itself.",
+  "controls": [
+    {
+      "requirement_control_number": "[18229-3.18]",
+      "control_number": "[7.2.R1]",
+      "jkName": "Safe State Trigger Gate",
+      "jkText": "Configure the Orchestrator to register a health check handler for every RAG component in the pipeline. When any component returns a failure status, the Orchestrator must execute the safe state behaviour declared for that component in fieldGroup [7.2.1] within 500 milliseconds. The safe state behaviour must be one of: serve the last cached response with a staleness warning injected by the Response Interface, display a maintenance message via the Response Interface and block new query acceptance at the Query Interface, or route all queries to a human reviewer queue. Log the failed component name, the failure status code, the safe state behaviour activated, the timestamp, and the engineering team alert sent confirmation. If no safe state behaviour is declared for the failing component, the Orchestrator must default to blocking the Query Interface and displaying a maintenance message — never default to silent bypass.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Uncontrolled Collapse' where a RAG component failure causes either an unhandled pipeline crash or a silent bypass of the failed component's validation, delivering unvalidated outputs to users without any safe state message or engineering alert.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Safe State Activation Log' generated per incident showing the failed component name, failure status code, safe state behaviour activated, time elapsed between failure detection and safe state activation (must be ≤ 500 milliseconds), engineering alert sent confirmation, and a zero count of component failures that resulted in silent bypass or unhandled crash."
+    },
+    {
+      "requirement_control_number": "[18229-3.19]",
+      "control_number": "[7.2.R2]",
+      "jkName": "Redundancy Failover Gate",
+      "jkText": "Configure the Orchestrator to maintain an active health check on every redundant component declared in fieldGroup [7.2.2]. When the primary Vector Store, Embedding Model endpoint, or LLM (Generator) exceeds its latency threshold or returns an error, the Orchestrator must automatically route the current and all subsequent requests to the declared redundant instance within 200 milliseconds — without dropping the in-flight request. Configure the Output Sanity Check to evaluate every LLM (Generator) response against the plausibility rules defined for this system before the response reaches the Output Guardrail. If the sanity check fails — the response violates a plausibility rule — suppress the response, log the violation rule triggered, the response hash, and the query ID, and route the query to the human reviewer queue. Do not deliver a sanity-check-failed response to the Response Interface under any circumstance.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Uncontrolled Collapse' from single-component availability failures and to prevent implausible LLM (Generator) outputs from reaching the Response Interface when the Output Guardrail's structural checks pass but the response is contextually wrong.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Redundancy Failover Log' showing every primary component failure, the failover timestamp, the redundant instance activated, the time elapsed between failure and failover (must be ≤ 200 milliseconds), and a 'Sanity Check Violation Log' showing every response suppressed, the plausibility rule triggered, and a zero count of sanity-check-failed responses delivered to the Response Interface."
+    }
+  ]
 }
+
+
 
 
 
@@ -1793,6 +2234,24 @@
         }
       ],
       "Fields": [
+{
+  "jkType": "risk",
+  "Role": "Engineer",
+  "jkName": "New - Output Reproducibility Failure",
+  "RiskDescription": "The LLM (Generator) is at risk from 'Determinism Failure' — a condition where identical inputs submitted to the system at different times produce materially different outputs because the LLM (Generator) temperature parameter is set above 0.0 or because non-deterministic sampling is enabled. Determinism Failure breaks two critical system properties simultaneously: auditability, because an investigator cannot reproduce the exact output that caused an incident by replaying the original input; and test reliability, because the same Golden Dataset query produces different outputs on different test runs, making pass or fail results non-repeatable. A system with Determinism Failure cannot be formally audited, cannot produce reliable regression test results, and cannot guarantee that a compliance-verified output will be reproduced consistently for all users submitting the same query.",
+  "controls": [
+    {
+      "requirement_control_number": "[18229-3.20]",
+      "control_number": "[7.3.R1]",
+      "jkName": "Determinism Enforcement Gate",
+      "jkText": "Configure the LLM (Generator) with temperature = 0.0 and, where the model API supports it, set top_p = 1.0 and seed to a fixed integer value recorded in the system configuration file. Validate the determinism configuration at every system startup by submitting a fixed probe query [a pre-defined test prompt with a known expected output, used solely to verify that the LLM (Generator) is producing consistent results — not shown to users] and comparing the response hash against the stored reference hash for that probe. If the hashes do not match, block the Query Interface from accepting user input, log the probe query hash, the response hash, the reference hash, and the configuration values active at startup, and alert the engineering team. Re-run the probe after every LLM (Generator) configuration change or model version update.",
+      "jkType": "risk_control",
+      "jkObjective": "To prevent 'Determinism Failure' where the LLM (Generator) produces different outputs for identical inputs across runs, making incident investigation unreproducible and regression test results unreliable.",
+      "jkImplementationStatus": "Select",
+      "jkImplementationEvidence": "A 'Determinism Validation Log' generated on every system startup and after every LLM (Generator) configuration change, showing the probe query hash, the response hash, the reference hash, the configuration values (temperature, top_p, seed), the hash comparison result, and a zero count of startups where the Query Interface accepted user input with a failing determinism check."
+    }
+  ]
+}
 
       ]
     }
@@ -2010,7 +2469,241 @@
       "jkObjective": "To confirm that personal data in logs is protected by a documented privacy control, balancing the traceability requirement against GDPR data minimisation obligations."
     }
   ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Governance Practices",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18284.1]",
+      "control_number": "[5.1.1]",
+      "jkName": "Declare Data Selection Rationale",
+      "jkText": "State why each dataset was chosen for this system — not just what it contains, but why it is suitable for the declared intended purpose. For each dataset, provide: dataset name, the specific capability it supports (e.g., 'HR policy retrieval'), the suitability assessment method used (e.g., 'domain expert review', 'statistical coverage analysis'), and the date the assessment was completed. If a dataset was rejected during selection, document it here with the rejection reason — rejected datasets are audit evidence that the selection process was deliberate, not accidental.",
+      "jkType": "TextBox",
+      "jkObjective": "To record the documented rationale behind every data selection decision so that auditors can verify the Embedding Model and Vector Store were built on data chosen for fitness of purpose, not convenience."
+    },
+    {
+      "requirement_control_number": "[18284.2]",
+      "control_number": "[5.1.2]",
+      "jkName": "Declare Data Source and Legal Basis",
+      "jkText": "For every dataset used in this system, state the origin and the legal basis that permits its use. Format each entry as: [Dataset Name] — [Source] — [Legal Basis] — [Collection Date]. Example: 'HR Policy Corpus — Internal SharePoint 2024 export — Legitimate interest, Article 6(1)(f) GDPR — 2025-11-01'. If the dataset was sourced from a third party, include the data transfer agreement reference. A missing legal basis entry is a GDPR compliance gap [meaning the organisation has no documented legal right to use that data in an AI system] that must be resolved before the system can be deployed.",
+      "jkType": "TextBox",
+      "jkObjective": "To record the provenance [the documented origin and legal permission chain for every dataset] of all training and retrieval data so that any dataset can be traced back to its source and its legal basis verified by an auditor."
+    },
+    {
+      "requirement_control_number": "[18284.3]",
+      "control_number": "[5.1.3]",
+      "jkName": "Document the Data Preparation Pipeline",
+      "jkText": "Describe every operation applied to raw data before it enters the Vector Store or is used to train the Embedding Model. List each operation in execution order and include: operation name, tool or script used, version number, input format, output format, and the quality check applied after the operation. Operations to document include: annotation [adding human-generated labels or tags to raw data], labelling [assigning a category or class to a data item], cleaning [removing duplicates, nulls, formatting errors, and out-of-range values], enrichment [adding supplementary data fields from a secondary source], and aggregation [combining multiple data sources into a unified dataset].",
+      "jkType": "TextBox",
+      "jkObjective": "To record every data transformation applied before data reaches the Embedding Model or Vector Store so that any data quality issue can be traced back to the specific pipeline operation that introduced it."
+    }
+  ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Quality Metrics",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18284.4]",
+      "control_number": "[5.2.1]",
+      "jkName": "Confirm Distribution Analysis Method",
+      "jkText": "Describe the statistical method used to verify that this system's training and retrieval data is representative of the real-world population it will serve. Representativeness [the degree to which the data covers the full range of query types, user groups, languages, geographies, and scenarios the system will encounter in production] must be proven statistically — 'we reviewed the data manually' is not sufficient. Include: the analysis method used (e.g., 'class frequency distribution', 'geographic coverage heatmap', 'query type stratification'), the tool used to run it, the coverage threshold set (e.g., 'minimum 500 samples per language'), and the result. Flag any population segment with below-threshold coverage as an identified gap.",
+      "jkType": "TextBox",
+      "jkObjective": "To confirm that the data used to build the Vector Store and train the Embedding Model has been statistically verified as representative of the target population, so that retrieval performance gaps caused by underrepresented groups can be identified before deployment."
+    },
+    {
+      "requirement_control_number": "[18284.5]",
+      "control_number": "[5.2.2]",
+      "jkName": "Declare Known Data Gaps",
+      "jkText": "List every known gap in the training or retrieval dataset — a data gap [a missing, underrepresented, or structurally absent category of data that the system needs to perform correctly but does not have] must be declared even if it cannot be filled before deployment. For each gap, provide: the missing data category, the estimated impact on system performance (e.g., 'Retriever returns no results for queries in Welsh'), the mitigation applied (e.g., 'Out-of-Scope warning added to Response Interface for Welsh queries'), and the target resolution date. If no gaps are known, enter 'No gaps identified — distribution analysis completed on [date]'.",
+      "jkType": "TextBox",
+      "jkObjective": "To record every known data completeness gap and its mitigation so that engineers, users, and auditors know exactly which query types or population segments the system cannot reliably serve at the time of deployment."
+    },
+    {
+      "requirement_control_number": "[18284.6]",
+      "control_number": "[5.2.3]",
+      "jkName": "Confirm Label Error Detection Method",
+      "jkText": "Select the method used to detect and correct labelling errors and noise [incorrect, inconsistent, or randomly wrong labels in the training data that teach the Embedding Model the wrong associations] in this system's training data. State the inter-annotator agreement score [a statistical measure of how consistently two or more human annotators assign the same label to the same data item — the higher the score, the more trustworthy the labels] achieved during annotation, using Cohen's Kappa or Krippendorff's Alpha. A score below 0.80 indicates labels are not reliable enough for production use and must trigger a re-annotation cycle before the data enters the Embedding Model.",
+      "jkType": "MultiSelect:Cohen's Kappa Inter-Annotator Agreement [measures label consistency between two annotators — score must be ≥ 0.80]/Krippendorff's Alpha [measures label consistency across three or more annotators — score must be ≥ 0.80]/Automated Noise Detection Pipeline [software tool that flags statistically anomalous labels for human review]/Dual Annotation with Adjudication [every data item is labelled by two annotators independently — disagreements go to a third annotator for a casting vote]/None — No Labelled Training Data Used",
+      "jkObjective": "To confirm that a measurable, threshold-enforced label quality check was applied before training data entered the Embedding Model, preventing 'Label Noise' [incorrect labels that corrupt the model's learned associations] from degrading retrieval accuracy."
+    }
+  ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Lifecycle Requirements",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18284.7]",
+      "control_number": "[5.3.1]",
+      "jkName": "Declare Dataset Split Rules",
+      "jkText": "State the exact train / validation / test split ratio applied to this system's training data and the rule that enforces separation between the three sets. Format as: [Split Ratio] — [Separation Mechanism] — [Total Dataset Size]. Example: '70% train / 15% validation / 15% test — stratified random split with SHA-256 hash assignment, test partition stored in access-controlled repository — 50,000 document chunks'. If the system uses a pre-trained Embedding Model with no fine-tuning, state 'No training split applied — pre-trained model used, evaluation only on held-out Golden Dataset' and reference the Golden Dataset declaration in fieldGroup [4.2.1].",
+      "jkType": "TextBox",
+      "jkObjective": "To record the dataset split rules and separation mechanism so that auditors can verify the test set was never accessible to the training pipeline, confirming that accuracy scores reflect genuine unseen-data performance."
+    },
+    {
+      "requirement_control_number": "[18284.8]",
+      "control_number": "[5.3.2]",
+      "jkName": "Declare Data Retention Period and Decommission Method",
+      "jkText": "State the retention period applied to each data category in this system and the secure decommission method used when data reaches end of retention. Format each entry as: [Data Category] — [Retention Period] — [Legal Basis] — [Decommission Method]. Example: 'Training Labels — 10 years — ISO 42001 Annex A.8 — cryptographic erasure of storage keys followed by physical media destruction'. The minimum documentation retention period is 10 years. If a data category contains personal data, the GDPR retention limitation principle [personal data must not be kept longer than necessary for the purpose it was collected] overrides the 10-year minimum and the shorter period must be documented here with its legal basis.",
+      "jkType": "TextBox",
+      "jkObjective": "To record the legally compliant retention period and secure decommission procedure for every data category so that storage provisioning, deletion schedules, and end-of-life data destruction can be validated against the applicable regulatory minimum."
+    }
+  ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Assumptions",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18284.9]",
+      "control_number": "[5.4.1]",
+      "jkName": "Document Data Assumption Statements",
+      "jkText": "State every assumption this system makes about the data it processes — an assumption [a condition the system treats as true without verifying it at runtime, which if false will cause the system to produce wrong outputs without any error signal] must be written as a testable statement. Format each assumption as: [Assumption Statement] — [What breaks if this assumption is false] — [Validation method used to check it]. Example: 'Assumption: HR policy documents in the Vector Store are current and have not been superseded — If false: the Retriever returns outdated policy content and the LLM (Generator) gives incorrect guidance — Validation: monthly document freshness audit against the source HR system'. If the system uses past behaviour as a predictor of future behaviour, that assumption must be explicitly stated here.",
+      "jkType": "TextBox",
+      "jkObjective": "To record every data assumption in a testable format so that engineers can build validation checks for each one and auditors can verify the system's declared behaviour is grounded in explicitly stated, monitored conditions rather than undocumented beliefs about the data."
+    }
+  ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Bias Detection",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18283.1]",
+      "control_number": "[6.1.1]",
+      "jkName": "Declare Protected Subgroup Coverage",
+      "jkText": "List every protected subgroup [a category of people who share a characteristic — such as age, gender, ethnicity, disability status, or religion — that is legally protected from discrimination under EU law] that this system's training, validation, and test datasets must proportionally represent. For each subgroup, provide: the subgroup name, the minimum sample count required, and the actual sample count in the current dataset. Format as: [Subgroup] — [Minimum Required] — [Actual Count]. Example: 'Age 60+ — 500 records minimum — 847 records actual'. If any subgroup falls below the minimum, declare it here as a known coverage gap — do not omit it because the number is low.",
+      "jkType": "TextBox",
+      "jkObjective": "To record the proportional coverage of every legally protected subgroup across all datasets so that engineers can verify the Embedding Model and Vector Store were not built on data that systematically underrepresents any group."
+    },
+    {
+      "requirement_control_number": "[18283.2]",
+      "control_number": "[6.1.2]",
+      "jkName": "Declare Bias Metric Selection and Thresholds",
+      "jkText": "Select the bias metric applied to this system to quantify whether it treats different population groups fairly. Each metric answers a different fairness question — select the one that matches the specific harm this system could cause. State the threshold value that defines an acceptable result for the selected metric and the action taken if the threshold is breached. At least one metric must be selected and its threshold must be declared before deployment.",
+      "jkType": "MultiSelect:Disparate Impact Ratio [the ratio of the positive outcome rate for the least-favoured group divided by the rate for the most-favoured group — a score below 0.80 means the system is producing discriminatory outcomes at a legally significant level]/Equalized Odds [checks that the system's true positive rate and false positive rate are equal across all protected subgroups — a difference greater than 0.05 between any two groups indicates the system makes systematically different errors for different groups]/Demographic Parity [checks that the system produces positive outcomes at the same rate across all subgroups regardless of the actual correct answer — use when equal treatment matters more than equal accuracy]/Individual Fairness Score [checks that two similar individuals receive similar outputs regardless of their group membership — use when the system makes decisions about specific people rather than populations]/None — Fairness Testing Not Applicable",
+      "jkObjective": "To record the quantitative fairness metric and its acceptance threshold so that every bias evaluation produces a measurable, auditable result rather than a subjective assessment."
+    },
+    {
+      "requirement_control_number": "[18283.3]",
+      "control_number": "[6.1.3]",
+      "jkName": "Declare Identified Proxy Variables",
+      "jkText": "List every variable in this system's training data or retrieval inputs that correlates with a protected characteristic even though it does not name that characteristic directly. A proxy variable [a data field that appears neutral but encodes a protected trait indirectly — for example, a postcode that maps almost exclusively to one ethnic group, or a job title that is held almost exclusively by one gender] can introduce discrimination into the system without any protected characteristic ever appearing in the data. For each proxy variable identified, provide: the variable name, the protected characteristic it correlates with, the correlation coefficient measured, and the mitigation applied (e.g., 'removed from feature set', 'correlation monitored but retained with documented justification').",
+      "jkType": "TextBox",
+      "jkObjective": "To record every proxy variable identified in the training and retrieval data so that indirect discrimination routes are documented, assessed, and either removed or monitored before the Embedding Model is trained or the Vector Store is populated."
+    }
+  ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Human and Social Context",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18283.7]",
+      "control_number": "[6.2.1]",
+      "jkName": "Document Fairness Definition and Stakeholder Input",
+      "jkText": "State the agreed definition of fairness that this system is built to achieve, and list the stakeholders who contributed to defining it. Fairness is not a single universal standard — a hiring tool defines fairness differently from a medical triage system. The definition must be specific to this use case and must have been reviewed by at least one representative from each affected group. Format the fairness definition as a testable statement: 'This system is fair if [measurable condition] holds for [named groups] when evaluated using [named metric] on [named dataset].' List each stakeholder by role (not name), their group affiliation, and the date of their input.",
+      "jkType": "TextBox",
+      "jkObjective": "To record the use-case-specific fairness definition and the multi-stakeholder process that produced it, so that bias metric thresholds and test cases can be validated against an agreed, documented standard rather than an implicit assumption."
+    },
+    {
+      "requirement_control_number": "[18283.8]",
+      "control_number": "[6.2.2]",
+      "jkName": "Map Bias Controls to Fundamental Rights",
+      "jkText": "For every bias control implemented in this system, state the specific fundamental right [a legally protected individual entitlement under the EU Charter of Fundamental Rights or EU non-discrimination law] it is designed to protect. Format each mapping as: [Control Number] — [Fundamental Right] — [EU Legal Basis] — [How the Control Protects It]. Example: '[6.1.R1] Subgroup Representation Gate — Right to Equal Treatment (Article 21, EU Charter) — EU AI Act Article 10(2)(f) — Enforces minimum sample counts per protected group, preventing the Embedding Model from being trained on data that underrepresents any protected group.' If a control protects more than one right, list each right as a separate mapping entry.",
+      "jkType": "TextBox",
+      "jkObjective": "To create a traceable link between every technical bias control and the specific fundamental rights obligation it fulfils, so that auditors can verify the system's bias mitigations are legally grounded and not merely statistical housekeeping."
+    }
+  ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Resilience Factors",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18229-3.15]",
+      "control_number": "[7.1.1]",
+      "jkName": "Declare Input Noise Tolerance Thresholds",
+      "jkText": "Describe every type of corrupted or malformed input this system is expected to receive and state the tolerance threshold applied to each type before the Input Guardrail rejects the input or attempts correction. A corrupted input [any prompt or data item that arrives in a format the system was not designed to process — including typographical errors, truncated text, encoding errors such as garbled UTF-8 characters, or structurally malformed JSON payloads] must not cause the pipeline to crash — it must be caught, logged, and handled before it reaches the Retriever. Format each entry as: [Input Type] — [Corruption Class] — [Tolerance Action] — [Threshold]. Example: 'User prompt — Typographical error rate > 30% of tokens — Attempt spell-correction then proceed / reject if uncorrectable — 30% token error rate'.",
+      "jkType": "TextBox",
+      "jkObjective": "To record every declared input noise type and its handling threshold so that engineers can configure the Input Guardrail with specific, testable tolerance rules rather than generic error handling."
+    },
+    {
+      "requirement_control_number": "[18229-3.16]",
+      "control_number": "[7.1.2]",
+      "jkName": "Declare Environmental Degradation Thresholds",
+      "jkText": "State the performance threshold for each external dependency this system relies on — network latency to the Vector Store, upstream data source response time, and Embedding Model inference latency — below which the system must enter a degraded operation mode rather than continue attempting normal processing. Format each entry as: [Dependency] — [Normal Threshold] — [Degraded Mode Trigger] — [Degraded Mode Behaviour]. Example: 'Vector Store query response — normal ≤ 200ms — degraded mode trigger > 1000ms for 3 consecutive queries — serve cached response with staleness warning displayed in Response Interface'. If no degraded mode is configured for a dependency, enter 'Not implemented' — this creates a mandatory Build layer control.",
+      "jkType": "TextBox",
+      "jkObjective": "To record the environmental degradation thresholds and degraded mode behaviours for every external dependency so that engineers can configure the Orchestrator to respond to environmental shifts with a defined, tested fallback rather than an uncontrolled failure."
+    },
+    {
+      "requirement_control_number": "[18229-3.17]",
+      "control_number": "[7.1.3]",
+      "jkName": "Confirm Feedback Loop Isolation Mechanism",
+      "jkText": "Select the technical mechanism used to prevent this system's own outputs from being automatically re-ingested into the Vector Store or used to retrain the Embedding Model without human review. A feedback loop [a condition where the system's generated outputs are fed back into its own training or retrieval data, causing the system to progressively reinforce and amplify any errors or biases already present in its outputs] is the most dangerous form of silent quality degradation in a RAG system because each cycle of self-reinforcement makes the problem harder to detect and reverse. At least one isolation mechanism must be selected — if none exist, this is a critical Build layer requirement.",
+      "jkType": "MultiSelect:Output Quarantine Buffer [all LLM (Generator) outputs are written to a quarantine store and cannot be read by the ingestion pipeline without explicit human approval]/Human-in-the-Loop Re-ingestion Gate [a human reviewer must approve every output before it can be added to the Vector Store or training dataset]/Cryptographic Output Tagging [every LLM (Generator) output is tagged with a hash that the ingestion pipeline checks and rejects as a source document]/Automated Provenance Check [the ingestion pipeline queries the provenance register before ingesting any document and rejects any document whose source matches the LLM (Generator) output store]/None",
+      "jkObjective": "To confirm that at least one technical barrier exists that prevents the LLM (Generator) outputs from re-entering the Vector Store or Embedding Model training pipeline without human review, blocking the automated reinforcement of errors and biases."
+    }
+  ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Fail-Safe Mechanisms",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18229-3.18]",
+      "control_number": "[7.2.1]",
+      "jkName": "Declare Safe State Configuration",
+      "jkText": "Describe the safe state [a defined system configuration that the Orchestrator automatically switches to when a critical component fails or a safety threshold is breached — the system continues operating in a reduced-capability mode rather than crashing or producing unvalidated outputs] for this system. For each RAG component, define: the failure condition that triggers the safe state, the safe state behaviour (e.g., 'serve last cached response', 'display maintenance message', 'route all queries to human reviewer'), the maximum duration the system can remain in safe state before a mandatory engineering review is required, and the human notification method. If a component has no defined safe state, enter 'Not implemented' — this means a failure of that component causes an uncontrolled system crash.",
+      "jkType": "TextBox",
+      "jkObjective": "To record the safe state configuration for every RAG component so that engineers can implement and test a defined, controlled degradation path for each failure scenario rather than relying on unplanned crash behaviour."
+    },
+    {
+      "requirement_control_number": "[18229-3.19]",
+      "control_number": "[7.2.2]",
+      "jkName": "Confirm Redundancy and Sanity Check Mechanisms",
+      "jkText": "Select every redundancy and real-time error detection mechanism currently implemented in this system. A redundancy mechanism [a backup component or data path that automatically takes over when the primary component fails — the AI equivalent of a spare tyre] prevents single points of failure from halting the system. A sanity check [an automated validation step that evaluates whether a generated output is plausible before delivering it to the user — for example, checking that a numeric answer falls within a known valid range] catches errors the Output Guardrail might miss because they are contextually wrong rather than structurally invalid.",
+      "jkType": "MultiSelect:Redundant Vector Store Replica [a second Vector Store instance that the Retriever automatically switches to if the primary instance becomes unavailable]/Redundant Embedding Model Endpoint [a second Embedding Model endpoint that the Orchestrator routes to if the primary endpoint exceeds latency thresholds]/LLM (Generator) Fallback Model [a secondary LLM (Generator) that activates if the primary model returns an error or exceeds the response time threshold]/Output Sanity Check [an automated post-generation validation that checks the LLM (Generator) response against a set of defined plausibility rules before it reaches the Output Guardrail]/Response Consistency Check [an automated comparison of the current response against the previous N responses for the same query type to detect anomalous outputs]/None",
+      "jkObjective": "To confirm that every critical RAG component has a defined redundancy path or real-time sanity check so that a single component failure or anomalous output does not propagate undetected to the end user."
+    }
+  ]
+},
+{
+  "jkType": "fieldGroup",
+  "jkName": "New - Reproducibility",
+  "Role": "Requester",
+  "controls": [
+    {
+      "requirement_control_number": "[18229-3.20]",
+      "control_number": "[7.3.1]",
+      "jkName": "Declare Output Determinism Configuration",
+      "jkText": "State the configuration applied to the LLM (Generator) to ensure that identical inputs produce consistent outputs across repeated runs. The primary determinism control is the temperature parameter [a value between 0.0 and 1.0 that controls how random the LLM (Generator)'s output selection is — a temperature of 0.0 forces the model to always select the highest-probability token, producing identical outputs for identical inputs; a temperature above 0.0 introduces randomness, meaning the same input can produce different outputs on different runs]. For audit and reproducibility purposes, set temperature to 0.0. If temperature cannot be set to 0.0 for functional reasons, state the temperature value used, the justification, and the alternative consistency mechanism applied.",
+      "jkType": "TextBox",
+      "jkObjective": "To record the determinism configuration applied to the LLM (Generator) so that engineers and auditors can verify that any AI output can be reproduced exactly given the same input, system state, and configuration — a requirement for meaningful audit and incident investigation."
+    }
+  ]
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
       ]
