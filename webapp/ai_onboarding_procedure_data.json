@@ -38,7 +38,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Logging",
+          "jkName": "Done - Logging",
           "Role": "Compliance",
           "controls": [
             {
@@ -191,7 +191,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Metric Requirements",
+          "jkName": "Done - Metric Requirements",
           "Role": "Compliance",
           "controls": [
             {
@@ -219,7 +219,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Lifecycle Performance",
+          "jkName": "Done - Lifecycle Performance",
           "Role": "Compliance",
           "controls": [
             {
@@ -240,7 +240,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Technical Documentation",
+          "jkName": "Done - Technical Documentation",
           "Role": "Compliance",
           "controls": [
             {
@@ -327,7 +327,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Governance Practices",
+          "jkName": "Done - Governance Practices",
           "Role": "Compliance",
           "controls": [
             {
@@ -446,7 +446,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Human & Social Context",
+          "jkName": "Done - Human & Social Context",
           "Role": "Compliance",
           "controls": [
             {
@@ -477,25 +477,18 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Logging Triggers",
+          "jkName": "Done - Logging Triggers",
           "Role": "Compliance",
           "controls": [
             {
               "requirement_control_number": "[24970.1]",
-              "jkName": "Routine Operation",
-              "jkText": "Automated recording of standard system activity, including precise start/end timestamps and user usage sessions.",
-              "jkType": "requirement",
-              "jkSoa": "Select"
-            },
-            {
-              "requirement_control_number": "[24970.2]",
               "jkName": "Monitoring Events",
               "jkText": "Capturing automated performance benchmarks, safety checks, and anomalies triggered by the system's internal observability tools.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[24970.3]",
+              "requirement_control_number": "[24970.2]",
               "jkName": "Human Intervention",
               "jkText": "Recording every instance of a user overriding, editing, or stopping an AI output, directly linking to Article 14 oversight duties.",
               "jkType": "requirement",
@@ -505,7 +498,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Captured Information",
+          "jkName": "Done - Captured Information",
           "Role": "Compliance",
           "controls": [
             {
@@ -533,7 +526,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Storage & Governance",
+          "jkName": "DOne - Storage & Governance",
           "Role": "Compliance",
           "controls": [
             {
