@@ -82,7 +82,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue) {
 			if (state.currentRole === "Compliance") {
 				options = ['Select', 'Applicable', 'Not Applicable'];
 			} else {
-				options = ['Select', 'Not Applicable', 'Implemented with evidence'];
+				options = ['Select', 'Not Applicable with justification', 'Implemented with evidence'];
 			}
 			            
     		options.forEach((optionText, index) => {

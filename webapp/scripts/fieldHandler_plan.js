@@ -91,21 +91,21 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue) {
     // --- Render Test Criteria Metadata (New Logic) ---
     if (field.TestDatasetMetadata) {
         // Add the Metadata label
-        const metadataLabel = document.createElement('label');
-        metadataLabel.textContent = "Test Criteria Metadata";
-        metadataLabel.className = 'label-bold';
-        contentDiv.appendChild(metadataLabel);
+        //const metadataLabel = document.createElement('label');
+        //metadataLabel.textContent = "Test Criteria Metadata";
+        //metadataLabel.className = 'label-bold';
+        //contentDiv.appendChild(metadataLabel);
 
         // Add separator
-        const separator = document.createElement('hr');
-        separator.className = 'control-separator';
-        contentDiv.appendChild(separator);
+        //const separator = document.createElement('hr');
+        //separator.className = 'control-separator';
+        //contentDiv.appendChild(separator);
 
         // Render the metadata
-        const metadataElement = renderTestCriteriaMetadata(field.TestDatasetMetadata);
-        if (metadataElement) {
-            contentDiv.appendChild(metadataElement);
-        }
+        //const metadataElement = renderTestCriteriaMetadata(field.TestDatasetMetadata);
+        //if (metadataElement) {
+        //    contentDiv.appendChild(metadataElement);
+        //}
     }
 
 
@@ -224,7 +224,31 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue) {
             controlText.textContent = controlItem.control_number + " - " + controlItem.jkText;
             controlContainer.appendChild(controlText);
   
-            
+  
+             //Control status
+            const select = document.createElement('select');
+            select.name = sanitizedId + '_jkImplementationStatus';
+			
+			let options;
+			
+			options = ['Select', 'Not Applicable with justification', 'Implemented with evidence'];
+			            
+    		options.forEach((optionText, index) => {
+				const option = document.createElement('option');
+				option.value = optionText;
+				option.textContent = optionText;
+				
+				// Set selected if it matches the control_jkImplementationStatus
+				if (controlItem.jkImplementationStatus && optionText === controlItem.jkImplementationStatus) {
+					option.selected = true;
+				}
+				
+				select.appendChild(option);
+    		});
+			controlText.appendChild(select);	 
+  
+  
+            //Evidence          
             const input = document.createElement('textarea');
             input.name = sanitizedId + '_jkImplementationEvidence';
     		input.placeholder = controlItem.jkImplementationEvidence;
