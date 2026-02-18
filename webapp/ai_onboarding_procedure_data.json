@@ -1986,7 +1986,7 @@
       "jkObjective": "To confirm that every system failure produces a log entry with enough diagnostic detail for an engineer to identify the root cause and reconstruct the failure sequence without access to the live system."
     }
   ]
-}
+},
 {
   "jkType": "fieldGroup",
   "jkName": "New - Storage and Governance",
