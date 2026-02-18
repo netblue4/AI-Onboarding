@@ -186,9 +186,9 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
             });
         });
         const stepTooltip = `STEP COMPLIANCE:\n• Requirements: ${sReqs}\n• Controls: ${sImps}\n• Completed: ${sEvid}`;
-        const stepHasImplementations = (sImps > 0);
+        //const stepHasImplementations = (sImps > 0);
         const stepColor = sImps > 0 ? "#238636" : "#444c56";
-        const stepNode = createNodeCard(stepName, stepColor, stepHasImplementations, stepTooltip);
+        const stepNode = createNodeCard(stepName, stepColor, true, stepTooltip);
         stepWrapper.appendChild(stepNode);
 
         const groupsContainer = document.createElement('div');
@@ -207,9 +207,9 @@ function renderMindmap(mindmapData, capturedData, sanitizeForId, fieldStoredValu
                 r.implementations.forEach(i => { if (fieldStoredValue(i, false)) gEvid++; });
             });
             const groupTooltip = `GROUP STATS:\n• Requirements: ${gData.requirements.size}\n• Controls: ${gImps}\n• Evidence: ${gEvid}`;
-			const groupHasImplementations = (gImps > 0);
+			//const groupHasImplementations = (gImps > 0);
 			const groupColor = gImps > 0 ? "#238636" : "#444c56";
-            const groupNode = createNodeCard(groupName, groupColor, groupHasImplementations, groupTooltip);
+            const groupNode = createNodeCard(groupName, groupColor, true, groupTooltip);
             groupWrapper.appendChild(groupNode);
 
             const reqsContainer = document.createElement('div');
