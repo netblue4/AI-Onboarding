@@ -1758,7 +1758,7 @@
               "jkImplementationEvidence": "'Orchestrator Routing Audit Log' showing each trigger evaluated, the action taken, and a zero count of unmatched triggers reaching the LLM (Generator) across both TRANS-P-02 and TRANS-P-03 runs."
             }
           ]
-        }
+        },
         {
           "jkType": "plan",
           "Role": "Tester",
