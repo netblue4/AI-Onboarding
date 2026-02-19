@@ -996,7 +996,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Transparency",
+          "jkName": "[18229-1: Trustworthiness] - Transparency",
           "Role": "Requester",
           "controls": [
             {
@@ -1043,7 +1043,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Human Oversight",
+          "jkName": "[18229-1: Trustworthiness] - Human Oversight",
           "Role": "Engineer",
           "controls": [
             {
@@ -1092,7 +1092,7 @@
       "Fields": [
     	{
           "jkType": "fieldGroup",
-          "jkName": "New - Bias Detection",
+          "jkName": "[18283: Bias] - Bias Detection",
           "Role": "Data Engineer",
           "controls": [
             {
@@ -1123,7 +1123,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Human and Social Context",
+          "jkName": "[18283: Bias] - Human and Social Context",
           "Role": "Data Engineer",
           "controls": [
             {
@@ -1147,7 +1147,7 @@
       ]
     },
     {
-      "StepName": "18284: Quality and Governance ",
+      "StepName": "18284: Quality and Governance",
       "Objectives": [
         {
           "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
@@ -1156,7 +1156,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Governance Practices",
+          "jkName": "[18284: Quality and Governance] - Governance Practices",
           "Role": "Data Engineer",
           "controls": [
             {
@@ -1187,7 +1187,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Quality Metrics",
+          "jkName": "[18284: Quality and Governance] - Quality Metrics",
           "Role": "Data Engineer",
           "controls": [
             {
@@ -1218,7 +1218,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Lifecycle Requirements",
+          "jkName": "[18284: Quality and Governance] - Lifecycle Requirements",
           "Role": "Data Engineer",
           "controls": [
             {
@@ -1241,7 +1241,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Assumptions",
+          "jkName": "[18284: Quality and Governance] - Assumptions",
           "Role": "Data Engineer",
           "controls": [
             {
@@ -1266,7 +1266,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Logging Triggers",
+          "jkName": "[ISO/IEC 24970: AI System Logging] - Logging Triggers",
           "Role": "Engineer",
           "controls": [
             {
@@ -1297,7 +1297,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Captured Information",
+          "jkName": "[ISO/IEC 24970: AI System Logging] - Captured Information",
           "Role": "Engineer",
           "controls": [
             {
@@ -1328,7 +1328,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Storage and Governance",
+          "jkName": "[ISO/IEC 24970: AI System Logging] - Storage and Governance",
           "Role": "Engineer",
           "controls": [
             {
@@ -1369,7 +1369,7 @@
       "Fields": [
 		{
           "jkType": "fieldGroup",
-          "jkName": "New - Accuracy Metric Design",
+          "jkName": "[18229-2: Trustworthiness (Accuracy)] - Accuracy Metric Design",
           "Role": "Engineer",
           "controls": [
             {
@@ -1392,7 +1392,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Validation and Overfitting Controls",
+          "jkName": "[18229-2: Trustworthiness (Accuracy)] - Validation and Overfitting Controls",
           "Role": "Engineer",
           "controls": [
             {
@@ -1415,7 +1415,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Production Accuracy Governance",
+          "jkName": "[18229-2: Trustworthiness (Accuracy)] - Production Accuracy Governance",
           "Role": "Engineer",
           "controls": [
             {
@@ -1454,9 +1454,9 @@
         }
       ],
       "Fields": [
-      {
+        {
           "jkType": "fieldGroup",
-          "jkName": "New - Resilience Factors",
+          "jkName": "[18229-3: Trustworthiness (Robustness)] - Resilience Factors",
           "Role": "Requester",
           "controls": [
             {
@@ -1479,7 +1479,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Fail-Safe Mechanisms",
+          "jkName": "[18229-3: Trustworthiness (Robustness)] - Fail-Safe Mechanisms",
           "Role": "Requester",
           "controls": [
             {
@@ -1502,7 +1502,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "New - Reproducibility",
+          "jkName": "[18229-3: Trustworthiness (Robustness)] - Reproducibility",
           "Role": "Requester",
           "controls": [
             {
