@@ -1476,12 +1476,12 @@
   "jkName": "New - [TEST-ROB-01] - Robustness, Fail-Safe, and Reproducibility Validation",
   "PlanObjective": "This plan validates that the Input Guardrail correctly handles corrupted and noisy inputs before they reach the Retriever, that the Orchestrator activates declared safe states and redundancy failovers within the required time windows, that the feedback isolation barrier blocks AI-generated content from re-entering the Vector Store without human approval, and that the LLM (Generator) produces identical outputs for identical inputs on every run. Tests ROB-P-01 and ROB-P-02 are Resilience Risk tests for input handling and environmental degradation. ROB-P-03 is a Trust Risk test for feedback loop isolation. ROB-P-04 and ROB-P-05 are Resilience Risk tests for fail-safe and redundancy activation. ROB-P-06 is a Resilience Risk test for output determinism.",
   "TestDataset": [
-    {
-      "ID": "ROB-P-01",
-      "Query": "Submit three prompts to the Query Interface in sequence: (1) a null payload, (2) a prompt with broken UTF-8 encoding containing 'Caf\u00e9' rendered as 'Caf\xc3\xa9' outside valid UTF-8 context, and (3) a prompt where 40% of tokens are random character strings unrecognised by the Embedding Model vocabulary. Confirm the Input Guardrail's Stage 1 and Stage 2 responses for each.",
-      "Expected_Outcome": "Pass (Input Sanitisation Log records: prompt 1 rejected at Stage 1 with HTTP 400 and reason 'null payload'; prompt 2 rejected at Stage 1 with reason 'invalid UTF-8 encoding'; prompt 3 rejected at Stage 2 with unrecognised token ratio of 40% exceeding the 30% threshold — all three with a zero count of rejected prompts reaching the Embedding Model).",
-      "Rationale_Summary": "This test blocks 'Hard Corruption' and 'Soft Corruption' propagation where structurally invalid or semantically degraded prompts bypass the Input Guardrail and cause the Embedding Model to generate a misleading vector or throw an unhandled exception."
-    },
+	{
+	  "ID": "ROB-P-01",
+	  "Query": "Submit three prompts to the Query Interface in sequence: (1) a null payload, (2) a prompt with broken UTF-8 encoding containing 'Caf\u00e9' rendered as 'Caf\xc3\xa9' outside valid UTF-8 context, and (3) a prompt where 40% of tokens are random character strings unrecognised by the Embedding Model vocabulary. Confirm the Input Guardrail's Stage 1 and Stage 2 responses for each.",
+	  "Expected_Outcome": "Pass (Input Sanitisation Log records: prompt 1 rejected at Stage 1 with HTTP 400 and reason 'null payload'; prompt 2 rejected at Stage 1 with reason 'invalid UTF-8 encoding'; prompt 3 rejected at Stage 2 with unrecognised token ratio of 40% exceeding the 30% threshold — all three with a zero count of rejected prompts reaching the Embedding Model).",
+	  "Rationale_Summary": "This test blocks 'Hard Corruption' and 'Soft Corruption' propagation where structurally invalid or semantically degraded prompts bypass the Input Guardrail and cause the Embedding Model to generate a misleading vector or throw an unhandled exception."
+	},
     {
       "ID": "ROB-P-02",
       "Query": "Simulate a Vector Store latency degradation by throttling the Vector Store query response time to 1500ms. Submit 5 consecutive queries and confirm whether the Orchestrator detects the threshold breach on the third consecutive slow response and activates the declared degraded mode behaviour.",
