@@ -1,89 +1,74 @@
 /**
- * Compliance Table Handler
- * Converts hierarchical compliance data into a structured table view.
+ * Compliance Table Handler: Column Split & Click-Triggered Tooltips
  */
 function createComplyTable(incapturedData, sanitizeForId, fieldStoredValue) {
     const webappData = window.originalWebappData;
     if (!webappData) return document.createElement('div');
 
-    // Reuse your existing data processing logic
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
     return renderComplyTable(mindmapData, fieldStoredValue);
 }
 
-/**
- * Main Rendering Function for the Table
- */
 function renderComplyTable(mindmapData, fieldStoredValue) {
     const container = document.createElement('div');
     container.className = 'comply-table-container';
     container.style.cssText = `padding: 20px; background: #2d333b; color: #adbac7; font-family: sans-serif; overflow-x: auto;`;
 
     const table = document.createElement('table');
-    table.style.cssText = `width: 100%; border-collapse: collapse; border: 1px solid #444c56; font-size: 13px;`;
+    table.style.cssText = `width: 100%; border-collapse: collapse; border: 1px solid #444c56; font-size: 13px; table-layout: fixed;`;
 
-    // Table Header
+    // Updated Table Header with Split Columns
     const thead = document.createElement('thead');
     thead.innerHTML = `
         <tr style="background: #1c2128; text-align: left;">
-            <th style="${cellStyle()}">Article / Step</th>
-            <th style="${cellStyle()}">Group</th>
-            <th style="${cellStyle()}">Requirement</th>
-            <th style="${cellStyle()}">Implementation / Control</th>
-            <th style="${cellStyle()}">Status</th>
+            <th style="${cellStyle()} width: 150px;">Article / Step</th>
+            <th style="${cellStyle()} width: 150px;">Group</th>
+            <th style="${cellStyle()} width: 250px;">Requirement</th>
+            <th style="${cellStyle()}">Define</th>
+            <th style="${cellStyle()}">Build (Risk)</th>
+            <th style="${cellStyle()}">Test</th>
         </tr>
     `;
     table.appendChild(thead);
 
     const tbody = document.createElement('tbody');
 
-    // Flattening the Map into Rows
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
             gData.requirements.forEach((reqEntry, reqKey) => {
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = "1px solid #444c56";
+
+                // 1. Static Hierarchy Columns
+                tr.appendChild(createTableCell(stepName, "#4b5e71"));
+                tr.appendChild(createTableCell(groupName, "#374151"));
                 
-                // If no implementations, still show the requirement
-                const impls = reqEntry.implementations.size > 0 
-                    ? Array.from(reqEntry.implementations) 
-                    : [null];
+                const reqText = `[${reqKey}]: ${reqEntry.requirement.jkName}`;
+                const reqTooltip = `REQUIREMENT DATA:\n${reqEntry.requirement.jkText}`;
+                tr.appendChild(createTableCell(reqText, "#2c3e50", reqTooltip));
 
-                impls.forEach((impl, index) => {
-                    const tr = document.createElement('tr');
-                    tr.style.borderBottom = "1px solid #444c56";
+                // 2. Prepare categorized containers for this Requirement
+                const defineNodes = [];
+                const buildNodes = [];
+                const testNodes = [];
 
-                    // 1. Step Cell
-                    if (index === 0 && groupName === Array.from(groups.keys())[0] && reqKey === Array.from(gData.requirements.keys())[0]) {
-                        tr.appendChild(createTableCell(stepName, "#4b5e71"));
+                reqEntry.implementations.forEach(impl => {
+                    const cNum = String(impl.control_number || "");
+                    if (cNum.includes('T')) {
+                        testNodes.push(impl);
+                    } else if (cNum.includes('R')) {
+                        buildNodes.push(impl);
                     } else {
-                        tr.appendChild(createTableCell("", "transparent")); // Empty for visual grouping
+                        defineNodes.push(impl);
                     }
-
-                    // 2. Group Cell
-                    tr.appendChild(createTableCell(groupName, "#374151"));
-
-                    // 3. Requirement Cell
-                    const reqText = `[${reqKey}]: ${reqEntry.requirement.jkName}`;
-                    const reqTooltip = `REQUIREMENT DATA:\n${reqEntry.requirement.jkText}`;
-                    tr.appendChild(createTableCell(reqText, "#2c3e50", reqTooltip));
-
-                    // 4. Implementation Cell
-                    if (impl) {
-                        const status = fieldStoredValue(impl, true) || 'Not Set';
-                        const evidence = fieldStoredValue(impl, false) || 'No evidence provided.';
-                        const implTooltip = `IMPLEMENTATION DATA:\n• Type: ${impl.jkType}\n• Description: ${impl.jkText}\n\nPROGRESS:\n• Status: ${status}\n• Evidence: ${evidence}`;
-                        
-                        tr.appendChild(createTableCell(`${impl.control_number}: ${impl.jkName}`, "#161b22", implTooltip));
-                        
-                        // 5. Status Cell
-                        const statusCell = createTableCell(status, evidence !== 'No evidence provided.' ? "#238636" : "#9e6a03");
-                        tr.appendChild(statusCell);
-                    } else {
-                        tr.appendChild(createTableCell("No controls linked", "#161b22"));
-                        tr.appendChild(createTableCell("N/A", "#444c56"));
-                    }
-
-                    tbody.appendChild(tr);
                 });
+
+                // 3. Render Categorized Columns
+                tr.appendChild(createCategorizedCell(defineNodes, fieldStoredValue));
+                tr.appendChild(createCategorizedCell(buildNodes, fieldStoredValue));
+                tr.appendChild(createCategorizedCell(testNodes, fieldStoredValue));
+
+                tbody.appendChild(tr);
             });
         });
     });
@@ -94,45 +79,93 @@ function renderComplyTable(mindmapData, fieldStoredValue) {
 }
 
 /**
- * Helper: Create a Styled Table Cell with Tooltip support
+ * Helper: Renders multiple controls inside a single categorized cell
+ */
+function createCategorizedCell(nodes, fieldStoredValue) {
+    const td = document.createElement('td');
+    td.style.cssText = cellStyle() + `background: #161b22; vertical-align: top;`;
+    
+    if (nodes.length === 0) {
+        td.style.opacity = "0.3";
+        td.textContent = "-";
+        return td;
+    }
+
+    nodes.forEach(node => {
+        const status = fieldStoredValue(node, true) || 'Not Set';
+        const evidence = fieldStoredValue(node, false) || 'No evidence provided.';
+        const tooltipText = `CONTROL DATA:\n• ID: ${node.control_number}\n• Name: ${node.jkName}\n• Description: ${node.jkText}\n\nPROGRESS:\n• Status: ${status}\n• Evidence: ${evidence}`;
+        
+        const item = document.createElement('div');
+        item.style.cssText = `margin-bottom: 8px; padding: 5px; border-radius: 4px; background: ${evidence !== 'No evidence provided.' ? "#23863633" : "#444c5633"}; border: 1px solid #444c56;`;
+        
+        const label = document.createElement('div');
+        label.style.fontSize = "11px";
+        label.textContent = `${node.control_number}: ${node.jkName}`;
+        
+        item.appendChild(label);
+        item.appendChild(createInfoIcon(tooltipText));
+        td.appendChild(item);
+    });
+
+    return td;
+}
+
+/**
+ * Helper: Create Table Cell with Click-to-Show Tooltip
  */
 function createTableCell(text, bgColor, tooltipText = null) {
     const td = document.createElement('td');
     td.style.cssText = cellStyle() + `background: ${bgColor}; vertical-align: top; position: relative;`;
     
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = `display: flex; justify-content: space-between; align-items: center;`;
-    
     const label = document.createElement('span');
     label.textContent = text;
-    wrapper.appendChild(label);
+    td.appendChild(label);
 
     if (tooltipText) {
-        const infoIcon = document.createElement('span');
-        infoIcon.innerHTML = ' ⓘ';
-        infoIcon.style.cssText = "cursor: help; opacity: 0.6; font-size: 12px; margin-left: 5px;";
-        wrapper.appendChild(infoIcon);
-
-        // Tooltip Element
-        const tooltip = document.createElement('div');
-        tooltip.style.cssText = `
-            visibility: hidden; position: absolute; bottom: 100%; right: 0;
-            width: 250px; background: #1c2128; color: #adbac7; padding: 10px;
-            border: 1px solid #444c56; border-radius: 6px; z-index: 1000;
-            white-space: pre-wrap; font-size: 11px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            opacity: 0; transition: opacity 0.2s; pointer-events: none;
-        `;
-        tooltip.textContent = tooltipText;
-        td.appendChild(tooltip);
-
-        td.onmouseenter = () => { tooltip.style.visibility = 'visible'; tooltip.style.opacity = '1'; };
-        td.onmouseleave = () => { tooltip.style.visibility = 'hidden'; tooltip.style.opacity = '0'; };
+        td.appendChild(createInfoIcon(tooltipText));
     }
 
-    td.appendChild(wrapper);
     return td;
 }
 
+/**
+ * Creates the Info Icon and the Click-Logic Tooltip
+ */
+function createInfoIcon(text) {
+    const wrapper = document.createElement('span');
+    wrapper.style.cssText = "position: relative; display: inline-block; margin-left: 5px;";
+
+    const icon = document.createElement('span');
+    icon.innerHTML = ' ⓘ';
+    icon.style.cssText = "cursor: pointer; color: #58a6ff; font-weight: bold;";
+    
+    const tooltip = document.createElement('div');
+    tooltip.style.cssText = `
+        display: none; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
+        width: 220px; background: #1c2128; color: #adbac7; padding: 12px;
+        border: 1px solid #444c56; border-radius: 8px; z-index: 9999;
+        white-space: pre-wrap; font-size: 11px; box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+    `;
+    tooltip.textContent = text;
+
+    icon.onclick = (e) => {
+        e.stopPropagation();
+        const isVisible = tooltip.style.display === 'block';
+        // Close all other tooltips first
+        document.querySelectorAll('.compliance-tooltip').forEach(t => t.style.display = 'none');
+        tooltip.style.display = isVisible ? 'none' : 'block';
+    };
+
+    // Close tooltip if clicking anywhere else
+    document.addEventListener('click', () => { tooltip.style.display = 'none'; });
+
+    tooltip.className = 'compliance-tooltip';
+    wrapper.appendChild(icon);
+    wrapper.appendChild(tooltip);
+    return wrapper;
+}
+
 function cellStyle() {
-    return "padding: 12px; border: 1px solid #444c56; line-height: 1.4; min-width: 120px;";
+    return "padding: 10px; border: 1px solid #444c56; line-height: 1.4; overflow-wrap: break-word;";
 }
