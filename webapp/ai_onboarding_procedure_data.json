@@ -797,7 +797,7 @@
   ],
   "2. Define": [
     {
-      "StepName": "new - 1.1. EU AI Act: Prohibited AI Practices Assessment",
+      "StepName": "EU AI Act: Prohibited AI Practices Assessment",
       "Objectives": [
         {
           "Objective": "A mandatory screening to ensure the AI system does not fall into the category of 'Prohibited AI Practices' as defined by the EU AI Act (e.g., systems that manipulate behavior or exploit vulnerabilities)."
@@ -815,7 +815,7 @@
       ]
     },
     {
-      "StepName": "new - 1.2. EU AI Act: Role Classification (Provider vs. Deployer)",
+      "StepName": "EU AI Act: Role Classification (Provider vs. Deployer)",
       "Objectives": [
         {
           "Objective": "Defining the organization’s legal responsibility for the AI system. This step determines whether the entity is acting as the Provider (the developer/manufacturer) or the Deployer (the user/operator) of the system, which dictates the scope of subsequent obligations."
@@ -833,7 +833,7 @@
       ]
     },
     {
-      "StepName": "New - 1.3. EU AI Act: High-Risk System Classification",
+      "StepName": "EU AI Act: High-Risk System Classification",
       "Objectives": [
         {
           "Objective": "A critical step involving the legal classification of the AI system to determine if it meets the criteria for a High-Risk AI System. This classification triggers a significantly higher level of scrutiny and more detailed compliance requirements."
@@ -857,120 +857,6 @@
           "jkType": "MultiSelect:Interacts directly with humans (e.g., a chatbot) and must disclose it is an AI/Generates 'deep fakes' or manipulates video, audio, image content/Used for emotion recognition or biometric categorization/Generates synthetic text published on matters of public interest/None"
         }
       ]
-    },
-    {
-      "StepName": "New - 2.1. - AI system's intended use, limitations and Human oversight",
-      "Objectives": [
-        {
-          "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
-        }
-      ],
-      "Fields": [
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Transparency and Limitations",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-1.1]",
-              "control_number": "[2.2.1]",
-              "jkName": "Declare the System's Intended Purpose",
-              "jkText": "State exactly what this AI system is built to do, who it is built for, and the specific context it operates in. Scope this tightly — if the system later processes queries outside this declaration, every downstream risk control and test case must be re-evaluated.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the declared operational scope and target population of the AI system so that any use outside those boundaries can be identified, flagged, and re-assessed."
-            },
-            {
-              "requirement_control_number": "[18229-1.2]",
-              "control_number": "[2.2.2]",
-              "jkName": "List Known Failure Scenarios",
-              "jkText": "List every input condition, data state, or query type where this system is known to produce wrong, degraded, or unreliable outputs. Include specific triggers such as unsupported languages, missing required fields, out-of-distribution queries that fall outside the Retriever's indexed knowledge, or token-limit edge cases in the LLM (Generator). Each entry here maps directly to a risk control in the Build layer.",
-              "jkType": "TextBox",
-              "jkObjective": "To capture all known 'blind spots' (input conditions or data states where the system is expected to fail or degrade) so that engineers have a complete target list for control design."
-            },
-            {
-              "requirement_control_number": "[18229-1.2]",
-              "control_number": "[2.2.3]",
-              "jkName": "Assign a Response Action per Failure",
-              "jkText": "For each failure scenario listed in [2.2.2], specify the exact system behaviour that must trigger when that failure occurs. Choose one action per failure: surface a confidence warning via the Response Interface, route the query to a human reviewer, suppress the response and return an error code, or log the event silently for engineer triage. One failure, one action — do not combine.",
-              "jkType": "MultiSelect:Surface Confidence Warning/Route to Human Reviewer/Suppress Response and Return Error/Log for Engineer Triage/None",
-              "jkObjective": "To ensure every declared failure mode has a single, unambiguous system response that prevents silent failures from reaching end users unchecked."
-            },
-            {
-              "requirement_control_number": "[18229-1.3]",
-              "control_number": "[2.2.4]",
-              "jkName": "Provide the Instructions for Use Link",
-              "jkText": "Paste the URL or document path to the Instructions for Use (IFU) — the operator manual that tells users how to run, monitor, and safely stop this system. The link must be machine-retrievable; a local file path or shared-drive shortcut that requires authenticated desktop access does not satisfy this requirement.",
-              "jkType": "TextBox",
-              "jkObjective": "To confirm that a retrievable, human-readable IFU is linked to this system record so that operators and auditors can access it without submitting a separate request."
-            },
-            {
-              "requirement_control_number": "[18229-1.3]",
-              "control_number": "[2.2.5]",
-              "jkName": "Confirm Documentation Delivery Format",
-              "jkText": "Select every format in which the IFU is currently published. At least one digital format must be selected — a printed manual alone does not meet the accessibility requirement under this control.",
-              "jkType": "MultiSelect:Digital PDF/Interactive Help Guide/In-App Tooltips/API Documentation/Printed Manual/None",
-              "jkObjective": "To verify that the IFU is published in at least one digitally accessible and machine-readable format, meeting the documentation accessibility requirement."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Human Oversight Controls",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-1.6]",
-              "control_number": "[2.6.1]",
-              "jkName": "Describe Automation Bias Warnings in the UI",
-              "jkText": "Describe every warning, disclaimer, or confidence indicator [a score or signal displayed alongside an AI response that tells the user how certain the system is about its own answer — think of it as a percentage bar on a search result] displayed to the user in the Response Interface that signals the AI output should not be accepted without human review. Include the exact trigger condition for each warning — for example, 'displayed when confidence score < 0.80' or 'displayed on every response regardless of score'. A blank entry here means no warnings are implemented, which is a compliance gap.",
-              "jkType": "TextBox",
-              "jkObjective": "To record every UI mechanism designed to prevent automation bias (the tendency of humans to accept AI outputs without critical review) so that engineers can verify each warning is implemented and testable."
-            },
-            {
-              "requirement_control_number": "[18229-1.7]",
-              "control_number": "[2.6.2]",
-              "jkName": "Confirm Override and Stop Mechanisms",
-              "jkText": "Select every human intervention mechanism currently implemented in this system. At least one mechanism must be selected — if none exist, this is a build requirement, not an optional feature.",
-              "jkType": "MultiSelect:Output Override [a human rejects or replaces a single AI response before it takes effect — like clicking 'Dismiss' or 'Edit' on one answer]/System Stop — Kill Switch [a human halts all AI processing immediately across the entire system — no further queries are accepted until a human restarts it]/Query Cancellation [a human aborts a single in-flight query before the LLM (Generator) returns a response — the query is dropped and nothing is delivered]/Human Escalation Routing [the system automatically forwards the query to a human reviewer instead of generating an AI response — used when the system detects it cannot answer reliably]/None",
-              "jkObjective": "To confirm that at least one technical mechanism exists that allows a human to intervene in, override, or halt AI processing before an output causes harm or reaches an end user."
-            },
-            {
-              "requirement_control_number": "[18229-1.7]",
-              "control_number": "[2.6.3]",
-              "jkName": "Describe the Stop Mechanism Activation Steps",
-              "jkText": "Provide the exact sequence of steps a human operator must take to activate the stop mechanism — for example: '1. Click Stop in the admin console. 2. Confirm the halt dialog. 3. System logs the stop event and blocks the Query Interface.' If a stop mechanism is not yet implemented, enter 'Not implemented' so the Build layer can generate the correct risk control.",
-              "jkType": "TextBox",
-              "jkObjective": "To ensure the stop mechanism has a documented, human-executable activation procedure that operators can follow under pressure without consulting an engineer."
-            },
-            {
-              "requirement_control_number": "[18229-1.8]",
-              "control_number": "[2.6.4]",
-              "jkName": "Specify the Output Explanation Format",
-              "jkText": "Describe how the system communicates the reasoning behind each AI output to the user. Include the exact format delivered by the Response Interface — for example: source document citations with chunk-level links, a confidence score displayed alongside the response, a 'Why this answer?' expandable panel, or a list of the top-3 retrieved chunks used to generate the response. If no explanation format exists, enter 'None' — this creates a mandatory Build layer control.",
-              "jkType": "MultiSelect:Source Document Citations/Confidence Score Display/Retrieved Chunk Summary/Expandable Reasoning Panel/None",
-              "jkObjective": "To record the interpretability mechanism (the technical means by which a human can understand why the AI produced a specific output) so that auditors can verify the system meets the explainability requirement and users can make informed decisions about whether to act on the output."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "StepName": "New - 2.3. - Fairness Definition",
-      "Objectives": [
-        {
-          "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
-        }
-      ],
-      "Fields": []
-    },
-    {
-      "StepName": "New - 2.3. - Data Governance and Verification",
-      "Objectives": [
-        {
-          "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
-        }
-      ],
-      "Fields": []
     },
     {
       "StepName": "New - 2.3. - Impact Assessments",
@@ -1099,9 +985,540 @@
           ]
         }
       ]
-    }
+    },    
+    {
+      "StepName": "18229-1: Trustworthiness",
+      "Objectives": [
+        {
+          "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
+        }
+      ],
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Transparency",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-1.1]",
+              "control_number": "[2.2.1]",
+              "jkName": "Declare the System's Intended Purpose",
+              "jkText": "State exactly what this AI system is built to do, who it is built for, and the specific context it operates in. Scope this tightly — if the system later processes queries outside this declaration, every downstream risk control and test case must be re-evaluated.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the declared operational scope and target population of the AI system so that any use outside those boundaries can be identified, flagged, and re-assessed."
+            },
+            {
+              "requirement_control_number": "[18229-1.2]",
+              "control_number": "[2.2.2]",
+              "jkName": "List Known Failure Scenarios",
+              "jkText": "List every input condition, data state, or query type where this system is known to produce wrong, degraded, or unreliable outputs. Include specific triggers such as unsupported languages, missing required fields, out-of-distribution queries that fall outside the Retriever's indexed knowledge, or token-limit edge cases in the LLM (Generator). Each entry here maps directly to a risk control in the Build layer.",
+              "jkType": "TextBox",
+              "jkObjective": "To capture all known 'blind spots' (input conditions or data states where the system is expected to fail or degrade) so that engineers have a complete target list for control design."
+            },
+            {
+              "requirement_control_number": "[18229-1.2]",
+              "control_number": "[2.2.3]",
+              "jkName": "Assign a Response Action per Failure",
+              "jkText": "For each failure scenario listed in [2.2.2], specify the exact system behaviour that must trigger when that failure occurs. Choose one action per failure: surface a confidence warning via the Response Interface, route the query to a human reviewer, suppress the response and return an error code, or log the event silently for engineer triage. One failure, one action — do not combine.",
+              "jkType": "MultiSelect:Surface Confidence Warning/Route to Human Reviewer/Suppress Response and Return Error/Log for Engineer Triage/None",
+              "jkObjective": "To ensure every declared failure mode has a single, unambiguous system response that prevents silent failures from reaching end users unchecked."
+            },
+            {
+              "requirement_control_number": "[18229-1.3]",
+              "control_number": "[2.2.4]",
+              "jkName": "Provide the Instructions for Use Link",
+              "jkText": "Paste the URL or document path to the Instructions for Use (IFU) — the operator manual that tells users how to run, monitor, and safely stop this system. The link must be machine-retrievable; a local file path or shared-drive shortcut that requires authenticated desktop access does not satisfy this requirement.",
+              "jkType": "TextBox",
+              "jkObjective": "To confirm that a retrievable, human-readable IFU is linked to this system record so that operators and auditors can access it without submitting a separate request."
+            },
+            {
+              "requirement_control_number": "[18229-1.3]",
+              "control_number": "[2.2.5]",
+              "jkName": "Confirm Documentation Delivery Format",
+              "jkText": "Select every format in which the IFU is currently published. At least one digital format must be selected — a printed manual alone does not meet the accessibility requirement under this control.",
+              "jkType": "MultiSelect:Digital PDF/Interactive Help Guide/In-App Tooltips/API Documentation/Printed Manual/None",
+              "jkObjective": "To verify that the IFU is published in at least one digitally accessible and machine-readable format, meeting the documentation accessibility requirement."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Human Oversight",
+          "Role": "Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-1.6]",
+              "control_number": "[2.6.1]",
+              "jkName": "Describe Automation Bias Warnings in the UI",
+              "jkText": "Describe every warning, disclaimer, or confidence indicator [a score or signal displayed alongside an AI response that tells the user how certain the system is about its own answer — think of it as a percentage bar on a search result] displayed to the user in the Response Interface that signals the AI output should not be accepted without human review. Include the exact trigger condition for each warning — for example, 'displayed when confidence score < 0.80' or 'displayed on every response regardless of score'. A blank entry here means no warnings are implemented, which is a compliance gap.",
+              "jkType": "TextBox",
+              "jkObjective": "To record every UI mechanism designed to prevent automation bias (the tendency of humans to accept AI outputs without critical review) so that engineers can verify each warning is implemented and testable."
+            },
+            {
+              "requirement_control_number": "[18229-1.7]",
+              "control_number": "[2.6.2]",
+              "jkName": "Confirm Override and Stop Mechanisms",
+              "jkText": "Select every human intervention mechanism currently implemented in this system. At least one mechanism must be selected — if none exist, this is a build requirement, not an optional feature.",
+              "jkType": "MultiSelect:Output Override [a human rejects or replaces a single AI response before it takes effect — like clicking 'Dismiss' or 'Edit' on one answer]/System Stop — Kill Switch [a human halts all AI processing immediately across the entire system — no further queries are accepted until a human restarts it]/Query Cancellation [a human aborts a single in-flight query before the LLM (Generator) returns a response — the query is dropped and nothing is delivered]/Human Escalation Routing [the system automatically forwards the query to a human reviewer instead of generating an AI response — used when the system detects it cannot answer reliably]/None",
+              "jkObjective": "To confirm that at least one technical mechanism exists that allows a human to intervene in, override, or halt AI processing before an output causes harm or reaches an end user."
+            },
+            {
+              "requirement_control_number": "[18229-1.7]",
+              "control_number": "[2.6.3]",
+              "jkName": "Describe the Stop Mechanism Activation Steps",
+              "jkText": "Provide the exact sequence of steps a human operator must take to activate the stop mechanism — for example: '1. Click Stop in the admin console. 2. Confirm the halt dialog. 3. System logs the stop event and blocks the Query Interface.' If a stop mechanism is not yet implemented, enter 'Not implemented' so the Build layer can generate the correct risk control.",
+              "jkType": "TextBox",
+              "jkObjective": "To ensure the stop mechanism has a documented, human-executable activation procedure that operators can follow under pressure without consulting an engineer."
+            },
+            {
+              "requirement_control_number": "[18229-1.8]",
+              "control_number": "[2.6.4]",
+              "jkName": "Specify the Output Explanation Format",
+              "jkText": "Describe how the system communicates the reasoning behind each AI output to the user. Include the exact format delivered by the Response Interface — for example: source document citations with chunk-level links, a confidence score displayed alongside the response, a 'Why this answer?' expandable panel, or a list of the top-3 retrieved chunks used to generate the response. If no explanation format exists, enter 'None' — this creates a mandatory Build layer control.",
+              "jkType": "MultiSelect:Source Document Citations/Confidence Score Display/Retrieved Chunk Summary/Expandable Reasoning Panel/None",
+              "jkObjective": "To record the interpretability mechanism (the technical means by which a human can understand why the AI produced a specific output) so that auditors can verify the system meets the explainability requirement and users can make informed decisions about whether to act on the output."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "18283: Bias",
+      "Objectives": [
+        {
+          "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
+        }
+      ],
+      "Fields": [
+    	{
+          "jkType": "fieldGroup",
+          "jkName": "New - Bias Detection",
+          "Role": "Data Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18283.1]",
+              "control_number": "[6.1.1]",
+              "jkName": "Declare Protected Subgroup Coverage",
+              "jkText": "List every protected subgroup [a category of people who share a characteristic — such as age, gender, ethnicity, disability status, or religion — that is legally protected from discrimination under EU law] that this system's training, validation, and test datasets must proportionally represent. For each subgroup, provide: the subgroup name, the minimum sample count required, and the actual sample count in the current dataset. Format as: [Subgroup] — [Minimum Required] — [Actual Count]. Example: 'Age 60+ — 500 records minimum — 847 records actual'. If any subgroup falls below the minimum, declare it here as a known coverage gap — do not omit it because the number is low.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the proportional coverage of every legally protected subgroup across all datasets so that engineers can verify the Embedding Model and Vector Store were not built on data that systematically underrepresents any group."
+            },
+            {
+              "requirement_control_number": "[18283.2]",
+              "control_number": "[6.1.2]",
+              "jkName": "Declare Bias Metric Selection and Thresholds",
+              "jkText": "Select the bias metric applied to this system to quantify whether it treats different population groups fairly. Each metric answers a different fairness question — select the one that matches the specific harm this system could cause. State the threshold value that defines an acceptable result for the selected metric and the action taken if the threshold is breached. At least one metric must be selected and its threshold must be declared before deployment.",
+              "jkType": "MultiSelect:Disparate Impact Ratio [the ratio of the positive outcome rate for the least-favoured group divided by the rate for the most-favoured group — a score below 0.80 means the system is producing discriminatory outcomes at a legally significant level]/Equalized Odds [checks that the system's true positive rate and false positive rate are equal across all protected subgroups — a difference greater than 0.05 between any two groups indicates the system makes systematically different errors for different groups]/Demographic Parity [checks that the system produces positive outcomes at the same rate across all subgroups regardless of the actual correct answer — use when equal treatment matters more than equal accuracy]/Individual Fairness Score [checks that two similar individuals receive similar outputs regardless of their group membership — use when the system makes decisions about specific people rather than populations]/None — Fairness Testing Not Applicable",
+              "jkObjective": "To record the quantitative fairness metric and its acceptance threshold so that every bias evaluation produces a measurable, auditable result rather than a subjective assessment."
+            },
+            {
+              "requirement_control_number": "[18283.3]",
+              "control_number": "[6.1.3]",
+              "jkName": "Declare Identified Proxy Variables",
+              "jkText": "List every variable in this system's training data or retrieval inputs that correlates with a protected characteristic even though it does not name that characteristic directly. A proxy variable [a data field that appears neutral but encodes a protected trait indirectly — for example, a postcode that maps almost exclusively to one ethnic group, or a job title that is held almost exclusively by one gender] can introduce discrimination into the system without any protected characteristic ever appearing in the data. For each proxy variable identified, provide: the variable name, the protected characteristic it correlates with, the correlation coefficient measured, and the mitigation applied (e.g., 'removed from feature set', 'correlation monitored but retained with documented justification').",
+              "jkType": "TextBox",
+              "jkObjective": "To record every proxy variable identified in the training and retrieval data so that indirect discrimination routes are documented, assessed, and either removed or monitored before the Embedding Model is trained or the Vector Store is populated."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Human and Social Context",
+          "Role": "Data Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18283.7]",
+              "control_number": "[6.2.1]",
+              "jkName": "Document Fairness Definition and Stakeholder Input",
+              "jkText": "State the agreed definition of fairness that this system is built to achieve, and list the stakeholders who contributed to defining it. Fairness is not a single universal standard — a hiring tool defines fairness differently from a medical triage system. The definition must be specific to this use case and must have been reviewed by at least one representative from each affected group. Format the fairness definition as a testable statement: 'This system is fair if [measurable condition] holds for [named groups] when evaluated using [named metric] on [named dataset].' List each stakeholder by role (not name), their group affiliation, and the date of their input.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the use-case-specific fairness definition and the multi-stakeholder process that produced it, so that bias metric thresholds and test cases can be validated against an agreed, documented standard rather than an implicit assumption."
+            },
+            {
+              "requirement_control_number": "[18283.8]",
+              "control_number": "[6.2.2]",
+              "jkName": "Map Bias Controls to Fundamental Rights",
+              "jkText": "For every bias control implemented in this system, state the specific fundamental right [a legally protected individual entitlement under the EU Charter of Fundamental Rights or EU non-discrimination law] it is designed to protect. Format each mapping as: [Control Number] — [Fundamental Right] — [EU Legal Basis] — [How the Control Protects It]. Example: '[6.1.R1] Subgroup Representation Gate — Right to Equal Treatment (Article 21, EU Charter) — EU AI Act Article 10(2)(f) — Enforces minimum sample counts per protected group, preventing the Embedding Model from being trained on data that underrepresents any protected group.' If a control protects more than one right, list each right as a separate mapping entry.",
+              "jkType": "TextBox",
+              "jkObjective": "To create a traceable link between every technical bias control and the specific fundamental rights obligation it fulfils, so that auditors can verify the system's bias mitigations are legally grounded and not merely statistical housekeeping."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "18284: Quality and Governance ",
+      "Objectives": [
+        {
+          "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
+        }
+      ],
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Governance Practices",
+          "Role": "Data Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18284.1]",
+              "control_number": "[5.1.1]",
+              "jkName": "Declare Data Selection Rationale",
+              "jkText": "State why each dataset was chosen for this system — not just what it contains, but why it is suitable for the declared intended purpose. For each dataset, provide: dataset name, the specific capability it supports (e.g., 'HR policy retrieval'), the suitability assessment method used (e.g., 'domain expert review', 'statistical coverage analysis'), and the date the assessment was completed. If a dataset was rejected during selection, document it here with the rejection reason — rejected datasets are audit evidence that the selection process was deliberate, not accidental.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the documented rationale behind every data selection decision so that auditors can verify the Embedding Model and Vector Store were built on data chosen for fitness of purpose, not convenience."
+            },
+            {
+              "requirement_control_number": "[18284.2]",
+              "control_number": "[5.1.2]",
+              "jkName": "Declare Data Source and Legal Basis",
+              "jkText": "For every dataset used in this system, state the origin and the legal basis that permits its use. Format each entry as: [Dataset Name] — [Source] — [Legal Basis] — [Collection Date]. Example: 'HR Policy Corpus — Internal SharePoint 2024 export — Legitimate interest, Article 6(1)(f) GDPR — 2025-11-01'. If the dataset was sourced from a third party, include the data transfer agreement reference. A missing legal basis entry is a GDPR compliance gap [meaning the organisation has no documented legal right to use that data in an AI system] that must be resolved before the system can be deployed.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the provenance [the documented origin and legal permission chain for every dataset] of all training and retrieval data so that any dataset can be traced back to its source and its legal basis verified by an auditor."
+            },
+            {
+              "requirement_control_number": "[18284.3]",
+              "control_number": "[5.1.3]",
+              "jkName": "Document the Data Preparation Pipeline",
+              "jkText": "Describe every operation applied to raw data before it enters the Vector Store or is used to train the Embedding Model. List each operation in execution order and include: operation name, tool or script used, version number, input format, output format, and the quality check applied after the operation. Operations to document include: annotation [adding human-generated labels or tags to raw data], labelling [assigning a category or class to a data item], cleaning [removing duplicates, nulls, formatting errors, and out-of-range values], enrichment [adding supplementary data fields from a secondary source], and aggregation [combining multiple data sources into a unified dataset].",
+              "jkType": "TextBox",
+              "jkObjective": "To record every data transformation applied before data reaches the Embedding Model or Vector Store so that any data quality issue can be traced back to the specific pipeline operation that introduced it."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Quality Metrics",
+          "Role": "Data Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18284.4]",
+              "control_number": "[5.2.1]",
+              "jkName": "Confirm Distribution Analysis Method",
+              "jkText": "Describe the statistical method used to verify that this system's training and retrieval data is representative of the real-world population it will serve. Representativeness [the degree to which the data covers the full range of query types, user groups, languages, geographies, and scenarios the system will encounter in production] must be proven statistically — 'we reviewed the data manually' is not sufficient. Include: the analysis method used (e.g., 'class frequency distribution', 'geographic coverage heatmap', 'query type stratification'), the tool used to run it, the coverage threshold set (e.g., 'minimum 500 samples per language'), and the result. Flag any population segment with below-threshold coverage as an identified gap.",
+              "jkType": "TextBox",
+              "jkObjective": "To confirm that the data used to build the Vector Store and train the Embedding Model has been statistically verified as representative of the target population, so that retrieval performance gaps caused by underrepresented groups can be identified before deployment."
+            },
+            {
+              "requirement_control_number": "[18284.5]",
+              "control_number": "[5.2.2]",
+              "jkName": "Declare Known Data Gaps",
+              "jkText": "List every known gap in the training or retrieval dataset — a data gap [a missing, underrepresented, or structurally absent category of data that the system needs to perform correctly but does not have] must be declared even if it cannot be filled before deployment. For each gap, provide: the missing data category, the estimated impact on system performance (e.g., 'Retriever returns no results for queries in Welsh'), the mitigation applied (e.g., 'Out-of-Scope warning added to Response Interface for Welsh queries'), and the target resolution date. If no gaps are known, enter 'No gaps identified — distribution analysis completed on [date]'.",
+              "jkType": "TextBox",
+              "jkObjective": "To record every known data completeness gap and its mitigation so that engineers, users, and auditors know exactly which query types or population segments the system cannot reliably serve at the time of deployment."
+            },
+            {
+              "requirement_control_number": "[18284.6]",
+              "control_number": "[5.2.3]",
+              "jkName": "Confirm Label Error Detection Method",
+              "jkText": "Select the method used to detect and correct labelling errors and noise [incorrect, inconsistent, or randomly wrong labels in the training data that teach the Embedding Model the wrong associations] in this system's training data. State the inter-annotator agreement score [a statistical measure of how consistently two or more human annotators assign the same label to the same data item — the higher the score, the more trustworthy the labels] achieved during annotation, using Cohen's Kappa or Krippendorff's Alpha. A score below 0.80 indicates labels are not reliable enough for production use and must trigger a re-annotation cycle before the data enters the Embedding Model.",
+              "jkType": "MultiSelect:Cohen's Kappa Inter-Annotator Agreement [measures label consistency between two annotators — score must be ≥ 0.80]/Krippendorff's Alpha [measures label consistency across three or more annotators — score must be ≥ 0.80]/Automated Noise Detection Pipeline [software tool that flags statistically anomalous labels for human review]/Dual Annotation with Adjudication [every data item is labelled by two annotators independently — disagreements go to a third annotator for a casting vote]/None — No Labelled Training Data Used",
+              "jkObjective": "To confirm that a measurable, threshold-enforced label quality check was applied before training data entered the Embedding Model, preventing 'Label Noise' [incorrect labels that corrupt the model's learned associations] from degrading retrieval accuracy."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Lifecycle Requirements",
+          "Role": "Data Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18284.7]",
+              "control_number": "[5.3.1]",
+              "jkName": "Declare Dataset Split Rules",
+              "jkText": "State the exact train / validation / test split ratio applied to this system's training data and the rule that enforces separation between the three sets. Format as: [Split Ratio] — [Separation Mechanism] — [Total Dataset Size]. Example: '70% train / 15% validation / 15% test — stratified random split with SHA-256 hash assignment, test partition stored in access-controlled repository — 50,000 document chunks'. If the system uses a pre-trained Embedding Model with no fine-tuning, state 'No training split applied — pre-trained model used, evaluation only on held-out Golden Dataset' and reference the Golden Dataset declaration in fieldGroup [4.2.1].",
+              "jkType": "TextBox",
+              "jkObjective": "To record the dataset split rules and separation mechanism so that auditors can verify the test set was never accessible to the training pipeline, confirming that accuracy scores reflect genuine unseen-data performance."
+            },
+            {
+              "requirement_control_number": "[18284.8]",
+              "control_number": "[5.3.2]",
+              "jkName": "Declare Data Retention Period and Decommission Method",
+              "jkText": "State the retention period applied to each data category in this system and the secure decommission method used when data reaches end of retention. Format each entry as: [Data Category] — [Retention Period] — [Legal Basis] — [Decommission Method]. Example: 'Training Labels — 10 years — ISO 42001 Annex A.8 — cryptographic erasure of storage keys followed by physical media destruction'. The minimum documentation retention period is 10 years. If a data category contains personal data, the GDPR retention limitation principle [personal data must not be kept longer than necessary for the purpose it was collected] overrides the 10-year minimum and the shorter period must be documented here with its legal basis.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the legally compliant retention period and secure decommission procedure for every data category so that storage provisioning, deletion schedules, and end-of-life data destruction can be validated against the applicable regulatory minimum."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Assumptions",
+          "Role": "Data Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18284.9]",
+              "control_number": "[5.4.1]",
+              "jkName": "Document Data Assumption Statements",
+              "jkText": "State every assumption this system makes about the data it processes — an assumption [a condition the system treats as true without verifying it at runtime, which if false will cause the system to produce wrong outputs without any error signal] must be written as a testable statement. Format each assumption as: [Assumption Statement] — [What breaks if this assumption is false] — [Validation method used to check it]. Example: 'Assumption: HR policy documents in the Vector Store are current and have not been superseded — If false: the Retriever returns outdated policy content and the LLM (Generator) gives incorrect guidance — Validation: monthly document freshness audit against the source HR system'. If the system uses past behaviour as a predictor of future behaviour, that assumption must be explicitly stated here.",
+              "jkType": "TextBox",
+              "jkObjective": "To record every data assumption in a testable format so that engineers can build validation checks for each one and auditors can verify the system's declared behaviour is grounded in explicitly stated, monitored conditions rather than undocumented beliefs about the data."
+            }
+          ]
+        }      
+      ]
+    },
+    {
+      "StepName": "ISO/IEC 24970: AI System Logging",
+      "Objectives": [
+        {
+          "Objective": "."
+        }
+      ],
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Logging Triggers",
+          "Role": "Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-1.4]",
+              "control_number": "[3.1.1]",
+              "jkName": "Confirm Automated Session Logging Is Active",
+              "jkText": "Confirm that the Orchestrator automatically writes a log entry at the start and end of every user session without requiring a manual trigger. Each entry must capture: session ID, user ID (or anonymised token), session start timestamp, session end timestamp, and total query count for the session. If automated session logging is not yet active, enter 'Not implemented' — this creates a mandatory Build layer control.",
+              "jkType": "MultiSelect:Automated Session Start Logging/Automated Session End Logging/Query Count Per Session/User ID or Anonymised Token Capture/None",
+              "jkObjective": "To confirm that routine operational activity is recorded automatically by the Orchestrator so that every session has a timestamped, complete event record available for audit and incident reconstruction."
+            },
+            {
+              "requirement_control_number": "[24970.2]",
+              "control_number": "[3.1.2]",
+              "jkName": "List Active Performance and Safety Monitors",
+              "jkText": "List every automated monitor currently running against this system that writes an event to the log when a threshold is breached or an anomaly is detected. For each monitor, provide: the metric being watched (e.g., response latency, confidence score, retrieval hit rate), the threshold that triggers a log entry, and the RAG component being monitored. If no automated monitors are active, enter 'None' — this is a Build layer gap.",
+              "jkType": "TextBox",
+              "jkObjective": "To record every active observability monitor so that engineers can verify each one writes a log event when its threshold is breached and auditors can confirm the system detects its own anomalies automatically."
+            },
+            {
+              "requirement_control_number": "[24970.3]",
+              "control_number": "[3.1.3]",
+              "jkName": "Confirm Human Intervention Events Are Logged",
+              "jkText": "Select every type of human intervention this system currently captures in its logs. A human intervention event is any action where a human overrides, edits, rejects, or stops an AI output or halts the system — these events are the primary audit evidence that human oversight controls defined in [2.6.2] are being used in practice. If none are logged, this is a direct gap against the oversight obligations declared in the Human Oversight Controls section.",
+              "jkType": "MultiSelect:Output Override Logged/Kill Switch Activation Logged/Query Cancellation Logged/Human Escalation Routing Logged/None",
+              "jkObjective": "To confirm that every human intervention action has a corresponding log entry, creating an auditable record that proves the oversight mechanisms declared in fieldGroup [2.6] are operational and in use."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Captured Information",
+          "Role": "Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[24970.4]",
+              "control_number": "[3.2.1]",
+              "jkName": "Confirm System State Snapshot Contents",
+              "jkText": "Select every system state data point that is captured in the log entry at the exact moment an AI output is generated. A system state snapshot [a frozen record of exactly what version of the software, model, and configuration was running at the precise moment a decision was made — like a photograph of the system's brain at that instant] is required so that any output can be reproduced or investigated using the exact system configuration that generated it.",
+              "jkType": "MultiSelect:Model Version ID/Configuration Hash/Embedding Model Version/Retriever Index Version/LLM (Generator) Parameter Snapshot/Prompt Template Version/None",
+              "jkObjective": "To confirm that every AI output is linked to a complete system state snapshot so that any response can be fully reproduced or audited using the configuration that was active at the time it was generated."
+            },
+            {
+              "requirement_control_number": "[24970.5]",
+              "control_number": "[3.2.2]",
+              "jkName": "Confirm Input and Output Capture Scope",
+              "jkText": "Select every data element this system currently captures in its log at the point a response is generated. At minimum, the raw user prompt and the final AI response must be logged for every query — not just high-risk ones. Retrieved chunk IDs must also be logged so the Retriever's contribution to each output is traceable. If your legal or privacy review restricts full prompt logging, document the restriction in [3.3.3] and log a redacted or hashed version instead.",
+              "jkType": "MultiSelect:Raw User Prompt/Final AI Response/Retrieved Chunk IDs/Retriever Similarity Scores/Assembled Context Snapshot/Confidence Score/None",
+              "jkObjective": "To confirm that the inputs and outputs that produced every AI response are captured in the log so that any decision or output can be traced back to the exact data the system used to generate it."
+            },
+            {
+              "requirement_control_number": "[24970.6]",
+              "control_number": "[3.2.3]",
+              "jkName": "Confirm Error and Failure Log Contents",
+              "jkText": "Select every data element captured in the log when this system encounters an error, exception, or component failure. A useful failure log entry must contain enough information for an engineer to reproduce the failure without access to the live system — error code and message alone are not sufficient. Include the component that failed, the state it was in when it failed, and what fallback action the system took.",
+              "jkType": "MultiSelect:Error Code and Message/Severity Level/Failed Component Name/System State at Failure/Fallback Mechanism Activated/Stack Trace/None",
+              "jkObjective": "To confirm that every system failure produces a log entry with enough diagnostic detail for an engineer to identify the root cause and reconstruct the failure sequence without access to the live system."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Storage and Governance",
+          "Role": "Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[24970.7]",
+              "control_number": "[3.3.1]",
+              "jkName": "Confirm Log Tamper Resistance Mechanism",
+              "jkText": "Select the technical mechanism used to prevent log entries from being altered, deleted, or backdated after they are written. WORM storage [Write-Once-Read-Many — a storage configuration where data can be written once and then never modified or deleted, like burning a CD] and cryptographic hashing [generating a unique fixed-length fingerprint of a log entry at write time — if the entry is changed even by one character, the fingerprint no longer matches] are the two accepted mechanisms. Both may be selected if both are in use.",
+              "jkType": "MultiSelect:WORM Storage/Cryptographic Hash per Log Entry/Append-Only Database/Immutable Cloud Log Service (e.g. AWS CloudTrail, Azure Monitor)/None",
+              "jkObjective": "To confirm that a technical control prevents log entries from being modified after creation, ensuring that audit evidence cannot be tampered with before or during an investigation."
+            },
+            {
+              "requirement_control_number": "[24970.8]",
+              "control_number": "[3.3.2]",
+              "jkName": "Declare the Log Retention Period",
+              "jkText": "State the retention period applied to each log category in this system. The minimum retention period is 6 months, as required by EU AI Act Article 26(6). If your sector (e.g., financial services, healthcare, critical infrastructure) is subject to a longer national or EU law retention requirement, that longer period overrides the 6-month minimum and must be stated here. Format each entry as: [Log Category] — [Retention Period] — [Legal Basis]. Example: 'Session Logs — 24 months — DORA Art. 25'.",
+              "jkType": "TextBox",
+              "jkObjective": "To document the legally compliant retention period for each log category so that storage provisioning, deletion schedules, and audit readiness can be validated against the applicable regulatory minimum."
+            },
+            {
+              "requirement_control_number": "[24970.9]",
+              "control_number": "[3.3.3]",
+              "jkName": "Declare Privacy Controls Applied to Logs",
+              "jkText": "Select every privacy control applied to log data before or at the point of storage. Data minimisation [only logging the minimum personal data fields needed to reconstruct an event — discarding everything else] and pseudonymisation [replacing identifying values like user names or email addresses with a reversible token or ID so logs remain useful for investigation without exposing personal identity] are required where full prompt or user data logging would create GDPR exposure. Document any fields that are redacted or hashed and the legal basis for retaining the non-redacted version.",
+              "jkType": "MultiSelect:User ID Pseudonymisation/Prompt Content Redaction/Prompt Content Hashing/Data Minimisation Policy Applied/Differential Privacy Applied/None",
+              "jkObjective": "To confirm that personal data in logs is protected by a documented privacy control, balancing the traceability requirement against GDPR data minimisation obligations."
+            }
+          ]
+        }      
+      ]
+    },
+       {
+      "StepName": "18229-2: Trustworthiness (Accuracy)",
+      "Objectives": [
+        {
+          "Objective": "."
+        }
+      ],
+      "Fields": [
+		{
+          "jkType": "fieldGroup",
+          "jkName": "New - Accuracy Metric Design",
+          "Role": "Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-2.9]",
+              "control_number": "[4.1.1]",
+              "jkName": "Select the Primary Accuracy Metric for This System",
+              "jkText": "Select the metric that will be used as the primary measure of whether this system is performing correctly. Choose the metric that matches how this system fails — if a false negative (missing a correct answer) is worse than a false positive (returning a wrong answer), select F1-Score or Recall. If the system returns ranked results, select MRR or NDCG. If the system generates free-text answers evaluated against a reference, select RAGAS Faithfulness or Answer Relevance. One primary metric must be selected — 'None' is only valid if a custom metric is documented in [4.1.2].",
+              "jkType": "MultiSelect:Retrieval Precision@K [what fraction of the top-K chunks the Retriever returned were actually relevant]/Retrieval Recall@K [what fraction of all relevant chunks in the Vector Store the Retriever successfully found]/MRR — Mean Reciprocal Rank [how highly the first correct chunk is ranked in the Retriever's results]/NDCG — Normalised Discounted Cumulative Gain [how well the Retriever ranks all relevant chunks, weighted so higher-ranked results matter more]/RAGAS Faithfulness [what fraction of the LLM (Generator) response is directly supported by the retrieved chunks — measures hallucination]/RAGAS Answer Relevance [how directly the LLM (Generator) response addresses the original query]/F1-Score [the harmonic mean of precision and recall — balances both]/None — Custom Metric Documented in 4.1.2",
+              "jkObjective": "To record the primary accuracy metric so that every downstream validation, monitoring, and benchmarking control has a single, agreed measurement standard to evaluate against."
+            },
+            {
+              "requirement_control_number": "[18229-2.14]",
+              "control_number": "[4.1.2]",
+              "jkName": "Declare the Train-Test Split and Validation Method",
+              "jkText": "State the exact data split and statistical validation method used to verify this system's accuracy scores. Format each entry as: [Split Ratio] — [Validation Method] — [Dataset Size]. Example: '70% train / 15% validation / 15% test — k-fold cross-validation (k=5) — 10,000 query-answer pairs'. If the system uses a pre-trained LLM (Generator) with no fine-tuning, state 'No training split — evaluation only on held-out Golden Dataset' and describe the Golden Dataset composition. This entry becomes the verification methodology referenced in the Instructions for Use.",
+              "jkType": "TextBox",
+              "jkObjective": "To document the statistical method used to verify that accuracy scores are derived from data the system has never seen, so that reported metrics can be independently reproduced and audited."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Validation and Overfitting Controls",
+          "Role": "Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-2.10]",
+              "control_number": "[4.2.1]",
+              "jkName": "Confirm Held-Out Test Set Is Isolated",
+              "jkText": "Confirm that the test dataset used to produce the accuracy scores declared in this system's Instructions for Use has never been used during training or hyperparameter tuning. A test set that has been seen during training produces 'overfitted' scores [accuracy numbers that look good on paper but collapse when the system meets real-world queries it has never seen before — like a student who memorised the exam answers rather than learning the subject]. State the isolation mechanism used — for example: 'Test set stored in a separate, access-controlled repository with no pipeline read access during training runs.'",
+              "jkType": "TextBox",
+              "jkObjective": "To confirm that the accuracy scores declared for this system reflect genuine generalisation performance on unseen data, not memorised performance on training data."
+            },
+            {
+              "requirement_control_number": "[18229-2.10]",
+              "control_number": "[4.2.2]",
+              "jkName": "Select the Anti-Overfitting Validation Technique",
+              "jkText": "Select every validation technique applied during development to detect and prevent overfitting [a condition where the model performs well on its training data but fails on new, unseen queries — the accuracy score is real but not repeatable in production]. At least one technique must be selected and its result must be documented in the Instructions for Use alongside the declared accuracy score.",
+              "jkType": "MultiSelect:K-Fold Cross-Validation [splitting the dataset into K equal parts and training K times, each time using a different part as the test set — produces K accuracy scores that must all be similar to confirm the result is stable]/Holdout Validation [a single fixed train-test split where the test set is never touched until final evaluation]/Stratified Sampling [ensuring the train and test sets contain the same proportion of each query type or output class — prevents one category from dominating the accuracy score]/Bootstrapping [resampling the dataset with replacement hundreds of times to estimate how stable the accuracy score is across different data samples]/None",
+              "jkObjective": "To confirm that at least one statistical technique was applied to verify that the declared accuracy score is stable across different data samples and will not collapse on unseen production queries."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Production Accuracy Governance",
+          "Role": "Engineer",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-2.11]",
+              "control_number": "[4.3.1]",
+              "jkName": "Declare Achieved Accuracy Scores for the IFU",
+              "jkText": "State the achieved accuracy score for every metric selected in [4.1.1], as measured on the held-out test set declared in [4.2.1]. Format each entry as: [Metric Name] — [Score] — [Test Set Size] — [Measurement Date]. Example: 'RAGAS Faithfulness — 0.87 — 2,000 query-answer pairs — 2026-01-15'. These scores will be published verbatim in the Instructions for Use — do not round up or omit a metric because the score is lower than expected.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the formally declared accuracy scores that will appear in the Instructions for Use, ensuring users and auditors have a documented, dated baseline against which production performance can be compared."
+            },
+            {
+              "requirement_control_number": "[18229-2.12]",
+              "control_number": "[4.3.2]",
+              "jkName": "Set the Accuracy Drift Alert Threshold",
+              "jkText": "State the percentage drop from the baseline accuracy score declared in [4.3.1] that will trigger a drift alert [a notification that the system's real-world performance has degraded below the level declared in the Instructions for Use — the AI equivalent of a fuel warning light]. Format as: [Metric Name] — [Baseline Score] — [Alert Threshold] — [Review Action]. Example: 'RAGAS Faithfulness — 0.87 baseline — alert if score drops below 0.80 — trigger engineer review and suspend deployment if score drops below 0.75'. A threshold must be set for every metric declared in [4.3.1].",
+              "jkType": "TextBox",
+              "jkObjective": "To define the measurable production performance boundary below which the system's declared accuracy can no longer be relied upon, triggering a mandatory review before the system continues to serve users."
+            },
+            {
+              "requirement_control_number": "[18229-2.13]",
+              "control_number": "[4.3.3]",
+              "jkName": "Identify the Human Expert or Industry Benchmark",
+              "jkText": "State the human expert benchmark or published industry standard that this system's accuracy scores will be compared against. A benchmark is a reference score that answers the question: 'How well would a human expert or the best available alternative system perform on the same task?' Format as: [Benchmark Name] — [Benchmark Score] — [Source]. Example: 'Internal HR specialist panel — 0.91 F1-Score on the same 500-query evaluation set — tested 2026-01-10'. If no established benchmark exists for this use case, state the rationale and propose the nearest comparable standard.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the reference performance level against which this system's accuracy is compared, so that the system's declared scores can be contextualised as above, at, or below human expert performance."
+            }
+          ]
+        }              
+      ]
+    },
+    {
+      "StepName": "18229-3: Trustworthiness (Robustness)",
+      "Objectives": [
+        {
+          "Objective": "."
+        }
+      ],
+      "Fields": [
+      {
+          "jkType": "fieldGroup",
+          "jkName": "New - Resilience Factors",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-3.16]",
+              "control_number": "[7.1.2]",
+              "jkName": "Declare Environmental Degradation Thresholds",
+              "jkText": "State the performance threshold for each external dependency this system relies on — network latency to the Vector Store, upstream data source response time, and Embedding Model inference latency — below which the system must enter a degraded operation mode rather than continue attempting normal processing. Format each entry as: [Dependency] — [Normal Threshold] — [Degraded Mode Trigger] — [Degraded Mode Behaviour]. Example: 'Vector Store query response — normal ≤ 200ms — degraded mode trigger > 1000ms for 3 consecutive queries — serve cached response with staleness warning displayed in Response Interface'. If no degraded mode is configured for a dependency, enter 'Not implemented' — this creates a mandatory Build layer control.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the environmental degradation thresholds and degraded mode behaviours for every external dependency so that engineers can configure the Orchestrator to respond to environmental shifts with a defined, tested fallback rather than an uncontrolled failure."
+            },
+            {
+              "requirement_control_number": "[18229-3.17]",
+              "control_number": "[7.1.3]",
+              "jkName": "Confirm Feedback Loop Isolation Mechanism",
+              "jkText": "Select the technical mechanism used to prevent this system's own outputs from being automatically re-ingested into the Vector Store or used to retrain the Embedding Model without human review. A feedback loop [a condition where the system's generated outputs are fed back into its own training or retrieval data, causing the system to progressively reinforce and amplify any errors or biases already present in its outputs] is the most dangerous form of silent quality degradation in a RAG system because each cycle of self-reinforcement makes the problem harder to detect and reverse. At least one isolation mechanism must be selected — if none exist, this is a critical Build layer requirement.",
+              "jkType": "MultiSelect:None/Automated Provenance Check [the ingestion pipeline queries the provenance register before ingesting any document and rejects any document whose source matches the LLM (Generator) output store]",
+              "jkObjective": "To confirm that at least one technical barrier exists that prevents the LLM (Generator) outputs from re-entering the Vector Store or Embedding Model training pipeline without human review, blocking the automated reinforcement of errors and biases."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Fail-Safe Mechanisms",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-3.18]",
+              "control_number": "[7.2.1]",
+              "jkName": "Declare Safe State Configuration",
+              "jkText": "Describe the safe state [a defined system configuration that the Orchestrator automatically switches to when a critical component fails or a safety threshold is breached — the system continues operating in a reduced-capability mode rather than crashing or producing unvalidated outputs] for this system. For each RAG component, define: the failure condition that triggers the safe state, the safe state behaviour (e.g., 'serve last cached response', 'display maintenance message', 'route all queries to human reviewer'), the maximum duration the system can remain in safe state before a mandatory engineering review is required, and the human notification method. If a component has no defined safe state, enter 'Not implemented' — this means a failure of that component causes an uncontrolled system crash.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the safe state configuration for every RAG component so that engineers can implement and test a defined, controlled degradation path for each failure scenario rather than relying on unplanned crash behaviour."
+            },
+            {
+              "requirement_control_number": "[18229-3.19]",
+              "control_number": "[7.2.2]",
+              "jkName": "Confirm Redundancy and Sanity Check Mechanisms",
+              "jkText": "Select every redundancy and real-time error detection mechanism currently implemented in this system. A redundancy mechanism [a backup component or data path that automatically takes over when the primary component fails — the AI equivalent of a spare tyre] prevents single points of failure from halting the system. A sanity check [an automated validation step that evaluates whether a generated output is plausible before delivering it to the user — for example, checking that a numeric answer falls within a known valid range] catches errors the Output Guardrail might miss because they are contextually wrong rather than structurally invalid.",
+              "jkType": "MultiSelect:Redundant Vector Store Replica [a second Vector Store instance that the Retriever automatically switches to if the primary instance becomes unavailable]/Redundant Embedding Model Endpoint [a second Embedding Model endpoint that the Orchestrator routes to if the primary endpoint exceeds latency thresholds]/LLM (Generator) Fallback Model [a secondary LLM (Generator) that activates if the primary model returns an error or exceeds the response time threshold]/Output Sanity Check [an automated post-generation validation that checks the LLM (Generator) response against a set of defined plausibility rules before it reaches the Output Guardrail]/Response Consistency Check [an automated comparison of the current response against the previous N responses for the same query type to detect anomalous outputs]/None",
+              "jkObjective": "To confirm that every critical RAG component has a defined redundancy path or real-time sanity check so that a single component failure or anomalous output does not propagate undetected to the end user."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Reproducibility",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-3.20]",
+              "control_number": "[7.3.1]",
+              "jkName": "Declare Output Determinism Configuration",
+              "jkText": "State the configuration applied to the LLM (Generator) to ensure that identical inputs produce consistent outputs across repeated runs. The primary determinism control is the temperature parameter [a value between 0.0 and 1.0 that controls how random the LLM (Generator)'s output selection is — a temperature of 0.0 forces the model to always select the highest-probability token, producing identical outputs for identical inputs; a temperature above 0.0 introduces randomness, meaning the same input can produce different outputs on different runs]. For audit and reproducibility purposes, set temperature to 0.0. If temperature cannot be set to 0.0 for functional reasons, state the temperature value used, the justification, and the alternative consistency mechanism applied.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the determinism configuration applied to the LLM (Generator) so that engineers and auditors can verify that any AI output can be reproduced exactly given the same input, system state, and configuration — a requirement for meaningful audit and incident investigation."
+            }
+          ]
+        }      
+      ]
+    }    
   ],
-  "3. Build": [
+  "3. Build & Test": [
     {
       "StepName": "3.1. - Internal Data Sources",
       "WebFormTitle": "To uphold the principles of data integrity, relevance, currency, and compliance by creating a governed process to identify, review, and approve all proprietary data sources designated for the AI's knowledge base.",
@@ -2104,83 +2521,6 @@
           ]
         },
         {
-          "jkType": "fieldGroup",
-          "jkName": "New - Accuracy Metric Design",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-2.9]",
-              "control_number": "[4.1.1]",
-              "jkName": "Select the Primary Accuracy Metric for This System",
-              "jkText": "Select the metric that will be used as the primary measure of whether this system is performing correctly. Choose the metric that matches how this system fails — if a false negative (missing a correct answer) is worse than a false positive (returning a wrong answer), select F1-Score or Recall. If the system returns ranked results, select MRR or NDCG. If the system generates free-text answers evaluated against a reference, select RAGAS Faithfulness or Answer Relevance. One primary metric must be selected — 'None' is only valid if a custom metric is documented in [4.1.2].",
-              "jkType": "MultiSelect:Retrieval Precision@K [what fraction of the top-K chunks the Retriever returned were actually relevant]/Retrieval Recall@K [what fraction of all relevant chunks in the Vector Store the Retriever successfully found]/MRR — Mean Reciprocal Rank [how highly the first correct chunk is ranked in the Retriever's results]/NDCG — Normalised Discounted Cumulative Gain [how well the Retriever ranks all relevant chunks, weighted so higher-ranked results matter more]/RAGAS Faithfulness [what fraction of the LLM (Generator) response is directly supported by the retrieved chunks — measures hallucination]/RAGAS Answer Relevance [how directly the LLM (Generator) response addresses the original query]/F1-Score [the harmonic mean of precision and recall — balances both]/None — Custom Metric Documented in 4.1.2",
-              "jkObjective": "To record the primary accuracy metric so that every downstream validation, monitoring, and benchmarking control has a single, agreed measurement standard to evaluate against."
-            },
-            {
-              "requirement_control_number": "[18229-2.14]",
-              "control_number": "[4.1.2]",
-              "jkName": "Declare the Train-Test Split and Validation Method",
-              "jkText": "State the exact data split and statistical validation method used to verify this system's accuracy scores. Format each entry as: [Split Ratio] — [Validation Method] — [Dataset Size]. Example: '70% train / 15% validation / 15% test — k-fold cross-validation (k=5) — 10,000 query-answer pairs'. If the system uses a pre-trained LLM (Generator) with no fine-tuning, state 'No training split — evaluation only on held-out Golden Dataset' and describe the Golden Dataset composition. This entry becomes the verification methodology referenced in the Instructions for Use.",
-              "jkType": "TextBox",
-              "jkObjective": "To document the statistical method used to verify that accuracy scores are derived from data the system has never seen, so that reported metrics can be independently reproduced and audited."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Validation and Overfitting Controls",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-2.10]",
-              "control_number": "[4.2.1]",
-              "jkName": "Confirm Held-Out Test Set Is Isolated",
-              "jkText": "Confirm that the test dataset used to produce the accuracy scores declared in this system's Instructions for Use has never been used during training or hyperparameter tuning. A test set that has been seen during training produces 'overfitted' scores [accuracy numbers that look good on paper but collapse when the system meets real-world queries it has never seen before — like a student who memorised the exam answers rather than learning the subject]. State the isolation mechanism used — for example: 'Test set stored in a separate, access-controlled repository with no pipeline read access during training runs.'",
-              "jkType": "TextBox",
-              "jkObjective": "To confirm that the accuracy scores declared for this system reflect genuine generalisation performance on unseen data, not memorised performance on training data."
-            },
-            {
-              "requirement_control_number": "[18229-2.10]",
-              "control_number": "[4.2.2]",
-              "jkName": "Select the Anti-Overfitting Validation Technique",
-              "jkText": "Select every validation technique applied during development to detect and prevent overfitting [a condition where the model performs well on its training data but fails on new, unseen queries — the accuracy score is real but not repeatable in production]. At least one technique must be selected and its result must be documented in the Instructions for Use alongside the declared accuracy score.",
-              "jkType": "MultiSelect:K-Fold Cross-Validation [splitting the dataset into K equal parts and training K times, each time using a different part as the test set — produces K accuracy scores that must all be similar to confirm the result is stable]/Holdout Validation [a single fixed train-test split where the test set is never touched until final evaluation]/Stratified Sampling [ensuring the train and test sets contain the same proportion of each query type or output class — prevents one category from dominating the accuracy score]/Bootstrapping [resampling the dataset with replacement hundreds of times to estimate how stable the accuracy score is across different data samples]/None",
-              "jkObjective": "To confirm that at least one statistical technique was applied to verify that the declared accuracy score is stable across different data samples and will not collapse on unseen production queries."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Production Accuracy Governance",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-2.11]",
-              "control_number": "[4.3.1]",
-              "jkName": "Declare Achieved Accuracy Scores for the IFU",
-              "jkText": "State the achieved accuracy score for every metric selected in [4.1.1], as measured on the held-out test set declared in [4.2.1]. Format each entry as: [Metric Name] — [Score] — [Test Set Size] — [Measurement Date]. Example: 'RAGAS Faithfulness — 0.87 — 2,000 query-answer pairs — 2026-01-15'. These scores will be published verbatim in the Instructions for Use — do not round up or omit a metric because the score is lower than expected.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the formally declared accuracy scores that will appear in the Instructions for Use, ensuring users and auditors have a documented, dated baseline against which production performance can be compared."
-            },
-            {
-              "requirement_control_number": "[18229-2.12]",
-              "control_number": "[4.3.2]",
-              "jkName": "Set the Accuracy Drift Alert Threshold",
-              "jkText": "State the percentage drop from the baseline accuracy score declared in [4.3.1] that will trigger a drift alert [a notification that the system's real-world performance has degraded below the level declared in the Instructions for Use — the AI equivalent of a fuel warning light]. Format as: [Metric Name] — [Baseline Score] — [Alert Threshold] — [Review Action]. Example: 'RAGAS Faithfulness — 0.87 baseline — alert if score drops below 0.80 — trigger engineer review and suspend deployment if score drops below 0.75'. A threshold must be set for every metric declared in [4.3.1].",
-              "jkType": "TextBox",
-              "jkObjective": "To define the measurable production performance boundary below which the system's declared accuracy can no longer be relied upon, triggering a mandatory review before the system continues to serve users."
-            },
-            {
-              "requirement_control_number": "[18229-2.13]",
-              "control_number": "[4.3.3]",
-              "jkName": "Identify the Human Expert or Industry Benchmark",
-              "jkText": "State the human expert benchmark or published industry standard that this system's accuracy scores will be compared against. A benchmark is a reference score that answers the question: 'How well would a human expert or the best available alternative system perform on the same task?' Format as: [Benchmark Name] — [Benchmark Score] — [Source]. Example: 'Internal HR specialist panel — 0.91 F1-Score on the same 500-query evaluation set — tested 2026-01-10'. If no established benchmark exists for this use case, state the rationale and propose the nearest comparable standard.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the reference performance level against which this system's accuracy is compared, so that the system's declared scores can be contextualised as above, at, or below human expert performance."
-            }
-          ]
-        },
-        {
           "jkType": "risk",
           "Role": "Engineer",
           "jkName": "New - Input Corruption Propagation Failure",
@@ -2299,314 +2639,7 @@
         }
       ],
       "Fields": [
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Logging Triggers",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-1.4]",
-              "control_number": "[3.1.1]",
-              "jkName": "Confirm Automated Session Logging Is Active",
-              "jkText": "Confirm that the Orchestrator automatically writes a log entry at the start and end of every user session without requiring a manual trigger. Each entry must capture: session ID, user ID (or anonymised token), session start timestamp, session end timestamp, and total query count for the session. If automated session logging is not yet active, enter 'Not implemented' — this creates a mandatory Build layer control.",
-              "jkType": "MultiSelect:Automated Session Start Logging/Automated Session End Logging/Query Count Per Session/User ID or Anonymised Token Capture/None",
-              "jkObjective": "To confirm that routine operational activity is recorded automatically by the Orchestrator so that every session has a timestamped, complete event record available for audit and incident reconstruction."
-            },
-            {
-              "requirement_control_number": "[24970.2]",
-              "control_number": "[3.1.2]",
-              "jkName": "List Active Performance and Safety Monitors",
-              "jkText": "List every automated monitor currently running against this system that writes an event to the log when a threshold is breached or an anomaly is detected. For each monitor, provide: the metric being watched (e.g., response latency, confidence score, retrieval hit rate), the threshold that triggers a log entry, and the RAG component being monitored. If no automated monitors are active, enter 'None' — this is a Build layer gap.",
-              "jkType": "TextBox",
-              "jkObjective": "To record every active observability monitor so that engineers can verify each one writes a log event when its threshold is breached and auditors can confirm the system detects its own anomalies automatically."
-            },
-            {
-              "requirement_control_number": "[24970.3]",
-              "control_number": "[3.1.3]",
-              "jkName": "Confirm Human Intervention Events Are Logged",
-              "jkText": "Select every type of human intervention this system currently captures in its logs. A human intervention event is any action where a human overrides, edits, rejects, or stops an AI output or halts the system — these events are the primary audit evidence that human oversight controls defined in [2.6.2] are being used in practice. If none are logged, this is a direct gap against the oversight obligations declared in the Human Oversight Controls section.",
-              "jkType": "MultiSelect:Output Override Logged/Kill Switch Activation Logged/Query Cancellation Logged/Human Escalation Routing Logged/None",
-              "jkObjective": "To confirm that every human intervention action has a corresponding log entry, creating an auditable record that proves the oversight mechanisms declared in fieldGroup [2.6] are operational and in use."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Captured Information",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[24970.4]",
-              "control_number": "[3.2.1]",
-              "jkName": "Confirm System State Snapshot Contents",
-              "jkText": "Select every system state data point that is captured in the log entry at the exact moment an AI output is generated. A system state snapshot [a frozen record of exactly what version of the software, model, and configuration was running at the precise moment a decision was made — like a photograph of the system's brain at that instant] is required so that any output can be reproduced or investigated using the exact system configuration that generated it.",
-              "jkType": "MultiSelect:Model Version ID/Configuration Hash/Embedding Model Version/Retriever Index Version/LLM (Generator) Parameter Snapshot/Prompt Template Version/None",
-              "jkObjective": "To confirm that every AI output is linked to a complete system state snapshot so that any response can be fully reproduced or audited using the configuration that was active at the time it was generated."
-            },
-            {
-              "requirement_control_number": "[24970.5]",
-              "control_number": "[3.2.2]",
-              "jkName": "Confirm Input and Output Capture Scope",
-              "jkText": "Select every data element this system currently captures in its log at the point a response is generated. At minimum, the raw user prompt and the final AI response must be logged for every query — not just high-risk ones. Retrieved chunk IDs must also be logged so the Retriever's contribution to each output is traceable. If your legal or privacy review restricts full prompt logging, document the restriction in [3.3.3] and log a redacted or hashed version instead.",
-              "jkType": "MultiSelect:Raw User Prompt/Final AI Response/Retrieved Chunk IDs/Retriever Similarity Scores/Assembled Context Snapshot/Confidence Score/None",
-              "jkObjective": "To confirm that the inputs and outputs that produced every AI response are captured in the log so that any decision or output can be traced back to the exact data the system used to generate it."
-            },
-            {
-              "requirement_control_number": "[24970.6]",
-              "control_number": "[3.2.3]",
-              "jkName": "Confirm Error and Failure Log Contents",
-              "jkText": "Select every data element captured in the log when this system encounters an error, exception, or component failure. A useful failure log entry must contain enough information for an engineer to reproduce the failure without access to the live system — error code and message alone are not sufficient. Include the component that failed, the state it was in when it failed, and what fallback action the system took.",
-              "jkType": "MultiSelect:Error Code and Message/Severity Level/Failed Component Name/System State at Failure/Fallback Mechanism Activated/Stack Trace/None",
-              "jkObjective": "To confirm that every system failure produces a log entry with enough diagnostic detail for an engineer to identify the root cause and reconstruct the failure sequence without access to the live system."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Storage and Governance",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[24970.7]",
-              "control_number": "[3.3.1]",
-              "jkName": "Confirm Log Tamper Resistance Mechanism",
-              "jkText": "Select the technical mechanism used to prevent log entries from being altered, deleted, or backdated after they are written. WORM storage [Write-Once-Read-Many — a storage configuration where data can be written once and then never modified or deleted, like burning a CD] and cryptographic hashing [generating a unique fixed-length fingerprint of a log entry at write time — if the entry is changed even by one character, the fingerprint no longer matches] are the two accepted mechanisms. Both may be selected if both are in use.",
-              "jkType": "MultiSelect:WORM Storage/Cryptographic Hash per Log Entry/Append-Only Database/Immutable Cloud Log Service (e.g. AWS CloudTrail, Azure Monitor)/None",
-              "jkObjective": "To confirm that a technical control prevents log entries from being modified after creation, ensuring that audit evidence cannot be tampered with before or during an investigation."
-            },
-            {
-              "requirement_control_number": "[24970.8]",
-              "control_number": "[3.3.2]",
-              "jkName": "Declare the Log Retention Period",
-              "jkText": "State the retention period applied to each log category in this system. The minimum retention period is 6 months, as required by EU AI Act Article 26(6). If your sector (e.g., financial services, healthcare, critical infrastructure) is subject to a longer national or EU law retention requirement, that longer period overrides the 6-month minimum and must be stated here. Format each entry as: [Log Category] — [Retention Period] — [Legal Basis]. Example: 'Session Logs — 24 months — DORA Art. 25'.",
-              "jkType": "TextBox",
-              "jkObjective": "To document the legally compliant retention period for each log category so that storage provisioning, deletion schedules, and audit readiness can be validated against the applicable regulatory minimum."
-            },
-            {
-              "requirement_control_number": "[24970.9]",
-              "control_number": "[3.3.3]",
-              "jkName": "Declare Privacy Controls Applied to Logs",
-              "jkText": "Select every privacy control applied to log data before or at the point of storage. Data minimisation [only logging the minimum personal data fields needed to reconstruct an event — discarding everything else] and pseudonymisation [replacing identifying values like user names or email addresses with a reversible token or ID so logs remain useful for investigation without exposing personal identity] are required where full prompt or user data logging would create GDPR exposure. Document any fields that are redacted or hashed and the legal basis for retaining the non-redacted version.",
-              "jkType": "MultiSelect:User ID Pseudonymisation/Prompt Content Redaction/Prompt Content Hashing/Data Minimisation Policy Applied/Differential Privacy Applied/None",
-              "jkObjective": "To confirm that personal data in logs is protected by a documented privacy control, balancing the traceability requirement against GDPR data minimisation obligations."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Governance Practices",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18284.1]",
-              "control_number": "[5.1.1]",
-              "jkName": "Declare Data Selection Rationale",
-              "jkText": "State why each dataset was chosen for this system — not just what it contains, but why it is suitable for the declared intended purpose. For each dataset, provide: dataset name, the specific capability it supports (e.g., 'HR policy retrieval'), the suitability assessment method used (e.g., 'domain expert review', 'statistical coverage analysis'), and the date the assessment was completed. If a dataset was rejected during selection, document it here with the rejection reason — rejected datasets are audit evidence that the selection process was deliberate, not accidental.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the documented rationale behind every data selection decision so that auditors can verify the Embedding Model and Vector Store were built on data chosen for fitness of purpose, not convenience."
-            },
-            {
-              "requirement_control_number": "[18284.2]",
-              "control_number": "[5.1.2]",
-              "jkName": "Declare Data Source and Legal Basis",
-              "jkText": "For every dataset used in this system, state the origin and the legal basis that permits its use. Format each entry as: [Dataset Name] — [Source] — [Legal Basis] — [Collection Date]. Example: 'HR Policy Corpus — Internal SharePoint 2024 export — Legitimate interest, Article 6(1)(f) GDPR — 2025-11-01'. If the dataset was sourced from a third party, include the data transfer agreement reference. A missing legal basis entry is a GDPR compliance gap [meaning the organisation has no documented legal right to use that data in an AI system] that must be resolved before the system can be deployed.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the provenance [the documented origin and legal permission chain for every dataset] of all training and retrieval data so that any dataset can be traced back to its source and its legal basis verified by an auditor."
-            },
-            {
-              "requirement_control_number": "[18284.3]",
-              "control_number": "[5.1.3]",
-              "jkName": "Document the Data Preparation Pipeline",
-              "jkText": "Describe every operation applied to raw data before it enters the Vector Store or is used to train the Embedding Model. List each operation in execution order and include: operation name, tool or script used, version number, input format, output format, and the quality check applied after the operation. Operations to document include: annotation [adding human-generated labels or tags to raw data], labelling [assigning a category or class to a data item], cleaning [removing duplicates, nulls, formatting errors, and out-of-range values], enrichment [adding supplementary data fields from a secondary source], and aggregation [combining multiple data sources into a unified dataset].",
-              "jkType": "TextBox",
-              "jkObjective": "To record every data transformation applied before data reaches the Embedding Model or Vector Store so that any data quality issue can be traced back to the specific pipeline operation that introduced it."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Quality Metrics",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18284.4]",
-              "control_number": "[5.2.1]",
-              "jkName": "Confirm Distribution Analysis Method",
-              "jkText": "Describe the statistical method used to verify that this system's training and retrieval data is representative of the real-world population it will serve. Representativeness [the degree to which the data covers the full range of query types, user groups, languages, geographies, and scenarios the system will encounter in production] must be proven statistically — 'we reviewed the data manually' is not sufficient. Include: the analysis method used (e.g., 'class frequency distribution', 'geographic coverage heatmap', 'query type stratification'), the tool used to run it, the coverage threshold set (e.g., 'minimum 500 samples per language'), and the result. Flag any population segment with below-threshold coverage as an identified gap.",
-              "jkType": "TextBox",
-              "jkObjective": "To confirm that the data used to build the Vector Store and train the Embedding Model has been statistically verified as representative of the target population, so that retrieval performance gaps caused by underrepresented groups can be identified before deployment."
-            },
-            {
-              "requirement_control_number": "[18284.5]",
-              "control_number": "[5.2.2]",
-              "jkName": "Declare Known Data Gaps",
-              "jkText": "List every known gap in the training or retrieval dataset — a data gap [a missing, underrepresented, or structurally absent category of data that the system needs to perform correctly but does not have] must be declared even if it cannot be filled before deployment. For each gap, provide: the missing data category, the estimated impact on system performance (e.g., 'Retriever returns no results for queries in Welsh'), the mitigation applied (e.g., 'Out-of-Scope warning added to Response Interface for Welsh queries'), and the target resolution date. If no gaps are known, enter 'No gaps identified — distribution analysis completed on [date]'.",
-              "jkType": "TextBox",
-              "jkObjective": "To record every known data completeness gap and its mitigation so that engineers, users, and auditors know exactly which query types or population segments the system cannot reliably serve at the time of deployment."
-            },
-            {
-              "requirement_control_number": "[18284.6]",
-              "control_number": "[5.2.3]",
-              "jkName": "Confirm Label Error Detection Method",
-              "jkText": "Select the method used to detect and correct labelling errors and noise [incorrect, inconsistent, or randomly wrong labels in the training data that teach the Embedding Model the wrong associations] in this system's training data. State the inter-annotator agreement score [a statistical measure of how consistently two or more human annotators assign the same label to the same data item — the higher the score, the more trustworthy the labels] achieved during annotation, using Cohen's Kappa or Krippendorff's Alpha. A score below 0.80 indicates labels are not reliable enough for production use and must trigger a re-annotation cycle before the data enters the Embedding Model.",
-              "jkType": "MultiSelect:Cohen's Kappa Inter-Annotator Agreement [measures label consistency between two annotators — score must be ≥ 0.80]/Krippendorff's Alpha [measures label consistency across three or more annotators — score must be ≥ 0.80]/Automated Noise Detection Pipeline [software tool that flags statistically anomalous labels for human review]/Dual Annotation with Adjudication [every data item is labelled by two annotators independently — disagreements go to a third annotator for a casting vote]/None — No Labelled Training Data Used",
-              "jkObjective": "To confirm that a measurable, threshold-enforced label quality check was applied before training data entered the Embedding Model, preventing 'Label Noise' [incorrect labels that corrupt the model's learned associations] from degrading retrieval accuracy."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Lifecycle Requirements",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18284.7]",
-              "control_number": "[5.3.1]",
-              "jkName": "Declare Dataset Split Rules",
-              "jkText": "State the exact train / validation / test split ratio applied to this system's training data and the rule that enforces separation between the three sets. Format as: [Split Ratio] — [Separation Mechanism] — [Total Dataset Size]. Example: '70% train / 15% validation / 15% test — stratified random split with SHA-256 hash assignment, test partition stored in access-controlled repository — 50,000 document chunks'. If the system uses a pre-trained Embedding Model with no fine-tuning, state 'No training split applied — pre-trained model used, evaluation only on held-out Golden Dataset' and reference the Golden Dataset declaration in fieldGroup [4.2.1].",
-              "jkType": "TextBox",
-              "jkObjective": "To record the dataset split rules and separation mechanism so that auditors can verify the test set was never accessible to the training pipeline, confirming that accuracy scores reflect genuine unseen-data performance."
-            },
-            {
-              "requirement_control_number": "[18284.8]",
-              "control_number": "[5.3.2]",
-              "jkName": "Declare Data Retention Period and Decommission Method",
-              "jkText": "State the retention period applied to each data category in this system and the secure decommission method used when data reaches end of retention. Format each entry as: [Data Category] — [Retention Period] — [Legal Basis] — [Decommission Method]. Example: 'Training Labels — 10 years — ISO 42001 Annex A.8 — cryptographic erasure of storage keys followed by physical media destruction'. The minimum documentation retention period is 10 years. If a data category contains personal data, the GDPR retention limitation principle [personal data must not be kept longer than necessary for the purpose it was collected] overrides the 10-year minimum and the shorter period must be documented here with its legal basis.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the legally compliant retention period and secure decommission procedure for every data category so that storage provisioning, deletion schedules, and end-of-life data destruction can be validated against the applicable regulatory minimum."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Assumptions",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18284.9]",
-              "control_number": "[5.4.1]",
-              "jkName": "Document Data Assumption Statements",
-              "jkText": "State every assumption this system makes about the data it processes — an assumption [a condition the system treats as true without verifying it at runtime, which if false will cause the system to produce wrong outputs without any error signal] must be written as a testable statement. Format each assumption as: [Assumption Statement] — [What breaks if this assumption is false] — [Validation method used to check it]. Example: 'Assumption: HR policy documents in the Vector Store are current and have not been superseded — If false: the Retriever returns outdated policy content and the LLM (Generator) gives incorrect guidance — Validation: monthly document freshness audit against the source HR system'. If the system uses past behaviour as a predictor of future behaviour, that assumption must be explicitly stated here.",
-              "jkType": "TextBox",
-              "jkObjective": "To record every data assumption in a testable format so that engineers can build validation checks for each one and auditors can verify the system's declared behaviour is grounded in explicitly stated, monitored conditions rather than undocumented beliefs about the data."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Bias Detection",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18283.1]",
-              "control_number": "[6.1.1]",
-              "jkName": "Declare Protected Subgroup Coverage",
-              "jkText": "List every protected subgroup [a category of people who share a characteristic — such as age, gender, ethnicity, disability status, or religion — that is legally protected from discrimination under EU law] that this system's training, validation, and test datasets must proportionally represent. For each subgroup, provide: the subgroup name, the minimum sample count required, and the actual sample count in the current dataset. Format as: [Subgroup] — [Minimum Required] — [Actual Count]. Example: 'Age 60+ — 500 records minimum — 847 records actual'. If any subgroup falls below the minimum, declare it here as a known coverage gap — do not omit it because the number is low.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the proportional coverage of every legally protected subgroup across all datasets so that engineers can verify the Embedding Model and Vector Store were not built on data that systematically underrepresents any group."
-            },
-            {
-              "requirement_control_number": "[18283.2]",
-              "control_number": "[6.1.2]",
-              "jkName": "Declare Bias Metric Selection and Thresholds",
-              "jkText": "Select the bias metric applied to this system to quantify whether it treats different population groups fairly. Each metric answers a different fairness question — select the one that matches the specific harm this system could cause. State the threshold value that defines an acceptable result for the selected metric and the action taken if the threshold is breached. At least one metric must be selected and its threshold must be declared before deployment.",
-              "jkType": "MultiSelect:Disparate Impact Ratio [the ratio of the positive outcome rate for the least-favoured group divided by the rate for the most-favoured group — a score below 0.80 means the system is producing discriminatory outcomes at a legally significant level]/Equalized Odds [checks that the system's true positive rate and false positive rate are equal across all protected subgroups — a difference greater than 0.05 between any two groups indicates the system makes systematically different errors for different groups]/Demographic Parity [checks that the system produces positive outcomes at the same rate across all subgroups regardless of the actual correct answer — use when equal treatment matters more than equal accuracy]/Individual Fairness Score [checks that two similar individuals receive similar outputs regardless of their group membership — use when the system makes decisions about specific people rather than populations]/None — Fairness Testing Not Applicable",
-              "jkObjective": "To record the quantitative fairness metric and its acceptance threshold so that every bias evaluation produces a measurable, auditable result rather than a subjective assessment."
-            },
-            {
-              "requirement_control_number": "[18283.3]",
-              "control_number": "[6.1.3]",
-              "jkName": "Declare Identified Proxy Variables",
-              "jkText": "List every variable in this system's training data or retrieval inputs that correlates with a protected characteristic even though it does not name that characteristic directly. A proxy variable [a data field that appears neutral but encodes a protected trait indirectly — for example, a postcode that maps almost exclusively to one ethnic group, or a job title that is held almost exclusively by one gender] can introduce discrimination into the system without any protected characteristic ever appearing in the data. For each proxy variable identified, provide: the variable name, the protected characteristic it correlates with, the correlation coefficient measured, and the mitigation applied (e.g., 'removed from feature set', 'correlation monitored but retained with documented justification').",
-              "jkType": "TextBox",
-              "jkObjective": "To record every proxy variable identified in the training and retrieval data so that indirect discrimination routes are documented, assessed, and either removed or monitored before the Embedding Model is trained or the Vector Store is populated."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Human and Social Context",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18283.7]",
-              "control_number": "[6.2.1]",
-              "jkName": "Document Fairness Definition and Stakeholder Input",
-              "jkText": "State the agreed definition of fairness that this system is built to achieve, and list the stakeholders who contributed to defining it. Fairness is not a single universal standard — a hiring tool defines fairness differently from a medical triage system. The definition must be specific to this use case and must have been reviewed by at least one representative from each affected group. Format the fairness definition as a testable statement: 'This system is fair if [measurable condition] holds for [named groups] when evaluated using [named metric] on [named dataset].' List each stakeholder by role (not name), their group affiliation, and the date of their input.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the use-case-specific fairness definition and the multi-stakeholder process that produced it, so that bias metric thresholds and test cases can be validated against an agreed, documented standard rather than an implicit assumption."
-            },
-            {
-              "requirement_control_number": "[18283.8]",
-              "control_number": "[6.2.2]",
-              "jkName": "Map Bias Controls to Fundamental Rights",
-              "jkText": "For every bias control implemented in this system, state the specific fundamental right [a legally protected individual entitlement under the EU Charter of Fundamental Rights or EU non-discrimination law] it is designed to protect. Format each mapping as: [Control Number] — [Fundamental Right] — [EU Legal Basis] — [How the Control Protects It]. Example: '[6.1.R1] Subgroup Representation Gate — Right to Equal Treatment (Article 21, EU Charter) — EU AI Act Article 10(2)(f) — Enforces minimum sample counts per protected group, preventing the Embedding Model from being trained on data that underrepresents any protected group.' If a control protects more than one right, list each right as a separate mapping entry.",
-              "jkType": "TextBox",
-              "jkObjective": "To create a traceable link between every technical bias control and the specific fundamental rights obligation it fulfils, so that auditors can verify the system's bias mitigations are legally grounded and not merely statistical housekeeping."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Resilience Factors",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-3.16]",
-              "control_number": "[7.1.2]",
-              "jkName": "Declare Environmental Degradation Thresholds",
-              "jkText": "State the performance threshold for each external dependency this system relies on — network latency to the Vector Store, upstream data source response time, and Embedding Model inference latency — below which the system must enter a degraded operation mode rather than continue attempting normal processing. Format each entry as: [Dependency] — [Normal Threshold] — [Degraded Mode Trigger] — [Degraded Mode Behaviour]. Example: 'Vector Store query response — normal ≤ 200ms — degraded mode trigger > 1000ms for 3 consecutive queries — serve cached response with staleness warning displayed in Response Interface'. If no degraded mode is configured for a dependency, enter 'Not implemented' — this creates a mandatory Build layer control.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the environmental degradation thresholds and degraded mode behaviours for every external dependency so that engineers can configure the Orchestrator to respond to environmental shifts with a defined, tested fallback rather than an uncontrolled failure."
-            },
-            {
-              "requirement_control_number": "[18229-3.17]",
-              "control_number": "[7.1.3]",
-              "jkName": "Confirm Feedback Loop Isolation Mechanism",
-              "jkText": "Select the technical mechanism used to prevent this system's own outputs from being automatically re-ingested into the Vector Store or used to retrain the Embedding Model without human review. A feedback loop [a condition where the system's generated outputs are fed back into its own training or retrieval data, causing the system to progressively reinforce and amplify any errors or biases already present in its outputs] is the most dangerous form of silent quality degradation in a RAG system because each cycle of self-reinforcement makes the problem harder to detect and reverse. At least one isolation mechanism must be selected — if none exist, this is a critical Build layer requirement.",
-              "jkType": "MultiSelect:None/Automated Provenance Check [the ingestion pipeline queries the provenance register before ingesting any document and rejects any document whose source matches the LLM (Generator) output store]",
-              "jkObjective": "To confirm that at least one technical barrier exists that prevents the LLM (Generator) outputs from re-entering the Vector Store or Embedding Model training pipeline without human review, blocking the automated reinforcement of errors and biases."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Fail-Safe Mechanisms",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-3.18]",
-              "control_number": "[7.2.1]",
-              "jkName": "Declare Safe State Configuration",
-              "jkText": "Describe the safe state [a defined system configuration that the Orchestrator automatically switches to when a critical component fails or a safety threshold is breached — the system continues operating in a reduced-capability mode rather than crashing or producing unvalidated outputs] for this system. For each RAG component, define: the failure condition that triggers the safe state, the safe state behaviour (e.g., 'serve last cached response', 'display maintenance message', 'route all queries to human reviewer'), the maximum duration the system can remain in safe state before a mandatory engineering review is required, and the human notification method. If a component has no defined safe state, enter 'Not implemented' — this means a failure of that component causes an uncontrolled system crash.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the safe state configuration for every RAG component so that engineers can implement and test a defined, controlled degradation path for each failure scenario rather than relying on unplanned crash behaviour."
-            },
-            {
-              "requirement_control_number": "[18229-3.19]",
-              "control_number": "[7.2.2]",
-              "jkName": "Confirm Redundancy and Sanity Check Mechanisms",
-              "jkText": "Select every redundancy and real-time error detection mechanism currently implemented in this system. A redundancy mechanism [a backup component or data path that automatically takes over when the primary component fails — the AI equivalent of a spare tyre] prevents single points of failure from halting the system. A sanity check [an automated validation step that evaluates whether a generated output is plausible before delivering it to the user — for example, checking that a numeric answer falls within a known valid range] catches errors the Output Guardrail might miss because they are contextually wrong rather than structurally invalid.",
-              "jkType": "MultiSelect:Redundant Vector Store Replica [a second Vector Store instance that the Retriever automatically switches to if the primary instance becomes unavailable]/Redundant Embedding Model Endpoint [a second Embedding Model endpoint that the Orchestrator routes to if the primary endpoint exceeds latency thresholds]/LLM (Generator) Fallback Model [a secondary LLM (Generator) that activates if the primary model returns an error or exceeds the response time threshold]/Output Sanity Check [an automated post-generation validation that checks the LLM (Generator) response against a set of defined plausibility rules before it reaches the Output Guardrail]/Response Consistency Check [an automated comparison of the current response against the previous N responses for the same query type to detect anomalous outputs]/None",
-              "jkObjective": "To confirm that every critical RAG component has a defined redundancy path or real-time sanity check so that a single component failure or anomalous output does not propagate undetected to the end user."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Reproducibility",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-3.20]",
-              "control_number": "[7.3.1]",
-              "jkName": "Declare Output Determinism Configuration",
-              "jkText": "State the configuration applied to the LLM (Generator) to ensure that identical inputs produce consistent outputs across repeated runs. The primary determinism control is the temperature parameter [a value between 0.0 and 1.0 that controls how random the LLM (Generator)'s output selection is — a temperature of 0.0 forces the model to always select the highest-probability token, producing identical outputs for identical inputs; a temperature above 0.0 introduces randomness, meaning the same input can produce different outputs on different runs]. For audit and reproducibility purposes, set temperature to 0.0. If temperature cannot be set to 0.0 for functional reasons, state the temperature value used, the justification, and the alternative consistency mechanism applied.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the determinism configuration applied to the LLM (Generator) so that engineers and auditors can verify that any AI output can be reproduced exactly given the same input, system state, and configuration — a requirement for meaningful audit and incident investigation."
-            }
-          ]
-        }
+  
       ]
     }
   ],
