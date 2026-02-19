@@ -1,7 +1,60 @@
+/* * UTMOST BRANDED STYLESHEET
+ * Supports Light Mode (Default) and Dark Mode (Utmost Brand)
+ */
+
+:root {
+    /* --- LIGHT MODE VARIABLES (Default) --- */
+    --brand-gold: #a68945;
+    --brand-gold-hover: #8e743a;
+    
+    --bg-main: #f4f4f9;
+    --bg-container: #ffffff;
+    --bg-input: #ffffff;
+    --bg-secondary: #f9f9f9;
+    --bg-subtle: #eeeeee;
+
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --text-accent: #007bff; /* Original blue accent */
+    
+    --border-color: #eeeeee;
+    --border-accent: #007bff;
+    
+    --step-bg-active: #e7f3ff;
+    --step-border-active: #007bff;
+    
+    --shadow: rgba(0, 0, 0, 0.1);
+    --font-weight-light: 200;
+}
+
+/* --- DARK MODE VARIABLES (Utmost Branded) --- */
+body.dark-theme {
+    --bg-main: #121212;
+    --bg-container: #1e1e1e;
+    --bg-input: #000000;
+    --bg-secondary: #252525;
+    --bg-subtle: #2a2a2a;
+
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-accent: var(--brand-gold);
+    
+    --border-color: #333333;
+    --border-accent: var(--brand-gold);
+    
+    --step-bg-active: rgba(166, 137, 69, 0.15);
+    --step-border-active: var(--brand-gold);
+    
+    --shadow: rgba(0, 0, 0, 0.5);
+    --font-weight-light: 300; /* Slightly heavier for better contrast on dark */
+}
+
+/* --- BASE STYLES --- */
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -9,132 +62,61 @@ body {
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .container {
-    background: #fff;
+    background: var(--bg-container);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px var(--shadow);
     width: 70%;
     max-width: 800px;
+    border: 1px solid var(--border-color);
 }
-.button-container {
-    display: flex;
-    justify-content: space-between; /* Pushes buttons to opposite ends */
-    margin-top: 20px; /* Adds some space above the buttons */
-}
-.multiline-label {
-    display: block;
-    margin-bottom: 4px; /* Optional: adds a little space between lines */
-}
-.label-bold {
-    font-weight: 500;
-}
-#main-title {
-    text-align: left;
-    color: #444;
-    margin-top: 0;
-}
-#form-container {
-    margin-bottom: 1.5rem;
-    min-height: 300px;
-}
-.phase-header {
-    font-weight: bold;
-    color: #555;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    padding-left: 10px;
-    font-size: 0.9em;
-    text-transform: uppercase;
-}
-.form-step {
-    animation: fadeIn 0.5s ease-in-out;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+
+/* --- FORM ELEMENTS --- */
+
 .form-field {
     margin-bottom: 15px;
-    border-bottom: 1px solid #007BFF;
+    border-bottom: 1px solid var(--border-accent);
     padding-bottom: 10px;
 }
-/* --- Step 1: Define the shared font styles for all elements --- */
+
 .form-field label,
 .form-field input[type="text"],
 .form-field select,
 .form-field textarea,
 .form-field p {
     font-size: 0.9rem;
-    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
+    font-weight: var(--font-weight-light);
 }
 
-/* --- Step 2: Define styles ONLY for the form input elements --- */
 .form-field input[type="text"],
 .form-field select,
 .form-field textarea {
     width: 100%;
     padding: 0.45rem; 
     border-radius: 4px;
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-input);
+    color: var(--text-primary);
 }
 
-/* --- Step 3: Define styles ONLY for labels (if you want padding, etc.) --- */
-.form-field label {
-    padding: 0.45rem;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-/* --- Step 4: Define styles ONLY for paragraphs (if you want padding, etc.) --- */
-.form-field p {
-    padding: 0.45rem;
-    /* You might want to adjust line-height for better readability */
-    line-height: 1.5; 
-}
-
-.label-bold{
+.form-field .auto-generated-label {
     font-size: 0.9rem;
-    font-weight: 300; /* Note: 100 is very thin, '400' or 'normal' is standard */
-    width: 100%;
-    padding: 0.45rem; 
-    border-radius: 4px;
-}
-
-/* .form-field input[type="text"],
-.form-field select,
-.form-field textarea {
-    width: 100%;
-    padding: 0.45rem; 
-    border: 1px solid #007BFF;
-    border-radius: 4px;
-    box-sizing: border-box;
-     /* height: 2.7rem;    Force a specific height for a single line feel 
-}*/
- .form-field .auto-generated-label {
-    font-size: 0.9rem;
-    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
     font-style: italic;
-    color: #555;
-    background-color: #eee;
+    color: var(--text-secondary);
+    background-color: var(--bg-subtle);
     padding: 0.75rem;
     border-radius: 4px;
     display: block;
 }
- .form-field .radio-option {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px; /* Adjust the space between the button and label as needed */
-}
-.control-separator {
-  border: none;
-  height: 2px;
-  background-color: #007BFF
-}
-/* --- Buttons Styles --- */
-button {
-    background-color: #007BFF;
+
+/* --- BUTTONS --- */
+
+button, .btn-primary {
+    background-color: var(--brand-gold);
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -142,848 +124,117 @@ button {
     cursor: pointer;
     font-size: 1rem;
     float: right;
+    transition: background 0.3s ease, transform 0.1s ease;
 }
-button:hover {
-    background-color: #0056b3;
+
+button:hover, .btn-primary:hover {
+    background-color: var(--brand-gold-hover);
 }
-#download-btn {
+
+#download-btn, .btn-success {
     background-color: #28a745;
 }
-#download-btn:hover {
-    background-color: #218838;
-}
-/* --- Progress Bar & Counter Styles (New) --- */
-.progress-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* Space between bar and text */
-    margin-bottom: 2rem;
-}
+
+/* --- PROGRESS BARS --- */
+
 .progress-container {
-    flex-grow: 1; /* Make the bar take up available space */
-    background-color: #e0e0e0;
+    flex-grow: 1;
+    background-color: var(--bg-subtle);
     border-radius: 8px;
     overflow: hidden; 
 }
-#progress-bar {
+
+#progress-bar, .progress-bar {
     height: 12px;
-    width: 0%; /* Initial width is 0 */
-    background-color: #007BFF; /* A nice blue color */
+    width: 0%;
+    background-color: var(--brand-gold);
     border-radius: 8px;
-    transition: width 0.4s ease-in-out; /* Smooth transition for width changes */
-}
-#progress-text {
-    font-size: 0.9rem;
-    color: #007BFF;
-    white-space: nowrap; /* Prevent text from wrapping */
+    transition: width 0.4s ease-in-out;
 }
 
-
-/* The clickable header area */
-.collapsible-header {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-}
-
-/* The expand/collapse icon (▶/▼) */
-.collapse-icon {
-    margin-right: 12px;
-    font-weight: bold;
-    color: #555;
-    width: 1em;
-}
-
-/* NEW: Styles for the dropdown when it appears after the header */
-.dropdown-after-header {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    /* Indent the dropdown to align with the collapsible content below it */
-    margin-left: 28px; 
-}
-
-
-/*
- * The wrapper for the content that will be hidden or shown.
- * This is the style for the OPEN/EXPANDED state.
- */
-.collapsible-content {
-    /* Set your desired max height here. I've kept the 600px from your code. */
-    //max-height: 600px; 
-    
-    /* This correctly enables the vertical scrollbar when content is taller than max-height. */
-    //overflow-y: auto; 
-    
-    /* REMOVED: "overflow: hidden;" was here, which was causing the issue. */
-
-    padding: 15px;
-    padding-right: 10px;
-    margin-left: 5px;
-    border-left: 1px solid #e0e0e0;
-    transition: all 0.35s ease-in-out; /* 'all' provides a smoother transition for padding/border */
-}
-
-/*
- * The state when content is COLLAPSED (hidden).
- */
-.collapsible-content.collapsed {
-    max-height: 0;
-    border-left-color: transparent;
-    padding-top: 0;
-    padding-bottom: 0;
-
-    /* This is CRUCIAL here to hide the content completely when collapsed. */
-    overflow: hidden; 
-}
-
-
-
-
-
-/* General styling for elements inside the collapsible area */
-.collapsible-content .label-bold,
-.collapsible-content .multiline-label {
-    display: block;
-    margin-bottom: 8px;
-    margin-top: 8px;
-}
-
-
-
-
-
-
-
-
-
-/* --- Styles for the procedure step progress display --- */
+/* --- STEP NAVIGATION (Sidebar) --- */
 
 .steps-container {
     width: 30%;
-    background: #fff;
+    background: var(--bg-container);
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    height: 100vh; /* Make the container take the full viewport height */
-    margin-right: 20px; /* Adds a 20px space below the container */
+    box-shadow: 0 4px 12px var(--shadow);
+    margin-right: 20px;
+    border: 1px solid var(--border-color);
 }
 
-#step-container {
-    flex: 1; /* Allow this element to grow and fill available space */
-    overflow-y: auto; /* Add a vertical scrollbar only when needed */
-    padding-bottom: 20px; /* Add some space at the bottom */
-}
-
-.checkbox-option {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.checkbox-option input[type="checkbox"] {
-    margin-right: 8px;
-    width: 16px;
-    height: 16px;
-}
-        
-.checkbox-option label {
-    margin-bottom: 0; 
-}
-  
 .step-item {
     padding: 10px 15px;
     margin-bottom: 8px;
-    border-left: 4px solid #ddd;
-    background-color: #f9f9f9;
+    border-left: 4px solid var(--border-color);
+    background-color: var(--bg-secondary);
     transition: all 0.3s ease;
-    display: flex;
-    align-items: flex-start;
-    font-size: 0.9em;
-    cursor: pointer; /* <-- Add this line */
+    cursor: pointer;
 }
 
-.step-item .icon {
-    margin-right: 5px;
-    width: 20px;
-    max-width: 20px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* Style for the currently active step */
 .active-step {
-    border-left: 4px solid #007bff;
-    background-color: #e7f3ff;
+    border-left: 4px solid var(--step-border-active) !important;
+    background-color: var(--step-bg-active) !important;
     font-weight: bold;
-    color: #004085;
+    color: var(--step-border-active);
 }
 
-/* Style for completed steps */
 .completed-step {
     border-left: 4px solid #28a745;
-    background-color: #f0fff0;
-    color: #155724;
+    background-color: rgba(40, 167, 69, 0.1);
 }
 
-/* Green checkmark icon for completed steps */
-.completed-step .icon::before {
-    content: '✔';
-    color: #28a745;
-}
-
-/* Add a simple style for the new dropdown */
-.role-selection-container {
-	margin-bottom: 20px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-.role-selection-container label {
-	font-weight: bold;
-	display: block;
-	margin-bottom: 5px;
-}
-.role-selection-container select {
-	padding: 8px;
-	border-radius: 4px;
-	border: 1px solid #ddd;
-	width: 100%;
-	box-sizing: border-box;
-}
-/* Style for the phase headers to make them stand out */
-.phase-header {
-	font-weight: bold;
-	margin-top: 15px;
-	margin-bottom: 5px;
-	padding: 5px 0;
-	border-bottom: 1px solid #eee;
-}
-/* Style adjustments for step items (assuming some base styles exist in style.css) */
-.step-item {
-	cursor: pointer;
-	padding: 8px 10px;
-	border-radius: 4px;
-	margin-bottom: 2px;
-	display: flex; /* Ensure the step name and icon are on the same line */
-	align-items: center;
-}
-.step-item:hover {
-	background-color: #f0f0f0;
-}
-.active-step {
-	background-color: #e6f7ff; /* Highlight color for the current step */
-	font-weight: bold;
-	border-left: 3px solid #1890ff;
-}
-.completed-step .icon::before {
-	 /* Assuming a checkmark or similar icon is used for completed steps */
-	 content: '✓';
-	 color: green;
-	 margin-right: 5px;
-}
-
-/* Style for the Group Box Container */
-.field-group-container {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    background-color: #f9f9f9; /* Light background to make it stand out */
-}
-
-/* Style for the Group Title */
-.field-group-title {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #007BFF; /* Separator line */
-}
-
-/* Optional wrapper for inner fields (adjusts spacing) */
-.field-group-wrapper > div:last-child {
-    margin-bottom: 0 !important; /* Remove bottom margin for the last field inside the group */
-}
-
-
-
-
-
-
-
-
-
-
+/* --- MAPPING CONTAINER --- */
 
 .mapping-container {
-	background: white;
-	border-radius: 8px;
-	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-	margin-top: 20px;
-	padding: 0;
-	overflow: hidden; /* For border-radius */
-}
-
-/* Top-level Regulatory Requirement Node */
-.reg-item {
-	margin-bottom: 25px;
-	border: 1px solid var(--border-color);
-	border-radius: 8px;
-	overflow: hidden; /* Ensure header radius applies */
+    background: var(--bg-container);
+    border-radius: 8px;
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
 }
 
 .reg-header {
-	background-color: #eff6ff;
-	padding: 15px 20px;
-	border-bottom: 1px solid var(--border-color);
-	display: flex; /* Use flexbox for alignment */
-	align-items: center;
-	cursor: pointer; /* Indicate it's clickable */
-	transition: background-color 0.2s ease;
-}
-
-.reg-header:hover {
-	background-color: #e0e7ff;
-}
-
-.toggle-icon {
-	font-size: 1.5em;
-	font-weight: bold;
-	color: var(--primary-color);
-	margin-right: 15px;
-	transition: transform 0.2s ease;
-	width: 20px; /* Reserve space */
-	text-align: center;
-	flex-shrink: 0;
-}
-
-.toggle-icon.expanded {
-	transform: rotate(90deg);
-}
-
-.reg-header-content {
-	flex-grow: 1; /* Take remaining space */
-	min-width: 0; /* Prevent overflow */
+    background-color: var(--bg-secondary);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
 }
 
 .reg-title {
-	font-size: 1.2em;
-	font-weight: 700;
-	color: #1e40af;
-	margin: 0;
-	margin-bottom: 8px; /* Add space for progress bar */
-	word-wrap: break-word;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--text-accent);
 }
 
-.reg-meta {
-	font-size: 0.9em;
-	color: var(--secondary-color);
-	margin-top: 8px;
-	word-wrap: break-word;
+/* --- COLLAPSIBLE CONTENT --- */
+
+.collapsible-content {
+    padding: 15px;
+    border-left: 1px solid var(--border-color);
+    transition: all 0.35s ease-in-out;
 }
 
-/* New Progress Bar Styles */
-.progress-container {
-	width: 100%;
-	height: 18px;
-	background-color: #e0e7ff; /* Lighter blue */
-	border-radius: 9px;
-	overflow: hidden;
-	position: relative;
+.collapsible-content.collapsed {
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-.progress-bar {
-	height: 100%;
-	width: 0%; /* Will be set by inline style */
-	background-color: var(--primary-color);
-	transition: width 0.4s ease-out;
-}
+/* --- MISC UTILITIES --- */
 
-.progress-text {
-	position: absolute;
-	width: 100%;
-	top: 0;
-	left: 0;
-	text-align: center;
-	font-size: 0.8em; /* 12.8px */
-	line-height: 18px; /* Match container height */
-	font-weight: 600;
-	color: #1e3a8a; /* Darker blue for contrast */
-}
-
-/* List of Sub-Controls */
-.sub-control-list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	display: none; /* Hide by default */
-	background-color: #ffffff;
-}
-
-.sub-control-list.expanded {
-	display: block; /* Show when expanded */
-}
-
-/* Individual Sub-Control Item */
-.sub-control-item {
-	padding: 15px 20px;
-	border-bottom: 1px solid var(--border-color);
-}
-
-
-.sub-control-item .auto-generated-label {
-    font-size: 0.9rem;
-    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
-    font-style: italic;
-    color: #555;
-    background-color: #eee;
-    padding: 0.75rem;
-    border-radius: 4px;
-    display: block;
-}
-
-.sub-control-item:last-child {
-	border-bottom: none;
-}
-
-.sub-control-title {
-	font-weight: 200;
-	color: #1e293b;
-	font-size: 1em;
-	margin-bottom: 10px;
-	word-wrap: break-word;
-}
-
-/* List of Implementations (under a sub-control) */
-.imp-list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	margin-top: 10px;
-	padding-left: 15px;
-	border-left: 3px solid var(--border-color);
-}
-
-/* Individual Implementation Item */
-.imp-item {
-	padding: 10px;
-	display: flex;
-	align-items: flex-start;
-	background-color: #f9fafb;
-	border-radius: 4px;
-	margin-bottom: 8px;
-}
-.imp-item:last-child {
-	margin-bottom: 0;
-}
-
-.imp-type-badge {
-	display: inline-block;
-	padding: 2px 8px;
-	border-radius: 12px;
-	font-size: 0.75em;
-	font-weight: 600;
-	text-transform: uppercase;
-	margin-right: 10px;
-	min-width: 50px;
-	text-align: center;
-	margin-top: 3px;
-	white-space: nowrap;
-}
-
-.type-risk { background-color: #fee2e2; color: #991b1b; }
-.type-plan { background-color: #dcfce7; color: #166534; }
-.type-multiSelect { background-color: #e0e7ff; color: #166534; }
-.type-other { background-color: #e2e8f0; color: #475569; } /* New badge for other types */
-
-.imp-content {
-	flex: 1;
-	min-width: 0; /* Prevents long text from overflowing */
-}
-
-.imp-title {
-	font-weight: 500;
-	font-size: 0.95em;
-	word-wrap: break-word; /* Handle long field names */
-}
-
-.imp-meta {
-	font-size: 0.85em;
-	color: #64748b;
-	margin-top: 2px;
-	word-wrap: break-word; /* Handle long control strings */
-}
-
-.no-children {
-	padding: 5px 0 0 15px;
-	color: var(--secondary-color);
-	font-size: 0.9em;
-	font-style: italic;
-}
-
-
-        /* Additional styles for new features */
-        .main-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .controls-bar {
-            background: #f8f9fa;
-            padding: 20px 30px;
-            border-bottom: 2px solid #e9ecef;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .control-group label {
-            font-weight: 600;
-            font-size: 13px;
-            color: #495057;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-left: auto;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-success:hover {
-            background: #218838;
-        }
-
-        .version-banner {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px 30px;
-            display: none;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .version-banner.show {
-            display: flex;
-        }
-
-        .version-banner .icon {
-            font-size: 24px;
-        }
-
-        .version-banner .content {
-            flex: 1;
-        }
-
-        .version-banner .content h3 {
-            color: #856404;
-            margin-bottom: 5px;
-        }
-
-        .version-banner .content p {
-            color: #856404;
-            font-size: 14px;
-        }
-
-        .info-banner {
-            background: #d1ecf1;
-            border-left: 4px solid #0c5460;
-            padding: 15px 30px;
-            display: none;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .info-banner.show {
-            display: flex;
-        }
-
-        .info-banner .content p {
-            color: #0c5460;
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .content-area {
-            padding: 30px;
-            max-height: calc(100vh - 300px);
-            overflow-y: auto;
-        }
-
-        .phase-section {
-            margin-bottom: 40px;
-        }
-
-        .phase-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .step-section {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-        }
-
-        .step-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #dee2e6;
-        }
-
-        .field-new {
-            background: #fff3cd !important;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid #ffc107;
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .field-new::before {
-            content: "NEW";
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            background: #ffc107;
-            color: #856404;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #6c757d;
-        }
-
-        .empty-state h2 {
-            margin-bottom: 10px;
-            color: #495057;
-        }
-
-        #file-input {
-            display: none;
-        }
-
-        .system-id-input {
-            padding: 10px 15px;
-            border: 2px solid #dee2e6;
-            border-radius: 6px;
-            font-size: 14px;
-            min-width: 200px;
-        }
-        
-        
-.role-progress-section {
-    background: #f8f9fa;
-    border-bottom: 2px solid #e0e7ff;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.role-progress-header {
-    margin-bottom: 15px;
-}
-
-.role-progress-header h3 {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1e293b;
+.phase-header {
+    font-weight: bold;
+    color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border-color);
 }
 
-
-.role-progress-container {
-    display: grid;
-    gap: 8px;
-    grid-auto-flow: column;
-    grid-auto-columns: 140px; /* Keep them readable size */
-    overflow-x: auto;         /* Add a scrollbar if they don't fit */
-}
-
-.role-progress-item {
-    padding: 12px;
-    background: white;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.role-progress-item:hover {
-    border-color: #2563eb;
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
-}
-
-.role-progress-item.completed {
-    background: #f0fdf4;
-    border-color: #22c55e;
-}
-
-.role-progress-item.in-progress {
-    background: #fef3c7;
-    border-color: #f59e0b;
-}
-
-.role-progress-item.current {
-    background: #eff6ff;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.role-progress-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.role-progress-bar {
-    width: 100%;
-    height: 6px;
-    background: #e2e8f0;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 6px;
-}
-
-.role-progress-fill {
-    height: 100%;
-    background: #94a3b8;
-    transition: width 0.3s ease;
-}
-
-.role-progress-item.completed .role-progress-fill {
-    background: #22c55e;
-}
-
-.role-progress-item.in-progress .role-progress-fill {
-    background: #f59e0b;
-}
-
-.role-progress-item.current .role-progress-fill {
-    background: #2563eb;
-}
-
-.role-progress-text {
-    font-size: 11px;
-    color: #64748b;
-    text-align: center;
-}
-.role-progress-number {
-    font-size: 11px;
-    color: #64748b;
-    text-align: center;
-}
-
-.role-progress-item.completed .role-progress-text {
-    color: #15803d;
-}
-
-.role-progress-item.in-progress .role-progress-text {
-    color: #92400e;
-}
-
-.role-progress-item.current .role-progress-text {
-    color: #1e40af;
-}
-/* Make the header look clickable */
-.step-header {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    user-select: none; /* Prevents text highlighting when clicking fast */
-}
-
-/* Add an arrow icon automatically */
-.step-header::after {
-    content: '▼'; /* Down arrow for open */
-    font-size: 0.8em;
-    transition: transform 0.3s ease;
-}
-
-/* Rotate arrow when collapsed */
-.step-header.collapsed::after {
-    transform: rotate(-90deg); /* Pointing right for collapsed */
-}
-
-/* The class that actually hides the content */
-.step-content.collapsed {
-    display: none;
+.field-group-container {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: var(--bg-secondary);
 }
