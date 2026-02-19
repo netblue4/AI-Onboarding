@@ -418,7 +418,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Bias Detection",
+          "jkName": "[18283: Bias] - Bias Detection",
           "Role": "Compliance",
           "controls": [
             {
@@ -446,7 +446,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Human & Social Context",
+          "jkName": "[18283: Bias] - Human & Social Context",
           "Role": "Compliance",
           "controls": [
             {
