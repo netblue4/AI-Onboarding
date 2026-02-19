@@ -662,21 +662,23 @@ button:hover {
         }
 
         .btn-primary {
-            background: #b8963e;
-            color: #e0d9ce;
+            background: linear-gradient(135deg, #c9a84c 0%, #9a7a2e 100%);
+            color: #1a1a1a;
             padding: 10px 20px;
-            border: none;
+            border: 1px solid #b8963e;
             border-radius: 6px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            letter-spacing: 0.3px;
         }
 
         .btn-primary:hover {
-            background: #9a7a2e;
+            background: linear-gradient(135deg, #d4b05a 0%, #b8963e 100%);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(184, 150, 62, 0.4);
+            box-shadow: 0 4px 16px rgba(184, 150, 62, 0.45);
+            border-color: #c9a84c;
         }
 
         .btn-secondary {
@@ -888,19 +890,21 @@ button:hover {
 }
 
 .role-progress-item.completed {
-    background: #f0fdf4;
+    background: #1a2b1e;
     border-color: #22c55e;
+    box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.15);
 }
 
 .role-progress-item.in-progress {
-    background: #fef3c7;
-    border-color: #f59e0b;
+    background: #2b2310;
+    border-color: #b8963e;
+    box-shadow: 0 0 0 1px rgba(184, 150, 62, 0.15);
 }
 
 .role-progress-item.current {
-    background: #eff6ff;
+    background: #2b2310;
     border-color: #b8963e;
-    box-shadow: 0 0 0 3px rgba(184, 150, 62, 0.1);
+    box-shadow: 0 0 0 3px rgba(184, 150, 62, 0.2), inset 0 1px 0 rgba(184, 150, 62, 0.1);
 }
 
 .role-progress-name {
@@ -916,7 +920,7 @@ button:hover {
 .role-progress-bar {
     width: 100%;
     height: 6px;
-    background: #e2e8f0;
+    background: #3d3d3d;
     border-radius: 3px;
     overflow: hidden;
     margin-bottom: 6px;
@@ -933,7 +937,7 @@ button:hover {
 }
 
 .role-progress-item.in-progress .role-progress-fill {
-    background: #f59e0b;
+    background: #b8963e;
 }
 
 .role-progress-item.current .role-progress-fill {
