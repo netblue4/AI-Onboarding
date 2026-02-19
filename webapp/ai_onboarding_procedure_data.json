@@ -10,7 +10,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Transparency",
+          "jkName": "[18229-1: Trustworthiness] - Transparency",
           "Role": "Compliance",
           "controls": [
             {
@@ -38,7 +38,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Logging",
+          "jkName": "[18229-1: Trustworthiness] - Logging",
           "Role": "Compliance",
           "controls": [
             {
@@ -69,7 +69,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Done- Human Oversight",
+          "jkName": "[18229-1: Trustworthiness] - Human Oversight",
           "Role": "Compliance",
           "controls": [
             {
@@ -191,7 +191,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Metric Requirements",
+          "jkName": "[18229-2: Trustworthiness (Accuracy)] - Metric Requirements",
           "Role": "Compliance",
           "controls": [
             {
@@ -219,7 +219,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Lifecycle Performance",
+          "jkName": "[18229-2: Trustworthiness (Accuracy)] - Lifecycle Performance",
           "Role": "Compliance",
           "controls": [
             {
@@ -240,7 +240,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Technical Documentation",
+          "jkName": "[18229-2: Trustworthiness (Accuracy)] - Technical Documentation",
           "Role": "Compliance",
           "controls": [
             {
@@ -254,7 +254,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Resilience Factors",
+          "jkName": "[18229-3: Trustworthiness (Robustness)] - Resilience Factors",
           "Role": "Compliance",
           "controls": [
             {
@@ -282,7 +282,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Fail-Safe Mechanisms",
+          "jkName": "[18229-3: Trustworthiness (Robustness)] - Fail-Safe Mechanisms",
           "Role": "Compliance",
           "controls": [
             {
@@ -303,7 +303,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Reproducibility",
+          "jkName": "[18229-3: Trustworthiness (Robustness)] - Reproducibility",
           "Role": "Compliance",
           "controls": [
             {
@@ -327,7 +327,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Governance Practices",
+          "jkName": "[18284: Quality and Governance] - Governance Practices",
           "Role": "Compliance",
           "controls": [
             {
@@ -355,7 +355,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Quality Metrics",
+          "jkName": "[18284: Quality and Governance] - Quality Metrics",
           "Role": "Compliance",
           "controls": [
             {
@@ -383,7 +383,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Lifecycle Requirements",
+          "jkName": "[18284: Quality and Governance] - Lifecycle Requirements",
           "Role": "Compliance",
           "controls": [
             {
@@ -404,7 +404,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Assumptions",
+          "jkName": "[18284: Quality and Governance] - Assumptions",
           "Role": "Compliance",
           "controls": [
             {
@@ -477,7 +477,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Logging Triggers",
+          "jkName": "[ISO/IEC 24970: AI System Logging] - Logging Triggers",
           "Role": "Compliance",
           "controls": [
             {
@@ -498,7 +498,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Captured Information",
+          "jkName": "[ISO/IEC 24970: AI System Logging] - Captured Information",
           "Role": "Compliance",
           "controls": [
             {
@@ -526,7 +526,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Done - Storage & Governance",
+          "jkName": "[ISO/IEC 24970: AI System Logging] - Storage & Governance",
           "Role": "Compliance",
           "controls": [
             {
@@ -555,7 +555,7 @@
       ]
     },
     {
-      "StepName": "Article 43: Conformity Assessment3",
+      "StepName": "Article 43: Conformity Assessment",
       "Objectives": [
         {
           "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
