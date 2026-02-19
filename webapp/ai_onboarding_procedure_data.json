@@ -859,6 +859,102 @@
       ]
     },
     {
+      "StepName": "New - 2.1. - AI system's intended use, limitations and Human oversight",
+      "Objectives": [
+        {
+          "Objective": "Defining the precise scope of the AI system, including what it is designed to do (its intended use) and establishing clear, documented boundaries for what it should not be used for (its known limitations)."
+        }
+      ],
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Transparency and Limitations",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-1.1]",
+              "control_number": "[2.2.1]",
+              "jkName": "Declare the System's Intended Purpose",
+              "jkText": "State exactly what this AI system is built to do, who it is built for, and the specific context it operates in. Scope this tightly — if the system later processes queries outside this declaration, every downstream risk control and test case must be re-evaluated.",
+              "jkType": "TextBox",
+              "jkObjective": "To record the declared operational scope and target population of the AI system so that any use outside those boundaries can be identified, flagged, and re-assessed."
+            },
+            {
+              "requirement_control_number": "[18229-1.2]",
+              "control_number": "[2.2.2]",
+              "jkName": "List Known Failure Scenarios",
+              "jkText": "List every input condition, data state, or query type where this system is known to produce wrong, degraded, or unreliable outputs. Include specific triggers such as unsupported languages, missing required fields, out-of-distribution queries that fall outside the Retriever's indexed knowledge, or token-limit edge cases in the LLM (Generator). Each entry here maps directly to a risk control in the Build layer.",
+              "jkType": "TextBox",
+              "jkObjective": "To capture all known 'blind spots' (input conditions or data states where the system is expected to fail or degrade) so that engineers have a complete target list for control design."
+            },
+            {
+              "requirement_control_number": "[18229-1.2]",
+              "control_number": "[2.2.3]",
+              "jkName": "Assign a Response Action per Failure",
+              "jkText": "For each failure scenario listed in [2.2.2], specify the exact system behaviour that must trigger when that failure occurs. Choose one action per failure: surface a confidence warning via the Response Interface, route the query to a human reviewer, suppress the response and return an error code, or log the event silently for engineer triage. One failure, one action — do not combine.",
+              "jkType": "MultiSelect:Surface Confidence Warning/Route to Human Reviewer/Suppress Response and Return Error/Log for Engineer Triage/None",
+              "jkObjective": "To ensure every declared failure mode has a single, unambiguous system response that prevents silent failures from reaching end users unchecked."
+            },
+            {
+              "requirement_control_number": "[18229-1.3]",
+              "control_number": "[2.2.4]",
+              "jkName": "Provide the Instructions for Use Link",
+              "jkText": "Paste the URL or document path to the Instructions for Use (IFU) — the operator manual that tells users how to run, monitor, and safely stop this system. The link must be machine-retrievable; a local file path or shared-drive shortcut that requires authenticated desktop access does not satisfy this requirement.",
+              "jkType": "TextBox",
+              "jkObjective": "To confirm that a retrievable, human-readable IFU is linked to this system record so that operators and auditors can access it without submitting a separate request."
+            },
+            {
+              "requirement_control_number": "[18229-1.3]",
+              "control_number": "[2.2.5]",
+              "jkName": "Confirm Documentation Delivery Format",
+              "jkText": "Select every format in which the IFU is currently published. At least one digital format must be selected — a printed manual alone does not meet the accessibility requirement under this control.",
+              "jkType": "MultiSelect:Digital PDF/Interactive Help Guide/In-App Tooltips/API Documentation/Printed Manual/None",
+              "jkObjective": "To verify that the IFU is published in at least one digitally accessible and machine-readable format, meeting the documentation accessibility requirement."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "New - Human Oversight Controls",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-1.6]",
+              "control_number": "[2.6.1]",
+              "jkName": "Describe Automation Bias Warnings in the UI",
+              "jkText": "Describe every warning, disclaimer, or confidence indicator [a score or signal displayed alongside an AI response that tells the user how certain the system is about its own answer — think of it as a percentage bar on a search result] displayed to the user in the Response Interface that signals the AI output should not be accepted without human review. Include the exact trigger condition for each warning — for example, 'displayed when confidence score < 0.80' or 'displayed on every response regardless of score'. A blank entry here means no warnings are implemented, which is a compliance gap.",
+              "jkType": "TextBox",
+              "jkObjective": "To record every UI mechanism designed to prevent automation bias (the tendency of humans to accept AI outputs without critical review) so that engineers can verify each warning is implemented and testable."
+            },
+            {
+              "requirement_control_number": "[18229-1.7]",
+              "control_number": "[2.6.2]",
+              "jkName": "Confirm Override and Stop Mechanisms",
+              "jkText": "Select every human intervention mechanism currently implemented in this system. At least one mechanism must be selected — if none exist, this is a build requirement, not an optional feature.",
+              "jkType": "MultiSelect:Output Override [a human rejects or replaces a single AI response before it takes effect — like clicking 'Dismiss' or 'Edit' on one answer]/System Stop — Kill Switch [a human halts all AI processing immediately across the entire system — no further queries are accepted until a human restarts it]/Query Cancellation [a human aborts a single in-flight query before the LLM (Generator) returns a response — the query is dropped and nothing is delivered]/Human Escalation Routing [the system automatically forwards the query to a human reviewer instead of generating an AI response — used when the system detects it cannot answer reliably]/None",
+              "jkObjective": "To confirm that at least one technical mechanism exists that allows a human to intervene in, override, or halt AI processing before an output causes harm or reaches an end user."
+            },
+            {
+              "requirement_control_number": "[18229-1.7]",
+              "control_number": "[2.6.3]",
+              "jkName": "Describe the Stop Mechanism Activation Steps",
+              "jkText": "Provide the exact sequence of steps a human operator must take to activate the stop mechanism — for example: '1. Click Stop in the admin console. 2. Confirm the halt dialog. 3. System logs the stop event and blocks the Query Interface.' If a stop mechanism is not yet implemented, enter 'Not implemented' so the Build layer can generate the correct risk control.",
+              "jkType": "TextBox",
+              "jkObjective": "To ensure the stop mechanism has a documented, human-executable activation procedure that operators can follow under pressure without consulting an engineer."
+            },
+            {
+              "requirement_control_number": "[18229-1.8]",
+              "control_number": "[2.6.4]",
+              "jkName": "Specify the Output Explanation Format",
+              "jkText": "Describe how the system communicates the reasoning behind each AI output to the user. Include the exact format delivered by the Response Interface — for example: source document citations with chunk-level links, a confidence score displayed alongside the response, a 'Why this answer?' expandable panel, or a list of the top-3 retrieved chunks used to generate the response. If no explanation format exists, enter 'None' — this creates a mandatory Build layer control.",
+              "jkType": "MultiSelect:Source Document Citations/Confidence Score Display/Retrieved Chunk Summary/Expandable Reasoning Panel/None",
+              "jkObjective": "To record the interpretability mechanism (the technical means by which a human can understand why the AI produced a specific output) so that auditors can verify the system meets the explainability requirement and users can make informed decisions about whether to act on the output."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "StepName": "New - 2.3. - Fairness Definition",
       "Objectives": [
         {
@@ -2261,92 +2357,6 @@
         }
       ],
       "Fields": [
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Transparency and Limitations",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-1.1]",
-              "control_number": "[2.2.1]",
-              "jkName": "Declare the System's Intended Purpose",
-              "jkText": "State exactly what this AI system is built to do, who it is built for, and the specific context it operates in. Scope this tightly — if the system later processes queries outside this declaration, every downstream risk control and test case must be re-evaluated.",
-              "jkType": "TextBox",
-              "jkObjective": "To record the declared operational scope and target population of the AI system so that any use outside those boundaries can be identified, flagged, and re-assessed."
-            },
-            {
-              "requirement_control_number": "[18229-1.2]",
-              "control_number": "[2.2.2]",
-              "jkName": "List Known Failure Scenarios",
-              "jkText": "List every input condition, data state, or query type where this system is known to produce wrong, degraded, or unreliable outputs. Include specific triggers such as unsupported languages, missing required fields, out-of-distribution queries that fall outside the Retriever's indexed knowledge, or token-limit edge cases in the LLM (Generator). Each entry here maps directly to a risk control in the Build layer.",
-              "jkType": "TextBox",
-              "jkObjective": "To capture all known 'blind spots' (input conditions or data states where the system is expected to fail or degrade) so that engineers have a complete target list for control design."
-            },
-            {
-              "requirement_control_number": "[18229-1.2]",
-              "control_number": "[2.2.3]",
-              "jkName": "Assign a Response Action per Failure",
-              "jkText": "For each failure scenario listed in [2.2.2], specify the exact system behaviour that must trigger when that failure occurs. Choose one action per failure: surface a confidence warning via the Response Interface, route the query to a human reviewer, suppress the response and return an error code, or log the event silently for engineer triage. One failure, one action — do not combine.",
-              "jkType": "MultiSelect:Surface Confidence Warning/Route to Human Reviewer/Suppress Response and Return Error/Log for Engineer Triage/None",
-              "jkObjective": "To ensure every declared failure mode has a single, unambiguous system response that prevents silent failures from reaching end users unchecked."
-            },
-            {
-              "requirement_control_number": "[18229-1.3]",
-              "control_number": "[2.2.4]",
-              "jkName": "Provide the Instructions for Use Link",
-              "jkText": "Paste the URL or document path to the Instructions for Use (IFU) — the operator manual that tells users how to run, monitor, and safely stop this system. The link must be machine-retrievable; a local file path or shared-drive shortcut that requires authenticated desktop access does not satisfy this requirement.",
-              "jkType": "TextBox",
-              "jkObjective": "To confirm that a retrievable, human-readable IFU is linked to this system record so that operators and auditors can access it without submitting a separate request."
-            },
-            {
-              "requirement_control_number": "[18229-1.3]",
-              "control_number": "[2.2.5]",
-              "jkName": "Confirm Documentation Delivery Format",
-              "jkText": "Select every format in which the IFU is currently published. At least one digital format must be selected — a printed manual alone does not meet the accessibility requirement under this control.",
-              "jkType": "MultiSelect:Digital PDF/Interactive Help Guide/In-App Tooltips/API Documentation/Printed Manual/None",
-              "jkObjective": "To verify that the IFU is published in at least one digitally accessible and machine-readable format, meeting the documentation accessibility requirement."
-            }
-          ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "New - Human Oversight Controls",
-          "Role": "Requester",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-1.6]",
-              "control_number": "[2.6.1]",
-              "jkName": "Describe Automation Bias Warnings in the UI",
-              "jkText": "Describe every warning, disclaimer, or confidence indicator [a score or signal displayed alongside an AI response that tells the user how certain the system is about its own answer — think of it as a percentage bar on a search result] displayed to the user in the Response Interface that signals the AI output should not be accepted without human review. Include the exact trigger condition for each warning — for example, 'displayed when confidence score < 0.80' or 'displayed on every response regardless of score'. A blank entry here means no warnings are implemented, which is a compliance gap.",
-              "jkType": "TextBox",
-              "jkObjective": "To record every UI mechanism designed to prevent automation bias (the tendency of humans to accept AI outputs without critical review) so that engineers can verify each warning is implemented and testable."
-            },
-            {
-              "requirement_control_number": "[18229-1.7]",
-              "control_number": "[2.6.2]",
-              "jkName": "Confirm Override and Stop Mechanisms",
-              "jkText": "Select every human intervention mechanism currently implemented in this system. At least one mechanism must be selected — if none exist, this is a build requirement, not an optional feature.",
-              "jkType": "MultiSelect:Output Override [a human rejects or replaces a single AI response before it takes effect — like clicking 'Dismiss' or 'Edit' on one answer]/System Stop — Kill Switch [a human halts all AI processing immediately across the entire system — no further queries are accepted until a human restarts it]/Query Cancellation [a human aborts a single in-flight query before the LLM (Generator) returns a response — the query is dropped and nothing is delivered]/Human Escalation Routing [the system automatically forwards the query to a human reviewer instead of generating an AI response — used when the system detects it cannot answer reliably]/None",
-              "jkObjective": "To confirm that at least one technical mechanism exists that allows a human to intervene in, override, or halt AI processing before an output causes harm or reaches an end user."
-            },
-            {
-              "requirement_control_number": "[18229-1.7]",
-              "control_number": "[2.6.3]",
-              "jkName": "Describe the Stop Mechanism Activation Steps",
-              "jkText": "Provide the exact sequence of steps a human operator must take to activate the stop mechanism — for example: '1. Click Stop in the admin console. 2. Confirm the halt dialog. 3. System logs the stop event and blocks the Query Interface.' If a stop mechanism is not yet implemented, enter 'Not implemented' so the Build layer can generate the correct risk control.",
-              "jkType": "TextBox",
-              "jkObjective": "To ensure the stop mechanism has a documented, human-executable activation procedure that operators can follow under pressure without consulting an engineer."
-            },
-            {
-              "requirement_control_number": "[18229-1.8]",
-              "control_number": "[2.6.4]",
-              "jkName": "Specify the Output Explanation Format",
-              "jkText": "Describe how the system communicates the reasoning behind each AI output to the user. Include the exact format delivered by the Response Interface — for example: source document citations with chunk-level links, a confidence score displayed alongside the response, a 'Why this answer?' expandable panel, or a list of the top-3 retrieved chunks used to generate the response. If no explanation format exists, enter 'None' — this creates a mandatory Build layer control.",
-              "jkType": "MultiSelect:Source Document Citations/Confidence Score Display/Retrieved Chunk Summary/Expandable Reasoning Panel/None",
-              "jkObjective": "To record the interpretability mechanism (the technical means by which a human can understand why the AI produced a specific output) so that auditors can verify the system meets the explainability requirement and users can make informed decisions about whether to act on the output."
-            }
-          ]
-        },
         {
           "jkType": "fieldGroup",
           "jkName": "New - Logging Triggers",

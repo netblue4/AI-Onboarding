@@ -36,6 +36,7 @@ class EventHandlers {
         const systemIdInput = document.getElementById('system-id-input');
         const fileInput = document.getElementById('file-input');
         const compliancemapBtn = document.getElementById('compliancemap-btn');
+        const compliancetableBtn = document.getElementById('compliancetable-btn');
         const saveBtn = document.getElementById('save-btn');
         const downloadBtn = document.getElementById('download-btn');
         const infoBanner = document.getElementById('info-banner');
@@ -57,6 +58,46 @@ class EventHandlers {
                 this.state.setSystemId(e.target.value);
             });
         }
+        
+        // ===== COMPLIANE TABLE BUTTON =====
+        compliancetableBtn.addEventListener('click', () => {
+            console.log('Load Compliance table button clicked');
+
+			const contentArea = document.getElementById('content-area');
+			if (!contentArea) return;
+		
+			// 1. Clear previous content
+			contentArea.innerHTML = '';
+			
+			try {
+				// 2. Get the specialized handler
+				const handler = getFieldHandler('complytable');
+				
+				if (handler) {
+					// 3. Call the handler. 
+					// Note: Since we aren't looping, we pass null or a global config 
+					// if the handler is already "data-aware".
+					const mindmapElement = handler(
+						this.state.capturedData, 
+						templateManager.sanitizeForId.bind(templateManager),
+						templateManager.fieldStoredValue.bind(templateManager)
+					);
+		
+					console.log('Mindmap Element produced:', mindmapElement); // Add this!
+		
+					if (mindmapElement) {
+						contentArea.appendChild(mindmapElement);
+					} else {
+						contentArea.innerHTML = '<div class="empty-state">No table data found.</div>';
+					}
+				}
+			} catch (error) {
+				console.error('Error in Compliance Table rendering:', error);
+				contentArea.innerHTML = '<div class="error">Failed to render table view.</div>';
+			}
+
+        });
+        
         
         // ===== COMPLIANE MAP BUTTON =====
         compliancemapBtn.addEventListener('click', () => {
@@ -174,6 +215,7 @@ class EventHandlers {
                         alert(CONFIG.MESSAGES.FILE_LOADED);
                         
                         compliancemapBtn.className = "btn-primary";
+                        compliancetableBtn.className = "btn-primary";
                                               
                     })
                     .catch(error => {
