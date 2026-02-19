@@ -1696,16 +1696,6 @@
               "jkObjective": "To prevent 'Unhandled Failure Mode' where a known failure trigger reaches the LLM (Generator) without a defined response action, causing silent wrong outputs to reach the end user.",
               "jkImplementationStatus": "Select",
               "jkImplementationEvidence": "A 'Failure Routing Configuration File' versioned in source control, plus an 'Orchestrator Routing Log' showing each triggered failure condition, the action taken, and a zero-count of unmatched failure triggers reaching the LLM (Generator)."
-            },
-            {
-              "requirement_control_number": "[18229-1.3]",
-              "control_number": "[2.2.R3]",
-              "jkName": "IFU Accessibility Validation",
-              "jkText": "Implement a startup health check in the Orchestrator that sends an HTTP GET request to the registered Instructions for Use (IFU) URL at every system initialisation. Fail the startup sequence and block the Query Interface from accepting user input if the IFU returns any status other than HTTP 200. Log the IFU URL, the HTTP status code returned, and the timestamp of every check.",
-              "jkType": "risk_control",
-              "jkObjective": "To prevent 'IFU Unavailability' where the system operates without a reachable operator manual, making it impossible for users or auditors to access guidance on safe operation or failure handling.",
-              "jkImplementationStatus": "Select",
-              "jkImplementationEvidence": "A 'Startup Health Check Log' showing the IFU URL, HTTP status code (must be 200), and timestamp for every system initialisation, with zero instances of the Query Interface accepting input while the IFU was unreachable."
             }
           ]
         },
@@ -1766,57 +1756,9 @@
               "jkObjective": "To provide a complete routing decision record proving that every declared failure trigger was matched and actioned, with zero unmatched triggers escalating to the LLM (Generator).",
               "jkImplementationStatus": "Select",
               "jkImplementationEvidence": "'Orchestrator Routing Audit Log' showing each trigger evaluated, the action taken, and a zero count of unmatched triggers reaching the LLM (Generator) across both TRANS-P-02 and TRANS-P-03 runs."
-            },
-            {
-              "requirement_control_number": "[18229-1.3]",
-              "control_number": "[2.2.T3]",
-              "jkName": "IFU Health Check Report",
-              "jkText": "Produce a 'Startup Health Check Report' after each test run of TRANS-P-04 and TRANS-P-05, showing the IFU URL tested, the HTTP status code returned, the timestamp, and the Query Interface state (accepting or blocked) at the moment of the check.",
-              "jkType": "test_control",
-              "jkObjective": "To provide timestamped startup evidence proving that the Query Interface was gated on IFU availability and did not accept user input while the IFU was unreachable.",
-              "jkImplementationStatus": "Select",
-              "jkImplementationEvidence": "'Startup Health Check Report' showing IFU URL, HTTP status code, timestamp, and Query Interface state for each startup event — must show blocked state for all non-200 responses and accepting state only after a confirmed HTTP 200."
             }
           ]
-        },
-        {
-          "jkType": "risk",
-          "Role": "Engineer",
-          "jkName": "New Human Oversight Bypass Failure",
-          "RiskDescription": "The Response Interface, Orchestrator, and Output Guardrail are at risk from 'Automation Bias Exploitation' — a condition where the system delivers AI outputs without visible confidence warnings, without a reachable stop mechanism, and without any explanation of how the output was generated. When a human cannot see a confidence indicator, cannot halt the system, and cannot interrogate the reasoning behind a response, they default to trusting the output. This is not a user error — it is a system design failure. The result is unchecked AI outputs acting as authoritative decisions, with no human verification step and no audit trail of human review.",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-1.6]",
-              "control_number": "[2.6.R1]",
-              "jkName": "Confidence Warning Injection",
-              "jkText": "Configure the Output Guardrail to evaluate the confidence score of every LLM (Generator) response before it reaches the Response Interface. Inject a visible warning banner into the response payload when the confidence score is < 0.80. Set the warning text to a fixed string — for example: 'AI confidence is below threshold. Review source documents before acting on this response.' Log every warning injection event, the confidence score that triggered it, and the query ID.",
-              "jkType": "risk_control",
-              "jkObjective": "To prevent 'Automation Bias Exploitation' where a low-confidence AI response reaches the user without a visible signal that human review is required before acting on the output.",
-              "jkImplementationStatus": "Select",
-              "jkImplementationEvidence": "An 'Output Confidence Log' showing every response evaluated, the confidence score assigned, whether a warning banner was injected, and a zero count of responses with confidence score < 0.80 that reached the Response Interface without a warning."
-            },
-            {
-              "requirement_control_number": "[18229-1.7]",
-              "control_number": "[2.6.R2]",
-              "jkName": "Kill Switch Implementation",
-              "jkText": "Implement a stop endpoint in the Orchestrator that, when triggered, immediately halts all in-flight query processing, blocks the Query Interface from accepting new input, and writes a stop event to the audit log within 500 milliseconds of activation. Expose this endpoint via the admin console as a single-action button labelled 'Stop AI Processing'. Require a confirmation dialog before execution to prevent accidental activation. The system must not resume processing until a human operator explicitly sends a restart signal to the same endpoint.",
-              "jkType": "risk_control",
-              "jkObjective": "To prevent 'Uncontrolled AI Continuation' where the system keeps generating and delivering outputs during an incident because no human-accessible stop mechanism exists or is reachable under operational pressure.",
-              "jkImplementationStatus": "Select",
-              "jkImplementationEvidence": "A 'Kill Switch Activation Log' showing the timestamp of each stop event, the operator ID that triggered it, confirmation that the Query Interface was blocked within 500 milliseconds, and the timestamp of the subsequent restart signal."
-            },
-            {
-              "requirement_control_number": "[18229-1.8]",
-              "control_number": "[2.6.R3]",
-              "jkName": "Retrieval Source Attribution",
-              "jkText": "Configure the Context Assembler to attach source metadata to every chunk passed to the LLM (Generator). Configure the Response Interface to render this metadata as a numbered citation list beneath every AI response, showing the source document name, chunk ID, and a relevance score for each retrieved chunk. Set a minimum citation count of 1 — suppress and flag any response where the Context Assembler passed zero attributable chunks to the LLM (Generator).",
-              "jkType": "risk_control",
-              "jkObjective": "To prevent 'Opaque Output Failure' where the LLM (Generator) produces a response with no traceable source attribution, making it impossible for a human reviewer to verify the reasoning or identify a hallucination.",
-              "jkImplementationStatus": "Select",
-              "jkImplementationEvidence": "A 'Response Attribution Report' generated per deployment showing the average citation count per response, the count of responses with zero attributable chunks, and confirmation that all zero-attribution responses were suppressed and flagged before reaching the Response Interface."
-            }
-          ]
-        },
+        }
         {
           "jkType": "plan",
           "Role": "Tester",
