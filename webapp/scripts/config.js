@@ -15,9 +15,8 @@ const CONFIG = {
         'Requester',
         'Data Engineer',
         'Engineer',
+        'Deployment Engineer',
         'Tester',
-        'Deployment',
-        'Operation',
         'Approver',
     ],
     

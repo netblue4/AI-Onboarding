@@ -1559,7 +1559,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "[18229-3: Trustworthiness (Robustness)] - Resilience Factors",
-          "Role": "Requester",
+          "Role": "Engineer",
           "controls": [
             {
               "requirement_control_number": "[18229-3.16]",
@@ -1582,7 +1582,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "[18229-3: Trustworthiness (Robustness)] - Fail-Safe Mechanisms",
-          "Role": "Requester",
+          "Role": "Engineer",
           "controls": [
             {
               "requirement_control_number": "[18229-3.18]",
@@ -1605,7 +1605,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "[18229-3: Trustworthiness (Robustness)] - Reproducibility",
-          "Role": "Requester",
+          "Role": "Engineer",
           "controls": [
             {
               "requirement_control_number": "[18229-3.20]",
@@ -3031,7 +3031,7 @@
           "controls": [
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.0R2]",
+              "control_number": "[1.1.R2]",
               "jkName": "Encrypted Registry Channels",
               "jkText": "Configure development tools, orchestrators, and container runtimes to exclusively use encrypted channels when connecting to registries.",
               "jkType": "risk_control",
@@ -3041,7 +3041,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.0R3]",
+              "control_number": "[1.2.R3]",
               "jkName": "Automated Registry Pruning",
               "jkText": "Implement time-triggered pruning of registries to remove unsafe or vulnerable container images.",
               "jkType": "risk_control",
@@ -3051,7 +3051,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.0R4]",
+              "control_number": "[1.3.R4]",
               "jkName": "Registry Access Control",
               "jkText": "Enforce read/write access control for registries containing proprietary or sensitive container images.",
               "jkType": "risk_control",
@@ -3061,7 +3061,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.0R5]",
+              "control_number": "[1.4.R5]",
               "jkName": "Admin MFA & SSO",
               "jkText": "Control access to cluster-wide administrative accounts using strong authentication methods like multifactor authentication and single sign-on to existing directory systems where applicable.",
               "jkType": "risk_control",
@@ -3071,7 +3071,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.0R6]",
+              "control_number": "[1.5.R6]",
               "jkName": "Traffic Segmentation",
               "jkText": "Implement network isolation protocols that configure orchestrators to segregate network traffic based on sensitivity levels.",
               "jkType": "risk_control",
@@ -3081,7 +3081,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.0R7]",
+              "control_number": "[1.6.R7]",
               "jkName": "Host Isolation Policy",
               "jkText": "Deploy policies that configure orchestrators to isolate deployments to specific sets of hosts based on security requirements or sensitivity levels.",
               "jkType": "risk_control",
@@ -3091,7 +3091,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.1R2]",
+              "control_number": "[1.7.R2]",
               "jkName": "Host OS Hardening",
               "jkText": "Implement mechanisms to reduce Host Operating System (OS) attack surfaces, including\na) using container-specific OSs with unnecessary services disabled (e.g., print spooler)\nb) employing read-only file systems\nc) regularly updating and patching OSs and lower-level components like the kernel\nd) validating versioning of components for base OS management and functionality.",
               "jkType": "risk_control",
@@ -3101,7 +3101,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.1R3]",
+              "control_number": "[1.8.R3]",
               "jkName": "Workload Segregation",
               "jkText": "Establish mechanisms to prevent the mixing of containerised and non-containerised workloads on the same host instance.",
               "jkType": "risk_control",
@@ -3111,7 +3111,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.1R4]",
+              "control_number": "[1.9.R4]",
               "jkName": "Minimal FS Permissions",
               "jkText": "Implement mechanisms to enforce minimal file system permissions for all containers, ensuring that they cannot mount sensitive directories on the host's file system.",
               "jkType": "risk_control",
@@ -3121,7 +3121,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.1R6]",
+              "control_number": "[1.9.R6]",
               "jkName": "Trusted Image Enforcement",
               "jkText": "Ensure that only images from trusted image stores and registries are permitted to run in the environment.",
               "jkType": "risk_control",
@@ -3131,7 +3131,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.1R7]",
+              "control_number": "[1.10.R7]",
               "jkName": "Network Policy Isolation",
               "jkText": "Utilise network policies and firewall rules to restrict container network access and isolate sensitive workloads.",
               "jkType": "risk_control",
@@ -3141,7 +3141,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.1R8]",
+              "control_number": "[1.11.R8]",
               "jkName": "Immutable Containers",
               "jkText": "Adopt the use of immutable containers, which cannot be altered post-deployment, wherever feasible.",
               "jkType": "risk_control",
@@ -3151,7 +3151,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.1R9]",
+              "control_number": "[1.12.R9]",
               "jkName": "API Security & Throttling",
               "jkText": "Implement security measures for APIs, including robust API authentication mechanisms (e.g., OAuth 2.0, API keys), fine-grained access controls, and rate limiting to protect against abuse.",
               "jkType": "risk_control",
@@ -3161,7 +3161,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.2R0]",
+              "control_number": "[1.13.R0]",
               "jkName": "Non-Root Execution",
               "jkText": "Images should be configured to run as non-privileged users.",
               "jkType": "risk_control",
@@ -3171,7 +3171,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.2R1]",
+              "control_number": "[1.14.R1]",
               "jkName": "Dynamic Secret Management",
               "jkText": "Secrets should be stored outside of images and provided dynamically at runtime as needed.",
               "jkType": "risk_control",
@@ -3181,7 +3181,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.2R2]",
+              "control_number": "[1.14.R2]",
               "jkName": "Privilege Escalation Controls",
               "jkText": "Implement security policies and access controls at both the container and host levels to restrict unauthorised access and privilege escalation.",
               "jkType": "risk_control",
@@ -3191,7 +3191,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.2R3]",
+              "control_number": "[1.15.R3]",
               "jkName": "Platform Security Features",
               "jkText": "Utilise built-in security features of your containerisation platform.",
               "jkType": "risk_control",
@@ -3201,7 +3201,7 @@
             },
             {
               "requirement_control_number": "[18282.4]",
-              "control_number": "[PROTE.2R4]",
+              "control_number": "[1.16.R4]",
               "jkName": "Resource Limit Enforcement",
               "jkText": "Mechanisms exist to implement resource limitations to prevent containers from consuming excessive resources and potentially causing a Denial of Service (DoS) attack.",
               "jkType": "risk_control",
