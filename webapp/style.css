@@ -663,7 +663,7 @@ button:hover {
 
         .btn-primary {
             background: linear-gradient(135deg, #c9a84c 0%, #9a7a2e 100%);
-            color: #1a1a1a;
+            color: #e0d9ce;
             padding: 10px 20px;
             border: 1px solid #b8963e;
             border-radius: 6px;
@@ -679,38 +679,6 @@ button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(184, 150, 62, 0.45);
             border-color: #c9a84c;
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: #e0d9ce;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn-success {
-            background: #22c55e;
-            color: #e0d9ce;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-success:hover {
-            background: #218838;
         }
 
         .version-banner {
