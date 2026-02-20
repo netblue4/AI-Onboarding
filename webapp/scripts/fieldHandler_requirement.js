@@ -12,7 +12,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
 	controlText.id = sanitizedId;
     controlText.name = sanitizedId;
 	controlText.textContent = field.requirement_control_number + ' - ' + field.jkText;
-	label.appendChild(controlText);
+	fieldDiv.appendChild(controlText);
 
     // Control status
     const select = document.createElement('select');
@@ -112,7 +112,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
             avIcon.textContent = isCollapsed ? '▶' : '▼';
         });
 
-        controlText.appendChild(avHeaderDiv);
+        fieldDiv.appendChild(avHeaderDiv);
         fieldDiv.appendChild(avContentDiv);
     }
 
