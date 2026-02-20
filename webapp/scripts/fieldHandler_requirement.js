@@ -43,7 +43,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
             gData.requirements.forEach((reqEntry, reqKey) => {
-				matchedRequirement = articleValue.get(requirementKey);
+				matchedRequirement = articleValue.get(reqEntry);
 				return;
             });
             });
