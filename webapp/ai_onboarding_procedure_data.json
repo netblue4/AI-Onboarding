@@ -2162,6 +2162,16 @@
 			  "jkObjective": "To prevent 'Adversarial Noise Injection' where deliberately crafted 'Zero-Width' characters, homoglyph substitutions, or 'Semantic Bomb' token repetitions in a prompt bypass the Input Guardrail's standard checks and cause the Embedding Model to generate a misleading vector or the Retriever to return attacker-controlled chunk rankings.",
 			  "jkImplementationStatus": "Select",
 			  "jkImplementationEvidence": "An 'Adversarial Noise Detection Log' generated per session showing every prompt evaluated, Zero-Width characters detected and stripped with Unicode code points, homoglyph substitutions applied with before/after character values, Semantic Bomb tokens flagged with frequency counts, and a zero count of prompts containing detected adversarial noise patterns that reached the Embedding Model without sanitisation."
+			},
+			{
+			  "requirement_control_number": "[18282.6]",
+			  "control_number": "[8.3.R3]",
+			  "jkName": "MFA Failure Lockout and Alert",
+			  "jkText": "Enforce an automated account lockout policy on all three high-privilege access paths: the model weights repository, the Vector Store admin interface, and the Orchestrator configuration console. After 3 consecutive failed MFA attempts within a 10-minute rolling window, the system must automatically suspend the account, immediately terminate all active sessions for that account, and raise a Priority-1 security alert to the Security team. The alert payload must include the account ID, source IP address, timestamp of each failed attempt, and the access path targeted. Reinstatement of the suspended account requires a Security team member to verify the account holder's identity through an out-of-band channel (phone or in-person) before re-enabling access. The lockout event must be written to the immutable audit log per risk control [24970.7] and cross-referenced in the Security Incident Response Runbook [SIRB-18282.8]. If the identity verification step confirms a credential compromise, the event must be assessed for serious incident classification under AI Act Article 73 and DORA ICT incident thresholds within 24 hours per risk control [18286.6].",
+			  "jkType": "risk_control",
+			  "jkObjective": "To prevent brute-force and credential-stuffing attacks on the three highest-risk access paths in the RAG architecture by ensuring that repeated MFA failures trigger automatic account suspension, immediate session termination, and human-reviewed out-of-band identity verification before access is restored, eliminating the window in which an attacker with stolen credentials can gain privileged access through repeated authentication attempts.",
+			  "jkImplementationStatus": "Select",
+			  "jkImplementationEvidence": "An 'MFA Failure Lockout Log' generated per incident showing the account ID targeted, access path attempted, source IP address, timestamps of each failed MFA attempt, automatic suspension confirmation timestamp, active sessions terminated, Security team alert delivery confirmation, out-of-band identity verification outcome, and reinstatement timestamp or escalation reference if credential compromise was confirmed. A zero count of accounts reinstated without a completed out-of-band verification step."
 			}
 		  ]
 		},
