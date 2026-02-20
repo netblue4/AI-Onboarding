@@ -58,7 +58,7 @@ function createFieldGroup(field, capturedData, sanitizeForId, fieldStoredValue, 
             
             if (handler) {
                 // Call the existing handler for the nested field
-                const fieldElement = handler(nestedField, capturedData, sanitizeForId, mindmap);
+                const fieldElement = handler(nestedField, capturedData, sanitizeForId, fieldStoredValue, mindmap);
                 fieldsWrapper.appendChild(fieldElement);
             } else {
                 console.warn(`[FieldGroup]: No handler found for nested FieldType: ${fieldType}`);
