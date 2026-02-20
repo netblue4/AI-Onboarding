@@ -9,7 +9,7 @@
  * @param {function} sanitizeForId - The function used to sanitize field names for HTML IDs.
  * @returns {HTMLElement} The complete field group container element.
  */
-function createFieldGroup(field, capturedData, sanitizeForId, fieldStoredValue) {
+function createFieldGroup(field, capturedData, sanitizeForId, fieldStoredValue, mindmap) {
     // 1. Create the main container for the group box
     const groupContainer = document.createElement('div');
     groupContainer.className = 'field-group-container'; // Class for styling the box
@@ -58,7 +58,7 @@ function createFieldGroup(field, capturedData, sanitizeForId, fieldStoredValue) 
             
             if (handler) {
                 // Call the existing handler for the nested field
-                const fieldElement = handler(nestedField, capturedData, sanitizeForId);
+                const fieldElement = handler(nestedField, capturedData, sanitizeForId, mindmap);
                 fieldsWrapper.appendChild(fieldElement);
             } else {
                 console.warn(`[FieldGroup]: No handler found for nested FieldType: ${fieldType}`);
