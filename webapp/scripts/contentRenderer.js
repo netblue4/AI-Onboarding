@@ -23,15 +23,16 @@ class ContentRenderer {
 			
 				const webappData = window.originalWebappData;
 				const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-
+                const sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager),
+				const fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager,
 				// 3. Call the handler. 
 				// Note: Since we aren't looping, we pass null or a global config 
 				// if the handler is already "data-aware".
 				const assessmentElement = handler(
 					this.state.capturedData, 
-					this.templateManager.sanitizeForId.bind(this.templateManager),
-					this.templateManager.fieldStoredValue.bind(this.templateManager,
-					mindmapData)
+					sanitizeForId,
+					fieldStoredValue,
+					mindmapData
 				);
 	
 				if (assessmentElement) {
