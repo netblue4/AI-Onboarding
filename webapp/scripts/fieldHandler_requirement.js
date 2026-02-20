@@ -44,7 +44,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         groups.forEach((gData, groupName) => {
             gData.requirements.forEach((reqEntry, reqKey) => {
 				matchedRequirement = articleValue.get(requirementKey);
-				break;
+				return;
             });
             });
             });
