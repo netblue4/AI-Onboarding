@@ -43,7 +43,8 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
             gData.requirements.forEach((reqEntry, reqKey) => {
-				const tr = reqKey;
+				matchedRequirement = articleValue.get(requirementKey);
+				break;
             });
             });
             });
@@ -54,15 +55,15 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
 
     // Step 2: Search each article in the mindmap for an inner Map that has this key.
     // mindmap structure: Map( articleKey -> Map( requirementKey -> { implementations: Set } ) )
-    let matchedRequirement = null;
-    if (mindmap) {
-        for (const [articleKey, articleValue] of mindmap) {
-            if (articleValue instanceof Map && articleValue.has(requirementKey)) {
-                matchedRequirement = articleValue.get(requirementKey);
-                break;
-            }
-        }
-    }
+    //let matchedRequirement = null;
+    //if (mindmap) {
+    //    for (const [articleKey, articleValue] of mindmap) {
+    //        if (articleValue instanceof Map && articleValue.has(requirementKey)) {
+    //            matchedRequirement = articleValue.get(requirementKey);
+    //            break;
+    //        }
+    //    }
+    //}
 
     // Step 3: Iterate the implementations Set and collect every object that has jkAttackVector
     const attackVectors = [];
