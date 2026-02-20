@@ -2,10 +2,12 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.requirement_control_number);
+    
     const label = document.createElement('label');
-    label.textContent = field.jkName + ' (' + field.requirement_control_number + ')';
+    label.textContent = field.jkName;
     label.classList.add('label-bold');
     fieldDiv.appendChild(label);
+    
     const controlText = document.createElement('p');
 	controlText.id = sanitizedId;
     controlText.name = sanitizedId;
@@ -29,7 +31,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
 
         select.appendChild(option);
     });
-    label.appendChild(select);
+    controlText.appendChild(select);
 
 
     // --- Attack Vectors Collapsible ---
