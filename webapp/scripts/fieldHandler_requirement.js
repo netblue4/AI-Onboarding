@@ -26,11 +26,12 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     });
     label.appendChild(select);
 
-    const input = document.createElement('label');
-    input.id = sanitizedId;
-    input.name = sanitizedId;
-    input.value = field.jkText;
-    fieldDiv.appendChild(input);
+    
+	const controlText = document.createElement('p');
+	controlText.id = sanitizedId;
+    controlText.name = sanitizedId;
+	controlText.textContent = field.jkText;
+	 fieldDiv.appendChild(controlText);
 
     // --- Attack Vectors Collapsible ---
 
