@@ -1,9 +1,19 @@
+let webappData; 
+let mindmapData;	
+let sanitizeForId;
+let fieldStoredValue; 			
+
 class ContentRenderer {
     constructor(stateManager, templateManager, dataRestore) {
         this.state = stateManager;
         this.templateManager = templateManager;
         this.dataRestore = dataRestore;
     }
+	
+	sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
+	fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
+    webappData = window.originalWebappData;
+	mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 	
 	renderAIAssessmentView() {
 		console.log('Rendering AI Assessment View');
@@ -20,11 +30,6 @@ class ContentRenderer {
 
 			if (handler) {
 			
-			
-				const webappData = window.originalWebappData;
-				const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-                const sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager),
-				const fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager,
 				// 3. Call the handler. 
 				// Note: Since we aren't looping, we pass null or a global config 
 				// if the handler is already "data-aware".
@@ -136,11 +141,13 @@ class ContentRenderer {
                             
                             if (!handler) return;
                             
+                            
                             const fieldElement = handler(
                                 field, 
                                 this.state.capturedData, 
-                                this.templateManager.sanitizeForId.bind(this.templateManager),
-					            this.templateManager.fieldStoredValue.bind(this.templateManager)
+								sanitizeForId,
+								fieldStoredValue,
+								mindmapData
                             );
 
                             if (!fieldElement) return;
