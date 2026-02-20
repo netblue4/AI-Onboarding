@@ -37,6 +37,21 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     // Step 1: Store the key we are looking for
     const requirementKey = field.requirement_control_number;
 
+
+
+
+    mindmapData.forEach((groups, stepName) => {
+        groups.forEach((gData, groupName) => {
+            gData.requirements.forEach((reqEntry, reqKey) => {
+				const tr = reqKey;
+            });
+            });
+            });
+            
+            
+            
+
+
     // Step 2: Search each article in the mindmap for an inner Map that has this key.
     // mindmap structure: Map( articleKey -> Map( requirementKey -> { implementations: Set } ) )
     let matchedRequirement = null;
