@@ -12,7 +12,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
 	controlText.id = sanitizedId;
     controlText.name = sanitizedId;
 	controlText.textContent = field.requirement_control_number + ' - ' + field.jkText;
-	 fieldDiv.appendChild(controlText);
+	label.appendChild(controlText);
 
     // Control status
     const select = document.createElement('select');
