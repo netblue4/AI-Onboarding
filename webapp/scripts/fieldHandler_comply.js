@@ -25,7 +25,7 @@ let totalImplementationFieldsWithResponse = 0;
 let totalImplementationControls = 0;
 let totalImplementationControlsWithEvidence = 0;
  
-function createComplyField(field = null; incapturedData, sanitizeForId, fieldStoredValue, mindmap = null) {
+function createComplyField(field = null, incapturedData, sanitizeForId, fieldStoredValue, mindmap = null) {
     
     capturedData = incapturedData || {};
     
