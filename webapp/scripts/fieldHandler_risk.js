@@ -15,7 +15,7 @@
  * @param {*} fieldStoredValue - Previously stored value for this field (reserved for future use).
  * @returns {HTMLElement} The fully constructed div element for the form field.
  */
-function createRisk(field, capturedData, sanitizeForId, fieldStoredValue) {
+function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindmap) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
 
