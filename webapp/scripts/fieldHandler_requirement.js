@@ -3,9 +3,8 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.requirement_control_number);
     
-    const label = document.createElement('label');
+    const label = document.createElement('strong');
     label.textContent = field.jkName;
-    label.classList.add('label-bold');
     fieldDiv.appendChild(label);
     
     const controlText = document.createElement('p');
