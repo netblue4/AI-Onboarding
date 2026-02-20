@@ -26,7 +26,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     });
     label.appendChild(select);
 
-    const input = document.createElement('textarea');
+    const input = document.createElement('label');
     input.id = sanitizedId;
     input.name = sanitizedId;
     input.value = field.jkText;
