@@ -10,11 +10,6 @@ class ContentRenderer {
         this.dataRestore = dataRestore;
     }
 	
-	sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
-	fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
-    webappData = window.originalWebappData;
-	mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-	
 	renderAIAssessmentView() {
 		console.log('Rendering AI Assessment View');
 		
@@ -29,6 +24,11 @@ class ContentRenderer {
 			const handler = getFieldHandler('comply');
 
 			if (handler) {
+			
+				sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
+				fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
+				webappData = window.originalWebappData;
+				mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 			
 				// 3. Call the handler. 
 				// Note: Since we aren't looping, we pass null or a global config 
@@ -76,6 +76,11 @@ class ContentRenderer {
 
         console.log('Rendering content for role:', this.state.currentRole);
         
+		sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
+		fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
+		webappData = window.originalWebappData;
+		mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
+
         contentArea.innerHTML = '';
         let hasContent = false;
 
