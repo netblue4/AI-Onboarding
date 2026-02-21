@@ -187,49 +187,37 @@ button:hover {
     /* Indent the dropdown to align with the collapsible content below it */
     margin-left: 28px; 
 }
-
-
 /*
- * The wrapper for the content that will be hidden or shown.
- * This is the style for the OPEN/EXPANDED state.
- */
 .collapsible-content {
-    /* Set your desired max height here. I've kept the 600px from your code. */
     //max-height: 600px; 
     
-    /* This correctly enables the vertical scrollbar when content is taller than max-height. */
     //overflow-y: auto; 
     
-    /* REMOVED: "overflow: hidden;" was here, which was causing the issue. */
 
     padding: 15px;
     padding-right: 10px;
     margin-left: 5px;
     border-left: 1px solid #3d3d3d;
-    transition: all 0.35s ease-in-out; /* 'all' provides a smoother transition for padding/border */
+    transition: all 0.35s ease-in-out; 
 }
 
-/*
- * The state when content is COLLAPSED (hidden).
- */
+
 .collapsible-content.collapsed {
     max-height: 0;
     border-left-color: transparent;
     padding-top: 0;
     padding-bottom: 0;
 
-    /* This is CRUCIAL here to hide the content completely when collapsed. */
     overflow: hidden; 
 }
 
-/* General styling for elements inside the collapsible area */
 .collapsible-content .label-bold,
 .collapsible-content .multiline-label {
     display: block;
     margin-bottom: 8px;
     margin-top: 8px;
 }
-
+*/
 /*
 
 .steps-container {
@@ -384,21 +372,21 @@ button:hover {
 }
 */
 
-/* Top-level Regulatory Requirement Node */
+/* 
 .reg-item {
 	margin-bottom: 25px;
 	border: 1px solid var(--border-color);
 	border-radius: 8px;
-	overflow: hidden; /* Ensure header radius applies */
+	overflow: hidden; 
 }
 
 .reg-header {
 	background-color: #2e2b24;
 	padding: 15px 20px;
 	border-bottom: 1px solid var(--border-color);
-	display: flex; /* Use flexbox for alignment */
+	display: flex; 
 	align-items: center;
-	cursor: pointer; /* Indicate it's clickable */
+	cursor: pointer; 
 	transition: background-color 0.2s ease;
 }
 
@@ -412,7 +400,7 @@ button:hover {
 	color: var(--primary-color);
 	margin-right: 15px;
 	transition: transform 0.2s ease;
-	width: 20px; /* Reserve space */
+	width: 20px; 
 	text-align: center;
 	flex-shrink: 0;
 }
@@ -422,8 +410,8 @@ button:hover {
 }
 
 .reg-header-content {
-	flex-grow: 1; /* Take remaining space */
-	min-width: 0; /* Prevent overflow */
+	flex-grow: 1; 
+	min-width: 0; 
 }
 
 .reg-title {
@@ -431,7 +419,7 @@ button:hover {
 	font-weight: 700;
 	color: #b8963e;
 	margin: 0;
-	margin-bottom: 8px; /* Add space for progress bar */
+	margin-bottom: 8px; 
 	word-wrap: break-word;
 }
 
@@ -442,11 +430,10 @@ button:hover {
 	word-wrap: break-word;
 }
 
-/* New Progress Bar Styles */
 .progress-container {
 	width: 100%;
 	height: 18px;
-	background-color: #2e2b24; /* Lighter blue */
+	background-color: #2e2b24; 
 	border-radius: 9px;
 	overflow: hidden;
 	position: relative;
@@ -454,7 +441,7 @@ button:hover {
 
 .progress-bar {
 	height: 100%;
-	width: 0%; /* Will be set by inline style */
+	width: 0%; 
 	background-color: var(--primary-color);
 	transition: width 0.4s ease-out;
 }
@@ -465,26 +452,24 @@ button:hover {
 	top: 0;
 	left: 0;
 	text-align: center;
-	font-size: 0.8em; /* 12.8px */
-	line-height: 18px; /* Match container height */
+	font-size: 0.8em; 
+	line-height: 18px; 
 	font-weight: 600;
-	color: #b8963e; /* Darker blue for contrast */
+	color: #b8963e; 
 }
 
-/* List of Sub-Controls */
 .sub-control-list {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	display: none; /* Hide by default */
+	display: none; 
 	background-color: #2a2a2afff;
 }
 
 .sub-control-list.expanded {
-	display: block; /* Show when expanded */
+	display: block; 
 }
 
-/* Individual Sub-Control Item */
 .sub-control-item {
 	padding: 15px 20px;
 	border-bottom: 1px solid var(--border-color);
@@ -493,7 +478,7 @@ button:hover {
 
 .sub-control-item .auto-generated-label {
     font-size: 0.9rem;
-    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
+    font-weight: 200; 
     font-style: italic;
     color: #8a8480;
     background-color: #303030;
@@ -514,7 +499,6 @@ button:hover {
 	word-wrap: break-word;
 }
 
-/* List of Implementations (under a sub-control) */
 .imp-list {
 	list-style: none;
 	padding: 0;
@@ -524,7 +508,6 @@ button:hover {
 	border-left: 3px solid var(--border-color);
 }
 
-/* Individual Implementation Item */
 .imp-item {
 	padding: 10px;
 	display: flex;
@@ -554,24 +537,24 @@ button:hover {
 .type-risk { background-color: #4d1a1a; color: #f87171; }
 .type-plan { background-color: #1e2b1e; color: #22c55e; }
 .type-multiSelect { background-color: #2e2b24; color: #22c55e; }
-.type-other { background-color: #3d3d3d; color: #8a8480; } /* New badge for other types */
+.type-other { background-color: #3d3d3d; color: #8a8480; } 
 
 .imp-content {
 	flex: 1;
-	min-width: 0; /* Prevents long text from overflowing */
+	min-width: 0; 
 }
 
 .imp-title {
 	font-weight: 500;
 	font-size: 0.95em;
-	word-wrap: break-word; /* Handle long field names */
+	word-wrap: break-word; 
 }
 
 .imp-meta {
 	font-size: 0.85em;
 	color: #8a8480;
 	margin-top: 2px;
-	word-wrap: break-word; /* Handle long control strings */
+	word-wrap: break-word; 
 }
 
 .no-children {
@@ -582,7 +565,6 @@ button:hover {
 }
 
 
-        /* Additional styles for new features */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -794,8 +776,8 @@ button:hover {
     display: grid;
     gap: 8px;
     grid-auto-flow: column;
-    grid-auto-columns: 140px; /* Keep them readable size */
-    overflow-x: auto;         /* Add a scrollbar if they don't fit */
+    grid-auto-columns: 140px; 
+    overflow-x: auto;         
 }
 
 .role-progress-item {
@@ -811,9 +793,9 @@ button:hover {
     box-shadow: 0 2px 8px rgba(184, 150, 62, 0.1);
 }
 .role-progress-item.completed {
-    background: #2a2a2a;        /* same as base — no green tint */
-    border-color: #3d3d3d;      /* same as base — no green border */
-    box-shadow: none;           /* no green glow */
+    background: #2a2a2a;        
+    border-color: #3d3d3d;      
+    box-shadow: none;           
 }
 .role-progress-item.in-progress {
     background: #2b2310;
@@ -848,7 +830,7 @@ button:hover {
     transition: width 0.3s ease;
 }
 .role-progress-item.completed .role-progress-fill {
-    background: #22c55e;        /* green bar only — everything else is neutral */
+    background: #22c55e;        
 }
 .role-progress-item.in-progress .role-progress-fill {
     background: #b8963e;
@@ -867,7 +849,7 @@ button:hover {
     text-align: center;
 }
 .role-progress-item.completed .role-progress-text {
-    color: #8a8480;             /* back to neutral — no green text */
+    color: #8a8480;             
 }
 .role-progress-item.in-progress .role-progress-text {
     color: #b8963e;
@@ -875,28 +857,25 @@ button:hover {
 .role-progress-item.current .role-progress-text {
     color: #b8963e;
 }
-/* Make the header look clickable */
 .step-header {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    user-select: none; /* Prevents text highlighting when clicking fast */
+    user-select: none; 
 }
 
-/* Add an arrow icon automatically */
 .step-header::after {
-    content: '▼'; /* Down arrow for open */
+    content: '▼'; 
     font-size: 0.8em;
     transition: transform 0.3s ease;
 }
 
-/* Rotate arrow when collapsed */
 .step-header.collapsed::after {
-    transform: rotate(-90deg); /* Pointing right for collapsed */
+    transform: rotate(-90deg); 
 }
 
-/* The class that actually hides the content */
 .step-content.collapsed {
     display: none;
 }
+*/
