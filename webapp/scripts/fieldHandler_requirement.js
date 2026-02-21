@@ -16,7 +16,6 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     // Control status
     const select = document.createElement('select');
     select.name = sanitizedId + '_jkSoa';
-    select.style.fieldSizing = 'content'; // shrinks to fit selected option text
     const options = ['Select', 'Applicable', 'Not Applicable'];
     options.forEach((optionText, index) => {
         const option = document.createElement('option');
@@ -65,15 +64,16 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
 
         // Collapsible header
         const avHeaderDiv = document.createElement('div');
-        avHeaderDiv.className = 'collapsible-header';
+        avHeaderDiv.className = 'collapsible-header collapsible-header--nested';
 
         const avIcon = document.createElement('span');
         avIcon.className = 'collapse-icon';
         avIcon.textContent = '▶';
         avHeaderDiv.appendChild(avIcon);
 
-        const avHeaderLabel = document.createElement('div');
+        const avHeaderLabel = document.createElement('span');
         avHeaderLabel.textContent = 'Attack Vectors';
+        avHeaderLabel.className = 'label-bold';
         avHeaderDiv.appendChild(avHeaderLabel);
 
         // Collapsible content — collapsed by default
