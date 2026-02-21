@@ -758,6 +758,7 @@ button:hover {
     border-bottom: 2px solid #b8963e;
     padding: 20px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .role-progress-header {
