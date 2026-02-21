@@ -85,11 +85,11 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
 
         // Bullet list — one <li> per implementation object that carries a jkAttackVector
         const ul = document.createElement('ul');
-        ul.className = 'attack-vector-list';
+        //ul.className = 'attack-vector-list';
 
         attackVectors.forEach(impl => {
             const li = document.createElement('li');
-            li.className = 'attack-vector-item';
+            //li.className = 'attack-vector-item';
 
             // Bold control number prefix so the engineer can cross-reference the control
             if (impl.control_number) {
