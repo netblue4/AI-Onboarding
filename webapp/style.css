@@ -63,7 +63,7 @@ body {
     border-bottom: 1px solid #b8963e;
     padding-bottom: 10px;
 }
-
+.form-field label,
 .form-field input[type="text"],
 .form-field select,
 .form-field textarea,
@@ -72,11 +72,6 @@ body {
     font-weight: 200; 
 }
 
-.form-field label {
-    font-size: 0.9rem;
-    font-weight: 200; 
-    margin-bottom: 15px; /* This creates the space you requested */
-}
 
 
 /* --- 1. The Cool-Dark Select Dropdown --- */
@@ -155,6 +150,7 @@ body {
 .form-field textarea {
     width: 100%;
     padding: 0.75rem;
+    margin-top: 0.5rem;        /* ← Add this line */
     background-color: #1e1e1e; /* Darker background to match the theme */
     color: #e0e0e0;            /* Off-white text for better readability */
     border: 1px solid #444;    /* Subtle border */
@@ -191,18 +187,13 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.form-field labelInline {
-    padding: 0.45rem;
-    display: inline;
-    margin-bottom: 0.5rem;
-}
-
 .form-field p {
     /* Top: 1rem, Right: 0.45rem, Bottom: 0.1rem, Left: 0.45rem */
     padding: 1rem 0.45rem 0.1rem 0.45rem; 
     line-height: 1.5;
     margin: 0; /* Ensures browser default margins don't interfere */
    /*padding: 0.45rem;*/
+    line-height: 1.5; 
 }
 /*
 .label-bold{
