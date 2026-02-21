@@ -22,6 +22,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     // --- 2. Create the Top-Level Collapsible Content ---
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
+
     
     // Create a wrapper span to keep labels on the same line
     const labelWrapper = document.createElement('span');
@@ -40,8 +41,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     labelT.style.display = 'inline'; 
     labelWrapper.appendChild(labelT);
 
-    fieldDiv.appendChild(labelWrapper);
-    
+    contentDiv.appendChild(labelWrapper);
 
     // --- NEW: Flex Container for Select and Attack Vectors ---
     const actionRow = document.createElement('div');
