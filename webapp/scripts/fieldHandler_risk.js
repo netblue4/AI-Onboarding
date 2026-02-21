@@ -28,9 +28,8 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     icon.textContent = '▶'; // Start in collapsed state
     headerDiv.appendChild(icon);
 
-    const questionLabel = document.createElement('label');
+    const questionLabel = document.createElement('strong');
     questionLabel.textContent = field.jkName.trim(); // The main risk title
-    questionLabel.className = 'label-bold';
     headerDiv.appendChild(questionLabel);
 
     fieldDiv.appendChild(headerDiv);
@@ -40,11 +39,11 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     contentDiv.className = 'collapsible-content collapsed';
 
     // Risk description
-    const riskTitle = document.createElement('strong');
+    const riskTitle = document.createElement('label');
     riskTitle.textContent = 'Risk Description';
     contentDiv.appendChild(riskTitle);
     
-    const riskLabel = document.createElement('label');
+    const riskLabel = document.createElement('p');
     riskLabel.textContent = field.RiskDescription;
     contentDiv.appendChild(riskLabel);
 
@@ -67,10 +66,24 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             const controlContainer = document.createElement('div');
             controlContainer.className = 'form-field';
             
-            // Control number + jkText
-            const controlText = document.createElement('p');
-            controlText.textContent = controlItem.control_number + " - " + controlItem.jkText + ' ' + controlItem.requirement_control_number;
-            controlContainer.appendChild(controlText);
+		    // Create a wrapper span to keep labels on the same line
+		    const labelWrapper = document.createElement('span');
+		
+		    const labelID = document.createElement('strong');
+		    labelID.textContent = controlItem.control_number;
+		    // strong is inline, so it will stay next to the labelT
+		    labelWrapper.appendChild(labelID);
+		    
+		    const labelT = document.createElement('label');
+		    labelT.textContent = '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
+		    
+		    /* Note: Since your CSS defines .form-field label as 'display: block', 
+		       we override it inline just for this instance so it stays next to the ID.
+		    */
+		    labelT.style.display = 'inline'; 
+		    labelWrapper.appendChild(labelT);
+		
+		    controlContainer.appendChild(labelWrapper);            
 
             // Control implementation status dropdown
             const select = document.createElement('select');

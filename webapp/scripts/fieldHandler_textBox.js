@@ -12,7 +12,7 @@ function createTextBox(field, capturedData, sanitizeForId, fieldStoredValue) {
     labelWrapper.appendChild(labelID);
     
     const labelT = document.createElement('label');
-    labelT.textContent = ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
+    labelT.textContent = '- ' + field.jkName + ' (' + field.requirement_control_number + ')';
     
     /* Note: Since your CSS defines .form-field label as 'display: block', 
        we override it inline just for this instance so it stays next to the ID.
