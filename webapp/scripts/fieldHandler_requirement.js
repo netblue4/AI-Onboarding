@@ -74,7 +74,6 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
 
         const avHeaderLabel = document.createElement('div');
         avHeaderLabel.textContent = 'Attack Vectors';
-        avHeaderLabel.className = 'label-bold';
         avHeaderDiv.appendChild(avHeaderLabel);
 
         // Collapsible content — collapsed by default
