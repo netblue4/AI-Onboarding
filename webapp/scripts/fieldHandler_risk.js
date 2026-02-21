@@ -40,9 +40,12 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     contentDiv.className = 'collapsible-content collapsed';
 
     // Risk description
+    const riskTitle = document.createElement('strong');
+    riskTitle.textContent = 'Risk';
+    contentDiv.appendChild(riskTitle);
+    
     const riskLabel = document.createElement('label');
     riskLabel.textContent = field.RiskDescription;
-    riskLabel.className = 'label-bold';
     contentDiv.appendChild(riskLabel);
 
     // Separator
@@ -51,9 +54,8 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     contentDiv.appendChild(separator);
 
     // --- 3. Controls Section Label ---
-    const controlLabel = document.createElement('p');
+    const controlLabel = document.createElement('strong');
     controlLabel.textContent = 'Controls';
-    controlLabel.className = 'label-bold';
     contentDiv.appendChild(controlLabel);
 
     // --- 4. Iterate and Display Controls ---
@@ -63,7 +65,8 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         field.controls.forEach(controlItem => {
 
             const controlContainer = document.createElement('div');
-
+            controlContainer.className = 'form-field';
+            
             // Control number + jkText
             const controlText = document.createElement('p');
             controlText.textContent = controlItem.control_number + " - " + controlItem.jkText + ' ' + controlItem.requirement_control_number;
