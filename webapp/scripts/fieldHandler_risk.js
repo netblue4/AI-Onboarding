@@ -1,20 +1,3 @@
-/**
- * Creates an HTML form field for a high-risk AI system requirement based on the AI Act JSON structure.
- * This function generates a collapsible section for each risk, containing a primary question,
- * a set of controls with their objectives, and radio buttons for user input.
- *
- * Each control also contains a nested "Technical Detail" collapsible div showing:
- *   - jkMaturity   : the maturity level and rationale for this control
- *   - jkAttackVector: a concrete attack scenario the control defends against
- *   - jkTask        : the implementation task description for the engineer
- *   - jkCodeSample  : a runnable code sample demonstrating the control
- *
- * @param {object} field - The field object from the JSON data, representing a single risk area.
- * @param {object} capturedData - An object containing previously saved data to pre-fill the form.
- * @param {function} sanitizeForId - A utility function to create a safe string for use as an HTML ID.
- * @param {*} fieldStoredValue - Previously stored value for this field (reserved for future use).
- * @returns {HTMLElement} The fully constructed div element for the form field.
- */
 function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindmap) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
@@ -25,11 +8,11 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
     const icon = document.createElement('span');
     icon.className = 'collapse-icon';
-    icon.textContent = '▶'; // Start in collapsed state
+    icon.textContent = '▶';
     headerDiv.appendChild(icon);
 
     const questionLabel = document.createElement('label');
-    questionLabel.textContent = field.jkName.trim(); // The main risk title
+    questionLabel.textContent = field.jkName.trim();
     headerDiv.appendChild(questionLabel);
 
     fieldDiv.appendChild(headerDiv);
@@ -38,16 +21,14 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
 
-    // Risk description
     const riskTitle = document.createElement('label');
     riskTitle.textContent = 'Risk Description';
     contentDiv.appendChild(riskTitle);
-    
+
     const riskLabel = document.createElement('label');
     riskLabel.textContent = field.RiskDescription;
     contentDiv.appendChild(riskLabel);
 
-    // Separator
     const separator = document.createElement('hr');
     separator.className = 'control-separator';
     contentDiv.appendChild(separator);
@@ -65,28 +46,25 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
             const controlContainer = document.createElement('div');
             controlContainer.className = 'form-field';
-            
-		    // Create a wrapper span to keep labels on the same line
-		    const labelWrapper = document.createElement('span');
-		
-		    const labelID = document.createElement('strong');
-		    labelID.textContent = controlItem.control_number;
-		    // strong is inline, so it will stay next to the labelT
-		    labelWrapper.appendChild(labelID);
-		    
-		    const labelT = document.createElement('label');
-		    labelT.textContent = '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
-		    
-		    /* Note: Since your CSS defines .form-field label as 'display: block', 
-		       we override it inline just for this instance so it stays next to the ID.
-		    */
-		    labelT.style.display = 'inline'; 
-		    labelWrapper.appendChild(labelT);
-		
-		    controlContainer.appendChild(labelWrapper);     
-        
 
-            // Control implementation status dropdown
+            // Label wrapper — keeps control number and text on the same line
+            const labelWrapper = document.createElement('span');
+
+            const labelID = document.createElement('strong');
+            labelID.textContent = controlItem.control_number;
+            labelWrapper.appendChild(labelID);
+
+            const labelT = document.createElement('label');
+            labelT.textContent = '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
+            labelT.style.display = 'inline';
+            labelWrapper.appendChild(labelT);
+
+            controlContainer.appendChild(labelWrapper);
+
+            // ✅ Wrap select in a block div so it always renders on a new line
+            const selectWrapper = document.createElement('div');
+            selectWrapper.style.marginTop = '10px';
+
             const select = document.createElement('select');
             select.name = sanitizeForId(controlItem.control_number) + '_jkImplementationStatus';
 
@@ -106,9 +84,11 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 }
                 select.appendChild(option);
             });
-            controlContainer.appendChild(select);
 
-            // Implementation evidence — disabled textarea if already applicable, editable otherwise
+            selectWrapper.appendChild(select);
+            controlContainer.appendChild(selectWrapper);
+
+            // Implementation evidence textarea
             if (controlItem.jkImplementationStatus && controlItem.jkImplementationStatus.startsWith("Applicable")) {
                 select.value = controlItem.jkImplementationStatus;
 
@@ -145,7 +125,6 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             const techContentDiv = document.createElement('div');
             techContentDiv.className = 'collapsible-content collapsible-content--nested collapsed';
 
-            // Helper: append a labelled block inside the technical detail div
             function appendTechBlock(labelText, value, isCode) {
                 if (!value) return;
 
@@ -173,14 +152,13 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 techContentDiv.appendChild(divider);
             }
 
-            appendTechBlock('Maturity',       controlItem.jkMaturity,     false);
-            appendTechBlock('Attack Vector',  controlItem.jkAttackVector,  false);
-            appendTechBlock('Task',           controlItem.jkTask,          false);
-            appendTechBlock('Code Sample',    controlItem.jkCodeSample,    true);
+            appendTechBlock('Maturity',      controlItem.jkMaturity,      false);
+            appendTechBlock('Attack Vector', controlItem.jkAttackVector,   false);
+            appendTechBlock('Task',          controlItem.jkTask,           false);
+            appendTechBlock('Code Sample',   controlItem.jkCodeSample,     true);
 
-            // Toggle listener for the nested "Technical Detail" header
             techHeaderDiv.addEventListener('click', (e) => {
-                e.stopPropagation(); // prevent bubbling to the outer collapsible header
+                e.stopPropagation();
                 const isCollapsed = techContentDiv.classList.toggle('collapsed');
                 techIcon.textContent = isCollapsed ? '▶' : '▼';
             });
