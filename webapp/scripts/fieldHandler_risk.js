@@ -92,7 +92,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 }
                 select.appendChild(option);
             });
-            controlText.appendChild(select);
+            controlContainer.appendChild(select);
 
             // Implementation evidence — disabled textarea if already applicable, editable otherwise
             if (controlItem.jkImplementationStatus && controlItem.jkImplementationStatus.startsWith("Applicable")) {
@@ -103,7 +103,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 textarea.name = sanitizeForId(controlItem.control_number) + '_jkImplementationEvidence';
                 textarea.value = controlItem.jkImplementationEvidence;
                 textarea.disabled = true;
-                controlText.appendChild(textarea);
+                controlContainer.appendChild(textarea);
 
             } else {
                 select.value = options[0]?.trim();
@@ -111,7 +111,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 const input = document.createElement('textarea');
                 input.name = sanitizeForId(controlItem.control_number) + '_jkImplementationEvidence';
                 input.placeholder = controlItem.jkImplementationEvidence;
-                controlText.appendChild(input);
+                controlContainer.appendChild(input);
             }
 
             // --- 5. "Technical Detail" Nested Collapsible ---
@@ -124,7 +124,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             techHeaderDiv.appendChild(techIcon);
 
             const techHeaderLabel = document.createElement('span');
-            techHeaderLabel.textContent = 'Technical Detail';
+            techHeaderLabel.textContent = 'Sample';
             techHeaderLabel.className = 'label-bold';
             techHeaderDiv.appendChild(techHeaderLabel);
 

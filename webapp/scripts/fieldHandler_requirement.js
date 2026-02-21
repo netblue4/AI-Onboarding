@@ -73,6 +73,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         avHeaderDiv.appendChild(avIcon);
 
         const avHeaderLabel = document.createElement('div');
+        avHeaderLabel.textContent = 'Attack Vectors';
         avHeaderLabel.className = 'label-bold';
         avHeaderDiv.appendChild(avHeaderLabel);
 
@@ -101,7 +102,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
             avIcon.textContent = isCollapsed ? '▶' : '▼';
         });
 
-        fieldDiv.appendChild(avHeaderDiv);
+        select.appendChild(avHeaderDiv);
         fieldDiv.appendChild(avContentDiv);
     }
 
