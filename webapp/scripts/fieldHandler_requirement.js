@@ -16,6 +16,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     // Control status
     const select = document.createElement('select');
     select.name = sanitizedId + '_jkSoa';
+    select.className = 'select';
     const options = ['Select', 'Applicable', 'Not Applicable'];
     options.forEach((optionText, index) => {
         const option = document.createElement('option');
