@@ -213,7 +213,7 @@ button:hover {
     padding: 15px;
     padding-right: 10px;
     margin-left: 5px;
-    border-left: 3px solid #3d3d3d;
+    border-left: 1px solid #3d3d3d;
     transition: all 0.35s ease-in-out; 
 }
 
