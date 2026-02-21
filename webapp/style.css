@@ -675,10 +675,10 @@ button:hover {
             padding: 10px 15px;
             border: 2px solid #3d3d3d;
             border-radius: 6px;
-            font-size: 10px;
+            font-size: 12px;
             min-width: 100px;
         }
-/*
+
         .content-area {
             padding: 30px;
             max-height: calc(100vh - 300px);
@@ -688,7 +688,7 @@ button:hover {
         .phase-section {
             margin-bottom: 40px;
         }
-*/
+
         .phase-header {
             background: linear-gradient(135deg, #b8963e 0%, #9a7a2e 100%);
             color: #e0d9ce;
