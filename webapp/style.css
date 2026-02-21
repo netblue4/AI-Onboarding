@@ -74,8 +74,16 @@ body {
     font-weight: 200; 
 }
 
+.form-field select{
+    padding: 0.45rem; 
+    border-radius: 4px;
+    border: 1px solid #3d3d3d;
+    width: fit-content;
+    min-width: 100px; /* Optional: keeps it from getting too tiny */
+    max-width: 100%;  /* Ensures it doesn't break the layout on mobile */   
+}
+
 .form-field input[type="text"],
-.form-field select,
 .form-field textarea {
     width: 100%;
     padding: 0.45rem; 
