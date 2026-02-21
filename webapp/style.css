@@ -750,7 +750,8 @@ button:hover {
             min-width: 200px;
         }
         
-        
+ */
+ /* Role Display */        
 .role-progress-section {
     background: #252525;
     border-bottom: 2px solid #b8963e;
@@ -857,6 +858,9 @@ button:hover {
 .role-progress-item.current .role-progress-text {
     color: #b8963e;
 }
+ /* Role Display */   
+ 
+ /*
 .step-header {
     cursor: pointer;
     display: flex;
