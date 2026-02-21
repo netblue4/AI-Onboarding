@@ -900,7 +900,7 @@
               "control_number": "[2.3.4]",
               "jkName": "Rate the severity of identified negative impacts",
               "jkText": "",
-              "jkType": "Dropdown box with values:/Low/Medium/High",
+              "jkType": "MultiSelect:Low/Medium/High",
               "jkObjective": "To quantify the level of risk associated with identified negative impacts to prioritize governance efforts."
             },
             {

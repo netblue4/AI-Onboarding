@@ -72,21 +72,110 @@ body {
     font-weight: 200; 
 }
 
-.form-field select{
-    padding: 0.45rem; 
-    border-radius: 4px;
-    border: 1px solid #3d3d3d;
+/* --- 1. The Cool-Dark Select Dropdown --- */
+.form-field select {
+    padding: 0.5rem 2rem 0.5rem 0.75rem; /* Extra right padding for custom arrow */
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 6px;
     width: fit-content;
-    min-width: 100px; /* Optional: keeps it from getting too tiny */
-    max-width: 100%;  /* Ensures it doesn't break the layout on mobile */   
+    min-width: 150px;
+    max-width: 100%;
+    font-size: 0.95rem;
+    cursor: pointer;
+    appearance: none; /* Removes default OS styling */
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    transition: all 0.3s ease;
 }
 
+.form-field select:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+/* --- 2. The Custom Gold Checkboxes --- */
+/* This targets the checkboxes in your multi-select list */
+.form-field input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 10px;
+    transition: all 0.2s ease;
+}
+
+/* Checkbox Hover */
+.form-field input[type="checkbox"]:hover {
+    border-color: #666;
+}
+
+/* Checkbox Checked State */
+.form-field input[type="checkbox"]:checked {
+    background-color: #d4af37; /* Fills with gold when selected */
+    border-color: #d4af37;
+}
+
+/* The "Check" Mark */
+.form-field input[type="checkbox"]:checked::after {
+    content: '✔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000; /* Black checkmark on gold background */
+    font-size: 12px;
+}
+
+/* Checkbox Focus Glow */
+.form-field input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+/* The cool-dark input and textarea style */
 .form-field input[type="text"],
 .form-field textarea {
     width: 100%;
-    padding: 0.45rem; 
-    border-radius: 4px;
-    border: 1px solid #3d3d3d;
+    padding: 0.75rem;
+    background-color: #1e1e1e; /* Darker background to match the theme */
+    color: #e0e0e0;            /* Off-white text for better readability */
+    border: 1px solid #444;    /* Subtle border */
+    border-radius: 6px;        /* Slightly smoother corners */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: vertical;          /* Allows users to expand height but not width */
+}
+
+/* Hover State */
+.form-field textarea:hover {
+    border-color: #666;
+}
+
+/* Focus State: This gives it the "Cool" glow matching your gold headers */
+.form-field textarea:focus {
+    outline: none;
+    border-color: #d4af37;     /* Gold border to match your 'Define' header */
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2); /* Soft gold glow */
+    background-color: #252525; /* Slightly lightens to show it is active */
+}
+
+/* Placeholder text styling */
+.form-field textarea::placeholder {
+    color: #777;
+    font-style: italic;
 }
 
 .form-field label {

@@ -3,10 +3,13 @@ function createTextBox(field, capturedData, sanitizeForId, fieldStoredValue) {
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.control_number) + "_response";
 
-    const label = document.createElement('label');
-    label.textContent = field.control_number + ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
-    label.classList.add('label-bold');
+    const label = document.createElement('strong');
+    label.textContent = field.control_number;
     fieldDiv.appendChild(label);
+    
+    const labelT = document.createElement('label');
+    labelT.textContent = ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
+    fieldDiv.appendChild(labelT);
 
     const input = document.createElement('textarea');
     input.id = sanitizedId;
