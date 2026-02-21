@@ -65,15 +65,14 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
 
         // Collapsible header
         const avHeaderDiv = document.createElement('div');
-        avHeaderDiv.className = 'collapsible-header collapsible-header--nested';
+        avHeaderDiv.className = 'collapsible-header';
 
         const avIcon = document.createElement('span');
         avIcon.className = 'collapse-icon';
         avIcon.textContent = '▶';
         avHeaderDiv.appendChild(avIcon);
 
-        const avHeaderLabel = document.createElement('span');
-        avHeaderLabel.textContent = 'Attack Vectors';
+        const avHeaderLabel = document.createElement('div');
         avHeaderLabel.className = 'label-bold';
         avHeaderDiv.appendChild(avHeaderLabel);
 

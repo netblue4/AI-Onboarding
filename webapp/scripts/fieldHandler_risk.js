@@ -41,7 +41,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
     // Risk description
     const riskTitle = document.createElement('strong');
-    riskTitle.textContent = 'Risk';
+    riskTitle.textContent = 'Risk Description';
     contentDiv.appendChild(riskTitle);
     
     const riskLabel = document.createElement('label');
