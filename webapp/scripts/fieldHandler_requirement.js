@@ -23,31 +23,25 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
 
-    
     // Create a wrapper span to keep labels on the same line
-    const labelWrapper = document.createElement('span');
+    const labelWrapper = document.createElement('span');
 
-    const labelID = document.createElement('strong');
-    labelID.textContent = field.requirement_control_number;
-    // strong is inline, so it will stay next to the labelT
-    labelWrapper.appendChild(labelID);
-    
-    const labelT = document.createElement('label');
-    labelT.textContent = '- ' + field.jkText;
-    
-    /* Note: Since your CSS defines .form-field label as 'display: block', 
-       we override it inline just for this instance so it stays next to the ID.
-    */
-    labelT.style.display = 'inline'; 
-    labelWrapper.appendChild(labelT);
+    const labelID = document.createElement('strong');
+    labelID.textContent = field.requirement_control_number;
+    labelWrapper.appendChild(labelID);
+    
+    const labelT = document.createElement('label');
+    labelT.textContent = '- ' + field.jkText;
+    labelT.style.display = 'inline'; 
+    labelWrapper.appendChild(labelT);
 
-    contentDiv.appendChild(labelWrapper);
+    contentDiv.appendChild(labelWrapper);
 
-    // --- NEW: Flex Container for Select and Attack Vectors ---
+    // --- 3. Flex Container for Select and Attack Vectors ---
     const actionRow = document.createElement('div');
     actionRow.style.display = 'flex';
     actionRow.style.alignItems = 'center';
-    actionRow.style.gap = '20px'; // Space between dropdown and the collapsible header
+    actionRow.style.gap = '20px';
     actionRow.style.marginTop = '10px';
 
     // Control status dropdown
@@ -63,11 +57,11 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         }
         select.appendChild(option);
     });
-    
-    // Add dropdown to the row
+
+    // Always add select to the action row
     actionRow.appendChild(select);
 
-    // --- 3. Attack Vectors Logic ---
+    // --- 4. Attack Vectors Logic ---
     const requirementKey = field.requirement_control_number;
     let matchedRequirement = null;
 
@@ -93,11 +87,10 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     if (attackVectors.length > 0) {
         const avHeaderDiv = document.createElement('div');
         avHeaderDiv.className = 'collapsible-header collapsible-header--nested';
-        
-        // Inline override: Remove the default 100% width and margins to keep it inline
+
         avHeaderDiv.style.width = 'auto';
         avHeaderDiv.style.margin = '0';
-        avHeaderDiv.style.border = 'none'; // Keeps the row clean
+        avHeaderDiv.style.border = 'none';
 
         const avIcon = document.createElement('span');
         avIcon.className = 'collapse-icon';
@@ -126,18 +119,12 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
             avIcon.textContent = isCollapsed ? '▶' : '▼';
         });
 
-        // Add the collapsible header to the flex row
         actionRow.appendChild(avHeaderDiv);
-        
-        // Add the row to the content
-        contentDiv.appendChild(actionRow);
-        
-        // The expanded list still goes below the row for readability
-        contentDiv.appendChild(avContentDiv);
-    } else {
-        // If no attack vectors, just add the select to the content
-        contentDiv.appendChild(select);
+        contentDiv.appendChild(avContentDiv); // expanded list below the row
     }
+
+    // Always append actionRow (select is always inside it)
+    contentDiv.appendChild(actionRow);
 
     fieldDiv.appendChild(contentDiv);
 
