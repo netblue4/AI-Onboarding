@@ -28,7 +28,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     icon.textContent = '▶'; // Start in collapsed state
     headerDiv.appendChild(icon);
 
-    const questionLabel = document.createElement('strong');
+    const questionLabel = document.createElement('label');
     questionLabel.textContent = field.jkName.trim(); // The main risk title
     headerDiv.appendChild(questionLabel);
 
@@ -83,7 +83,9 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 		    labelT.style.display = 'inline'; 
 		    labelWrapper.appendChild(labelT);
 		
-		    controlContainer.appendChild(labelWrapper);            
+		    controlContainer.appendChild(labelWrapper);    
+			controlContainer.appendChild(document.createElement('</br>'));            
+        
 
             // Control implementation status dropdown
             const select = document.createElement('select');
