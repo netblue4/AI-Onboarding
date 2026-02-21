@@ -15,7 +15,7 @@ function createObjective(objectives) {
 
     // Header for the collapsible section (the part that is always visible)
     const headerDiv = document.createElement('div');
-    headerDiv.className = 'collapsible-content';
+    headerDiv.className = 'collapsible-header';
 
     // Add the expand/collapse icon
     const icon = document.createElement('span');
