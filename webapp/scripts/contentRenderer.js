@@ -52,6 +52,8 @@ class ContentRenderer {
 		}
 	}
 	
+/* ... (Global variables and constructor remain the same) ... */
+
     render() {
         console.log('ContentRenderer.render() called with role:', this.state.currentRole);
         
@@ -74,12 +76,10 @@ class ContentRenderer {
             return;
         }
 
-        console.log('Rendering content for role:', this.state.currentRole);
-        
-		sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
-		fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
-		webappData = window.originalWebappData;
-		mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
+        sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
+        fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
+        webappData = window.originalWebappData;
+        mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
         contentArea.innerHTML = '';
         let hasContent = false;
@@ -103,28 +103,32 @@ class ContentRenderer {
                 const stepDiv = document.createElement('div');
                 stepDiv.className = 'step-section';
 
-                // --- START COLLAPSIBLE SETUP ---
-                const stepTitle = document.createElement('div');
-                stepTitle.className = 'step-title step-header'; 
-                stepTitle.innerHTML = `<span>${step.StepName || 'Procedure Step'}</span>`;
+                // --- MODIFIED: Collapsible Step Header (Matches Risk/Requirement Style) ---
+                const stepHeader = document.createElement('div');
+                stepHeader.className = 'collapsible-header'; // Changed from 'step-title step-header'
+                
+                const stepIcon = document.createElement('span');
+                stepIcon.className = 'collapse-icon';
+                stepIcon.textContent = '▶'; 
+                stepHeader.appendChild(stepIcon);
+
+                const stepTitleLabel = document.createElement('span');
+                stepTitleLabel.className = 'label-bold';
+                stepTitleLabel.textContent = step.StepName || 'Procedure Step';
+                stepHeader.appendChild(stepTitleLabel);
                 
                 const stepContent = document.createElement('div');
-                stepContent.className = 'step-content';
+                stepContent.className = 'collapsible-content collapsed'; // Changed from 'step-content'
                 
-                // [ACTIVE] Default to collapsed
-                stepTitle.classList.add('collapsed');
-                stepContent.classList.add('collapsed');
-
-                // Toggle on click
-                stepTitle.onclick = () => {
-                    stepTitle.classList.toggle('collapsed');
-                    stepContent.classList.toggle('collapsed');
+                // Toggle Logic
+                stepHeader.onclick = () => {
+                    const isCollapsed = stepContent.classList.toggle('collapsed');
+                    stepIcon.textContent = isCollapsed ? '▶' : '▼';
                 };
 
-                stepDiv.appendChild(stepTitle);
-                // --- END COLLAPSIBLE SETUP ---
+                stepDiv.appendChild(stepHeader);
 
-                // Render objectives
+                // --- Render objectives (unchanged logic, just inside new content div) ---
                 if (step.Objectives && step.Objectives.length > 0) {
                     const handler = getFieldHandler('objective');
                     if (handler) {
@@ -137,22 +141,19 @@ class ContentRenderer {
                     }
                 }
 
-                // Render fields
+                // Render fields (Requirements / Risks)
                 if (filteredStep.Fields && filteredStep.Fields.length > 0) {
                     filteredStep.Fields.forEach(field => {
                         try {
-                  
                             const handler = getFieldHandler(field.jkType);
-                            
                             if (!handler) return;
-                            
                             
                             const fieldElement = handler(
                                 field, 
                                 this.state.capturedData, 
-								sanitizeForId,
-								fieldStoredValue,
-								mindmapData
+                                sanitizeForId,
+                                fieldStoredValue,
+                                mindmapData
                             );
 
                             if (!fieldElement) return;
@@ -179,7 +180,6 @@ class ContentRenderer {
                     });
                 }
 
-                // Check if content exists before appending
                 if (stepContent.children.length > 0) {
                     stepDiv.appendChild(stepContent);
                     phaseDiv.appendChild(stepDiv);
@@ -197,6 +197,7 @@ class ContentRenderer {
             contentArea.innerHTML = '<div class="empty-state"><h2>No Fields Available</h2><p>No fields match your current role and dimension filters.</p></div>';
         }
     }
+/* ... (Rest of the helper functions remain the same) ... */
 
     // (Helper function remains unchanged)
     getDeepFilteredNode(node, isInRole = false) {
