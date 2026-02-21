@@ -201,7 +201,6 @@ button:hover {
     transition: all 0.35s ease-in-out; 
 }
 
-
 .collapsible-content.collapsed {
     max-height: 0;
     border-left-color: transparent;
@@ -217,7 +216,6 @@ button:hover {
     margin-bottom: 8px;
     margin-top: 8px;
 }
-
 
 .steps-container {
     width: 30%;
@@ -340,7 +338,7 @@ button:hover {
 	 color: #22c55e;
 	 margin-right: 5px;
 }
-
+*/
 .field-group-container {
     border: 1px solid #3d3d3d;
     padding: 15px;
@@ -362,7 +360,7 @@ button:hover {
 .field-group-wrapper > div:last-child {
     margin-bottom: 0 !important; 
 }
-
+/*
 .mapping-container {
 	background: #2a2a2a;
 	border-radius: 8px;
