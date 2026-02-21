@@ -859,7 +859,7 @@ button:hover {
 
 .role-progress-item.completed {
     background: #1a2b1e;
-    border-color: #22c55e;
+    border-color: #b8963e;
     box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.15);
 }
 
@@ -924,7 +924,7 @@ button:hover {
 }
 
 .role-progress-item.completed .role-progress-text {
-    color: #b8963e;
+    color: #22c55e;
 }
 
 .role-progress-item.in-progress .role-progress-text {
