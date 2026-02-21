@@ -88,14 +88,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
             const li = document.createElement('li');
             //li.className = 'attack-vector-item';
 
-            // Bold control number prefix so the engineer can cross-reference the control
-            if (impl.control_number) {
-                const controlRef = document.createElement('strong');
-                controlRef.textContent = impl.control_number + ' ';
-                li.appendChild(controlRef);
-            }
-
-            li.appendChild(document.createTextNode(impl.jkAttackVector));
+            li.appendChild(document.createTextNode(impl.control_number + ' - ' + impl.jkAttackVector));
             ul.appendChild(li);
         });
 

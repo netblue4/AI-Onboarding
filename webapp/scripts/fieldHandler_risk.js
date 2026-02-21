@@ -66,7 +66,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
             // Control number + jkText
             const controlText = document.createElement('p');
-            controlText.textContent = controlItem.control_number + " - " + controlItem.jkText + ' (' + field.requirement_control_number + ')';
+            controlText.textContent = controlItem.control_number + " - " + controlItem.jkText + ' ' + controlItem.requirement_control_number;
             controlContainer.appendChild(controlText);
 
             // Control implementation status dropdown
