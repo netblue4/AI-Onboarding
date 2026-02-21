@@ -94,7 +94,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
             // Bold control number prefix so the engineer can cross-reference the control
             if (impl.control_number) {
                 const controlRef = document.createElement('strong');
-                controlRef.textContent = impl.control_number + ' — ';
+                controlRef.textContent = impl.control_number + ' ';
                 li.appendChild(controlRef);
             }
 
