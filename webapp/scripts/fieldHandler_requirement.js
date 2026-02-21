@@ -16,9 +16,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     // Control status
     const select = document.createElement('select');
     select.name = sanitizedId + '_jkSoa';
-
     const options = ['Select', 'Applicable', 'Not Applicable'];
-
     options.forEach((optionText, index) => {
         const option = document.createElement('option');
         option.value = optionText;
@@ -27,10 +25,9 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         if (field.jkSoa && optionText === field.jkSoa) {
             option.selected = true;
         }
-
         select.appendChild(option);
     });
-    controlText.appendChild(select);
+    fieldDiv.appendChild(select);
 
 
     // --- Attack Vectors Collapsible ---
