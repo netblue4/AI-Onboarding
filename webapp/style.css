@@ -565,7 +565,7 @@ button:hover {
 }
 
 */
-
+/* Role and Buttons */
         .main-container {
             margin: 0 auto;
         }
@@ -698,7 +698,9 @@ button:hover {
             font-weight: 600;
             margin-bottom: 20px;
         }
+/* Role and Buttons */
 
+/* Step */
         .step-section {
             background: #252525;
             border-radius: 8px;
@@ -715,6 +717,26 @@ button:hover {
             padding-bottom: 10px;
             border-bottom: 2px solid #3d3d3d;
         }
+        .step-header {
+			cursor: pointer;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			user-select: none; 
+		}
+		.step-header::after {
+			content: '▼'; 
+			font-size: 0.8em;
+			transition: transform 0.3s ease;
+		}
+		.step-header.collapsed::after {
+			transform: rotate(-90deg); 
+		}
+		.step-content.collapsed {
+			display: none;
+		}
+/* Step */
+
 /*
         .field-new {
             background: #2a2a2a3cd !important;
@@ -861,26 +883,3 @@ button:hover {
 }
  /* Role Display */   
  
- /*
-.step-header {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    user-select: none; 
-}
-
-.step-header::after {
-    content: '▼'; 
-    font-size: 0.8em;
-    transition: transform 0.3s ease;
-}
-
-.step-header.collapsed::after {
-    transform: rotate(-90deg); 
-}
-
-.step-content.collapsed {
-    display: none;
-}
-*/
