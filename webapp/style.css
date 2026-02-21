@@ -63,7 +63,7 @@ body {
     border-bottom: 1px solid #b8963e;
     padding-bottom: 10px;
 }
-.form-field label,
+
 .form-field input[type="text"],
 .form-field select,
 .form-field textarea,
@@ -71,6 +71,13 @@ body {
     font-size: 0.9rem;
     font-weight: 200; 
 }
+
+.form-field label {
+    font-size: 0.9rem;
+    font-weight: 200; 
+    margin-bottom: 15px; /* This creates the space you requested */
+}
+
 
 /* --- 1. The Cool-Dark Select Dropdown --- */
 .form-field select {
