@@ -218,7 +218,6 @@ button:hover {
     margin-top: 8px;
 }
 
-/*
 
 .steps-container {
     width: 30%;
@@ -237,6 +236,8 @@ button:hover {
     overflow-y: auto; 
     padding-bottom: 20px; 
 }
+
+/*
 
 .checkbox-option {
     display: flex;
