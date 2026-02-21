@@ -53,7 +53,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     contentDiv.appendChild(separator);
 
     // --- 3. Controls Section Label ---
-    const controlLabel = document.createElement('strong');
+    const controlLabel = document.createElement('label');
     controlLabel.textContent = 'Controls';
     contentDiv.appendChild(controlLabel);
 
