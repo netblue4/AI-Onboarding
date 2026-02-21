@@ -35,6 +35,9 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     contentDiv.appendChild(controlText);
 
     // Control status dropdown
+    const selectAttckwrapper = document.createElement('span');
+    contentDiv.appendChild(selectAttckwrapper);
+    
     const select = document.createElement('select');
     select.name = sanitizedId + '_jkSoa';
     const options = ['Select', 'Applicable', 'Not Applicable'];
@@ -48,7 +51,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         }
         select.appendChild(option);
     });
-    contentDiv.appendChild(select);
+    selectAttckwrapper.appendChild(select);
 
     // --- 3. Attack Vectors Logic (Nested Collapsible) ---
     const requirementKey = field.requirement_control_number;
@@ -105,8 +108,8 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
             avIcon.textContent = isCollapsed ? '▶' : '▼';
         });
 
-        contentDiv.appendChild(avHeaderDiv);
-        contentDiv.appendChild(avContentDiv);
+        selectAttckwrapper.appendChild(avHeaderDiv);
+        selectAttckwrapper.appendChild(avContentDiv);
     }
 
     fieldDiv.appendChild(contentDiv);
