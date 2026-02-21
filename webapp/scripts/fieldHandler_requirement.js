@@ -1,23 +1,44 @@
+/**
+ * Creates an HTML form field for a requirement.
+ * Refactored to match the collapsible structure of fieldHandler_risk.js.
+ */
 function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue, mindmap) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
     const sanitizedId = sanitizeForId(field.requirement_control_number);
-    
-    const label = document.createElement('strong');
-    label.textContent = field.jkName;
-    fieldDiv.appendChild(label);
-    
-    const controlText = document.createElement('p');
-	controlText.id = sanitizedId;
-    controlText.name = sanitizedId;
-	controlText.textContent = field.requirement_control_number + ' - ' + field.jkText;
-	fieldDiv.appendChild(controlText);
 
-    // Control status
+    // --- 1. Build the Top-Level Collapsible Header ---
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'collapsible-header';
+
+    const icon = document.createElement('span');
+    icon.className = 'collapse-icon';
+    icon.textContent = '▶'; // Start collapsed
+    headerDiv.appendChild(icon);
+
+    const label = document.createElement('label');
+    label.textContent = field.jkName;
+    label.className = 'label-bold';
+    headerDiv.appendChild(label);
+
+    fieldDiv.appendChild(headerDiv);
+
+    // --- 2. Create the Top-Level Collapsible Content ---
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'collapsible-content collapsed';
+
+    // Requirement Control Number and Text
+    const controlText = document.createElement('p');
+    controlText.id = sanitizedId;
+    controlText.name = sanitizedId;
+    controlText.textContent = field.requirement_control_number + ' - ' + field.jkText;
+    contentDiv.appendChild(controlText);
+
+    // Control status dropdown
     const select = document.createElement('select');
     select.name = sanitizedId + '_jkSoa';
     const options = ['Select', 'Applicable', 'Not Applicable'];
-    options.forEach((optionText, index) => {
+    options.forEach((optionText) => {
         const option = document.createElement('option');
         option.value = optionText;
         option.textContent = optionText;
@@ -27,16 +48,10 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         }
         select.appendChild(option);
     });
-    fieldDiv.appendChild(select);
+    contentDiv.appendChild(select);
 
-
-    // --- Attack Vectors Collapsible ---
-
-    // Step 1: Store the key we are looking for
+    // --- 3. Attack Vectors Logic (Nested Collapsible) ---
     const requirementKey = field.requirement_control_number;
-
-    // Step 2: Traverse mindmap -> groups -> gData.requirements
-    // and find the reqEntry whose reqKey matches requirementKey
     let matchedRequirement = null;
 
     mindmap.forEach((groups, stepName) => {
@@ -49,7 +64,6 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         });
     });
 
-    // Step 3: Iterate the implementations Set and collect every object that has jkAttackVector
     const attackVectors = [];
     if (matchedRequirement && matchedRequirement.implementations) {
         for (const impl of matchedRequirement.implementations) {
@@ -59,10 +73,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         }
     }
 
-    // Step 4: Only render the collapsible if at least one attack vector was found
     if (attackVectors.length > 0) {
-
-        // Collapsible header
         const avHeaderDiv = document.createElement('div');
         avHeaderDiv.className = 'collapsible-header collapsible-header--nested';
 
@@ -76,34 +87,35 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         avHeaderLabel.className = 'label-bold';
         avHeaderDiv.appendChild(avHeaderLabel);
 
-        // Collapsible content — collapsed by default
         const avContentDiv = document.createElement('div');
         avContentDiv.className = 'collapsible-content collapsible-content--nested collapsed';
 
-        // Bullet list — one <li> per implementation object that carries a jkAttackVector
         const ul = document.createElement('ul');
-        //ul.className = 'attack-vector-list';
-
         attackVectors.forEach(impl => {
             const li = document.createElement('li');
-            //li.className = 'attack-vector-item';
-
-            li.appendChild(document.createTextNode(impl.control_number + ' - ' + impl.jkAttackVector));
+            li.textContent = impl.control_number + ' - ' + impl.jkAttackVector;
             ul.appendChild(li);
         });
-
         avContentDiv.appendChild(ul);
 
-        // Toggle — stopPropagation prevents bubbling to any outer collapsible header
+        // Toggle Nested Listener
         avHeaderDiv.addEventListener('click', (e) => {
-            e.stopPropagation();
+            e.stopPropagation(); // Prevents parent from closing when clicking this
             const isCollapsed = avContentDiv.classList.toggle('collapsed');
             avIcon.textContent = isCollapsed ? '▶' : '▼';
         });
 
-        fieldDiv.appendChild(avHeaderDiv);
-        fieldDiv.appendChild(avContentDiv);
+        contentDiv.appendChild(avHeaderDiv);
+        contentDiv.appendChild(avContentDiv);
     }
+
+    fieldDiv.appendChild(contentDiv);
+
+    // --- 4. Toggle Listener for the Outer Requirement Header ---
+    headerDiv.addEventListener('click', () => {
+        const isCollapsed = contentDiv.classList.toggle('collapsed');
+        icon.textContent = isCollapsed ? '▶' : '▼';
+    });
 
     return fieldDiv;
 }
