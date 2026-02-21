@@ -688,7 +688,7 @@ button:hover {
         .phase-section {
             margin-bottom: 40px;
         }
-
+*/
         .phase-header {
             background: linear-gradient(135deg, #b8963e 0%, #9a7a2e 100%);
             color: #e0d9ce;
@@ -698,7 +698,7 @@ button:hover {
             font-weight: 600;
             margin-bottom: 20px;
         }
-
+/*
         .step-section {
             background: #252525;
             border-radius: 8px;
@@ -758,7 +758,6 @@ button:hover {
     border-bottom: 2px solid #b8963e;
     padding: 20px;
     margin-bottom: 20px;
-    width: 100%;
 }
 
 .role-progress-header {
