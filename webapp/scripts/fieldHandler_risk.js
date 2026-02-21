@@ -83,8 +83,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 		    labelT.style.display = 'inline'; 
 		    labelWrapper.appendChild(labelT);
 		
-		    controlContainer.appendChild(labelWrapper);    
-			controlContainer.appendChild(document.createElement('</br>'));            
+		    controlContainer.appendChild(labelWrapper);     
         
 
             // Control implementation status dropdown
