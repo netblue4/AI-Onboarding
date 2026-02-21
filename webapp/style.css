@@ -851,30 +851,25 @@ button:hover {
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 .role-progress-item:hover {
     border-color: #b8963e;
     box-shadow: 0 2px 8px rgba(184, 150, 62, 0.1);
 }
-
 .role-progress-item.completed {
-    background: #1a2b1e;
-    border-color: #b8963e;
-    box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.15);
+    background: #2a2a2a;        /* same as base — no green tint */
+    border-color: #3d3d3d;      /* same as base — no green border */
+    box-shadow: none;           /* no green glow */
 }
-
 .role-progress-item.in-progress {
     background: #2b2310;
     border-color: #b8963e;
     box-shadow: 0 0 0 1px rgba(184, 150, 62, 0.15);
 }
-
 .role-progress-item.current {
     background: #2b2310;
     border-color: #b8963e;
     box-shadow: 0 0 0 3px rgba(184, 150, 62, 0.2), inset 0 1px 0 rgba(184, 150, 62, 0.1);
 }
-
 .role-progress-name {
     font-size: 13px;
     font-weight: 600;
@@ -884,7 +879,6 @@ button:hover {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 .role-progress-bar {
     width: 100%;
     height: 6px;
@@ -893,25 +887,20 @@ button:hover {
     overflow: hidden;
     margin-bottom: 6px;
 }
-
 .role-progress-fill {
     height: 100%;
     background: #8a8480;
     transition: width 0.3s ease;
 }
-
 .role-progress-item.completed .role-progress-fill {
-    background: #22c55e;
+    background: #22c55e;        /* green bar only — everything else is neutral */
 }
-
 .role-progress-item.in-progress .role-progress-fill {
     background: #b8963e;
 }
-
 .role-progress-item.current .role-progress-fill {
     background: #b8963e;
 }
-
 .role-progress-text {
     font-size: 11px;
     color: #8a8480;
@@ -922,15 +911,12 @@ button:hover {
     color: #8a8480;
     text-align: center;
 }
-
 .role-progress-item.completed .role-progress-text {
-    color: #22c55e;
+    color: #8a8480;             /* back to neutral — no green text */
 }
-
 .role-progress-item.in-progress .role-progress-text {
     color: #b8963e;
 }
-
 .role-progress-item.current .role-progress-text {
     color: #b8963e;
 }
