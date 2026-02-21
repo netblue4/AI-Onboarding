@@ -6,18 +6,19 @@ function createTextBox(field, capturedData, sanitizeForId, fieldStoredValue) {
     // Create a wrapper span to keep labels on the same line
     const labelWrapper = document.createElement('span');
 
-    const labelID = document.createElement('strong');
+    const labelID = document.createElement('label');
+    fieldDiv.className = 'label-bold';
     labelID.textContent = field.control_number;
     // strong is inline, so it will stay next to the labelT
     labelWrapper.appendChild(labelID);
     
-    const labelT = document.createElement('p');
+    const labelT = document.createElement('label');
     labelT.textContent = ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
     
     /* Note: Since your CSS defines .form-field label as 'display: block', 
        we override it inline just for this instance so it stays next to the ID.
     */
-    labelT.style.display = 'inline'; 
+    //labelT.style.display = 'inline'; 
     labelWrapper.appendChild(labelT);
 
     fieldDiv.appendChild(labelWrapper);

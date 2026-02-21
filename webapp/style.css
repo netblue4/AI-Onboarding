@@ -197,9 +197,8 @@ body {
     line-height: 1.5;
     margin: 0; /* Ensures browser default margins don't interfere */
    /*padding: 0.45rem;*/
-    line-height: 1.5; 
 }
-/*
+
 .label-bold{
     font-size: 0.9rem;
     font-weight: 300; 
@@ -207,7 +206,7 @@ body {
     padding: 0.45rem; 
     border-radius: 4px;
 }
-
+/*
  .form-field .auto-generated-label {
     font-size: 0.9rem;
     font-weight: 200; 
