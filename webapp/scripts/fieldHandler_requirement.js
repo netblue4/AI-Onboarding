@@ -22,12 +22,26 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     // --- 2. Create the Top-Level Collapsible Content ---
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
+    
+    // Create a wrapper span to keep labels on the same line
+    const labelWrapper = document.createElement('span');
 
-    const controlText = document.createElement('p');
-    controlText.id = sanitizedId;
-    controlText.name = sanitizedId;
-    controlText.textContent = field.requirement_control_number + ' - ' + field.jkText;
-    contentDiv.appendChild(controlText);
+    const labelID = document.createElement('strong');
+    labelID.textContent = field.requirement_control_number;
+    // strong is inline, so it will stay next to the labelT
+    labelWrapper.appendChild(labelID);
+    
+    const labelT = document.createElement('label');
+    labelT.textContent = ' - ' + field.jkText;
+    
+    /* Note: Since your CSS defines .form-field label as 'display: block', 
+       we override it inline just for this instance so it stays next to the ID.
+    */
+    labelT.style.display = 'inline'; 
+    labelWrapper.appendChild(labelT);
+
+    fieldDiv.appendChild(labelWrapper);
+    
 
     // --- NEW: Flex Container for Select and Attack Vectors ---
     const actionRow = document.createElement('div');
