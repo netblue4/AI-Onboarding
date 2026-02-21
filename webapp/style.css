@@ -96,8 +96,10 @@ body {
 }
 
 .form-field p {
-    padding: 0.45rem;
-    line-height: 1.5; 
+    /* Top: 1rem, Right: 0.45rem, Bottom: 0.1rem, Left: 0.45rem */
+    padding: 1rem 0.45rem 0.1rem 0.45rem; 
+    line-height: 1.5;
+    margin: 0; /* Ensures browser default margins don't interfere */
 }
 /*
 .label-bold{
