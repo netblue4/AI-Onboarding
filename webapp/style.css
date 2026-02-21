@@ -569,7 +569,7 @@ button:hover {
             max-width: 1400px;
             margin: 0 auto;
         }
-
+*/
         .controls-bar {
             background: #252525;
             padding: 20px 30px;
@@ -667,7 +667,7 @@ button:hover {
             font-size: 14px;
             margin: 0;
         }
-
+/*
         .content-area {
             padding: 30px;
             max-height: calc(100vh - 300px);
