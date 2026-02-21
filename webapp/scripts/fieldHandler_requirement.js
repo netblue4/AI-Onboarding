@@ -29,10 +29,10 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
     const labelID = document.createElement('strong');
     labelID.textContent = field.requirement_control_number;
     labelWrapper.appendChild(labelID);
-    
+
     const labelT = document.createElement('label');
     labelT.textContent = '- ' + field.jkText;
-    labelT.style.display = 'inline'; 
+    labelT.style.display = 'inline';
     labelWrapper.appendChild(labelT);
 
     contentDiv.appendChild(labelWrapper);
@@ -84,6 +84,9 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         }
     }
 
+    // Declare avContentDiv in outer scope so we can append it after actionRow
+    let avContentDiv = null;
+
     if (attackVectors.length > 0) {
         const avHeaderDiv = document.createElement('div');
         avHeaderDiv.className = 'collapsible-header collapsible-header--nested';
@@ -102,7 +105,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         avHeaderLabel.className = 'label-bold';
         avHeaderDiv.appendChild(avHeaderLabel);
 
-        const avContentDiv = document.createElement('div');
+        avContentDiv = document.createElement('div');
         avContentDiv.className = 'collapsible-content collapsible-content--nested collapsed';
 
         const ul = document.createElement('ul');
@@ -120,11 +123,15 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
         });
 
         actionRow.appendChild(avHeaderDiv);
-        contentDiv.appendChild(avContentDiv); // expanded list below the row
     }
 
-    // Always append actionRow (select is always inside it)
+    // Always append actionRow first (select is always inside it)
     contentDiv.appendChild(actionRow);
+
+    // Append avContentDiv after actionRow so it expands downward
+    if (avContentDiv) {
+        contentDiv.appendChild(avContentDiv);
+    }
 
     fieldDiv.appendChild(contentDiv);
 
