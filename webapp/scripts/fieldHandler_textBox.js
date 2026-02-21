@@ -11,7 +11,7 @@ function createTextBox(field, capturedData, sanitizeForId, fieldStoredValue) {
     // strong is inline, so it will stay next to the labelT
     labelWrapper.appendChild(labelID);
     
-    const labelT = document.createElement('label');
+    const labelT = document.createElement('p');
     labelT.textContent = ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
     
     /* Note: Since your CSS defines .form-field label as 'display: block', 
