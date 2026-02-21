@@ -564,12 +564,11 @@ button:hover {
 	font-style: italic;
 }
 
+*/
 
         .main-container {
-            max-width: 1400px;
             margin: 0 auto;
         }
-*/
         .controls-bar {
             background: #252525;
             padding: 20px 30px;
@@ -671,12 +670,13 @@ button:hover {
         #file-input {
             display: none;
         }
+        
         .system-id-input {
             padding: 10px 15px;
             border: 2px solid #3d3d3d;
             border-radius: 6px;
-            font-size: 14px;
-            min-width: 200px;
+            font-size: 10px;
+            min-width: 100px;
         }
 /*
         .content-area {
