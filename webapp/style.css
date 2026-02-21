@@ -191,6 +191,12 @@ body {
     margin-bottom: 0.5rem;
 }
 
+.form-field labelInline {
+    padding: 0.45rem;
+    display: inline;
+    margin-bottom: 0.5rem;
+}
+
 .form-field p {
     /* Top: 1rem, Right: 0.45rem, Bottom: 0.1rem, Left: 0.45rem */
     padding: 1rem 0.45rem 0.1rem 0.45rem; 
