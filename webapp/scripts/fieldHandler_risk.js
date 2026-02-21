@@ -124,7 +124,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             techHeaderDiv.appendChild(techIcon);
 
             const techHeaderLabel = document.createElement('span');
-            techHeaderLabel.textContent = 'Sample';
+            techHeaderLabel.textContent = 'Technical Detail';
             techHeaderLabel.className = 'label-bold';
             techHeaderDiv.appendChild(techHeaderLabel);
 

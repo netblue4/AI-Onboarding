@@ -102,7 +102,7 @@ function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue,
             avIcon.textContent = isCollapsed ? '▶' : '▼';
         });
 
-        select.appendChild(avHeaderDiv);
+        fieldDiv.appendChild(avHeaderDiv);
         fieldDiv.appendChild(avContentDiv);
     }
 
