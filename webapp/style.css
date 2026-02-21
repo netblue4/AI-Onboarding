@@ -109,11 +109,14 @@ body {
     border-radius: 4px;
     display: block;
 }
+*/
  .form-field .radio-option {
   display: flex;
   align-items: flex-start;
   gap: 8px; 
+  border-left: 1px solid #3d3d3d;
 }
+/*
 .control-separator {
   border: none;
   height: 2px;
@@ -235,7 +238,6 @@ button:hover {
     flex: 1;
     overflow-y: auto; 
     padding-bottom: 20px; 
-    border-left: 1px solid #3d3d3d;
 }
 
 /*
