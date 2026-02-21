@@ -10,7 +10,7 @@ body {
     padding: 20px;
     box-sizing: border-box;
 }
-.container {
+/*.container {
     background: #2a2a2a;
     padding: 2rem;
     border-radius: 8px;
@@ -20,12 +20,12 @@ body {
 }
 .button-container {
     display: flex;
-    justify-content: space-between; /* Pushes buttons to opposite ends */
-    margin-top: 20px; /* Adds some space above the buttons */
+    justify-content: space-between;
+    margin-top: 20px; 
 }
 .multiline-label {
     display: block;
-    margin-bottom: 4px; /* Optional: adds a little space between lines */
+    margin-bottom: 4px; 
 }
 .label-bold {
     font-weight: 500;
@@ -60,17 +60,15 @@ body {
     border-bottom: 1px solid #b8963e;
     padding-bottom: 10px;
 }
-/* --- Step 1: Define the shared font styles for all elements --- */
 .form-field label,
 .form-field input[type="text"],
 .form-field select,
 .form-field textarea,
 .form-field p {
     font-size: 0.9rem;
-    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
+    font-weight: 200; 
 }
 
-/* --- Step 2: Define styles ONLY for the form input elements --- */
 .form-field input[type="text"],
 .form-field select,
 .form-field textarea {
@@ -80,41 +78,28 @@ body {
     border: 1px solid #3d3d3d;
 }
 
-/* --- Step 3: Define styles ONLY for labels (if you want padding, etc.) --- */
 .form-field label {
     padding: 0.45rem;
     display: block;
     margin-bottom: 0.5rem;
 }
 
-/* --- Step 4: Define styles ONLY for paragraphs (if you want padding, etc.) --- */
 .form-field p {
     padding: 0.45rem;
-    /* You might want to adjust line-height for better readability */
     line-height: 1.5; 
 }
 
 .label-bold{
     font-size: 0.9rem;
-    font-weight: 300; /* Note: 100 is very thin, '400' or 'normal' is standard */
+    font-weight: 300; 
     width: 100%;
     padding: 0.45rem; 
     border-radius: 4px;
 }
 
-/* .form-field input[type="text"],
-.form-field select,
-.form-field textarea {
-    width: 100%;
-    padding: 0.45rem; 
-    border: 1px solid #b8963e;
-    border-radius: 4px;
-    box-sizing: border-box;
-     /* height: 2.7rem;    Force a specific height for a single line feel 
-}*/
  .form-field .auto-generated-label {
     font-size: 0.9rem;
-    font-weight: 200; /* Note: 200 is very light, '400' or 'normal' is standard */
+    font-weight: 200; 
     font-style: italic;
     color: #8a8480;
     background-color: #303030;
@@ -125,14 +110,13 @@ body {
  .form-field .radio-option {
   display: flex;
   align-items: flex-start;
-  gap: 8px; /* Adjust the space between the button and label as needed */
+  gap: 8px; 
 }
 .control-separator {
   border: none;
   height: 2px;
   background-color: #b8963e
 }
-/* --- Buttons Styles --- */
 button {
     background-color: #b8963e;
     color: #e0d9ce;
@@ -152,6 +136,7 @@ button:hover {
 #download-btn:hover {
     background-color: #22c55e;
 }
+*/
 /* --- Progress Bar & Counter Styles (New) --- */
 .progress-wrapper {
     display: flex;
@@ -237,10 +222,6 @@ button:hover {
     overflow: hidden; 
 }
 
-
-
-
-
 /* General styling for elements inside the collapsible area */
 .collapsible-content .label-bold,
 .collapsible-content .multiline-label {
@@ -249,15 +230,7 @@ button:hover {
     margin-top: 8px;
 }
 
-
-
-
-
-
-
-
-
-/* --- Styles for the procedure step progress display --- */
+/*
 
 .steps-container {
     width: 30%;
@@ -267,14 +240,14 @@ button:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Make the container take the full viewport height */
-    margin-right: 20px; /* Adds a 20px space below the container */
+    height: 100vh; 
+    margin-right: 20px; 
 }
 
 #step-container {
-    flex: 1; /* Allow this element to grow and fill available space */
-    overflow-y: auto; /* Add a vertical scrollbar only when needed */
-    padding-bottom: 20px; /* Add some space at the bottom */
+    flex: 1;
+    overflow-y: auto; 
+    padding-bottom: 20px; 
 }
 
 .checkbox-option {
@@ -302,7 +275,7 @@ button:hover {
     display: flex;
     align-items: flex-start;
     font-size: 0.9em;
-    cursor: pointer; /* <-- Add this line */
+    cursor: pointer; 
 }
 
 .step-item .icon {
@@ -313,7 +286,7 @@ button:hover {
     font-weight: bold;
 }
 
-/* Style for the currently active step */
+
 .active-step {
     border-left: 4px solid #b8963e;
     background-color: #2e2b24;
@@ -321,20 +294,17 @@ button:hover {
     color: #b8963e;
 }
 
-/* Style for completed steps */
 .completed-step {
     border-left: 4px solid #28a745;
     background-color: #1e2b1e;
     color: #22c55e;
 }
 
-/* Green checkmark icon for completed steps */
 .completed-step .icon::before {
     content: '✔';
     color: #28a745;
 }
 
-/* Add a simple style for the new dropdown */
 .role-selection-container {
 	margin-bottom: 20px;
 	padding: 10px;
@@ -353,7 +323,6 @@ button:hover {
 	width: 100%;
 	box-sizing: border-box;
 }
-/* Style for the phase headers to make them stand out */
 .phase-header {
 	font-weight: bold;
 	margin-top: 15px;
@@ -361,40 +330,36 @@ button:hover {
 	padding: 5px 0;
 	border-bottom: 1px solid #3d3d3d;
 }
-/* Style adjustments for step items (assuming some base styles exist in style.css) */
 .step-item {
 	cursor: pointer;
 	padding: 8px 10px;
 	border-radius: 4px;
 	margin-bottom: 2px;
-	display: flex; /* Ensure the step name and icon are on the same line */
+	display: flex; 
 	align-items: center;
 }
 .step-item:hover {
 	background-color: #2e2e2e;
 }
 .active-step {
-	background-color: #2e2b24; /* Highlight color for the current step */
+	background-color: #2e2b24; 
 	font-weight: bold;
 	border-left: 3px solid #b8963e;
 }
 .completed-step .icon::before {
-	 /* Assuming a checkmark or similar icon is used for completed steps */
 	 content: '✓';
 	 color: #22c55e;
 	 margin-right: 5px;
 }
 
-/* Style for the Group Box Container */
 .field-group-container {
     border: 1px solid #3d3d3d;
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 8px;
-    background-color: #2a2a2a; /* Light background to make it stand out */
+    background-color: #2a2a2a; 
 }
 
-/* Style for the Group Title */
 .field-group-title {
     font-size: 1.1em;
     font-weight: bold;
@@ -402,15 +367,12 @@ button:hover {
     margin-top: 0;
     margin-bottom: 15px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #b8963e; /* Separator line */
+    border-bottom: 1px solid #b8963e; 
 }
 
-/* Optional wrapper for inner fields (adjusts spacing) */
 .field-group-wrapper > div:last-child {
-    margin-bottom: 0 !important; /* Remove bottom margin for the last field inside the group */
+    margin-bottom: 0 !important; 
 }
-
-
 
 .mapping-container {
 	background: #2a2a2a;
@@ -418,8 +380,9 @@ button:hover {
 	box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
 	margin-top: 20px;
 	padding: 0;
-	overflow: hidden; /* For border-radius */
+	overflow: hidden; 
 }
+*/
 
 /* Top-level Regulatory Requirement Node */
 .reg-item {
