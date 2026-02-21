@@ -73,23 +73,8 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
         checkboxGroupContainer.classList.add('options-after-header');
         fieldDiv.appendChild(checkboxGroupContainer);
         
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'collapsible-content collapsed';
 
-        const fieldLabel = document.createElement('label');
-        fieldLabel.textContent = field.control_number + ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
-        fieldLabel.classList.add('label-bold');
-        contentDiv.appendChild(fieldLabel);
 
-        if (field.jkText && typeof field.jkText === 'string') {
-            field.jkText.split('||').forEach(lineText => {
-                const textLabel = document.createElement('label');
-                textLabel.textContent = lineText.trim();
-                textLabel.classList.add('multiline-label');
-                contentDiv.appendChild(textLabel);
-            });
-        }
-        
         fieldDiv.appendChild(contentDiv);
 
         headerDiv.addEventListener('click', () => {
@@ -105,6 +90,30 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
         fieldLabel.classList.add('label-bold');
         fieldDiv.appendChild(fieldLabel);
 
+
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'collapsible-content collapsed';
+        
+	
+	    // Create a wrapper span to keep labels on the same line
+	    const labelWrapper = document.createElement('span');
+	
+	    const labelID = document.createElement('strong');
+	    labelID.textContent = field.control_number;
+	    // strong is inline, so it will stay next to the labelT
+	    labelWrapper.appendChild(labelID);
+	    
+	    const labelT = document.createElement('label');
+	    labelT.textContent = ' - ' + field.jkName + ' (' + field.requirement_control_number + ')';
+	    
+	    /* Note: Since your CSS defines .form-field label as 'display: block', 
+	       we override it inline just for this instance so it stays next to the ID.
+	    */
+	    labelT.style.display = 'inline'; 
+	    labelWrapper.appendChild(labelT);
+	    fieldDiv.appendChild(labelWrapper);
+
         if (field.jkText && typeof field.jkText === 'string') {
             field.jkText.split('||').forEach(lineText => {
                 const textLabel = document.createElement('label');
@@ -115,7 +124,6 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
         }
         
         fieldDiv.appendChild(checkboxGroupContainer);
-    }
 
     return fieldDiv;
 }
