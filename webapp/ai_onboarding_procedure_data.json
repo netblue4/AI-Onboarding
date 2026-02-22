@@ -1065,7 +1065,53 @@
           "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
         }
       ],
-      "Fields": []
+      "Fields": [
+		{
+		  "jkType": "fieldGroup",
+		  "jkName": "Protected Subgroup Registry",
+		  "Role": "Requester",
+		  "controls": [
+			{
+			  "requirement_control_number": "[18283.1]",
+			  "control_number": "[6.1.1]",
+			  "jkName": "Declare every protected characteristic and its subgroup values this system must prove coverage and non-discrimination for",
+			  "jkText": "Enter every protected characteristic relevant to this system's use case and list all subgroup values under each characteristic that the system must cover. Format each entry as a characteristic name followed by its values — for example: 'age_group: 18-24, 25-45, 46-59, 60+', 'gender: male, female, non-binary', 'disability_status: disabled, non-disabled', 'ethnicity: White, Asian, Black, Mixed, Other'. This registry is used by two controls: the Subgroup Representation Gate ([6.1.R1]) uses it to enforce 500-record minimum coverage per subgroup at ingestion, and the Proxy Correlation Screening ([6.1.R3]) uses it to exclude declared protected characteristics from proxy correlation computation. If a protected characteristic or subgroup value is not listed here, coverage gaps and proxy correlations for that group will never be detected. Enter one characteristic per line with its values comma-separated. If the system does not operate in a context where protected characteristics are relevant, enter 'None' with a written justification — this generates a mandatory Compliance review gate.",
+			  "jkType": "TextBox",
+			  "jkObjective": "To establish the complete, deployment-specific registry of protected characteristics and their subgroup values so that engineers can configure both the Subgroup Representation Gate and the Proxy Correlation Screening with the correct protected group definitions for this system's domain, ensuring coverage gaps and proxy discrimination are detected before any data enters the Embedding Model training pipeline or Vector Store."
+			}
+		  ]
+		},
+		{
+		  "jkType": "fieldGroup",
+		  "jkName": "Fairness Definition and Stakeholder Engagement Record",
+		  "Role": "Compliance",
+		  "controls": [
+			{
+			  "requirement_control_number": "[18283.7]",
+			  "control_number": "[6.2.1]",
+			  "jkName": "Declare the agreed fairness definition for this system and confirm multi-stakeholder engagement",
+			  "jkText": "Enter the agreed definition of fairness that applies to this system's specific use case — for example: 'Fairness means equal positive outcome rates across all declared age groups for recruitment screening queries' or 'Fairness means no statistically significant difference in retrieval quality between any two declared language groups'. Then list every stakeholder group consulted during the fairness definition process, including the consultation date and the name or role of the representative — for example: 'Legal Counsel | 2026-01-14 | Head of Employment Law', 'Affected Community Representative | 2026-01-21 | External Disability Rights Advisor', 'Data Ethics Board | 2026-02-03 | Ethics Review Chair'. A fairness definition set by the engineering team alone, without input from affected communities or legal counsel, does not satisfy the multi-stakeholder requirement. If consultation has not yet occurred, enter 'Pending' — the system cannot proceed to bias evaluation or deployment until this field is completed and signed off.",
+			  "jkType": "TextBox",
+			  "jkObjective": "To capture the agreed use-case-specific definition of fairness and provide an auditable record of the multi-stakeholder consultation process that produced it, ensuring the system's bias mitigation measures are grounded in a definition of fairness that reflects the societal and functional context in which the system operates and not solely the engineering team's assumptions."
+			}
+		  ]
+		},
+		{
+		  "jkType": "fieldGroup",
+		  "jkName": "Fundamental Rights Mapping",
+		  "Role": "Compliance",
+		  "controls": [
+			{
+			  "requirement_control_number": "[18283.8]",
+			  "control_number": "[6.2.2]",
+			  "jkName": "Map each implemented bias control to the specific fundamental right it protects",
+			  "jkText": "For every bias control implemented in this system, enter the control number, a one-sentence description of what it does, and the specific fundamental right or EU legal provision it protects — for example: '[6.1.R1] Subgroup Representation Gate — ensures training data covers all protected age, gender, and disability subgroups | EU Charter of Fundamental Rights Art. 21 (Non-discrimination) | EU AI Act Art. 10(2)(f)', '[6.1.R2] Disparate Impact Detection Gate — blocks deployment when the Disparate Impact Ratio falls below 0.80 for any protected subgroup pair | EU Charter Art. 21 | EU Equal Treatment Directive 2000/43/EC', '[6.1.R3] Proxy Correlation Screening — prevents indirect discrimination by detecting variables that encode protected characteristics | EU Charter Art. 21 | GDPR Art. 22 (Automated decision-making)'. Every bias control must be mapped — an unmapped control cannot be cited in a compliance assertion because the legal right it protects has never been declared. If a control cannot be mapped to a fundamental right, enter the control number and 'Mapping Pending' — this generates a mandatory Compliance review gate before that control can be used as compliance evidence.",
+			  "jkType": "TextBox",
+			  "jkObjective": "To create an auditable, one-to-one mapping between every implemented bias control and the specific fundamental right or EU legal provision it protects, ensuring that the system's compliance assertions are legally grounded and that auditors can verify the organisation's bias mitigation measures directly against the rights they are designed to protect."
+			}
+		  ]
+		}      
+      ]
     },
     {
       "StepName": "18284: Quality and Governance",
@@ -1074,7 +1120,68 @@
           "Objective": "Evaluating the system's energy consumption and carbon footprint, particularly during the training and deployment phases. This step outlines strategies for optimizing model efficiency to reduce the AI system’s overall environmental impact."
         }
       ],
-      "Fields": []
+      "Fields": [
+		{
+		  "jkType": "fieldGroup",
+		  "jkName": "Population Segment Registry",
+		  "Role": "Requester",
+		  "controls": [
+			{
+			  "requirement_control_number": "[18284.4]",
+			  "control_number": "[5.2.1]",
+			  "jkName": "Declare the population segment fields this system must prove coverage for",
+			  "jkText": "Enter every dataset field that defines a distinct population segment this system must serve — for example: 'language', 'region', 'employment_category', 'contract_type'. The Representativeness Distribution Check evaluates every dataset against these fields before ingestion, counting records per segment value and blocking ingestion if more than 10% of segments fall below 500 records. If a segment field is not listed here, coverage gaps for that population will never be detected. Enter one field name per line, exactly as it appears in the dataset schema. If your system has no defined population segmentation requirement, enter 'None' — this generates a mandatory Build layer control.",
+			  "jkType": "TextBox",
+			  "jkObjective": "To capture the Requester's declared population segment fields so that engineers can configure the Representativeness Distribution Check with the correct field names for this system's domain, ensuring coverage gaps for every defined user population are detected before any data enters the Embedding Model training pipeline or Vector Store."
+			}
+		  ]
+		},
+		{
+		  "jkType": "fieldGroup",
+		  "jkName": "Dataset Required Fields Registry",
+		  "Role": "Requester",
+		  "controls": [
+			{
+			  "requirement_control_number": "[18284.5]",
+			  "control_number": "[5.2.2]",
+			  "jkName": "Declare the mandatory fields every record in this system's datasets must contain",
+			  "jkText": "Enter every field name that must be present and non-null in every record ingested into this system — for example: 'document_id', 'text', 'jurisdiction', 'effective_date', 'source'. The Completeness Threshold Gate scores every record against this list before ingestion, rejecting individual records where more than 5% of these fields are null or missing, and blocking the entire dataset if more than 2% of records fail. If a mandatory field is not listed here, records missing that field will pass the completeness check silently. Enter one field name per line, exactly as it appears in the dataset schema.",
+			  "jkType": "TextBox",
+			  "jkObjective": "To capture the Requester's declared mandatory field list so that engineers can configure the Completeness Threshold Gate with the domain-specific required fields for this system, preventing structurally incomplete records from corrupting Embedding Model training or populating the Vector Store with chunks that silently omit legally critical context."
+			}
+		  ]
+		},
+		{
+		  "jkType": "fieldGroup",
+		  "jkName": "Data Retention Schedule",
+		  "Role": "Requester",
+		  "controls": [
+			{
+			  "requirement_control_number": "[18284.8]",
+			  "control_number": "[5.3.1]",
+			  "jkName": "Declare the retention period and legal basis for each dataset type ingested by this system",
+			  "jkText": "Enter the retention policy for every category of data this system ingests. For each data type, provide three values: the dataset type name, the maximum retention period in days, and the legal basis under which it is held — for example: 'HR Policy Documents | 3650 days | Legitimate Interest (GDPR Art. 6(1)(f))', 'Employee Records | 365 days | Legal Obligation (GDPR Art. 6(1)(c))', 'Anonymised Usage Logs | 730 days | Legitimate Interest'. The Retention Schedule Enforcement control tags every ingested record with these values and schedules automated cryptographic erasure on the calculated deletion date. Any dataset type not listed here will have no scheduled deletion and will remain in the Vector Store indefinitely. Enter one policy per line. If retention schedules are governed by a separate DPA (Data Processing Agreement), reference the document name and version.",
+			  "jkType": "TextBox",
+			  "jkObjective": "To establish the lawful retention period and legal basis for every category of data ingested by the system so that engineers can configure the automated deletion scheduler with the correct expiry dates, ensuring personal data is not retained beyond its legal basis and the organisation can demonstrate GDPR Art. 5(1)(e) compliance through an auditable deletion log."
+			}
+		  ]
+		},
+		{
+		  "jkType": "fieldGroup",
+		  "jkName": "System Assumptions Registry",
+		  "Role": "Requester",
+		  "controls": [
+			{
+			  "requirement_control_number": "[18284.9]",
+			  "control_number": "[5.4.1]",
+			  "jkName": "Declare every assumption this system is built on and the proxy metric used to validate each one",
+			  "jkText": "Enter every assumption about the real world that this system depends on to produce correct outputs. For each assumption, provide three values: the assumption statement, the proxy metric used to detect if the assumption is no longer valid, and the maximum number of days before the metric value triggers a breach alert — for example: 'The Vector Store reflects the current approved policy document set | proxy: max_document_age_days | threshold: 30 days', 'HR legislation has not changed since last Vector Store sync | proxy: days_since_legislation_review | threshold: 90 days'. The Assumption Validity Monitor checks every declared assumption on a weekly schedule and fires a breach alert when any proxy metric exceeds its threshold. An assumption that is not declared here will never be monitored. If no assumptions can be formally stated, enter 'None' — this generates a mandatory Build layer control.",
+			  "jkType": "TextBox",
+			  "jkObjective": "To establish a declared, auditable registry of every real-world assumption the system depends on so that engineers can configure the Assumption Validity Monitor with measurable proxy metrics, and auditors can verify that assumption drift is detected and alerted before users receive outputs that are no longer grounded in current, valid conditions."
+			}
+		  ]
+		}
+      ]
     },
     {
       "StepName": "ISO/IEC 24970: AI System Logging",
@@ -1736,7 +1843,102 @@
               ]
             }
           ]
-        }
+        },
+		{
+		  "jkType": "plan",
+		  "Role": "Tester",
+		  "jkName": "[TEST-BI-01] - Subgroup Coverage Gate, Disparate Impact Detection, and Proxy Correlation Screening Validation",
+		  "PlanObjective": "This plan validates that the Subgroup Representation Gate defined in [6.1.R1], the Disparate Impact Detection Gate defined in [6.1.R2], and the Proxy Correlation Screening defined in [6.1.R3] are correctly implemented. All tests target Discrimination Risk — specifically Representation Collapse, Metric Blindness, and Proxy Leakage — conditions where discriminatory signals enter the Embedding Model training pipeline or Vector Store undetected and produce systematically worse outcomes for legally protected groups. Note: [18283.7] and [18283.8] are Compliance declaration controls with no runtime gate — their evidence is the completed fieldGroup records [6.2.1] and [6.2.2], not test reports.",
+		  "TestDataset": [
+			{
+			  "ID": "BI-P-01",
+			  "Query": "Submit a dataset containing 600 records for the 25–45 age group and 312 records for the 60+ age group — with all other declared subgroups meeting or exceeding the 500-record threshold. Run the subgroup coverage gate. Verify the gate detects the 60+ coverage gap, writes it to the coverage gap register with the correct count and threshold, blocks ingestion, and raises an exception requiring engineer_id and a justification referencing the fundamental right at risk.",
+			  "Expected_Outcome": "Pass (Subgroup Coverage Report shows subgroup = '60+', count = 312, threshold = 500, ingestion_approved = false, coverage_gap_register contains one entry with field = 'age_group', subgroup = '60+', count = 312, and the exception message contains 'INGESTION BLOCKED', the gap count, and the requirement for engineer_id and justification referencing the fundamental right at risk).",
+			  "Rationale_Summary": "Validates that the subgroup coverage gate detects a below-threshold protected subgroup, writes the gap to the register, and blocks ingestion with a structured exception — preventing a training dataset with a protected age group coverage gap from reaching the Embedding Model."
+			},
+			{
+			  "ID": "BI-P-02",
+			  "Query": "Resubmit the same dataset from BI-P-01 with a valid engineer_id and a written justification referencing EU Charter Art. 21. Verify the gate writes a SUBGROUP_OVERRIDE audit log entry containing the gap details, engineer_id, and justification, and returns ingestion_approved = true.",
+			  "Expected_Outcome": "Pass (Audit log contains event = 'SUBGROUP_OVERRIDE', gaps list contains the 60+ entry, engineer_id is present and non-null, justification contains the referenced fundamental right, logged_at is a valid UTC timestamp, and the gate returns ingestion_approved = true — confirming overrides are auditable and require a legally grounded justification).",
+			  "Rationale_Summary": "Validates that the override path is auditable and requires a documented justification referencing a specific fundamental right — preventing undocumented bypasses and ensuring every exception to the coverage requirement creates a legally traceable record."
+			},
+			{
+			  "ID": "BI-P-03",
+			  "Query": "Submit a dataset where all declared protected subgroups meet or exceed the 500-record threshold. Run the subgroup coverage gate. Verify the gate returns ingestion_approved = true with an empty subgroup_gaps_detected list.",
+			  "Expected_Outcome": "Pass (Subgroup Coverage Report shows subgroup_gaps_detected = [], ingestion_approved = true — confirming the gate does not produce false positives for a fully representative dataset where all protected subgroups meet the minimum threshold).",
+			  "Rationale_Summary": "Validates the positive path of the coverage gate — a fully representative dataset must pass without false blocking, confirming the gate does not prevent compliant, representative datasets from entering the Embedding Model pipeline."
+			},
+			{
+			  "ID": "BI-P-04",
+			  "Query": "Run the bias gate with outcome_rates = {'male_25_45': 0.71, 'female_25_45': 0.54, 'age_60_plus': 0.68}. Verify the Disparate Impact Ratio for the male_25_45 vs female_25_45 pair is 0.76 — below the 0.80 threshold — deployment is blocked, and the failing pair and score are written to the bias evaluation report.",
+			  "Expected_Outcome": "Pass (Bias Metric Evaluation Report shows metric = 'Disparate Impact Ratio', group_a = 'male_25_45', group_b = 'female_25_45', score = 0.76, threshold = 0.80, passed = false, deployment_approved = false, failures list contains the failing pair, and the exception message contains 'DEPLOYMENT BLOCKED' and the breach count — confirming deployment is independently blocked by a single Disparate Impact Ratio breach).",
+			  "Rationale_Summary": "Validates that a Disparate Impact Ratio below 0.80 independently blocks deployment and produces a structured breach report identifying the failing subgroup pair and score — the primary evidence required to demonstrate pre-deployment bias due diligence under EU AI Act Art. 9(4)."
+			},
+			{
+			  "ID": "BI-P-05",
+			  "Query": "Run the bias gate with tpr_rates = {'group_a': 0.82, 'group_b': 0.76} and fpr_rates = {'group_a': 0.12, 'group_b': 0.19} — producing an Equalized Odds difference of 0.07, above the 0.05 threshold. Verify deployment is blocked and the failing pair and score appear in the bias evaluation report.",
+			  "Expected_Outcome": "Pass (Bias Metric Evaluation Report shows metric = 'Equalized Odds Difference', score = 0.07, threshold = 0.05, passed = false, deployment_approved = false, and the failures list contains the failing pair with tpr_diff and fpr_diff both recorded — confirming the Equalized Odds check operates as an independent deployment blocking condition).",
+			  "Rationale_Summary": "Validates that the Equalized Odds check independently blocks deployment when the true positive or false positive rate difference between groups exceeds 0.05 — catching cases where outcome rates appear balanced but error rates are distributed unequally across protected groups."
+			},
+			{
+			  "ID": "BI-P-06",
+			  "Query": "Run the bias gate with outcome_rates where all Disparate Impact Ratios are ≥ 0.80 and all Equalized Odds differences are ≤ 0.05. Verify the gate returns deployment_approved = true with an empty failures list.",
+			  "Expected_Outcome": "Pass (Bias Metric Evaluation Report shows all metric_results entries with passed = true, failures = [], deployment_approved = true — confirming the gate does not block deployment when all bias thresholds are satisfied).",
+			  "Rationale_Summary": "Validates the positive path of the bias gate — a system where all protected subgroup pairs meet both the Disparate Impact and Equalized Odds thresholds must pass the deployment gate, confirming the gate does not block compliant deployments."
+			},
+			{
+			  "ID": "BI-P-07",
+			  "Query": "Submit a dataset where the 'PostcodeDistrict' variable correlates with 'ethnicity' at a Pearson coefficient of ≥ 0.70 — with no action_taken recorded. Run the proxy screening gate against non_protected_fields = ['PostcodeDistrict', 'income_band']. Verify the gate flags PostcodeDistrict, writes a screening report to the audit log, blocks ingestion, and raises an exception requiring action_taken and engineer_id.",
+			  "Expected_Outcome": "Pass (Proxy Correlation Screening Report shows variable = 'PostcodeDistrict', protected_characteristic = 'ethnicity', pearson_coefficient ≥ 0.70, action_taken = null, ingestion_approved = false, audit log contains the full screening report, and the exception message contains 'INGESTION BLOCKED' and the proxy count — confirming an unactioned proxy variable independently blocks ingestion).",
+			  "Rationale_Summary": "Validates that the proxy screener detects a variable encoding a protected characteristic through indirect correlation, writes an auditable screening report before raising the block, and requires a documented action decision — preventing the Embedding Model from learning a discriminatory proxy signal without any record of it having been assessed."
+			},
+			{
+			  "ID": "BI-P-08",
+			  "Query": "Submit the same dataset from BI-P-07 with action_taken = 'removed' and a valid engineer_id recorded on the PostcodeDistrict flag entry. Run the proxy screening gate. Verify the gate returns ingestion_approved = true, the audit log shows the actioned flag entry, and unactioned_proxies = [].",
+			  "Expected_Outcome": "Pass (Proxy Correlation Screening Report shows flagged_proxies contains the PostcodeDistrict entry with action_taken = 'removed' and engineer_id present, unactioned_proxies = [], ingestion_approved = true, and the audit log entry records the complete screening report — confirming a documented action decision on a flagged proxy allows ingestion to proceed with a full audit trail).",
+			  "Rationale_Summary": "Validates that the proxy gate allows ingestion to proceed when every flagged proxy has a recorded action decision and engineer ID — confirming the gate is not a hard block but a documentation enforcement control that requires every proxy decision to be made explicitly rather than silently."
+			},
+			{
+			  "ID": "BI-P-09",
+			  "Query": "Submit a dataset where all non-protected variables have Pearson coefficients below 0.70 against all declared protected characteristics. Run the proxy screening gate. Verify the gate returns ingestion_approved = true with flagged_proxies = [] and unactioned_proxies = [].",
+			  "Expected_Outcome": "Pass (Proxy Correlation Screening Report shows flagged_proxies = [], unactioned_proxies = [], ingestion_approved = true, and the audit log contains a screening report with zero flagged entries — confirming the gate does not produce false positive proxy flags for variables with low protected characteristic correlation).",
+			  "Rationale_Summary": "Validates the positive path of the proxy screen — a dataset with no high-correlation proxy variables must pass without false blocking, confirming the gate does not prevent ingestion of clean datasets where no variable encodes a protected characteristic indirectly."
+			}
+		  ],
+		  "controls": [
+			{
+			  "requirement_control_number": "[18283.1]",
+			  "control_number": "[6.1.T1]",
+			  "jkName": "Subgroup Coverage Gate Test Report",
+			  "jkText": "Generate a 'Subgroup Coverage Test Report' after every test run covering BI-P-01, BI-P-02, and BI-P-03. The report must show the sample count per protected subgroup, the threshold result per subgroup, the override audit log entry where applicable, and a zero count of datasets ingested with any protected subgroup below the 500-record threshold without a logged override containing a justification referencing a specific fundamental right.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the subgroup coverage gate blocks datasets with protected subgroup coverage gaps, requires a legally grounded justification for any override, and passes fully representative datasets without false positives.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Subgroup Coverage Test Report' showing BI-P-01: 60+ gap detected, coverage_gap_register entry confirmed, ingestion_approved = false, exception raised with override requirement; BI-P-02: SUBGROUP_OVERRIDE logged with engineer_id and fundamental right reference; BI-P-03: subgroup_gaps_detected = [], ingestion_approved = true."
+			},
+			{
+			  "requirement_control_number": "[18283.2]",
+			  "control_number": "[6.1.T2]",
+			  "jkName": "Bias Metric Gate Test Report",
+			  "jkText": "Generate a 'Bias Metric Evaluation Test Report' after every test run covering BI-P-04, BI-P-05, and BI-P-06. The report must show the metric name, score per subgroup pair, threshold applied, deployment gate result, and a zero count of deployments that proceeded with a Disparate Impact Ratio below 0.80 or an Equalized Odds difference above 0.05 without a logged engineering override.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the bias gate independently blocks deployment on a Disparate Impact Ratio breach and an Equalized Odds breach, and passes deployments where all bias thresholds are satisfied.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Bias Metric Evaluation Test Report' showing BI-P-04: Disparate Impact Ratio = 0.76, passed = false, deployment_approved = false, DEPLOYMENT BLOCKED exception raised; BI-P-05: Equalized Odds difference = 0.07, passed = false, deployment_approved = false; BI-P-06: all pairs passed, deployment_approved = true."
+			},
+			{
+			  "requirement_control_number": "[18283.3]",
+			  "control_number": "[6.1.T3]",
+			  "jkName": "Proxy Correlation Screening Test Report",
+			  "jkText": "Generate a 'Proxy Correlation Screening Test Report' after every test run covering BI-P-07, BI-P-08, and BI-P-09. The report must show every variable screened, the Pearson coefficient per protected characteristic pair, the flag and action status for every flagged variable, the audit log entry per run, and a zero count of datasets ingested containing a proxy variable flagged at ≥ 0.70 with no recorded action decision and engineer ID.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the proxy screener detects high-correlation proxy variables, blocks ingestion until a documented action decision is recorded, and passes clean datasets with zero false positive proxy flags.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Proxy Correlation Screening Test Report' showing BI-P-07: PostcodeDistrict flagged at ≥ 0.70 with ethnicity, action_taken = null, ingestion_approved = false, screening report in audit log; BI-P-08: action_taken = 'removed', engineer_id present, ingestion_approved = true; BI-P-09: flagged_proxies = [], ingestion_approved = true."
+			}
+		  ]
+		}
+
       ]
     },
     {
@@ -1980,7 +2182,241 @@
               ]
             }
           ]
-        }
+        },
+		{
+		  "jkType": "plan",
+		  "Role": "Tester",
+		  "jkName": "[TEST-DG-01] - Data Governance Gate, Provenance Integrity, and Pipeline Audit Validation",
+		  "PlanObjective": "This plan validates that the Data Selection Rationale Gate defined in [5.1.R1], the Provenance Chain Validation control defined in [5.1.R2], and the Pipeline Operation Audit Log defined in [5.1.R3] are correctly implemented. All tests target Trust Risk — specifically Provenance Collapse, where undocumented, legally unaccountable data enters the Vector Store or Embedding Model training pipeline without a traceable governance or preparation history.",
+		  "TestDataset": [
+			{
+			  "ID": "DG-P-01",
+			  "Query": "Submit an ingestion request for a dataset named 'HR_Policy_2026' where the governance register entry exists but the 'suitability_assessment_method' and 'assessment_completion_date' fields are both null. Verify the ingestion gate blocks the run, writes an INGESTION_BLOCKED log entry listing both missing fields, and does not write any records to the Vector Store.",
+			  "Expected_Outcome": "Pass (Data Governance Gate Report shows event = INGESTION_BLOCKED, dataset = 'HR_Policy_2026', missing_fields = ['suitability_assessment_method', 'assessment_completion_date'], ingestion_approved = false, and a zero count of records from this dataset written to the Vector Store — confirming incomplete governance documentation independently blocks ingestion).",
+			  "Rationale_Summary": "Validates that the governance gate enforces all three mandatory fields as independent blocking conditions — a dataset with a register entry but incomplete documentation must be blocked at ingestion, preventing legally unaccountable data from entering the Vector Store."
+			},
+			{
+			  "ID": "DG-P-02",
+			  "Query": "Submit an ingestion request for a dataset with no governance register entry at all. Verify the gate raises a LookupError with the dataset name, writes a structured error log, and does not advance to field validation or write any records to the Vector Store.",
+			  "Expected_Outcome": "Pass (Data Governance Gate Report shows a LookupError raised with message containing 'No register entry found for' and the dataset name, ingestion_approved = false, no field validation was attempted, and zero records from this dataset were written to the Vector Store — confirming absence from the register is independently sufficient to block ingestion).",
+			  "Rationale_Summary": "Validates that the governance gate's register lookup acts as a hard prerequisite — a dataset that has never been registered cannot enter the ingestion pipeline regardless of its content, closing the vector where a developer bypasses governance documentation to meet a deadline."
+			},
+			{
+			  "ID": "DG-P-03",
+			  "Query": "Submit an ingestion request for a dataset with a complete governance register entry — all three mandatory fields populated with non-null values. Verify the gate passes, returns ingestion_approved = true, and advances to the next pipeline stage.",
+			  "Expected_Outcome": "Pass (Data Governance Gate Report shows missing_fields = [], ingestion_approved = true, and the pipeline advanced to the next stage — confirming the gate does not produce false positives for fully documented datasets).",
+			  "Rationale_Summary": "Validates the positive path of the governance gate — a fully documented dataset with all three mandatory governance fields present must pass without false blocking, confirming the gate does not prevent compliant ingestion runs."
+			},
+			{
+			  "ID": "DG-P-04",
+			  "Query": "Ingest a dataset with a valid provenance record containing all five required fields. Then simulate a post-ingestion tampering event by modifying the 'legal_basis' field in the stored provenance record. Trigger a Retriever read on that dataset and verify the read-time integrity check detects the hash mismatch and raises a SecurityAlert.",
+			  "Expected_Outcome": "Pass (Provenance Validation Report shows ingestion hash recorded correctly at ingestion time; on read, recalculated_hash ≠ stored_hash, a SecurityAlert is raised with message containing 'PROVENANCE TAMPERING DETECTED', and the read operation is aborted — confirming post-ingestion tampering of any provenance field is detectable at every subsequent read).",
+			  "Rationale_Summary": "Validates that the provenance hash seals the legal basis and all provenance fields against silent post-ingestion modification — the primary fraud vector where a data steward alters the legal basis after ingestion to make unlawfully obtained data appear compliant during an audit."
+			},
+			{
+			  "ID": "DG-P-05",
+			  "Query": "Submit a dataset for ingestion with a provenance record missing the 'transfer_agreement_ref' field. Verify the provenance validation function raises a ValueError listing the missing field and blocks ingestion before the hash is generated.",
+			  "Expected_Outcome": "Pass (Provenance Validation Report shows ValueError raised with message containing 'PROVENANCE INCOMPLETE' and 'transfer_agreement_ref', ingestion_approved = false, no provenance hash was generated, and zero records from this dataset were written to the Vector Store).",
+			  "Rationale_Summary": "Validates that the provenance completeness check blocks ingestion before the hash sealing step — a provenance record missing any of the five mandatory fields must never receive a hash, ensuring the hash is always a seal on a complete, verified record."
+			},
+			{
+			  "ID": "DG-P-06",
+			  "Query": "Run a two-step pipeline — a cleaning function followed by an enrichment function — using the audit_step decorator on both. After execution, verify the audit store contains one log entry per step, each with operation name, timestamp, tool_version, input_hash, output_hash, input_record_count, and output_record_count all populated.",
+			  "Expected_Outcome": "Pass (Data Preparation Audit Log shows exactly two entries — one for the cleaning function and one for the enrichment function — each with all seven required fields present and non-null, output_hash of the cleaning step matches input_hash of the enrichment step, and both record counts are non-zero).",
+			  "Rationale_Summary": "Validates that the audit_step decorator captures a complete before-and-after record for every pipeline transformation — the prerequisite for tracing any data quality defect to the exact pipeline step that introduced it."
+			},
+			{
+			  "ID": "DG-P-07",
+			  "Query": "Run a pipeline continuity check where the output hash from a cleaning step does not match the input data hash presented to the subsequent enrichment step — simulating silent file corruption or an undocumented dataset substitution between steps. Verify the continuity check raises a PipelineIntegrityError and halts the pipeline before the enrichment step executes.",
+			  "Expected_Outcome": "Pass (Pipeline continuity check raises PipelineIntegrityError with message containing 'HASH CONTINUITY BREACH', the enrichment function was not called, and the audit log entry for the cleaning step shows the output_hash that triggered the mismatch — confirming the pipeline cannot advance past a detected inter-step data integrity failure).",
+			  "Rationale_Summary": "Validates that the continuity check prevents the pipeline from silently proceeding past a detected data state change between steps — closing the vector where undetected file corruption or dataset substitution corrupts subsequent pipeline stages without any error signal."
+			}
+		  ],
+		  "controls": [
+			{
+			  "requirement_control_number": "[18284.1]",
+			  "control_number": "[5.1.T1]",
+			  "jkName": "Data Governance Gate Test Report",
+			  "jkText": "Generate a 'Data Governance Gate Test Report' after every test run covering DG-P-01, DG-P-02, and DG-P-03. The report must show the dataset name, register lookup result, missing fields list, gate decision, and a zero count of datasets ingested without a complete governance register entry.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the governance gate independently blocks datasets with incomplete documentation and absent register entries, while passing fully documented datasets without false positives.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Data Governance Gate Test Report' showing DG-P-01: INGESTION_BLOCKED with both missing fields listed; DG-P-02: LookupError raised, no field validation attempted; DG-P-03: missing_fields = [], ingestion_approved = true; zero datasets ingested without complete governance records."
+			},
+			{
+			  "requirement_control_number": "[18284.2]",
+			  "control_number": "[5.1.T2]",
+			  "jkName": "Provenance Chain Integrity Test Report",
+			  "jkText": "Generate a 'Provenance Chain Integrity Test Report' after every test run covering DG-P-04 and DG-P-05. The report must show the provenance hash at ingestion, the re-verified hash at read time, the comparison result, and a zero count of datasets ingested with a missing legal basis or tampered provenance record that were not detected.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the provenance hash seals a complete record at ingestion and detects any post-ingestion field modification at read time, with incomplete provenance records blocked before a hash is generated.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Provenance Chain Integrity Test Report' showing DG-P-04: post-ingestion tampering detected, SecurityAlert raised, read aborted; DG-P-05: PROVENANCE INCOMPLETE raised before hash generation, zero records ingested; zero tampered provenance records undetected at read time."
+			},
+			{
+			  "requirement_control_number": "[18284.3]",
+			  "control_number": "[5.1.T3]",
+			  "jkName": "Pipeline Audit Log Test Report",
+			  "jkText": "Generate a 'Data Preparation Audit Log Test Report' after every test run covering DG-P-06 and DG-P-07. The report must show the log entry count per pipeline run, all seven required fields per entry, the hash continuity check result, and a zero count of pipeline steps that advanced without a confirmed audit log entry.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the audit_step decorator captures a complete before-and-after hash record for every pipeline step and the continuity check halts the pipeline on any inter-step hash mismatch.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Data Preparation Audit Log Test Report' showing DG-P-06: two entries with all seven fields populated, output_hash of step one matches input_hash of step two; DG-P-07: PipelineIntegrityError raised, enrichment step not executed, mismatch hash recorded in audit log."
+			}
+		  ]
+		},
+		{
+		  "jkType": "plan",
+		  "Role": "Tester",
+		  "jkName": "[TEST-DG-02] - Representativeness, Completeness, and Label Quality Validation",
+		  "PlanObjective": "This plan validates that the Representativeness Distribution Check defined in [5.2.R1], the Completeness Threshold Gate defined in [5.2.R2], and the Label Quality Gate defined in [5.2.R3] are correctly implemented. All tests target Trust Risk — specifically Silent Data Bias, where Coverage Gaps, Completeness Blindness, and Label Noise pass ingestion undetected and corrupt the Embedding Model or Vector Store from the first training run.",
+		  "TestDataset": [
+			{
+			  "ID": "DG-P-08",
+			  "Query": "Submit a dataset of 2,187 records across three language and region segments — 1,200 English/UK records, 900 German/DE records, and 87 French/BE records. Run the representativeness check against segment fields ['language', 'region']. Verify the gate identifies the French/BE segment as a coverage gap, writes it to the data gap register, and blocks ingestion because the gap ratio exceeds 10%.",
+			  "Expected_Outcome": "Pass (Distribution Analysis Report shows total_segments_evaluated ≥ 6, segments_below_threshold contains one entry with field = 'language', segment = 'fr', count = 87, gap_ratio > 0.10, ingestion_approved = false, and the data gap register contains the French/BE entry — confirming the gate detects and blocks a dataset with a minority language coverage gap).",
+			  "Rationale_Summary": "Validates that the distribution check detects underrepresented population segments and blocks ingestion when the gap ratio exceeds 10% — preventing a deployed system from returning poor or zero results for minority language users while appearing fully functional to the majority population."
+			},
+			{
+			  "ID": "DG-P-09",
+			  "Query": "Submit a dataset where all defined segments across all declared segment fields meet or exceed 500 records. Run the representativeness check and verify the gate returns ingestion_approved = true with an empty segments_below_threshold list.",
+			  "Expected_Outcome": "Pass (Distribution Analysis Report shows segments_below_threshold = [], gap_ratio = 0.0, ingestion_approved = true — confirming the gate does not produce false positives for a fully representative dataset where all population segments meet the minimum threshold).",
+			  "Rationale_Summary": "Validates the positive path of the distribution check — a dataset with full population coverage must pass without false blocking, confirming the gate does not prevent compliant, representative datasets from entering the Embedding Model pipeline."
+			},
+			{
+			  "ID": "DG-P-10",
+			  "Query": "Submit a 100-record dataset where 3 records are missing the 'jurisdiction' and 'effective_date' fields. Run the completeness threshold check against the declared required fields list. Verify all 3 incomplete records are rejected and written to the data gap register, the dataset pass rate is 97%, and ingestion is blocked because the pass rate falls below the 98% threshold.",
+			  "Expected_Outcome": "Pass (Completeness Threshold Report shows total_records = 100, rejected_records count = 3, each entry containing the record_id and both missing field names, dataset_pass_rate = 0.97, ingestion_approved = false, and a rejection notice requiring human override with engineer_id is present in the pipeline log).",
+			  "Rationale_Summary": "Validates the dual-threshold completeness gate — individual incomplete records are rejected and logged, and the dataset is blocked in full when the proportion of incomplete records exceeds 2%, preventing structurally incomplete records from silently populating the Vector Store."
+			},
+			{
+			  "ID": "DG-P-11",
+			  "Query": "Submit a 100-record dataset where exactly 1 record is missing one required field — producing a dataset pass rate of 99%, above the 98% threshold. Verify the single incomplete record is rejected and logged to the data gap register, but the remaining 99 records are approved for ingestion.",
+			  "Expected_Outcome": "Pass (Completeness Threshold Report shows total_records = 100, rejected_records count = 1 with the missing field identified, dataset_pass_rate = 0.99, ingestion_approved = true — confirming the gate correctly processes partial datasets, rejects only non-compliant records, and does not block the dataset when the pass rate is above threshold).",
+			  "Rationale_Summary": "Validates that the completeness gate operates at record level as well as dataset level — a single incomplete record must be rejected and logged without triggering a full dataset block when the overall pass rate remains compliant."
+			},
+			{
+			  "ID": "DG-P-12",
+			  "Query": "Submit a two-annotator annotation batch where annotator A labels ['cat', 'dog', 'cat', 'fish', 'dog'] and annotator B labels ['cat', 'cat', 'cat', 'fish', 'dog'] — producing a Cohen's Kappa score below 0.80. Verify the label quality gate hard-rejects the batch, routes it to the re-annotation queue, and does not release it to the Embedding Model training pipeline.",
+			  "Expected_Outcome": "Pass (Label Quality Report shows annotator_count = 2, metric = 'Cohen\\'s Kappa', score < 0.80, batch_approved = false, routed_to_reannotation = true, and zero records from this batch were released to the Embedding Model training pipeline — confirming low inter-annotator agreement is independently sufficient to hard-reject a batch with no override path).",
+			  "Rationale_Summary": "Validates that the label quality gate enforces the 0.80 agreement threshold as a hard rejection with no override — label noise from inconsistent annotation corrupts Embedding Model semantic representations in a way that cannot be corrected without a full retraining cycle, so the defect must be caught before any labelled data enters the training pipeline."
+			},
+			{
+			  "ID": "DG-P-13",
+			  "Query": "Submit a two-annotator annotation batch where both annotators produce identical labels across all records — producing a Cohen's Kappa score of 1.0. Verify the gate approves the batch and releases it to the Embedding Model training pipeline.",
+			  "Expected_Outcome": "Pass (Label Quality Report shows metric = 'Cohen\\'s Kappa', score = 1.0, batch_approved = true, and the batch was released to the Embedding Model training pipeline — confirming the gate passes high-agreement batches without false rejection).",
+			  "Rationale_Summary": "Validates the positive path of the label quality gate — perfect annotator agreement must produce an approved batch that is released to the training pipeline, confirming the gate does not block high-quality annotation work."
+			}
+		  ],
+		  "controls": [
+			{
+			  "requirement_control_number": "[18284.4]",
+			  "control_number": "[5.2.T1]",
+			  "jkName": "Distribution Analysis Test Report",
+			  "jkText": "Generate a 'Distribution Analysis Test Report' after every test run covering DG-P-08 and DG-P-09. The report must show the segment field names evaluated, the count per segment, the gap ratio, the ingestion decision, and a zero count of datasets ingested where more than 10% of population segments fell below the 500-record threshold.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the distribution check correctly blocks datasets with coverage gaps exceeding 10% and passes fully representative datasets without false positives.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Distribution Analysis Test Report' showing DG-P-08: French/BE segment count = 87, gap_ratio > 0.10, ingestion_approved = false, data gap register entry confirmed; DG-P-09: segments_below_threshold = [], gap_ratio = 0.0, ingestion_approved = true."
+			},
+			{
+			  "requirement_control_number": "[18284.5]",
+			  "control_number": "[5.2.T2]",
+			  "jkName": "Completeness Threshold Test Report",
+			  "jkText": "Generate a 'Completeness Threshold Test Report' after every test run covering DG-P-10 and DG-P-11. The report must show the total record count, rejected record count and missing fields per rejected record, dataset pass rate, ingestion decision, and a zero count of datasets ingested with a dataset-level pass rate below 98%.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the completeness gate rejects individual incomplete records at the record level and blocks full datasets when the proportion of incomplete records exceeds 2%, while allowing partial datasets where the pass rate is compliant.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Completeness Threshold Test Report' showing DG-P-10: 3 records rejected, pass_rate = 0.97, ingestion_approved = false, human override prompt present; DG-P-11: 1 record rejected and logged, pass_rate = 0.99, ingestion_approved = true."
+			},
+			{
+			  "requirement_control_number": "[18284.6]",
+			  "control_number": "[5.2.T3]",
+			  "jkName": "Label Quality Gate Test Report",
+			  "jkText": "Generate a 'Label Quality Test Report' after every test run covering DG-P-12 and DG-P-13. The report must show the annotator count, the agreement metric used, the score, the batch decision, and a zero count of annotation batches scoring below 0.80 that were released to the Embedding Model training pipeline.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the label quality gate hard-rejects low-agreement batches with no override path and passes high-agreement batches without false rejection.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Label Quality Test Report' showing DG-P-12: Cohen's Kappa < 0.80, batch_approved = false, routed_to_reannotation = true, zero records released to training pipeline; DG-P-13: Cohen's Kappa = 1.0, batch_approved = true, batch released."
+			}
+		  ]
+		},
+		{
+		  "jkType": "plan",
+		  "Role": "Tester",
+		  "jkName": "[TEST-DG-03] - Split Contamination, Retention Enforcement, and Assumption Validity Validation",
+		  "PlanObjective": "This plan validates that the Split Contamination Prevention gate defined in [5.3.R1], the Retention Schedule Enforcement control defined in [5.3.R2], and the Assumption Validity Monitor defined in [5.4.R1] are correctly implemented. Note: [5.3.R1] is structurally identical to [4.2.R1] Test Set Isolation Enforcement — both use the same SHA-256 hash gate and ACL blocked accounts check. The tests below are independent adversarial runs against the [5.3.R1] implementation. All tests target Resilience Risk — specifically Split Contamination that inflates accuracy scores, Retention Violation that creates GDPR liability, and Assumption Drift that causes the system to serve silently outdated responses.",
+		  "TestDataset": [
+			{
+			  "ID": "DG-P-14",
+			  "Query": "Run the pre-evaluation gate against a test partition file whose current SHA-256 hash does not match the reference hash stored at partition creation time — simulating post-split modification of the test dataset. Verify the gate raises a CONTAMINATION ALERT exception and aborts evaluation before any scoring runs.",
+			  "Expected_Outcome": "Pass (Split Integrity Report shows current_hash ≠ reference_hash, exception raised with message containing 'CONTAMINATION ALERT: Hash mismatch. Evaluation aborted.', and no model scoring was executed — confirming any modification to the test partition after its creation blocks evaluation entirely).",
+			  "Rationale_Summary": "Validates that the SHA-256 integrity check independently blocks evaluation when the test partition has been modified — preventing inflated accuracy scores produced by a test set that has been altered to include training data answers."
+			},
+			{
+			  "ID": "DG-P-15",
+			  "Query": "Run the pre-evaluation gate against a test partition whose hash matches the reference but whose current ACL contains the service account 'training-pipeline-sa'. Verify the gate raises an ACL VIOLATION exception and aborts evaluation independently of the hash check.",
+			  "Expected_Outcome": "Pass (Split Integrity Report shows hash check = PASSED, ACL check = FAILED, exception raised with message containing 'ACL VIOLATION: Blocked accounts detected: training-pipeline-sa. Evaluation aborted.', and no model scoring was executed — confirming the ACL check operates as an independent blocking control).",
+			  "Rationale_Summary": "Validates that the ACL check independently blocks evaluation when a training pipeline service account has been granted access to the test partition — closing the contamination vector where the hash is intact but the access boundary has been weakened."
+			},
+			{
+			  "ID": "DG-P-16",
+			  "Query": "Ingest a record tagged with a retention period of 30 days and a legal basis of 'GDPR Art. 6(1)(c)'. Advance the system clock by 31 days. Run the daily expired records query. Verify the record appears in the expired records list and the decommission function executes cryptographic erasure, writing a deletion log entry with the authorising engineer ID and timestamp.",
+			  "Expected_Outcome": "Pass (Retention Compliance Report shows the record in the expired records list with scheduled_deletion date in the past, decommission log entry contains event = 'cryptographic_erasure', record_id, authorised_by = engineer_id, and a UTC timestamp — confirming the record was deleted on schedule and the deletion is fully auditable).",
+			  "Rationale_Summary": "Validates the full retention enforcement lifecycle — a record whose legal basis has expired must appear in the daily deletion queue, be cryptographically erased, and produce a logged deletion event with an authorising engineer ID, creating the auditable record needed to demonstrate GDPR Art. 5(1)(e) compliance."
+			},
+			{
+			  "ID": "DG-P-17",
+			  "Query": "Ingest a record tagged with a retention period of 365 days. Run the daily expired records query at day 30. Verify the record does not appear in the expired records list and no deletion is triggered.",
+			  "Expected_Outcome": "Pass (Retention Compliance Report shows the record's scheduled_deletion date is in the future, the record does not appear in the expired records query result, and no decommission log entry was written for this record — confirming the deletion scheduler does not prematurely erase records that are still within their lawful retention period).",
+			  "Rationale_Summary": "Validates that the retention scheduler does not produce false positive deletions — a record within its lawful retention period must never be scheduled for deletion, confirming the system preserves data that is still legally required."
+			},
+			{
+			  "ID": "DG-P-18",
+			  "Query": "Configure the assumptions registry with one entry: assumption = 'Vector Store reflects the current approved policy document set', proxy_metric = 'max_document_age_days', threshold_days = 30. Run the assumption validity check against a Vector Store snapshot whose last_sync date is 35 days ago. Verify the monitor returns a BREACH result, fires an ASSUMPTION_BREACH alert with the assumption ID and metric value, and appends the event to the audit log.",
+			  "Expected_Outcome": "Pass (Assumption Validity Report shows assumption_id = 'policy_freshness', metric_value = 35, threshold = 30, status = BREACH, an ASSUMPTION_BREACH alert was fired with the assumption_id, metric_value, threshold, and UTC timestamp, and the event is present in the audit log — confirming the monitor detects a stale Vector Store within one monitoring cycle).",
+			  "Rationale_Summary": "Validates that the assumption validity monitor detects the most common assumption failure mode — a Vector Store sync lapse — and fires an alert within one weekly monitoring cycle, preventing the system from silently serving responses grounded in outdated documents."
+			},
+			{
+			  "ID": "DG-P-19",
+			  "Query": "Run the assumption validity check against a Vector Store snapshot whose last_sync date is 15 days ago — within the 30-day threshold. Verify the monitor returns a PASS result and fires no alert.",
+			  "Expected_Outcome": "Pass (Assumption Validity Report shows assumption_id = 'policy_freshness', metric_value = 15, threshold = 30, status = PASS, and zero ASSUMPTION_BREACH alerts were fired — confirming the monitor does not produce false positives when all declared assumptions are within their valid thresholds).",
+			  "Rationale_Summary": "Validates that the assumption monitor does not generate false positive alerts for assumptions that are currently valid — unnecessary alerts would cause the operations team to disable monitoring, eliminating the early warning system entirely."
+			}
+		  ],
+		  "controls": [
+			{
+			  "requirement_control_number": "[18284.7]",
+			  "control_number": "[5.3.T1]",
+			  "jkName": "Split Contamination Prevention Test Report",
+			  "jkText": "Generate a 'Split Integrity Test Report' after every test run covering DG-P-14 and DG-P-15. The report must show the SHA-256 hash comparison result, the ACL check result, the gate decision, and a zero count of evaluations run on a test partition with a hash mismatch or a blocked service account in the ACL. Note: cross-reference [4.2.T1] — both controls share the same gate implementation; test results should be compared across both reports to confirm implementation consistency.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the split contamination gate independently blocks evaluation on hash mismatch and ACL violation, with results cross-referenced against [4.2.T1] to confirm the shared gate implementation behaves consistently across both control contexts.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Split Integrity Test Report' showing DG-P-14: hash mismatch detected, evaluation aborted, no scoring executed; DG-P-15: hash passed, ACL violation detected, evaluation aborted independently; zero evaluations run on a contaminated or ACL-violated partition."
+			},
+			{
+			  "requirement_control_number": "[18284.8]",
+			  "control_number": "[5.3.T2]",
+			  "jkName": "Retention Compliance Test Report",
+			  "jkText": "Generate a 'Retention Compliance Test Report' after every test run covering DG-P-16 and DG-P-17. The report must show the scheduled deletion date per record, the expired records query result, the decommission log entry for executed deletions, and a zero count of records retained beyond their scheduled deletion date.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the retention scheduler correctly identifies and cryptographically erases expired records on schedule, and does not prematurely delete records within their lawful retention period.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Retention Compliance Test Report' showing DG-P-16: record in expired query at day 31, cryptographic_erasure event logged with engineer_id and timestamp; DG-P-17: record not in expired query at day 30, no decommission event written; zero records retained beyond scheduled deletion date."
+			},
+			{
+			  "requirement_control_number": "[18284.9]",
+			  "control_number": "[5.4.T1]",
+			  "jkName": "Assumption Validity Monitor Test Report",
+			  "jkText": "Generate an 'Assumption Validity Test Report' after every test run covering DG-P-18 and DG-P-19. The report must show every declared assumption, the proxy metric value, the threshold, the check result, the alert dispatch confirmation for breach events, and a zero count of assumption breaches that did not trigger an alert within one monitoring cycle.",
+			  "jkType": "test_control",
+			  "jkObjective": "To provide a per-run evidence record proving the assumption validity monitor correctly fires a breach alert when any declared proxy metric exceeds its threshold and produces no false positive alerts when all assumptions are within valid bounds.",
+			  "jkImplementationStatus": "",
+			  "jkImplementationEvidence": "'Assumption Validity Test Report' showing DG-P-18: status = BREACH at metric_value = 35, ASSUMPTION_BREACH alert fired with all required fields, audit log entry confirmed; DG-P-19: status = PASS at metric_value = 15, zero alerts fired."
+			}
+		  ]
+		}  
       ]
     },
     {
