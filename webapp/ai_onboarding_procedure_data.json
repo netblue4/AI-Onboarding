@@ -1024,45 +1024,6 @@
               "jkObjective": "To confirm that human-readable and machine-readable documentation exists in a format accessible to all intended users and operators, satisfying the AI Act Art. 13 transparency obligation (the legal requirement to explain what the system does, how it works, and its limitations)."
             }
           ]
-        },
-        {
-          "jkType": "fieldGroup",
-          "jkName": "[18229-1: Trustworthiness] - Human Oversight",
-          "Role": "Engineer",
-          "controls": [
-            {
-              "requirement_control_number": "[18229-1.6]",
-              "control_number": "[2.6.1]",
-              "jkName": "Describe Automation Bias Warnings in the UI",
-              "jkText": "Describe every warning, disclaimer, or confidence indicator [a score or signal displayed alongside an AI response that tells the user how certain the system is about its own answer — think of it as a percentage bar on a search result] displayed to the user in the Response Interface that signals the AI output should not be accepted without human review. Include the exact trigger condition for each warning — for example, 'displayed when confidence score < 0.80' or 'displayed on every response regardless of score'. A blank entry here means no warnings are implemented, which is a compliance gap.",
-              "jkType": "TextBox",
-              "jkObjective": "To record every UI mechanism designed to prevent automation bias (the tendency of humans to accept AI outputs without critical review) so that engineers can verify each warning is implemented and testable."
-            },
-            {
-              "requirement_control_number": "[18229-1.7]",
-              "control_number": "[2.6.2]",
-              "jkName": "Confirm Override and Stop Mechanisms",
-              "jkText": "Select every human intervention mechanism currently implemented in this system. At least one mechanism must be selected — if none exist, this is a build requirement, not an optional feature.",
-              "jkType": "MultiSelect:Output Override [a human rejects or replaces a single AI response before it takes effect — like clicking 'Dismiss' or 'Edit' on one answer]/System Stop — Kill Switch [a human halts all AI processing immediately across the entire system — no further queries are accepted until a human restarts it]/Query Cancellation [a human aborts a single in-flight query before the LLM (Generator) returns a response — the query is dropped and nothing is delivered]/Human Escalation Routing [the system automatically forwards the query to a human reviewer instead of generating an AI response — used when the system detects it cannot answer reliably]/None",
-              "jkObjective": "To confirm that at least one technical mechanism exists that allows a human to intervene in, override, or halt AI processing before an output causes harm or reaches an end user."
-            },
-            {
-              "requirement_control_number": "[18229-1.7]",
-              "control_number": "[2.6.3]",
-              "jkName": "Describe the Stop Mechanism Activation Steps",
-              "jkText": "Provide the exact sequence of steps a human operator must take to activate the stop mechanism — for example: '1. Click Stop in the admin console. 2. Confirm the halt dialog. 3. System logs the stop event and blocks the Query Interface.' If a stop mechanism is not yet implemented, enter 'Not implemented' so the Build layer can generate the correct risk control.",
-              "jkType": "TextBox",
-              "jkObjective": "To ensure the stop mechanism has a documented, human-executable activation procedure that operators can follow under pressure without consulting an engineer."
-            },
-            {
-              "requirement_control_number": "[18229-1.8]",
-              "control_number": "[2.6.4]",
-              "jkName": "Specify the Output Explanation Format",
-              "jkText": "Describe how the system communicates the reasoning behind each AI output to the user. Include the exact format delivered by the Response Interface — for example: source document citations with chunk-level links, a confidence score displayed alongside the response, a 'Why this answer?' expandable panel, or a list of the top-3 retrieved chunks used to generate the response. If no explanation format exists, enter 'None' — this creates a mandatory Build layer control.",
-              "jkType": "MultiSelect:Source Document Citations/Confidence Score Display/Retrieved Chunk Summary/Expandable Reasoning Panel/None",
-              "jkObjective": "To record the interpretability mechanism (the technical means by which a human can understand why the AI produced a specific output) so that auditors can verify the system meets the explainability requirement and users can make informed decisions about whether to act on the output."
-            }
-          ]
         }
       ]
     },
