@@ -1132,7 +1132,69 @@
           "Objective": "."
         }
       ],
-      "Fields": []
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "Accuracy Metric Configuration",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-2.9]",
+              "control_number": "[4.1.1]",
+              "jkName": "Select the primary accuracy metric and declare the minimum acceptable threshold for this system",
+              "jkText": "Select the evaluation metric that matches your system's task type. The selected metric and threshold are loaded directly into the pre-deployment evaluation gate — the build will be blocked if the system's score falls below the threshold you declare here. For RAG systems answering factual questions, RAGAS Faithfulness with a threshold of 0.80 is the recommended default. If you select a different metric, enter the minimum acceptable threshold in the text field below your selection.",
+              "jkType": "MultiSelect:RAGAS Faithfulness (measures how well answers are grounded in retrieved source documents — recommended for all RAG question-answering systems)/RAGAS Answer Relevancy (measures how directly the answer addresses the question — use when response relevance is the primary concern)/F1-Score (measures the balance between precision and recall — use for classification tasks where both false positives and false negatives matter)/Mean Absolute Error — MAE (measures average prediction error magnitude — use for regression or numeric output tasks)/BLEU Score (measures word-overlap between generated and reference text — use only for translation or text generation tasks, not for factual RAG systems)/None — metric not yet selected (generates a mandatory Build layer control)",
+              "jkObjective": "To capture the Requester's declared primary accuracy metric and minimum threshold so that engineers can configure the pre-deployment evaluation gate with the correct measure for the system's specific task type, preventing the wrong metric from producing misleading accuracy scores."
+            },
+            {
+              "requirement_control_number": "[18229-2.11]",
+              "control_number": "[4.1.2]",
+              "jkName": "Declare the achieved accuracy levels for inclusion in the Instructions for Use",
+              "jkText": "Enter the accuracy scores achieved by this system on its evaluation dataset, including the metric name, the score value, the dataset size, and the date the evaluation was run — for example: 'RAGAS Faithfulness: 0.84, evaluated on 250-item Golden Dataset, 2026-02-20'. These values will be published verbatim in the system's Instructions for Use. If evaluation has not yet been run, enter 'Pending' — this field must be completed before go-live.",
+              "jkType": "TextBox",
+              "jkObjective": "To capture the formally declared accuracy levels that must appear in the system's Instructions for Use, satisfying the EU AI Act Art. 13 transparency obligation (the legal requirement to inform users of the system's performance characteristics and known limitations)."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "Test Set Verification Record",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-2.14]",
+              "control_number": "[4.2.2]",
+              "jkName": "Declare the train/test split ratio and the statistical validation method used to verify evaluation results",
+              "jkText": "Enter the exact train/test split ratio used for this system — for example '80/20' or '70/15/15 (train/validation/test)'. Then select the statistical method used to confirm the evaluation results are reliable and not a product of chance. This declaration is included in the system's technical documentation and used by auditors to verify that reported accuracy scores were produced by a rigorous, reproducible process.",
+              "jkType": "MultiSelect:k-Fold Cross-Validation (the dataset is split into k equal parts; the model is trained and tested k times, each time using a different part as the test set — produces a more reliable average score than a single split)/Holdout Split (a fixed percentage of data is set aside as the test set before training begins — simple and reproducible but sensitive to which data ends up in the holdout)/Stratified Split (the holdout or k-fold split is applied separately within each class or category to ensure proportional representation — required when data is imbalanced)/Bootstrap Sampling (random samples with replacement are drawn from the dataset to estimate score variability and confidence intervals — use when the dataset is small)/None — statistical validation method not yet defined (generates a mandatory Build layer control)",
+              "jkObjective": "To document the data split methodology and statistical validation approach used to produce the system's reported accuracy scores, so that auditors and engineers can verify the results are reproducible, uncontaminated, and representative of genuine unseen-data performance."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "Production Accuracy Baseline",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-2.12]",
+              "control_number": "[4.3.1]",
+              "jkName": "Declare the production baseline score and the maximum acceptable drift tolerance",
+              "jkText": "Enter the RAGAS Faithfulness score recorded at the point of go-live — this becomes the production baseline the weekly drift monitor compares against. Then select the maximum acceptable score drop before an alert fires. The drift monitor will automatically suspend the Query Interface if the score falls below this tolerance for two consecutive weekly evaluation cycles. If the baseline score is not yet known, enter 'Pending' — this field must be completed before the drift monitor can be activated.",
+              "jkType": "MultiSelect:Maximum drift tolerance 3% (high-sensitivity — recommended for systems where output accuracy directly affects decisions on individuals)/Maximum drift tolerance 5% (standard — recommended for most RAG systems as the default drift threshold)/Maximum drift tolerance 10% (low-sensitivity — use only where output quality is non-critical and false suspension alerts would cause significant operational disruption)/Drift monitoring not yet configured (generates a mandatory Build layer control)",
+              "jkObjective": "To capture the production baseline accuracy score and the Requester's declared drift tolerance so that engineers can configure the weekly drift monitor with the correct threshold and auditors can verify the suspension trigger is calibrated to the system's operational risk profile."
+            },
+            {
+              "requirement_control_number": "[18229-2.13]",
+              "control_number": "[4.3.2]",
+              "jkName": "Register the human expert benchmark for this system's domain",
+              "jkText": "Enter the name of the domain this system operates in and the human expert benchmark score it must be compared against at deployment — for example: 'Domain: HR policy interpretation. Human expert benchmark: 0.89 (based on internal SME evaluation panel, 2026-01-15)'. This value is loaded into the deployment gate — release is blocked if the system scores more than 5% below this benchmark without a documented engineer override. If no benchmark exists, enter 'Not established' and describe the alternative comparison method used.",
+              "jkType": "TextBox",
+              "jkObjective": "To register the human expert baseline score against which the system's accuracy is compared at deployment, so that engineers can configure the benchmark gate with the correct domain-specific reference value and auditors can verify every below-benchmark release decision was explicitly acknowledged and justified."
+            }
+          ]
+        }
+      ]
     },
     {
       "StepName": "18229-3: Trustworthiness (Robustness)",
@@ -1141,7 +1203,53 @@
           "Objective": "."
         }
       ],
-      "Fields": []
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "LLM Output Store Registry",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-3.17]",
+              "control_number": "[7.1.3]",
+              "jkName": "Register all paths and domains where this system stores LLM-generated outputs",
+              "jkText": "Enter every file system path, storage bucket prefix, and internal domain where this system writes LLM (Generator) outputs — for example '/llm-outputs/', 'ai-responses.internal', or 's3://ai-output-bucket/'. The Feedback Isolation Barrier uses this registry as its provenance blocklist — any document submitted to the ingestion pipeline whose source field matches a registered path will be hard-rejected before it reaches the Vector Store. If a path is missing from this registry, documents originating from that path will pass the provenance check silently and may contaminate the Vector Store. Enter one entry per line. If the system does not persist LLM outputs to any retrievable store, enter 'None'.",
+              "jkType": "TextBox",
+              "jkObjective": "To establish a complete, deployment-specific registry of every location where LLM (Generator) outputs are stored so that the Feedback Isolation Barrier can enforce a provenance blocklist that prevents AI-generated content from re-entering the Vector Store or Embedding Model training pipeline without human review."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "Output Plausibility Rules",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-3.19]",
+              "control_number": "[7.2.2]",
+              "jkName": "Declare the domain-specific plausibility rules this system must enforce on every LLM response",
+              "jkText": "Enter every domain-specific rule the Output Sanity Check must enforce on LLM (Generator) responses before they reach the Output Guardrail. Each rule must be stated as a specific, machine-evaluable constraint — for example: 'Annual leave entitlement must be a whole number between 1 and 365 days', 'Notice period must not exceed 26 weeks', or 'No response may reference a document published before 2020'. A response that violates any single rule will be suppressed and routed to the human reviewer queue before it reaches the Response Interface. If no domain-specific rules can be defined, enter 'None' — this generates a mandatory Build layer control requiring at least one plausibility rule before go-live.",
+              "jkType": "TextBox",
+              "jkObjective": "To capture the domain-specific constraints that define a plausible response for this system so that engineers can implement them as evaluable rules in the Output Sanity Check, preventing contextually implausible LLM outputs from reaching users even when the response is syntactically valid and passes all keyword filters."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "Determinism Probe Configuration",
+          "Role": "Requester",
+          "controls": [
+            {
+              "requirement_control_number": "[18229-3.20]",
+              "control_number": "[7.3.1]",
+              "jkName": "Declare the fixed probe query and expected reference response for determinism verification",
+              "jkText": "Enter the exact query string the Orchestrator will submit to the LLM (Generator) at every startup and after every configuration change to verify deterministic behaviour — for example: 'What is the statutory minimum annual leave entitlement in days?'. Then enter the exact expected response text the LLM must return for that query under the declared configuration (temperature = 0.0, top_p = 1.0, fixed seed). The Determinism Enforcement Gate hashes this expected response at configuration time and stores it as the reference hash — a startup is blocked if the live response hash does not match. Choose a query with a single, unambiguous correct answer within this system's domain. If neither value is yet known, enter 'Pending' — the Query Interface cannot be opened until both fields are populated and a passing determinism check is on record.",
+              "jkType": "TextBox",
+              "jkObjective": "To capture the two values that make the Determinism Enforcement Gate functional — the fixed probe query and the reference response hash — so that engineers can seed the gate constants and auditors can verify that every system startup produces a documented, hash-verified proof of deterministic LLM behaviour before any user input is accepted."
+            }
+          ]
+        }
+      ]
     }
   ],
   "3. Build & Test": [
@@ -2563,6 +2671,104 @@
               ]
             }
           ]
+        },
+        {
+          "jkType": "plan",
+          "Role": "Tester",
+          "jkName": "[TEST-AC-01] - Accuracy Measurement and Drift Controls Validation",
+          "PlanObjective": "This plan validates that the RAG-specific metric pipeline defined in [4.1.R1], the test set isolation gate defined in [4.2.R1], the production drift monitor defined in [4.3.R1], and the human benchmark comparison gate defined in [4.3.R2] are correctly implemented. All tests target Trust Risk — specifically the two failure modes of Metric Contamination and Silent Accuracy Drift that cause inflated declared accuracy and undetected production degradation.",
+          "TestDataset": [
+            {
+              "ID": "AC-P-01",
+              "Query": "Run the RAGAS Faithfulness evaluation pipeline against a Golden Dataset where the expected Faithfulness score is 0.86 — above the 0.80 threshold. Verify the deployment gate passes, records the score and delta against the last passing score, and does not raise a blocking exception.",
+              "Expected_Outcome": "Pass (Accuracy Evaluation Report shows RAGAS Faithfulness = 0.86, deployment gate result = PASSED, delta against last passing score is computed and logged, and no blocking exception was raised — confirming the gate correctly allows a compliant build to proceed).",
+              "Rationale_Summary": "Validates the positive path of the deployment gate — a Faithfulness score above 0.80 must pass without false blocking, confirming the gate does not prevent compliant builds from reaching users."
+            },
+            {
+              "ID": "AC-P-02",
+              "Query": "Run the RAGAS Faithfulness evaluation pipeline against a Golden Dataset where the expected Faithfulness score is 0.74 — below the 0.80 threshold. Verify the deployment gate raises a blocking exception containing the score, the threshold, and the delta against the last passing score.",
+              "Expected_Outcome": "Pass (Accuracy Evaluation Report shows RAGAS Faithfulness = 0.74, deployment gate result = BLOCKED, the blocking exception message contains the score 0.74, threshold 0.80, and the delta expressed as a signed value — confirming no sub-threshold build can reach users).",
+              "Rationale_Summary": "Validates the primary blocking path of the deployment gate — a Faithfulness score below 0.80 must raise a blocking exception before deployment proceeds, preventing a hallucinating LLM (Generator) from reaching users with no accuracy warning."
+            },
+            {
+              "ID": "AC-P-03",
+              "Query": "Run the pre-evaluation isolation gate against a test set file whose current SHA-256 hash does not match the reference hash stored at creation time — simulating post-creation modification of the evaluation dataset. Verify the gate raises a blocking exception with reason 'Hash mismatch' and aborts evaluation before any scoring runs.",
+              "Expected_Outcome": "Pass (Test Set Isolation Report shows SHA-256 hash at evaluation ≠ reference hash, gate result = ISOLATION BREACH, exception message contains 'Hash mismatch. Evaluation aborted.', and no RAGAS scoring was executed — confirming contaminated test data cannot produce a reportable accuracy score).",
+              "Rationale_Summary": "Validates that the SHA-256 integrity check detects any modification to the evaluation test set after its creation — blocking evaluation from running on data that may have been contaminated by the training pipeline, which would produce inflated accuracy scores."
+            },
+            {
+              "ID": "AC-P-04",
+              "Query": "Run the pre-evaluation isolation gate against a test set whose hash matches the reference but whose current access control list contains the service account 'training-pipeline-role'. Verify the gate raises a blocking exception listing the blocked account and aborts evaluation.",
+              "Expected_Outcome": "Pass (Test Set Isolation Report shows hash check = PASSED, ACL check = FAILED, exception message contains 'Blocked accounts in ACL: training-pipeline-role. Evaluation aborted.', and no RAGAS scoring was executed — confirming the presence of a training pipeline service account in the ACL independently blocks evaluation).",
+              "Rationale_Summary": "Validates that the ACL check operates as an independent blocking control — a test set whose hash is intact but whose access controls have been weakened to permit training pipeline access must be treated as potentially contaminated and blocked from evaluation."
+            },
+            {
+              "ID": "AC-P-05",
+              "Query": "Simulate two consecutive weekly drift monitor cycles where the Faithfulness score drops to 0.76 in week one and 0.73 in week two — both more than 5% below a production baseline of 0.84. Verify the drift monitor logs a DRIFT_DETECTED alert in week one, increments the breach counter to 2 in week two, suspends the Query Interface, and dispatches an urgent notification.",
+              "Expected_Outcome": "Pass (Accuracy Drift Monitor Report shows week one: DRIFT_DETECTED logged with delta = 0.08, consecutive_breaches = 1; week two: DRIFT_DETECTED logged with delta = 0.11, consecutive_breaches = 2, query_interface_status = 'SUSPENDED', and an urgent notification was dispatched containing the suspension reason and the instruction that manual engineer reset is required).",
+              "Rationale_Summary": "Validates the full two-strike suspension path of the production drift monitor — two consecutive Faithfulness breaches must automatically suspend the Query Interface, preventing users from receiving silently degraded responses while engineering investigates the drift cause."
+            },
+            {
+              "ID": "AC-P-06",
+              "Query": "Simulate a weekly drift monitor cycle where the Faithfulness score is 0.82 — only 2% below a production baseline of 0.84, within the 5% drift tolerance. Verify no DRIFT_DETECTED alert fires, the breach counter remains at zero, and the Query Interface status remains RUNNING.",
+              "Expected_Outcome": "Pass (Accuracy Drift Monitor Report shows current_score = 0.82, delta = 0.02, drift threshold not breached, consecutive_breaches = 0, query_interface_status = 'RUNNING', and no alert was dispatched — confirming the drift monitor does not produce false positives for minor score fluctuations within the declared tolerance).",
+              "Rationale_Summary": "Validates that the drift monitor tolerates minor score fluctuations within the declared threshold — unnecessary suspensions caused by normal evaluation variance would erode engineering confidence in the monitor and lead to it being disabled."
+            },
+            {
+              "ID": "AC-P-07",
+              "Query": "Run the benchmark comparison gate with a system score of 0.82 against a registered human expert benchmark of 0.89 — the system scores 7% below benchmark, exceeding the 5% tolerance band. Attempt deployment without supplying an engineer ID or justification. Verify the gate raises a blocking exception.",
+              "Expected_Outcome": "Pass (Benchmark Comparison Report shows classification = BELOW_BENCHMARK, system_score = 0.82, benchmark_score = 0.89, gap = 0.07, gate result = DEPLOYMENT BLOCKED, and the blocking exception message contains the instruction to provide engineer_id and justification to override — confirming no sub-benchmark deployment can proceed without a recorded human decision).",
+              "Rationale_Summary": "Validates the hard-block path of the benchmark comparison gate — a system scoring more than 5% below the human expert baseline must be blocked at deployment until an engineer explicitly acknowledges and justifies the underperformance in the audit log."
+            },
+            {
+              "ID": "AC-P-08",
+              "Query": "Run the benchmark comparison gate with a system score of 0.82 against a benchmark of 0.89, this time supplying engineer_id = 'eng-sarah-01' and justification = 'Benchmark established on legacy document set; current model evaluated against updated corpus. Director-level sign-off obtained 2026-02-20.' Verify the gate records the override and allows deployment to proceed.",
+              "Expected_Outcome": "Pass (Benchmark Comparison Report shows classification = BELOW_BENCHMARK_OVERRIDE, engineer_id = 'eng-sarah-01', justification text recorded in full, audit log entry written with all four fields — result, system_score, engineer_id, justification — and deployment proceeds without a blocking exception).",
+              "Rationale_Summary": "Validates the override path of the benchmark gate — a documented, engineer-authorised override must be permitted and fully recorded in the audit log, creating a traceable human decision for every below-benchmark release rather than silently blocking all deployments."
+            }
+          ],
+          "controls": [
+            {
+              "requirement_control_number": "[18229-2.9]",
+              "control_number": "[4.1.T1]",
+              "jkName": "Accuracy Evaluation Gate Test Report",
+              "jkText": "Generate an 'Accuracy Evaluation Gate Test Report' after every test run covering AC-P-01 and AC-P-02. The report must show the RAGAS Faithfulness score, the 0.80 threshold, the delta against the last passing score, the gate decision, and a zero count of sub-threshold builds that reached the deployment pipeline.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the RAGAS Faithfulness deployment gate correctly blocks sub-threshold builds and passes compliant builds without false positives.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Accuracy Evaluation Gate Test Report' showing AC-P-01: Faithfulness = 0.86, gate = PASSED, delta logged; AC-P-02: Faithfulness = 0.74, gate = BLOCKED, blocking exception contains score, threshold, and signed delta; zero sub-threshold builds reaching the deployment pipeline."
+            },
+            {
+              "requirement_control_number": "[18229-2.10]",
+              "control_number": "[4.2.T1]",
+              "jkName": "Test Set Isolation Gate Test Report",
+              "jkText": "Generate a 'Test Set Isolation Test Report' after every test run covering AC-P-03 and AC-P-04. The report must show the SHA-256 hash comparison result, the ACL check result, the gate decision, and confirmation that no RAGAS scoring was executed when either check failed.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the isolation gate independently blocks evaluation when either the hash check or the ACL check fails — confirming accuracy scores can only be produced from an uncontaminated, access-controlled test set.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Test Set Isolation Test Report' showing AC-P-03: hash mismatch detected, evaluation aborted, no RAGAS score produced; AC-P-04: hash passed, ACL check failed with 'training-pipeline-role' identified, evaluation aborted, no RAGAS score produced."
+            },
+            {
+              "requirement_control_number": "[18229-2.12]",
+              "control_number": "[4.3.T1]",
+              "jkName": "Drift Monitor Suspension Test Report",
+              "jkText": "Generate an 'Accuracy Drift Monitor Test Report' after every test run covering AC-P-05 and AC-P-06. The report must show the weekly Faithfulness score, delta against baseline, breach counter value, Query Interface status, alert dispatch confirmation, and a zero count of consecutive threshold breaches that did not result in Query Interface suspension.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the production drift monitor suspends the Query Interface after two consecutive Faithfulness breaches and does not produce false positive suspensions for score fluctuations within the declared drift tolerance.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Accuracy Drift Monitor Test Report' showing AC-P-05: week one breach logged, consecutive_breaches = 1; week two breach logged, consecutive_breaches = 2, query_interface_status = SUSPENDED, urgent notification dispatched; AC-P-06: delta = 0.02, no breach, consecutive_breaches = 0, status = RUNNING."
+            },
+            {
+              "requirement_control_number": "[18229-2.13]",
+              "control_number": "[4.3.T2]",
+              "jkName": "Benchmark Comparison Gate Test Report",
+              "jkText": "Generate a 'Benchmark Comparison Test Report' after every test run covering AC-P-07 and AC-P-08. The report must show the system score, benchmark score, classification result, gate decision, and — for AC-P-08 — the engineer ID, justification text, and confirmation the override audit log entry was written with all four mandatory fields.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the benchmark comparison gate blocks sub-benchmark deployments without a documented override and correctly records engineer-authorised overrides with full justification in the audit log.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Benchmark Comparison Test Report' showing AC-P-07: classification = BELOW_BENCHMARK, gate = DEPLOYMENT BLOCKED, no override fields present; AC-P-08: classification = BELOW_BENCHMARK_OVERRIDE, engineer_id = 'eng-sarah-01', justification recorded in full, audit log entry contains all four mandatory fields."
+            }
+          ]
         }
       ]
     },
@@ -2755,6 +2961,164 @@
                 "4.\n```python\ndef handle_sanity_violation(\n    query_id:      str,\n    response_text: str,\n    rule:          str\n) -> dict:\n    \"\"\"Hashes, logs, and routes a plausibility-failed response to human review.\n    The raw response text is never returned to the caller.\"\"\"\n    response_hash = hashlib.sha256(response_text.encode()).hexdigest()\n    violation = {\n        \"event\":         \"SANITY_CHECK_VIOLATION\",\n        \"query_id\":      query_id,\n        \"rule\":          rule,\n        \"response_hash\": response_hash,\n        \"detected_at\":   datetime.now(timezone.utc).isoformat()\n    }\n    write_audit_log(violation)\n    route_to_human_review({\"query_id\": query_id, \"reason\": rule})\n    return {\"delivered\": False, \"reason\": \"sanity_check_failed\", \"violation\": violation}\n```",
                 "5.\n```python\ndef call_llm(instance: str, prompt: str) -> dict:\n    \"\"\"Simulated LLM call — replace with real endpoint call in production.\"\"\"\n    if instance == \"primary\":\n        time.sleep(0.9)  # 900ms — exceeds 800ms threshold\n        return {\"ok\": True, \"response_text\": \"Employees have -3 days of annual leave.\", \"latency_ms\": 900}\n    time.sleep(0.05)\n    return {\"ok\": True, \"response_text\": \"Employees have 25 days of annual leave.\", \"latency_ms\": 50}\n\ndef process_with_failover_and_sanity(\n    component: str,\n    prompt:    str,\n    query_id:  str\n) -> dict:\n    \"\"\"Calls active instance, fails over on latency breach, runs sanity check,\n    and either suppresses or returns the response — never delivers a sanity-check-failed response.\"\"\"\n    active = component_state[component][\"active\"]\n    result = call_llm(active, prompt)\n\n    if result[\"latency_ms\"] > FAILOVER_LATENCY_THRESHOLDS_MS[component] and active == \"primary\":\n        route_to_redundant(component, result[\"latency_ms\"], \"LATENCY_THRESHOLD_EXCEEDED\")\n        failover_start = time.monotonic()\n        result         = call_llm(\"backup\", prompt)\n        failover_elapsed_ms = (time.monotonic() - failover_start) * 1000\n        assert failover_elapsed_ms <= 200, \"Failover must complete within 200 milliseconds\"\n\n    ok, rule = plausibility_sanity_check(result[\"response_text\"])\n    if not ok:\n        return handle_sanity_violation(query_id, result[\"response_text\"], rule)\n\n    return {\"delivered\": True, \"response_text\": result[\"response_text\"]}\n\n# Integration test — primary is slow and implausible; backup is healthy\nresult = process_with_failover_and_sanity(\n    component = \"llm_generator\",\n    prompt    = \"What is the annual leave entitlement?\",\n    query_id  = \"q-20260220-301\"\n)\nassert not result[\"delivered\"],                       \"Sanity-check-failed response must not reach the Response Interface\"\nassert result[\"violation\"][\"rule\"] == \"NEGATIVE_DAYS_RULE\", \\\n    \"Violated rule name must be recorded in the sanity violation log\"\nassert len(result[\"violation\"][\"response_hash\"]) == 64, \\\n    \"Suppressed response must be stored as a SHA-256 hex digest, not as raw text\"\nassert any(\n    e[\"event\"] == \"FAILOVER_ACTIVATED\" and e[\"component\"] == \"llm_generator\"\n    for e in get_audit_log_entries()\n), \"Failover activation event must appear in the audit log\"\n```"
               ]
+            }
+          ]
+        },
+        {
+          "jkType": "plan",
+          "Role": "Tester",
+          "jkName": "[TEST-RB-01] - Input Sanitisation, Environment Degradation, and Feedback Isolation Validation",
+          "PlanObjective": "This plan validates that the Corrupted Input Sanitisation Gate defined in [7.1.R1], the Environment Degradation Response Gate defined in [7.1.R2], and the Feedback Isolation Barrier defined in [7.1.R3] are correctly implemented. Tests target both Resilience Risk — pipeline crashes from corrupted inputs and cascading failures from dependency degradation — and Trust Risk — silent Vector Store contamination from AI-generated content re-ingestion.",
+          "TestDataset": [
+            {
+              "ID": "RB-P-01",
+              "Query": "Submit a null prompt payload to the Input Guardrail sanitisation gate. Verify Stage 1 returns a rejection result with reason 'Prompt is null', writes a STAGE1_STRUCTURAL_REJECTION audit log entry with http_response = 400, and does not invoke Stage 2 or the Embedding Model.",
+              "Expected_Outcome": "Pass (Input Sanitisation Log shows event = STAGE1_STRUCTURAL_REJECTION, reason = 'Prompt is null', http_response = 400, stage = 1, and no SEMANTIC_INTEGRITY_CHECK event is present for this query_id — confirming Stage 2 was never reached).",
+              "Rationale_Summary": "Validates that null payload hard corruption is caught at Stage 1 before any downstream component is invoked — the most basic structural failure must be intercepted before it reaches the Embedding Model and causes an unhandled exception."
+            },
+            {
+              "ID": "RB-P-02",
+              "Query": "Submit the prompt 'Wh@t is th3 leavv pol!cy for 5 yers of servicc?' — a structurally valid UTF-8 string with approximately 42% unrecognised tokens after spell-correction attempts. Verify Stage 1 passes, Stage 2 computes a final unrecognised token ratio above 0.30, and the gate rejects the prompt before the Embedding Model is called.",
+              "Expected_Outcome": "Pass (Input Sanitisation Log shows stage = 2, unrecognised_ratio_final > 0.30, accepted = false, reason = 'Unrecognised token ratio above 30%', prompt_hash present, corrections list present, and no Embedding Model call recorded for this query_id).",
+              "Rationale_Summary": "Validates that soft corruption — a structurally valid but heavily degraded prompt — is caught at Stage 2 by the token ratio check, preventing the Embedding Model from generating a semantically meaningless embedding that would silently retrieve wrong document chunks."
+            },
+            {
+              "ID": "RB-P-03",
+              "Query": "Submit the prompt 'What is the leave policy after years of service?' — a clean, fully recognisable prompt with zero unrecognised tokens. Verify both stages pass and the sanitised prompt is forwarded to the Embedding Model.",
+              "Expected_Outcome": "Pass (Input Sanitisation Log shows stage = 2, unrecognised_ratio_final = 0.0, accepted = true, sanitised_prompt populated, corrections = [], and the Embedding Model was invoked with the sanitised prompt — confirming no false positive rejection for a clean input).",
+              "Rationale_Summary": "Validates that the sanitisation gate does not produce false positives — a fully clean prompt must pass both stages without correction and reach the Embedding Model, confirming the gate does not block legitimate user queries."
+            },
+            {
+              "ID": "RB-P-04",
+              "Query": "Simulate three consecutive Vector Store calls each returning a latency of 650ms — exceeding the declared 500ms threshold on all three calls. Verify the latency monitor activates degraded mode on the third consecutive breach, writes a DEGRADED_MODE_ACTIVATED event with the correct behaviour descriptor, and dispatches an engineering alert.",
+              "Expected_Outcome": "Pass (Environment Degradation Log shows breaches_in_window = 3 on the third call, event = DEGRADED_MODE_ACTIVATED, dependency = 'vector_store', threshold_ms = 500, behaviour = 'Serve cached answers; suppress live Vector Store queries', activated = true, and an engineering alert was dispatched with the dependency name and latency recorded).",
+              "Rationale_Summary": "Validates that the three-consecutive-breach activation rule fires correctly — degraded mode must not activate prematurely on the first or second breach, and must activate automatically on the third without waiting for manual intervention."
+            },
+            {
+              "ID": "RB-P-05",
+              "Query": "Following degraded mode activation from RB-P-04, simulate five consecutive Vector Store calls each returning a latency of 120ms — below the 500ms threshold on all five. Verify the monitor logs a DEGRADED_MODE_RECOVERED event after the fifth below-threshold call and restores the dependency state to normal.",
+              "Expected_Outcome": "Pass (Environment Degradation Log shows recoveries_in_window = 5 on the fifth call, event = DEGRADED_MODE_RECOVERED, dependency = 'vector_store', recovered = true, degraded = false, and the behaviour field reads 'Normal operation restored for vector_store' — confirming automatic recovery without manual intervention).",
+              "Rationale_Summary": "Validates the automatic recovery path — five consecutive below-threshold calls must restore normal operation without requiring engineer action, and the recovery event must be logged with a timestamp to create an auditable record of the degradation window."
+            },
+            {
+              "ID": "RB-P-06",
+              "Query": "Submit a document to the ingestion pipeline with source = 'content-team-export.docx' (passes provenance Check 1 — not an LLM output store path) but with an ai_marker field populated with a valid SHA-256 hash (fails marker Check 2). Verify the Feedback Isolation Barrier rejects the document at Check 2, routes it to the human review queue, and does not write it to the Vector Store.",
+              "Expected_Outcome": "Pass (Feedback Isolation Log shows provenance_check = 'OK', marker_check = 'AI-generated source', ingestion_approved = false, rejection_reason = 'AI-generated source', event = FEEDBACK_ISOLATION_REJECTION, human review queue contains one entry with the correct document_hash, and Vector Store entry count = 0 for this document).",
+              "Rationale_Summary": "Validates that the AI marker check operates as an independent blocking control — a document that passes the provenance path check but carries a cryptographic AI-generated marker must be caught and routed to human review, preventing the feedback loop from closing via an indirect ingestion path."
+            },
+            {
+              "ID": "RB-P-07",
+              "Query": "Submit a document to the ingestion pipeline whose source field contains '/llm-outputs/' — matching a registered LLM output store path — with no ai_marker present. Verify the Feedback Isolation Barrier rejects the document at Check 1 on the provenance path, routes it to the human review queue, and does not advance to Check 2.",
+              "Expected_Outcome": "Pass (Feedback Isolation Log shows provenance_check = 'Provenance match', ingestion_approved = false, rejection_reason = 'Provenance match', event = FEEDBACK_ISOLATION_REJECTION, and human review queue contains one entry — confirming Check 1 independently blocks documents from registered LLM output store paths without requiring the marker check to fire).",
+              "Rationale_Summary": "Validates that Check 1 operates as an independent blocking path — a document from a registered LLM output store path must be rejected on provenance alone, even when no AI marker is present, closing the vector where an AI output was written to an LLM store but the marker was not embedded at generation time."
+            }
+          ],
+          "controls": [
+            {
+              "requirement_control_number": "[18229-3.15]",
+              "control_number": "[7.1.T1]",
+              "jkName": "Input Sanitisation Gate Test Report",
+              "jkText": "Generate an 'Input Sanitisation Test Report' after every test run covering RB-P-01, RB-P-02, and RB-P-03. The report must show the stage reached, the unrecognised token ratio before and after correction, the gate decision, and a zero count of prompts with an unrecognised token ratio above 30% or a null payload that reached the Embedding Model.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the two-stage sanitisation gate correctly blocks null payloads at Stage 1, rejects high-corruption prompts at Stage 2, and passes clean prompts without false positives.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Input Sanitisation Test Report' showing RB-P-01: STAGE1_STRUCTURAL_REJECTION, http_response = 400, Stage 2 not reached; RB-P-02: stage = 2, ratio_final > 0.30, accepted = false; RB-P-03: ratio_final = 0.0, accepted = true, Embedding Model invoked; zero prompts above threshold reaching the Embedding Model."
+            },
+            {
+              "requirement_control_number": "[18229-3.16]",
+              "control_number": "[7.1.T2]",
+              "jkName": "Environment Degradation Monitor Test Report",
+              "jkText": "Generate an 'Environment Degradation Test Report' after every test run covering RB-P-04 and RB-P-05. The report must show the latency value and breach/recovery counter per call, the degraded mode activation event with elapsed timestamp, the engineering alert confirmation, the recovery event, and a zero count of three-consecutive-breach sequences that did not trigger degraded mode activation.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the latency monitor activates degraded mode on exactly the third consecutive breach, dispatches an engineering alert, and automatically recovers normal operation after five consecutive below-threshold calls.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Environment Degradation Test Report' showing RB-P-04: DEGRADED_MODE_ACTIVATED on third breach, breaches_in_window = 3, alert dispatched, behaviour descriptor correct; RB-P-05: DEGRADED_MODE_RECOVERED after fifth below-threshold call, recoveries_in_window = 5, degraded = false."
+            },
+            {
+              "requirement_control_number": "[18229-3.17]",
+              "control_number": "[7.1.T3]",
+              "jkName": "Feedback Isolation Barrier Test Report",
+              "jkText": "Generate a 'Feedback Isolation Test Report' after every test run covering RB-P-06 and RB-P-07. The report must show the provenance check result, the marker check result, the rejection reason, the human review queue entry confirmation, and a zero count of AI-generated or LLM-store-sourced documents written to the Vector Store.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving both isolation checks operate as independent blocking controls — an AI-marked document is caught at Check 2 even when Check 1 passes, and an LLM-store-sourced document is caught at Check 1 independently of Check 2.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Feedback Isolation Test Report' showing RB-P-06: provenance_check = OK, marker_check = AI-generated source, routed to review, Vector Store entry count = 0; RB-P-07: provenance_check = Provenance match, rejected at Check 1, Check 2 not evaluated, review queue entry confirmed."
+            }
+          ]
+        },
+        {
+          "jkType": "plan",
+          "Role": "Tester",
+          "jkName": "[TEST-RB-02] - Fail-Safe, Redundancy Failover, and Determinism Validation",
+          "PlanObjective": "This plan validates that the Safe State Trigger Gate defined in [7.2.R1], the Redundancy Failover Gate defined in [7.2.R2], and the Determinism Enforcement Gate defined in [7.3.R1] are correctly implemented. Tests target Resilience Risk — uncontrolled pipeline collapse from missing safe states and failover failures — and Trust Risk — non-reproducible outputs caused by non-deterministic LLM configuration.",
+          "TestDataset": [
+            {
+              "ID": "RB-P-08",
+              "Query": "Simulate an Embedding Model call that returns status = 'error' with status_code = 503. Verify the component call wrapper intercepts the error, activates the declared safe state for the Embedding Model ('maintenance_message'), writes a SAFE_STATE_ACTIVATED event with elapsed_ms within 500 milliseconds, and dispatches an engineering alert — the pipeline must not advance past the failed component.",
+              "Expected_Outcome": "Pass (Safe State Activation Log shows event = SAFE_STATE_ACTIVATED, component = 'embedding_model', failure_status_code = 503, safe_state_behaviour = 'maintenance_message; block queries maintenance page', elapsed_ms ≤ 500, engineering_alert_sent = true, and safe_state = true in the gate result — confirming the pipeline returned a safe_state_response without advancing).",
+              "Rationale_Summary": "Validates that the component call wrapper intercepts a non-ok status and activates the correct declared safe state within 500 milliseconds — the primary guard against silent bypass where a failed component's checks are skipped and unvalidated outputs reach users."
+            },
+            {
+              "ID": "RB-P-09",
+              "Query": "Simulate a RAG component with no entry in the SAFE_STATE_BEHAVIOURS registry returning a failure status. Verify the component call wrapper defaults to maintenance_message safe state, blocks the Query Interface, and logs the activation event — confirming silent bypass is structurally impossible even for undeclared components.",
+              "Expected_Outcome": "Pass (Safe State Activation Log shows event = SAFE_STATE_ACTIVATED, safe_state_behaviour = 'maintenance_message' (the declared default), elapsed_ms ≤ 500, engineering_alert_sent = true, and safe_state = true — confirming the default safe state fires for any component not in the registry and the pipeline never advances past the failure).",
+              "Rationale_Summary": "Validates the default safe state path — a component failure for which no specific safe state has been declared must never cause silent bypass or an unhandled crash. The default maintenance mode must activate unconditionally, closing the gap for newly added components that have not yet been registered."
+            },
+            {
+              "ID": "RB-P-10",
+              "Query": "Simulate a primary Vector Store call that returns a latency exceeding the declared failover threshold. Verify the Redundancy Failover Gate switches to the backup Vector Store instance within 200 milliseconds, re-issues the in-flight request to the backup, writes a FAILOVER_ACTIVATED event with the elapsed time, and continues pipeline execution using the backup instance.",
+              "Expected_Outcome": "Pass (Redundancy Failover Log shows event = FAILOVER_ACTIVATED, component = 'vector_store', elapsed_ms ≤ 200, backup instance name recorded, request re-issued = true, and the pipeline returned a successful response from the backup instance — confirming the failover completed within the 200-millisecond requirement without dropping the in-flight request).",
+              "Rationale_Summary": "Validates that the failover gate switches to the backup instance within 200 milliseconds of a primary latency breach — preventing a single slow component from causing user-visible failure when a redundant instance is available."
+            },
+            {
+              "ID": "RB-P-11",
+              "Query": "Submit an LLM response that violates a declared plausibility rule — for example, a response stating an annual leave entitlement of 400 days, exceeding the declared maximum of 365. Verify the Output Sanity Check suppresses the response before it reaches the Output Guardrail, routes the query to the human reviewer queue, and writes a Sanity Check Violation Log entry.",
+              "Expected_Outcome": "Pass (Sanity Check Violation Log shows the plausibility rule triggered, the violating response text, suppressed = true, routed_to_human_review = true, and a zero count of plausibility-failed responses delivered to the Response Interface — the Output Guardrail must not have received the suppressed response).",
+              "Rationale_Summary": "Validates that the Output Sanity Check intercepts domain-implausible responses before the Output Guardrail — a response that is syntactically valid and passes keyword filters but violates a declared domain constraint must be suppressed and routed to human review, not silently delivered."
+            },
+            {
+              "ID": "RB-P-12",
+              "Query": "Run the Orchestrator startup sequence with LLM configuration temperature = 0.0, top_p = 1.0, seed = 42 against a populated REFERENCE_RESPONSE_HASH. Verify the determinism check passes, the Query Interface gate opens, and the startup sequence completes without raising a blocking error.",
+              "Expected_Outcome": "Pass (Determinism Validation Log shows event = DETERMINISM_CHECK, response_hash = reference_hash, passed = true, temperature = 0.0, top_p = 1.0, seed = 42, and query_interface_available() returns true — confirming the Query Interface is open and ready to accept user input after a passing determinism verification).",
+              "Rationale_Summary": "Validates the positive startup path — a correctly configured deterministic LLM must produce a response hash matching the reference, open the Query Interface, and complete startup without a blocking error, confirming the gate does not prevent compliant system startups."
+            },
+            {
+              "ID": "RB-P-13",
+              "Query": "Run the Orchestrator startup sequence with LLM configuration temperature = 0.7 — a non-zero temperature that produces a stochastic response diverging from the reference. Verify the determinism check fails, the startup sequence raises a STARTUP BLOCKED error containing the misconfigured temperature value, the Query Interface remains closed, and the failing configuration is written to the audit log.",
+              "Expected_Outcome": "Pass (Determinism Validation Log shows event = DETERMINISM_CHECK, response_hash ≠ reference_hash, passed = false, temperature = 0.7 recorded in the log entry, a DETERMINISM CHECK FAILED security alert was dispatched, the RuntimeError message contains 'STARTUP BLOCKED' and '0.7', and query_interface_available() returns false — confirming no user input can be accepted with a failing determinism check on record).",
+              "Rationale_Summary": "Validates the primary blocking path of the determinism gate — a non-zero temperature that causes the LLM to produce a non-deterministic response must block system startup completely, log the misconfigured parameter, and prevent the Query Interface from opening until a passing check is recorded."
+            }
+          ],
+          "controls": [
+            {
+              "requirement_control_number": "[18229-3.18]",
+              "control_number": "[7.2.T1]",
+              "jkName": "Safe State Activation Test Report",
+              "jkText": "Generate a 'Safe State Activation Test Report' after every test run covering RB-P-08 and RB-P-09. The report must show the failed component, the safe state behaviour activated, the elapsed milliseconds from failure to activation, the engineering alert confirmation, and a zero count of component failures that resulted in silent bypass or unhandled crash.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the component call wrapper activates the correct declared safe state within 500 milliseconds for both registered and unregistered components, making silent bypass structurally impossible.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Safe State Activation Test Report' showing RB-P-08: SAFE_STATE_ACTIVATED for embedding_model, safe_state_behaviour = maintenance_message, elapsed_ms ≤ 500, alert sent; RB-P-09: default safe state activated for unregistered component, elapsed_ms ≤ 500, pipeline did not advance; zero silent bypass events."
+            },
+            {
+              "requirement_control_number": "[18229-3.19]",
+              "control_number": "[7.2.T2]",
+              "jkName": "Redundancy Failover and Sanity Check Test Report",
+              "jkText": "Generate a 'Redundancy Failover Test Report' after every test run covering RB-P-10 and RB-P-11. The report must show the failover elapsed time, the backup instance activated, the re-issued request confirmation, the plausibility rule triggered, the suppression result, and a zero count of plausibility-failed responses delivered to the Response Interface.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the failover gate switches to a backup instance within 200 milliseconds and the Output Sanity Check suppresses domain-implausible responses before they reach the Output Guardrail or Response Interface.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Redundancy Failover Test Report' showing RB-P-10: FAILOVER_ACTIVATED, elapsed_ms ≤ 200, backup instance recorded, request re-issued successfully; RB-P-11: plausibility rule triggered, suppressed = true, routed_to_human_review = true, zero plausibility-failed responses reaching the Response Interface."
+            },
+            {
+              "requirement_control_number": "[18229-3.20]",
+              "control_number": "[7.3.T1]",
+              "jkName": "Determinism Enforcement Test Report",
+              "jkText": "Generate a 'Determinism Validation Test Report' after every test run covering RB-P-12 and RB-P-13. The report must show the probe response hash, the reference hash, the hash comparison result, the active LLM configuration values, the Query Interface gate status, and a zero count of startups where the Query Interface accepted user input with a failing determinism check on record.",
+              "jkType": "test_control",
+              "jkObjective": "To provide a per-run evidence record proving the determinism gate blocks system startup when the LLM response hash does not match the reference and opens the Query Interface only when a passing hash match is confirmed and logged.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "'Determinism Validation Test Report' showing RB-P-12: response_hash = reference_hash, passed = true, query_interface_available = true; RB-P-13: response_hash ≠ reference_hash, passed = false, temperature = 0.7 logged, STARTUP BLOCKED error raised, query_interface_available = false; zero startups with open Query Interface and failing determinism check."
             }
           ]
         }
