@@ -1124,7 +1124,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "Population Segment Registry",
-          "Role": "Requester",
+          "Role": "Data Engineer",
           "controls": [
             {
               "requirement_control_number": "[18284.4]",
@@ -1139,7 +1139,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "Dataset Required Fields Registry",
-          "Role": "Requester",
+          "Role": "Data Engineer",
           "controls": [
             {
               "requirement_control_number": "[18284.5]",
@@ -1154,7 +1154,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "Data Retention Schedule",
-          "Role": "Requester",
+          "Role": "Data Engineer",
           "controls": [
             {
               "requirement_control_number": "[18284.8]",
@@ -1169,7 +1169,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "System Assumptions Registry",
-          "Role": "Requester",
+          "Role": "Data Engineer",
           "controls": [
             {
               "requirement_control_number": "[18284.9]",
