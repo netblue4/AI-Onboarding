@@ -1084,7 +1084,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "Fairness Definition and Stakeholder Engagement Record",
-          "Role": "Compliance",
+          "Role": "Engineer",
           "controls": [
             {
               "requirement_control_number": "[18283.7]",
@@ -1099,7 +1099,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "Fundamental Rights Mapping",
-          "Role": "Compliance",
+          "Role": "Engineer",
           "controls": [
             {
               "requirement_control_number": "[18283.8]",
