@@ -2534,6 +2534,23 @@
               ],
               "jkAttackVector": "An attacker exploits a deserialization bug in a model-serving container and drops a persistent web shell into '/usr/local/bin'. Because the root filesystem is writable, the backdoor survives restarts. Separately, an AI log-processing sidecar mounts '/var/run/docker.sock' — an attacker exploits it to spawn privileged containers with full host filesystem access.",
               "jkMaturity": "Level 1 for filesystem permissions (must be enforced before deploying any workload with hostPath mounts). Level 2 for immutability (target early for AI-serving workloads once build pipelines are established)."
+            },
+            {
+              "requirement_control_number": "[18282.4]",
+              "control_number": "[1.5.R2]",
+              "jkName": "Platform Security Baseline & Resource Limits",
+              "jkText": "All production and non-production AI clusters must have Pod Security Standards set to enforcing mode, RBAC configured, audit logging enabled, and admission controllers active — documented as a cluster security baseline that every new cluster must inherit. All AI-related pods must have explicit CPU and memory requests and limits defined. Admission policies must reject or mutate to safe defaults any pod submitted without resource limits.",
+              "jkType": "risk_control",
+              "jkObjective": "To ensure that the platform's built-in security enforcement is active and consistent across every cluster, and that no AI workload can consume unbounded resources — preventing both the security regression that occurs when a new cluster inherits no baseline and the self-inflicted denial of service caused by resource-unlimited batch workloads.",
+              "jkImplementationStatus": "",
+              "jkImplementationEvidence": "Cluster security baseline document listing all enabled platform security features per cluster, cluster inspection results confirming Pod Security Standards are in enforcing mode, and deployment manifests showing CPU and memory requests and limits defined for all AI-related containers.",
+              "jkTask": [
+                "1. Define a cluster security baseline document that specifies the required state for Pod Security Standards (enforcing mode), RBAC, audit logging, admission controllers, and securityContext defaults — enforce it as a required template for all new cluster provisioning.",
+                "2. Set Pod Security Standards to 'enforce' mode at the namespace level for all AI workload namespaces in every cluster, and verify the current state against the baseline on a scheduled basis.",
+                "3. Audit all AI-related pod specs for missing CPU and memory requests and limits, add appropriate limits based on measured workload profiles, and deploy admission policies that reject any pod submitted without explicit resource limits or mutate it to safe defaults."
+              ],
+              "jkAttackVector": "A new AI test cluster is provisioned without Pod Security Standards or admission policies — developers deploy root, privileged containers with hostPath mounts, creating a stepping-stone into the production network. Separately, a batch embedding job without resource limits loads a large corpus, consumes all available memory on several nodes, and triggers OOM kills of production LLM-serving pods.",
+              "jkMaturity": "Level 1 for resource limits (must be in place before running any variable-load AI workload). Level 2 for platform baseline enforcement (most valuable as the cluster estate scales, but the baseline must be defined before new clusters are provisioned)."
             }
           ]
         }
