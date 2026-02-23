@@ -233,9 +233,9 @@ getFieldsForRole(role) {
         // Trigger content rendering
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
         
-		    if (this.state.currentRole === "Approver") {
+		    if (this.state.currentRole === "Approver" || this.state.currentRole === "Compliance") {
 				// Only render the AI Assessment View
-				contentRenderer.renderAIAssessmentView();
+				contentRenderer.renderSpecialView(); 
 			} 
 			else {
 				// Default: Render the standard assessment fields

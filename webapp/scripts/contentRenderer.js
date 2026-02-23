@@ -10,7 +10,7 @@ class ContentRenderer {
         this.dataRestore = dataRestore;
     }
 	
-	renderAIAssessmentView() {
+	renderSpecialView() {
 		console.log('Rendering AI Assessment View');
 		
 		const contentArea = document.getElementById('content-area');
@@ -21,7 +21,14 @@ class ContentRenderer {
 		
 		try {
 			// 2. Get the specialized handler
-			const handler = getFieldHandler('comply');
+			 let handler  = null;
+			 if (this.state.currentRole === "Approver"){
+				handler = getFieldHandler('comply');
+			 }
+			 
+			 if (this.state.currentRole === "Compliance"){
+				handler = getFieldHandler('complytable');
+			 }
 
 			if (handler) {
 			
