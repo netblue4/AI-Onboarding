@@ -25,10 +25,8 @@ let totalImplementationFieldsWithResponse = 0;
 let totalImplementationControls = 0;
 let totalImplementationControlsWithEvidence = 0;
  
-function createComplyField(field = null, incapturedData, sanitizeForId, fieldStoredValue, mindmap = null) {
-    
-    capturedData = incapturedData || {};
-    
+function createComplyField(sanitizeForId, fieldStoredValue, webappData = null, mindmap = null) {
+        
     // Reset global counters on every render
     totalControls = 0;
     totalApplicableControls = 0;
@@ -37,7 +35,7 @@ function createComplyField(field = null, incapturedData, sanitizeForId, fieldSto
     totalImplementationControls = 0;
     totalImplementationControlsWithEvidence = 0;
     
-    const webappData = window.originalWebappData;
+    //const webappData = window.originalWebappData;
 
     if (!webappData) {
         const errDiv = document.createElement('div');

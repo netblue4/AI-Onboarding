@@ -1,11 +1,11 @@
 /**
  * Compliance Table Handler: Table view with inline dropdown + Attack Vectors per control card.
  */
-function createComplyTable(incapturedData, sanitizeForId, fieldStoredValue) {
-    const webappData = window.originalWebappData;
+function createComplyTable(sanitizeForId, fieldStoredValue, webappData = null, mindmap = null) {
+    //const webappData = window.originalWebappData;
     if (!webappData) return document.createElement('div');
 
-    const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
+    //const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
     return renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId);
 }
 
