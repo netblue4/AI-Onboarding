@@ -81,9 +81,9 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
             if (globalRequirementMap.has(key)) {
                 const reqEntry = globalRequirementMap.get(key);
                 // Respect applicability logic
-                if (fieldStoredValue(reqEntry.requirement, false) === 'Applicable') {
+                //if (fieldStoredValue(reqEntry.requirement, false) === 'Applicable') {
                     reqEntry.implementations.add(implNode);
-                }
+                //}
             }
         });
     });
