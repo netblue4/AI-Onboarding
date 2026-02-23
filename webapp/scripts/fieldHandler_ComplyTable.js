@@ -50,9 +50,8 @@ function renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId) {
                 tr.appendChild(createTableCell(stepName, "#4b5e71"));
                 tr.appendChild(createTableCell(groupName, "#374151"));
 
-                const reqText = `[${reqKey}]: ${reqEntry.requirement.jkName}`;
-                const reqTooltip = `REQUIREMENT DATA:\n${reqEntry.requirement.jkText}`;
-                tr.appendChild(createTableCell(reqText, "#2c3e50", reqTooltip));
+                // Requirement Column — now with dropdown + attack vectors
+                tr.appendChild(createRequirementCell(reqEntry, reqKey, fieldStoredValue, sanitizeForId, mindmapData));
 
                 // Control Sorting
                 const defineNodes = [];
@@ -70,7 +69,7 @@ function renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId) {
                     }
                 });
 
-                // Categorized Columns — now with dropdown + attack vectors
+                // Categorized Columns — with dropdown + attack vectors
                 tr.appendChild(createCategorizedCell(defineNodes, fieldStoredValue, sanitizeForId, reqEntry, mindmapData));
                 tr.appendChild(createCategorizedCell(buildNodes, fieldStoredValue, sanitizeForId, reqEntry, mindmapData));
                 tr.appendChild(createCategorizedCell(testNodes, fieldStoredValue, sanitizeForId, reqEntry, mindmapData));
@@ -82,6 +81,184 @@ function renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId) {
 
     table.appendChild(tbody);
     return table;
+}
+
+/**
+ * Helper: Renders the Requirement card with dropdown + Attack Vectors,
+ * mirroring the pattern used in createCategorizedCell.
+ */
+function createRequirementCell(reqEntry, reqKey, fieldStoredValue, sanitizeForId, mindmapData) {
+    const req = reqEntry.requirement;
+    const td = document.createElement('td');
+    td.style.cssText = cellStyle() + `background: #2c3e50; vertical-align: top; position: relative;`;
+
+    const currentStatus = req.jkType === 'requirement'
+        ? (fieldStoredValue(req, true) || 'Select')
+        : null;
+
+    // --- Outer card ---
+    const card = document.createElement('div');
+    card.style.cssText = `
+        border-radius: 6px;
+        border: 1px solid #444c56;
+        background: #1c2128;
+        overflow: hidden;
+    `;
+
+    // --- Card Header (collapsible) ---
+    const cardHeader = document.createElement('div');
+    cardHeader.style.cssText = `
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 10px;
+        background: #2d333b;
+        cursor: pointer;
+        user-select: none;
+    `;
+
+    const collapseIcon = document.createElement('span');
+    collapseIcon.textContent = '▶';
+    collapseIcon.style.cssText = "font-size: 9px; color: #768390; transition: transform 0.15s;";
+
+    const cardLabel = document.createElement('span');
+    cardLabel.style.cssText = "font-size: 11px; font-weight: bold; color: #adbac7; flex-grow: 1;";
+    cardLabel.textContent = `[${reqKey}]: ${req.jkName}`;
+
+    const reqTooltip = `REQUIREMENT DATA:\n${req.jkText}`;
+    const infoIcon = createInfoIcon(reqTooltip);
+
+    cardHeader.appendChild(collapseIcon);
+    cardHeader.appendChild(cardLabel);
+    cardHeader.appendChild(infoIcon);
+
+    // --- Card Body (collapsed by default) ---
+    const cardBody = document.createElement('div');
+    cardBody.style.cssText = "display: none; padding: 10px;";
+
+    const descLine = document.createElement('div');
+    descLine.style.cssText = "font-size: 11px; color: #768390; margin-bottom: 10px; line-height: 1.4;";
+    descLine.textContent = req.jkText || '';
+    cardBody.appendChild(descLine);
+
+    // --- Dropdown + Attack Vectors ---
+    if (req.jkType === 'requirement') {
+        const actionRow = document.createElement('div');
+        actionRow.style.cssText = "display: flex; align-items: center; gap: 16px; flex-wrap: wrap;";
+
+        // Applicability Dropdown
+        const select = document.createElement('select');
+        const sanitizedId = sanitizeForId ? sanitizeForId(reqKey) : reqKey;
+        select.name = sanitizedId + '_jkSoa';
+        select.style.cssText = `
+            background: #2d333b;
+            color: #adbac7;
+            border: 1px solid #444c56;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+        `;
+
+        ['Select', 'Applicable', 'Not Applicable'].forEach(optText => {
+            const opt = document.createElement('option');
+            opt.value = optText;
+            opt.textContent = optText;
+            if (currentStatus === optText) opt.selected = true;
+            select.appendChild(opt);
+        });
+
+        function applyStatusStyle(status) {
+            if (status === 'Applicable') {
+                card.style.borderColor = '#238636';
+            } else if (status === 'Not Applicable') {
+                card.style.borderColor = '#6e40c9';
+            } else {
+                card.style.borderColor = '#444c56';
+            }
+        }
+        applyStatusStyle(currentStatus);
+        select.addEventListener('change', () => applyStatusStyle(select.value));
+
+        actionRow.appendChild(select);
+
+        // --- Attack Vectors ---
+        const attackVectors = [];
+        if (mindmapData) {
+            mindmapData.forEach((groups) => {
+                groups.forEach((gData) => {
+                    gData.requirements.forEach((rEntry) => {
+                        rEntry.implementations.forEach(impl => {
+                            if (impl.control_number === reqKey && impl.jkAttackVector) {
+                                attackVectors.push(impl);
+                            }
+                        });
+                    });
+                });
+            });
+        }
+
+        if (attackVectors.length > 0) {
+            const avHeader = document.createElement('div');
+            avHeader.style.cssText = `
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                cursor: pointer;
+                user-select: none;
+                color: #adbac7;
+            `;
+
+            const avIcon = document.createElement('span');
+            avIcon.textContent = '▶';
+            avIcon.style.cssText = "font-size: 9px; color: #768390;";
+
+            const avLabel = document.createElement('span');
+            avLabel.textContent = 'Attack Vectors';
+            avLabel.style.cssText = "font-size: 12px; font-weight: bold;";
+
+            avHeader.appendChild(avIcon);
+            avHeader.appendChild(avLabel);
+            actionRow.appendChild(avHeader);
+
+            const avContent = document.createElement('div');
+            avContent.style.cssText = "display: none; width: 100%; margin-top: 8px;";
+
+            const ul = document.createElement('ul');
+            ul.style.cssText = "margin: 0; padding-left: 20px; font-size: 11px; color: #adbac7; line-height: 1.6;";
+            attackVectors.forEach(impl => {
+                const li = document.createElement('li');
+                li.textContent = `${impl.control_number} - ${impl.jkAttackVector}`;
+                ul.appendChild(li);
+            });
+            avContent.appendChild(ul);
+
+            avHeader.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = avContent.style.display === 'none';
+                avContent.style.display = isHidden ? 'block' : 'none';
+                avIcon.textContent = isHidden ? '▼' : '▶';
+            });
+
+            cardBody.appendChild(actionRow);
+            cardBody.appendChild(avContent);
+        } else {
+            cardBody.appendChild(actionRow);
+        }
+    }
+
+    // --- Toggle card body on header click ---
+    cardHeader.addEventListener('click', (e) => {
+        if (e.target.closest && e.target.closest('.comply-info-icon-wrapper')) return;
+        const isHidden = cardBody.style.display === 'none';
+        cardBody.style.display = isHidden ? 'block' : 'none';
+        collapseIcon.textContent = isHidden ? '▼' : '▶';
+    });
+
+    card.appendChild(cardHeader);
+    card.appendChild(cardBody);
+    td.appendChild(card);
+    return td;
 }
 
 /**
