@@ -121,7 +121,7 @@ function buildComplianceMap(data, sanitizeForId, fieldStoredValue) {
                             
                             
                             // Only add to the map if it is marked as Applicable
-                            if (soa === 'Applicable') {
+                            //if (soa === 'Applicable') {
                                 dataEntry.subControlLinks.set(controlKey, {
                                     subControl: {
                                         // Specific fields requested
@@ -140,7 +140,7 @@ function buildComplianceMap(data, sanitizeForId, fieldStoredValue) {
                                     },
                                     children: new Set()
                                 });
-                            }
+                            //}
                             // --- APPLICABILITY CHECK END ---
                         }
                     }
