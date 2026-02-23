@@ -99,7 +99,10 @@ function createCategorizedCell(nodes, fieldStoredValue, sanitizeForId, reqEntry,
     }
 
     nodes.forEach(node => {
-        const currentStatus = fieldStoredValue(node, true) || 'Select';
+        // Only read stored status for requirement-type nodes
+        const currentStatus = node.jkType === 'requirement'
+            ? (fieldStoredValue(node, true) || 'Select')
+            : null;
 
         // --- Outer card ---
         const card = document.createElement('div');
@@ -150,116 +153,118 @@ function createCategorizedCell(nodes, fieldStoredValue, sanitizeForId, reqEntry,
         descLine.textContent = node.jkText || '';
         cardBody.appendChild(descLine);
 
-        // --- Action Row: Dropdown + Attack Vectors (mirrors fieldHandler_requirement.js) ---
-        const actionRow = document.createElement('div');
-        actionRow.style.cssText = "display: flex; align-items: center; gap: 16px; flex-wrap: wrap;";
+        // --- Dropdown + Attack Vectors: only for requirement-type nodes ---
+        if (node.jkType === 'requirement') {
 
-        // Applicability Dropdown
-        const select = document.createElement('select');
-        const sanitizedId = sanitizeForId ? sanitizeForId(node.control_number) : node.control_number;
-        select.name = sanitizedId + '_jkSoa';
-        select.style.cssText = `
-            background: #2d333b;
-            color: #adbac7;
-            border: 1px solid #444c56;
-            border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 12px;
-            cursor: pointer;
-        `;
+            // --- Action Row: Dropdown + Attack Vectors (mirrors fieldHandler_requirement.js) ---
+            const actionRow = document.createElement('div');
+            actionRow.style.cssText = "display: flex; align-items: center; gap: 16px; flex-wrap: wrap;";
 
-        ['Select', 'Applicable', 'Not Applicable'].forEach(optText => {
-            const opt = document.createElement('option');
-            opt.value = optText;
-            opt.textContent = optText;
-            if (currentStatus === optText) opt.selected = true;
-            select.appendChild(opt);
-        });
+            // Applicability Dropdown
+            const select = document.createElement('select');
+            const sanitizedId = sanitizeForId ? sanitizeForId(node.control_number) : node.control_number;
+            select.name = sanitizedId + '_jkSoa';
+            select.style.cssText = `
+                background: #2d333b;
+                color: #adbac7;
+                border: 1px solid #444c56;
+                border-radius: 4px;
+                padding: 4px 8px;
+                font-size: 12px;
+                cursor: pointer;
+            `;
 
-        // Update card border colour based on selection
-        function applyStatusStyle(status) {
-            if (status === 'Applicable') {
-                card.style.borderColor = '#238636';
-            } else if (status === 'Not Applicable') {
-                card.style.borderColor = '#6e40c9';
-            } else {
-                card.style.borderColor = '#444c56';
+            ['Select', 'Applicable', 'Not Applicable'].forEach(optText => {
+                const opt = document.createElement('option');
+                opt.value = optText;
+                opt.textContent = optText;
+                if (currentStatus === optText) opt.selected = true;
+                select.appendChild(opt);
+            });
+
+            // Update card border colour based on selection
+            function applyStatusStyle(status) {
+                if (status === 'Applicable') {
+                    card.style.borderColor = '#238636';
+                } else if (status === 'Not Applicable') {
+                    card.style.borderColor = '#6e40c9';
+                } else {
+                    card.style.borderColor = '#444c56';
+                }
             }
-        }
-        applyStatusStyle(currentStatus);
-        select.addEventListener('change', () => applyStatusStyle(select.value));
+            applyStatusStyle(currentStatus);
+            select.addEventListener('change', () => applyStatusStyle(select.value));
 
-        actionRow.appendChild(select);
+            actionRow.appendChild(select);
 
-        // --- Attack Vectors (mirrors fieldHandler_requirement.js logic) ---
-        // Find attack vectors for this specific control node from mindmapData
-        const attackVectors = [];
-        if (mindmapData) {
-            mindmapData.forEach((groups) => {
-                groups.forEach((gData) => {
-                    gData.requirements.forEach((reqEntry) => {
-                        reqEntry.implementations.forEach(impl => {
-                            if (
-                                impl.control_number === node.control_number &&
-                                impl.jkAttackVector
-                            ) {
-                                attackVectors.push(impl);
-                            }
+            // --- Attack Vectors (mirrors fieldHandler_requirement.js logic) ---
+            const attackVectors = [];
+            if (mindmapData) {
+                mindmapData.forEach((groups) => {
+                    groups.forEach((gData) => {
+                        gData.requirements.forEach((reqEntry) => {
+                            reqEntry.implementations.forEach(impl => {
+                                if (
+                                    impl.control_number === node.control_number &&
+                                    impl.jkAttackVector
+                                ) {
+                                    attackVectors.push(impl);
+                                }
+                            });
                         });
                     });
                 });
-            });
-        }
+            }
 
-        if (attackVectors.length > 0) {
-            // Attack Vectors collapsible header
-            const avHeader = document.createElement('div');
-            avHeader.style.cssText = `
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                cursor: pointer;
-                user-select: none;
-                color: #adbac7;
-            `;
+            if (attackVectors.length > 0) {
+                const avHeader = document.createElement('div');
+                avHeader.style.cssText = `
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    cursor: pointer;
+                    user-select: none;
+                    color: #adbac7;
+                `;
 
-            const avIcon = document.createElement('span');
-            avIcon.textContent = '▶';
-            avIcon.style.cssText = "font-size: 9px; color: #768390;";
+                const avIcon = document.createElement('span');
+                avIcon.textContent = '▶';
+                avIcon.style.cssText = "font-size: 9px; color: #768390;";
 
-            const avLabel = document.createElement('span');
-            avLabel.textContent = 'Attack Vectors';
-            avLabel.style.cssText = "font-size: 12px; font-weight: bold;";
+                const avLabel = document.createElement('span');
+                avLabel.textContent = 'Attack Vectors';
+                avLabel.style.cssText = "font-size: 12px; font-weight: bold;";
 
-            avHeader.appendChild(avIcon);
-            avHeader.appendChild(avLabel);
-            actionRow.appendChild(avHeader);
+                avHeader.appendChild(avIcon);
+                avHeader.appendChild(avLabel);
+                actionRow.appendChild(avHeader);
 
-            // Attack Vectors content
-            const avContent = document.createElement('div');
-            avContent.style.cssText = "display: none; width: 100%; margin-top: 8px;";
+                const avContent = document.createElement('div');
+                avContent.style.cssText = "display: none; width: 100%; margin-top: 8px;";
 
-            const ul = document.createElement('ul');
-            ul.style.cssText = "margin: 0; padding-left: 20px; font-size: 11px; color: #adbac7; line-height: 1.6;";
-            attackVectors.forEach(impl => {
-                const li = document.createElement('li');
-                li.textContent = `${impl.control_number} - ${impl.jkAttackVector}`;
-                ul.appendChild(li);
-            });
-            avContent.appendChild(ul);
+                const ul = document.createElement('ul');
+                ul.style.cssText = "margin: 0; padding-left: 20px; font-size: 11px; color: #adbac7; line-height: 1.6;";
+                attackVectors.forEach(impl => {
+                    const li = document.createElement('li');
+                    li.textContent = `${impl.control_number} - ${impl.jkAttackVector}`;
+                    ul.appendChild(li);
+                });
+                avContent.appendChild(ul);
 
-            avHeader.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isHidden = avContent.style.display === 'none';
-                avContent.style.display = isHidden ? 'block' : 'none';
-                avIcon.textContent = isHidden ? '▼' : '▶';
-            });
+                avHeader.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isHidden = avContent.style.display === 'none';
+                    avContent.style.display = isHidden ? 'block' : 'none';
+                    avIcon.textContent = isHidden ? '▼' : '▶';
+                });
 
-            cardBody.appendChild(actionRow);
-            cardBody.appendChild(avContent);
-        } else {
-            cardBody.appendChild(actionRow);
-        }
+                cardBody.appendChild(actionRow);
+                cardBody.appendChild(avContent);
+            } else {
+                cardBody.appendChild(actionRow);
+            }
+
+        } // end jkType === 'requirement'
 
         // --- Toggle card body on header click ---
         cardHeader.addEventListener('click', (e) => {
