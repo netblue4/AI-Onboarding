@@ -163,7 +163,10 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 techIcon.textContent = isCollapsed ? '▶' : '▼';
             });
 
-const jiraLink = createJiraLink('Compliance gap: ' + req.jkName, 'YOUR_PROJECT_ID');
+
+const ttt =  controlItem.control_number + '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
+
+const jiraLink = createJiraLink('Compliance gap: ' + ttt, 'KAN');
 cardBody.appendChild(jiraLink);
 
             controlContainer.appendChild(techHeaderDiv);
