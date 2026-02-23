@@ -469,53 +469,6 @@ function createTableCell(text, bgColor, tooltipText = null) {
     return td;
 }
 
-/**
- * Creates the Info Icon with click-to-show tooltip
- */
-function createInfoIcon(text) {
-    const wrapper = document.createElement('span');
-    wrapper.className = 'comply-info-icon-wrapper';
-    wrapper.style.cssText = "position: relative; display: inline-flex; align-items: center; height: 100%;";
-
-    const icon = document.createElement('span');
-    icon.innerHTML = 'ⓘ';
-    icon.style.cssText = "cursor: pointer; color: #b8963e; font-weight: bold; font-size: 14px; padding: 0 2px;";
-
-    const tooltip = document.createElement('div');
-    tooltip.className = 'compliance-tooltip';
-    tooltip.style.cssText = `
-        display: none; 
-        position: absolute; 
-        top: 25px;
-        right: 0;
-        width: 260px; 
-        background: #252525; 
-        color: #e0d9ce; 
-        padding: 12px;
-        border: 1px solid #b8963e; 
-        border-radius: 8px; 
-        z-index: 10000;
-        white-space: pre-wrap; 
-        font-size: 11px; 
-        box-shadow: 0 8px 24px rgba(0,0,0,0.9);
-        pointer-events: auto;
-    `;
-    tooltip.textContent = text;
-
-    icon.onclick = (e) => {
-        e.stopPropagation();
-        const isVisible = tooltip.style.display === 'block';
-        document.querySelectorAll('.compliance-tooltip').forEach(t => t.style.display = 'none');
-        tooltip.style.display = isVisible ? 'none' : 'block';
-    };
-
-    document.addEventListener('click', () => { tooltip.style.display = 'none'; });
-
-    wrapper.appendChild(icon);
-    wrapper.appendChild(tooltip);
-    return wrapper;
-}
-
 function cellStyle() {
     return "padding: 12px; border: 1px solid #3d3d3d; line-height: 1.4; overflow-wrap: break-word;";
 }
