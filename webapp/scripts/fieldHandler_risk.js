@@ -163,6 +163,9 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 techIcon.textContent = isCollapsed ? '▶' : '▼';
             });
 
+const jiraLink = createJiraLink('Compliance gap: ' + req.jkName, 'YOUR_PROJECT_ID');
+cardBody.appendChild(jiraLink);
+
             controlContainer.appendChild(techHeaderDiv);
             controlContainer.appendChild(techContentDiv);
 
@@ -178,6 +181,28 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         const isCollapsed = contentDiv.classList.toggle('collapsed');
         icon.textContent = isCollapsed ? '▶' : '▼';
     });
+    
 
     return fieldDiv;
+}
+
+function createJiraLink(summary, projectId, issueTypeId = 10001) {
+    const link = document.createElement('a');
+    link.textContent = 'Create Jira Ticket';
+    link.href = '#';
+    link.style.cssText = `
+        color: #b8963e;
+        font-size: 12px;
+        cursor: pointer;
+        text-decoration: none;
+    `;
+
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const encodedSummary = encodeURIComponent(summary);
+        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${encodedSummary}`;
+        window.open(url, '_blank');
+    });
+
+    return link;
 }
