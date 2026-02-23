@@ -125,12 +125,8 @@ function createRequirementCell(reqEntry, reqKey, fieldStoredValue, sanitizeForId
     cardLabel.style.cssText = "font-size: 11px; font-weight: bold; color: #adbac7; flex-grow: 1;";
     cardLabel.textContent = `[${reqKey}]: ${req.jkName}`;
 
-    const reqTooltip = `REQUIREMENT DATA:\n${req.jkText}`;
-    const infoIcon = createInfoIcon(reqTooltip);
-
     cardHeader.appendChild(collapseIcon);
     cardHeader.appendChild(cardLabel);
-    cardHeader.appendChild(infoIcon);
 
     // --- Card Body (collapsed by default) ---
     const cardBody = document.createElement('div');
@@ -182,21 +178,8 @@ function createRequirementCell(reqEntry, reqKey, fieldStoredValue, sanitizeForId
 
         actionRow.appendChild(select);
 
-        // --- Attack Vectors ---
-        const attackVectors = [];
-        if (mindmapData) {
-            mindmapData.forEach((groups) => {
-                groups.forEach((gData) => {
-                    gData.requirements.forEach((rEntry) => {
-                        rEntry.implementations.forEach(impl => {
-                            if (impl.control_number === reqKey && impl.jkAttackVector) {
-                                attackVectors.push(impl);
-                            }
-                        });
-                    });
-                });
-            });
-        }
+        // --- Attack Vectors: pulled directly from this requirement's implementations ---
+        const attackVectors = reqEntry.implementations.filter(impl => impl.jkAttackVector);
 
         if (attackVectors.length > 0) {
             const avHeader = document.createElement('div');
@@ -248,8 +231,7 @@ function createRequirementCell(reqEntry, reqKey, fieldStoredValue, sanitizeForId
     }
 
     // --- Toggle card body on header click ---
-    cardHeader.addEventListener('click', (e) => {
-        if (e.target.closest && e.target.closest('.comply-info-icon-wrapper')) return;
+    cardHeader.addEventListener('click', () => {
         const isHidden = cardBody.style.display === 'none';
         cardBody.style.display = isHidden ? 'block' : 'none';
         collapseIcon.textContent = isHidden ? '▼' : '▶';
@@ -311,14 +293,8 @@ function createCategorizedCell(nodes, fieldStoredValue, sanitizeForId, reqEntry,
         cardLabel.style.cssText = "font-size: 11px; font-weight: bold; color: #adbac7; flex-grow: 1;";
         cardLabel.textContent = `${node.control_number}: ${node.jkName}`;
 
-        // Info icon for full control details (non-blocking tooltip)
-        const evidence = fieldStoredValue(node, false) || 'No evidence provided.';
-        const tooltipText = `CONTROL DATA:\n• ID: ${node.control_number}\n• Name: ${node.jkName}\n• Description: ${node.jkText}\n\nPROGRESS:\n• Evidence: ${evidence}`;
-        const infoIcon = createInfoIcon(tooltipText);
-
         cardHeader.appendChild(collapseIcon);
         cardHeader.appendChild(cardLabel);
-        cardHeader.appendChild(infoIcon);
 
         // --- Card Body (collapsed by default) ---
         const cardBody = document.createElement('div');
@@ -444,9 +420,7 @@ function createCategorizedCell(nodes, fieldStoredValue, sanitizeForId, reqEntry,
         } // end jkType === 'requirement'
 
         // --- Toggle card body on header click ---
-        cardHeader.addEventListener('click', (e) => {
-            // Don't toggle if clicking the info icon
-            if (e.target.closest && e.target.closest('.comply-info-icon-wrapper')) return;
+        cardHeader.addEventListener('click', () => {
             const isHidden = cardBody.style.display === 'none';
             cardBody.style.display = isHidden ? 'block' : 'none';
             collapseIcon.textContent = isHidden ? '▼' : '▶';
