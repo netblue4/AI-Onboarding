@@ -166,7 +166,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
 const ttt =  controlItem.control_number + '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
 
-const jiraLink = createJiraLink('Compliance gap: ' + ttt, 'KAN');
+const jiraLink = createJiraLink('Compliance gap: ' + ttt, 'NETBL-1');
 controlContainer.appendChild(jiraLink);
 
             controlContainer.appendChild(techHeaderDiv);
