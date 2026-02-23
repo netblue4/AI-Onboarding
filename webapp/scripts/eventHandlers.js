@@ -59,6 +59,7 @@ class EventHandlers {
         }
         
         
+        
         // ===== COMPLIANE MAP BUTTON =====
         compliancemapBtn.addEventListener('click', () => {
             console.log('Load Compliance map button clicked');
@@ -175,7 +176,6 @@ class EventHandlers {
                         alert(CONFIG.MESSAGES.FILE_LOADED);
                         
                         compliancemapBtn.className = "btn-primary";
-                        compliancetableBtn.className = "btn-primary";
                                               
                     })
                     .catch(error => {
