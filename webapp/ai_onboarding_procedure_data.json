@@ -18,21 +18,21 @@
               "jkName": "Intended Purpose",
               "jkText": "Clear, documented declaration of what the system is designed to do.",
               "jkType": "requirement",
-              "jkSoa": "Applicable"
+              "jkSoa": "Select"
             },
             {
               "requirement_control_number": "[18229-1.2]",
               "jkName": "Limitations",
               "jkText": "Documentation of known 'blind spots', error conditions, or scenarios where the AI may fail.",
               "jkType": "requirement",
-              "jkSoa": "Applicable"
+              "jkSoa": "Select"
             },
             {
               "requirement_control_number": "[18229-1.3]",
               "jkName": "Instructions for Use",
               "jkText": "High-quality documentation that is clear, accessible, and provided in a digital/readable format.",
               "jkType": "requirement",
-              "jkSoa": "Applicable"
+              "jkSoa": "Select"
             }
           ]
         },
@@ -46,7 +46,7 @@
               "jkName": "Event Recording",
               "jkText": "Automated, immutable recording of start/end times, input data, and all system decisions.",
               "jkType": "requirement",
-              "jkSoa": "Applicable"
+              "jkSoa": "Select"
             },
             {
               "requirement_control_number": "[18229-1.5]",
