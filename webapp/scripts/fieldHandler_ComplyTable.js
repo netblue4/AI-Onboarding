@@ -178,8 +178,15 @@ function createRequirementCell(reqEntry, reqKey, fieldStoredValue, sanitizeForId
 
         actionRow.appendChild(select);
 
-        // --- Attack Vectors: pulled directly from this requirement's implementations ---
-        const attackVectors = reqEntry.implementations.filter(impl => impl.jkAttackVector);
+        // --- Attack Vectors: iterate implementations (Map) and collect those with jkAttackVector ---
+        const attackVectors = [];
+        if (reqEntry.implementations) {
+            for (const impl of reqEntry.implementations.values()) {
+                if (impl.jkAttackVector) {
+                    attackVectors.push(impl);
+                }
+            }
+        }
 
         if (attackVectors.length > 0) {
             const avHeader = document.createElement('div');
