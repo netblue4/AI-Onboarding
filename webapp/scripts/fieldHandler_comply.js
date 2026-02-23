@@ -34,8 +34,6 @@ function createComplyField(sanitizeForId, fieldStoredValue, webappData = null, m
     totalImplementationFieldsWithResponse = 0;
     totalImplementationControls = 0;
     totalImplementationControlsWithEvidence = 0;
-    
-    //const webappData = window.originalWebappData;
 
     if (!webappData) {
         const errDiv = document.createElement('div');
