@@ -193,9 +193,10 @@ function createJiraLink(controlItem) {
 //STory = 10315
 //Get IssueTypes = https://netblue4.atlassian.net/rest/api/2/project/10001
 //Fet ProjectID = https://netblue4.atlassian.net/rest/api/2/project/
+//Jira documentation: https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflow-workflowid-project-projectid-issuetypeusages-get
     const summary =  sanitizeForId(state.systemId + ' - ' + controlItem.control_number + ' [' + controlItem.requirement_control_number + ']');
     const description = controlItem.jkText;
-    const projectID = '10001';
+    const projectID = 10001;
     const issueTypeId = 10318
     const link = document.createElement('a');
     link.textContent = 'Create Jira Ticket';
@@ -210,7 +211,8 @@ function createJiraLink(controlItem) {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const encodedSummary = encodeURIComponent(summary);
-        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${summary}&description=${encodedSummary}`;       
+        const encodeddescription = encodeURIComponent(description);
+        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${encodedSummary}&description=${encodedSummary}`;       
         
         window.open(url, '_blank');
     });
