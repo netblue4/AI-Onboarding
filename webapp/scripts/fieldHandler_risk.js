@@ -164,7 +164,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             });
 
 
-const summary =  state.systemId + ' - ' + controlItem.control_number + ' [' + controlItem.requirement_control_number + ']';
+const summary =  sanitizeForId(state.systemId + ' - ' + controlItem.control_number + ' [' + controlItem.requirement_control_number + ']');
 const description = controlItem.jkText;
 const jiraLink = createJiraLink(summary, description, '10001');
 controlContainer.appendChild(jiraLink);
@@ -203,7 +203,11 @@ function createJiraLink(summary, description, projectId, issueTypeId = 2) {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const encodedSummary = encodeURIComponent(summary);
-        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${summary}&description=${encodedSummary}`;       
+        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?
+        pid=${projectId}
+        &issuetype=${issueTypeId}
+        &summary=${summary}
+        &description=${encodedSummary}`;       
         
         window.open(url, '_blank');
     });
