@@ -163,10 +163,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 techIcon.textContent = isCollapsed ? '▶' : '▼';
             });
 
-
-const summary =  sanitizeForId(state.systemId + ' - ' + controlItem.control_number + ' [' + controlItem.requirement_control_number + ']');
-const description = controlItem.jkText;
-const jiraLink = createJiraLink(summary, description, '10001');
+const jiraLink = createJiraLink(controlItem);
 controlContainer.appendChild(jiraLink);
 
             controlContainer.appendChild(techHeaderDiv);
@@ -189,7 +186,17 @@ controlContainer.appendChild(jiraLink);
     return fieldDiv;
 }
 
-function createJiraLink(summary, description, projectId, issueTypeId = 2) {
+function createJiraLink(controlItem) {
+//task = 10318
+//Epic = 10307
+//SubTask = 10316
+//STory = 10315
+//Get IssueTypes = https://netblue4.atlassian.net/rest/api/2/project/10001
+//Fet ProjectID = https://netblue4.atlassian.net/rest/api/2/project/
+    const summary =  sanitizeForId(state.systemId + ' - ' + controlItem.control_number + ' [' + controlItem.requirement_control_number + ']');
+    const description = controlItem.jkText;
+    const projectID = '10001';
+    const issueTypeId = 10318
     const link = document.createElement('a');
     link.textContent = 'Create Jira Ticket';
     link.href = '#';
@@ -203,11 +210,7 @@ function createJiraLink(summary, description, projectId, issueTypeId = 2) {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const encodedSummary = encodeURIComponent(summary);
-        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?
-        pid=${projectId}
-        &issuetype=${issueTypeId}
-        &summary=${summary}
-        &description=${encodedSummary}`;       
+        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${summary}&description=${encodedSummary}`;       
         
         window.open(url, '_blank');
     });
