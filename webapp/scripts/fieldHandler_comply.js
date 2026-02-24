@@ -181,7 +181,7 @@ function exportToJiraJson() {
 	const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
 	const webappData = window.originalWebappData;
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-    let hasCategory == true; 
+    let hasCategory = true; 
     
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
