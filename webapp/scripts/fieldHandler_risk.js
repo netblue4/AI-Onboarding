@@ -212,7 +212,7 @@ function createJiraLink(controlItem) {
         e.preventDefault();
         const encodedSummary = encodeURIComponent(summary);
         const encodeddescription = encodeURIComponent(description);
-        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${encodedSummary}&description=${encodedSummary}`;       
+        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectID}&issuetype=${issueTypeId}&summary=${encodedSummary}&description=${encodedSummary}`;       
         
         window.open(url, '_blank');
     });
