@@ -164,9 +164,9 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             });
 
 
-const ttt =  controlItem.control_number + '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
-
-const jiraLink = createJiraLink('Compliance gap: ' + ttt, '10001');
+const summary =  controlItem.control_number + ' [' controlItem.requirement_control_number + ']';
+const description = controlItem.jkText;
+const jiraLink = createJiraLink(summary, description, '10001');
 controlContainer.appendChild(jiraLink);
 
             controlContainer.appendChild(techHeaderDiv);
@@ -189,7 +189,7 @@ controlContainer.appendChild(jiraLink);
     return fieldDiv;
 }
 
-function createJiraLink(summary, projectId, issueTypeId = 10001) {
+function createJiraLink(summary, description, projectId, issueTypeId = 2) {
     const link = document.createElement('a');
     link.textContent = 'Create Jira Ticket';
     link.href = '#';
@@ -203,7 +203,8 @@ function createJiraLink(summary, projectId, issueTypeId = 10001) {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const encodedSummary = encodeURIComponent(summary);
-        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${encodedSummary}`;
+        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${summary}&description=${encodedSummary}`;       
+        
         window.open(url, '_blank');
     });
 
