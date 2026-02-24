@@ -41,6 +41,8 @@ class EventHandlers {
         const infoBanner = document.getElementById('info-banner');
         const versionBanner = document.getElementById('version-banner');
         const highlightNewBtn = document.getElementById('highlight-new-btn');
+        const exportToJirsBtn = document.getElementById('exportToJira-btn');
+        
 
         // ===== DIMENSION DROPDOWN =====
         if (dimensionDropdown) {
@@ -58,7 +60,10 @@ class EventHandlers {
             });
         }
         
-        
+        // ===== EXPORT TO JIRA BUTTON =====
+		exportToJirsBtn.addEventListener('click', () => {
+			exportToJiraJson();
+		});
         
         // ===== COMPLIANE MAP BUTTON =====
         compliancemapBtn.addEventListener('click', () => {
