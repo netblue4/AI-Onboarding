@@ -181,7 +181,6 @@ function exportToJiraJson() {
 	const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
 	const webappData = window.originalWebappData;
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-    let hasCategory = true; 
     
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
@@ -201,8 +200,7 @@ function exportToJiraJson() {
                     if (cNum.includes('T')) category = 'Test';
 
 					//only create jira tickets for controls that have a jkTask
-					if(category === 'Define') { hasCategory = false; return;};
-					hasCategory = true;
+					if(category === 'Define') return;
 					
                     // Build description lines, only including fields that have values
                     const descriptionParts = [
@@ -223,7 +221,9 @@ function exportToJiraJson() {
                 });
 
                 // --- Build parent Task ---
-                if(hasCategory){
+                const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => impl.jkTask);
+
+                if(hasTaskNodes){
                 issues.push({
                     externalId: String(externalId++),
                     summary: `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`,
