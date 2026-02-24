@@ -110,7 +110,6 @@ class EventHandlers {
             const currentValues = this.dataCapture.captureAll();
             this.fileManager.saveProgress(currentValues);
             this.roleProgressTracker.update();
-            alert(CONFIG.MESSAGES.PROGRESS_SAVED + this.state.systemId + '_data.json');
         });
 
         // ===== DOWNLOAD REPORT BUTTON =====
@@ -119,7 +118,6 @@ class EventHandlers {
                 console.log('Download button clicked');
                 const currentValues = this.dataCapture.captureAll();
                 this.fileManager.generateReport(currentValues);
-                alert(CONFIG.MESSAGES.REPORT_DOWNLOADED);
             });
         }
 
