@@ -246,7 +246,7 @@ async function createJiraTicket(summary, description, projectId, issueTypeId) {
     } catch (err) {
         // CORS blocked — fall back to URL method
         console.warn('Direct API call failed, falling back to URL method:', err.message);
-        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${encodeURIComponent(summary)}&description=${encodeURIComponent(description)}`;
+        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectID}&issuetype=${issueTypeId}&summary=${encodeURIComponent(summary)}&description=${encodeURIComponent(description)}`;
         window.open(url, '_blank');
     }
 }
