@@ -177,8 +177,8 @@ function exportToJiraJson() {
     const issues = [];
     const projectKey = 10001;
     
-    const sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
-	const fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
+    const sanitizeForId = templateManager.sanitizeForId.bind(templateManager);
+	const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
 	const webappData = window.originalWebappData;
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
