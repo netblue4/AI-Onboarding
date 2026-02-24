@@ -186,6 +186,8 @@ function exportToJiraJson() {
         groups.forEach((gData, groupName) => {
             gData.requirements.forEach((reqEntry, reqKey) => {
                 const req = reqEntry.requirement;
+                
+                if(req.jkSoa !== 'Applicable') return;
 
                 // --- Build subtasks from implementations ---
                 const subTasks = [];
