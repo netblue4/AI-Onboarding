@@ -117,7 +117,7 @@ class EventHandlers {
         if (downloadBtn) {
             downloadBtn.addEventListener('click', () => {
                 console.log('Download button clicked');
-                const currentValues = this.dataCapture.captureAll();
+                const currentValues = state.systemId + '__' + this.dataCapture.captureAll();
                 this.fileManager.generateReport(currentValues);
                 alert(CONFIG.MESSAGES.REPORT_DOWNLOADED);
             });
