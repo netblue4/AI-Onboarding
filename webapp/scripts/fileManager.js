@@ -47,7 +47,7 @@ class FileManager {
         };
 
         this.state.setCapturedData(capturedValues);
-        this.downloadJSON(dataFile, `${capturedValues}_data.json`);
+        this.downloadJSON(dataFile, `${this.state.systemId}_${new Date().toISOString().slice(0, 24)}_data.json`);
     }
 
     /**
