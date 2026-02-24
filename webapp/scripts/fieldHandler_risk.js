@@ -164,7 +164,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             });
 
 
-const summary =  controlItem.control_number + ' [' + controlItem.requirement_control_number + ']';
+const summary =  state.systemId + ' - ' + controlItem.control_number + ' [' + controlItem.requirement_control_number + ']';
 const description = controlItem.jkText;
 const jiraLink = createJiraLink(summary, description, '10001');
 controlContainer.appendChild(jiraLink);
