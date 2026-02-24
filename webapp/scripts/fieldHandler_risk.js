@@ -175,9 +175,6 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 controlItem.jkCodeSample    ? `Code Sample:\n${controlItem.jkCodeSample}`     : ''
             ].filter(Boolean).join('\n\n');
 
-            const jiraLink = createJiraLink('Compliance gap: ' + ttt, description, '10001', '10318');
-            controlContainer.appendChild(jiraLink);
-
             controlContainer.appendChild(techHeaderDiv);
             controlContainer.appendChild(techContentDiv);
 
