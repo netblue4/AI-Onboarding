@@ -107,7 +107,7 @@ class EventHandlers {
         // ===== SAVE PROGRESS BUTTON =====
         saveBtn.addEventListener('click', () => {
             console.log('Save button clicked');
-            const currentValues = this.dataCapture.captureAll();
+            const currentValues = state.systemId + '__' + this.dataCapture.captureAll();
             this.fileManager.saveProgress(currentValues);
             this.roleProgressTracker.update();
             alert(CONFIG.MESSAGES.PROGRESS_SAVED + this.state.systemId + '_data.json');
