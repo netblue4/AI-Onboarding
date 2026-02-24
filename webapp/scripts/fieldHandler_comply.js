@@ -200,6 +200,9 @@ function exportToJiraJson() {
                     if (cNum.includes('R')) category = 'Build';
                     if (cNum.includes('T')) category = 'Test';
 
+					//only create jira tickets for controls that have a jkTask
+					if(category === 'Define') return
+
                     // Build description lines, only including fields that have values
                     const descriptionParts = [
                         `Control: ${impl.control_number} - ${impl.jkName || ''}`,
