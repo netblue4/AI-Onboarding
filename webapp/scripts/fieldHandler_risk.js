@@ -163,8 +163,20 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 techIcon.textContent = isCollapsed ? '▶' : '▼';
             });
 
-const jiraLink = createJiraLink(controlItem);
-controlContainer.appendChild(jiraLink);
+            // --- 6. Build Jira summary and description from control data ---
+            const ttt = controlItem.control_number + '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
+
+            const description = [
+                `Control: ${controlItem.control_number}`,
+                `${controlItem.jkText} ${controlItem.requirement_control_number}`,
+                controlItem.jkMaturity      ? `Maturity: ${controlItem.jkMaturity}`           : '',
+                controlItem.jkAttackVector  ? `Attack Vector: ${controlItem.jkAttackVector}`  : '',
+                controlItem.jkTask          ? `Task: ${controlItem.jkTask}`                   : '',
+                controlItem.jkCodeSample    ? `Code Sample:\n${controlItem.jkCodeSample}`     : ''
+            ].filter(Boolean).join('\n\n');
+
+            const jiraLink = createJiraLink('Compliance gap: ' + ttt, description, '10001', '10318');
+            controlContainer.appendChild(jiraLink);
 
             controlContainer.appendChild(techHeaderDiv);
             controlContainer.appendChild(techContentDiv);
@@ -176,30 +188,72 @@ controlContainer.appendChild(jiraLink);
     contentDiv.appendChild(controlsDiv);
     fieldDiv.appendChild(contentDiv);
 
-    // --- 6. Toggle Listener for the Outer Risk Header ---
+    // --- 7. Toggle Listener for the Outer Risk Header ---
     headerDiv.addEventListener('click', () => {
         const isCollapsed = contentDiv.classList.toggle('collapsed');
         icon.textContent = isCollapsed ? '▶' : '▼';
     });
-    
 
     return fieldDiv;
 }
 
-function createJiraLink(controlItem) {
-//task = 10318
-//Epic = 10307
-//SubTask = 10316
-//STory = 10315
-//Get IssueTypes = https://netblue4.atlassian.net/rest/api/2/project/10001
-//Fet ProjectID = https://netblue4.atlassian.net/rest/api/2/project/
-//Jira documentation: https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflow-workflowid-project-projectid-issuetypeusages-get
-    const summary =  sanitizeForId(state.systemId + ' - ' + controlItem.control_number + ' [' + controlItem.requirement_control_number + ']');
-    const description = controlItem.jkText;
-    const projectID = 10001;
-    const issueTypeId = 10318
+// --- Jira API call using existing browser session (no token needed) ---
+async function createJiraTicket(summary, description, projectId, issueTypeId) {
+    const payload = {
+        fields: {
+            project: { id: projectId },
+            issuetype: { id: issueTypeId },
+            summary: summary,
+            description: {
+                type: "doc",
+                version: 1,
+                content: [
+                    {
+                        type: "paragraph",
+                        content: [
+                            { type: "text", text: description }
+                        ]
+                    }
+                ]
+            }
+        }
+    };
+
+    try {
+        const response = await fetch('https://netblue4.atlassian.net/rest/api/3/issue', {
+            method: 'POST',
+            credentials: 'include',  // 👈 uses your existing Jira login session
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const err = await response.json();
+            alert('Jira error: ' + JSON.stringify(err.errors || err.errorMessages));
+            return;
+        }
+
+        const data = await response.json();
+        const ticketUrl = `https://netblue4.atlassian.net/browse/${data.key}`;
+
+        if (confirm(`✅ Ticket created: ${data.key}\n\nClick OK to open it.`)) {
+            window.open(ticketUrl, '_blank');
+        }
+
+    } catch (err) {
+        // CORS blocked — fall back to URL method
+        console.warn('Direct API call failed, falling back to URL method:', err.message);
+        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectId}&issuetype=${issueTypeId}&summary=${encodeURIComponent(summary)}&description=${encodeURIComponent(description)}`;
+        window.open(url, '_blank');
+    }
+}
+
+function createJiraLink(summary, description, projectId, issueTypeId = '10318') {
     const link = document.createElement('a');
-    link.textContent = 'Create Jira Ticket';
+    link.textContent = '🎫 Create Jira Ticket';
     link.href = '#';
     link.style.cssText = `
         color: #b8963e;
@@ -208,13 +262,11 @@ function createJiraLink(controlItem) {
         text-decoration: none;
     `;
 
-    link.addEventListener('click', (e) => {
+    link.addEventListener('click', async (e) => {
         e.preventDefault();
-        const encodedSummary = encodeURIComponent(summary);
-        const encodeddescription = encodeURIComponent(description);
-        const url = `https://netblue4.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=${projectID}&issuetype=${issueTypeId}&summary=${encodedSummary}&description=${encodedSummary}`;       
-        
-        window.open(url, '_blank');
+        link.textContent = '⏳ Creating...';
+        await createJiraTicket(summary, description, projectId, issueTypeId);
+        link.textContent = '🎫 Create Jira Ticket';
     });
 
     return link;
