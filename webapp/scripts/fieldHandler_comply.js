@@ -187,7 +187,8 @@ function exportToJiraJson() {
             gData.requirements.forEach((reqEntry, reqKey) => {
                 const req = reqEntry.requirement;
                 
-                if(req.jkSoa !== 'Applicable') return;
+                
+                if(fieldStoredValue(req, true) !== 'Applicable') return;
 
                 // --- Build subtasks from implementations ---
                 const subTasks = [];
