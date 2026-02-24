@@ -202,7 +202,8 @@ function exportToJiraJson() {
 
 					//only create jira tickets for controls that have a jkTask
 					if(category === 'Define') { hasCategory = false; return;};
-
+					hasCategory = true;
+					
                     // Build description lines, only including fields that have values
                     const descriptionParts = [
                         `Control: ${impl.control_number} - ${impl.jkName || ''}`,
