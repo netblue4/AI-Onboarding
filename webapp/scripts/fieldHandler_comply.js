@@ -181,12 +181,12 @@ function exportToJiraJson() {
 	const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
 	const webappData = window.originalWebappData;
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-
+    let hasCategory == true; 
+    
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
             gData.requirements.forEach((reqEntry, reqKey) => {
                 const req = reqEntry.requirement;
-                
                 
                 if(fieldStoredValue(req, true) !== 'Applicable') return;
 
@@ -201,7 +201,7 @@ function exportToJiraJson() {
                     if (cNum.includes('T')) category = 'Test';
 
 					//only create jira tickets for controls that have a jkTask
-					if(category === 'Define') return
+					if(category === 'Define') { hasCategory == false; return;};
 
                     // Build description lines, only including fields that have values
                     const descriptionParts = [
@@ -222,6 +222,7 @@ function exportToJiraJson() {
                 });
 
                 // --- Build parent Task ---
+                if(hasCategory){
                 issues.push({
                     externalId: String(externalId++),
                     summary: `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`,
@@ -230,6 +231,7 @@ function exportToJiraJson() {
                     priority: 'Medium',
                     subTasks: subTasks
                 });
+                };
             });
         });
     });
