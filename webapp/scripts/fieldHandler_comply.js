@@ -252,7 +252,7 @@ function exportToJiraJson() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `jira_import_${new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-')}.json`;
+    a.download = `jira_import_${state.systemId}_${new Date().toISOString().slice(0, 24)}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

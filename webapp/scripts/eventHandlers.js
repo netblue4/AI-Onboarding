@@ -107,7 +107,7 @@ class EventHandlers {
         // ===== SAVE PROGRESS BUTTON =====
         saveBtn.addEventListener('click', () => {
             console.log('Save button clicked');
-            const currentValues = state.systemId + '__' + Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-');
+            const currentValues = state.systemId + '__' + Date().toString().slice(0, 24);
             this.fileManager.saveProgress(currentValues);
             this.roleProgressTracker.update();
             alert(CONFIG.MESSAGES.PROGRESS_SAVED + this.state.systemId + '_data.json');
@@ -117,7 +117,7 @@ class EventHandlers {
         if (downloadBtn) {
             downloadBtn.addEventListener('click', () => {
                 console.log('Download button clicked');
-                const currentValues = state.systemId + '__' + Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-');
+                const currentValues = state.systemId + '__' + Date().toString().slice(0, 24);
                 this.fileManager.generateReport(currentValues);
                 alert(CONFIG.MESSAGES.REPORT_DOWNLOADED);
             });
