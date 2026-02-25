@@ -175,94 +175,105 @@ function buildComplianceMap(data, sanitizeForId, fieldStoredValue) {
 }
 
 
-	function exportToJiraCsv() {
-		const rows = [];
-		const projectKey = 10001;
-		
-		const sanitizeForId = templateManager.sanitizeForId.bind(templateManager);
-		const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
-		const webappData = window.originalWebappData;
-		const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-	
-		// --- CSV Header ---
-		rows.push(['ID', 'Summary', 'Description', 'Issue Type', 'Priority', 'Parent']);
-	
-		let idCounter = 1;
-	
-		mindmapData.forEach((groups, stepName) => {
-			groups.forEach((gData, groupName) => {
-				gData.requirements.forEach((reqEntry, reqKey) => {
-					const req = reqEntry.requirement;
-	
-					// --- Only export applicable requirements ---
-					if (fieldStoredValue(req, true) !== 'Applicable') return;
-	
-					// --- Early exit if no Build or Test implementations have jkTask ---
-					const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => {
-						if (!impl.jkTask) return false;
-						const cNum = String(impl.control_number || '');
-						return cNum.includes('R') || cNum.includes('T');
-					});
-					if (!hasTaskNodes) return;
-	
-					// --- Assign parent ID ---
-					const parentId = idCounter++;
-					const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
-	
-					// --- Parent Task row added FIRST ---
-					rows.push([parentId, parentSummary, req.jkText || '', 'Task', 'Medium', '']);
-	
-					// --- Build subtask rows ---
-					reqEntry.implementations.forEach(impl => {
-	
-						// Only create a subtask if jkTask exists
-						if (!impl.jkTask) return;
-	
-						// Determine category from control_number suffix
-						const cNum = String(impl.control_number || '');
-						let category = 'Define';
-						if (cNum.includes('R')) category = 'Build';
-						if (cNum.includes('T')) category = 'Test';
-	
-						// Only create Jira tickets for Build and Test controls
-						if (category === 'Define') return;
-	
-						// Build description, only including fields that have values
-						const descriptionParts = [
-							`Control: ${impl.control_number} - ${impl.jkName || ''}`,
-							impl.jkText         ? `\nDescription:\n${impl.jkText}`           : '',
-							impl.jkAttackVector ? `\nAttack Vector:\n${impl.jkAttackVector}` : '',
-							impl.jkTask         ? `\nTask:\n${impl.jkTask}`                  : '',
-							impl.jkCodeSample   ? `\nCode Sample:\n${impl.jkCodeSample}`     : ''
-						].filter(Boolean).join('\n');
-	
-						const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
-	
-						// --- Subtask rows added AFTER parent ---
-						rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
-					});
-				});
-			});
-		});
-	
-		// --- Convert rows to CSV string ---
-		const csvContent = rows.map(row =>
-			row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
-		).join('\n');
-	
-		// --- Trigger file download ---
-		const blob = new Blob([csvContent], { type: 'text/csv' });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = `jira_import_${new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-')}.csv`;
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		URL.revokeObjectURL(url);
-	
-		console.log(`✅ Jira CSV exported with ${rows.length - 1} rows`);
-	}
+function exportToJiraCsv() {
+    const rows = [];
+    const projectKey = 10001;
+    
+    const sanitizeForId = templateManager.sanitizeForId.bind(templateManager);
+    const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
+    const webappData = window.originalWebappData;
+    const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
+
+    // --- Sanitize text for CSV: strip markdown code fences, normalize whitespace ---
+    function sanitizeForCsv(text) {
+        if (!text) return '';
+        return text
+            .replace(/```[\w]*\n?/g, '')   // remove opening code fences e.g. ```python
+            .replace(/```/g, '')            // remove closing code fences
+            .replace(/\r\n/g, ' | ')        // replace Windows line endings
+            .replace(/\n/g, ' | ')          // replace Unix line endings
+            .replace(/\s{2,}/g, ' ')        // collapse multiple spaces
+            .trim();
+    }
+
+    // --- CSV Header ---
+    rows.push(['ID', 'Summary', 'Description', 'Issue Type', 'Priority', 'Parent']);
+
+    let idCounter = 1;
+
+    mindmapData.forEach((groups, stepName) => {
+        groups.forEach((gData, groupName) => {
+            gData.requirements.forEach((reqEntry, reqKey) => {
+                const req = reqEntry.requirement;
+
+                // --- Only export applicable requirements ---
+                if (fieldStoredValue(req, true) !== 'Applicable') return;
+
+                // --- Early exit if no Build or Test implementations have jkTask ---
+                const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => {
+                    if (!impl.jkTask) return false;
+                    const cNum = String(impl.control_number || '');
+                    return cNum.includes('R') || cNum.includes('T');
+                });
+                if (!hasTaskNodes) return;
+
+                // --- Assign parent ID ---
+                const parentId = idCounter++;
+                const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
+
+                // --- Parent Task row added FIRST ---
+                rows.push([parentId, parentSummary, sanitizeForCsv(req.jkText), 'Task', 'Medium', '']);
+
+                // --- Build subtask rows ---
+                reqEntry.implementations.forEach(impl => {
+
+                    // Only create a subtask if jkTask exists
+                    if (!impl.jkTask) return;
+
+                    // Determine category from control_number suffix
+                    const cNum = String(impl.control_number || '');
+                    let category = 'Define';
+                    if (cNum.includes('R')) category = 'Build';
+                    if (cNum.includes('T')) category = 'Test';
+
+                    // Only create Jira tickets for Build and Test controls
+                    if (category === 'Define') return;
+
+                    // Build description, only including fields that have values
+                    const descriptionParts = [
+                        `Control: ${impl.control_number} - ${impl.jkName || ''}`,
+                        impl.jkText         ? `Description: ${sanitizeForCsv(impl.jkText)}`           : '',
+                        impl.jkAttackVector ? `Attack Vector: ${sanitizeForCsv(impl.jkAttackVector)}` : '',
+                        impl.jkTask         ? `Task: ${sanitizeForCsv(impl.jkTask)}`                  : '',
+                        impl.jkCodeSample   ? `Code Sample: ${sanitizeForCsv(impl.jkCodeSample)}`     : ''
+                    ].filter(Boolean).join(' | ');
+
+                    const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
+
+                    rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
+                });
+            });
+        });
+    });
+
+    // --- Convert rows to CSV string ---
+    const csvContent = rows.map(row =>
+        row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
+    ).join('\n');
+
+    // --- Trigger file download ---
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `jira_import_${new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-')}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    console.log(`✅ Jira CSV exported with ${rows.length - 1} rows`);
+}
 
 
 
