@@ -24,11 +24,12 @@ function renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId) {
         margin-top: 10px;
     `;
 
-    // Table Header
+    // Table Header - Added "Harmonised Standard" column
     const thead = document.createElement('thead');
     thead.innerHTML = `
         <tr style="background: linear-gradient(135deg, #b8963e 0%, #9a7a2e 100%); text-align: left; color: #e0d9ce;">
             <th style="${cellStyle()} width: 140px; color: #e0d9ce;">Article / Step</th>
+            <th style="${cellStyle()} width: 180px; color: #e0d9ce;">Harmonised Standard</th>
             <th style="${cellStyle()} width: 140px; color: #e0d9ce;">Group</th>
             <th style="${cellStyle()} width: 220px; color: #e0d9ce;">Requirement</th>
             <th style="${cellStyle()} color: #e0d9ce;">Define</th>
@@ -42,15 +43,33 @@ function renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId) {
 
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
+            
+            // --- LOGIC TO SPLIT GROUP NAME ---
+            // Input example: "[18229-1: Trustworthiness] - Transparency."
+            let standardPart = "";
+            let displayGroupName = groupName;
+
+            if (groupName.includes("] - ")) {
+                const parts = groupName.split("] - ");
+                standardPart = parts[0] + "]"; // Re-add the closing bracket
+                displayGroupName = parts[1].replace(/\.$/, ""); // Remove trailing dot if exists
+            }
+            // ---------------------------------
+
             gData.requirements.forEach((reqEntry, reqKey) => {
                 const tr = document.createElement('tr');
                 tr.style.borderBottom = "1px solid #3d3d3d";
 
                 // Hierarchy Columns
                 tr.appendChild(createTableCell(stepName, "#252525"));
-                tr.appendChild(createTableCell(groupName, "#2a2a2a"));
+                
+                // New Harmonised Standard Column
+                tr.appendChild(createTableCell(standardPart, "#2a2a2a"));
+                
+                // Updated Group Column (using displayGroupName)
+                tr.appendChild(createTableCell(displayGroupName, "#2a2a2a"));
 
-                // Requirement Column — with dropdown + attack vectors
+                // Requirement Column
                 tr.appendChild(createRequirementCell(reqEntry, reqKey, fieldStoredValue, sanitizeForId, mindmapData));
 
                 // Control Sorting
@@ -69,7 +88,7 @@ function renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId) {
                     }
                 });
 
-                // Categorized Columns — with dropdown + attack vectors
+                // Categorized Columns
                 tr.appendChild(createCategorizedCell(defineNodes, fieldStoredValue, sanitizeForId, reqEntry, mindmapData));
                 tr.appendChild(createCategorizedCell(buildNodes, fieldStoredValue, sanitizeForId, reqEntry, mindmapData));
                 tr.appendChild(createCategorizedCell(testNodes, fieldStoredValue, sanitizeForId, reqEntry, mindmapData));
