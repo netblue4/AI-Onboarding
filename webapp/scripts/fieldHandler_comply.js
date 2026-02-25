@@ -172,7 +172,93 @@ function buildComplianceMap(data, sanitizeForId, fieldStoredValue) {
 }
 
 
-function exportToJiraJson() {
+function exportToJiraCsv() {
+    const rows = [];
+    const projectKey = 10001;
+    
+    const sanitizeForId = templateManager.sanitizeForId.bind(templateManager);
+    const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
+    const webappData = window.originalWebappData;
+    const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
+
+    // --- CSV Header ---
+    rows.push(['Summary', 'Description', 'Issue Type', 'Priority', 'Parent Summary']);
+
+    mindmapData.forEach((groups, stepName) => {
+        groups.forEach((gData, groupName) => {
+            gData.requirements.forEach((reqEntry, reqKey) => {
+                const req = reqEntry.requirement;
+
+                // --- Only export applicable requirements ---
+                if (fieldStoredValue(req, true) !== 'Applicable') return;
+
+                // --- Early exit if no Build or Test implementations have jkTask ---
+                const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => {
+                    if (!impl.jkTask) return false;
+                    const cNum = String(impl.control_number || '');
+                    return cNum.includes('R') || cNum.includes('T');
+                });
+                if (!hasTaskNodes) return;
+
+                // --- Parent Task Summary ---
+                const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
+
+                // --- Build subtask rows ---
+                reqEntry.implementations.forEach(impl => {
+
+                    // Only create a subtask if jkTask exists
+                    if (!impl.jkTask) return;
+
+                    // Determine category from control_number suffix
+                    const cNum = String(impl.control_number || '');
+                    let category = 'Define';
+                    if (cNum.includes('R')) category = 'Build';
+                    if (cNum.includes('T')) category = 'Test';
+
+                    // Only create Jira tickets for Build and Test controls
+                    if (category === 'Define') return;
+
+                    // Build description, only including fields that have values
+                    const descriptionParts = [
+                        `Control: ${impl.control_number} - ${impl.jkName || ''}`,
+                        impl.jkText         ? `\nDescription:\n${impl.jkText}`           : '',
+                        impl.jkAttackVector ? `\nAttack Vector:\n${impl.jkAttackVector}` : '',
+                        impl.jkTask         ? `\nTask:\n${impl.jkTask}`                  : '',
+                        impl.jkCodeSample   ? `\nCode Sample:\n${impl.jkCodeSample}`     : ''
+                    ].filter(Boolean).join('\n');
+
+                    const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
+
+                    rows.push([subTaskSummary, descriptionParts, 'Sub-task', impl.jkMaturity || 'Medium', parentSummary]);
+                });
+
+                // --- Parent Task row ---
+                rows.push([parentSummary, req.jkText || '', 'Task', 'Medium', '']);
+            });
+        });
+    });
+
+    // --- Convert rows to CSV string ---
+    const csvContent = rows.map(row =>
+        row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
+    ).join('\n');
+
+    // --- Trigger file download ---
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `jira_import_${new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-')}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    console.log(`✅ Jira CSV exported with ${rows.length - 1} rows`);
+}
+
+
+function exportToJiraCsv() {
     let externalId = 1;
     const issues = [];
     const projectKey = 10001;

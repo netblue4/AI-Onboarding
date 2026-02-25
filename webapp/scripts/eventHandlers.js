@@ -62,7 +62,7 @@ class EventHandlers {
         
         // ===== EXPORT TO JIRA BUTTON =====
 		exportToJirsBtn.addEventListener('click', () => {
-			exportToJiraJson();
+			exportToJiraCsv();
 		});
         
         // ===== COMPLIANE MAP BUTTON =====
