@@ -197,7 +197,7 @@ function exportToJiraCsv() {
     }
 
     // --- CSV Header ---
-    rows.push(['Work item Id', 'Summary', 'Description', 'Work type', 'Priority', 'Parent']);
+    rows.push(['Work item Id', 'Work item Key','Summary', 'Description', 'Work type', 'Priority', 'Parent']);
 
     let idCounter = 1;
 
@@ -210,19 +210,19 @@ function exportToJiraCsv() {
                 if (fieldStoredValue(req, true) !== 'Applicable') return;
 
                 // --- Early exit if no Build or Test implementations have jkTask ---
-                const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => {
-                    if (!impl.jkTask) return false;
-                    const cNum = String(impl.control_number || '');
-                    return cNum.includes('R') || cNum.includes('T');
-                });
-                if (!hasTaskNodes) return;
+                //const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => {
+                //    if (!impl.jkTask) return false;
+                //    const cNum = String(impl.control_number || '');
+                //    return cNum.includes('R') || cNum.includes('T');
+                //});
+                //if (!hasTaskNodes) return;
 
                 // --- Assign parent ID ---
                 const parentId = idCounter++;
                 const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
 
                 // --- Parent Task row added FIRST ---
-                rows.push([parentId, parentSummary, sanitizeForCsv(req.jkText), 'Task', 'Medium', '']);
+                rows.push([parentId, req.requirement_control_number, parentSummary, sanitizeForCsv(req.jkText), 'Task', 'Medium', '']);
 
                 // --- Deduplicate implementations by control_number before iterating ---
                 const seen = new Set();
@@ -256,7 +256,7 @@ function exportToJiraCsv() {
 
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
-                    rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
+                    rows.push([idCounter++, impl.control_number ,subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
                 });
             });
         });
@@ -332,9 +332,9 @@ function exportToJiraJson() {
                 });
 
                 // --- Build parent Task ---
-                const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => impl.jkTask);
+                //const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => impl.jkTask);
 
-                if(hasTaskNodes){
+                //if(hasTaskNodes){
                 issues.push({
                     externalId: String(externalId++),
                     summary: `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`,
@@ -343,7 +343,7 @@ function exportToJiraJson() {
                     priority: 'Medium',
                     subTasks: subTasks
                 });
-                };
+                //};
             });
         });
     });
