@@ -9,6 +9,9 @@
  * @param {function} sanitizeForId - Utility function to create safe HTML IDs
  * @returns {HTMLElement} The fully constructed div element for the compliance field
  */
+ 
+ //https://netblue4.atlassian.net/rest/api/3/project/
+ //https://netblue4.atlassian.net/rest/api/3/issue/{issueIdOrKey}/properties
 
 // --- GLOBAL VARIABLES ---
 let capturedData = null;
@@ -182,7 +185,7 @@ function exportToJiraCsv() {
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
     // --- CSV Header ---
-    rows.push(['ID', 'Summary', 'Description', 'Issue Type', 'Priority', 'Parent']);
+    rows.push(['Work item id', 'Summary', 'Description', 'Work Type', 'Priority', 'Parent']);
 
     let idCounter = 1;
 
