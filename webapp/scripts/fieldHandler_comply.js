@@ -184,16 +184,20 @@ function exportToJiraCsv() {
     const webappData = window.originalWebappData;
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
-    // --- Sanitize text for CSV: strip markdown code fences, normalize whitespace ---
+    // --- Sanitize text for Jira wiki markup ---
     function sanitizeForCsv(text) {
         if (!text) return '';
         return text
-            .replace(/```[\w]*\n?/g, '')
-            .replace(/```/g, '')
-            .replace(/\r\n/g, ' | ')
-            .replace(/\n/g, ' | ')
-            .replace(/\s{2,}/g, ' ')
+            .replace(/```[\w]*\n?/g, '')   // remove opening code fences
+            .replace(/```/g, '')            // remove closing code fences
+            .replace(/\r\n/g, '\n')         // normalise line endings
             .trim();
+    }
+
+    // --- Format code sample as Jira wiki code block ---
+    function formatCodeSample(arr) {
+        if (!arr || !arr.length) return '';
+        return '{code:python}\n' + arr.join('\n') + '\n{code}';
     }
 
     // --- Helper: determine category from control_number ---
@@ -247,14 +251,14 @@ function exportToJiraCsv() {
                     if (seen.has(cNum)) return;
                     seen.add(cNum);
 
-                    // Build description, only including fields that have values
+                    // --- Build description in Jira wiki markup ---
                     const descriptionParts = [
-                        `Control: ${impl.control_number} - ${impl.jkName || ''}`,
-                        impl.jkText         ? `Description: ${sanitizeForCsv(impl.jkText)}`                          : '',
-                        impl.jkAttackVector ? `Attack Vector: ${sanitizeForCsv(impl.jkAttackVector)}`                : '',
-                        impl.jkTask         ? `Task: ${sanitizeForCsv(impl.jkTask.join('\n'))}`                      : '',
-                        impl.jkCodeSample   ? `Code Sample: ${sanitizeForCsv(impl.jkCodeSample.join('\n'))}` : ''
-                    ].filter(Boolean).join(' | ');
+                        `h3. Control: ${impl.control_number} - ${impl.jkName || ''}`,
+                        impl.jkText         ? `h4. Description\n${sanitizeForCsv(impl.jkText)}`          : '',
+                        impl.jkAttackVector ? `h4. Attack Vector\n${sanitizeForCsv(impl.jkAttackVector)}` : '',
+                        impl.jkTask         ? `h4. Task\n${sanitizeForCsv(impl.jkTask.join('\n'))}`       : '',
+                        impl.jkCodeSample   ? `h4. Code Sample\n${formatCodeSample(impl.jkCodeSample)}`  : ''
+                    ].filter(Boolean).join('\n\n');
 
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
