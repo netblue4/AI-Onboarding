@@ -185,7 +185,7 @@ function exportToJiraCsv() {
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
     // --- CSV Header ---
-    rows.push(['Work item id', 'Summary', 'Description', 'Work Type', 'Priority', 'Parent']);
+    rows.push(['issue type', 'issue key', 'status', 'summary', 'issue id', 'parent']);
 
     let idCounter = 1;
 
@@ -205,8 +205,9 @@ function exportToJiraCsv() {
                 });
                 if (!hasTaskNodes) return;
 
-                // --- Assign parent ID ---
+                // --- Assign parent ID and issue key ---
                 const parentId = idCounter++;
+                const parentIssueKey = req.requirement_control_number || reqKey;
                 const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
 
                 // --- Build subtask rows ---
@@ -235,11 +236,11 @@ function exportToJiraCsv() {
 
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
-                    rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
+                    rows.push(['Subtask', impl.control_number, 'To Do', subTaskSummary, idCounter++, parentId]);
                 });
 
                 // --- Parent Task row ---
-                rows.push([parentId, parentSummary, req.jkText || '', 'Task', 'Medium', '']);
+                rows.push(['Task', parentIssueKey, 'To Do', parentSummary, parentId, '']);
             });
         });
     });
