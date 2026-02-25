@@ -28,9 +28,9 @@ function renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId) {
     const thead = document.createElement('thead');
     thead.innerHTML = `
         <tr style="background: linear-gradient(135deg, #b8963e 0%, #9a7a2e 100%); text-align: left; color: #e0d9ce;">
-            <th style="${cellStyle()} width: 140px; color: #e0d9ce;">Article / Step</th>
+            <th style="${cellStyle()} width: 140px; color: #e0d9ce;">AI Article</th>
             <th style="${cellStyle()} width: 180px; color: #e0d9ce;">Harmonised Standard</th>
-            <th style="${cellStyle()} width: 140px; color: #e0d9ce;">Group</th>
+            <th style="${cellStyle()} width: 140px; color: #e0d9ce;">Category</th>
             <th style="${cellStyle()} width: 220px; color: #e0d9ce;">Requirement</th>
             <th style="${cellStyle()} color: #e0d9ce;">Define</th>
             <th style="${cellStyle()} color: #e0d9ce;">Build (Risk)</th>

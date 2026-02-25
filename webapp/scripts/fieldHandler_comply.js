@@ -287,7 +287,7 @@ function exportToJiraCsv() {
     console.log(`✅ Jira CSV exported with ${rows.length - 1} rows`);
 }
 
-
+//Update the evidence text box with this search https://netblue4.atlassian.net/issues?jql=summary%20~%20%228.3.T3%22
 
 function exportToJiraJson() {
     let externalId = 1;
