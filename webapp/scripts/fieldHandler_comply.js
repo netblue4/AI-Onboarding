@@ -185,7 +185,7 @@ function exportToJiraCsv() {
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
     // --- CSV Header ---
-    rows.push(['Work item id', 'Summary', 'Description', 'issue type, 'Priority', 'Parent']);
+    rows.push(['ID', 'Summary', 'Description', 'Issue Type', 'Priority', 'Parent']);
 
     let idCounter = 1;
 
@@ -235,7 +235,7 @@ function exportToJiraCsv() {
 
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
-                    rows.push([idCounter++, subTaskSummary, descriptionParts, 'sub-task', impl.jkMaturity || 'Medium', parentId]);
+                    rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
                 });
 
                 // --- Parent Task row ---
