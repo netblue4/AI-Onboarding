@@ -188,16 +188,16 @@ function exportToJiraCsv() {
     function sanitizeForCsv(text) {
         if (!text) return '';
         return text
-        .replace(/```[\w]*\n?/g, '')
-        .replace(/```/g, '')
-        .replace(/\r\n/g, ' | ')
-        .replace(/\n/g, ' | ')
-        .replace(/\s{2,}/g, ' ')
-        .trim();
+            .replace(/```[\w]*\n?/g, '')
+            .replace(/```/g, '')
+            .replace(/\r\n/g, ' | ')
+            .replace(/\n/g, ' | ')
+            .replace(/\s{2,}/g, ' ')
+            .trim();
     }
 
     // --- CSV Header ---
-    rows.push(['ID', 'Summary', 'Description', 'Issue Type', 'Priority', 'Parent']);
+    rows.push(['Work item Id', 'Summary', 'Description', 'Work type', 'Priority', 'Parent']);
 
     let idCounter = 1;
 
@@ -224,7 +224,9 @@ function exportToJiraCsv() {
                 // --- Parent Task row added FIRST ---
                 rows.push([parentId, parentSummary, sanitizeForCsv(req.jkText), 'Task', 'Medium', '']);
 
-                // --- Build subtask rows ---
+                // --- Deduplicate implementations by control_number before iterating ---
+                const seen = new Set();
+
                 reqEntry.implementations.forEach(impl => {
 
                     // Only create a subtask if jkTask exists
@@ -239,13 +241,17 @@ function exportToJiraCsv() {
                     // Only create Jira tickets for Build and Test controls
                     if (category === 'Define') return;
 
+                    // 👇 Skip if we have already processed this control_number
+                    if (seen.has(cNum)) return;
+                    seen.add(cNum);
+
                     // Build description, only including fields that have values
                     const descriptionParts = [
                         `Control: ${impl.control_number} - ${impl.jkName || ''}`,
-                        impl.jkText         ? `Description: ${sanitizeForCsv(impl.jkText)}`           : '',
-                        impl.jkAttackVector ? `Attack Vector: ${sanitizeForCsv(impl.jkAttackVector)}` : '',
-						impl.jkTask         ? `Task: ${sanitizeForCsv(impl.jkTask.join('\n'))}`         : '',
-						impl.jkCodeSample   ? `Code Sample: ${sanitizeForCsv(impl.jkCodeSample.join('\n'))}` : ''
+                        impl.jkText         ? `Description: ${sanitizeForCsv(impl.jkText)}`                      : '',
+                        impl.jkAttackVector ? `Attack Vector: ${sanitizeForCsv(impl.jkAttackVector)}`            : '',
+                        impl.jkTask         ? `Task: ${sanitizeForCsv(impl.jkTask.join('\n'))}`                  : '',
+                        impl.jkCodeSample   ? `Code Sample: ${sanitizeForCsv(impl.jkCodeSample.join('\n'))}` : ''
                     ].filter(Boolean).join(' | ');
 
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
