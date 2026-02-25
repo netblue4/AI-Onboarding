@@ -187,13 +187,7 @@ function exportToJiraCsv() {
     // --- Sanitize text for CSV: strip markdown code fences, normalize whitespace ---
     function sanitizeForCsv(text) {
         if (!text) return '';
-        return text
-            .replace(/```[\w]*\n?/g, '')   // remove opening code fences e.g. ```python
-            .replace(/```/g, '')            // remove closing code fences
-            .replace(/\r\n/g, ' | ')        // replace Windows line endings
-            .replace(/\n/g, ' | ')          // replace Unix line endings
-            .replace(/\s{2,}/g, ' ')        // collapse multiple spaces
-            .trim();
+        return text.replace(/```[\w]*\n?/g, '').replace(/```/g, '').replace(/\r\n/g, ' | ').replace(/\n/g, ' | ').replace(/\s{2,}/g, ' ').trim();
     }
 
     // --- CSV Header ---
