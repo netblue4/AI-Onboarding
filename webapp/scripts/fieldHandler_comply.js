@@ -196,8 +196,16 @@ function exportToJiraCsv() {
             .trim();
     }
 
+    // --- Helper: determine category from control_number ---
+    function getCategory(control_number) {
+        const cNum = String(control_number || '');
+        if (cNum.includes('R')) return 'Build';
+        if (cNum.includes('T')) return 'Test';
+        return 'Define';
+    }
+
     // --- CSV Header ---
-    rows.push(['Work item Id', 'Work item Key','Summary', 'Description', 'Work type', 'Priority', 'Parent']);
+    rows.push(['Work item Id', 'Work item Key', 'Summary', 'Description', 'Work type', 'Priority', 'Parent']);
 
     let idCounter = 1;
 
@@ -209,13 +217,12 @@ function exportToJiraCsv() {
                 // --- Only export applicable requirements ---
                 if (fieldStoredValue(req, true) !== 'Applicable') return;
 
-                // --- Early exit if no Build or Test implementations have jkTask ---
-                const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => {
-                    if (!impl.jkTask) return false;
-                    const cNum = String(impl.control_number || '');
-                    return cNum.includes('R') || cNum.includes('T');
+                // --- Early exit if no Build or Test implementations exist ---
+                const hasBuildOrTest = [...reqEntry.implementations.values()].some(impl => {
+                    const cat = getCategory(impl.control_number);
+                    return cat === 'Build' || cat === 'Test';
                 });
-                if (!hasTaskNodes) return;
+                if (!hasBuildOrTest) return;
 
                 // --- Assign parent ID ---
                 const parentId = idCounter++;
@@ -229,34 +236,29 @@ function exportToJiraCsv() {
 
                 reqEntry.implementations.forEach(impl => {
 
-                    // Only create a subtask if jkTask exists
-                    if (!impl.jkTask) return;
-
-                    // Determine category from control_number suffix
-                    const cNum = String(impl.control_number || '');
-                    let category = 'Define';
-                    if (cNum.includes('R')) category = 'Build';
-                    if (cNum.includes('T')) category = 'Test';
+                    const category = getCategory(impl.control_number);
 
                     // Only create Jira tickets for Build and Test controls
                     if (category === 'Define') return;
 
-                    // 👇 Skip if we have already processed this control_number
+                    const cNum = String(impl.control_number || '');
+
+                    // Skip if we have already processed this control_number
                     if (seen.has(cNum)) return;
                     seen.add(cNum);
 
                     // Build description, only including fields that have values
                     const descriptionParts = [
                         `Control: ${impl.control_number} - ${impl.jkName || ''}`,
-                        impl.jkText         ? `Description: ${sanitizeForCsv(impl.jkText)}`                      : '',
-                        impl.jkAttackVector ? `Attack Vector: ${sanitizeForCsv(impl.jkAttackVector)}`            : '',
-                        impl.jkTask         ? `Task: ${sanitizeForCsv(impl.jkTask.join('\n'))}`                  : '',
+                        impl.jkText         ? `Description: ${sanitizeForCsv(impl.jkText)}`                          : '',
+                        impl.jkAttackVector ? `Attack Vector: ${sanitizeForCsv(impl.jkAttackVector)}`                : '',
+                        impl.jkTask         ? `Task: ${sanitizeForCsv(impl.jkTask.join('\n'))}`                      : '',
                         impl.jkCodeSample   ? `Code Sample: ${sanitizeForCsv(impl.jkCodeSample.join('\n'))}` : ''
                     ].filter(Boolean).join(' | ');
 
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
-                    rows.push([idCounter++, impl.control_number ,subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
+                    rows.push([idCounter++, impl.control_number, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
                 });
             });
         });
