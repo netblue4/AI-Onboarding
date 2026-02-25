@@ -187,7 +187,13 @@ function exportToJiraCsv() {
     // --- Sanitize text for CSV: strip markdown code fences, normalize whitespace ---
     function sanitizeForCsv(text) {
         if (!text) return '';
-        return text.replace(/```[\w]*\n?/g, '').replace(/```/g, '').replace(/\r\n/g, ' | ').replace(/\n/g, ' | ').replace(/\s{2,}/g, ' ').trim();
+        return text
+        .replace(/```[\w]*\n?/g, '')
+        .replace(/```/g, '')
+        .replace(/\r\n/g, ' | ')
+        .replace(/\n/g, ' | ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
     }
 
     // --- CSV Header ---
@@ -238,8 +244,8 @@ function exportToJiraCsv() {
                         `Control: ${impl.control_number} - ${impl.jkName || ''}`,
                         impl.jkText         ? `Description: ${sanitizeForCsv(impl.jkText)}`           : '',
                         impl.jkAttackVector ? `Attack Vector: ${sanitizeForCsv(impl.jkAttackVector)}` : '',
-                        impl.jkTask         ? `Task: ${sanitizeForCsv(impl.jkTask)}`                  : '',
-                        impl.jkCodeSample   ? `Code Sample: ${sanitizeForCsv(impl.jkCodeSample)}`     : ''
+						impl.jkTask         ? `Task: ${sanitizeForCsv(impl.jkTask.join('\n'))}`         : '',
+						impl.jkCodeSample   ? `Code Sample: ${sanitizeForCsv(impl.jkCodeSample.join('\n'))}` : ''
                     ].filter(Boolean).join(' | ');
 
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
