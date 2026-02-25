@@ -182,7 +182,9 @@ function exportToJiraCsv() {
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
     // --- CSV Header ---
-    rows.push(['Summary', 'Description', 'Issue Type', 'Priority', 'Parent Summary']);
+    rows.push(['ID', 'Summary', 'Description', 'Issue Type', 'Priority', 'Parent']);
+
+    let idCounter = 1;
 
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
@@ -200,7 +202,8 @@ function exportToJiraCsv() {
                 });
                 if (!hasTaskNodes) return;
 
-                // --- Parent Task Summary ---
+                // --- Assign parent ID ---
+                const parentId = idCounter++;
                 const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
 
                 // --- Build subtask rows ---
@@ -229,11 +232,11 @@ function exportToJiraCsv() {
 
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
-                    rows.push([subTaskSummary, descriptionParts, 'Sub-task', impl.jkMaturity || 'Medium', parentSummary]);
+                    rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
                 });
 
                 // --- Parent Task row ---
-                rows.push([parentSummary, req.jkText || '', 'Task', 'Medium', '']);
+                rows.push([parentId, parentSummary, req.jkText || '', 'Task', 'Medium', '']);
             });
         });
     });
@@ -256,6 +259,7 @@ function exportToJiraCsv() {
 
     console.log(`✅ Jira CSV exported with ${rows.length - 1} rows`);
 }
+
 
 
 function exportToJiraJson() {
