@@ -258,7 +258,7 @@ function exportToJiraCsv() {
 }
 
 
-function exportToJiraCsv() {
+function exportToJiraJson() {
     let externalId = 1;
     const issues = [];
     const projectKey = 10001;
