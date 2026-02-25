@@ -210,12 +210,12 @@ function exportToJiraCsv() {
                 if (fieldStoredValue(req, true) !== 'Applicable') return;
 
                 // --- Early exit if no Build or Test implementations have jkTask ---
-                //const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => {
-                //    if (!impl.jkTask) return false;
-                //    const cNum = String(impl.control_number || '');
-                //    return cNum.includes('R') || cNum.includes('T');
-                //});
-                //if (!hasTaskNodes) return;
+                const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => {
+                    if (!impl.jkTask) return false;
+                    const cNum = String(impl.control_number || '');
+                    return cNum.includes('R') || cNum.includes('T');
+                });
+                if (!hasTaskNodes) return;
 
                 // --- Assign parent ID ---
                 const parentId = idCounter++;
@@ -332,9 +332,9 @@ function exportToJiraJson() {
                 });
 
                 // --- Build parent Task ---
-                //const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => impl.jkTask);
+                const hasTaskNodes = [...reqEntry.implementations.values()].some(impl => impl.jkTask);
 
-                //if(hasTaskNodes){
+                if(hasTaskNodes){
                 issues.push({
                     externalId: String(externalId++),
                     summary: `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`,
@@ -343,7 +343,7 @@ function exportToJiraJson() {
                     priority: 'Medium',
                     subTasks: subTasks
                 });
-                //};
+                };
             });
         });
     });
