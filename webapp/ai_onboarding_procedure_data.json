@@ -2559,7 +2559,7 @@
             },
             {
               "requirement_control_number": "[18229-1.5]",
-              "control_number": "[3.1.T2]",
+              "control_number": "[3.1.T12]",
               "jkName": "Reconstruction Payload Schema Test Report",
               "jkText": "Generate a 'Log Schema Validation Test Report' after every test run covering AL-P-04 and AL-P-05. The report must show the count of entries validated, the count that passed the full schema check, the missing fields per rejected entry, and a zero count of partial entries written to the validated log store.",
               "jkType": "test_control",
@@ -2637,7 +2637,7 @@
           "controls": [
             {
               "requirement_control_number": "[24970.7]",
-              "control_number": "[3.3.T1]",
+              "control_number": "[3.3.T11]",
               "jkName": "Log Integrity Verification Test Report",
               "jkText": "Generate a 'Log Integrity Verification Test Report' after every test run covering AL-P-09 and AL-P-10. The report must show the count of entries hash-verified, the count of mismatches detected, the tampered indices, and a zero count of post-write field modifications that were not detected and written to the isolated integrity log.",
               "jkType": "test_control",
@@ -2647,7 +2647,7 @@
             },
             {
               "requirement_control_number": "[24970.9]",
-              "control_number": "[3.3.T2]",
+              "control_number": "[3.3.T22]",
               "jkName": "Log Privacy Compliance Test Report",
               "jkText": "Generate a 'Log Privacy Compliance Test Report' after every test run covering AL-P-11 and AL-P-12. The report must show the count of entries processed, the count of PII fields pseudonymised, the count of prompts hashed, and a zero count of log entries reaching the log store with any raw personal data value in a declared PII field.",
               "jkType": "test_control",
