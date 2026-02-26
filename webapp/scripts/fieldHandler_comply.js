@@ -441,22 +441,22 @@ function createRegHeader(parent, contentId, stats) {
     regHeader.innerHTML = `
         <div class="toggle-icon" style="margin-right:10px; font-weight:bold;">+</div>
         <div class="reg-header-content" style="flex-grow:1;">
-            <div class="reg-title" style="font-weight:bold; color:#1e40af;">${escapeHtml(parent.jkName)}</div>
+            <div class="reg-title" style="font-weight:bold; color:#b8963e;">${escapeHtml(parent.jkName)}</div>
             
-            <div class="stats-container" style="display:flex; flex-wrap:wrap; gap:15px; margin-top:5px; font-size:0.85em; color:#475569;">
+            <div class="stats-container" style="display:flex; flex-wrap:wrap; gap:15px; margin-top:5px; font-size:0.85em; color:#8a8480;">
                 <div title="Total Controls defined by the Article">
                     <strong>Total Req:</strong> ${stats.totalControls}
                 </div>
                 <div title="Total Applicable Controls">
                     <strong>Applicable:</strong> ${stats.totalApplicableControls}
                 </div>
-                <div style="border-left: 1px solid #ccc; padding-left: 10px;" title="Total Implementation Fields (Parent Items)">
+                <div style="border-left: 1px solid #3d3d3d; padding-left: 10px;" title="Total Implementation Fields (Parent Items)">
                      <strong>Imp. Fields:</strong> ${stats.totalImplementationFields}
                 </div>
                 <div title="Implementation Fields with Response">
                      <strong>Responses:</strong> ${stats.totalImplementationFieldsWithResponse}
                 </div>
-                <div style="border-left: 1px solid #ccc; padding-left: 10px;" title="Total Implementation Controls (Child Items)">
+                <div style="border-left: 1px solid #3d3d3d; padding-left: 10px;" title="Total Implementation Controls (Child Items)">
                     <strong>Imp. Controls:</strong> ${stats.totalImplementationControls}
                 </div>
                 <div title="Implementation Controls with Evidence">
@@ -464,7 +464,7 @@ function createRegHeader(parent, contentId, stats) {
                 </div>
             </div>
 
-            <div class="reg-meta" style="font-size:0.9em; color:#64748b; margin-top:2px;">${escapeHtml(metaText)}</div>
+            <div class="reg-meta" style="font-size:0.9em; color:#8a8480; margin-top:2px;">${escapeHtml(metaText)}</div>
         </div>
     `;
 
@@ -509,7 +509,7 @@ function createSubControlItem(subData, sanitizeForId, fieldStoredValue) {
     subItem.className = 'sub-control-item';
     subItem.style.listStyle = 'none';
     subItem.style.padding = '10px';
-    subItem.style.borderTop = '1px solid #eee';
+    subItem.style.borderTop = '1px solid #3d3d3d';
 
     // Title
     const titleDiv = createSubControlTitle(subData.subControl);
@@ -572,9 +572,16 @@ function createSubControlTitle(subControl) {
 function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue) {
     const select = document.createElement('select');
     select.style.margin = '5px 0 10px 0';
-    select.style.padding = '4px';
-    select.style.borderRadius = '4px';
-    select.style.border = '1px solid #ccc';
+    select.style.padding = '4px 2rem 4px 0.75rem';
+    select.style.borderRadius = '6px';
+    select.style.border = '1px solid #444';
+    select.style.backgroundColor = '#1e1e1e';
+    select.style.color = '#e0e0e0';
+    select.style.cursor = 'pointer';
+    select.style.appearance = 'none';
+    select.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C%2Fsvg%3E\")";
+    select.style.backgroundRepeat = 'no-repeat';
+    select.style.backgroundPosition = 'right 0.75rem center';
     select.name = sanitizeForId(subControl.control_number) + '_complystatus';
 
     const options = ['Select', 'Met', 'Not Met', 'Partially Met'];
@@ -717,7 +724,7 @@ function createImplementationItem(child, sanitizeForId, fieldStoredValue) {
             controlDiv.style.marginTop = '5px';
             controlDiv.style.marginBottom = '10px';
             controlDiv.style.paddingLeft = '10px';
-            controlDiv.style.borderLeft = '3px solid #e2e8f0';
+            controlDiv.style.borderLeft = '3px solid #3d3d3d';
 
             const controlNumberStrong = document.createElement('strong');
             controlNumberStrong.textContent = `${ctl.control_number || ''}: `;
@@ -756,7 +763,7 @@ function createImplementationItem(child, sanitizeForId, fieldStoredValue) {
  */
 function createNoItemsMessage() {
     const noItemsDiv = document.createElement('div');
-    noItemsDiv.style.color = '#999';
+    noItemsDiv.style.color = '#8a8480';
     noItemsDiv.style.fontStyle = 'italic';
     noItemsDiv.textContent = 'No linked items.';
     return noItemsDiv;
