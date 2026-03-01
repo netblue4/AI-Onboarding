@@ -11,22 +11,11 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     icon.className = 'collapse-icon';
     icon.textContent = '▶';
     headerDiv.appendChild(icon);
-    
-    
-	// Label wrapper — keeps control number and text on the same line
-	const labelWrapper = document.createElement('span');
-	
-	const labelID = document.createElement('strong');
-	labelID.textContent = field.control_number;
-	labelWrapper.appendChild(labelID);
-	
-	const labelT = document.createElement('label');
-	labelT.textContent = '- ' + field.jkText + ' ' + field.requirement_control_number;
-	labelT.style.display = 'inline';
-	labelWrapper.appendChild(labelT);
-	
-	headerDiv.appendChild(labelWrapper);
-    
+
+    const planFieldNameLabel = document.createElement('label');
+    planFieldNameLabel.textContent = field.jkName.trim() + ' (' + field.requirement_control_number + ')';
+    planFieldNameLabel.className = 'label-bold';
+    headerDiv.appendChild(planFieldNameLabel);
 
     fieldDiv.appendChild(headerDiv);
 
@@ -176,11 +165,23 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
             const sanitizedId = sanitizeForId(controlItem.control_number);
             const controlContainer = document.createElement('div');
-
-            const controlText = document.createElement('p');
-            controlText.textContent = controlItem.control_number + " - " + controlItem.jkText;
-            controlContainer.appendChild(controlText);
-
+            
+            
+			// Label wrapper — keeps control number and text on the same line
+			const labelWrapper = document.createElement('span');
+			
+			const labelID = document.createElement('strong');
+			labelID.textContent = controlItem.control_number;
+			labelWrapper.appendChild(labelID);
+			
+			const labelT = document.createElement('label');
+			labelT.textContent = '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
+			labelT.style.display = 'inline';
+			labelWrapper.appendChild(labelT);
+			
+			controlContainer.appendChild(labelWrapper);            
+            
+            
             // --- Evidence field: link if Jira URL, otherwise textarea ---
             const evidenceValue = fieldStoredValue(controlItem);
 
