@@ -28,27 +28,30 @@ class FileManager {
      * Save progress data to a JSON file
      * @param {Object} capturedValues - The form data to save
      */
-    saveProgress(capturedValues) {
-        if (!this.state.systemId) {
-            const systemIdInput = document.getElementById('system-id-input');
-            const newSystemId = systemIdInput.value || this.generateSystemId();
-            this.state.setSystemId(newSystemId);
-            systemIdInput.value = newSystemId;
-        }
-
-        const dataFile = {
-            _metadata: {
-                templateVersion: CONFIG.CURRENT_TEMPLATE_VERSION,
-                systemId: this.state.systemId,
-                lastModifiedBy: this.state.currentRole,
-                lastModifiedDate: new Date().toISOString()
-            },
-            capturedData: capturedValues
-        };
-
-        this.state.setCapturedData(capturedValues);
-        this.downloadJSON(dataFile, `${this.state.systemId}_${new Date().toISOString().slice(0, 24)}_data.json`);
-    }
+	saveProgress(capturedValues) {
+		if (!this.state.systemId) {
+			const systemIdInput = document.getElementById('system-id-input');
+			const newSystemId = systemIdInput.value || this.generateSystemId();
+			this.state.setSystemId(newSystemId);
+			systemIdInput.value = newSystemId;
+		}
+	
+		const dataFile = {
+			_metadata: {
+				templateVersion: CONFIG.CURRENT_TEMPLATE_VERSION,
+				systemId: this.state.systemId,
+				lastModifiedBy: this.state.currentRole,
+				lastModifiedDate: new Date().toISOString()
+			},
+			capturedData: capturedValues
+		};
+	
+		this.state.setCapturedData(capturedValues);
+	
+		// Updated naming convention: SystemID_SavedData_DateTime.json
+		const dateTime = new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-');
+		this.downloadJSON(dataFile, `${this.state.systemId}_SavedData_${dateTime}.json`);
+	}
 
     /**
      * Generate and download a compliance report

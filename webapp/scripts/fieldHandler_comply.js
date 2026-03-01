@@ -184,6 +184,9 @@ function exportToJiraCsv() {
     const webappData = window.originalWebappData;
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
+    // --- Get System ID from metadata ---
+    const systemId = webappData?._metadata?.systemId || state.systemId || 'UNKNOWN';
+
     // --- Sanitize text for Jira wiki markup ---
     function sanitizeForCsv(text) {
         if (!text) return '';
@@ -206,6 +209,11 @@ function exportToJiraCsv() {
         if (cNum.includes('R')) return 'Build';
         if (cNum.includes('T')) return 'Test';
         return 'Define';
+    }
+
+    // --- Helper: build Jira search URL for a given ticket summary ---
+    function buildJiraUrl(summary) {
+        return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(summary)}%22`;
     }
 
     // --- CSV Header ---
@@ -263,12 +271,13 @@ function exportToJiraCsv() {
                         impl.jkCodeSample   ? `h4. Code Sample\n${formatCodeSample(impl.jkCodeSample)}`  : ''
                     ].filter(Boolean).join('\n\n');
 
-                    const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
+                    // --- Prefixed ticket summary: [SystemID] [Category] [control_number] ---
+                    const subTaskSummary = `[${systemId}] [${category}] [${impl.control_number}]: ${impl.jkName || impl.jkText || ''}`;
 
                     rows.push([idCounter++, impl.control_number, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
 
-                    // --- Track for post-confirm update ---
-                    exportedImpls.push(impl);
+                    // --- Track for post-confirm update, store summary for URL building ---
+                    exportedImpls.push({ impl, subTaskSummary });
                 });
             });
         });
@@ -279,12 +288,13 @@ function exportToJiraCsv() {
         row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
     ).join('\n');
 
-    // --- Trigger file download ---
+    // --- Trigger file download with standardised naming ---
+    const dateTime = new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-');
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `jira_import_${new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-')}.csv`;
+    a.download = `${systemId}_JiraImport_${dateTime}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -297,28 +307,31 @@ function exportToJiraCsv() {
         const confirmed = confirm(
             `✅ Your Jira CSV has been downloaded.\n\n` +
             `Please upload it into Jira now.\n\n` +
-            `Once uploaded successfully, click OK to mark all ${exportedImpls.length} controls as "Jira ticket created".\n\n` +
+            `Once uploaded successfully, click OK to mark all ${exportedImpls.length} controls with their Jira ticket URL.\n\n` +
             `Click Cancel to skip.`
         );
 
         if (!confirmed) return;
 
-        // --- Update evidence field in DOM and capturedData for each exported impl ---
-        exportedImpls.forEach(impl => {
+        // --- Update evidence field with Jira URL for each exported impl ---
+        exportedImpls.forEach(({ impl, subTaskSummary }) => {
             const sanitizedKey = sanitizeForId(impl.control_number);
             const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
             const statusKey = `${sanitizedKey}_jkImplementationStatus`;
 
-            // Update DOM textarea if it exists
+            // --- Build Jira URL using the ticket summary ---
+            const jiraUrl = buildJiraUrl(subTaskSummary);
+
+            // --- Update DOM textarea if it exists ---
             const evidenceElement = document.querySelector(`textarea[name="${evidenceKey}"]`);
             if (evidenceElement) {
-                evidenceElement.value = 'Jira ticket created';
+                evidenceElement.value = jiraUrl;
             }
 
-            // Update capturedData directly
-            state.capturedData[evidenceKey] = 'Jira ticket created';
+            // --- Update capturedData directly ---
+            state.capturedData[evidenceKey] = jiraUrl;
 
-            // Also update status to 'Implemented with evidence' if not already set
+            // --- Update status to 'Implemented with evidence' if not already set ---
             if (!state.capturedData[statusKey]) {
                 state.capturedData[statusKey] = 'Implemented with evidence';
                 const statusElement = document.querySelector(`select[name="${statusKey}"]`);
@@ -329,12 +342,13 @@ function exportToJiraCsv() {
             templateManager.fieldHelper(impl, impl.jkType, 'captureData', state.capturedData);
         });
 
-        // --- Trigger full save via dataCapture ---
-        dataCapture.captureAll();
+        // --- Trigger full save via dataCapture then save to disk ---
+        const capturedValues = dataCapture.captureAll();
+        fileManager.saveProgress(capturedValues);
 
-        alert(`✅ ${exportedImpls.length} controls have been marked as "Jira ticket created" and saved.`);
+        alert(`✅ ${exportedImpls.length} controls have been updated with their Jira ticket URLs and saved.`);
 
-    }, 1000); // slight delay to allow file download to complete
+    }, 1000);
 }
 
 //Update the evidence text box with this search https://netblue4.atlassian.net/issues?jql=summary%20~%20%228.3.T3%22
