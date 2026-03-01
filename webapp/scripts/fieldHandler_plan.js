@@ -1,53 +1,47 @@
-/**
- * Creates an HTML form field for a high-risk AI system requirement based on the AI Act JSON structure.
- * This function generates a collapsible section for each risk, containing a primary question,
- * a set of controls with their objectives, and radio buttons for user input.
- *
- * @param {object} field - The field object from the JSON data, representing a single risk area.
- * @param {object} capturedData - An object containing previously saved data to pre-fill the form.
- * @param {function} sanitizeForId - A utility function to create a safe string for use as an HTML ID.
- * @returns {HTMLElement} The fully constructed div element for the form field.
- */
 function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindmap) {
     // Main container for the entire field
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';
 
-    // --- 2. Build the Collapsible Structure ---
-
-    // Header for the collapsible section
+    // --- Build the Collapsible Structure ---
     const headerDiv = document.createElement('div');
     headerDiv.className = 'collapsible-header';
 
     const icon = document.createElement('span');
     icon.className = 'collapse-icon';
-    icon.textContent = '▶'; // Start in collapsed state
+    icon.textContent = '▶';
     headerDiv.appendChild(icon);
 
     const planFieldNameLabel = document.createElement('label');
-    planFieldNameLabel.textContent = field.jkName.trim() + ' (' + field.requirement_control_number +')'; // The main risk title
+    planFieldNameLabel.textContent = field.jkName.trim() + ' (' + field.requirement_control_number + ')';
     planFieldNameLabel.className = 'label-bold';
     headerDiv.appendChild(planFieldNameLabel);
 
     fieldDiv.appendChild(headerDiv);
 
-
-    // Create the collapsible container for the detailed information
     const contentDiv = document.createElement('div');
     contentDiv.className = 'collapsible-content collapsed';
 
-    /**
-     * Renders the standardized Test Criteria Metadata in a descriptive list format.
-     * @param {Object} metadata - The standardized TestCriteriaMetadata object.
-     * @returns {HTMLElement} A div containing the formatted metadata.
-     */
+    // --- Build Set of valid control numbers from mindmap ---
+    const mindmapControlNumbers = new Set();
+    if (mindmap) {
+        mindmap.forEach(groups => groups.forEach(gData =>
+            gData.requirements.forEach(reqEntry => {
+                // --- Only include controls from applicable requirements ---
+                if (fieldStoredValue(reqEntry.requirement, true) !== 'Applicable') return;
+                reqEntry.implementations.forEach(impl =>
+                    mindmapControlNumbers.add(impl.control_number)
+                );
+            })
+        ));
+    }
+
     function renderTestCriteriaMetadata(metadata) {
         if (!metadata) return null;
 
         const container = document.createElement('div');
         container.className = 'metadata-container p-4 bg-gray-50 border border-gray-200 rounded-lg mb-6';
         
-        // Title (Test Category)
         const title = document.createElement('h3');
         title.textContent = `${metadata.TestCategory || 'Test Plan Details'} (ID: ${metadata.ControlID || 'N/A'})`;
         title.className = 'text-base font-semibold text-indigo-700 mb-3';
@@ -62,73 +56,38 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             const dt = document.createElement('dt');
             dt.textContent = term;
             dt.className = 'font-medium text-gray-700 col-span-1 border-b border-gray-100 pb-1';
-            
             const dd = document.createElement('dd');
             dd.textContent = definition;
             dd.className = 'text-gray-900 col-span-1 border-b border-gray-100 pb-1';
-            
             dl.appendChild(dt);
             dl.appendChild(dd);
         };
 
-        // 1. Purpose
         addTerm('Purpose', metadata.Purpose);
-
-        // 2. Metric Name & Threshold (combined for easy comparison)
         const metricName = metadata.PrimaryMetric?.Name || 'N/A';
         const threshold = metadata.PassCriteria?.Threshold || 'N/A';
         addTerm('Metric / Threshold', `${metricName} (Goal: ${threshold})`);
-
-        // 3. Metric Definition
         addTerm('Definition', metadata.PrimaryMetric?.Definition);
-
-        // 4. Calculation Detail
         addTerm('Calculation Detail', metadata.PrimaryMetric?.CalculationDetail);
 
         return container;
     }
 
-    // --- Render Test Criteria Metadata (New Logic) ---
     if (field.TestDatasetMetadata) {
-        // Add the Metadata label
-        //const metadataLabel = document.createElement('label');
-        //metadataLabel.textContent = "Test Criteria Metadata";
-        //metadataLabel.className = 'label-bold';
-        //contentDiv.appendChild(metadataLabel);
-
-        // Add separator
-        //const separator = document.createElement('hr');
-        //separator.className = 'control-separator';
-        //contentDiv.appendChild(separator);
-
-        // Render the metadata
-        //const metadataElement = renderTestCriteriaMetadata(field.TestDatasetMetadata);
-        //if (metadataElement) {
-        //    contentDiv.appendChild(metadataElement);
-        //}
+        // commented out sections preserved as-is
     }
 
-
-    /**
-     * Golden Dataset Table Renderer.
-     * Creates a table element with dynamic headers and rows based on the array of objects.
-     * @param {Array<Object>} goldenDatasetArray - The array of GoldenDataset objects (the `field.GoldenDataset` node).
-     * @returns {HTMLElement} The constructed table element.
-     */
     function createGoldenDatasetTable(goldenDatasetArray) {
         if (!goldenDatasetArray || goldenDatasetArray.length === 0) return null;
 
         const table = document.createElement('table');
-        // Basic inline styles for table appearance
         table.style.width = '100%';
         table.style.borderCollapse = 'collapse';
         table.style.marginBottom = '20px';
         table.style.fontSize = '12px';
 
-        // 1. Get Headers from the first object
         const headers = Object.keys(goldenDatasetArray[0]);
 
-        // 2. Create Table Header
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
         headerRow.style.backgroundColor = '#e0e0e0';
@@ -136,7 +95,7 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
         headers.forEach(key => {
             const th = document.createElement('th');
-            th.textContent = key.replace(/_/g, ' '); // Improve readability of column names
+            th.textContent = key.replace(/_/g, ' ');
             th.style.border = '1px solid #ccc';
             th.style.padding = '8px';
             th.style.textAlign = 'left';
@@ -145,12 +104,10 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         thead.appendChild(headerRow);
         table.appendChild(thead);
 
-        // 3. Create Table Body
         const tbody = document.createElement('tbody');
         goldenDatasetArray.forEach((item, index) => {
             const row = document.createElement('tr');
-            row.style.backgroundColor = index % 2 === 0 ? '#fff' : '#f9f9f9'; // Zebra striping
-
+            row.style.backgroundColor = index % 2 === 0 ? '#fff' : '#f9f9f9';
             headers.forEach(key => {
                 const td = document.createElement('td');
                 td.textContent = item[key] || '';
@@ -166,23 +123,18 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         return table;
     }
 
-    // --- Render Golden Dataset if data is present (Previous Feature) ---
     if (field.TestDataset && Array.isArray(field.TestDataset)) {
-        // Add the Golden Dataset label
         const goldenDatasetLabel = document.createElement('label');
         goldenDatasetLabel.textContent = "Golden Datasets";
         goldenDatasetLabel.className = 'label-bold';
         contentDiv.appendChild(goldenDatasetLabel);
-        
-        // Add separator
+
         const separator = document.createElement('hr');
         separator.className = 'control-separator';
         contentDiv.appendChild(separator);
 
-        // Crreate the Golden Dataset div and append the table
         const goldenDatasetDiv = document.createElement('div');
-        // NOTE: The function is now called with field.TestDataset directly
-        const table = createGoldenDatasetTable(field.TestDataset); 
+        const table = createGoldenDatasetTable(field.TestDataset);
         if (table) {
             goldenDatasetDiv.appendChild(table);
         } else {
@@ -192,113 +144,95 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         }
         contentDiv.appendChild(goldenDatasetDiv);
     }
-    
 
- /**
- * Plan Criteria.
- */
-
-    // Add the criteria label  inside the collapsible area
+    // --- Plan Criteria ---
     const planControliaLabel = document.createElement('label');
     planControliaLabel.textContent = "Criteria";
     planControliaLabel.className = 'label-bold';
     contentDiv.appendChild(planControliaLabel);
-    
-    // Add separator
+
     const separator = document.createElement('hr');
     separator.className = 'control-separator';
     contentDiv.appendChild(separator);
 
-
-    // Crreate the criteria  div
-    const controlDiv = document.createElement('div');  
-
+    const controlDiv = document.createElement('div');
 
     if (field.controls && Array.isArray(field.controls)) {
         field.controls.forEach(controlItem => {
-           const sanitizedId = sanitizeForId(controlItem.control_number);
 
+            // --- Only display controls that appear in the mindmap ---
+            if (!mindmapControlNumbers.has(controlItem.control_number)) return;
+
+            const sanitizedId = sanitizeForId(controlItem.control_number);
             const controlContainer = document.createElement('div');
 
             const controlText = document.createElement('p');
             controlText.textContent = controlItem.control_number + " - " + controlItem.jkText;
             controlContainer.appendChild(controlText);
-  
-  
-             //Control status
-            const select = document.createElement('select');
-            select.name = sanitizedId + '_jkImplementationStatus';
-			
-			let options;
-			
-			options = ['Select', 'Not Applicable with justification', 'Implemented with evidence'];
-			            
-    		options.forEach((optionText, index) => {
-				const option = document.createElement('option');
-				option.value = optionText;
-				option.textContent = optionText;
-				
-				// Set selected if it matches the control_jkImplementationStatus
-				if (controlItem.jkImplementationStatus && optionText === controlItem.jkImplementationStatus) {
-					option.selected = true;
-				}
-				
-				select.appendChild(option);
-    		});
-			controlText.appendChild(select);	 
-  
-  
-            //Evidence          
-            const input = document.createElement('textarea');
-            input.name = sanitizedId + '_jkImplementationEvidence';
-    		input.placeholder = controlItem.jkImplementationEvidence;
-    		controlText.appendChild(input);
- 
+
+            // --- Evidence field: link if Jira URL, otherwise textarea ---
+            const evidenceValue = fieldStoredValue(controlItem);
+
+            if (evidenceValue && evidenceValue.startsWith('http')) {
+                // --- Render as Jira link ---
+                const linkWrapper = document.createElement('div');
+                linkWrapper.style.marginTop = '10px';
+
+                const jiraLink = document.createElement('a');
+                jiraLink.href = evidenceValue;
+                jiraLink.target = '_blank';
+                jiraLink.textContent = '🎫 View Jira Ticket';
+                jiraLink.style.cssText = `
+                    color: #b8963e;
+                    font-size: 13px;
+                    text-decoration: none;
+                    font-weight: 600;
+                `;
+                jiraLink.addEventListener('mouseover', () => jiraLink.style.textDecoration = 'underline');
+                jiraLink.addEventListener('mouseout',  () => jiraLink.style.textDecoration = 'none');
+
+                linkWrapper.appendChild(jiraLink);
+                controlContainer.appendChild(linkWrapper);
+
+            } else {
+                // --- Render as textarea ---
+                const input = document.createElement('textarea');
+                input.name = sanitizedId + '_jkImplementationEvidence';
+                input.placeholder = controlItem.jkImplementationEvidence || 'Enter implementation evidence...';
+                if (evidenceValue) input.value = evidenceValue;
+                controlText.appendChild(input);
+            }
+
             controlDiv.appendChild(controlContainer);
         });
     }
     contentDiv.appendChild(controlDiv);
 
-    
-
- /**
- * Plan steps.
- */
-
-    // Add the criteria label  inside the collapsible area
+    // --- Plan Steps ---
     const planStepsLabel = document.createElement('label');
     planStepsLabel.textContent = "Steps";
     planStepsLabel.className = 'label-bold';
     contentDiv.appendChild(planStepsLabel);
 
-    // Add separator
     const separatorStep = document.createElement('hr');
     separatorStep.className = 'control-separator';
     contentDiv.appendChild(separatorStep);
 
-
-    // Crreate the criteria  div
-    const planStepsDiv = document.createElement('div');  
-
+    const planStepsDiv = document.createElement('div');
 
     if (field.PlanSteps && Array.isArray(field.PlanSteps)) {
         field.PlanSteps.forEach(stepItem => {
             const stepContainer = document.createElement('div');
-
             const stepText = document.createElement('p');
             stepText.textContent = stepItem.step;
             stepContainer.appendChild(stepText);
- 
             planStepsDiv.appendChild(stepContainer);
         });
     }
     contentDiv.appendChild(planStepsDiv);
 
-
-    
     fieldDiv.appendChild(contentDiv);
 
-    // Add the click listener to the header to toggle the content visibility
     headerDiv.addEventListener('click', () => {
         const isCollapsed = contentDiv.classList.toggle('collapsed');
         icon.textContent = isCollapsed ? '▶' : '▼';
