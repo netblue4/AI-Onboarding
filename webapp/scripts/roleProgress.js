@@ -258,7 +258,7 @@ getFieldsForRole(role) {
             const roleFields = this.getFieldsForRole(role);
             const completedFields = roleFields.filter(field => {
                 if (!field.jkName) return false;
-					const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_jkImplementationStatus'];
+					//const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_jkImplementationStatus'];
 					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
 					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number)];
 					

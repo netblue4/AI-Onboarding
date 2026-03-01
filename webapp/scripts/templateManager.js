@@ -123,9 +123,9 @@ class TemplateManager {
 			case "risk_control":
 			case "test_control":	
 			    sanitizedId = this.sanitizeForId(field.control_number);
-				if (implementationStatus) {
-					return this.state.capturedData[sanitizedId + "_jkImplementationStatus"];
-				}
+				//if (implementationStatus) {
+				//	return this.state.capturedData[sanitizedId + "_jkImplementationStatus"];
+				//}
 				return this.state.capturedData[sanitizedId + "_jkImplementationEvidence"];				
 			default:	
 				if (implementationStatus) {
@@ -175,7 +175,7 @@ class TemplateManager {
 						if (field.controls && Array.isArray(field.controls)) {
 							field.controls.forEach(control => {
 								const controlKey = this.sanitizeForId(control.control_number);
-								const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
+								//const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
 								const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
 					
 								const statusValue = statusElement ? statusElement.value : "Select";
@@ -183,7 +183,7 @@ class TemplateManager {
 					
 								if ((statusValue !== "Select") || (evidenceValue !== "")) {
 									currentData[controlKey] = control.jkText;
-									currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
+									//currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
 									currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
 								}
 							});
@@ -234,10 +234,10 @@ class TemplateManager {
 							field.controls.forEach(control => {
 								const controlKey = this.sanitizeForId(control.control_number);
 				
-								const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
-								if (statusElement && this.state.capturedData[`${controlKey}_jkImplementationStatus`]) {
-									statusElement.value = this.state.capturedData[`${controlKey}_jkImplementationStatus`];
-								}
+								//const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
+								//if (statusElement && this.state.capturedData[`${controlKey}_jkImplementationStatus`]) {
+								//	statusElement.value = this.state.capturedData[`${controlKey}_jkImplementationStatus`];
+								//}
 				
 								const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
 								if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {

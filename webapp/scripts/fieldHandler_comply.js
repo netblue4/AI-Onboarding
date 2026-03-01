@@ -130,7 +130,7 @@ function buildComplianceMap(data, sanitizeForId, fieldStoredValue) {
                                         jkText: req.jkText, 
                                         jkType: req.jkType,
                                         jkObjective: req.jkObjective,
-                                        jkImplementationStatus: req.jkImplementationStatus,
+                                        //jkImplementationStatus: req.jkImplementationStatus,
                                         jkImplementationEvidence: req.jkImplementationEvidence,
                                         
                                         // Keep these for backward compatibility with your existing script
@@ -319,7 +319,7 @@ function exportToJiraCsv() {
         exportedImpls.forEach(({ impl }) => {
             const sanitizedKey = sanitizeForId(impl.control_number);
             const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
-            const statusKey = `${sanitizedKey}_jkImplementationStatus`;
+            //const statusKey = `${sanitizedKey}_jkImplementationStatus`;
 
             // --- Build Jira URL using systemId + control_number ---
             const jiraUrl = buildJiraUrl(impl.control_number);
@@ -760,65 +760,6 @@ function createImplementationItem(child, sanitizeForId, fieldStoredValue) {
             totalImplementationFieldsWithResponse++;
         }
 	}
-
-    // Create controls section if applicable
-    if (child.jkImplementationStatus !== "Not Applicable" && child.controls && Array.isArray(child.controls) && child.controls.length > 0) {
-        // Controls header
-        const controlsHeaderDiv = document.createElement('div');
-        controlsHeaderDiv.style.marginTop = '10px';
-        const controlsHeaderStrong = document.createElement('strong');
-        controlsHeaderStrong.textContent = 'Controls:';
-        controlsHeaderDiv.appendChild(controlsHeaderStrong);
-        contentDiv.appendChild(controlsHeaderDiv);
-
-        // Controls list items
-        child.controls.forEach(ctl => {
-        
-            const controlKey = sanitizeForId(ctl.control_number);
-            const evidenceVal = fieldStoredValue(ctl, false);
-            //capturedData[`${controlKey}_jkImplementationEvidence`];
-
-            // --- GLOBAL COUNT: IMP CONTROLS (Child Controls) ---
-            totalImplementationControls++;
-
-            // --- GLOBAL COUNT: EVIDENCE (Child Controls) ---
-            if (hasContent(evidenceVal)) {
-                totalImplementationControlsWithEvidence++;
-            }
-
-            const controlDiv = document.createElement('div');
-            controlDiv.style.marginTop = '5px';
-            controlDiv.style.marginBottom = '10px';
-            controlDiv.style.paddingLeft = '10px';
-            controlDiv.style.borderLeft = '3px solid #3d3d3d';
-
-            const controlNumberStrong = document.createElement('strong');
-            controlNumberStrong.textContent = `${ctl.control_number || ''}: `;
-            controlDiv.appendChild(controlNumberStrong);
-            controlDiv.appendChild(document.createTextNode(ctl.jkText || ''));
-
-            const brTag = document.createElement('br');
-            controlDiv.appendChild(brTag);
-
-            const statusStrong = document.createElement('strong');
-            statusStrong.textContent = 'Status: ';
-            controlDiv.appendChild(statusStrong);
-            controlDiv.appendChild(document.createTextNode(
-            fieldStoredValue(ctl, true)
-            //capturedData[`${controlKey}_jkImplementationStatus`]
-            || ''));
-
-            const brTag2 = document.createElement('br');
-            controlDiv.appendChild(brTag2);
-
-            const evidenceStrong = document.createElement('strong');
-            evidenceStrong.textContent = 'Evidence: ';
-            controlDiv.appendChild(evidenceStrong);
-            controlDiv.appendChild(document.createTextNode(evidenceVal || ''));
-
-            contentDiv.appendChild(controlDiv);
-        });
-    }
 
     impItem.appendChild(contentDiv);
     return impItem;
