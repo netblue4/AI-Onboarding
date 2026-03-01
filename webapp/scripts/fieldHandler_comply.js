@@ -214,7 +214,7 @@ function exportToJiraCsv() {
     // --- Helper: build Jira search URL using systemId + control_number ---
     function buildJiraUrl(controlNumber) {
         const searchTerm = `${systemId} - ${controlNumber}`;
-        const cleanSearchTerm = summary.replace(/[\[\]]/g, '');
+        const cleanSearchTerm = summary.replace(/[\[\],-]/g, '');
         return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(cleanSearchTerm)}%22`;
     }
 
