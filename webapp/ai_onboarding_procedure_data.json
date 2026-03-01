@@ -1412,7 +1412,6 @@
               "jkText": "The Output Guardrail must compute a confidence score for every LLM (Generator) response as the average of the Retriever's top-1 cosine similarity score and the LLM's token probability score, inject a fixed warning banner into the response payload when the score falls below 0.80, and write a structured log entry for every evaluation.",
               "jkType": "risk_control",
               "jkObjective": "A pre-delivery scoring gate in the Output Guardrail that runs on every response before it reaches the user. It computes a composite confidence score from the Retriever's relevance signal and the LLM's own probability estimate, and injects a visible warning banner when the score falls below 0.80. This prevents a low-confidence response from reaching a user who has no way of knowing the output is unreliable.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'Output Confidence Log' showing every response evaluated, the confidence score assigned, whether a warning banner was injected, and a zero count of responses with confidence score < 0.80 that reached the Response Interface without a warning.",
               "jkTask": [
                 "1. Implement the confidence score calculator as the average of the Retriever's top-1 cosine similarity score and the LLM token probability score, with a fallback to the Retriever score alone when the LLM probability is unavailable.",
@@ -1434,7 +1433,6 @@
               "jkText": "The Orchestrator must expose a stop endpoint that sets the system state to HALTED within 500 milliseconds, blocks the Query Interface from accepting new requests with an HTTP 503 response, writes a structured stop event to the immutable audit log, and requires an explicit operator restart signal before query processing resumes.",
               "jkType": "risk_control",
               "jkObjective": "An emergency halt mechanism that gives a human operator a single-action stop control reachable under operational pressure. When activated it immediately blocks all new query acceptance, terminates in-flight processing, and writes a timestamped stop event to the audit log — creating a verifiable record that the system was halted promptly when an incident was detected. The system cannot resume without an explicit human restart signal.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Kill Switch Activation Log' showing the timestamp of each stop event, the operator ID that triggered it, confirmation that the Query Interface was blocked within 500 milliseconds, and the timestamp of the subsequent restart signal.",
               "jkTask": [
                 "1. Implement shared system state as a thread-safe structure holding status, stopped_at, and stopped_by fields — replacing the in-memory dict with a distributed lock (e.g. Redis) in production.",
@@ -1458,7 +1456,6 @@
               "jkText": "The Context Assembler must attach source metadata to every chunk passed to the LLM (Generator), and the Response Interface must render a numbered citation list showing source document name, chunk ID, and relevance score beneath every response — suppressing and flagging any response where the Retriever returned zero attributable chunks.",
               "jkType": "risk_control",
               "jkObjective": "A two-part attribution mechanism that makes every AI response traceable to its source documents. The Context Assembler tags every chunk with its document name, chunk ID, and relevance score before it enters the LLM input. The Response Interface renders those tags as a numbered citation list beneath every response. A zero-chunk guard prevents the LLM call from executing at all when the Retriever returns nothing — routing the query to engineer triage instead of generating an unsupported response.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Response Attribution Report' generated per deployment showing the average citation count per response, the count of responses with zero attributable chunks, and confirmation that all zero-attribution responses were suppressed and flagged before reaching the Response Interface.",
               "jkTask": [
                 "1. Implement the chunk metadata attacher in the Context Assembler that enriches every retrieved chunk with its source document name, chunk ID, and relevance score before the chunk list is packaged into the LLM (Generator) input.",
@@ -1528,7 +1525,6 @@
               "jkText": "Generate an 'Output Confidence Test Report' after every test run covering HO-P-01 and HO-P-02. The report must list every query evaluated, the confidence score computed, whether the warning banner was injected, and a zero count of sub-threshold responses that reached the Response Interface without a banner.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the Output Guardrail warning injection mechanism was tested against both sub-threshold and above-threshold inputs and produced the correct outcome in both cases.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Output Confidence Test Report' showing HO-P-01 result: confidence_score = 0.675, warning_injected = true; HO-P-02 result: confidence_score = 0.905, warning_injected = false; and a zero count of unwarned sub-threshold responses reaching the Response Interface."
             },
             {
@@ -1538,7 +1534,6 @@
               "jkText": "Generate a 'Kill Switch Test Report' after every test run covering HO-P-03 and HO-P-04. The report must show the stop event timestamp, operator ID, elapsed_ms confirming activation within 500 milliseconds, HTTP 503 confirmation for the immediately following query, and the restart event with a distinct operator ID.",
               "jkType": "test_control",
               "jkObjective": "To provide an auditable evidence record proving the Orchestrator kill switch activates within 500 milliseconds, blocks the Query Interface, and cannot be reversed without a recorded human restart signal.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Kill Switch Test Report' showing event = KILL_SWITCH_ACTIVATED with elapsed_ms < 500, HTTP 503 confirmed for the immediately following query, and event = SYSTEM_RESTARTED with a distinct operator_id recorded in the immutable audit log."
             },
             {
@@ -1548,7 +1543,6 @@
               "jkText": "Generate a 'Response Attribution Test Report' after every test run covering HO-P-05 and HO-P-06. The report must show citation count per response, source document names and chunk IDs for all attributed responses, and confirmation that the zero-chunk suppression event was logged and no null response payload reached the Response Interface.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the Context Assembler attaches source metadata correctly, the Response Interface renders it as a numbered citation list, and the zero-citation guard suppresses LLM calls when the Retriever returns no attributable chunks.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Response Attribution Test Report' showing HO-P-05 result: citation_count = 2, source_document = 'HR_Policy_v4.2.pdf' for both citations; HO-P-06 result: suppressed = true, response_payload = null, and ZERO_CITATION_SUPPRESSION event present in the audit log."
             }
           ]
@@ -1610,7 +1604,6 @@
               "jkText": "Generate a 'Pipeline Log Completeness Test Report' after every test run covering AL-P-01. The report must show the count of pipeline executions tested, the simulated timeout duration, the advance_pipeline result, the HTTP response code returned to the Query Interface, and confirmation that the fallback buffer contains the unconfirmed entry.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the blocking write pattern in the Orchestrator halts the pipeline on log store timeout and routes the unconfirmed entry to the fallback buffer — creating no silent log gap.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Pipeline Log Completeness Test Report' showing AL-P-01 result: advance_pipeline = false, http_response = 500, fallback_buffer entry count = 1 with fallback_reason = 'timeout', and confirmed_log_store entry count = 0."
             },
             {
@@ -1620,7 +1613,6 @@
               "jkText": "Generate a 'Log Schema Validation Test Report' after every test run covering AL-P-02 and AL-P-03. The report must show the count of entries validated, the count that passed the full schema check, the count rejected with missing field names recorded, and a zero count of partial entries written to the validated log store.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the schema validation gate rejects partial entries and passes complete entries — confirming no incomplete log record can reach the log store and create a false appearance of audit trail completeness.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Log Schema Validation Test Report' showing AL-P-02 result: written = false, missing_fields = ['configuration_hash', 'assembled_context_hash'], validated_log_store count = 0; AL-P-03 result: written = true, missing_fields = [], validated_log_store count = 1."
             },
             {
@@ -1630,7 +1622,6 @@
               "jkText": "Generate a 'Human Intervention Log Test Report' after every test run covering AL-P-04 and AL-P-05. The report must show the intervention event type, operator ID, session cross-reference result, response hash, and the written/rejected outcome for each test — with a zero count of orphaned intervention entries written without a valid session cross-reference.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving every human intervention event is captured with a linked session ID and that unlinked intervention events are rejected at write time — ensuring the full decision chain of AI output followed by human action is reconstructable.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Human Intervention Log Test Report' showing AL-P-04 result: written = true, event_type = 'output_override', session cross-reference = passed; AL-P-05 result: written = false, reason = 'session_id not found in session log', intervention_log count = 0."
             },
             {
@@ -1640,7 +1631,6 @@
               "jkText": "Generate a 'Log Tamper Detection Test Report' after every test run covering AL-P-06. The report must show the original SHA-256 hash, the modified SHA-256 hash, the integrity_check result, and confirmation that a TAMPER_DETECTED event was written to the audit store containing the session_id and query_id of the modified entry.",
               "jkType": "test_control",
               "jkObjective": "To provide an evidence record proving the SHA-256 hash chain detects any post-write modification to a log entry — confirming the immutable log store cannot be silently altered after a write without triggering a detectable integrity failure.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Log Tamper Detection Test Report' showing AL-P-06 result: original_hash ≠ modified_hash, integrity_check = false, TAMPER_DETECTED event present in audit store with correct session_id and query_id, and UTC timestamp of detection recorded."
             },
             {
@@ -1650,7 +1640,6 @@
               "jkText": "Generate a 'PII Pseudonymisation Test Report' after every test run covering AL-P-07. The report must show the input field containing raw PII, the SHA-256 pseudonym written to the log store, confirmation the raw value does not appear in the written entry, and the result of the PII scan across the log store for this entry.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the pseudonymisation layer strips all raw PII from Orchestrator log entries before they reach the log store — confirming the audit log can be retained and shared for compliance purposes without creating a secondary personal data exposure.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'PII Pseudonymisation Test Report' showing AL-P-07 result: user_pseudonym = SHA-256 hash of submitted email, raw email absent from written log entry, PII scan result = zero raw email matches in the log store for this entry's session_id."
             }
           ]
@@ -1678,7 +1667,6 @@
               "jkText": "The data ingestion pipeline must compute sample counts per protected subgroup before any dataset enters the Embedding Model training pipeline or Vector Store, and must reject any dataset where any declared subgroup falls below the 500-record minimum threshold.",
               "jkType": "risk_control",
               "jkObjective": "A pre-ingestion gate that counts records per protected subgroup against the 500-record minimum before any data is written to the Vector Store or passed to the Embedding Model. If any declared subgroup falls below the threshold, the dataset is rejected, the failing subgroup name, count, and threshold are written to the coverage gap register, and ingestion is blocked until a documented engineering override is logged with a written justification referencing the specific fundamental right at risk.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Subgroup Coverage Report' generated on every ingestion run showing the sample count per protected subgroup, the threshold result per subgroup, the ingestion gate decision, and a zero count of datasets ingested with any protected subgroup below the 500-record threshold without a logged engineering override decision.",
               "jkTask": [
                 "1. Define the protected subgroup registry by reading the declared subgroup list from fieldGroup [6.1.1] and storing it as a structured constant accessible to the ingestion pipeline.",
@@ -1702,7 +1690,6 @@
               "jkText": "The bias evaluation pipeline must compute the Disparate Impact Ratio and Equalized Odds difference for every declared protected subgroup pair before deployment, blocking any deployment where the Disparate Impact Ratio falls below 0.80 or the Equalized Odds difference exceeds 0.05.",
               "jkType": "risk_control",
               "jkObjective": "A pre-deployment bias gate that quantifies outcome disparity between every declared protected subgroup pair using two complementary metrics. A Disparate Impact Ratio below 0.80 means the least-favoured group receives a positive outcome less than 80% as often as the most-favoured group — a legally significant threshold under the EU four-fifths rule. If either metric breaches its threshold, deployment is blocked and the failing subgroup pair, metric name, and score are written to the bias evaluation report.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Bias Metric Evaluation Report' generated on every deployment run showing the metric name, score per protected subgroup pair, threshold applied, deployment gate result, and a zero count of deployments that proceeded with a Disparate Impact Ratio below 0.80 or an Equalized Odds difference above 0.05 without a logged engineering override.",
               "jkTask": [
                 "1. Implement a Disparate Impact Ratio calculator that iterates over every declared protected subgroup pair, computes the ratio of least-favoured to most-favoured positive outcome rate, and returns a structured result per pair including pass/fail status.",
@@ -1732,7 +1719,6 @@
               "jkText": "The data preparation pipeline must compute the Pearson correlation coefficient between every non-protected variable and every declared protected characteristic before any dataset enters the Embedding Model training pipeline or is written to the Vector Store, and must block ingestion of any variable with an absolute coefficient of ≥ 0.70 until a documented action decision and engineer ID are recorded.",
               "jkType": "risk_control",
               "jkObjective": "A pre-ingestion screening step that calculates how closely every non-protected variable in the dataset moves with each declared protected characteristic. Any variable with an absolute Pearson coefficient of ≥ 0.70 is flagged as a proxy candidate and triggers a hard ingestion block until the engineer records one of three actions — remove, transform, or retain with written justification — alongside their engineer ID. This prevents the Embedding Model from learning discriminatory associations from variables that encode protected characteristics indirectly.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Proxy Correlation Screening Report' generated on every ingestion run showing every variable screened, the Pearson correlation coefficient against each protected characteristic, the flag status for each variable above the 0.70 threshold, the action taken (removed, transformed, or retained with justification), and a zero count of datasets ingested containing a proxy variable that was flagged but not actioned.",
               "jkTask": [
                 "1. Define the protected characteristics registry by reading the declared list from fieldGroup [6.1.1] and storing it as a structured constant, explicitly excluding these fields from the correlation computation targets.",
@@ -1820,7 +1806,6 @@
               "jkText": "Generate a 'Subgroup Coverage Test Report' after every test run covering BI-P-01, BI-P-02, and BI-P-03. The report must show the sample count per protected subgroup, the threshold result per subgroup, the override audit log entry where applicable, and a zero count of datasets ingested with any protected subgroup below the 500-record threshold without a logged override containing a justification referencing a specific fundamental right.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the subgroup coverage gate blocks datasets with protected subgroup coverage gaps, requires a legally grounded justification for any override, and passes fully representative datasets without false positives.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Subgroup Coverage Test Report' showing BI-P-01: 60+ gap detected, coverage_gap_register entry confirmed, ingestion_approved = false, exception raised with override requirement; BI-P-02: SUBGROUP_OVERRIDE logged with engineer_id and fundamental right reference; BI-P-03: subgroup_gaps_detected = [], ingestion_approved = true."
             },
             {
@@ -1830,7 +1815,6 @@
               "jkText": "Generate a 'Bias Metric Evaluation Test Report' after every test run covering BI-P-04, BI-P-05, and BI-P-06. The report must show the metric name, score per subgroup pair, threshold applied, deployment gate result, and a zero count of deployments that proceeded with a Disparate Impact Ratio below 0.80 or an Equalized Odds difference above 0.05 without a logged engineering override.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the bias gate independently blocks deployment on a Disparate Impact Ratio breach and an Equalized Odds breach, and passes deployments where all bias thresholds are satisfied.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Bias Metric Evaluation Test Report' showing BI-P-04: Disparate Impact Ratio = 0.76, passed = false, deployment_approved = false, DEPLOYMENT BLOCKED exception raised; BI-P-05: Equalized Odds difference = 0.07, passed = false, deployment_approved = false; BI-P-06: all pairs passed, deployment_approved = true."
             },
             {
@@ -1840,7 +1824,6 @@
               "jkText": "Generate a 'Proxy Correlation Screening Test Report' after every test run covering BI-P-07, BI-P-08, and BI-P-09. The report must show every variable screened, the Pearson coefficient per protected characteristic pair, the flag and action status for every flagged variable, the audit log entry per run, and a zero count of datasets ingested containing a proxy variable flagged at ≥ 0.70 with no recorded action decision and engineer ID.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the proxy screener detects high-correlation proxy variables, blocks ingestion until a documented action decision is recorded, and passes clean datasets with zero false positive proxy flags.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Proxy Correlation Screening Test Report' showing BI-P-07: PostcodeDistrict flagged at ≥ 0.70 with ethnicity, action_taken = null, ingestion_approved = false, screening report in audit log; BI-P-08: action_taken = 'removed', engineer_id present, ingestion_approved = true; BI-P-09: flagged_proxies = [], ingestion_approved = true."
             }
           ]
@@ -1868,7 +1851,6 @@
               "jkText": "Evaluation and training datasets must be logically separated with cryptographic hash verification and strict access controls to prevent data leakage and accuracy inflation.",
               "jkType": "risk_control",
               "jkObjective": "A pre-evaluation gate that runs automatically before every model assessment. Its job is to verify the test dataset has not been accessed or altered by the training pipeline. If contamination is detected, the evaluation is blocked and an alert is raised.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Split Integrity Report' generated before every evaluation run showing the SHA-256 hash at partition creation, the re-verified hash immediately before evaluation (both must match), the test repository access control list (must contain zero training pipeline service accounts), and a zero count of evaluations run on a contaminated test partition.",
               "jkTask": [
                 "1. Implement a SHA-256 hashing script during dataset splitting and securely store the resulting hash for the test partition.",
@@ -1890,7 +1872,6 @@
               "jkText": "All datasets must be tagged with a retention schedule and legal basis at ingestion to enforce automated deletion and auditable decommissioning.",
               "jkType": "risk_control",
               "jkObjective": "An automated lifecycle manager that tracks the expiry date of every dataset in the Vector Store. It ensures personal data is deleted when its legal basis expires and that all deletion events are logged with an authorising engineer ID for audit purposes.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Retention Compliance Report' generated monthly showing every active dataset, its retention tag, scheduled deletion date, deletion method, and — for executed deletions — the deletion timestamp, decommission method used, and approving engineer ID, with a zero count of datasets retained beyond their scheduled deletion date.",
               "jkTask": [
                 "1. Update the ingestion pipeline to attach a metadata tag containing the retention period, legal basis, and ISO-8601 calculated deletion date to every new record.",
@@ -1912,7 +1893,6 @@
               "jkText": "Core data assumptions must be declared in a registry and automatically validated on a weekly schedule using measurable proxy metrics and defined staleness thresholds.",
               "jkType": "risk_control",
               "jkObjective": "A weekly automated monitor that checks whether the real-world conditions the system was built on still hold true. If the source data has changed but the Vector Store has not been updated, this control fires an alert before the AI begins serving stale or incorrect responses to users.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A weekly 'Assumption Validity Report' showing every declared assumption, its proxy metric value, its threshold, the check result (pass or breach), and a zero count of assumption breaches that did not trigger an alert within one monitoring cycle.",
               "jkTask": [
                 "1. Define an assumptions registry as a structured list of system assumptions, each paired with a named proxy metric and a numeric staleness threshold in days.",
@@ -1942,7 +1922,6 @@
               "jkText": "Datasets must be blocked from ingestion unless a verified selection rationale, suitability assessment, and completion date exist in the governance register.",
               "jkType": "risk_control",
               "jkObjective": "A pre-ingestion gate that queries the central governance register before any dataset enters the Vector Store. It verifies that three mandatory documentation fields are present and complete. If any field is missing, the ingestion job is aborted and a structured error is logged — no data enters the pipeline without a documented reason for being there.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Data Governance Gate Report' generated on every ingestion run showing the dataset name, governance register check result, missing fields (must be zero for all passing datasets), and a zero count of datasets ingested without a completed selection rationale record.",
               "jkTask": [
                 "1. Implement a governance register lookup function that queries the central register by dataset name and returns the full metadata record.",
@@ -1964,7 +1943,6 @@
               "jkText": "Every dataset's provenance record must be validated for five required fields, cryptographically hashed at ingestion, and re-verified on every read to detect post-ingestion tampering.",
               "jkType": "risk_control",
               "jkObjective": "A two-stage integrity control that first validates the completeness of a dataset's provenance record at ingestion, then seals it with a SHA-256 hash. On every subsequent read, the hash is recalculated and compared — if the legal basis or any other provenance field has been altered after ingestion, an immediate security alert is raised.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Provenance Validation Report' generated on every ingestion run showing the dataset name, all five required provenance fields, the SHA-256 hash of the provenance record, and a zero count of datasets ingested with a missing legal basis or unverified provenance hash.",
               "jkTask": [
                 "1. Implement a provenance validation function that confirms all five required fields are present and non-empty: 'dataset_name', 'source_system', 'legal_basis', 'collection_date', and 'transfer_agreement_ref'.",
@@ -1986,7 +1964,6 @@
               "jkText": "Every data transformation step must emit a structured log entry capturing tool versions, record counts, and input/output SHA-256 hashes to a tamper-evident audit store.",
               "jkType": "risk_control",
               "jkObjective": "A step-level audit trail that automatically captures a before-and-after hash at every transformation stage in the data preparation pipeline. If the RAG system begins producing degraded retrieval results, engineers can trace the root cause to the exact pipeline operation that altered the data — rather than re-running the entire pipeline blind.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Data Preparation Audit Log' generated on every pipeline run showing one entry per operation, all required fields populated (operation name, timestamp, tool version, input hash, output hash, input record count, output record count), and a zero count of pipeline steps that advanced without a confirmed log entry.",
               "jkTask": [
                 "1. Build a Python decorator that wraps each pipeline transformation function and automatically captures the operation name, UTC timestamp, and tool version before writing to the immutable audit store.",
@@ -2016,7 +1993,6 @@
               "jkText": "Every dataset must pass a representativeness distribution check before entering the Embedding Model training pipeline or Vector Store. All defined population segments — category, language, and geographic region — must meet a minimum of 500 records. Any dataset where more than 10% of defined segments fall below this threshold must be blocked at ingestion with all coverage gaps written to the data gap register.",
               "jkType": "risk_control",
               "jkObjective": "A pre-ingestion gate that analyses every dataset for population coverage before data reaches the Embedding Model or Vector Store. It counts records per segment field, identifies underrepresented groups, and blocks ingestion when the proportion of coverage gaps exceeds 10%. Without it, the system is deployed with silent blind spots that return poor or zero retrieval results for entire user populations — with no quality gate having detected the gap before those users are served.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Distribution Analysis Report' generated on every dataset ingestion showing frequency distribution per category, geographic coverage count, language coverage count, the count of segments below the 500-record threshold, and a zero count of datasets ingested where more than 10% of population segments fell below threshold.",
               "jkTask": [
                 "1. Implement `run_distribution_check()` to compute per-field frequency counts using `collections.Counter` for every declared segment field (category, language, geographic region) in the submitted dataset.",
@@ -2042,7 +2018,6 @@
               "jkText": "Every record must be scored for completeness against a declared required-fields list before ingestion. Records where more than 5% of required fields are null or missing must be rejected and written to the data gap register. Any dataset where more than 2% of records fail the record-level check must be rejected in full, requiring a logged human engineering override with engineer ID to proceed.",
               "jkType": "risk_control",
               "jkObjective": "A dual-threshold completeness gate that evaluates every record and every dataset before any data is written to the Vector Store or passed to the Embedding Model. It first rejects individual records missing too many required fields, then escalates to a full dataset block when incomplete records exceed 2% of the total. This prevents structurally incomplete records from corrupting Embedding Model training and populating the Vector Store with chunks that silently omit context that the Retriever and Generator will never know is missing.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Completeness Threshold Report' generated on every ingestion run showing the record-level completeness score per dataset, the count of records rejected for missing fields, the dataset-level pass or fail result, and a zero count of datasets ingested with a dataset-level completeness score below 98%.",
               "jkTask": [
                 "1. Define the required fields list and implement `score_record_completeness()` to return a per-record completeness score (non-null required fields ÷ total required fields) and the list of missing field names.",
@@ -2068,7 +2043,6 @@
               "jkText": "Every annotation batch must be scored for inter-annotator agreement before any labelled data is released to the Embedding Model training pipeline. Two-annotator batches must use Cohen's Kappa; batches with three or more annotators must use Krippendorff's Alpha. Any batch scoring below 0.80 must be hard-rejected with no override and routed to a re-annotation queue.",
               "jkType": "risk_control",
               "jkObjective": "A pre-training gate in the annotation pipeline that measures label consistency before any labelled data reaches the Embedding Model. It computes an overall agreement score and per-category scores to pinpoint which label categories drove the disagreement, then hard-blocks any low-agreement batch from entering the training pipeline. This prevents Label Noise from corrupting the Embedding Model's semantic representations — a defect that cannot be corrected without a full retraining cycle from a clean labelled dataset.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Label Quality Report' generated on every annotation batch showing the Cohen's Kappa or Krippendorff's Alpha score, the label categories evaluated, the batch pass or fail result, and a zero count of annotation batches scoring below 0.80 that were released to the Embedding Model training pipeline.",
               "jkTask": [
                 "1. Implement `compute_agreement_score()` to detect annotator count and route accordingly: two-annotator batches to `sklearn.metrics.cohen_kappa_score(y1, y2)`; three-or-more-annotator batches to `krippendorff.alpha(reliability_data=np.array(annotator_labels, dtype=float), level_of_measurement='nominal')`.",
@@ -2146,7 +2120,6 @@
               "jkText": "Generate a 'Data Governance Gate Test Report' after every test run covering DG-P-01, DG-P-02, and DG-P-03. The report must show the dataset name, register lookup result, missing fields list, gate decision, and a zero count of datasets ingested without a complete governance register entry.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the governance gate independently blocks datasets with incomplete documentation and absent register entries, while passing fully documented datasets without false positives.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Data Governance Gate Test Report' showing DG-P-01: INGESTION_BLOCKED with both missing fields listed; DG-P-02: LookupError raised, no field validation attempted; DG-P-03: missing_fields = [], ingestion_approved = true; zero datasets ingested without complete governance records."
             },
             {
@@ -2156,7 +2129,6 @@
               "jkText": "Generate a 'Provenance Chain Integrity Test Report' after every test run covering DG-P-04 and DG-P-05. The report must show the provenance hash at ingestion, the re-verified hash at read time, the comparison result, and a zero count of datasets ingested with a missing legal basis or tampered provenance record that were not detected.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the provenance hash seals a complete record at ingestion and detects any post-ingestion field modification at read time, with incomplete provenance records blocked before a hash is generated.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Provenance Chain Integrity Test Report' showing DG-P-04: post-ingestion tampering detected, SecurityAlert raised, read aborted; DG-P-05: PROVENANCE INCOMPLETE raised before hash generation, zero records ingested; zero tampered provenance records undetected at read time."
             },
             {
@@ -2166,7 +2138,6 @@
               "jkText": "Generate a 'Data Preparation Audit Log Test Report' after every test run covering DG-P-06 and DG-P-07. The report must show the log entry count per pipeline run, all seven required fields per entry, the hash continuity check result, and a zero count of pipeline steps that advanced without a confirmed audit log entry.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the audit_step decorator captures a complete before-and-after hash record for every pipeline step and the continuity check halts the pipeline on any inter-step hash mismatch.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Data Preparation Audit Log Test Report' showing DG-P-06: two entries with all seven fields populated, output_hash of step one matches input_hash of step two; DG-P-07: PipelineIntegrityError raised, enrichment step not executed, mismatch hash recorded in audit log."
             }
           ]
@@ -2222,7 +2193,6 @@
               "jkText": "Generate a 'Distribution Analysis Test Report' after every test run covering DG-P-08 and DG-P-09. The report must show the segment field names evaluated, the count per segment, the gap ratio, the ingestion decision, and a zero count of datasets ingested where more than 10% of population segments fell below the 500-record threshold.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the distribution check correctly blocks datasets with coverage gaps exceeding 10% and passes fully representative datasets without false positives.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Distribution Analysis Test Report' showing DG-P-08: French/BE segment count = 87, gap_ratio > 0.10, ingestion_approved = false, data gap register entry confirmed; DG-P-09: segments_below_threshold = [], gap_ratio = 0.0, ingestion_approved = true."
             },
             {
@@ -2232,7 +2202,6 @@
               "jkText": "Generate a 'Completeness Threshold Test Report' after every test run covering DG-P-10 and DG-P-11. The report must show the total record count, rejected record count and missing fields per rejected record, dataset pass rate, ingestion decision, and a zero count of datasets ingested with a dataset-level pass rate below 98%.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the completeness gate rejects individual incomplete records at the record level and blocks full datasets when the proportion of incomplete records exceeds 2%, while allowing partial datasets where the pass rate is compliant.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Completeness Threshold Test Report' showing DG-P-10: 3 records rejected, pass_rate = 0.97, ingestion_approved = false, human override prompt present; DG-P-11: 1 record rejected and logged, pass_rate = 0.99, ingestion_approved = true."
             },
             {
@@ -2242,7 +2211,6 @@
               "jkText": "Generate a 'Label Quality Test Report' after every test run covering DG-P-12 and DG-P-13. The report must show the annotator count, the agreement metric used, the score, the batch decision, and a zero count of annotation batches scoring below 0.80 that were released to the Embedding Model training pipeline.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the label quality gate hard-rejects low-agreement batches with no override path and passes high-agreement batches without false rejection.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Label Quality Test Report' showing DG-P-12: Cohen's Kappa < 0.80, batch_approved = false, routed_to_reannotation = true, zero records released to training pipeline; DG-P-13: Cohen's Kappa = 1.0, batch_approved = true, batch released."
             }
           ]
@@ -2298,7 +2266,6 @@
               "jkText": "Generate a 'Split Integrity Test Report' after every test run covering DG-P-14 and DG-P-15. The report must show the SHA-256 hash comparison result, the ACL check result, the gate decision, and a zero count of evaluations run on a test partition with a hash mismatch or a blocked service account in the ACL. Note: cross-reference [4.2.T1] — both controls share the same gate implementation; test results should be compared across both reports to confirm implementation consistency.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the split contamination gate independently blocks evaluation on hash mismatch and ACL violation, with results cross-referenced against [4.2.T1] to confirm the shared gate implementation behaves consistently across both control contexts.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Split Integrity Test Report' showing DG-P-14: hash mismatch detected, evaluation aborted, no scoring executed; DG-P-15: hash passed, ACL violation detected, evaluation aborted independently; zero evaluations run on a contaminated or ACL-violated partition."
             },
             {
@@ -2308,7 +2275,6 @@
               "jkText": "Generate a 'Retention Compliance Test Report' after every test run covering DG-P-16 and DG-P-17. The report must show the scheduled deletion date per record, the expired records query result, the decommission log entry for executed deletions, and a zero count of records retained beyond their scheduled deletion date.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the retention scheduler correctly identifies and cryptographically erases expired records on schedule, and does not prematurely delete records within their lawful retention period.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Retention Compliance Test Report' showing DG-P-16: record in expired query at day 31, cryptographic_erasure event logged with engineer_id and timestamp; DG-P-17: record not in expired query at day 30, no decommission event written; zero records retained beyond scheduled deletion date."
             },
             {
@@ -2318,7 +2284,6 @@
               "jkText": "Generate an 'Assumption Validity Test Report' after every test run covering DG-P-18 and DG-P-19. The report must show every declared assumption, the proxy metric value, the threshold, the check result, the alert dispatch confirmation for breach events, and a zero count of assumption breaches that did not trigger an alert within one monitoring cycle.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the assumption validity monitor correctly fires a breach alert when any declared proxy metric exceeds its threshold and produces no false positive alerts when all assumptions are within valid bounds.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Assumption Validity Test Report' showing DG-P-18: status = BREACH at metric_value = 35, ASSUMPTION_BREACH alert fired with all required fields, audit log entry confirmed; DG-P-19: status = PASS at metric_value = 15, zero alerts fired."
             }
           ]
@@ -2346,7 +2311,6 @@
               "jkText": "Every mandatory pipeline event must be written to the log store as a blocking operation with a 200-millisecond timeout — the pipeline must not advance to the next stage until the write is confirmed, and any timeout or error must halt the pipeline, return HTTP 500 to the Query Interface, and write a fallback entry to a local buffer store.",
               "jkType": "risk_control",
               "jkObjective": "A blocking log writer that wraps every mandatory pipeline event in a write-confirm-advance pattern. The Orchestrator cannot move past any stage until the log store acknowledges the write for that stage. If the log store times out or errors within 200 milliseconds, the pipeline halts immediately — preventing a silent log gap from forming while the pipeline continues delivering responses.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Pipeline Log Completeness Report' generated daily showing the count of pipeline executions, the count of confirmed log writes per mandatory event type, and a zero count of pipeline stages that advanced without a confirmed log entry.",
               "jkTask": [
                 "1. Define the seven mandatory event types and the 200-millisecond write timeout as named constants, and implement a LogWriteResult enum with CONFIRMED, TIMEOUT, and ERROR states.",
@@ -2370,7 +2334,6 @@
               "jkText": "Every Orchestrator log entry must include eleven mandatory reconstruction fields — session ID, query ID, user pseudonym, UTC timestamp to millisecond precision, RAG component, model version ID, configuration hash, retrieved chunk IDs with similarity scores, assembled context hash, LLM response hash, and confidence score — validated at write time with schema rejection of any partial entry.",
               "jkType": "risk_control",
               "jkObjective": "A schema validation gate that runs on every log entry before it is passed to the log store write function. It checks all eleven mandatory reconstruction fields are present and non-null. Any entry missing one or more fields is rejected in full, the missing fields are recorded in a schema failure register, and nothing is written to the log store — preventing a partial entry from creating a false appearance of completeness.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Log Schema Validation Report' generated per deployment showing the count of log entries validated, the count of entries that passed the full schema check, and a zero count of partial entries written to the log store.",
               "jkTask": [
                 "1. Define the eleven mandatory reconstruction fields as a named constant list and initialise the schema failure register and validated log store.",
@@ -2392,7 +2355,6 @@
               "jkText": "The Orchestrator must write a dedicated human intervention log entry for every output override, kill switch activation, query cancellation, and human escalation routing event, capturing event type, operator ID, query ID, response hash, and UTC timestamp to millisecond precision, linked to the originating session ID.",
               "jkType": "risk_control",
               "jkObjective": "A dedicated event writer called by every human oversight action surface in the system. When an operator overrides an output, activates the kill switch, cancels a query, or routes an escalation, this writer fires as part of the same blocking write transaction as the pipeline event it accompanies. It validates all five mandatory fields, cross-references the session ID against the session log, and writes a linked entry — ensuring the full decision sequence of AI output followed by human action is reconstructable as a single event chain.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Human Intervention Log' showing every intervention event, the operator ID, the query ID affected, the intervention type, and the UTC timestamp — cross-referenced against the session log to confirm every intervention entry has a matching session ID.",
               "jkTask": [
                 "1. Define the four valid intervention types and five mandatory entry fields as named constants, and initialise the intervention log and simulated session log.",
@@ -2416,7 +2378,6 @@
               "jkText": "The log store must enforce an append-only write policy with SHA-256 hash verification on every entry at write time and re-verification on read, triggering an immediate tamper alert and writing a detection event to a separate integrity log on any hash mismatch.",
               "jkType": "risk_control",
               "jkObjective": "An append-only log store wrapper that computes and stores a SHA-256 hash of every entry at write time and a verifier that re-computes and compares that hash on every read. Any mismatch — indicating a post-write modification or deletion — fires an immediate tamper alert to the engineering team and writes a detection event to a separate, isolated integrity log. This makes any attempt to alter the audit record detectable before the tampered entry can be used as evidence.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Log Integrity Verification Report' generated weekly showing the count of log entries hash-verified, the count of hash mismatches detected, and confirmation that all mismatches triggered a tamper alert — with a zero count of undetected tamper events.",
               "jkTask": [
                 "1. Implement the append-only log store using a deep-copy write pattern that prevents post-write in-memory mutation, storing the SHA-256 hash of each entry in a co-located hash store keyed by entry index.",
@@ -2438,7 +2399,6 @@
               "jkText": "The Orchestrator must replace every raw user identifier — name, email address, IP address — with a deterministic HMAC pseudonymised token before writing any log entry, store the token-to-identifier mapping in a separate access-controlled key store, and apply SHA-256 hashing to prompt content in any entry where the Input Guardrail flagged personal data.",
               "jkType": "risk_control",
               "jkObjective": "A pre-write pseudonymisation processor that runs on every log entry before it reaches the log store. It replaces personally identifiable fields with deterministic HMAC tokens, stores the real-identifier-to-token mappings in an isolated key store that the log store cannot access, and hashes any prompt field flagged as containing personal data. This preserves full session traceability for authorised incident reconstruction while ensuring the log store contains no raw personal data.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Log Privacy Compliance Report' generated monthly showing the count of log entries processed, confirmation that zero raw user identifiers appear in the log store, and the count of prompt entries hashed — cross-referenced against the privacy control declaration in [3.3.3].",
               "jkTask": [
                 "1. Define the PII field list subject to pseudonymisation, initialise the isolated key store as a separate structure from the log store, and store the HMAC key in the secrets vault — not in source code.",
@@ -2470,7 +2430,6 @@
               "jkText": "Every log entry must be tagged with a minimum retention floor of 180 days and a declared maximum retention ceiling at write time. A daily scheduled job must enforce both bounds — blocking deletion of any entry before the floor expires, and executing cryptographic erasure of any entry that has exceeded the maximum ceiling — with every deletion event written to a separate decommission log including the authorising engineer ID and UTC timestamp.",
               "jkType": "risk_control",
               "jkObjective": "A dual-bound retention enforcer that tags every log entry with both a minimum deletion date (floor: 180 days from write time, derived from EU AI Act Art. 26(6)) and a maximum deletion date (ceiling: declared in fieldGroup [3.4.1] per sector-specific law) at write time. A daily scheduler checks both bounds — it blocks any deletion attempt before the floor date, and executes cryptographic erasure of any entry that has passed the ceiling date. This ensures the audit trail is preserved long enough to support incident investigation and regulatory audit, while preventing indefinite accumulation of pseudonymised log data beyond its lawful basis. Cross-reference [5.3.R2] — the deletion scheduler and cryptographic erasure function patterns are reused here with the addition of the minimum floor guard that [5.3.R2] does not implement.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Log Retention Compliance Report' generated daily showing every active log entry, its floor date, its ceiling date, the daily scheduler decision per entry (retained / floor-protected / ceiling-erased), and a zero count of log entries deleted before the 180-day floor or retained beyond their declared ceiling date — cross-referenced against the decommission log for every executed erasure.",
               "jkTask": [
                 "1. Implement a log retention tag function that accepts a log entry and the declared maximum retention days from fieldGroup [3.4.1], computes the floor date as write_time + 180 days and the ceiling date as write_time + max_retention_days, and attaches both dates plus the legal basis to the entry before it reaches the log store write function.",
@@ -2554,7 +2513,6 @@
               "jkText": "Generate a 'Pipeline Log Completeness Test Report' after every test run covering AL-P-01, AL-P-02, and AL-P-03. The report must show the confirmed write count, the fallback buffer entry count, the HTTP response code on timeout, and a zero count of pipeline stages that advanced without a confirmed log entry or an unrecognised event type that was not rejected at validation.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the blocking write halts the pipeline on timeout with HTTP 500, captures the unconfirmed entry in the fallback buffer, and rejects unrecognised event types before any write path is entered — with no pipeline stage advancing without a confirmed log write.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Pipeline Log Completeness Test Report' showing AL-P-01: advance_pipeline = true, confirmed_log_store count = 1; AL-P-02: advance_pipeline = false, http_response = 500, fallback_buffer count = 1, confirmed_log_store empty; AL-P-03: AssertionError raised, both stores empty."
             },
             {
@@ -2564,7 +2522,6 @@
               "jkText": "Generate a 'Log Schema Validation Test Report' after every test run covering AL-P-04 and AL-P-05. The report must show the count of entries validated, the count that passed the full schema check, the missing fields per rejected entry, and a zero count of partial entries written to the validated log store.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the schema gate passes complete entries without false rejection and fully rejects partial entries — with no partial log entry reaching the validated log store under any circumstance.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Log Schema Validation Test Report' showing AL-P-04: written = true, missing_fields = [], validated_log_store count = 1; AL-P-05: written = false, missing_fields = ['configuration_hash', 'assembled_context_hash'], schema_failure_register count = 1, validated_log_store empty."
             },
             {
@@ -2574,7 +2531,6 @@
               "jkText": "Generate a 'Human Intervention Log Test Report' after every test run covering AL-P-06, AL-P-07, and AL-P-08. The report must show the intervention entry count, the session cross-reference result per entry, the operator ID presence check per entry, and a zero count of intervention events written without a valid operator ID or without a matching session ID in the session log.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving every intervention entry is linked to a valid session, carries a non-null operator ID, and stores a SHA-256 hashed response — with zero anonymous or orphaned intervention entries written to the intervention log.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Human Intervention Log Test Report' showing AL-P-06: written = true, session cross-reference confirmed, operator_id present, response_hash 64-char SHA-256; AL-P-07: written = false, unrecognised session ID error, intervention_log empty; AL-P-08: written = false, missing_fields = ['operator_id'], intervention_log empty."
             }
           ]
@@ -2642,7 +2598,6 @@
               "jkText": "Generate a 'Log Integrity Verification Test Report' after every test run covering AL-P-09 and AL-P-10. The report must show the count of entries hash-verified, the count of mismatches detected, the tampered indices, and a zero count of post-write field modifications that were not detected and written to the isolated integrity log.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the hash verifier detects every post-write modification and writes a tamper event to the isolated integrity log, while producing zero false positive alerts for unmodified entries.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Log Integrity Verification Test Report' showing AL-P-09: mismatches_detected = 1, tampered_indices = [0], integrity_log count = 1 with TAMPER_DETECTED event; AL-P-10: entries_verified = 3, mismatches_detected = 0, integrity_log empty."
             },
             {
@@ -2652,7 +2607,6 @@
               "jkText": "Generate a 'Log Privacy Compliance Test Report' after every test run covering AL-P-11 and AL-P-12. The report must show the count of entries processed, the count of PII fields pseudonymised, the count of prompts hashed, and a zero count of log entries reaching the log store with any raw personal data value in a declared PII field.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the pseudonymisation processor replaces all declared PII fields with HMAC tokens and hashes PII-flagged prompts before log store write, while passing entries with no PII fields through unmodified.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Log Privacy Compliance Test Report' showing AL-P-11: three PII fields pseudonymised, prompt hashed, prompt_pii_hashed = True, pseudo_key_store count = 3, zero raw PII in sanitised entry; AL-P-12: entry unchanged, pseudo_key_store count unchanged, no prompt_pii_hashed flag."
             },
             {
@@ -2662,7 +2616,6 @@
               "jkText": "Generate a 'Log Retention Compliance Test Report' after every test run covering AL-P-13, AL-P-14, AL-P-15, and AL-P-16. The report must show the floor_protected, ceiling_eligible, and retained entry counts from the daily evaluator, the decommission log entries per executed erasure, the floor violation blocked entries, and a zero count of log entries deleted before the 180-day floor or retained beyond their declared ceiling without a decommission log entry.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the dual-bound retention enforcer correctly categorises all log entry lifecycle states, blocks premature deletion with a legally cited exception, executes cryptographic erasure of ceiling-expired entries with a full decommission record, and rejects retention schedules declaring a ceiling below the 180-day floor at configuration time.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Log Retention Compliance Test Report' showing AL-P-13: floor_protected = 1, ceiling_eligible = 1, retained = 1; AL-P-14: DELETION BLOCKED exception raised citing Art. 26(6), FLOOR_VIOLATION_BLOCKED in decommission log; AL-P-15: LOG_CRYPTOGRAPHIC_ERASURE event in decommission log with engineer_id and timestamp; AL-P-16: AssertionError raised for max_retention_days = 90 below floor of 180."
             }
           ]
@@ -2690,7 +2643,6 @@
               "jkText": "The Input Guardrail must run three independent adversarial checks on every inbound prompt — keyword injection scanning, Unicode zero-width character stripping, and semantic divergence scoring — before any prompt is passed to the Embedding Model or Retriever, blocking and alerting the security team on any failure.",
               "jkType": "risk_control",
               "jkObjective": "A three-layer pre-retrieval gate that intercepts adversarially crafted prompts before they reach the Embedding Model. Layer 1 scans for known injection phrases. Layer 2 strips invisible Unicode characters that attackers use to break keyword filters. Layer 3 embeds the sanitised prompt and scores its cosine similarity against the system's declared purpose — blocking any prompt that diverges semantically from legitimate use. All three layers run on every prompt; a failure at any layer blocks the prompt and triggers a security alert.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'Adversarial Pattern Detection Log' generated per session showing every prompt evaluated, the Layer 1 keyword match result, the Layer 2 zero-width character scan result with stripped characters logged, the Layer 3 cosine similarity score, the gate decision, and a zero count of prompts failing any layer that reached the Embedding Model or Retriever.",
               "jkTask": [
                 "1. Define the injection blocklist as a versioned config constant seeded with the seven mandatory phrases, and implement Layer 1 as an exact-match scanner that returns a typed pass/fail result and the list of matched phrases.",
@@ -2714,7 +2666,6 @@
               "jkText": "The data ingestion pipeline must run four sequential integrity checks on every document before it is written to the Vector Store — source allowlist verification, content hash verification, instruction pattern scanning, and semantic outlier detection — with Steps 1 and 2 as hard rejection gates and Steps 3 and 4 routing flagged documents to a human security review queue.",
               "jkType": "risk_control",
               "jkObjective": "A four-step pre-ingestion gate that blocks maliciously crafted documents from entering the Vector Store. Steps 1 and 2 are hard gates — an unlisted source or a hash mismatch aborts ingestion immediately with no review routing. Steps 3 and 4 are soft gates — a document containing embedded instruction patterns or an anomalous embedding is held in a human security review queue rather than deleted, as it may be legitimate content requiring assessment. All four step results are written to a structured log entry for every document evaluated, regardless of outcome.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'Ingestion Integrity Report' generated on every ingestion run showing the four-step check result per document, the count of documents rejected at each step, the count routed to human security review, and a zero count of documents containing flagged instruction patterns or hash mismatches that were written to the Vector Store.",
               "jkTask": [
                 "1. Define the source allowlist and instruction pattern library as versioned config constants, and implement Step 1 as a hard-reject source allowlist checker that returns a typed pass/fail result and reason string.",
@@ -2748,7 +2699,6 @@
               "jkText": "The Query Interface must enforce a per-API-key rate limit of 500 queries per rolling 60-minute window with automatic suspension on breach, and the Orchestrator must run a rolling 15-minute semantic variance check that flags and alerts on any session where variance falls below 0.15 with more than 50 queries in the window.",
               "jkType": "risk_control",
               "jkObjective": "Two independent monitors that detect model extraction probing at different signal layers. Monitor 1 sits in the Query Interface and counts raw query volume per API key — suspending any key that exceeds 500 queries in a rolling 60-minute window. Monitor 2 sits in the Orchestrator and measures how semantically similar a session's queries are to each other — a legitimate user asks varied questions, while an extraction attacker asks tightly clustered variants of the same question. When variance drops below 0.15 with more than 50 queries in a 15-minute window, the session is flagged and a security alert is fired.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Query Pattern Anomaly Report' generated daily showing every API key session flagged for rate limit breach or low semantic variance, the query count and semantic variance score at flag, the API key suspension status, security team alert confirmation, and a zero count of sessions that exceeded the 500-query threshold or fell below 0.15 semantic variance without triggering a suspension or alert.",
               "jkTask": [
                 "1. Implement per-API-key session state management using a distributed cache structure that tracks query count, a rolling embedding deque, and a suspended flag — replacing the in-memory dict with Redis or equivalent in production.",
@@ -2782,7 +2732,6 @@
               "jkText": "Every build producing a deployable artefact for the Orchestrator, Input Guardrail, or Output Guardrail must pass five controls — environment separation, code signing, peer review, content-addressed artefact hashing, and secrets vault enforcement — before the artefact is accepted by the deployment pipeline.",
               "jkType": "risk_control",
               "jkObjective": "A pre-deployment artefact validation gate that reads signing status, peer review approval, content-address hash, and secrets scan results from build metadata and returns a structured pass/fail decision per control. An artefact targeting the Orchestrator, Input Guardrail, or Output Guardrail cannot enter the deployment pipeline unless all five controls pass — an unsigned artefact, a self-merged pull request, or a hardcoded credential each independently block deployment and trigger a security alert.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Build Integrity Report' generated on every pipeline run showing the environment separation check result, artefact signing status, peer review approval record, artefact content address hash, secrets vault usage confirmation, and a zero count of unsigned, self-merged, or hardcoded-credential build artefacts that reached the deployment pipeline.",
               "jkTask": [
                 "1. Implement a content-address hash function that derives the artefact's immutable identifier from a SHA-256 hash of its binary content, making any post-build tampering detectable by name change.",
@@ -2808,7 +2757,6 @@
               "jkText": "Every build and ingestion run must pass three verification paths — library hash and CVE verification, pre-trained model weight hash verification, and external data source freshness verification — before any dependency, model file, or data source is used, with a zero critical CVE finding requirement and a 30-day maximum source verification age.",
               "jkType": "risk_control",
               "jkObjective": "A three-path integrity checker that runs on every build and ingestion run before any external asset is consumed. Path 1 verifies that every third-party library's local SHA-256 hash matches the package registry's published hash and carries zero critical CVE findings. Path 2 verifies that every pre-trained model weight file's hash matches the value published by the model provider on a separate trusted channel — not the same download URL. Path 3 rejects any external data source whose last-verified date in fieldGroup [8.2.2] exceeds 30 days. A mismatch or breach on any path blocks the build and triggers a security alert before any build step executes.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Supply Chain Integrity Report' generated on every build and ingestion run showing every dependency name, pinned version, SHA-256 hash verification result, CVE scan result (must show zero critical findings), model weight hash verification result, and a zero count of dependencies or model files used in a build without a passing hash verification and CVE scan.",
               "jkTask": [
                 "1. Implement Path 1 as a library hash verifier that computes the SHA-256 hash of the downloaded library file, compares it against the registry's published hash for the pinned version, and returns a structured result including both hashes and a pass/fail flag.",
@@ -2842,7 +2790,6 @@
               "jkText": "The identity management system must restrict write access to model weights, Vector Store content, and Orchestrator configuration to three named roles with MFA enforced on every write operation, and must run a 90-day access review job that automatically revokes any role assignment not re-approved within the cycle.",
               "jkType": "risk_control",
               "jkObjective": "A scheduled access review job that queries every role assignment across the three highest-privilege access paths and automatically revokes any assignment whose last approval date exceeds 90 days. On every run it produces a structured Access Control Compliance Report recording the review result, MFA enforcement status, and Privileged Access Workstation registration status per account — ensuring stale grants cannot persist as silent write-access backdoors into the Vector Store, model weights, or Orchestrator configuration.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'Access Control Compliance Report' generated after every 90-day access review cycle showing every role assignment for the three high-privilege access paths, MFA enforcement status per account, Privileged Access Workstation registration status for the Model Engineer role, the review cycle completion date, and a zero count of active role assignments that have not been re-approved within the 90-day cycle.",
               "jkTask": [
                 "1. Define the high-privilege role registry and Privileged Access Workstation requirement as structured constants, and implement a session state loader that reads role assignments from the identity management system API.",
@@ -2866,7 +2813,6 @@
               "jkText": "The Input Guardrail must apply three independent adversarial noise checks on every prompt — Zero-Width character stripping, homoglyph normalisation, and Semantic Bomb token frequency detection — before any prompt is passed to the Embedding Model, logging all sanitisation and blocking decisions in a single structured entry per prompt.",
               "jkType": "risk_control",
               "jkObjective": "A three-check sanitisation and blocking gate that runs on every prompt before it reaches the Embedding Model. Check 1 strips invisible Unicode Cf and Mn characters that attackers use to bypass keyword filters, logging each stripped character's code point and position. Check 2 normalises the prompt to NFC form and replaces visually identical characters from non-Latin scripts with their ASCII equivalents, logging each substitution. Check 3 tokenises the sanitised prompt and blocks any prompt where any single token appears more than five times — the signature of a Semantic Bomb payload designed to flood the Retriever's attention signal. All three checks run on every prompt regardless of whether an earlier check sanitised it, and all results are written to a single log entry.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'Adversarial Noise Detection Log' generated per session showing every prompt evaluated, Zero-Width characters detected and stripped with Unicode code points, homoglyph substitutions applied with before/after character values, Semantic Bomb tokens flagged with frequency counts, and a zero count of prompts containing detected adversarial noise patterns that reached the Embedding Model without sanitisation.",
               "jkTask": [
                 "1. Define the homoglyph map as a structured constant covering Cyrillic and Greek lookalikes mapped to their ASCII equivalents, and define the Semantic Bomb token frequency threshold as a named constant.",
@@ -2892,7 +2838,6 @@
               "jkText": "The identity management system must automatically suspend any account and terminate all active sessions after 3 consecutive failed MFA attempts within a rolling 10-minute window on any high-privilege access path, dispatch a Priority-1 security alert, and block reinstatement until a Security team member records a completed out-of-band identity verification.",
               "jkType": "risk_control",
               "jkObjective": "An automated lockout monitor that tracks consecutive MFA failures per account per high-privilege access path within a rolling 10-minute window. On the third failure it immediately suspends the account, terminates all active sessions, and dispatches a Priority-1 alert containing the account ID, source IP, attempt timestamps, and targeted access path. All subsequent authentication attempts are rejected until a Security team member records an out-of-band identity verification outcome against the lockout event — eliminating the window in which an attacker with stolen credentials can gain privileged access through repeated authentication attempts.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'MFA Failure Lockout Log' generated per incident showing the account ID targeted, access path attempted, source IP address, timestamps of each failed MFA attempt, automatic suspension confirmation timestamp, active sessions terminated, Security team alert delivery confirmation, out-of-band identity verification outcome, and reinstatement timestamp or escalation reference if credential compromise was confirmed. A zero count of accounts reinstated without a completed out-of-band verification step.",
               "jkTask": [
                 "1. Define the high-privilege access path registry and lockout policy constants, and implement a per-account session state loader that tracks the rolling failure list, suspension flag, active sessions, and out-of-band verification status.",
@@ -2924,7 +2869,6 @@
               "jkText": "A real-time binary injection classifier must run independently of the keyword blocklist in risk control [8.1.R1] on every prompt, blocking and alerting on any prompt scoring ≥ 0.85 injection probability, and must be retrained on a maximum 30-day cycle using patterns harvested from the blocked prompt log.",
               "jkType": "risk_control",
               "jkObjective": "A second-layer injection detector that runs alongside the keyword blocklist in [8.1.R1], not instead of it. Where the blocklist catches known phrases, this classifier scores the statistical likelihood that any prompt — including novel, obfuscated, or encoded patterns — is an injection attempt. Any prompt scoring ≥ 0.85 is blocked, logged, and triggers an immediate security alert before any data reaches the Retriever or LLM (Generator).",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Prompt Injection Detection Log' generated per session showing every prompt evaluated, the injection probability score, the classification decision, the alert sent confirmation for every blocked prompt, and a zero count of prompts scoring ≥ 0.85 injection probability that reached the Retriever or LLM (Generator) without being blocked.",
               "jkTask": [
                 "1. Assemble a labelled training dataset of known injection and non-injection prompts and train a TF-IDF vectoriser and logistic regression classifier, storing both as versioned artefacts for the 30-day refresh cycle.",
@@ -2948,7 +2892,6 @@
               "jkText": "The Orchestrator must maintain a rolling 7-day baseline for four behavioural metrics and fire a security alert with a documented runbook response action when any metric deviates more than 2 standard deviations above its baseline, producing a structured daily Behavioural Anomaly Report regardless of whether any alerts fired.",
               "jkType": "risk_control",
               "jkObjective": "A rolling baseline monitor that detects attack patterns invisible to per-event controls by tracking cumulative behavioural deviation across four system-wide metrics. Where upstream controls check individual events, this monitor checks whether the session-level or hourly-level pattern has drifted statistically from normal — catching coordinated extraction campaigns, distributed data harvesting, and sustained injection probing that each stay below per-key thresholds but collectively exceed the 2-standard-deviation boundary.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A daily 'Behavioural Anomaly Report' showing the rolling 7-day baseline for all four metrics, every alert fired with the triggering metric value and standard deviation at trigger, the response action executed per alert, and a zero count of metric deviations exceeding 2 standard deviations that did not trigger an alert and a documented response action within one monitoring cycle.",
               "jkTask": [
                 "1. Define the four monitored metrics, their rolling 7-day baseline structure (mean and standard deviation), and the runbook response action per metric as structured constants — replacing simulated values with live time-series database queries in production.",
@@ -3012,7 +2955,6 @@
               "jkText": "Generate an 'Adversarial Pattern Detection Test Report' after every test run covering CS-P-01, CS-P-02, and CS-P-03. The report must show every prompt evaluated, the Layer 1 keyword result, the Layer 2 stripped character count and code points, the Layer 3 cosine similarity score, the gate decision, and a zero count of blocked prompts that reached the Embedding Model or Retriever.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the three-layer adversarial gate correctly blocks injection attempts hidden behind Unicode characters and off-purpose semantic probing while passing legitimate queries without false positives.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Adversarial Pattern Detection Test Report' showing CS-P-01: gate_approved = false, Zero-Width character logged, injection phrase detected post-strip; CS-P-02: gate_approved = true, no alert fired; CS-P-03: gate_approved = false, cosine_similarity = 0.41; and zero count of blocked prompts reaching the Embedding Model."
             },
             {
@@ -3022,7 +2964,6 @@
               "jkText": "Generate an 'Ingestion Integrity Test Report' after every test run covering CS-P-04 and CS-P-05. The report must show the four-step check result per document, the rejection step, the rejection reason, whether the document was routed to the human security review queue, and a zero count of flagged documents written to the Vector Store.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the four-step ingestion gate correctly blocks documents containing embedded instruction patterns and hard-rejects documents from unlisted sources before any processing occurs.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Ingestion Integrity Test Report' showing CS-P-04: step3 flagged 'always respond with', routed_to_review = true, Vector Store entry count = 0; CS-P-05: HARD_REJECT_STEP1, routed_to_review = false, no subsequent step fields present."
             }
           ]
@@ -3060,7 +3001,6 @@
               "jkText": "Generate a 'Query Pattern Anomaly Test Report' after every test run covering CS-P-06, CS-P-07, and CS-P-08. The report must show the API key identifier, query count at flag, semantic variance score at flag, the monitor that triggered, the security alert confirmation, and a zero count of sessions that exceeded the rate limit or fell below 0.15 variance without triggering a suspension or alert.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving both extraction detection monitors fire correctly at their defined thresholds and produce no false positives against legitimate high-volume usage patterns.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Query Pattern Anomaly Test Report' showing CS-P-06: RATE_LIMIT_SUSPENSION at query 501, API key suspended; CS-P-07: PATTERN_ANOMALY_DETECTED, semantic_variance < 0.15; CS-P-08: no alerts fired, all 60 queries approved, variance consistently above 0.15."
             }
           ]
@@ -3104,7 +3044,6 @@
               "jkText": "Generate a 'Build Integrity Test Report' after every test run covering CS-P-09 and CS-P-10. The report must show the artefact content address hash, the result of each of the three checks, the deployment decision, the security alert confirmation, and a zero count of unsigned, self-merged, or hardcoded-credential artefacts that reached the deployment pipeline.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving all three build integrity checks operate as independent blocking controls and that no artefact targeting the Orchestrator, Input Guardrail, or Output Guardrail can reach the deployment pipeline with any single control failing.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Build Integrity Test Report' showing CS-P-09: all three controls failed, deployment_approved = false, BUILD_INTEGRITY_FAILURE alert lists all three; CS-P-10: peer_review.passed = false independently blocks deployment, self-merge reason recorded."
             },
             {
@@ -3114,7 +3053,6 @@
               "jkText": "Generate a 'Supply Chain Integrity Test Report' after every test run covering CS-P-11 and CS-P-12. The report must show the three-path check result per asset, the failure reason, the supply chain approval decision, the security alert confirmation, and a zero count of hash-mismatched or stale-verified assets consumed by the build or ingestion pipeline.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the three-path supply chain gate correctly blocks hash-mismatched libraries and stale data sources before they enter the build or ingestion pipeline.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Supply Chain Integrity Test Report' showing CS-P-11: path1_library hash mismatch detected, supply_chain_approved = false, alert fired; CS-P-12: path3_data_source days_since_verified = 45, freshness_verified = false, supply_chain_approved = false, alert fired."
             }
           ]
@@ -3164,7 +3102,6 @@
               "jkText": "Generate an 'Access Control Test Report' after every test run covering CS-P-13 and CS-P-14. The report must show the user role, MFA status, requested endpoint, access decision, denial reason, and security alert confirmation for each test — with a zero count of under-privileged or MFA-incomplete requests that reached a protected endpoint.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the RBAC and MFA enforcement gate independently blocks both role-insufficient and MFA-incomplete access attempts before any protected endpoint is reached.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Access Control Test Report' showing CS-P-13: ACCESS_DENIED for viewer role on vector_store_admin, PRIVILEGE_ESCALATION_ATTEMPT alert fired; CS-P-14: ACCESS_DENIED for mfa_verified = false, reason = 'MFA not completed', endpoint not reached."
             },
             {
@@ -3174,7 +3111,6 @@
               "jkText": "Generate an 'Unexpected Input Pattern Test Report' after every test run covering CS-P-15 and CS-P-16. The report must show the input type tested, the detection mechanism triggered, the action taken, and confirmation that no oversized or homoglyph-substituted prompt reached the Embedding Model or Retriever in its original form.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the Input Guardrail correctly blocks Token Flooding payloads and normalises Homoglyph Substitution attempts before any keyword scan or retrieval step runs.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Unexpected Input Pattern Test Report' showing CS-P-15: INPUT_REJECTED with character_count = 15000, prompt not forwarded; CS-P-16: HOMOGLYPH_NORMALISED with substituted character code points logged, keyword scan ran on normalised text."
             },
             {
@@ -3184,7 +3120,6 @@
               "jkText": "Generate an 'MFA Failure Lockout Test Report' after every test run covering CS-P-17. The report must show the failed attempt count, the lockout trigger event, the locked_at timestamp, the security alert confirmation, and a zero count of post-lockout access requests that were approved before an administrator unlock event was recorded.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the MFA lockout mechanism activates on the fifth consecutive failure and blocks all subsequent access from the locked account until an explicit human administrator unlock event is recorded in the audit log.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'MFA Failure Lockout Test Report' showing CS-P-17: ACCOUNT_LOCKED at failed_attempts = 5, BRUTE_FORCE_MFA_DETECTED alert fired, all post-lockout requests return approved = false, and zero approved requests recorded before administrator unlock event."
             }
           ]
@@ -3228,7 +3163,6 @@
               "jkText": "Generate an 'Anomaly Detection Test Report' after every test run covering CS-P-18, CS-P-19, CS-P-20, and CS-P-21. The report must show the metric name, observed value, threshold, breach decision, runbook action executed, security alert confirmation, and a zero count of threshold breaches that did not trigger the correct runbook action.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the anomaly monitor fires the correct runbook action at each defined threshold and produces no false positives under normal operating conditions.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Anomaly Detection Test Report' showing CS-P-18: prompt_injection_rate breach at 0.06, correct runbook action executed; CS-P-19: error_rate breach at 0.11, throttle action executed; CS-P-20: semantic_drift breach at 0.31, compliance alert fired; CS-P-21: zero breaches, zero alerts."
             },
             {
@@ -3238,7 +3172,6 @@
               "jkText": "Generate a 'Runbook Execution Audit Report' after every test run covering CS-P-18, CS-P-19, and CS-P-20. The report must show the runbook action executed per breach event, the time elapsed between threshold breach detection and action execution, and confirmation that the executed action matches the RUNBOOK_ACTIONS entry declared in fieldGroup [8.4.1].",
               "jkType": "test_control",
               "jkObjective": "To provide an auditable evidence record proving that every automated runbook response executed by the Behavioural Anomaly Monitor matches the action declared by the Requester in fieldGroup [8.4.1] — confirming the system executes exactly what was declared and nothing else.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Runbook Execution Audit Report' showing each breach event's executed action matched the corresponding RUNBOOK_ACTIONS entry from fieldGroup [8.4.1], elapsed time from breach detection to action execution recorded in milliseconds, and zero discrepancies between declared and executed actions across all three breach test cases."
             }
           ]
@@ -3266,7 +3199,6 @@
               "jkText": "An automated evaluation pipeline using a human-validated Golden Dataset must enforce a minimum RAGAS Faithfulness threshold of 0.80 before every deployment.",
               "jkType": "risk_control",
               "jkObjective": "A pre-deployment gate that scores how well the AI's answers are grounded in their source documents. It runs automatically on every deployment using a fixed Golden Dataset and blocks the build if the Faithfulness score falls below 0.80, preventing factually incorrect models from reaching users.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'Accuracy Evaluation Report' generated on every deployment showing the primary metric score, RAGAS Faithfulness score, Golden Dataset size, and a deployment gate result — must show RAGAS Faithfulness ≥ 0.80 for all passing deployments.",
               "jkTask": [
                 "1. Install the RAGAS evaluation library and load a human-validated Golden Dataset into the CI/CD pipeline.",
@@ -3288,7 +3220,6 @@
               "jkText": "The evaluation test set must be isolated in a dedicated repository with SHA-256 integrity verification and IAM policies that explicitly block all training pipeline access.",
               "jkType": "risk_control",
               "jkObjective": "A pre-evaluation integrity check that cryptographically proves the test dataset has not been altered or accessed by the training pipeline. If the hash does not match or a blocked service account is present in the ACL, the evaluation is immediately aborted, ensuring reported accuracy scores reflect genuine unseen-data performance.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Test Set Isolation Report' generated before each evaluation run showing the repository access control list (must contain zero training pipeline service accounts), the SHA-256 hash of the test set at creation, and the re-verified hash immediately before evaluation — both hashes must match.",
               "jkTask": [
                 "1. Calculate a SHA-256 hash of the test dataset at creation time and persist it to a secure metadata store as the reference value.",
@@ -3310,7 +3241,6 @@
               "jkText": "A weekly production monitor must evaluate RAGAS Faithfulness against the Golden Dataset and automatically suspend the Query Interface after two consecutive threshold breaches.",
               "jkType": "risk_control",
               "jkObjective": "A scheduled early-warning system that re-scores the live AI environment weekly against its original Golden Dataset. If the Faithfulness score drops more than 5% below the production baseline for two consecutive cycles, the Query Interface is automatically suspended and an urgent alert is dispatched, preventing users from receiving silently degraded responses.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A weekly 'Accuracy Drift Monitor Report' showing the primary metric score, RAGAS Faithfulness score, delta against baseline, alert threshold status, and Query Interface suspension events — with a zero count of consecutive threshold breaches that did not trigger a Query Interface suspension.",
               "jkTask": [
                 "1. Create a weekly scheduled job that runs the RAGAS evaluation pipeline against the live production environment using the Golden Dataset and returns the current Faithfulness score.",
@@ -3332,7 +3262,6 @@
               "jkText": "A deployment gate must block release if the system's score falls more than 5% below the registered human expert benchmark, unless an engineer provides a documented justification override.",
               "jkType": "risk_control",
               "jkObjective": "A deployment-time check that compares the model's evaluated score against a registered human expert baseline for the specific domain. If the model performs more than 5% below that baseline, the deployment is hard-blocked until an engineer provides a written justification — creating a mandatory audit record for every sub-par release decision.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Benchmark Comparison Report' generated on every deployment showing the benchmark name, benchmark score, system score, classification result, and — for any 'Below Benchmark' result — the engineer override decision, engineer ID, and justification text.",
               "jkTask": [
                 "1. Register a static human expert benchmark score for the target domain in a configuration file (e.g., 0.89 for contract review).",
@@ -3412,7 +3341,6 @@
               "jkText": "Generate an 'Accuracy Evaluation Gate Test Report' after every test run covering AC-P-01 and AC-P-02. The report must show the RAGAS Faithfulness score, the 0.80 threshold, the delta against the last passing score, the gate decision, and a zero count of sub-threshold builds that reached the deployment pipeline.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the RAGAS Faithfulness deployment gate correctly blocks sub-threshold builds and passes compliant builds without false positives.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Accuracy Evaluation Gate Test Report' showing AC-P-01: Faithfulness = 0.86, gate = PASSED, delta logged; AC-P-02: Faithfulness = 0.74, gate = BLOCKED, blocking exception contains score, threshold, and signed delta; zero sub-threshold builds reaching the deployment pipeline."
             },
             {
@@ -3422,7 +3350,6 @@
               "jkText": "Generate a 'Test Set Isolation Test Report' after every test run covering AC-P-03 and AC-P-04. The report must show the SHA-256 hash comparison result, the ACL check result, the gate decision, and confirmation that no RAGAS scoring was executed when either check failed.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the isolation gate independently blocks evaluation when either the hash check or the ACL check fails — confirming accuracy scores can only be produced from an uncontaminated, access-controlled test set.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Test Set Isolation Test Report' showing AC-P-03: hash mismatch detected, evaluation aborted, no RAGAS score produced; AC-P-04: hash passed, ACL check failed with 'training-pipeline-role' identified, evaluation aborted, no RAGAS score produced."
             },
             {
@@ -3432,7 +3359,6 @@
               "jkText": "Generate an 'Accuracy Drift Monitor Test Report' after every test run covering AC-P-05 and AC-P-06. The report must show the weekly Faithfulness score, delta against baseline, breach counter value, Query Interface status, alert dispatch confirmation, and a zero count of consecutive threshold breaches that did not result in Query Interface suspension.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the production drift monitor suspends the Query Interface after two consecutive Faithfulness breaches and does not produce false positive suspensions for score fluctuations within the declared drift tolerance.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Accuracy Drift Monitor Test Report' showing AC-P-05: week one breach logged, consecutive_breaches = 1; week two breach logged, consecutive_breaches = 2, query_interface_status = SUSPENDED, urgent notification dispatched; AC-P-06: delta = 0.02, no breach, consecutive_breaches = 0, status = RUNNING."
             },
             {
@@ -3442,7 +3368,6 @@
               "jkText": "Generate a 'Benchmark Comparison Test Report' after every test run covering AC-P-07 and AC-P-08. The report must show the system score, benchmark score, classification result, gate decision, and — for AC-P-08 — the engineer ID, justification text, and confirmation the override audit log entry was written with all four mandatory fields.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the benchmark comparison gate blocks sub-benchmark deployments without a documented override and correctly records engineer-authorised overrides with full justification in the audit log.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Benchmark Comparison Test Report' showing AC-P-07: classification = BELOW_BENCHMARK, gate = DEPLOYMENT BLOCKED, no override fields present; AC-P-08: classification = BELOW_BENCHMARK_OVERRIDE, engineer_id = 'eng-sarah-01', justification recorded in full, audit log entry contains all four mandatory fields."
             }
           ]
@@ -3470,7 +3395,6 @@
               "jkText": "The data ingestion pipeline must run two independent checks on every inbound document — a provenance source path check and a cryptographic AI-generated marker check — before any document is written to the Vector Store or passed to the Embedding Model, and must route any rejected document to a human review queue with a structured rejection log entry.",
               "jkType": "risk_control",
               "jkObjective": "A two-stage pre-ingestion barrier that prevents LLM (Generator) outputs from re-entering the Vector Store or Embedding Model training pipeline without human approval. The first stage rejects any document whose source path matches a declared LLM output store. The second stage rejects any document carrying a cryptographic 'AI-GENERATED:' SHA-256 marker embedded at generation time. Both checks run independently on every document — a document that passes the first check is still evaluated by the second.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Feedback Isolation Log' generated on every ingestion run showing every document evaluated, the provenance check result, the AI-generated marker check result, the count of documents routed to the human review queue, and a zero count of AI-generated documents ingested into the Vector Store or Embedding Model training pipeline without a logged human approval.",
               "jkTask": [
                 "1. Define the LLM output store registry as a structured constant listing all declared LLM (Generator) output paths and domains, and implement the AI marker generation function that prefixes output text with 'AI-GENERATED:' before hashing.",
@@ -3502,7 +3426,6 @@
               "jkText": "The Orchestrator initialisation sequence must configure the LLM with temperature = 0.0, top_p = 1.0, and a fixed integer seed, then execute a fixed probe query and compare its response hash against a stored reference hash — blocking the Query Interface from accepting user input and alerting the engineering team if the hashes do not match.",
               "jkType": "risk_control",
               "jkObjective": "A startup-time determinism probe that runs before the Query Interface accepts any user input and re-runs after every LLM configuration change or model version update. It configures the LLM with temperature = 0.0, top_p = 1.0, and a fixed seed, submits a fixed probe query that is never shown to users, and compares the SHA-256 hash of the response against a stored reference hash. A hash mismatch means the LLM's sampling behaviour has changed — the Query Interface is blocked, the configuration values active at the time of the failure are written to the audit log, and an engineering alert is dispatched. The system cannot return to accepting user input until a passing probe result is logged.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Determinism Validation Log' generated on every system startup and after every LLM (Generator) configuration change, showing the probe query hash, the response hash, the reference hash, the configuration values (temperature, top_p, seed), the hash comparison result, and a zero count of startups where the Query Interface accepted user input with a failing determinism check.",
               "jkTask": [
                 "1. Define the LLM configuration values — temperature, top_p, and seed — as a named configuration dict loaded from a versioned config file, and define the fixed probe query string and its stored reference response hash as named constants.",
@@ -3536,7 +3459,6 @@
               "jkText": "The Input Guardrail must apply a two-stage validation on every prompt — a structural check for null, encoding, and length validity followed by a semantic integrity check against the Embedding Model's vocabulary — rejecting any prompt with an unrecognised token ratio above 30%, attempting domain spell-correction for prompts between 10% and 30%, and logging all check results before any call to the Embedding Model.",
               "jkType": "risk_control",
               "jkObjective": "A two-stage pre-embedding gate that prevents structurally invalid and semantically degraded prompts from reaching the Embedding Model. Stage 1 catches hard corruption — null payloads, broken encodings, and out-of-bounds lengths — with an immediate HTTP 400 rejection. Stage 2 catches soft corruption by measuring how many tokens the Embedding Model's vocabulary does not recognise: above 30% the prompt is rejected outright; between 10% and 30% the gate attempts domain-specific spell-correction and re-evaluates before deciding whether to pass or reject.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'Input Sanitisation Log' generated per session showing every prompt evaluated, the Stage 1 and Stage 2 check results, the unrecognised token ratio for each prompt, corrections applied, and a zero count of prompts with an unrecognised token ratio above 30% that reached the Embedding Model.",
               "jkTask": [
                 "1. Define the maximum prompt length, unrecognised token ratio thresholds, simulated Embedding Model vocabulary, and domain vocabulary list as named constants.",
@@ -3562,7 +3484,6 @@
               "jkText": "The Orchestrator must monitor the response latency of every external dependency on every pipeline execution, automatically switch to the declared degraded mode for any dependency that exceeds its configured threshold for 3 consecutive calls, send an immediate engineering alert, and automatically restore normal operation after 5 consecutive below-threshold calls.",
               "jkType": "risk_control",
               "jkObjective": "A per-dependency latency monitor that records response time on every Orchestrator call to the Vector Store, Embedding Model, and upstream data sources. When any dependency exceeds its declared threshold for three consecutive calls, the Orchestrator switches automatically to the pre-defined degraded mode for that dependency without waiting for manual intervention. Normal mode is restored automatically after five consecutive below-threshold calls. Every state transition is logged and an engineering alert is dispatched at activation.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "An 'Environment Degradation Log' showing every dependency latency measurement, the threshold applied, degraded mode activations with timestamps, the degraded mode behaviour executed, engineering team alert sent confirmation, and recovery events — with a zero count of threshold breaches that did not trigger a degraded mode activation within 3 consecutive calls.",
               "jkTask": [
                 "1. Define per-dependency latency thresholds, consecutive breach and recovery counters, and the degraded mode behaviour descriptor for each dependency as named constants, and initialise per-dependency state tracking.",
@@ -3596,7 +3517,6 @@
               "jkText": "The Orchestrator must register a health check handler for every RAG component, execute the component's declared safe state behaviour within 500 milliseconds of any failure status, default to maintenance mode and Query Interface blocking when no safe state is declared, and log every activation event with an engineering alert — never default to silent bypass.",
               "jkType": "risk_control",
               "jkObjective": "A component health wrapper that intercepts every failure signal from every RAG component before it can either crash the pipeline or be silently swallowed. When a failure is detected, it immediately looks up the declared safe state for that component — serving a cached response with a staleness warning, displaying a maintenance message and blocking new queries, or routing to a human reviewer queue — and activates it within 500 milliseconds. When no safe state is declared, it defaults to maintenance mode. Silent bypass is structurally impossible: the wrapper never returns control to the pipeline without either a confirmed component response or a confirmed safe state activation.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Safe State Activation Log' generated per incident showing the failed component name, failure status code, safe state behaviour activated, time elapsed between failure detection and safe state activation (must be ≤ 500 milliseconds), engineering alert sent confirmation, and a zero count of component failures that resulted in silent bypass or unhandled crash.",
               "jkTask": [
                 "1. Define the safe state behaviour registry as a named constant mapping every RAG component to its declared safe state — 'maintenance_message', 'serve_cached_with_warning', or 'route_to_human_queue' — and define the default safe state for any component with no declared behaviour.",
@@ -3620,7 +3540,6 @@
               "jkText": "The Orchestrator must automatically route the current and all subsequent requests to a declared redundant instance within 200 milliseconds when the primary Vector Store, Embedding Model, or LLM exceeds its latency threshold or returns an error, and must suppress any LLM response that fails a pre-Output-Guardrail plausibility sanity check — routing it to the human reviewer queue and writing a violation log entry.",
               "jkType": "risk_control",
               "jkObjective": "A two-part protection against single-component availability failures and contextually implausible outputs. The failover gate monitors the active instance for every redundant component pair and switches to the backup instance within 200 milliseconds of a latency breach or error, re-issuing the in-flight request to the backup without dropping it. The Output Sanity Check runs after generation but before the Output Guardrail — it evaluates the response against domain-specific plausibility rules and suppresses any response that violates them, routing the query to human review before the Output Guardrail ever sees it. A plausibility-failed response never reaches the Response Interface under any circumstance.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "A 'Redundancy Failover Log' showing every primary component failure, the failover timestamp, the redundant instance activated, the time elapsed between failure and failover (must be ≤ 200 milliseconds), and a 'Sanity Check Violation Log' showing every response suppressed, the plausibility rule triggered, and a zero count of sanity-check-failed responses delivered to the Response Interface.",
               "jkTask": [
                 "1. Define per-component failover latency thresholds and initialise per-component active-instance state tracking as named constants and a mutable state dict.",
@@ -3698,7 +3617,6 @@
               "jkText": "Generate an 'Input Sanitisation Test Report' after every test run covering RB-P-01, RB-P-02, and RB-P-03. The report must show the stage reached, the unrecognised token ratio before and after correction, the gate decision, and a zero count of prompts with an unrecognised token ratio above 30% or a null payload that reached the Embedding Model.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the two-stage sanitisation gate correctly blocks null payloads at Stage 1, rejects high-corruption prompts at Stage 2, and passes clean prompts without false positives.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Input Sanitisation Test Report' showing RB-P-01: STAGE1_STRUCTURAL_REJECTION, http_response = 400, Stage 2 not reached; RB-P-02: stage = 2, ratio_final > 0.30, accepted = false; RB-P-03: ratio_final = 0.0, accepted = true, Embedding Model invoked; zero prompts above threshold reaching the Embedding Model."
             },
             {
@@ -3708,7 +3626,6 @@
               "jkText": "Generate an 'Environment Degradation Test Report' after every test run covering RB-P-04 and RB-P-05. The report must show the latency value and breach/recovery counter per call, the degraded mode activation event with elapsed timestamp, the engineering alert confirmation, the recovery event, and a zero count of three-consecutive-breach sequences that did not trigger degraded mode activation.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the latency monitor activates degraded mode on exactly the third consecutive breach, dispatches an engineering alert, and automatically recovers normal operation after five consecutive below-threshold calls.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Environment Degradation Test Report' showing RB-P-04: DEGRADED_MODE_ACTIVATED on third breach, breaches_in_window = 3, alert dispatched, behaviour descriptor correct; RB-P-05: DEGRADED_MODE_RECOVERED after fifth below-threshold call, recoveries_in_window = 5, degraded = false."
             },
             {
@@ -3718,7 +3635,6 @@
               "jkText": "Generate a 'Feedback Isolation Test Report' after every test run covering RB-P-06 and RB-P-07. The report must show the provenance check result, the marker check result, the rejection reason, the human review queue entry confirmation, and a zero count of AI-generated or LLM-store-sourced documents written to the Vector Store.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving both isolation checks operate as independent blocking controls — an AI-marked document is caught at Check 2 even when Check 1 passes, and an LLM-store-sourced document is caught at Check 1 independently of Check 2.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Feedback Isolation Test Report' showing RB-P-06: provenance_check = OK, marker_check = AI-generated source, routed to review, Vector Store entry count = 0; RB-P-07: provenance_check = Provenance match, rejected at Check 1, Check 2 not evaluated, review queue entry confirmed."
             }
           ]
@@ -3774,7 +3690,6 @@
               "jkText": "Generate a 'Safe State Activation Test Report' after every test run covering RB-P-08 and RB-P-09. The report must show the failed component, the safe state behaviour activated, the elapsed milliseconds from failure to activation, the engineering alert confirmation, and a zero count of component failures that resulted in silent bypass or unhandled crash.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the component call wrapper activates the correct declared safe state within 500 milliseconds for both registered and unregistered components, making silent bypass structurally impossible.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Safe State Activation Test Report' showing RB-P-08: SAFE_STATE_ACTIVATED for embedding_model, safe_state_behaviour = maintenance_message, elapsed_ms ≤ 500, alert sent; RB-P-09: default safe state activated for unregistered component, elapsed_ms ≤ 500, pipeline did not advance; zero silent bypass events."
             },
             {
@@ -3784,7 +3699,6 @@
               "jkText": "Generate a 'Redundancy Failover Test Report' after every test run covering RB-P-10 and RB-P-11. The report must show the failover elapsed time, the backup instance activated, the re-issued request confirmation, the plausibility rule triggered, the suppression result, and a zero count of plausibility-failed responses delivered to the Response Interface.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the failover gate switches to a backup instance within 200 milliseconds and the Output Sanity Check suppresses domain-implausible responses before they reach the Output Guardrail or Response Interface.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Redundancy Failover Test Report' showing RB-P-10: FAILOVER_ACTIVATED, elapsed_ms ≤ 200, backup instance recorded, request re-issued successfully; RB-P-11: plausibility rule triggered, suppressed = true, routed_to_human_review = true, zero plausibility-failed responses reaching the Response Interface."
             },
             {
@@ -3794,7 +3708,6 @@
               "jkText": "Generate a 'Determinism Validation Test Report' after every test run covering RB-P-12 and RB-P-13. The report must show the probe response hash, the reference hash, the hash comparison result, the active LLM configuration values, the Query Interface gate status, and a zero count of startups where the Query Interface accepted user input with a failing determinism check on record.",
               "jkType": "test_control",
               "jkObjective": "To provide a per-run evidence record proving the determinism gate blocks system startup when the LLM response hash does not match the reference and opens the Query Interface only when a passing hash match is confirmed and logged.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "'Determinism Validation Test Report' showing RB-P-12: response_hash = reference_hash, passed = true, query_interface_available = true; RB-P-13: response_hash ≠ reference_hash, passed = false, temperature = 0.7 logged, STARTUP BLOCKED error raised, query_interface_available = false; zero startups with open Query Interface and failing determinism check."
             }
           ]
@@ -3836,7 +3749,6 @@
               "jkText": "All build tools, CI/CD pipelines, and Kubernetes nodes must pull and push container images exclusively over TLS-encrypted registry endpoints — plain HTTP must be disabled in every container runtime configuration. An admission controller must enforce that only images from an approved registry allowlist are admitted, and where image signing is in use, signature verification must pass before admission.",
               "jkType": "risk_control",
               "jkObjective": "To ensure that every image in transit is encrypted against interception and that only images from cryptographically trusted, explicitly approved sources can run in the cluster — closing both the in-transit tampering path and the untrusted image admission path with a single enforcement chain.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "Container runtime configuration files showing no insecure-registry entries, admission controller policy logs confirming rejection of non-TLS registry URLs and unapproved image sources, and where signing is in use, signature verification audit logs.",
               "jkTask": [
                 "1. Audit and update all build tool, CI/CD pipeline, and Kubernetes node configurations to use HTTPS registry URLs, and remove or empty the 'insecure-registries' field from every container runtime daemon configuration.",
@@ -3853,7 +3765,6 @@
               "jkText": "A scheduled registry pruning job must run at least weekly and delete images older than the defined retention period or flagged as critical or high severity by the image scanner, excluding currently deployed digests. Dockerfiles and image layers must contain no hardcoded credentials or API keys — a secret scanning gate must run in CI and block image promotion on any finding, with all secret material injected at runtime from an encrypted secret store.",
               "jkType": "risk_control",
               "jkObjective": "To prevent old, vulnerable, or secret-bearing images from persisting in the registry where they can be re-deployed by mistake or have their layers extracted to recover credentials — combining lifecycle pruning and secret hygiene into a single image hygiene control.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "Pruning job execution logs showing images removed per run with no impact on deployed digests, image scan reports confirming zero critical/high images remain beyond the retention window, and CI secret scan reports confirming zero hardcoded secrets in promoted images.",
               "jkTask": [
                 "1. Define the image retention policy (maximum age and vulnerability severity threshold) and implement a scheduled job (Kubernetes CronJob or cloud registry lifecycle rule) that collects currently deployed digests as an exclusion list, then deletes all images meeting the retention or vulnerability criteria not in the exclusion list.",
@@ -3878,7 +3789,6 @@
               "jkText": "Fine-grained RBAC must restrict registry write permissions to CI/CD service accounts and a named set of release engineers, with all write operations audited. The Kubernetes control plane must be integrated with the corporate IdP via OIDC or SAML with MFA enforced for all cluster-admin accounts — static long-lived credentials must be disabled where supported.",
               "jkType": "risk_control",
               "jkObjective": "To ensure that both the registry and the cluster control plane require verified, scoped identity before any write or administrative action — so that a single compromised account cannot overwrite production images or gain full cluster control without passing a second authentication factor.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "Registry RBAC configuration export showing no general-purpose developer accounts with write access to production model repositories, IdP configuration confirming MFA is enforced for the cluster-admin group, and the orchestrator authentication configuration pointing to the OIDC or SAML provider.",
               "jkTask": [
                 "1. Audit all registry users and service accounts — remove write access from general-purpose developer accounts on production model repositories, and apply repository-scoped roles: write for CI/CD service accounts and named release engineers only, read-only for all other consumers.",
@@ -3895,7 +3805,6 @@
               "jkText": "All AI component Dockerfiles must specify a non-root USER directive. All pod and container securityContext configurations must set 'runAsNonRoot: true', a non-zero 'runAsUser' and 'runAsGroup', 'allowPrivilegeEscalation: false', and minimal capability grants. Kernel-level security mechanisms (AppArmor or SELinux) must be enabled for AI workload nodes. Admission policies must reject any pod running as UID 0, with 'privileged: true', or with hostPID or hostNetwork enabled.",
               "jkType": "risk_control",
               "jkObjective": "To close the privilege escalation path at both the container and host layers — ensuring that code execution inside a container operates with the minimum privilege required, and that kernel-enforced mandatory access control prevents escalation to host root even when container-level controls are bypassed.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "Dockerfiles showing a non-root USER directive, deployment manifests showing 'runAsNonRoot: true', non-zero 'runAsUser' and 'runAsGroup', and 'allowPrivilegeEscalation: false', AppArmor or SELinux profiles applied to AI workload nodes, and admission policy logs confirming rejection of UID 0 and privileged pod specs.",
               "jkTask": [
                 "1. Update all AI component Dockerfiles to create a dedicated non-root user and group and set the USER directive before the ENTRYPOINT or CMD instruction.",
@@ -3920,7 +3829,6 @@
               "jkText": "Sensitivity-based namespaces must be defined with a default-deny NetworkPolicy applied to each. Explicit allow rules must permit only documented ingress and egress paths per namespace, with egress from sensitive AI workloads restricted to required services only. AI-serving namespaces must accept ingress only from authorised frontend services.",
               "jkType": "risk_control",
               "jkObjective": "To ensure that a compromise in any lower-sensitivity workload cannot be used to pivot into AI model-serving or data-handling components — making lateral movement structurally impossible without an explicit, declared network policy allow rule.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "NetworkPolicy manifests showing default-deny posture and explicit allow rules per namespace, and connectivity test results confirming pods in non-sensitive namespaces cannot reach pods or databases in sensitive namespaces.",
               "jkTask": [
                 "1. Define sensitivity-based namespaces (e.g., 'ai-prod', 'ai-dev', 'ai-external') and apply a default-deny NetworkPolicy to every namespace — blocking all ingress and egress unless explicitly permitted.",
@@ -3937,7 +3845,6 @@
               "jkText": "All AI-serving and orchestration APIs must be placed behind an API gateway or ingress controller enforcing strong authentication (OAuth2, OIDC, or signed API keys), fine-grained authorisation by role or consumer ID, and per-consumer rate limits. Unauthenticated requests must be rejected with 401 or 403; clients exceeding their rate limit must receive 429. All requests must be logged with the authenticated identity.",
               "jkType": "risk_control",
               "jkObjective": "To ensure every AI API request is attributed to an authenticated, authorised identity and that no single consumer can exhaust inference capacity — preventing both unauthorised access and volumetric denial of service from the first external exposure of any AI endpoint.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "API gateway configuration showing authentication, authorisation, and rate-limiting policies in force, and access logs mapping every request to an authenticated identity with 401, 403, and 429 responses visible for unauthenticated and rate-limited consumers.",
               "jkTask": [
                 "1. Deploy or configure an API gateway or ingress controller in front of all AI-serving and orchestration endpoints — enforce authentication using OAuth2, OIDC, or signed API keys, and reject all unauthenticated requests with 401.",
@@ -3962,7 +3869,6 @@
               "jkText": "Kubernetes nodes must run minimal, hardened OS images with unnecessary services disabled and kernel packages patched via an automated pipeline. Host instances dedicated to containerised workloads must run no non-containerised processes outside the container runtime. Node labels and taints must enforce that sensitive AI workloads schedule only on hardened, monitored nodes and that general workloads cannot tolerate those nodes.",
               "jkType": "risk_control",
               "jkObjective": "To ensure that a container escape from any workload — including a lower-trust CI job co-located with AI model-serving pods — reaches a host with the smallest possible attack surface, no exploitable legacy services, and no non-containerised processes that could expose the container runtime APIs.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "Patch management reports and security scan results showing no unpatched critical OS CVEs beyond the defined SLA, host configuration baseline confirming minimal OS install with unnecessary services disabled, node label and taint configuration showing sensitive AI workloads are restricted to hardened nodes, and host inventory confirming no non-containerised processes run on container-only nodes.",
               "jkTask": [
                 "1. Standardise on a minimal, hardened OS image for all Kubernetes nodes (e.g., CIS-hardened or container-optimised distribution), disable all unnecessary services, and implement an automated patch pipeline that applies kernel and OS updates within the defined SLA for critical CVEs.",
@@ -3987,7 +3893,6 @@
               "jkText": "All AI-serving containers must run with 'readOnlyRootFilesystem: true' in their securityContext, with write operations performed only on explicitly mounted volumes. Admission policies must forbid hostPath mounts to sensitive host directories (e.g., '/', '/var/run', '/etc', '/var/run/docker.sock'). CI/CD pipelines must deliver changes by building a new image — never by mutating a running container.",
               "jkType": "risk_control",
               "jkObjective": "To prevent an attacker who achieves code execution inside a container from writing persistent backdoors to the root filesystem or gaining host-level access via sensitive hostPath mounts — making post-exploit persistence and host filesystem access structurally impossible for the container.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "Deployment manifests showing 'readOnlyRootFilesystem: true' and explicitly declared writable volume mounts, admission controller policy logs confirming rejection of sensitive hostPath mount attempts, and CI/CD pipeline configuration showing changes are delivered by new image builds.",
               "jkTask": [
                 "1. Set 'readOnlyRootFilesystem: true' in the securityContext for all AI-serving containers, identify all paths requiring write access at runtime, and declare explicit volume mounts (emptyDir or persistent volumes) for each.",
@@ -4004,7 +3909,6 @@
               "jkText": "All production and non-production AI clusters must have Pod Security Standards set to enforcing mode, RBAC configured, audit logging enabled, and admission controllers active — documented as a cluster security baseline that every new cluster must inherit. All AI-related pods must have explicit CPU and memory requests and limits defined. Admission policies must reject or mutate to safe defaults any pod submitted without resource limits.",
               "jkType": "risk_control",
               "jkObjective": "To ensure that the platform's built-in security enforcement is active and consistent across every cluster, and that no AI workload can consume unbounded resources — preventing both the security regression that occurs when a new cluster inherits no baseline and the self-inflicted denial of service caused by resource-unlimited batch workloads.",
-              "jkImplementationStatus": "",
               "jkImplementationEvidence": "Cluster security baseline document listing all enabled platform security features per cluster, cluster inspection results confirming Pod Security Standards are in enforcing mode, and deployment manifests showing CPU and memory requests and limits defined for all AI-related containers.",
               "jkTask": [
                 "1. Define a cluster security baseline document that specifies the required state for Pod Security Standards (enforcing mode), RBAC, audit logging, admission controllers, and securityContext defaults — enforce it as a required template for all new cluster provisioning.",

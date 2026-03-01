@@ -38,17 +38,19 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     controlLabel.textContent = 'Controls';
     contentDiv.appendChild(controlLabel);
 
-    // --- 4. Build Set of valid control numbers from mindmap ---
-    const mindmapControlNumbers = new Set();
-    if (mindmap) {
-        mindmap.forEach(groups => groups.forEach(gData =>
-            gData.requirements.forEach(reqEntry =>
-                reqEntry.implementations.forEach(impl =>
-                    mindmapControlNumbers.add(impl.control_number)
-                )
-            )
-        ));
-    }
+	// --- 4. Build Set of valid control numbers from mindmap ---
+	const mindmapControlNumbers = new Set();
+	if (mindmap) {
+		mindmap.forEach(groups => groups.forEach(gData =>
+			gData.requirements.forEach(reqEntry => {
+				// --- Only include controls from applicable requirements ---
+				if (fieldStoredValue(reqEntry.requirement, true) !== 'Applicable') return;
+				reqEntry.implementations.forEach(impl =>
+					mindmapControlNumbers.add(impl.control_number)
+				);
+			})
+		));
+	}
 
     // --- 5. Iterate and Display Controls ---
     const controlsDiv = document.createElement('div');
