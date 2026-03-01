@@ -77,6 +77,7 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
         checkboxGroupContainer.appendChild(wrapper);
     });
     
+    fieldDiv.appendChild(checkboxGroupContainer);
     
 	const evidenceValue = fieldStoredValue(field);
 
@@ -102,10 +103,6 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
 		fieldDiv.appendChild(linkWrapper);
 
 	}
-    
-    
-    
-    fieldDiv.appendChild(checkboxGroupContainer);
 
     return fieldDiv;
 } 
