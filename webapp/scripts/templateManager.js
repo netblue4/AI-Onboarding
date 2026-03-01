@@ -178,10 +178,10 @@ class TemplateManager {
 								//const statusElement = document.querySelector(`select[name="${controlKey}_jkImplementationStatus"]`);
 								const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
 					
-								const statusValue = statusElement ? statusElement.value : "Select";
+								//const statusValue = statusElement ? statusElement.value : "Select";
 								const evidenceValue = evidenceElement ? evidenceElement.value : "";
 					
-								if ((statusValue !== "Select") || (evidenceValue !== "")) {
+								if (evidenceValue !== "") {
 									currentData[controlKey] = control.jkText;
 									//currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
 									currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
