@@ -197,12 +197,6 @@ function exportToJiraCsv() {
             .trim();
     }
 
-    // --- Format code sample as Jira wiki code block ---
-    function formatCodeSample(arr) {
-        if (!arr || !arr.length) return '';
-        return '{code:python}\n' + arr.join('\n') + '\n{code}';
-    }
-
     // --- Helper: determine category from control_number ---
     function getCategory(control_number) {
         const cNum = String(control_number || '');
@@ -214,8 +208,27 @@ function exportToJiraCsv() {
     // --- Helper: build Jira search URL using systemId + control_number ---
     function buildJiraUrl(controlNumber) {
         const searchTerm = `${systemId} - ${controlNumber}`;
-        const cleanSearchTerm = searchTerm.replace(/[\[\],-]/g, '');
-        return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(cleanSearchTerm)}%22`;
+        return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(searchTerm)}%22`;
+    }
+
+    // --- Helper: build zipped task + code sample description ---
+    function buildTaskCodeDescription(impl) {
+        const taskArray = Array.isArray(impl.jkTask)
+            ? impl.jkTask
+            : [impl.jkTask].filter(Boolean);
+        const codeArray = Array.isArray(impl.jkCodeSample)
+            ? impl.jkCodeSample
+            : [impl.jkCodeSample].filter(Boolean);
+
+        if (taskArray.length === 0) return '';
+
+        return taskArray.map((task, i) => {
+            const parts = [`h4. Task ${i + 1}\n${sanitizeForCsv(task)}`];
+            if (codeArray[i]) {
+                parts.push(`h4. Code Sample ${i + 1}\n{code:python}\n${codeArray[i]}\n{code}`);
+            }
+            return parts.join('\n\n');
+        }).join('\n\n----\n\n');
     }
 
     // --- CSV Header ---
@@ -264,17 +277,19 @@ function exportToJiraCsv() {
                     if (seen.has(cNum)) return;
                     seen.add(cNum);
 
-                    // --- Build description in Jira wiki markup ---
+                    // --- Build zipped task + code description ---
+                    const taskCodeSection = buildTaskCodeDescription(impl);
+
+                    // --- Build full description in Jira wiki markup ---
                     const descriptionParts = [
                         `h3. Control: ${impl.control_number} - ${impl.jkName || ''}`,
                         impl.jkText         ? `h4. Description\n${sanitizeForCsv(impl.jkText)}`          : '',
                         impl.jkAttackVector ? `h4. Attack Vector\n${sanitizeForCsv(impl.jkAttackVector)}` : '',
-                        impl.jkTask         ? `h4. Task\n${sanitizeForCsv(impl.jkTask.join('\n'))}`       : '',
-                        impl.jkCodeSample   ? `h4. Code Sample\n${formatCodeSample(impl.jkCodeSample)}`  : ''
+                        taskCodeSection     ? taskCodeSection                                              : '',
                     ].filter(Boolean).join('\n\n');
 
-                    // --- Prefixed ticket summary: SystemID - [control_number]] ---
-                    const subTaskSummary = `${systemId} - ${impl.control_number}: ${impl.jkName}`;
+                    // --- Prefixed ticket summary: [SystemID] [Category] [[control_number]] ---
+                    const subTaskSummary = `[${systemId}] [${category}] [[${impl.control_number}]]: ${impl.jkName || impl.jkText || ''}`;
 
                     rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
 
@@ -319,7 +334,7 @@ function exportToJiraCsv() {
         exportedImpls.forEach(({ impl }) => {
             const sanitizedKey = sanitizeForId(impl.control_number);
             const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
-            //const statusKey = `${sanitizedKey}_jkImplementationStatus`;
+            const statusKey = `${sanitizedKey}_jkImplementationStatus`;
 
             // --- Build Jira URL using systemId + control_number ---
             const jiraUrl = buildJiraUrl(impl.control_number);
