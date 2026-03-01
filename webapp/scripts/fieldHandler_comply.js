@@ -210,12 +210,9 @@ function exportToJiraCsv() {
         const searchTerm = `${systemId} ${controlNumber}`;
         const cleanSearchTerm = searchTerm.replace(/[\[\],-]/g, '');
         return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(cleanSearchTerm)}%22`;
-
-        
-        
     }
 
-    // --- Helper: build zipped task + code sample description ---
+    // --- Helper: build zipped task + code sample description for Build/Test ---
     function buildTaskCodeDescription(impl) {
         const taskArray = Array.isArray(impl.jkTask)
             ? impl.jkTask
@@ -233,6 +230,32 @@ function exportToJiraCsv() {
             }
             return parts.join('\n\n');
         }).join('\n\n----\n\n');
+    }
+
+    // --- Helper: build Define description from jkType options or TextBox ---
+    function buildDefineDescription(impl) {
+        const cleanType = String(impl.jkType || '').split(':')[0];
+        const optionsString = String(impl.jkType || '').split(':')[1] || '';
+
+        const parts = [
+            `h3. [Define] ${impl.control_number} - ${impl.jkName || ''}`,
+            impl.jkObjective ? `h4. Objective\n${sanitizeForCsv(impl.jkObjective)}` : '',
+            impl.jkText      ? `h4. Guidance\n${sanitizeForCsv(impl.jkText)}`       : '',
+        ];
+
+        if (cleanType === 'MultiSelect' && optionsString) {
+            // --- Render each option as a Jira checkbox ---
+            const options = optionsString.split('/').map(o => o.trim()).filter(Boolean);
+            const checkboxList = options.map(opt => `() ${opt}`).join('\n');
+            parts.push(`h4. Select all that apply\n${checkboxList}`);
+        } else if (cleanType === 'TextBox') {
+            // --- Render as a blank response area for developer to fill in ---
+            parts.push(`h4. Developer Response\n_Please provide your response below:_\n\n&nbsp;`);
+        }
+
+        parts.push(`h4. Requirement Reference\n${impl.requirement_control_number || ''}`);
+
+        return parts.filter(Boolean).join('\n\n');
     }
 
     // --- CSV Header ---
@@ -256,7 +279,7 @@ function exportToJiraCsv() {
                     const cat = getCategory(impl.control_number);
                     return cat === 'Build' || cat === 'Test';
                 });
-                //if (!hasBuildOrTest) return;
+                if (!hasBuildOrTest) return;
 
                 // --- Assign parent ID ---
                 const parentId = idCounter++;
@@ -271,34 +294,38 @@ function exportToJiraCsv() {
                 reqEntry.implementations.forEach(impl => {
 
                     const category = getCategory(impl.control_number);
-
-                    // Only create Jira tickets for Build and Test controls
-                    //if (category === 'Define') return;
-
                     const cNum = String(impl.control_number || '');
 
-                    // Skip if we have already processed this control_number
+                    // Skip duplicates
                     if (seen.has(cNum)) return;
                     seen.add(cNum);
 
-                    // --- Build zipped task + code description ---
-                    const taskCodeSection = buildTaskCodeDescription(impl);
+                    let descriptionParts = '';
+                    let subTaskSummary = '';
 
-                    // --- Build full description in Jira wiki markup ---
-                    const descriptionParts = [
-                        `h3. Control: ${impl.control_number} - ${impl.jkName || ''}`,
-                        impl.jkText         ? `h4. Description\n${sanitizeForCsv(impl.jkText)}`          : '',
-                        impl.jkAttackVector ? `h4. Attack Vector\n${sanitizeForCsv(impl.jkAttackVector)}` : '',
-                        taskCodeSection     ? taskCodeSection                                              : '',
-                    ].filter(Boolean).join('\n\n');
+                    if (category === 'Define') {
+                        // --- Define: requirements for developers to complete in Jira ---
+                        descriptionParts = buildDefineDescription(impl);
+                        subTaskSummary = `[${systemId}] [Define] ${impl.control_number}: ${impl.jkName || ''}`;
 
-                    // --- Prefixed ticket summary: [SystemID] [Category] [[control_number]] ---
-                    const subTaskSummary = `[${systemId}] [${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
+                    } else {
+                        // --- Build / Test: tasks and code samples ---
+                        const taskCodeSection = buildTaskCodeDescription(impl);
+
+                        descriptionParts = [
+                            `h3. Control: ${impl.control_number} - ${impl.jkName || ''}`,
+                            impl.jkText         ? `h4. Description\n${sanitizeForCsv(impl.jkText)}`          : '',
+                            impl.jkAttackVector ? `h4. Attack Vector\n${sanitizeForCsv(impl.jkAttackVector)}` : '',
+                            taskCodeSection     ? taskCodeSection                                              : '',
+                        ].filter(Boolean).join('\n\n');
+
+                        subTaskSummary = `[${systemId}] [${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
+
+                        // --- Only track Build/Test for Jira URL update ---
+                        exportedImpls.push({ impl });
+                    }
 
                     rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
-
-                    // --- Track for post-confirm update ---
-                    exportedImpls.push({ impl });
                 });
             });
         });
@@ -328,17 +355,16 @@ function exportToJiraCsv() {
         const confirmed = confirm(
             `✅ Your Jira CSV has been downloaded.\n\n` +
             `Please upload it into Jira now.\n\n` +
-            `Once uploaded successfully, click OK to mark all ${exportedImpls.length} controls with their Jira ticket URL.\n\n` +
+            `Once uploaded successfully, click OK to mark all ${exportedImpls.length} Build/Test controls with their Jira ticket URL.\n\n` +
             `Click Cancel to skip.`
         );
 
         if (!confirmed) return;
 
-        // --- Update evidence field with Jira URL for each exported impl ---
+        // --- Update evidence field with Jira URL for Build/Test controls only ---
         exportedImpls.forEach(({ impl }) => {
             const sanitizedKey = sanitizeForId(impl.control_number);
             const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
-            //const statusKey = `${sanitizedKey}_jkImplementationStatus`;
 
             // --- Build Jira URL using systemId + control_number ---
             const jiraUrl = buildJiraUrl(impl.control_number);
@@ -360,7 +386,7 @@ function exportToJiraCsv() {
         const capturedValues = dataCapture.captureAll();
         fileManager.saveProgress(capturedValues);
 
-        alert(`✅ ${exportedImpls.length} controls have been updated with their Jira ticket URLs and saved.`);
+        alert(`✅ ${exportedImpls.length} Build/Test controls have been updated with their Jira ticket URLs and saved.`);
 
     }, 1000);
 }
