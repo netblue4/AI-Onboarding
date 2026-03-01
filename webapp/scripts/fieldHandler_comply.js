@@ -274,13 +274,6 @@ function exportToJiraCsv() {
                 // --- Only export applicable requirements ---
                 if (fieldStoredValue(req, true) !== 'Applicable') return;
 
-                // --- Early exit if no Build or Test implementations exist ---
-                const hasBuildOrTest = [...reqEntry.implementations.values()].some(impl => {
-                    const cat = getCategory(impl.control_number);
-                    return cat === 'Build' || cat === 'Test';
-                });
-                if (!hasBuildOrTest) return;
-
                 // --- Assign parent ID ---
                 const parentId = idCounter++;
                 const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
