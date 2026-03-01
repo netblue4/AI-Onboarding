@@ -256,7 +256,7 @@ function exportToJiraCsv() {
                     const cat = getCategory(impl.control_number);
                     return cat === 'Build' || cat === 'Test';
                 });
-                if (!hasBuildOrTest) return;
+                //if (!hasBuildOrTest) return;
 
                 // --- Assign parent ID ---
                 const parentId = idCounter++;
@@ -293,7 +293,7 @@ function exportToJiraCsv() {
                     ].filter(Boolean).join('\n\n');
 
                     // --- Prefixed ticket summary: [SystemID] [Category] [[control_number]] ---
-                    const subTaskSummary = `[${systemId}] []${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
+                    const subTaskSummary = `[${systemId}] [${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
                     rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
 
