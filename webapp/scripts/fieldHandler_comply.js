@@ -188,9 +188,9 @@ function exportToJiraCsv() {
     function sanitizeForCsv(text) {
         if (!text) return '';
         return text
-            .replace(/```[\w]*\n?/g, '')   // remove opening code fences
-            .replace(/```/g, '')            // remove closing code fences
-            .replace(/\r\n/g, '\n')         // normalise line endings
+            .replace(/```[\w]*\n?/g, '')
+            .replace(/```/g, '')
+            .replace(/\r\n/g, '\n')
             .trim();
     }
 
@@ -212,6 +212,9 @@ function exportToJiraCsv() {
     rows.push(['Work item Id', 'Work item Key', 'Summary', 'Description', 'Work type', 'Priority', 'Parent']);
 
     let idCounter = 1;
+
+    // --- Track exported implementations for post-confirm update ---
+    const exportedImpls = [];
 
     mindmapData.forEach((groups, stepName) => {
         groups.forEach((gData, groupName) => {
@@ -263,6 +266,9 @@ function exportToJiraCsv() {
                     const subTaskSummary = `[${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
                     rows.push([idCounter++, impl.control_number, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
+
+                    // --- Track for post-confirm update ---
+                    exportedImpls.push(impl);
                 });
             });
         });
@@ -285,6 +291,50 @@ function exportToJiraCsv() {
     URL.revokeObjectURL(url);
 
     console.log(`✅ Jira CSV exported with ${rows.length - 1} rows`);
+
+    // --- Ask user to confirm successful Jira upload ---
+    setTimeout(() => {
+        const confirmed = confirm(
+            `✅ Your Jira CSV has been downloaded.\n\n` +
+            `Please upload it into Jira now.\n\n` +
+            `Once uploaded successfully, click OK to mark all ${exportedImpls.length} controls as "Jira ticket created".\n\n` +
+            `Click Cancel to skip.`
+        );
+
+        if (!confirmed) return;
+
+        // --- Update evidence field in DOM and capturedData for each exported impl ---
+        exportedImpls.forEach(impl => {
+            const sanitizedKey = sanitizeForId(impl.control_number);
+            const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
+            const statusKey = `${sanitizedKey}_jkImplementationStatus`;
+
+            // Update DOM textarea if it exists
+            const evidenceElement = document.querySelector(`textarea[name="${evidenceKey}"]`);
+            if (evidenceElement) {
+                evidenceElement.value = 'Jira ticket created';
+            }
+
+            // Update capturedData directly
+            state.capturedData[evidenceKey] = 'Jira ticket created';
+
+            // Also update status to 'Implemented with evidence' if not already set
+            if (!state.capturedData[statusKey]) {
+                state.capturedData[statusKey] = 'Implemented with evidence';
+                const statusElement = document.querySelector(`select[name="${statusKey}"]`);
+                if (statusElement) statusElement.value = 'Implemented with evidence';
+            }
+
+            // --- Reuse fieldHelper to persist via existing save mechanism ---
+            templateManager.fieldHelper(impl, impl.jkType, 'captureData', state.capturedData);
+        });
+
+        // --- Trigger full save via dataCapture ---
+        dataCapture.captureAll();
+
+        alert(`✅ ${exportedImpls.length} controls have been marked as "Jira ticket created" and saved.`);
+
+    }, 1000); // slight delay to allow file download to complete
 }
 
 //Update the evidence text box with this search https://netblue4.atlassian.net/issues?jql=summary%20~%20%228.3.T3%22
