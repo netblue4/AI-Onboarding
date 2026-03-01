@@ -22,14 +22,39 @@ function createTextBox(field, capturedData, sanitizeForId, fieldStoredValue) {
 
     fieldDiv.appendChild(labelWrapper);
 
-    const input = document.createElement('textarea');
-    input.id = sanitizedId;
-    input.name = sanitizedId;
-    input.placeholder = field.jkText;
-    input.value = capturedData[sanitizedId] || ''; 
-    
-    // This will use your .form-field textarea styles (charcoal bg, gold focus)
-    fieldDiv.appendChild(input);
+            const evidenceValue = fieldStoredValue(field);
+
+            if (evidenceValue && evidenceValue.startsWith('http')) {
+                // --- Render as Jira link ---
+                const linkWrapper = document.createElement('div');
+                linkWrapper.style.marginTop = '10px';
+
+                const jiraLink = document.createElement('a');
+                jiraLink.href = evidenceValue;
+                jiraLink.target = '_blank';
+                jiraLink.textContent = '🎫 View Jira Ticket';
+                jiraLink.style.cssText = `
+                    color: #b8963e;
+                    font-size: 13px;
+                    text-decoration: none;
+                    font-weight: 600;
+                `;
+                jiraLink.addEventListener('mouseover', () => jiraLink.style.textDecoration = 'underline');
+                jiraLink.addEventListener('mouseout',  () => jiraLink.style.textDecoration = 'none');
+
+                linkWrapper.appendChild(jiraLink);
+                fieldDiv.appendChild(linkWrapper);
+
+            } else {
+                // --- Render as textarea ---
+			    const input = document.createElement('textarea');
+			    input.id = sanitizedId;
+			    input.name = sanitizedId;
+			    input.placeholder = field.jkText;
+			    input.value = evidenceValue || ''; 
+			    // This will use your .form-field textarea styles (charcoal bg, gold focus)
+			    fieldDiv.appendChild(input);
+            }
 
     return fieldDiv;
 }
