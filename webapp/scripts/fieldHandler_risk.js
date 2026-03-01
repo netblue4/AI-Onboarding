@@ -78,42 +78,7 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
             controlContainer.appendChild(labelWrapper);
 
-            // --- Evidence field: link if Jira URL, otherwise textarea ---
-            const evidenceValue = fieldStoredValue(controlItem);
 
-            if (evidenceValue && evidenceValue.startsWith('http')) {
-                // --- Render as Jira link ---
-                const linkWrapper = document.createElement('div');
-                linkWrapper.style.marginTop = '10px';
-
-                const jiraLink = document.createElement('a');
-                jiraLink.href = evidenceValue;
-                jiraLink.target = '_blank';
-                jiraLink.textContent = '🎫 View Jira Ticket';
-                jiraLink.style.cssText = `
-                    color: #b8963e;
-                    font-size: 13px;
-                    text-decoration: none;
-                    font-weight: 600;
-                `;
-                jiraLink.addEventListener('mouseover', () => jiraLink.style.textDecoration = 'underline');
-                jiraLink.addEventListener('mouseout',  () => jiraLink.style.textDecoration = 'none');
-
-                linkWrapper.appendChild(jiraLink);
-                controlContainer.appendChild(linkWrapper);
-
-            } else {
-                // --- Render as textarea ---
-                const inputWrapper = document.createElement('div');
-                inputWrapper.style.marginTop = '10px';
-
-                const input = document.createElement('textarea');
-                input.name = sanitizeForId(controlItem.control_number) + '_jkImplementationEvidence';
-                input.placeholder = controlItem.jkImplementationEvidence || 'Enter implementation evidence...';
-                if (evidenceValue) input.value = evidenceValue;
-                inputWrapper.appendChild(input);
-                controlContainer.appendChild(inputWrapper);
-            }
 
             // --- 6. "Technical Detail" Nested Collapsible ---
             const techHeaderDiv = document.createElement('div');
@@ -173,7 +138,50 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             controlContainer.appendChild(techHeaderDiv);
             controlContainer.appendChild(techContentDiv);
 
-            controlsDiv.appendChild(controlContainer);
+            
+            
+            
+                // --- Evidence field: link if Jira URL, otherwise textarea ---
+            const evidenceValue = fieldStoredValue(controlItem);
+
+            if (evidenceValue && evidenceValue.startsWith('http')) {
+                // --- Render as Jira link ---
+                const linkWrapper = document.createElement('div');
+                linkWrapper.style.marginTop = '10px';
+
+                const jiraLink = document.createElement('a');
+                jiraLink.href = evidenceValue;
+                jiraLink.target = '_blank';
+                jiraLink.textContent = '🎫 View Jira Ticket';
+                jiraLink.style.cssText = `
+                    color: #b8963e;
+                    font-size: 13px;
+                    text-decoration: none;
+                    font-weight: 600;
+                `;
+                jiraLink.addEventListener('mouseover', () => jiraLink.style.textDecoration = 'underline');
+                jiraLink.addEventListener('mouseout',  () => jiraLink.style.textDecoration = 'none');
+
+                linkWrapper.appendChild(jiraLink);
+                controlContainer.appendChild(linkWrapper);
+
+            } else {
+                // --- Render as textarea ---
+                const inputWrapper = document.createElement('div');
+                inputWrapper.style.marginTop = '10px';
+
+                const input = document.createElement('textarea');
+                input.name = sanitizeForId(controlItem.control_number) + '_jkImplementationEvidence';
+                input.placeholder = controlItem.jkImplementationEvidence || 'Enter implementation evidence...';
+                if (evidenceValue) input.value = evidenceValue;
+                inputWrapper.appendChild(input);
+                controlContainer.appendChild(inputWrapper);
+            }        
+            
+            
+             controlsDiv.appendChild(controlContainer);
+           
+            
         });
     }
 
