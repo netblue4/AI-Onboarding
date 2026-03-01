@@ -211,13 +211,14 @@ function exportToJiraCsv() {
         return 'Define';
     }
 
-    // --- Helper: build Jira search URL for a given ticket summary ---
-    function buildJiraUrl(summary) {
-        return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(summary)}%22`;
+    // --- Helper: build Jira search URL using systemId + control_number ---
+    function buildJiraUrl(controlNumber) {
+        const searchTerm = `${systemId} - ${controlNumber}`;
+        return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(searchTerm)}%22`;
     }
 
     // --- CSV Header ---
-    rows.push(['Work item Id', 'Work item Key', 'Summary', 'Description', 'Work type', 'Priority', 'Parent']);
+    rows.push(['Work item Id', 'Summary', 'Description', 'Work type', 'Priority', 'Parent']);
 
     let idCounter = 1;
 
@@ -244,7 +245,7 @@ function exportToJiraCsv() {
                 const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
 
                 // --- Parent Task row added FIRST ---
-                rows.push([parentId, req.requirement_control_number, parentSummary, sanitizeForCsv(req.jkText), 'Task', 'Medium', '']);
+                rows.push([parentId, parentSummary, sanitizeForCsv(req.jkText), 'Task', 'Medium', '']);
 
                 // --- Deduplicate implementations by control_number before iterating ---
                 const seen = new Set();
@@ -271,13 +272,13 @@ function exportToJiraCsv() {
                         impl.jkCodeSample   ? `h4. Code Sample\n${formatCodeSample(impl.jkCodeSample)}`  : ''
                     ].filter(Boolean).join('\n\n');
 
-                    // --- Prefixed ticket summary: [SystemID] [Category] [control_number] ---
-                    const subTaskSummary = `[${systemId}] [${category}] [${impl.control_number}]: ${impl.jkName || impl.jkText || ''}`;
+                    // --- Prefixed ticket summary: [[SystemID]] [Category] [[control_number]] ---
+                    const subTaskSummary = `[${systemId}] [${category}] [[${impl.control_number}]]: ${impl.jkName || impl.jkText || ''}`;
 
-                    rows.push([idCounter++, impl.control_number, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
+                    rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
 
-                    // --- Track for post-confirm update, store summary for URL building ---
-                    exportedImpls.push({ impl, subTaskSummary });
+                    // --- Track for post-confirm update ---
+                    exportedImpls.push({ impl });
                 });
             });
         });
@@ -314,13 +315,13 @@ function exportToJiraCsv() {
         if (!confirmed) return;
 
         // --- Update evidence field with Jira URL for each exported impl ---
-        exportedImpls.forEach(({ impl, subTaskSummary }) => {
+        exportedImpls.forEach(({ impl }) => {
             const sanitizedKey = sanitizeForId(impl.control_number);
             const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
             const statusKey = `${sanitizedKey}_jkImplementationStatus`;
 
-            // --- Build Jira URL using the ticket summary ---
-            const jiraUrl = buildJiraUrl(subTaskSummary);
+            // --- Build Jira URL using systemId + control_number ---
+            const jiraUrl = buildJiraUrl(impl.control_number);
 
             // --- Update DOM textarea if it exists ---
             const evidenceElement = document.querySelector(`textarea[name="${evidenceKey}"]`);
