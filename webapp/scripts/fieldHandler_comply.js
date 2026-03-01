@@ -256,7 +256,7 @@ function exportToJiraCsv() {
                     const cat = getCategory(impl.control_number);
                     return cat === 'Build' || cat === 'Test';
                 });
-                if (!hasBuildOrTest) return;
+                //if (!hasBuildOrTest) return;
 
                 // --- Assign parent ID ---
                 const parentId = idCounter++;
@@ -273,7 +273,7 @@ function exportToJiraCsv() {
                     const category = getCategory(impl.control_number);
 
                     // Only create Jira tickets for Build and Test controls
-                    if (category === 'Define') return;
+                    //if (category === 'Define') return;
 
                     const cNum = String(impl.control_number || '');
 
