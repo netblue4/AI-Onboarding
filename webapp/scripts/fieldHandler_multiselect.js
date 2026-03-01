@@ -47,24 +47,24 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
     const optionsString = field.jkType.substring(field.jkType.indexOf(':') + 1).trim() || '';
     const options = optionsString.split('/');
     
-    const selectedValues = capturedData[sanitizedId] ?? [];
+    //const selectedValues = fieldStoredValue(field);
 
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
         const optionId = `${sanitizedId}-${index}`;
 
-        const checkboxInput = document.createElement('input');
-        checkboxInput.type = 'checkbox';
-        checkboxInput.id = optionId; 
-        checkboxInput.name = sanitizedId;
-        checkboxInput.value = trimmedOption;
+        //const checkboxInput = document.createElement('input');
+        //checkboxInput.type = 'checkbox';
+        //checkboxInput.id = optionId; 
+        //checkboxInput.name = sanitizedId;
+        //checkboxInput.value = trimmedOption;
         
-        if (Array.isArray(selectedValues) && selectedValues.includes(trimmedOption)) {
-            checkboxInput.checked = true;
-        }
+        //if (Array.isArray(selectedValues) && selectedValues.includes(trimmedOption)) {
+        //    checkboxInput.checked = true;
+        //}
 
         const checkboxLabel = document.createElement('label');
-        checkboxLabel.setAttribute('for', optionId);
+        //checkboxLabel.setAttribute('for', optionId);
         checkboxLabel.textContent = trimmedOption;
         checkboxLabel.style.display = 'inline'; // Ensure label stays next to checkbox
         
@@ -72,7 +72,7 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
         wrapper.classList.add('checkbox-option');
         wrapper.style.marginBottom = '8px'; // Spacing between each option
         
-        wrapper.appendChild(checkboxInput);
+        //wrapper.appendChild(checkboxInput);
         wrapper.appendChild(checkboxLabel);
         checkboxGroupContainer.appendChild(wrapper);
     });
