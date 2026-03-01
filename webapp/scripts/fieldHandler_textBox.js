@@ -24,7 +24,7 @@ function createTextBox(field, capturedData, sanitizeForId, fieldStoredValue) {
 
 
 	// --- Render as textarea ---
-    const input = document.createElement('label');
+    const input = document.createElement('p');
     input.textContent = field.jkText;
     fieldDiv.appendChild(input);
 
