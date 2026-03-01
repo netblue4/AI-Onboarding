@@ -65,7 +65,7 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
 
         const checkboxLabel = document.createElement('label');
         //checkboxLabel.setAttribute('for', optionId);
-        checkboxLabel.textContent = trimmedOption;
+        checkboxLabel.textContent = '- ' + trimmedOption;
         checkboxLabel.style.display = 'inline'; // Ensure label stays next to checkbox
         
         const wrapper = document.createElement('div');
@@ -76,6 +76,34 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
         wrapper.appendChild(checkboxLabel);
         checkboxGroupContainer.appendChild(wrapper);
     });
+    
+    
+	const evidenceValue = fieldStoredValue(field);
+
+	if (evidenceValue && evidenceValue.startsWith('http')) {
+		// --- Render as Jira link ---
+		const linkWrapper = document.createElement('div');
+		linkWrapper.style.marginTop = '10px';
+
+		const jiraLink = document.createElement('a');
+		jiraLink.href = evidenceValue;
+		jiraLink.target = '_blank';
+		jiraLink.textContent = '🎫 View Jira Ticket';
+		jiraLink.style.cssText = `
+			color: #b8963e;
+			font-size: 13px;
+			text-decoration: none;
+			font-weight: 600;
+		`;
+		jiraLink.addEventListener('mouseover', () => jiraLink.style.textDecoration = 'underline');
+		jiraLink.addEventListener('mouseout',  () => jiraLink.style.textDecoration = 'none');
+
+		linkWrapper.appendChild(jiraLink);
+		fieldDiv.appendChild(linkWrapper);
+
+	}
+    
+    
     
     fieldDiv.appendChild(checkboxGroupContainer);
 
