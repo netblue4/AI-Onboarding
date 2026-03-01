@@ -77,7 +77,7 @@ class RoleProgressTracker {
                 
                  	let statusvalue = 0;
                  	if(field.jkType != 'requirement'){
-                 		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_jkImplementationStatus'];
+                 		//statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_jkImplementationStatus'];
                  	} else {
                  		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.requirement_control_number) + '_jkSoa'];
                  	}

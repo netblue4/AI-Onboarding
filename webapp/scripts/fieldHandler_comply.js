@@ -334,7 +334,7 @@ function exportToJiraCsv() {
         exportedImpls.forEach(({ impl }) => {
             const sanitizedKey = sanitizeForId(impl.control_number);
             const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
-            const statusKey = `${sanitizedKey}_jkImplementationStatus`;
+            //const statusKey = `${sanitizedKey}_jkImplementationStatus`;
 
             // --- Build Jira URL using systemId + control_number ---
             const jiraUrl = buildJiraUrl(impl.control_number);
@@ -347,13 +347,6 @@ function exportToJiraCsv() {
 
             // --- Update capturedData directly ---
             state.capturedData[evidenceKey] = jiraUrl;
-
-            // --- Update status to 'Implemented with evidence' if not already set ---
-            if (!state.capturedData[statusKey]) {
-                state.capturedData[statusKey] = 'Implemented with evidence';
-                const statusElement = document.querySelector(`select[name="${statusKey}"]`);
-                if (statusElement) statusElement.value = 'Implemented with evidence';
-            }
 
             // --- Reuse fieldHelper to persist via existing save mechanism ---
             templateManager.fieldHelper(impl, impl.jkType, 'captureData', state.capturedData);
@@ -908,23 +901,6 @@ function calculateProgress(subControlLinks, sanitizeForId, fieldStoredValue) {
                         if (hasContent(responseVal)) {
                             localTotalImplementationFieldsWithResponse++;
                         }
-                    }
-
-                    // --- Count Nested Implementation CONTROLS (Child Items) ---
-                    if (child.jkImplementationStatus !== "Not Applicable" && child.controls && Array.isArray(child.controls)) {
-                        child.controls.forEach(ctl => {
-                            // Increment Implementation Controls
-                            localTotalImplementationControls++;
-
-                            // Check Evidence
-                            const ctlKey = sanitizeForId(ctl.control_number) + '_evidence';
-                            const evidenceVal = fieldStoredValue(ctl, false);
-                            //capturedData[ctlKey];
-                            
-                            if (hasContent(evidenceVal)) {
-                                localTotalImplementationControlsWithEvidence++;
-                            }
-                        });
                     }
                 });
             }
