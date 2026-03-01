@@ -175,6 +175,8 @@ function buildComplianceMap(data, sanitizeForId, fieldStoredValue) {
 }
 
 
+
+
 function exportToJiraCsv() {
     const rows = [];
     const projectKey = 10001;
@@ -244,12 +246,10 @@ function exportToJiraCsv() {
         ];
 
         if (cleanType === 'MultiSelect' && optionsString) {
-            // --- Render each option as a Jira checkbox ---
             const options = optionsString.split('/').map(o => o.trim()).filter(Boolean);
             const checkboxList = options.map(opt => `() ${opt}`).join('\n');
             parts.push(`h4. Select all that apply\n${checkboxList}`);
         } else if (cleanType === 'TextBox') {
-            // --- Render as a blank response area for developer to fill in ---
             parts.push(`h4. Developer Response\n_Please provide your response below:_\n\n&nbsp;`);
         }
 
@@ -263,7 +263,7 @@ function exportToJiraCsv() {
 
     let idCounter = 1;
 
-    // --- Track exported implementations for post-confirm update ---
+    // --- Track ALL exported implementations for post-confirm update ---
     const exportedImpls = [];
 
     mindmapData.forEach((groups, stepName) => {
@@ -320,10 +320,10 @@ function exportToJiraCsv() {
                         ].filter(Boolean).join('\n\n');
 
                         subTaskSummary = `[${systemId}] [${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
-
-                        // --- Only track Build/Test for Jira URL update ---
-                        exportedImpls.push({ impl });
                     }
+
+                    // --- Track ALL controls for Jira URL update ---
+                    exportedImpls.push({ impl, category });
 
                     rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
                 });
@@ -355,28 +355,37 @@ function exportToJiraCsv() {
         const confirmed = confirm(
             `✅ Your Jira CSV has been downloaded.\n\n` +
             `Please upload it into Jira now.\n\n` +
-            `Once uploaded successfully, click OK to mark all ${exportedImpls.length} Build/Test controls with their Jira ticket URL.\n\n` +
+            `Once uploaded successfully, click OK to mark all ${exportedImpls.length} controls with their Jira ticket URL.\n\n` +
             `Click Cancel to skip.`
         );
 
         if (!confirmed) return;
 
-        // --- Update evidence field with Jira URL for Build/Test controls only ---
-        exportedImpls.forEach(({ impl }) => {
+        // --- Update evidence field with Jira URL for ALL controls ---
+        exportedImpls.forEach(({ impl, category }) => {
             const sanitizedKey = sanitizeForId(impl.control_number);
-            const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
-
-            // --- Build Jira URL using systemId + control_number ---
             const jiraUrl = buildJiraUrl(impl.control_number);
 
-            // --- Update DOM textarea if it exists ---
-            const evidenceElement = document.querySelector(`textarea[name="${evidenceKey}"]`);
-            if (evidenceElement) {
-                evidenceElement.value = jiraUrl;
-            }
+            if (category === 'Define') {
+                // --- Define controls save to _response field ---
+                const responseKey = `${sanitizedKey}_response`;
 
-            // --- Update capturedData directly ---
-            state.capturedData[evidenceKey] = jiraUrl;
+                const responseElement = document.querySelector(
+                    `input[name="${responseKey}"], textarea[name="${responseKey}"]`
+                );
+                if (responseElement) responseElement.value = jiraUrl;
+
+                state.capturedData[responseKey] = jiraUrl;
+
+            } else {
+                // --- Build/Test controls save to _jkImplementationEvidence field ---
+                const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
+
+                const evidenceElement = document.querySelector(`textarea[name="${evidenceKey}"]`);
+                if (evidenceElement) evidenceElement.value = jiraUrl;
+
+                state.capturedData[evidenceKey] = jiraUrl;
+            }
 
             // --- Reuse fieldHelper to persist via existing save mechanism ---
             templateManager.fieldHelper(impl, impl.jkType, 'captureData', state.capturedData);
@@ -386,10 +395,13 @@ function exportToJiraCsv() {
         const capturedValues = dataCapture.captureAll();
         fileManager.saveProgress(capturedValues);
 
-        alert(`✅ ${exportedImpls.length} Build/Test controls have been updated with their Jira ticket URLs and saved.`);
+        alert(`✅ ${exportedImpls.length} controls have been updated with their Jira ticket URLs and saved.`);
 
     }, 1000);
 }
+
+
+
 
 //Update the evidence text box with this search https://netblue4.atlassian.net/issues?jql=summary%20~%20%228.3.T3%22
 
