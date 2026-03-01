@@ -207,8 +207,12 @@ function exportToJiraCsv() {
 
     // --- Helper: build Jira search URL using systemId + control_number ---
     function buildJiraUrl(controlNumber) {
-        const searchTerm = `${systemId} - ${controlNumber}`;
-        return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(searchTerm)}%22`;
+        const searchTerm = `${systemId} ${controlNumber}`;
+        const cleanSearchTerm = searchTerm.replace(/[\[\],-]/g, '');
+        return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(cleanSearchTerm)}%22`;
+
+        
+        
     }
 
     // --- Helper: build zipped task + code sample description ---
@@ -289,7 +293,7 @@ function exportToJiraCsv() {
                     ].filter(Boolean).join('\n\n');
 
                     // --- Prefixed ticket summary: [SystemID] [Category] [[control_number]] ---
-                    const subTaskSummary = `[${systemId}] [${category}] [[${impl.control_number}]]: ${impl.jkName || impl.jkText || ''}`;
+                    const subTaskSummary = `[${systemId}] []${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
 
                     rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
 
