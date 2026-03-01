@@ -256,7 +256,7 @@ function exportToJiraCsv() {
                     const cat = getCategory(impl.control_number);
                     return cat === 'Build' || cat === 'Test';
                 });
-                //if (!hasBuildOrTest) return;
+                if (!hasBuildOrTest) return;
 
                 // --- Assign parent ID ---
                 const parentId = idCounter++;
