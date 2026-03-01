@@ -11,11 +11,22 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     icon.className = 'collapse-icon';
     icon.textContent = '▶';
     headerDiv.appendChild(icon);
-
-    const planFieldNameLabel = document.createElement('label');
-    planFieldNameLabel.textContent = field.jkName.trim() + ' (' + field.requirement_control_number + ')';
-    planFieldNameLabel.className = 'label-bold';
-    headerDiv.appendChild(planFieldNameLabel);
+    
+    
+	// Label wrapper — keeps control number and text on the same line
+	const labelWrapper = document.createElement('span');
+	
+	const labelID = document.createElement('strong');
+	labelID.textContent = field.control_number;
+	labelWrapper.appendChild(labelID);
+	
+	const labelT = document.createElement('label');
+	labelT.textContent = '- ' + field.jkText + ' ' + field.requirement_control_number;
+	labelT.style.display = 'inline';
+	labelWrapper.appendChild(labelT);
+	
+	headerDiv.appendChild(labelWrapper);
+    
 
     fieldDiv.appendChild(headerDiv);
 
@@ -207,29 +218,6 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         });
     }
     contentDiv.appendChild(controlDiv);
-
-    // --- Plan Steps ---
-    const planStepsLabel = document.createElement('label');
-    planStepsLabel.textContent = "Steps";
-    planStepsLabel.className = 'label-bold';
-    contentDiv.appendChild(planStepsLabel);
-
-    const separatorStep = document.createElement('hr');
-    separatorStep.className = 'control-separator';
-    contentDiv.appendChild(separatorStep);
-
-    const planStepsDiv = document.createElement('div');
-
-    if (field.PlanSteps && Array.isArray(field.PlanSteps)) {
-        field.PlanSteps.forEach(stepItem => {
-            const stepContainer = document.createElement('div');
-            const stepText = document.createElement('p');
-            stepText.textContent = stepItem.step;
-            stepContainer.appendChild(stepText);
-            planStepsDiv.appendChild(stepContainer);
-        });
-    }
-    contentDiv.appendChild(planStepsDiv);
 
     fieldDiv.appendChild(contentDiv);
 
