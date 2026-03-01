@@ -38,11 +38,26 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
     controlLabel.textContent = 'Controls';
     contentDiv.appendChild(controlLabel);
 
-    // --- 4. Iterate and Display Controls ---
+    // --- 4. Build Set of valid control numbers from mindmap ---
+    const mindmapControlNumbers = new Set();
+    if (mindmap) {
+        mindmap.forEach(groups => groups.forEach(gData =>
+            gData.requirements.forEach(reqEntry =>
+                reqEntry.implementations.forEach(impl =>
+                    mindmapControlNumbers.add(impl.control_number)
+                )
+            )
+        ));
+    }
+
+    // --- 5. Iterate and Display Controls ---
     const controlsDiv = document.createElement('div');
 
     if (field.controls && Array.isArray(field.controls)) {
         field.controls.forEach(controlItem => {
+
+            // --- Only display controls that appear in the mindmap ---
+            if (!mindmapControlNumbers.has(controlItem.control_number)) return;
 
             const controlContainer = document.createElement('div');
             controlContainer.className = 'form-field';
@@ -61,54 +76,44 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
             controlContainer.appendChild(labelWrapper);
 
-            // ✅ Wrap select in a block div so it always renders on a new line
-            const selectWrapper = document.createElement('div');
-            selectWrapper.style.marginTop = '10px';
+            // --- Evidence field: link if Jira URL, otherwise textarea ---
+            const evidenceValue = fieldStoredValue(controlItem);
 
-            const select = document.createElement('select');
-            select.name = sanitizeForId(controlItem.control_number) + '_jkImplementationStatus';
+            if (evidenceValue && evidenceValue.startsWith('http')) {
+                // --- Render as Jira link ---
+                const linkWrapper = document.createElement('div');
+                linkWrapper.style.marginTop = '10px';
 
-            let options;
-            if (state.currentRole === "Compliance") {
-                options = ['Select', 'Applicable', 'Not Applicable'];
-            } else {
-                options = ['Select', 'Not Applicable with justification', 'Implemented with evidence'];
-            }
+                const jiraLink = document.createElement('a');
+                jiraLink.href = evidenceValue;
+                jiraLink.target = '_blank';
+                jiraLink.textContent = '🎫 View Jira Ticket';
+                jiraLink.style.cssText = `
+                    color: #b8963e;
+                    font-size: 13px;
+                    text-decoration: none;
+                    font-weight: 600;
+                `;
+                jiraLink.addEventListener('mouseover', () => jiraLink.style.textDecoration = 'underline');
+                jiraLink.addEventListener('mouseout',  () => jiraLink.style.textDecoration = 'none');
 
-            options.forEach((optionText) => {
-                const option = document.createElement('option');
-                option.value = optionText;
-                option.textContent = optionText;
-                if (controlItem.jkImplementationStatus && optionText === controlItem.jkImplementationStatus) {
-                    option.selected = true;
-                }
-                select.appendChild(option);
-            });
-
-            selectWrapper.appendChild(select);
-            controlContainer.appendChild(selectWrapper);
-
-            // Implementation evidence textarea
-            if (controlItem.jkImplementationStatus && controlItem.jkImplementationStatus.startsWith("Applicable")) {
-                select.value = controlItem.jkImplementationStatus;
-
-                const textarea = document.createElement('textarea');
-                textarea.classList.add('form-field');
-                textarea.name = sanitizeForId(controlItem.control_number) + '_jkImplementationEvidence';
-                textarea.value = controlItem.jkImplementationEvidence;
-                textarea.disabled = true;
-                controlContainer.appendChild(textarea);
+                linkWrapper.appendChild(jiraLink);
+                controlContainer.appendChild(linkWrapper);
 
             } else {
-                select.value = options[0]?.trim();
+                // --- Render as textarea ---
+                const inputWrapper = document.createElement('div');
+                inputWrapper.style.marginTop = '10px';
 
                 const input = document.createElement('textarea');
                 input.name = sanitizeForId(controlItem.control_number) + '_jkImplementationEvidence';
-                input.placeholder = controlItem.jkImplementationEvidence;
-                controlContainer.appendChild(input);
+                input.placeholder = controlItem.jkImplementationEvidence || 'Enter implementation evidence...';
+                if (evidenceValue) input.value = evidenceValue;
+                inputWrapper.appendChild(input);
+                controlContainer.appendChild(inputWrapper);
             }
 
-            // --- 5. "Technical Detail" Nested Collapsible ---
+            // --- 6. "Technical Detail" Nested Collapsible ---
             const techHeaderDiv = document.createElement('div');
             techHeaderDiv.className = 'collapsible-header collapsible-header--nested';
 
@@ -152,28 +157,16 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 techContentDiv.appendChild(divider);
             }
 
-            appendTechBlock('Maturity',      controlItem.jkMaturity,      false);
-            appendTechBlock('Attack Vector', controlItem.jkAttackVector,   false);
-            appendTechBlock('Task',          controlItem.jkTask,           false);
-            appendTechBlock('Code Sample',   controlItem.jkCodeSample,     true);
+            appendTechBlock('Maturity',      controlItem.jkMaturity,    false);
+            appendTechBlock('Attack Vector', controlItem.jkAttackVector, false);
+            appendTechBlock('Task',          controlItem.jkTask,         false);
+            appendTechBlock('Code Sample',   controlItem.jkCodeSample,   true);
 
             techHeaderDiv.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const isCollapsed = techContentDiv.classList.toggle('collapsed');
                 techIcon.textContent = isCollapsed ? '▶' : '▼';
             });
-
-            // --- 6. Build Jira summary and description from control data ---
-            const ttt = controlItem.control_number + '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
-
-            const description = [
-                `Control: ${controlItem.control_number}`,
-                `${controlItem.jkText} ${controlItem.requirement_control_number}`,
-                controlItem.jkMaturity      ? `Maturity: ${controlItem.jkMaturity}`           : '',
-                controlItem.jkAttackVector  ? `Attack Vector: ${controlItem.jkAttackVector}`  : '',
-                controlItem.jkTask          ? `Task: ${controlItem.jkTask}`                   : '',
-                controlItem.jkCodeSample    ? `Code Sample:\n${controlItem.jkCodeSample}`     : ''
-            ].filter(Boolean).join('\n\n');
 
             controlContainer.appendChild(techHeaderDiv);
             controlContainer.appendChild(techContentDiv);
