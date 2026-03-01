@@ -36,6 +36,7 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         ));
     }
 
+    // --- Metadata Rendering (Tailwind Styles preserved) ---
     function renderTestCriteriaMetadata(metadata) {
         if (!metadata) return null;
 
@@ -73,10 +74,7 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         return container;
     }
 
-    if (field.TestDatasetMetadata) {
-        // commented out sections preserved as-is
-    }
-
+    // --- Golden Dataset Table Structure ---
     function createGoldenDatasetTable(goldenDatasetArray) {
         if (!goldenDatasetArray || goldenDatasetArray.length === 0) return null;
 
@@ -123,6 +121,13 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         return table;
     }
 
+    // --- Render Metadata if exists ---
+    if (field.TestDatasetMetadata) {
+        const metadataEl = renderTestCriteriaMetadata(field.TestDatasetMetadata);
+        if (metadataEl) contentDiv.appendChild(metadataEl);
+    }
+
+    // --- Render Golden Datasets Section ---
     if (field.TestDataset && Array.isArray(field.TestDataset)) {
         const goldenDatasetLabel = document.createElement('label');
         goldenDatasetLabel.textContent = "Golden Datasets";
@@ -145,15 +150,15 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
         contentDiv.appendChild(goldenDatasetDiv);
     }
 
-    // --- Plan Criteria ---
+    // --- Plan Criteria Section (Styled like Risk Controls) ---
     const planControliaLabel = document.createElement('label');
     planControliaLabel.textContent = "Criteria";
     planControliaLabel.className = 'label-bold';
     contentDiv.appendChild(planControliaLabel);
 
-    const separator = document.createElement('hr');
-    separator.className = 'control-separator';
-    contentDiv.appendChild(separator);
+    const mainSeparator = document.createElement('hr');
+    mainSeparator.className = 'control-separator';
+    contentDiv.appendChild(mainSeparator);
 
     const controlDiv = document.createElement('div');
 
@@ -164,29 +169,30 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             if (!mindmapControlNumbers.has(controlItem.control_number)) return;
 
             const sanitizedId = sanitizeForId(controlItem.control_number);
+            
+            // Container styled as a form-field for consistent spacing
             const controlContainer = document.createElement('div');
+            controlContainer.className = 'form-field';
             
+            // Label wrapper — keeps control number and text on the same line
+            const labelWrapper = document.createElement('span');
             
-			// Label wrapper — keeps control number and text on the same line
-			const labelWrapper = document.createElement('span');
-			
-			const labelID = document.createElement('strong');
-			labelID.textContent = controlItem.control_number;
-			labelWrapper.appendChild(labelID);
-			
-			const labelT = document.createElement('label');
-			labelT.textContent = '- ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
-			labelT.style.display = 'inline';
-			labelWrapper.appendChild(labelT);
-			
-			controlContainer.appendChild(labelWrapper);            
+            const labelID = document.createElement('strong');
+            labelID.textContent = controlItem.control_number;
+            labelWrapper.appendChild(labelID);
             
+            const labelT = document.createElement('label');
+            labelT.textContent = ' - ' + controlItem.jkText + ' ' + controlItem.requirement_control_number;
+            labelT.style.display = 'inline';
+            labelWrapper.appendChild(labelT);
+            
+            controlContainer.appendChild(labelWrapper);            
             
             // --- Evidence field: link if Jira URL, otherwise textarea ---
             const evidenceValue = fieldStoredValue(controlItem);
 
-            if (evidenceValue && evidenceValue.startsWith('http')) {
-                // --- Render as Jira link ---
+            if (evidenceValue && typeof evidenceValue === 'string' && evidenceValue.startsWith('http')) {
+                // --- Render as Jira link (Styled to match Risk handler) ---
                 const linkWrapper = document.createElement('div');
                 linkWrapper.style.marginTop = '10px';
 
@@ -207,12 +213,17 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 controlContainer.appendChild(linkWrapper);
 
             } else {
-                // --- Render as textarea ---
+                // --- Render as textarea with wrapper for margin ---
+                const inputWrapper = document.createElement('div');
+                inputWrapper.style.marginTop = '10px';
+
                 const input = document.createElement('textarea');
                 input.name = sanitizedId + '_jkImplementationEvidence';
                 input.placeholder = controlItem.jkImplementationEvidence || 'Enter implementation evidence...';
                 if (evidenceValue) input.value = evidenceValue;
-                controlText.appendChild(input);
+                
+                inputWrapper.appendChild(input);
+                controlContainer.appendChild(inputWrapper);
             }
 
             controlDiv.appendChild(controlContainer);
@@ -222,6 +233,7 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
     fieldDiv.appendChild(contentDiv);
 
+    // --- Main Toggle Listener ---
     headerDiv.addEventListener('click', () => {
         const isCollapsed = contentDiv.classList.toggle('collapsed');
         icon.textContent = isCollapsed ? '▶' : '▼';
