@@ -181,12 +181,21 @@ class TemplateManager {
 					
 								//const statusValue = statusElement ? statusElement.value : "Select";
 								const evidenceValue = evidenceElement ? evidenceElement.value : "";
-					
 								if (evidenceValue !== "") {
 									currentData[controlKey] = control.jkText;
 									//currentData[`${controlKey}_jkImplementationStatus`] = statusValue;
 									currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
 								}
+								
+								const complyStatusElement = document.querySelector(`select[name="${controlKey}_complystatus"]`);		
+								const complyStatusValue = complyStatusElement ? complyStatusElement.value : "";
+								if (complyStatusValue !== "") {
+										currentData[controlKey + "_complystatus"] = complyStatusValue;
+									} else {
+										delete currentData[controlKey + "_complystatus"];
+									}
+								}									
+								
 							});
 						}	
 						break;
@@ -197,7 +206,17 @@ class TemplateManager {
 							currentData[sanitizedId_mul + "_response"] = Array.from(checkboxes).map(cb => cb.value);
 						} else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId_mul}_response"]`)) {
 							delete currentData[sanitizedId_mul + "_response"];
-						}						
+						}		
+						
+						const mulcomplyStatusElement = document.querySelector(`select[name="${sanitizedId_mul}_complystatus"]`);		
+						const mulcomplyStatusValue = mulcomplyStatusElement ? mulcomplyStatusElement.value : "";
+						if (mulcomplyStatusValue !== "") {
+								currentData[sanitizedId_mul + "_complystatus"] = mulcomplyStatusValue;
+							} else {
+								delete currentData[sanitizedId_mul + "_complystatus"];
+							}
+						}	
+																		
 						break;
 				    default:	
 						const sanitizedId_default = this.sanitizeForId(field.control_number);
