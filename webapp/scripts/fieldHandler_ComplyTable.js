@@ -478,7 +478,7 @@ else{
 		cardBody.appendChild(linkWrapper);
 		
 				// Status dropdown
-		const select = createStatusDropdown(node, sanitizeForId);
+		const select = createStatusDropdown(node, sanitizeForId);		
 		cardBody.appendChild(select);
 		
 		
@@ -521,11 +521,14 @@ function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue) {
     select.style.backgroundPosition = 'right 0.75rem center';
     select.name = sanitizeForId(subControl.control_number) + '_complystatus';
 
+	const complyStatusValue = fieldStoredValue(node, true);
+
     const options = ['Select', 'Met', 'Not Met', 'Partially Met'];
     options.forEach((optionText) => {
         const option = document.createElement('option');
-        option.value = optionText;   
+        option.value = optionText; 
 		option.textContent = optionText;
+		if (complyStatusValue === optionText) option.selected = true;  
         select.appendChild(option);
     });
 
