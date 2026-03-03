@@ -564,7 +564,7 @@ else{
 		cardBody.appendChild(linkWrapper);
 		
 				// Status dropdown
-		const select = createStatusDropdown(node, sanitizeForId, fieldStoredValue);		
+		const select = createStatusDropdown(node, sanitizeForId, fieldStoredValue, card);		
 		cardBody.appendChild(select);
 		
 		
@@ -590,10 +590,11 @@ else{
 
 
 /**
- * Creates the status dropdown select element
+ * Creates the status dropdown select element with border-color triggers
  */
-function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue) {
+function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue, cardElement) {
     const select = document.createElement('select');
+    // ... existing style code ...
     select.style.margin = '5px 0 10px 0';
     select.style.padding = '4px 2rem 4px 0.75rem';
     select.style.borderRadius = '6px';
@@ -602,21 +603,40 @@ function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue) {
     select.style.color = '#e0e0e0';
     select.style.cursor = 'pointer';
     select.style.appearance = 'none';
-    select.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C%2Fsvg%3E\")";
+    select.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1-1.506 0z'/%3E%3C%2Fsvg%3E\")";
     select.style.backgroundRepeat = 'no-repeat';
     select.style.backgroundPosition = 'right 0.75rem center';
     select.name = sanitizeForId(subControl.control_number) + '_complystatus';
 
-	const complyStatusValue = fieldStoredValue(subControl, true);
+    const complyStatusValue = fieldStoredValue(subControl, true);
+
+    // Helper function to update the card border based on status
+    function updateBorder(status) {
+        if (status === 'Met') {
+            cardElement.style.borderColor = '#22c55e'; // Green
+        } else if (status === 'Partially Met') {
+            cardElement.style.borderColor = '#facc15'; // Yellow
+        } else if (status === 'Not Met') {
+            cardElement.style.borderColor = '#ef4444'; // Red
+        } else {
+            cardElement.style.borderColor = '#3d3d3d'; // Default Gray
+        }
+    }
+
+    // Initialize border on load
+    updateBorder(complyStatusValue);
 
     const options = ['Select', 'Met', 'Not Met', 'Partially Met'];
     options.forEach((optionText) => {
         const option = document.createElement('option');
         option.value = optionText; 
-		option.textContent = optionText;
-		if (complyStatusValue === optionText) option.selected = true;  
+        option.textContent = optionText;
+        if (complyStatusValue === optionText) option.selected = true;  
         select.appendChild(option);
     });
+
+    // Listener for real-time updates
+    select.addEventListener('change', (e) => updateBorder(e.target.value));
 
     return select;
 }
