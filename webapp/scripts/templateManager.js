@@ -194,8 +194,6 @@ class TemplateManager {
 									} else {
 										delete currentData[controlKey + "_complystatus"];
 									}
-								}									
-								
 							});
 						}	
 						break;
@@ -215,7 +213,8 @@ class TemplateManager {
 							} else {
 								delete currentData[sanitizedId_mul + "_complystatus"];
 							}
-						}	
+						
+							
 																		
 						break;
 				    default:	
