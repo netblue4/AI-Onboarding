@@ -451,6 +451,37 @@ function createCategorizedCell(nodes, fieldStoredValue, sanitizeForId, reqEntry,
             }
 
         } // end jkType === 'requirement'
+else{
+
+
+	const evidenceValue = fieldStoredValue(node, false);
+
+	if (evidenceValue && evidenceValue.startsWith('http')) {
+		// --- Render as Jira link ---
+		const linkWrapper = document.createElement('div');
+		linkWrapper.style.marginTop = '10px';
+
+		const jiraLink = document.createElement('a');
+		jiraLink.href = evidenceValue;
+		jiraLink.target = '_blank';
+		jiraLink.textContent = '🎫 View Jira Ticket';
+		jiraLink.style.cssText = `
+			color: #b8963e;
+			font-size: 13px;
+			text-decoration: none;
+			font-weight: 600;
+		`;
+		jiraLink.addEventListener('mouseover', () => jiraLink.style.textDecoration = 'underline');
+		jiraLink.addEventListener('mouseout',  () => jiraLink.style.textDecoration = 'none');
+
+		linkWrapper.appendChild(jiraLink);
+		cardBody.appendChild(linkWrapper);
+	} 
+
+
+}
+
+
 
         // --- Toggle card body on header click ---
         cardHeader.addEventListener('click', () => {
