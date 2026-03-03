@@ -478,7 +478,7 @@ else{
 		cardBody.appendChild(linkWrapper);
 		
 				// Status dropdown
-		const select = createStatusDropdown(node, sanitizeForId);		
+		const select = createStatusDropdown(node, sanitizeForId, fieldStoredValue);		
 		cardBody.appendChild(select);
 		
 		
