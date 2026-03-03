@@ -21,25 +21,18 @@ function createComplyTable(sanitizeForId, fieldStoredValue, webappData = null, m
     return wrapper;
 }
 
+
 /**
- * Renders a segmented progress bar for Approver role based on Applicable requirements
+ * Renders a modernized, "glassmorphism" progress bar for the Approver role
  */
 function renderApproverProgressBar(mindmapData, fieldStoredValue) {
-    let total = 0;
-    let met = 0;
-    let notMet = 0;
-    let partial = 0;
+    let total = 0, met = 0, notMet = 0, partial = 0;
 
-    // Iterate through the hierarchy
+    // Logic for counting (remains the same as your requirement)
     mindmapData.forEach((groups) => {
         groups.forEach((gData) => {
             gData.requirements.forEach((reqEntry) => {
-                const req = reqEntry.requirement;
-                
-                // Logic update: Only count controls if the requirement is 'Applicable'
-                const applicability = fieldStoredValue(req, true);
-                
-                if (applicability === 'Applicable') {
+                if (fieldStoredValue(reqEntry.requirement, true) === 'Applicable') {
                     reqEntry.implementations.forEach(impl => {
                         total++;
                         const status = fieldStoredValue(impl, true);
@@ -52,46 +45,59 @@ function renderApproverProgressBar(mindmapData, fieldStoredValue) {
         });
     });
 
-    const container = document.createElement('div');
-    container.style.cssText = 'margin: 10px 0 20px 0; font-family: -apple-system, sans-serif;';
-
-    // Summary Text
-    const statsText = document.createElement('div');
-    statsText.style.cssText = 'display: flex; justify-content: space-between; font-size: 12px; color: #e0d9ce; margin-bottom: 8px;';
-    
     const percent = total > 0 ? Math.round((met / total) * 100) : 0;
-    
-    statsText.innerHTML = `
-        <span><strong>Applicable Controls:</strong> ${total} (${percent}% Met)</span>
-        <span>
-            <span style="color:#22c55e">●</span> Met: ${met} | 
-            <span style="color:#facc15">●</span> Partial: ${partial} | 
-            <span style="color:#ef4444">●</span> Not Met: ${notMet}
-        </span>
+
+    const container = document.createElement('div');
+    container.style.cssText = `
+        margin: 20px 0 30px 0;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        font-family: -apple-system, sans-serif;
     `;
 
-    // Progress Bar UI
-    const barOuter = document.createElement('div');
-    barOuter.style.cssText = 'width: 100%; height: 10px; background: #333; border-radius: 5px; overflow: hidden; display: flex; border: 1px solid #444;';
+    // Header with Badge-style stats
+    const header = document.createElement('div');
+    header.style.cssText = 'display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;';
+    header.innerHTML = `
+        <div>
+            <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #8a8480; margin-bottom: 4px;">Compliance Overview</div>
+            <div style="font-size: 20px; font-weight: 700; color: #e0d9ce;">${percent}% <span style="font-size: 12px; font-weight: 400; color: #8a8480;">Completed</span></div>
+        </div>
+        <div style="text-align: right; font-size: 11px; color: #c4bdb5;">
+            <span style="padding: 2px 8px; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 4px; color: #22c55e; margin-right: 4px;">Met: ${met}</span>
+            <span style="padding: 2px 8px; background: rgba(244, 68, 68, 0.1); border: 1px solid rgba(244, 68, 68, 0.2); border-radius: 4px; color: #ef4444;">To-Do: ${notMet + partial}</span>
+        </div>
+    `;
+
+    // The Glass Track
+    const track = document.createElement('div');
+    track.style.cssText = 'width: 100%; height: 8px; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; display: flex; box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);';
 
     const getWidth = (count) => total > 0 ? (count / total) * 100 : 0;
 
     const segments = [
-        { width: getWidth(met), color: '#22c55e' },
-        { width: getWidth(partial), color: '#facc15' },
-        { width: getWidth(notMet), color: '#ef4444' }
+        { width: getWidth(met), color: '#22c55e', glow: 'rgba(34, 197, 94, 0.4)' },
+        { width: getWidth(partial), color: '#facc15', glow: 'rgba(250, 204, 21, 0.3)' },
+        { width: getWidth(notMet), color: '#ef4444', glow: 'rgba(239, 68, 68, 0.3)' }
     ];
 
     segments.forEach(seg => {
         const s = document.createElement('div');
-        s.style.width = seg.width + '%';
-        s.style.backgroundColor = seg.color;
-        s.style.transition = 'width 0.4s ease-out';
-        barOuter.appendChild(s);
+        s.style.cssText = `
+            width: ${seg.width}%;
+            background-color: ${seg.color};
+            height: 100%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px ${seg.glow};
+        `;
+        track.appendChild(s);
     });
 
-    container.appendChild(statsText);
-    container.appendChild(barOuter);
+    container.appendChild(header);
+    container.appendChild(track);
     return container;
 }
 
