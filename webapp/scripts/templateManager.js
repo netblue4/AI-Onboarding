@@ -189,7 +189,6 @@ class TemplateManager {
 							});
 						}	
 						break;
-						
 					case "MultiSelect":
 						const sanitizedId_mul = this.sanitizeForId(field.control_number);
 						const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_mul}_response"]:checked`);
@@ -199,19 +198,30 @@ class TemplateManager {
 							delete currentData[sanitizedId_mul + "_response"];
 						}						
 						break;
-						
 				    default:	
 						const sanitizedId_default = this.sanitizeForId(field.control_number);
-						const inputElement = document.getElementById(sanitizedId_default + "_response");
-						if (inputElement) {
-							if (inputElement.tagName === 'SELECT' || inputElement.tagName === 'TEXTAREA' || inputElement.tagName === 'INPUT') {
-								if (inputElement.value) {
-									currentData[sanitizedId_default + "_response"] = inputElement.value;
+						const evidenceElement = document.getElementById(sanitizedId_default + "_response");
+						if (evidenceElement) {
+							if (evidenceElement.tagName === 'SELECT' || evidenceElement.tagName === 'TEXTAREA' || evidenceElement.tagName === 'INPUT') {
+								if (evidenceElement.value) {
+									currentData[sanitizedId_default + "_response"] = evidenceElement.value;
+								} else {
+									delete currentData[sanitizedId_default];
+								}
+							}
+						}
+						
+						const complyStatusElement = document.getElementById(sanitizedId_default + "_complystatus");
+						if (complyStatusElement) {
+							if (complyStatusElement.tagName === 'SELECT' || complyStatusElement.tagName === 'TEXTAREA' || complyStatusElement.tagName === 'INPUT') {
+								if (complyStatusElement.value) {
+									currentData[sanitizedId_default + "_complystatus"] = complyStatusElement.value;
 								} else {
 									delete currentData[sanitizedId_default];
 								}
 							}
 						}						
+												
 				}
 				break; // Break for "captureData" case
 	
