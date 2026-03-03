@@ -761,7 +761,7 @@ function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue, cardE
         if (status === 'Met') {
             cardElement.style.borderColor = '#22c55e'; // Green
         } else if (status === 'Partially Met') {
-            cardElement.style.borderColor = '#22c55e'; // Yellow
+            cardElement.style.borderColor = '#facc15'; // Yellow
         } else if (status === 'Not Met') {
             cardElement.style.borderColor = '#ef4444'; // Red
         } else {
