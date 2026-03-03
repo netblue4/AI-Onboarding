@@ -129,7 +129,8 @@ class TemplateManager {
 				return this.state.capturedData[sanitizedId + "_jkImplementationEvidence"];				
 			default:	
 				if (implementationStatus) {
-					return "";
+					sanitizedId = this.sanitizeForId(field.control_number);
+				    return this.state.capturedData[sanitizedId + "_complystatus"] || null;
 				}
 				sanitizedId = this.sanitizeForId(field.control_number);
 				return this.state.capturedData[sanitizedId + "_response"] || null;
