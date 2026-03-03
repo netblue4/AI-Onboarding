@@ -115,24 +115,23 @@ class TemplateManager {
 			    sanitizedId = this.sanitizeForId(field.requirement_control_number);
 				return this.state.capturedData[sanitizedId + '_jkSoa'];	
 			case "MultiSelect":
-				if (implementationStatus) {
-					return "";
-				}
 				sanitizedId = this.sanitizeForId(field.control_number);
+				if (implementationStatus) {
+					return this.state.capturedData[sanitizedId + "_complystatus"];
+				}
 				return this.state.capturedData[sanitizedId + "_response"];
 			case "risk_control":
 			case "test_control":	
 			    sanitizedId = this.sanitizeForId(field.control_number);
-				//if (implementationStatus) {
-				//	return this.state.capturedData[sanitizedId + "_jkImplementationStatus"];
-				//}
+				if (implementationStatus) {
+					return this.state.capturedData[sanitizedId + "_complystatus"];
+				}
 				return this.state.capturedData[sanitizedId + "_jkImplementationEvidence"];				
 			default:	
+				sanitizedId = this.sanitizeForId(field.control_number);
 				if (implementationStatus) {
-					sanitizedId = this.sanitizeForId(field.control_number);
 				    return this.state.capturedData[sanitizedId + "_complystatus"] || null;
 				}
-				sanitizedId = this.sanitizeForId(field.control_number);
 				return this.state.capturedData[sanitizedId + "_response"] || null;
 		}
 	}
