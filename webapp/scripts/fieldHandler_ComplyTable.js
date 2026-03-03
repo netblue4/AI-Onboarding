@@ -21,83 +21,223 @@ function createComplyTable(sanitizeForId, fieldStoredValue, webappData = null, m
     return wrapper;
 }
 
-
-/**
- * Renders a modernized, "glassmorphism" progress bar for the Approver role
- */
 function renderApproverProgressBar(mindmapData, fieldStoredValue) {
-    let total = 0, met = 0, notMet = 0, partial = 0;
+    let total = 0;
+    let met = 0;
+    let notMet = 0;
+    let partial = 0;
+    let notAssessed = 0;
 
-    // Logic for counting (remains the same as your requirement)
     mindmapData.forEach((groups) => {
         groups.forEach((gData) => {
             gData.requirements.forEach((reqEntry) => {
-                if (fieldStoredValue(reqEntry.requirement, true) === 'Applicable') {
+                const req = reqEntry.requirement;
+                const applicability = fieldStoredValue(req, true);
+                if (applicability === 'Applicable') {
                     reqEntry.implementations.forEach(impl => {
                         total++;
                         const status = fieldStoredValue(impl, true);
                         if (status === 'Met') met++;
                         else if (status === 'Not Met') notMet++;
                         else if (status === 'Partially Met') partial++;
+                        else notAssessed++;
                     });
                 }
             });
         });
     });
 
-    const percent = total > 0 ? Math.round((met / total) * 100) : 0;
+    const metPct      = total > 0 ? Math.round((met / total) * 100) : 0;
+    const partialPct  = total > 0 ? Math.round((partial / total) * 100) : 0;
+    const notMetPct   = total > 0 ? Math.round((notMet / total) * 100) : 0;
+    const pendingPct  = total > 0 ? Math.round((notAssessed / total) * 100) : 0;
+
+    // --- Compliance score colour ---
+    const scoreColor = metPct >= 80 ? '#22c55e' : metPct >= 50 ? '#facc15' : '#ef4444';
 
     const container = document.createElement('div');
     container.style.cssText = `
-        margin: 20px 0 30px 0;
-        padding: 16px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        backdrop-filter: blur(10px);
-        font-family: -apple-system, sans-serif;
+        margin: 0 0 24px 0;
+        padding: 20px 24px;
+        background: linear-gradient(135deg, #1e1e1e 0%, #252525 100%);
+        border: 1px solid #3d3d3d;
+        border-radius: 10px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        position: relative;
+        overflow: hidden;
     `;
 
-    // Header with Badge-style stats
-    const header = document.createElement('div');
-    header.style.cssText = 'display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;';
-    header.innerHTML = `
-        <div>
-            <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #8a8480; margin-bottom: 4px;">Compliance Overview</div>
-            <div style="font-size: 20px; font-weight: 700; color: #e0d9ce;">${percent}% <span style="font-size: 12px; font-weight: 400; color: #8a8480;">Completed</span></div>
-        </div>
-        <div style="text-align: right; font-size: 11px; color: #c4bdb5;">
-            <span style="padding: 2px 8px; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 4px; color: #22c55e; margin-right: 4px;">Met: ${met}</span>
-            <span style="padding: 2px 8px; background: rgba(244, 68, 68, 0.1); border: 1px solid rgba(244, 68, 68, 0.2); border-radius: 4px; color: #ef4444;">To-Do: ${notMet + partial}</span>
-        </div>
+    // --- Subtle background watermark ---
+    const watermark = document.createElement('div');
+    watermark.style.cssText = `
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        font-size: 80px;
+        font-weight: 900;
+        color: rgba(184, 150, 62, 0.04);
+        letter-spacing: -4px;
+        pointer-events: none;
+        user-select: none;
+        line-height: 1;
+    `;
+    watermark.textContent = 'AUDIT';
+    container.appendChild(watermark);
+
+    // --- Top row: title + compliance score ---
+    const topRow = document.createElement('div');
+    topRow.style.cssText = `
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
     `;
 
-    // The Glass Track
-    const track = document.createElement('div');
-    track.style.cssText = 'width: 100%; height: 8px; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; display: flex; box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);';
+    const titleBlock = document.createElement('div');
 
-    const getWidth = (count) => total > 0 ? (count / total) * 100 : 0;
+    const title = document.createElement('div');
+    title.style.cssText = `
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #b8963e;
+        margin-bottom: 4px;
+    `;
+    title.textContent = 'Compliance Overview';
+
+    const subtitle = document.createElement('div');
+    subtitle.style.cssText = `font-size: 12px; color: #8a8480;`;
+    subtitle.textContent = `${total} applicable control${total !== 1 ? 's' : ''} assessed`;
+
+    titleBlock.appendChild(title);
+    titleBlock.appendChild(subtitle);
+
+    // --- Big compliance score ---
+    const scoreBlock = document.createElement('div');
+    scoreBlock.style.cssText = `text-align: right;`;
+
+    const scoreNum = document.createElement('div');
+    scoreNum.style.cssText = `
+        font-size: 36px;
+        font-weight: 800;
+        line-height: 1;
+        color: ${scoreColor};
+        letter-spacing: -1px;
+    `;
+    scoreNum.textContent = `${metPct}%`;
+
+    const scoreLabel = document.createElement('div');
+    scoreLabel.style.cssText = `font-size: 10px; color: #8a8480; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;`;
+    scoreLabel.textContent = 'Compliance Rate';
+
+    scoreBlock.appendChild(scoreNum);
+    scoreBlock.appendChild(scoreLabel);
+
+    topRow.appendChild(titleBlock);
+    topRow.appendChild(scoreBlock);
+    container.appendChild(topRow);
+
+    // --- Segmented progress bar ---
+    const barWrapper = document.createElement('div');
+    barWrapper.style.cssText = `margin-bottom: 16px;`;
+
+    const barOuter = document.createElement('div');
+    barOuter.style.cssText = `
+        width: 100%;
+        height: 8px;
+        background: #2e2e2e;
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        gap: 2px;
+    `;
 
     const segments = [
-        { width: getWidth(met), color: '#22c55e', glow: 'rgba(34, 197, 94, 0.4)' },
-        { width: getWidth(partial), color: '#facc15', glow: 'rgba(250, 204, 21, 0.3)' },
-        { width: getWidth(notMet), color: '#ef4444', glow: 'rgba(239, 68, 68, 0.3)' }
+        { pct: metPct,     color: '#22c55e', label: 'Met' },
+        { pct: partialPct, color: '#facc15', label: 'Partial' },
+        { pct: notMetPct,  color: '#ef4444', label: 'Not Met' },
+        { pct: pendingPct, color: '#3d3d3d', label: 'Pending' },
     ];
 
     segments.forEach(seg => {
+        if (seg.pct <= 0) return;
         const s = document.createElement('div');
         s.style.cssText = `
-            width: ${seg.width}%;
-            background-color: ${seg.color};
-            height: 100%;
-            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 10px ${seg.glow};
+            width: ${seg.pct}%;
+            background: ${seg.color};
+            border-radius: 2px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         `;
-        track.appendChild(s);
+        barOuter.appendChild(s);
     });
 
-    container.appendChild(header);
-    container.appendChild(track);
+    barWrapper.appendChild(barOuter);
+    container.appendChild(barWrapper);
+
+    // --- Stat cards row ---
+    const statsRow = document.createElement('div');
+    statsRow.style.cssText = `
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    `;
+
+    const statCards = [
+        { label: 'Met',        count: met,          pct: metPct,     color: '#22c55e', bg: 'rgba(34,197,94,0.08)',   border: 'rgba(34,197,94,0.2)'   },
+        { label: 'Partial',    count: partial,       pct: partialPct, color: '#facc15', bg: 'rgba(250,204,21,0.08)',  border: 'rgba(250,204,21,0.2)'  },
+        { label: 'Not Met',    count: notMet,        pct: notMetPct,  color: '#ef4444', bg: 'rgba(239,68,68,0.08)',   border: 'rgba(239,68,68,0.2)'   },
+        { label: 'Pending',    count: notAssessed,   pct: pendingPct, color: '#8a8480', bg: 'rgba(138,132,128,0.08)', border: 'rgba(138,132,128,0.2)' },
+    ];
+
+    statCards.forEach(stat => {
+        const card = document.createElement('div');
+        card.style.cssText = `
+            background: ${stat.bg};
+            border: 1px solid ${stat.border};
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        `;
+
+        const cardCount = document.createElement('div');
+        cardCount.style.cssText = `
+            font-size: 22px;
+            font-weight: 800;
+            color: ${stat.color};
+            line-height: 1;
+            letter-spacing: -0.5px;
+        `;
+        cardCount.textContent = stat.count;
+
+        const cardLabel = document.createElement('div');
+        cardLabel.style.cssText = `
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a8480;
+        `;
+        cardLabel.textContent = stat.label;
+
+        const cardPct = document.createElement('div');
+        cardPct.style.cssText = `
+            font-size: 11px;
+            color: ${stat.color};
+            opacity: 0.8;
+            margin-top: 2px;
+        `;
+        cardPct.textContent = `${stat.pct}%`;
+
+        card.appendChild(cardCount);
+        card.appendChild(cardLabel);
+        card.appendChild(cardPct);
+        statsRow.appendChild(card);
+    });
+
+    container.appendChild(statsRow);
     return container;
 }
 
