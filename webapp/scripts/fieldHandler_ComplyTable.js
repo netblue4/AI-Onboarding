@@ -1,12 +1,85 @@
 /**
  * Compliance Table Handler: Table view with inline dropdown + Attack Vectors per control card.
  */
-function createComplyTable(sanitizeForId, fieldStoredValue, webappData = null, mindmap = null) {
-    //const webappData = window.originalWebappData;
-    if (!webappData) return document.createElement('div');
 
-    //const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
-    return renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId);
+function createComplyTable(sanitizeForId, fieldStoredValue, webappData = null, mindmap = null) {
+    if (!webappData) return document.createElement('div');
+    
+    // Assume mindmapData is built as per your existing logic
+    // const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
+    
+    const wrapper = document.createElement('div');
+    
+    // 1. Check for Approver role (assuming 'state' is globally available or passed in)
+    if (typeof state !== 'undefined' && state.currentRole === "Approver") {
+        wrapper.appendChild(renderApproverProgressBar(mindmapData, fieldStoredValue));
+    }
+
+    const table = renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId);
+    wrapper.appendChild(table);
+    
+    return wrapper;
+}
+
+/**
+ * Renders a segmented progress bar for Approver role
+ */
+function renderApproverProgressBar(mindmapData, fieldStoredValue) {
+    let total = 0;
+    let met = 0;
+    let notMet = 0;
+    let partial = 0;
+
+    // 2.a/b/c/d: Count implementation statuses
+    mindmapData.forEach((groups) => {
+        groups.forEach((gData) => {
+            gData.requirements.forEach((reqEntry) => {
+                reqEntry.implementations.forEach(impl => {
+                    total++;
+                    const status = fieldStoredValue(impl, true);
+                    if (status === 'Met') met++;
+                    else if (status === 'Not Met') notMet++;
+                    else if (status === 'Partially Met') partial++;
+                });
+            });
+        });
+    });
+
+    const container = document.createElement('div');
+    container.style.cssText = 'margin: 10px 0 20px 0; font-family: sans-serif;';
+
+    const statsText = document.createElement('div');
+    statsText.style.cssText = 'display: flex; justify-content: space-between; font-size: 12px; color: #e0d9ce; margin-bottom: 5px;';
+    statsText.innerHTML = `
+        <span><strong>Total Controls:</strong> ${total}</span>
+        <span><span style="color:#22c55e">●</span> Met: ${met} | 
+              <span style="color:#facc15">●</span> Partial: ${partial} | 
+              <span style="color:#ef4444">●</span> Not Met: ${notMet}</span>
+    `;
+
+    const barOuter = document.createElement('div');
+    barOuter.style.cssText = 'width: 100%; height: 12px; background: #333; border-radius: 6px; overflow: hidden; display: flex; border: 1px solid #444;';
+
+    const getWidth = (count) => total > 0 ? (count / total) * 100 : 0;
+
+    // Segmented Bars
+    const segments = [
+        { width: getWidth(met), color: '#22c55e' },
+        { width: getWidth(partial), color: '#facc15' },
+        { width: getWidth(notMet), color: '#ef4444' }
+    ];
+
+    segments.forEach(seg => {
+        const s = document.createElement('div');
+        s.style.width = seg.width + '%';
+        s.style.backgroundColor = seg.color;
+        s.style.transition = 'width 0.3s ease';
+        barOuter.appendChild(s);
+    });
+
+    container.appendChild(statsText);
+    container.appendChild(barOuter);
+    return container;
 }
 
 function renderComplyTable(mindmapData, fieldStoredValue, sanitizeForId) {

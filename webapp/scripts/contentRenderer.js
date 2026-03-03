@@ -22,13 +22,13 @@ class ContentRenderer {
 		try {
 			// 2. Get the specialized handler
 			 let handler  = null;
-			 if (this.state.currentRole === "Approver"){
-				handler = getFieldHandler('comply');
-			 }
+			 //if (this.state.currentRole === "Approver"){
+			//	handler = getFieldHandler('comply');
+			 //}
 			 
-			 if (this.state.currentRole === "Compliance"){
+			 //if (this.state.currentRole === "Compliance"){
 				handler = getFieldHandler('complytable');
-			 }
+			 //}
 
 			if (handler) {
 				sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
