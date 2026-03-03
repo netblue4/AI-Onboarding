@@ -275,11 +275,17 @@ class TemplateManager {
 				    default:	
 				        const sanitizedId_default = this.sanitizeForId(field.control_number);
 						if (this.state.capturedData[sanitizedId_default + "_response"]) {
-							const inputElement = document.getElementById(sanitizedId_default + "_response");
+							const inputElement = document.querySelector(`select[name="${sanitizedId_default}_response"]`);
 							if (inputElement) {
 								inputElement.value = this.state.capturedData[sanitizedId_default + "_response"];
 							}
 						}
+						if (this.state.capturedData[sanitizedId_default + "_complystatus"]) {
+							const complyStatusElement = document.querySelector(`select[name="${sanitizedId_default}_complystatus"]`);
+							if (complyStatusElement) {
+								complyStatusElement.value = this.state.capturedData[sanitizedId_default + "_complystatus"];
+							}
+						}						
 				      return null;
 						
 				}
