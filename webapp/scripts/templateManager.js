@@ -200,7 +200,7 @@ class TemplateManager {
 						break;
 				    default:	
 						const sanitizedId_default = this.sanitizeForId(field.control_number);
-						const evidenceElement = document.getElementById(sanitizedId_default + "_response");
+						const evidenceElement = document.querySelector(`select[name="${sanitizedId_default}_response"]`);
 						if (evidenceElement) {
 							if (evidenceElement.tagName === 'SELECT' || evidenceElement.tagName === 'TEXTAREA' || evidenceElement.tagName === 'INPUT') {
 								if (evidenceElement.value) {
@@ -211,7 +211,8 @@ class TemplateManager {
 							}
 						}
 						
-						const complyStatusElement = document.getElementById(sanitizedId_default + "_complystatus");
+						const complyStatusElement = document.querySelector(`select[name="${sanitizedId_default}_complystatus"]`);
+
 						if (complyStatusElement) {
 							if (complyStatusElement.tagName === 'SELECT' || complyStatusElement.tagName === 'TEXTAREA' || complyStatusElement.tagName === 'INPUT') {
 								if (complyStatusElement.value) {
