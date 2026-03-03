@@ -759,11 +759,11 @@ function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue, cardE
     // Helper function to update the card border based on status
     function updateBorder(status) {
         if (status === 'Met') {
-            cardElement.style.borderColor = '#22c55e'; // Green
+            cardElement.style.borderColor = 'rgba(34,197,94,0.2)'; // Green
         } else if (status === 'Partially Met') {
-            cardElement.style.borderColor = '#facc15'; // Yellow
+            cardElement.style.borderColor = 'rgba(250,204,21,0.2)'; // Yellow
         } else if (status === 'Not Met') {
-            cardElement.style.borderColor = '#ef4444'; // Red
+            cardElement.style.borderColor = 'rgba(239,68,68,0.2)'; // Red
         } else {
             cardElement.style.borderColor = '#3d3d3d'; // Default Gray
         }
