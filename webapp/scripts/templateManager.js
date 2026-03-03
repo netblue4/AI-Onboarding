@@ -273,6 +273,10 @@ class TemplateManager {
 								if (evidenceElement && this.state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
 									evidenceElement.value = this.state.capturedData[`${controlKey}_jkImplementationEvidence`];
 								}
+								const complyStatusElement = document.querySelector(`textarea[name="${controlKey}_complystatus"]`);
+								if (complyStatusElement && this.state.capturedData[`${controlKey}_complystatus`]) {
+									complyStatusElement.value = this.state.capturedData[`${controlKey}_complystatus`];
+								}
 							});
 						}					
 						break;
@@ -288,7 +292,12 @@ class TemplateManager {
 								const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId_mul}_response"][value="${value}"]`);
 								if (checkbox) checkbox.checked = true;
 							});
-						}					
+						}	
+						const mulcomplyStatusElement = document.querySelector(`textarea[name="${sanitizedId_mul}_complystatus"]`);
+						if (mulcomplyStatusElement && this.state.capturedData[`${sanitizedId_mul}_complystatus`]) {
+							mulcomplyStatusElement.value = this.state.capturedData[`${sanitizedId_mul}_complystatus`];
+						}						
+										
 						break;
 						
 				    default:	
