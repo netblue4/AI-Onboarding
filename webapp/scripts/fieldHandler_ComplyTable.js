@@ -521,7 +521,7 @@ function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue) {
     select.style.backgroundPosition = 'right 0.75rem center';
     select.name = sanitizeForId(subControl.control_number) + '_complystatus';
 
-	const complyStatusValue = fieldStoredValue(node, true);
+	const complyStatusValue = fieldStoredValue(subControl, true);
 
     const options = ['Select', 'Met', 'Not Met', 'Partially Met'];
     options.forEach((optionText) => {
