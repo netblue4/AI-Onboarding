@@ -22,7 +22,7 @@ function createComplyTable(sanitizeForId, fieldStoredValue, webappData = null, m
 }
 
 /**
- * Renders a segmented progress bar for Approver role
+ * Renders a segmented progress bar for Approver role based on Applicable requirements
  */
 function renderApproverProgressBar(mindmapData, fieldStoredValue) {
     let total = 0;
@@ -30,39 +30,52 @@ function renderApproverProgressBar(mindmapData, fieldStoredValue) {
     let notMet = 0;
     let partial = 0;
 
-    // 2.a/b/c/d: Count implementation statuses
+    // Iterate through the hierarchy
     mindmapData.forEach((groups) => {
         groups.forEach((gData) => {
             gData.requirements.forEach((reqEntry) => {
-                reqEntry.implementations.forEach(impl => {
-                    total++;
-                    const status = fieldStoredValue(impl, true);
-                    if (status === 'Met') met++;
-                    else if (status === 'Not Met') notMet++;
-                    else if (status === 'Partially Met') partial++;
-                });
+                const req = reqEntry.requirement;
+                
+                // Logic update: Only count controls if the requirement is 'Applicable'
+                const applicability = fieldStoredValue(req, true);
+                
+                if (applicability === 'Applicable') {
+                    reqEntry.implementations.forEach(impl => {
+                        total++;
+                        const status = fieldStoredValue(impl, true);
+                        if (status === 'Met') met++;
+                        else if (status === 'Not Met') notMet++;
+                        else if (status === 'Partially Met') partial++;
+                    });
+                }
             });
         });
     });
 
     const container = document.createElement('div');
-    container.style.cssText = 'margin: 10px 0 20px 0; font-family: sans-serif;';
+    container.style.cssText = 'margin: 10px 0 20px 0; font-family: -apple-system, sans-serif;';
 
+    // Summary Text
     const statsText = document.createElement('div');
-    statsText.style.cssText = 'display: flex; justify-content: space-between; font-size: 12px; color: #e0d9ce; margin-bottom: 5px;';
+    statsText.style.cssText = 'display: flex; justify-content: space-between; font-size: 12px; color: #e0d9ce; margin-bottom: 8px;';
+    
+    const percent = total > 0 ? Math.round((met / total) * 100) : 0;
+    
     statsText.innerHTML = `
-        <span><strong>Total Controls:</strong> ${total}</span>
-        <span><span style="color:#22c55e">●</span> Met: ${met} | 
-              <span style="color:#facc15">●</span> Partial: ${partial} | 
-              <span style="color:#ef4444">●</span> Not Met: ${notMet}</span>
+        <span><strong>Applicable Controls:</strong> ${total} (${percent}% Met)</span>
+        <span>
+            <span style="color:#22c55e">●</span> Met: ${met} | 
+            <span style="color:#facc15">●</span> Partial: ${partial} | 
+            <span style="color:#ef4444">●</span> Not Met: ${notMet}
+        </span>
     `;
 
+    // Progress Bar UI
     const barOuter = document.createElement('div');
-    barOuter.style.cssText = 'width: 100%; height: 12px; background: #333; border-radius: 6px; overflow: hidden; display: flex; border: 1px solid #444;';
+    barOuter.style.cssText = 'width: 100%; height: 10px; background: #333; border-radius: 5px; overflow: hidden; display: flex; border: 1px solid #444;';
 
     const getWidth = (count) => total > 0 ? (count / total) * 100 : 0;
 
-    // Segmented Bars
     const segments = [
         { width: getWidth(met), color: '#22c55e' },
         { width: getWidth(partial), color: '#facc15' },
@@ -73,7 +86,7 @@ function renderApproverProgressBar(mindmapData, fieldStoredValue) {
         const s = document.createElement('div');
         s.style.width = seg.width + '%';
         s.style.backgroundColor = seg.color;
-        s.style.transition = 'width 0.3s ease';
+        s.style.transition = 'width 0.4s ease-out';
         barOuter.appendChild(s);
     });
 
