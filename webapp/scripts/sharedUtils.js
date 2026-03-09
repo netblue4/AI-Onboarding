@@ -85,3 +85,198 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
 
     return mindmapData;
 }
+
+/**
+ * Exports applicable compliance controls to a Jira-compatible CSV file and triggers a download.
+ * After download, prompts the user to confirm the Jira upload, then marks all exported controls
+ * with their Jira ticket search URLs and auto-saves progress.
+ */
+function exportToJiraCsv() {
+    const rows = [];
+    const projectKey = 10001;
+
+    const sanitizeForId = templateManager.sanitizeForId.bind(templateManager);
+    const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
+    const webappData = window.originalWebappData;
+    const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
+
+    // --- Get System ID from metadata ---
+    const systemId = webappData?._metadata?.systemId || state.systemId || 'UNKNOWN';
+
+    // --- Sanitize text for Jira wiki markup ---
+    function sanitizeForCsv(text) {
+        if (!text) return '';
+        return text
+            .replace(/```[\w]*\n?/g, '')
+            .replace(/```/g, '')
+            .replace(/\r\n/g, '\n')
+            .trim();
+    }
+
+    // --- Helper: determine category from control_number ---
+    function getCategory(control_number) {
+        const cNum = String(control_number || '');
+        if (cNum.includes('R')) return 'Build';
+        if (cNum.includes('T')) return 'Test';
+        return 'Define';
+    }
+
+    // --- Helper: build Jira search URL using systemId + control_number ---
+    function buildJiraUrl(controlNumber) {
+        const searchTerm = `${systemId} ${controlNumber}`;
+        const cleanSearchTerm = searchTerm.replace(/[\[\],-]/g, '');
+        return `https://netblue4.atlassian.net/issues?jql=summary%20~%20%22${encodeURIComponent(cleanSearchTerm)}%22`;
+    }
+
+    // --- Helper: build zipped task + code sample description for Build/Test ---
+    function buildTaskCodeDescription(impl) {
+        const taskArray = Array.isArray(impl.jkTask)
+            ? impl.jkTask
+            : [impl.jkTask].filter(Boolean);
+        const codeArray = Array.isArray(impl.jkCodeSample)
+            ? impl.jkCodeSample
+            : [impl.jkCodeSample].filter(Boolean);
+
+        if (taskArray.length === 0) return '';
+
+        return taskArray.map((task, i) => {
+            const parts = [`h4. Task ${i + 1}\n${sanitizeForCsv(task)}`];
+            if (codeArray[i]) {
+                parts.push(`h4. Code Sample ${i + 1}\n{code:python}\n${codeArray[i]}\n{code}`);
+            }
+            return parts.join('\n\n');
+        }).join('\n\n----\n\n');
+    }
+
+    // --- Helper: build Define description from jkType options or TextBox ---
+    function buildDefineDescription(impl) {
+        const cleanType = String(impl.jkType || '').split(':')[0];
+        const optionsString = String(impl.jkType || '').split(':')[1] || '';
+
+        const parts = [
+            `h3. [Define] ${impl.control_number} - ${impl.jkName || ''}`,
+            impl.jkObjective ? `h4. Objective\n${sanitizeForCsv(impl.jkObjective)}` : '',
+            impl.jkText      ? `h4. Guidance\n${sanitizeForCsv(impl.jkText)}`       : '',
+        ];
+
+        if (cleanType === 'MultiSelect' && optionsString) {
+            const options = optionsString.split('/').map(o => o.trim()).filter(Boolean);
+            const checkboxList = options.map(opt => `() ${opt}`).join('\n');
+            parts.push(`h4. Select all that apply\n${checkboxList}`);
+        } else if (cleanType === 'TextBox') {
+            parts.push(`h4. Developer Response\n_Please provide your response below:_\n\n&nbsp;`);
+        }
+
+        parts.push(`h4. Requirement Reference\n${impl.requirement_control_number || ''}`);
+
+        return parts.filter(Boolean).join('\n\n');
+    }
+
+    // --- CSV Header ---
+    rows.push(['Work item Id', 'Summary', 'Description', 'Work type', 'Priority', 'Parent']);
+
+    let idCounter = 1;
+    const exportedImpls = [];
+
+    mindmapData.forEach((groups, stepName) => {
+        groups.forEach((gData, groupName) => {
+            gData.requirements.forEach((reqEntry, reqKey) => {
+                const req = reqEntry.requirement;
+
+                // Only export applicable requirements
+                if (fieldStoredValue(req, true) !== 'Applicable') return;
+
+                const parentId = idCounter++;
+                const parentSummary = `${stepName} | ${groupName} | ${reqKey}: ${req.jkName || ''}`;
+                rows.push([parentId, parentSummary, sanitizeForCsv(req.jkText), 'Task', 'Medium', '']);
+
+                // Deduplicate implementations by control_number
+                const seen = new Set();
+
+                reqEntry.implementations.forEach(impl => {
+                    const category = getCategory(impl.control_number);
+                    const cNum = String(impl.control_number || '');
+
+                    if (seen.has(cNum)) return;
+                    seen.add(cNum);
+
+                    let descriptionParts = '';
+                    let subTaskSummary = '';
+
+                    if (category === 'Define') {
+                        descriptionParts = buildDefineDescription(impl);
+                        subTaskSummary = `[${systemId}] [Define] ${impl.control_number}: ${impl.jkName || ''}`;
+                    } else {
+                        const taskCodeSection = buildTaskCodeDescription(impl);
+                        descriptionParts = [
+                            `h3. Control: ${impl.control_number} - ${impl.jkName || ''}`,
+                            impl.jkText         ? `h4. Description\n${sanitizeForCsv(impl.jkText)}`          : '',
+                            impl.jkAttackVector ? `h4. Attack Vector\n${sanitizeForCsv(impl.jkAttackVector)}` : '',
+                            taskCodeSection     ? taskCodeSection                                              : '',
+                        ].filter(Boolean).join('\n\n');
+                        subTaskSummary = `[${systemId}] [${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
+                    }
+
+                    exportedImpls.push({ impl, category });
+                    rows.push([idCounter++, subTaskSummary, descriptionParts, 'Subtask', impl.jkMaturity || 'Medium', parentId]);
+                });
+            });
+        });
+    });
+
+    // Convert rows to CSV string and trigger download
+    const csvContent = rows.map(row =>
+        row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
+    ).join('\n');
+
+    const dateTime = new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${systemId}_JiraImport_${dateTime}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    console.log(`✅ Jira CSV exported with ${rows.length - 1} rows`);
+
+    // Prompt user to confirm upload, then stamp all controls with Jira URLs
+    setTimeout(() => {
+        const confirmed = confirm(
+            `✅ Your Jira CSV has been downloaded.\n\n` +
+            `Please upload it into Jira now.\n\n` +
+            `Once uploaded successfully, click OK to mark all ${exportedImpls.length} controls with their Jira ticket URL.\n\n` +
+            `Click Cancel to skip.`
+        );
+
+        if (!confirmed) return;
+
+        exportedImpls.forEach(({ impl, category }) => {
+            const sanitizedKey = sanitizeForId(impl.control_number);
+            const jiraUrl = buildJiraUrl(impl.control_number);
+
+            if (category === 'Define') {
+                const responseKey = `${sanitizedKey}_response`;
+                const responseElement = document.querySelector(
+                    `input[name="${responseKey}"], textarea[name="${responseKey}"]`
+                );
+                if (responseElement) responseElement.value = jiraUrl;
+                state.capturedData[responseKey] = jiraUrl;
+            } else {
+                const evidenceKey = `${sanitizedKey}_jkImplementationEvidence`;
+                const evidenceElement = document.querySelector(`textarea[name="${evidenceKey}"]`);
+                if (evidenceElement) evidenceElement.value = jiraUrl;
+                state.capturedData[evidenceKey] = jiraUrl;
+            }
+
+            templateManager.fieldHelper(impl, impl.jkType, 'captureData', state.capturedData);
+        });
+
+        const capturedValues = dataCapture.captureAll();
+        fileManager.saveProgress(capturedValues);
+
+        alert(`✅ ${exportedImpls.length} controls have been updated with their Jira ticket URLs and saved.`);
+    }, 1000);
+}
