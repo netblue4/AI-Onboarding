@@ -34,7 +34,7 @@ class DataRestore {
         setTimeout(() => {
             const sanitizedId = this.templateManager.sanitizeForId(field.control_number);
             const fieldType = field.jkType;
-            this.templateManager.fieldHelper(field, fieldType, "retrieveData");
+            fieldHelper(field, fieldType, "retrieveData");
         }, 100);
     }
 }

@@ -1,7 +1,6 @@
 let webappData;
 let mindmapData;
 let sanitizeForId;
-let fieldStoredValue;
 
 /**
  * Renders template content into the DOM based on the current role and dimension filters.
@@ -38,7 +37,6 @@ class ContentRenderer {
 
 			if (handler) {
 				sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
-				fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
 				webappData = window.originalWebappData;
 				mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 			
@@ -90,7 +88,6 @@ class ContentRenderer {
         }
 
         sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
-        fieldStoredValue = this.templateManager.fieldStoredValue.bind(this.templateManager);
         webappData = window.originalWebappData;
         mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 

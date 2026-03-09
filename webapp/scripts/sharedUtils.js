@@ -3,6 +3,203 @@
  */
 
 /**
+ * Looks up a stored value for a given field from the application's captured data.
+ * The key used depends on the field's jkType.
+ *
+ * @param {Object} field - The field definition object from the template
+ * @param {boolean} [implementationStatus=false] - If true, returns the compliance/implementation
+ *   status value instead of the primary response value
+ * @returns {*} The stored value, or null if not found
+ */
+function fieldStoredValue(field, implementationStatus = false) {
+    if (!field || !field.jkType) return null;
+
+    const cleanType = String(field.jkType).split(':')[0];
+    let sanitizedId = 0;
+
+    switch (cleanType) {
+        case "requirement":
+            sanitizedId = templateManager.sanitizeForId(field.requirement_control_number);
+            return state.capturedData[sanitizedId + '_jkSoa'];
+        case "MultiSelect":
+            sanitizedId = templateManager.sanitizeForId(field.control_number);
+            if (implementationStatus) {
+                return state.capturedData[sanitizedId + "_complystatus"];
+            }
+            return state.capturedData[sanitizedId + "_response"];
+        case "risk_control":
+        case "test_control":
+            sanitizedId = templateManager.sanitizeForId(field.control_number);
+            if (implementationStatus) {
+                return state.capturedData[sanitizedId + "_complystatus"];
+            }
+            return state.capturedData[sanitizedId + "_jkImplementationEvidence"];
+        default:
+            sanitizedId = templateManager.sanitizeForId(field.control_number);
+            if (implementationStatus) {
+                return state.capturedData[sanitizedId + "_complystatus"] || null;
+            }
+            return state.capturedData[sanitizedId + "_response"] || null;
+    }
+}
+
+/**
+ * Handles data capture and restore operations for a single field node.
+ * Reads from or writes to the DOM based on the operation requested.
+ *
+ * @param {Object} field - The field definition object from the template
+ * @param {string} fieldType - The field's jkType value
+ * @param {string} operation - Either "captureData" (DOM → state) or "retrieveData" (state → DOM)
+ * @param {Object|null} [currentData=null] - The data object to write into (required for captureData)
+ */
+function fieldHelper(field, fieldType, operation, currentData = null) {
+    if (!field || !field.jkType) return null;
+
+    const cleanType = String(field.jkType).split(':')[0];
+
+    switch (operation) {
+        case "captureData":
+            switch (cleanType) {
+                case "requirement": {
+                    const sanitizedId = templateManager.sanitizeForId(field.requirement_control_number);
+                    const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+                    if (requirementSelect && requirementSelect.value && requirementSelect.value !== 'Select') {
+                        if (currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
+                            currentData[sanitizedId + '_requirement'] = field.jkName + ': ' + field.jkText;
+                            currentData[sanitizedId + '_jkSoa'] = requirementSelect.value;
+                        }
+                    } else if (requirementSelect && currentData[sanitizedId + '_jkSoa']) {
+                        delete currentData[sanitizedId + '_jkSoa'];
+                        delete currentData[sanitizedId + '_requirement'];
+                    }
+                    break;
+                }
+                case "risk":
+                case "plan":
+                    if (field.controls && Array.isArray(field.controls)) {
+                        field.controls.forEach(control => {
+                            const controlKey = templateManager.sanitizeForId(control.control_number);
+                            const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+                            const evidenceValue = evidenceElement ? evidenceElement.value : "";
+                            if (evidenceValue !== "") {
+                                currentData[controlKey] = control.jkText;
+                                currentData[`${controlKey}_jkImplementationEvidence`] = evidenceValue;
+                            }
+                            const complyStatusElement = document.querySelector(`select[name="${controlKey}_complystatus"]`);
+                            const complyStatusValue = complyStatusElement ? complyStatusElement.value : "";
+                            if (complyStatusValue !== "") {
+                                currentData[controlKey + "_complystatus"] = complyStatusValue;
+                            } else {
+                                delete currentData[controlKey + "_complystatus"];
+                            }
+                        });
+                    }
+                    break;
+                case "MultiSelect": {
+                    const sanitizedId_mul = templateManager.sanitizeForId(field.control_number);
+                    const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_mul}_response"]:checked`);
+                    if (checkboxes.length > 0) {
+                        currentData[sanitizedId_mul + "_response"] = Array.from(checkboxes).map(cb => cb.value);
+                    } else if (document.querySelector(`input[type="checkbox"][name="${sanitizedId_mul}_response"]`)) {
+                        delete currentData[sanitizedId_mul + "_response"];
+                    }
+                    const mulcomplyStatusElement = document.querySelector(`select[name="${sanitizedId_mul}_complystatus"]`);
+                    const mulcomplyStatusValue = mulcomplyStatusElement ? mulcomplyStatusElement.value : "";
+                    if (mulcomplyStatusValue !== "") {
+                        currentData[sanitizedId_mul + "_complystatus"] = mulcomplyStatusValue;
+                    } else {
+                        delete currentData[sanitizedId_mul + "_complystatus"];
+                    }
+                    break;
+                }
+                default: {
+                    const sanitizedId_default = templateManager.sanitizeForId(field.control_number);
+                    const evidenceElement = document.querySelector(`select[name="${sanitizedId_default}_response"]`);
+                    if (evidenceElement) {
+                        if (evidenceElement.value) {
+                            currentData[sanitizedId_default + "_response"] = evidenceElement.value;
+                        } else {
+                            delete currentData[sanitizedId_default];
+                        }
+                    }
+                    const complyStatusElement = document.querySelector(`select[name="${sanitizedId_default}_complystatus"]`);
+                    if (complyStatusElement) {
+                        if (complyStatusElement.value) {
+                            currentData[sanitizedId_default + "_complystatus"] = complyStatusElement.value;
+                        } else {
+                            delete currentData[sanitizedId_default];
+                        }
+                    }
+                    break;
+                }
+            }
+            break;
+
+        case "retrieveData":
+            switch (cleanType) {
+                case "requirement": {
+                    const sanitizedId = templateManager.sanitizeForId(field.requirement_control_number);
+                    if (state.capturedData && state.capturedData[sanitizedId + '_jkSoa']) {
+                        const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
+                        if (select) select.value = state.capturedData[sanitizedId + '_jkSoa'];
+                    }
+                    break;
+                }
+                case "risk":
+                case "plan":
+                    if (field.controls && Array.isArray(field.controls)) {
+                        field.controls.forEach(control => {
+                            const controlKey = templateManager.sanitizeForId(control.control_number);
+                            const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
+                            if (evidenceElement && state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
+                                evidenceElement.value = state.capturedData[`${controlKey}_jkImplementationEvidence`];
+                            }
+                            const complyStatusElement = document.querySelector(`textarea[name="${controlKey}_complystatus"]`);
+                            if (complyStatusElement && state.capturedData[`${controlKey}_complystatus`]) {
+                                complyStatusElement.value = state.capturedData[`${controlKey}_complystatus`];
+                            }
+                        });
+                    }
+                    break;
+                case "MultiSelect": {
+                    const sanitizedId_mul = templateManager.sanitizeForId(field.control_number);
+                    const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_mul}_response"]`);
+                    allCheckboxes.forEach(cb => cb.checked = false);
+                    const selectedValues = state.capturedData[sanitizedId_mul + "_response"];
+                    if (Array.isArray(selectedValues)) {
+                        selectedValues.forEach(value => {
+                            const checkbox = document.querySelector(`input[type="checkbox"][name="${sanitizedId_mul}_response"][value="${value}"]`);
+                            if (checkbox) checkbox.checked = true;
+                        });
+                    }
+                    const mulcomplyStatusElement = document.querySelector(`textarea[name="${sanitizedId_mul}_complystatus"]`);
+                    if (mulcomplyStatusElement && state.capturedData[`${sanitizedId_mul}_complystatus`]) {
+                        mulcomplyStatusElement.value = state.capturedData[`${sanitizedId_mul}_complystatus`];
+                    }
+                    break;
+                }
+                default: {
+                    const sanitizedId_default = templateManager.sanitizeForId(field.control_number);
+                    if (state.capturedData[sanitizedId_default + "_response"]) {
+                        const inputElement = document.querySelector(`select[name="${sanitizedId_default}_response"]`);
+                        if (inputElement) inputElement.value = state.capturedData[sanitizedId_default + "_response"];
+                    }
+                    if (state.capturedData[sanitizedId_default + "_complystatus"]) {
+                        const complyStatusElement = document.querySelector(`select[name="${sanitizedId_default}_complystatus"]`);
+                        if (complyStatusElement) complyStatusElement.value = state.capturedData[sanitizedId_default + "_complystatus"];
+                    }
+                    break;
+                }
+            }
+            break;
+
+        default:
+            console.warn("Unknown operation:", operation);
+            return null;
+    }
+}
+
+/**
  * Builds a nested Map of mindmap data from the raw webapp JSON.
  * Groups requirements by Article step → group → requirement, then performs
  * a global linking pass to attach implementation nodes to their requirements.
@@ -96,7 +293,6 @@ function exportToJiraCsv() {
     const projectKey = 10001;
 
     const sanitizeForId = templateManager.sanitizeForId.bind(templateManager);
-    const fieldStoredValue = templateManager.fieldStoredValue.bind(templateManager);
     const webappData = window.originalWebappData;
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
@@ -271,7 +467,7 @@ function exportToJiraCsv() {
                 state.capturedData[evidenceKey] = jiraUrl;
             }
 
-            templateManager.fieldHelper(impl, impl.jkType, 'captureData', state.capturedData);
+            fieldHelper(impl, impl.jkType, 'captureData', state.capturedData);
         });
 
         const capturedValues = dataCapture.captureAll();

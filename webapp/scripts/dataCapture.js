@@ -55,7 +55,7 @@ class DataCapture {
         if (!fieldName) return;
 
         const sanitizedId = this.templateManager.sanitizeForId(fieldControlNumber);
-        this.templateManager.fieldHelper(field, fieldType, "captureData", currentData);
+        fieldHelper(field, fieldType, "captureData", currentData);
 
         // Recurse into nested fields
         if (field.Fields && Array.isArray(field.Fields)) {
