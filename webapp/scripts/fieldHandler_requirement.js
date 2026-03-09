@@ -1,3 +1,12 @@
+/**
+ * Creates a collapsible requirement field with an applicability dropdown and optional attack vectors.
+ * @param {Object} field - The field definition object from the template
+ * @param {Object} capturedData - Previously captured form data
+ * @param {Function} sanitizeForId - Utility function to create safe HTML IDs
+ * @param {Function} fieldStoredValue - Utility function to retrieve stored field values
+ * @param {Map} mindmap - Mindmap data used to look up associated attack vectors
+ * @returns {HTMLElement} The fully constructed div element for the requirement field
+ */
 function createRequirement(field, capturedData, sanitizeForId, fieldStoredValue, mindmap) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';

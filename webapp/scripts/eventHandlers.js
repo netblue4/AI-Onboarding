@@ -2,7 +2,9 @@
 // scripts/eventHandlers.js (FIXED)
 // ============================================
 /**
- * Sets up all event listeners for the application
+ * Manages all DOM event listeners for the application.
+ * Wires up UI controls (file input, save, export, role/dimension selectors) to
+ * their corresponding state and rendering logic.
  */
 class EventHandlers {
     constructor(stateManager, fileManager, dataCapture, contentRendererClass, roleProgressTracker) {
@@ -15,7 +17,8 @@ class EventHandlers {
     }
 
     /**
-     * Initialize content renderer and setup all event listeners
+     * Initializes the content renderer and attaches all DOM event listeners.
+     * Must be called after all dependencies (templateManager, dataRestore, etc.) are ready.
      */
     setup() {
         // Create content renderer instance
@@ -31,7 +34,6 @@ class EventHandlers {
 
         console.log('EventHandlers.setup() called');
 
-        //const roleDropdown = document.getElementById('role-dropdown');
         const dimensionDropdown = document.getElementById('dimension-dropdown');
         const systemIdInput = document.getElementById('system-id-input');
         const fileInput = document.getElementById('file-input');

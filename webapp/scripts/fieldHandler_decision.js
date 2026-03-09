@@ -1,3 +1,9 @@
+/**
+ * Creates a decision field that routes to different steps based on a captured field value.
+ * @param {Object} field - The field definition object, including YesTarget and NoTarget step keys
+ * @param {Object} capturedData - Previously captured form data used to evaluate the decision
+ * @returns {HTMLElement} An empty div element (navigation side-effect is the primary output)
+ */
 function createDecisionField(field, capturedData) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field';

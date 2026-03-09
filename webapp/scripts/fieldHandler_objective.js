@@ -2,8 +2,8 @@
  * Creates a collapsible HTML element to display a single objective.
  * The objective text is hidden by default and can be revealed by clicking the header.
  *
- * @param {object} objective - An object containing the objective details. 
- * It is expected to have a property `Objective` with the text to display.
+ * @param {Array} objectives - An array of objective objects, each expected to have
+ * an `Objective` property with the text to display.
  * @returns {HTMLElement} The fully constructed div element for the collapsible objective.
  */
 function createObjective(objectives) {
@@ -25,7 +25,7 @@ function createObjective(objectives) {
 
     // Add a title to the header
     const titleLabel = document.createElement('label');
-    titleLabel.textContent = "Objective\s"; // This will be the clickable title
+    titleLabel.textContent = "Objectives"; // This will be the clickable title
     titleLabel.className = 'label-bold';
     headerDiv.appendChild(titleLabel);
 

@@ -1,3 +1,11 @@
+/**
+ * Creates a text box field displaying guidance text and an optional Jira evidence link.
+ * @param {Object} field - The field definition object from the template
+ * @param {Object} capturedData - Previously captured form data
+ * @param {Function} sanitizeForId - Utility function to create safe HTML IDs
+ * @param {Function} fieldStoredValue - Utility function to retrieve stored field values
+ * @returns {HTMLElement} The fully constructed div element for the text box field
+ */
 function createTextBox(field, capturedData, sanitizeForId, fieldStoredValue) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'form-field'; // Uses your margin, border-bottom, and padding

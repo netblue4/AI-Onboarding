@@ -1,12 +1,14 @@
 /**
  * Handler for FieldType: "fieldGroup"
  * Creates a visually grouped box for related fields with a title.
- * It iterates through the nested 'controls' array and calls the appropriate
- * existing field handler for each control's FieldType.
+ * It iterates through the nested 'Fields' array and calls the appropriate
+ * existing field handler for each field's jkType.
  *
- * @param {object} field - The field object with FieldType: "fieldGroup".
+ * @param {object} field - The field object with jkType: "fieldGroup".
  * @param {object} capturedData - The object where collected data is stored (passed to nested handlers).
  * @param {function} sanitizeForId - The function used to sanitize field names for HTML IDs.
+ * @param {function} fieldStoredValue - Utility function to retrieve stored field values.
+ * @param {Map} mindmap - Mindmap data passed through to nested field handlers.
  * @returns {HTMLElement} The complete field group container element.
  */
 function createFieldGroup(field, capturedData, sanitizeForId, fieldStoredValue, mindmap) {
@@ -28,7 +30,7 @@ function createFieldGroup(field, capturedData, sanitizeForId, fieldStoredValue, 
     groupContainer.appendChild(fieldsWrapper);
 
     // 3. Iterate through the nested 'controls' array
-    if (field.controls && Array.isArray(field.Fields)) {
+    if (field.Fields && Array.isArray(field.Fields)) {
         field.Fields.forEach(nestedField => {
         
         if(nestedField.requirement_control_number){

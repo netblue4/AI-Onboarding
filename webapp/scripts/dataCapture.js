@@ -1,12 +1,19 @@
 // ============================================
 // 6. scripts/dataCapture.js
 // ============================================
+/**
+ * Captures form data from the current DOM state and stores it in the application state.
+ */
 class DataCapture {
     constructor(stateManager, templateManager) {
         this.state = stateManager;
         this.templateManager = templateManager;
     }
 
+    /**
+     * Captures all field values from the current form state and returns them.
+     * @returns {Object} An object containing all captured field values
+     */
     captureAll() {
         if (!this.state.templateData) return {};
 
@@ -25,6 +32,11 @@ class DataCapture {
         return currentData;
     }
 
+    /**
+     * Captures a single field's value into currentData.
+     * @param {Object} field - The field definition object from the template
+     * @param {Object} currentData - The data object to write the captured value into
+     */
     captureField(field, currentData) {
         if (!field) return;
 
@@ -51,6 +63,11 @@ class DataCapture {
         }
     }
 
+    /**
+     * Captures compliance status values for a field.
+     * @param {string} fieldName - The field name key to store the compliance data under
+     * @param {Object} currentData - The data object to write the captured values into
+     */
     captureComply(fieldName, currentData) {
         const complySelects = document.querySelectorAll('select[name$="_complystatus"]');
         const complyData = {};

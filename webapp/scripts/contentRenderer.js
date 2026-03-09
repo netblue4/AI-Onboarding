@@ -1,8 +1,11 @@
-let webappData; 
-let mindmapData;	
+let webappData;
+let mindmapData;
 let sanitizeForId;
-let fieldStoredValue; 			
+let fieldStoredValue;
 
+/**
+ * Renders template content into the DOM based on the current role and dimension filters.
+ */
 class ContentRenderer {
     constructor(stateManager, templateManager, dataRestore) {
         this.state = stateManager;
@@ -10,6 +13,9 @@ class ContentRenderer {
         this.dataRestore = dataRestore;
     }
 	
+	/**
+	 * Renders the special AI Assessment view for roles such as Approver or Compliance.
+	 */
 	renderSpecialView() {
 		console.log('Rendering AI Assessment View');
 		
@@ -58,8 +64,9 @@ class ContentRenderer {
 		}
 	}
 	
-/* ... (Global variables and constructor remain the same) ... */
-
+    /**
+     * Renders all template fields into the content area, filtered by the current role and dimension.
+     */
     render() {
         console.log('ContentRenderer.render() called with role:', this.state.currentRole);
         
@@ -203,9 +210,13 @@ class ContentRenderer {
             contentArea.innerHTML = '<div class="empty-state"><h2>No Fields Available</h2><p>No fields match your current role and dimension filters.</p></div>';
         }
     }
-/* ... (Rest of the helper functions remain the same) ... */
 
-    // (Helper function remains unchanged)
+    /**
+     * Recursively filters a template node and its children based on the current role and dimension.
+     * @param {Object} node - The template node (step or field) to filter
+     * @param {boolean} [isInRole=false] - Whether the parent node is already matched to the current role
+     * @returns {Object|null} A filtered copy of the node, or null if the node should not be shown
+     */
     getDeepFilteredNode(node, isInRole = false) {
         if (!node) return null;
         const isRoleFilterActive = this.state.currentRole && this.state.currentRole !== "";

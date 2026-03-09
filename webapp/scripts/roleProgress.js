@@ -185,19 +185,13 @@ getFieldsForRole(role) {
 
                 // 3. Recurse: Pass the 'currentFieldAuthorized' status down
                 if (field.Fields && Array.isArray(field.Fields)) {
-                    const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
-                    const isInRole = currfieldRoles.includes(role);
-                    field.Fields.forEach(f => extractFieldsForRole(f, isInRole));
-                }
-                
-                if (field.Fields && Array.isArray(field.Fields)) {
 					// 1. Convert the Role string into a clean array of roles
 					const currfieldRoles = String(field.Role || "").split(',').map(r => r.trim());
-				
+
 					// 2. Check if the provided 'role' matches any of the roles in the array
 					// .some() will return true and stop iterating as soon as a match is found
 					const isInRole = currfieldRoles.some(r => r === role);
-				
+
 					// 3. Recurse through child fields, passing the authorization status
 					field.Fields.forEach(f => extractFieldsForRole(f, isInRole));
 				}
@@ -214,9 +208,6 @@ getFieldsForRole(role) {
     }
     return fields;
 }
-
-//                    const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
-//                    const isInRole = currfieldRoles.includes(role);
 
     /**
      * Switch to a different role
@@ -262,10 +253,10 @@ getFieldsForRole(role) {
 					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
 					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number)];
 					
-					const isStatusValid = statusvalue !== undefined && statusvalue !== null && statusvalue !== '';
+					const isStatusValid = false; // status tracking not active
 					const isEvidenceValid = evidencesvalue !== undefined && evidencesvalue !== null && evidencesvalue !== '';
 					const isValueValid = value !== undefined && value !== null && value !== '';
-					
+
 					return isStatusValid || isEvidenceValid || isValueValid;
             }).length;
 

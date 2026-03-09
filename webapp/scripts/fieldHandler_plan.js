@@ -1,3 +1,12 @@
+/**
+ * Creates a collapsible test plan field with metadata, golden datasets, and criteria controls.
+ * @param {Object} field - The field definition object from the template, including controls and TestDataset
+ * @param {Object} capturedData - Previously captured form data
+ * @param {Function} sanitizeForId - Utility function to create safe HTML IDs
+ * @param {Function} fieldStoredValue - Utility function to retrieve stored field values
+ * @param {Map} mindmap - Mindmap data used to filter controls to applicable ones only
+ * @returns {HTMLElement} The fully constructed div element for the plan field
+ */
 function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindmap) {
     // Main container for the entire field
     const fieldDiv = document.createElement('div');

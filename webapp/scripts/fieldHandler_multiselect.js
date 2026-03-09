@@ -1,5 +1,10 @@
 /**
  * Creates a multi-select field using checkboxes.
+ * @param {Object} field - The field definition object from the template
+ * @param {Object} capturedData - Previously captured form data
+ * @param {Function} sanitizeForId - Utility function to create safe HTML IDs
+ * @param {Function} fieldStoredValue - Utility function to retrieve stored field values
+ * @returns {HTMLElement} The fully constructed div element for the multi-select field
  */
 function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue) {
     const fieldDiv = document.createElement('div');
@@ -46,33 +51,18 @@ function createMultiSelect(field, capturedData, sanitizeForId, fieldStoredValue)
 
     const optionsString = field.jkType.substring(field.jkType.indexOf(':') + 1).trim() || '';
     const options = optionsString.split('/');
-    
-    //const selectedValues = fieldStoredValue(field);
 
     options.forEach((optionText, index) => {
         const trimmedOption = optionText.trim();
         const optionId = `${sanitizedId}-${index}`;
 
-        //const checkboxInput = document.createElement('input');
-        //checkboxInput.type = 'checkbox';
-        //checkboxInput.id = optionId; 
-        //checkboxInput.name = sanitizedId;
-        //checkboxInput.value = trimmedOption;
-        
-        //if (Array.isArray(selectedValues) && selectedValues.includes(trimmedOption)) {
-        //    checkboxInput.checked = true;
-        //}
-
         const checkboxLabel = document.createElement('label');
-        //checkboxLabel.setAttribute('for', optionId);
         checkboxLabel.textContent = '- ' + trimmedOption;
         checkboxLabel.style.display = 'inline'; // Ensure label stays next to checkbox
         
         const wrapper = document.createElement('div');
         wrapper.classList.add('checkbox-option');
         wrapper.style.marginBottom = '8px'; // Spacing between each option
-        
-        //wrapper.appendChild(checkboxInput);
         wrapper.appendChild(checkboxLabel);
         checkboxGroupContainer.appendChild(wrapper);
     });

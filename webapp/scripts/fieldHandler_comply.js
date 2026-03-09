@@ -177,6 +177,10 @@ function buildComplianceMap(data, sanitizeForId, fieldStoredValue) {
 
 
 
+/**
+ * Exports compliance data to Jira CSV format and triggers a file download.
+ * After download, prompts the user to confirm upload and then marks all controls with Jira ticket URLs.
+ */
 function exportToJiraCsv() {
     const rows = [];
     const projectKey = 10001;
@@ -398,6 +402,10 @@ function exportToJiraCsv() {
 
 //Update the evidence text box with this search https://netblue4.atlassian.net/issues?jql=summary%20~%20%228.3.T3%22
 
+/**
+ * Exports compliance data to Jira JSON format and triggers a file download.
+ * Only exports Build and Test category controls (those with jkTask defined).
+ */
 function exportToJiraJson() {
     let externalId = 1;
     const issues = [];

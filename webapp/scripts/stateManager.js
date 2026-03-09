@@ -22,12 +22,8 @@ class StateManager {
      * @param {Object} data - The template JSON data
      */
     setTemplateData(data) {
-        try {
-            this.templateData = data;
-            console.log('✓ Template data set');
-        } catch (error) {
-            console.error('Error setting template data:', error);
-        }
+        this.templateData = data;
+        console.log('✓ Template data set');
     }
 
     /**
@@ -35,12 +31,8 @@ class StateManager {
      * @param {Object} data - The captured form values
      */
     setCapturedData(data) {
-        try {
-            this.capturedData = data;
-            console.log('✓ Captured data set');
-        } catch (error) {
-            console.error('Error setting captured data:', error);
-        }
+        this.capturedData = data;
+        console.log('✓ Captured data set');
     }
 
     /**
@@ -48,12 +40,8 @@ class StateManager {
      * @param {string} role - The selected role
      */
     setCurrentRole(role) {
-        try {
-            this.currentRole = role;
-            console.log('✓ Current role set to:', role);
-        } catch (error) {
-            console.error('Error setting current role:', error);
-        }
+        this.currentRole = role;
+        console.log('✓ Current role set to:', role);
     }
 
     /**
@@ -61,12 +49,8 @@ class StateManager {
      * @param {string} dimension - The selected trust dimension
      */
     setCurrentDimension(dimension) {
-        try {
-            this.currentDimension = dimension;
-            console.log('✓ Current dimension set to:', dimension);
-        } catch (error) {
-            console.error('Error setting current dimension:', error);
-        }
+        this.currentDimension = dimension;
+        console.log('✓ Current dimension set to:', dimension);
     }
 
     /**
@@ -74,12 +58,8 @@ class StateManager {
      * @param {string} id - The system identifier
      */
     setSystemId(id) {
-        try {
-            this.systemId = id;
-            console.log('✓ System ID set to:', id);
-        } catch (error) {
-            console.error('Error setting system ID:', error);
-        }
+        this.systemId = id;
+        console.log('✓ System ID set to:', id);
     }
 
     /**
@@ -87,12 +67,8 @@ class StateManager {
      * @param {string} version - The version string
      */
     setLoadedVersion(version) {
-        try {
-            this.loadedVersion = version;
-            console.log('✓ Loaded version set to:', version);
-        } catch (error) {
-            console.error('Error setting loaded version:', error);
-        }
+        this.loadedVersion = version;
+        console.log('✓ Loaded version set to:', version);
     }
 
     /**
@@ -100,12 +76,8 @@ class StateManager {
      * @param {boolean} value - Whether to highlight new fields
      */
     setNewFieldsHighlighted(value) {
-        try {
-            this.newFieldsHighlighted = value;
-            console.log('✓ New fields highlighted set to:', value);
-        } catch (error) {
-            console.error('Error setting new fields highlighted:', error);
-        }
+        this.newFieldsHighlighted = value;
+        console.log('✓ New fields highlighted set to:', value);
     }
 
     /**
@@ -128,18 +100,14 @@ class StateManager {
      * Reset all state to initial values
      */
     reset() {
-        try {
-            this.templateData = null;
-            this.capturedData = {};
-            this.currentRole = "";
-            this.currentDimension = "";
-            this.systemId = "";
-            this.loadedVersion = null;
-            this.newFieldsHighlighted = false;
-            console.log('✓ State reset to initial values');
-        } catch (error) {
-            console.error('Error resetting state:', error);
-        }
+        this.templateData = null;
+        this.capturedData = {};
+        this.currentRole = "";
+        this.currentDimension = "";
+        this.systemId = "";
+        this.loadedVersion = null;
+        this.newFieldsHighlighted = false;
+        console.log('✓ State reset to initial values');
     }
 
     /**
@@ -157,12 +125,8 @@ class StateManager {
      * @param {*} value - The value to set
      */
     set(key, value) {
-        try {
-            this[key] = value;
-            console.log(`✓ ${key} set to:`, value);
-        } catch (error) {
-            console.error(`Error setting ${key}:`, error);
-        }
+        this[key] = value;
+        console.log(`✓ ${key} set to:`, value);
     }
 }
 
