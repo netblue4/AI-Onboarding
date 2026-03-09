@@ -3,6 +3,16 @@
  */
 
 /**
+ * Converts a string to a safe HTML ID attribute by replacing non-alphanumeric characters with underscores.
+ * @param {string} text - The text to sanitize
+ * @returns {string} Sanitized text safe for use as an HTML ID
+ */
+function sanitizeForId(text) {
+    if (typeof text !== 'string') return '';
+    return text.replace(/[^a-zA-Z0-9_]/g, '_');
+}
+
+/**
  * Looks up a stored value for a given field from the application's captured data.
  * The key used depends on the field's jkType.
  *
@@ -19,23 +29,23 @@ function fieldStoredValue(field, implementationStatus = false) {
 
     switch (cleanType) {
         case "requirement":
-            sanitizedId = templateManager.sanitizeForId(field.requirement_control_number);
+            sanitizedId = sanitizeForId(field.requirement_control_number);
             return state.capturedData[sanitizedId + '_jkSoa'];
         case "MultiSelect":
-            sanitizedId = templateManager.sanitizeForId(field.control_number);
+            sanitizedId = sanitizeForId(field.control_number);
             if (implementationStatus) {
                 return state.capturedData[sanitizedId + "_complystatus"];
             }
             return state.capturedData[sanitizedId + "_response"];
         case "risk_control":
         case "test_control":
-            sanitizedId = templateManager.sanitizeForId(field.control_number);
+            sanitizedId = sanitizeForId(field.control_number);
             if (implementationStatus) {
                 return state.capturedData[sanitizedId + "_complystatus"];
             }
             return state.capturedData[sanitizedId + "_jkImplementationEvidence"];
         default:
-            sanitizedId = templateManager.sanitizeForId(field.control_number);
+            sanitizedId = sanitizeForId(field.control_number);
             if (implementationStatus) {
                 return state.capturedData[sanitizedId + "_complystatus"] || null;
             }
@@ -61,7 +71,7 @@ function fieldHelper(field, fieldType, operation, currentData = null) {
         case "captureData":
             switch (cleanType) {
                 case "requirement": {
-                    const sanitizedId = templateManager.sanitizeForId(field.requirement_control_number);
+                    const sanitizedId = sanitizeForId(field.requirement_control_number);
                     const requirementSelect = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
                     if (requirementSelect && requirementSelect.value && requirementSelect.value !== 'Select') {
                         if (currentData[sanitizedId + '_jkSoa'] !== requirementSelect.value) {
@@ -78,7 +88,7 @@ function fieldHelper(field, fieldType, operation, currentData = null) {
                 case "plan":
                     if (field.controls && Array.isArray(field.controls)) {
                         field.controls.forEach(control => {
-                            const controlKey = templateManager.sanitizeForId(control.control_number);
+                            const controlKey = sanitizeForId(control.control_number);
                             const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
                             const evidenceValue = evidenceElement ? evidenceElement.value : "";
                             if (evidenceValue !== "") {
@@ -96,7 +106,7 @@ function fieldHelper(field, fieldType, operation, currentData = null) {
                     }
                     break;
                 case "MultiSelect": {
-                    const sanitizedId_mul = templateManager.sanitizeForId(field.control_number);
+                    const sanitizedId_mul = sanitizeForId(field.control_number);
                     const checkboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_mul}_response"]:checked`);
                     if (checkboxes.length > 0) {
                         currentData[sanitizedId_mul + "_response"] = Array.from(checkboxes).map(cb => cb.value);
@@ -113,7 +123,7 @@ function fieldHelper(field, fieldType, operation, currentData = null) {
                     break;
                 }
                 default: {
-                    const sanitizedId_default = templateManager.sanitizeForId(field.control_number);
+                    const sanitizedId_default = sanitizeForId(field.control_number);
                     const evidenceElement = document.querySelector(`select[name="${sanitizedId_default}_response"]`);
                     if (evidenceElement) {
                         if (evidenceElement.value) {
@@ -138,7 +148,7 @@ function fieldHelper(field, fieldType, operation, currentData = null) {
         case "retrieveData":
             switch (cleanType) {
                 case "requirement": {
-                    const sanitizedId = templateManager.sanitizeForId(field.requirement_control_number);
+                    const sanitizedId = sanitizeForId(field.requirement_control_number);
                     if (state.capturedData && state.capturedData[sanitizedId + '_jkSoa']) {
                         const select = document.querySelector(`select[name="${sanitizedId}_jkSoa"]`);
                         if (select) select.value = state.capturedData[sanitizedId + '_jkSoa'];
@@ -149,7 +159,7 @@ function fieldHelper(field, fieldType, operation, currentData = null) {
                 case "plan":
                     if (field.controls && Array.isArray(field.controls)) {
                         field.controls.forEach(control => {
-                            const controlKey = templateManager.sanitizeForId(control.control_number);
+                            const controlKey = sanitizeForId(control.control_number);
                             const evidenceElement = document.querySelector(`textarea[name="${controlKey}_jkImplementationEvidence"]`);
                             if (evidenceElement && state.capturedData[`${controlKey}_jkImplementationEvidence`]) {
                                 evidenceElement.value = state.capturedData[`${controlKey}_jkImplementationEvidence`];
@@ -162,7 +172,7 @@ function fieldHelper(field, fieldType, operation, currentData = null) {
                     }
                     break;
                 case "MultiSelect": {
-                    const sanitizedId_mul = templateManager.sanitizeForId(field.control_number);
+                    const sanitizedId_mul = sanitizeForId(field.control_number);
                     const allCheckboxes = document.querySelectorAll(`input[type="checkbox"][name="${sanitizedId_mul}_response"]`);
                     allCheckboxes.forEach(cb => cb.checked = false);
                     const selectedValues = state.capturedData[sanitizedId_mul + "_response"];
@@ -179,7 +189,7 @@ function fieldHelper(field, fieldType, operation, currentData = null) {
                     break;
                 }
                 default: {
-                    const sanitizedId_default = templateManager.sanitizeForId(field.control_number);
+                    const sanitizedId_default = sanitizeForId(field.control_number);
                     if (state.capturedData[sanitizedId_default + "_response"]) {
                         const inputElement = document.querySelector(`select[name="${sanitizedId_default}_response"]`);
                         if (inputElement) inputElement.value = state.capturedData[sanitizedId_default + "_response"];
@@ -292,7 +302,6 @@ function exportToJiraCsv() {
     const rows = [];
     const projectKey = 10001;
 
-    const sanitizeForId = templateManager.sanitizeForId.bind(templateManager);
     const webappData = window.originalWebappData;
     const mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 

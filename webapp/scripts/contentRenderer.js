@@ -1,6 +1,5 @@
 let webappData;
 let mindmapData;
-let sanitizeForId;
 
 /**
  * Renders template content into the DOM based on the current role and dimension filters.
@@ -36,7 +35,6 @@ class ContentRenderer {
 			 //}
 
 			if (handler) {
-				sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
 				webappData = window.originalWebappData;
 				mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 			
@@ -87,7 +85,6 @@ class ContentRenderer {
             return;
         }
 
-        sanitizeForId = this.templateManager.sanitizeForId.bind(this.templateManager);
         webappData = window.originalWebappData;
         mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
 
@@ -224,75 +221,32 @@ class ContentRenderer {
         let matchesDirectly = false;
 
         if (isRoleFilterActive) {
+            const { inRole, isRequirement: currentIsRequirement, isApplicable: currentIsApplicable } =
+                this.templateManager.getFieldApplicability(node, this.state.currentRole, isInRole, this.state.capturedData);
 
-                let currentInRole = isInRole;
-                if (node.Role) {
-                    const fieldRoles = String(node.Role).split(',').map(r => r.trim());
-                    currentInRole = fieldRoles.includes(this.state.currentRole);
-                }
-                
-            
-                let currentIsRequirement = false;
-                if (node.jkType === 'requirement') {
-                    currentIsRequirement = true;
-                }             
-                   
-                let currentIsControl = false;
-                if (node.jkImplementationEvidence) {
-                    currentIsControl = true;
-                } 
-                
-				let currentIsApplicable = false;				
-				if (node.requirement_control_number) {
-					// 1. Split the string by comma and trim any whitespace
-					const controlNumbers = String(node.requirement_control_number).split(',').map(id => id.trim());
-				
-					// 2. Use .some() to check if at least one ID satisfies the condition
-					const hasApplicableControl = controlNumbers.some(id => {
-						const sanitizeId = templateManager.sanitizeForId(id);
-						const soa = this.state.capturedData[sanitizeId + '_jkSoa'];
-						return soa === 'Applicable';
-					});
-				
-					// 3. Set applicability based on the check or the requirement status
-					currentIsApplicable = hasApplicableControl || currentIsRequirement;
-				}
-                
-                const isApplicableControl = (currentIsControl && currentIsApplicable);
-                const isApplicableField = (!currentIsControl && currentIsApplicable);
+            let currentInRole = inRole;
 
+            if (this.state.currentRole === "Approver" && !currentIsRequirement) {
+                currentInRole = true;
+            }
 
-                if (this.state.currentRole === "Approver" && !currentIsRequirement) {
-					currentInRole = true;
-                }
-
-				if (currentInRole && (currentIsApplicable || currentIsRequirement || isApplicableField)) {
-					matchesDirectly = true;
-				}
-             
+            if (currentInRole && (currentIsApplicable || currentIsRequirement)) {
+                matchesDirectly = true;
+            }
         }
-
-        //if (isDimFilterActive && matchesDirectly) {
-        //    const nodeDims = node.TrustDimension ? String(node.TrustDimension).split(',').map(d => d.trim()) : [];
-        //    const isComplyOverride = nodeDims.includes("Comply");
-        //    const matchesSelection = nodeDims.includes(this.state.currentDimension);
-        //    if (!isComplyOverride && !matchesSelection) matchesDirectly = false;
-        //}
 
         let filteredChildren = [];
         if (node.Fields && Array.isArray(node.Fields)) {
-            const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
-            const isInRole = currfieldRoles.includes(this.state.currentRole);
+            const { inRole } = this.templateManager.getFieldApplicability(node, this.state.currentRole, isInRole, this.state.capturedData);
             filteredChildren = node.Fields
-                .map(child => this.getDeepFilteredNode(child, isInRole))
+                .map(child => this.getDeepFilteredNode(child, inRole))
                 .filter(child => child !== null);
         }
-		if (node.controls && Array.isArray(node.controls)) {
-		     const currfieldRoles = String(node.Role).split(',').map(r => r.trim());
-             const isInRole = currfieldRoles.includes(this.state.currentRole);
-	         filteredChildren = node.controls
-				.map(child => this.getDeepFilteredNode(child, isInRole))
-				.filter(child => child !== null);
+        if (node.controls && Array.isArray(node.controls)) {
+            const { inRole } = this.templateManager.getFieldApplicability(node, this.state.currentRole, isInRole, this.state.capturedData);
+            filteredChildren = node.controls
+                .map(child => this.getDeepFilteredNode(child, inRole))
+                .filter(child => child !== null);
         }
 
         if (matchesDirectly) {

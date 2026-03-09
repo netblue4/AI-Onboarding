@@ -67,17 +67,6 @@ class TemplateManager {
     }
 
     /**
-     * Convert a field name to a safe HTML ID attribute
-     * @param {string} text - The text to sanitize
-     * @returns {string} Sanitized text safe for use as ID
-     */
-    sanitizeForId(text) {
-        if (typeof text !== 'string') return '';
-        return text.replace(/[^a-zA-Z0-9_]/g, '_');
-    }
-
-
-    /**
      * Check if a field is new (wasn't in the previous template version)
      * @param {string} fieldName - The field name to check
      * @returns {boolean} True if field is new
@@ -153,7 +142,7 @@ class TemplateManager {
             if (field.Role && String(field.Role).split(',').map(r => r.trim()).includes(role)) {
                 return true;
             }
-            
+
             // Check nested fields
             if (field.Fields && this.hasRoleInFields(field.Fields, role)) {
                 return true;
@@ -161,6 +150,37 @@ class TemplateManager {
         }
 
         return false;
+    }
+
+    /**
+     * Calculates role and applicability flags for a field.
+     * Single source of truth for field filtering logic used by ContentRenderer and RoleProgressTracker.
+     * @param {Object} field - The field definition object
+     * @param {string} role - The role to check against
+     * @param {boolean} [isInRole=false] - Whether a parent node already matched this role
+     * @param {Object} [capturedData={}] - Current captured data for SOA lookups
+     * @returns {{ inRole: boolean, isRequirement: boolean, isControl: boolean, isApplicable: boolean }}
+     */
+    getFieldApplicability(field, role, isInRole = false, capturedData = {}) {
+        let inRole = isInRole;
+        if (field.Role) {
+            const fieldRoles = String(field.Role).split(',').map(r => r.trim());
+            inRole = fieldRoles.includes(role);
+        }
+
+        const isRequirement = field.jkType === 'requirement';
+        const isControl = !!field.jkImplementationEvidence;
+
+        let isApplicable = false;
+        if (field.requirement_control_number) {
+            const controlNumbers = String(field.requirement_control_number).split(',').map(id => id.trim());
+            const hasApplicableControl = controlNumbers.some(id => {
+                return capturedData[sanitizeForId(id) + '_jkSoa'] === 'Applicable';
+            });
+            isApplicable = hasApplicableControl || isRequirement;
+        }
+
+        return { inRole, isRequirement, isControl, isApplicable };
     }
 }
 

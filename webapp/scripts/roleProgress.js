@@ -77,13 +77,13 @@ class RoleProgressTracker {
                 
                  	let statusvalue = 0;
                  	if(field.jkType != 'requirement'){
-                 		//statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_jkImplementationStatus'];
+                 		//statusvalue = this.state.capturedData[sanitizeForId(field.control_number) + '_jkImplementationStatus'];
                  	} else {
-                 		statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.requirement_control_number) + '_jkSoa'];
+                 		statusvalue = this.state.capturedData[sanitizeForId(field.requirement_control_number) + '_jkSoa'];
                  	}
                 
-					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
-					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_response'];
+					const evidencesvalue = this.state.capturedData[sanitizeForId(field.control_number) + '_evidence'];
+					const value = this.state.capturedData[sanitizeForId(field.control_number) + '_response'];
 					
 					const isStatusValid = statusvalue !== undefined && statusvalue !== null && statusvalue !== '';
 					const isEvidenceValid = evidencesvalue !== undefined && evidencesvalue !== null && evidencesvalue !== '';
@@ -129,77 +129,22 @@ getFieldsForRole(role) {
             const extractFieldsForRole = (field, isInRole = false) => {
                 if (!field) return;
 
-                // 1. Check/Update inRole
-                let currentInRole = isInRole;
-                if (field.Role) {
-                    const fieldRoles = String(field.Role).split(',').map(r => r.trim());
-                    currentInRole = fieldRoles.includes(role);
+                const { inRole: currentInRole, isApplicable: currentIsApplicable, isControl: currentIsControl } =
+                    this.templateManager.getFieldApplicability(field, role, isInRole, this.state.capturedData);
+
+                const isApplicableControl = currentIsControl && currentIsApplicable;
+                const isApplicableField = !currentIsControl && currentIsApplicable;
+
+                if (currentInRole && (isApplicableControl || isApplicableField)) {
+                    fields.push(field);
                 }
-                
-                let currentIsRequirement = false;
-                if (field.jkType === 'requirement') {
-                    currentIsRequirement = true;
-                }             
-                   
-                let currentIsControl = false;
-                if (field.jkImplementationEvidence) {
-                    currentIsControl = true;
-                } 
-                
-				let currentIsApplicable = false;
-				if (field.requirement_control_number) {
-					// 1. Split the string into an array of IDs and trim whitespace
-					const controlIds = String(field.requirement_control_number).split(',').map(id => id.trim());
-				
-					// 2. Check if at least one ID is 'Applicable'
-					// This exits immediately (returns true) the moment it finds a match
-					const hasAnyApplicable = controlIds.some(id => {
-						const sanitizeId = templateManager.sanitizeForId(id);
-						const soa = this.state.capturedData[sanitizeId + '_jkSoa'];
-						return soa === 'Applicable';
-					});
-				
-					// 3. Set the final applicability status
-					currentIsApplicable = hasAnyApplicable || currentIsRequirement;
-				}
-                
-                const isApplicableControl = (currentIsControl && currentIsApplicable);
-                
-                const isValidField = (field.jkType != 'fieldGroup' 
-                && field.jkType != 'risk' 
-                && field.jkType != 'plan'
-                && field.jkType != 'Auto generated number')
-                
-                const isApplicableField = (!currentIsControl && (currentIsApplicable));
-                
-                
-                // 2. Process the field if authorized
-                if(currentInRole && (isApplicableControl || isApplicableField)) {
-						fields.push(field);
-				}
-                //if(currentInRole) {
-				//	if (isApplicableControl || currentIsRequirement || isValidField || isApplicableField) {
-				//		fields.push(field);
-				//	}
-				//}
 
-                // 3. Recurse: Pass the 'currentFieldAuthorized' status down
                 if (field.Fields && Array.isArray(field.Fields)) {
-					// 1. Convert the Role string into a clean array of roles
-					const currfieldRoles = String(field.Role || "").split(',').map(r => r.trim());
-
-					// 2. Check if the provided 'role' matches any of the roles in the array
-					// .some() will return true and stop iterating as soon as a match is found
-					const isInRole = currfieldRoles.some(r => r === role);
-
-					// 3. Recurse through child fields, passing the authorization status
-					field.Fields.forEach(f => extractFieldsForRole(f, isInRole));
-				}
+                    field.Fields.forEach(f => extractFieldsForRole(f, currentInRole));
+                }
 
                 if (field.controls && Array.isArray(field.controls)) {
-                    const currfieldRoles = String(field.Role).split(',').map(r => r.trim());
-                    const isInRole = currfieldRoles.includes(role);
-                    field.controls.forEach(c => extractFieldsForRole(c, isInRole));
+                    field.controls.forEach(c => extractFieldsForRole(c, currentInRole));
                 }
             };
 
@@ -249,9 +194,9 @@ getFieldsForRole(role) {
             const roleFields = this.getFieldsForRole(role);
             const completedFields = roleFields.filter(field => {
                 if (!field.jkName) return false;
-					//const statusvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_jkImplementationStatus'];
-					const evidencesvalue = this.state.capturedData[templateManager.sanitizeForId(field.control_number) + '_evidence'];
-					const value = this.state.capturedData[templateManager.sanitizeForId(field.control_number)];
+					//const statusvalue = this.state.capturedData[sanitizeForId(field.control_number) + '_jkImplementationStatus'];
+					const evidencesvalue = this.state.capturedData[sanitizeForId(field.control_number) + '_evidence'];
+					const value = this.state.capturedData[sanitizeForId(field.control_number)];
 					
 					const isStatusValid = false; // status tracking not active
 					const isEvidenceValid = evidencesvalue !== undefined && evidencesvalue !== null && evidencesvalue !== '';

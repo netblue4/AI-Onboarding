@@ -5,9 +5,8 @@
  * Captures form data from the current DOM state and stores it in the application state.
  */
 class DataCapture {
-    constructor(stateManager, templateManager) {
+    constructor(stateManager) {
         this.state = stateManager;
-        this.templateManager = templateManager;
     }
 
     /**
@@ -54,7 +53,6 @@ class DataCapture {
 
         if (!fieldName) return;
 
-        const sanitizedId = this.templateManager.sanitizeForId(fieldControlNumber);
         fieldHelper(field, fieldType, "captureData", currentData);
 
         // Recurse into nested fields
@@ -88,4 +86,4 @@ class DataCapture {
 
 }
 
-const dataCapture = new DataCapture(state, templateManager);
+const dataCapture = new DataCapture(state);

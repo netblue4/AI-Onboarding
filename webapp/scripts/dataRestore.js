@@ -5,9 +5,8 @@
  * Restores previously-saved form values into the DOM.
  */
 class DataRestore {
-    constructor(stateManager, templateManager) {
+    constructor(stateManager) {
         this.state = stateManager;
-        this.templateManager = templateManager;
     }
 
     /**
@@ -32,11 +31,9 @@ class DataRestore {
         if (!field.jkName) return;
 
         setTimeout(() => {
-            const sanitizedId = this.templateManager.sanitizeForId(field.control_number);
-            const fieldType = field.jkType;
-            fieldHelper(field, fieldType, "retrieveData");
+            fieldHelper(field, field.jkType, "retrieveData");
         }, 100);
     }
 }
 
-const dataRestore = new DataRestore(state, templateManager);
+const dataRestore = new DataRestore(state);
