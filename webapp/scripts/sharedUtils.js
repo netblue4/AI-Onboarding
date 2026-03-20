@@ -377,6 +377,45 @@ function exportToJiraCsv() {
         return parts.filter(Boolean).join('\n\n');
     }
 
+    // --- Helper: build Test description from PlanObjective, TestDataset, and controls ---
+    function buildTestDescription(impl) {
+        const parts = [
+            `h3. [Test] ${impl.control_number} - ${impl.jkName || ''}`,
+        ];
+
+        if (impl.PlanObjective) {
+            parts.push(`h4. Plan Objective\n${sanitizeForCsv(impl.PlanObjective)}`);
+        }
+
+        if (Array.isArray(impl.TestDataset) && impl.TestDataset.length > 0) {
+            parts.push(`h4. Test Plan`);
+            const datasetRows = impl.TestDataset.map((ds, i) => {
+                const lines = [`*Test Case: ${ds.ID || `TC-${i + 1}`}*`];
+                if (ds.Query)             lines.push(`*Query:*\n${sanitizeForCsv(ds.Query)}`);
+                if (ds.Expected_Outcome)  lines.push(`*Expected Outcome:*\n${sanitizeForCsv(ds.Expected_Outcome)}`);
+                if (ds.Rationale_Summary) lines.push(`*Rationale:*\n${sanitizeForCsv(ds.Rationale_Summary)}`);
+                return lines.join('\n\n');
+            }).join('\n\n----\n\n');
+            parts.push(datasetRows);
+        }
+
+        if (Array.isArray(impl.controls) && impl.controls.length > 0) {
+            parts.push(`h4. Test Evidence`);
+            const controlRows = impl.controls.map((ctrl, i) => {
+                const lines = [`*Control ${ctrl.control_number || `T${i + 1}`}: ${ctrl.jkName || ''}*`];
+                if (ctrl.jkObjective)             lines.push(`*Objective:*\n${sanitizeForCsv(ctrl.jkObjective)}`);
+                if (ctrl.jkText)                  lines.push(`*Guidance:*\n${sanitizeForCsv(ctrl.jkText)}`);
+                if (ctrl.jkImplementationEvidence) lines.push(`*Evidence Example:*\n${sanitizeForCsv(ctrl.jkImplementationEvidence)}`);
+                return lines.join('\n\n');
+            }).join('\n\n----\n\n');
+            parts.push(controlRows);
+        }
+
+        parts.push(`h4. Requirement Reference\n${impl.requirement_control_number || ''}`);
+
+        return parts.filter(Boolean).join('\n\n');
+    }
+
     // --- CSV Header ---
     rows.push(['Work item Id', 'Summary', 'Description', 'Work type', 'Priority', 'Parent']);
 
@@ -411,6 +450,9 @@ function exportToJiraCsv() {
                     if (category === 'Define') {
                         descriptionParts = buildDefineDescription(impl);
                         subTaskSummary = `[${systemId}] [Define] ${impl.control_number}: ${impl.jkName || ''}`;
+                    } else if (category === 'Test') {
+                        descriptionParts = buildTestDescription(impl);
+                        subTaskSummary = `[${systemId}] [Test] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
                     } else {
                         const taskCodeSection = buildTaskCodeDescription(impl);
                         descriptionParts = [
@@ -419,7 +461,7 @@ function exportToJiraCsv() {
                             impl.jkAttackVector ? `h4. Attack Vector\n${sanitizeForCsv(impl.jkAttackVector)}` : '',
                             taskCodeSection     ? taskCodeSection                                              : '',
                         ].filter(Boolean).join('\n\n');
-                        subTaskSummary = `[${systemId}] [${category}] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
+                        subTaskSummary = `[${systemId}] [Build] ${impl.control_number}: ${impl.jkName || impl.jkText || ''}`;
                     }
 
                     exportedImpls.push({ impl, category });
