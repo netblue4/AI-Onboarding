@@ -74,7 +74,7 @@
           "controls": [
             {
               "requirement_control_number": "[18229-1.6]",
-              "jkName": "Automation Bias Prevention",
+              "jkName": "Automation Confidence Warning",
               "jkText": "UI design that explicitly warns humans not to over-rely on AI suggestions.",
               "jkType": "requirement",
               "jkSoa": "Select"
