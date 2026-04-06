@@ -273,16 +273,13 @@ function buildMindmapData(data, sanitizeForId, fieldStoredValue) {
                 }
 
                 // Collect potential implementations from EVERY step.
-                // Plan nodes: treat the whole plan as one implementation linked via its first child control.
-                // Individual test_controls are represented through their parent plan node instead.
+                // Plan nodes: push each individual test_control child directly so they carry their own properties (jkText, jkName, etc.).
                 if (field.jkType === 'plan' && Array.isArray(field.controls) && field.controls.length > 0) {
-                    const firstCtrl = field.controls[0];
-                    if (firstCtrl && firstCtrl.requirement_control_number) {
-                        allImplementationNodes.push(Object.assign({}, field, {
-                            requirement_control_number: firstCtrl.requirement_control_number,
-                            control_number: firstCtrl.control_number,
-                        }));
-                    }
+                    field.controls.forEach(ctrl => {
+                        if (ctrl.jkType === 'test_control' && ctrl.requirement_control_number) {
+                            allImplementationNodes.push(ctrl);
+                        }
+                    });
                 } else if (field.requirement_control_number && field.jkType !== 'requirement' && field.jkType !== 'test_control') {
                     allImplementationNodes.push(field);
                 }
