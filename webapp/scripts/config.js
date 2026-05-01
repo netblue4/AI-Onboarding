@@ -11,6 +11,7 @@ const CONFIG = {
     
     // Role definitions
     ROLES: [
+        'System',
         'Compliance',
         'Requester',
         'Data Engineer',

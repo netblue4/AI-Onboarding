@@ -59,6 +59,15 @@ class RoleProgressTracker {
             const progressItem = document.getElementById(`progress-${role}`);
             if (!progressItem) return;
 
+            // System wizard has no template fields — show as a launcher button
+            if (role === 'System') {
+                progressItem.classList.remove('completed', 'in-progress', 'current');
+                if (role === this.state.currentRole) progressItem.classList.add('current');
+                progressItem.querySelector('.role-progress-fill').style.width = '0%';
+                progressItem.querySelector('.role-progress-number').textContent = 'Wizard';
+                return;
+            }
+
             const roleFields = this.getFieldsForRole(role);
 
             // Handle roles with no fields
@@ -159,27 +168,25 @@ getFieldsForRole(role) {
      * @param {string} role - The role to select
      */
     selectRole(role) {
-        //const roleDropdown = document.getElementById('role-dropdown');
-       // if (roleDropdown) {
-       //     roleDropdown.value = role;
-       // }
         this.state.setCurrentRole(role);
         this.update();
-        
+
         // Trigger content rendering
         if (typeof contentRenderer !== 'undefined' && contentRenderer) {
-        
-		    if (this.state.currentRole === "Approver" || this.state.currentRole === "Compliance") {
-				// Only render the AI Assessment View
-				contentRenderer.renderSpecialView(); 
-			} 
-			else {
-				// Default: Render the standard assessment fields
-				contentRenderer.render();
-			}
 
-		}
-	}
+            if (role === 'System') {
+                contentRenderer.renderSystemWizard();
+            } else if (this.state.currentRole === "Approver" || this.state.currentRole === "Compliance") {
+                // Only render the AI Assessment View
+                contentRenderer.renderSpecialView();
+            }
+            else {
+                // Default: Render the standard assessment fields
+                contentRenderer.render();
+            }
+
+        }
+    }
 
     /**
      * Get completion statistics for all roles

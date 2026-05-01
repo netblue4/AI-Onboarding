@@ -11,6 +11,28 @@ class ContentRenderer {
         this.dataRestore = dataRestore;
     }
 	
+    /**
+     * Renders the System Assessment Wizard for the System role.
+     */
+    renderSystemWizard() {
+        console.log('Rendering System Assessment Wizard');
+        const contentArea = document.getElementById('content-area');
+        if (!contentArea) return;
+
+        contentArea.innerHTML = '';
+
+        try {
+            if (typeof SystemWizard === 'undefined') {
+                throw new Error('SystemWizard class not found — ensure systemWizard.js is loaded.');
+            }
+            const wizard = new SystemWizard(this.state);
+            contentArea.appendChild(wizard.render());
+        } catch (error) {
+            console.error('Error rendering System Wizard:', error);
+            contentArea.innerHTML = `<div class="error" style="padding:24px;">Failed to render System Wizard: ${error.message}</div>`;
+        }
+    }
+
 	/**
 	 * Renders the special AI Assessment view for roles such as Approver or Compliance.
 	 */
