@@ -37,6 +37,9 @@ class SystemWizard {
         // API key
         wrapper.appendChild(this._buildApiKeySection());
 
+        // System description (free text — submitted to Claude alongside the wizard answers)
+        wrapper.appendChild(this._buildDescriptionSection());
+
         // Questions
         const questionsDiv = document.createElement('div');
         questionsDiv.id = 'wizard-questions';
@@ -63,8 +66,9 @@ class SystemWizard {
         resultsDiv.id = 'wizard-results';
         wrapper.appendChild(resultsDiv);
 
-        // Restore previous answers and results after element is in the DOM
+        // Restore previous inputs and results after element is in the DOM
         setTimeout(() => {
+            this._restorePreviousDescription();
             this._restorePreviousAnswers();
             const prevJustifications = this._getSavedJustifications();
             if (prevJustifications && prevJustifications.length > 0) {
@@ -94,6 +98,9 @@ class SystemWizard {
         this.apiKey = apiKey;
         localStorage.setItem('anthropic_api_key', apiKey);
 
+        const descriptionEl = document.getElementById('wizard-description');
+        const description = descriptionEl ? descriptionEl.value.trim() : '';
+
         const controls = this._extractComplianceControls();
         if (controls.length === 0) {
             this._showStatus(wrapper, 'No compliance controls found in template data. Ensure the template has loaded.', 'error');
@@ -105,7 +112,7 @@ class SystemWizard {
         this._showStatus(wrapper, '⏳ Sending system profile to Claude… this may take a few seconds.', 'loading');
 
         try {
-            const { applicable_controls, justifications } = await this._callClaudeAPI(answers, controls, apiKey);
+            const { applicable_controls, justifications } = await this._callClaudeAPI(answers, description, controls, apiKey);
 
             if (!Array.isArray(applicable_controls) || applicable_controls.length === 0) {
                 throw new Error('Claude returned an empty or invalid control list.');
@@ -115,7 +122,7 @@ class SystemWizard {
             const enriched = this._enrichJustifications(justifications, applicable_controls, controls);
 
             // Persist wizard inputs and results into capturedData so they are saved with the file
-            this._persistWizardData(answers, enriched);
+            this._persistWizardData(answers, enriched, description);
 
             // Mark applicable controls in state
             this._applyResults(applicable_controls);
@@ -144,6 +151,30 @@ class SystemWizard {
     }
 
     // ─── UI builders ──────────────────────────────────────────────────────────
+
+    _buildDescriptionSection() {
+        const div = document.createElement('div');
+        div.style.cssText = 'background: #1e1e1e; border: 1px solid #3d3d3d; border-radius: 8px; padding: 18px; margin-bottom: 24px;';
+
+        const heading = document.createElement('p');
+        heading.textContent = 'System Description';
+        heading.style.cssText = 'font-weight: 600; color: #e0d9ce; margin: 0 0 6px 0; font-size: 14px;';
+
+        const instruction = document.createElement('p');
+        instruction.textContent = 'Describe the system in your own words before answering the questions below. Include: the main purpose of the application, what it does, and the primary business processes it supports. This context is sent to Claude alongside your answers and helps it catch details the questions alone may not surface.';
+        instruction.style.cssText = 'color: #888; font-size: 13px; margin: 0 0 12px 0; line-height: 1.6;';
+
+        const textarea = document.createElement('textarea');
+        textarea.id = 'wizard-description';
+        textarea.placeholder = 'e.g. "This system is a customer-facing chatbot used by our retail banking division. It helps customers check account balances, initiate transfers, and get answers to FAQs. It is deployed on our public website and mobile app, and interacts with approximately 50,000 customers per month. It does not make credit or lending decisions but does surface personalised product recommendations."';
+        textarea.rows = 6;
+        textarea.style.cssText = 'width: 100%; padding: 10px 12px; background: #252525; border: 1px solid #444; border-radius: 5px; color: #e0d9ce; font-size: 13px; box-sizing: border-box; resize: vertical; line-height: 1.6; font-family: inherit;';
+
+        div.appendChild(heading);
+        div.appendChild(instruction);
+        div.appendChild(textarea);
+        return div;
+    }
 
     _buildApiKeySection() {
         const div = document.createElement('div');
@@ -360,6 +391,13 @@ class SystemWizard {
         return answers;
     }
 
+    _restorePreviousDescription() {
+        const saved = this.state.capturedData['_wizard_description'];
+        if (!saved) return;
+        const textarea = document.getElementById('wizard-description');
+        if (textarea) textarea.value = saved;
+    }
+
     _restorePreviousAnswers() {
         const prevAnswers = this._getSavedAnswers();
         if (!prevAnswers) return;
@@ -426,9 +464,10 @@ class SystemWizard {
         }));
     }
 
-    _persistWizardData(answers, justifications) {
+    _persistWizardData(answers, justifications, description) {
         this.state.capturedData['_wizard_answers']        = JSON.stringify(answers);
         this.state.capturedData['_wizard_justifications'] = JSON.stringify(justifications);
+        this.state.capturedData['_wizard_description']    = description || '';
         this.state.capturedData['_wizard_timestamp']      = new Date().toISOString();
     }
 
@@ -459,7 +498,7 @@ class SystemWizard {
 
     // ─── Claude API ───────────────────────────────────────────────────────────
 
-    async _callClaudeAPI(answers, controls, apiKey) {
+    async _callClaudeAPI(answers, description, controls, apiKey) {
         const answersText = Object.entries(answers)
             .map(([q, a]) => `• ${q}\n  → ${a}`)
             .join('\n\n');
@@ -472,13 +511,17 @@ class SystemWizard {
         // Collect unique article steps so Claude knows what categories to justify
         const uniqueSteps = [...new Set(controls.map(c => c.step))].join(', ');
 
+        const descriptionBlock = description
+            ? `## System Description (free-text provided by compliance officer)\n\n${description}\n\n`
+            : '';
+
         const prompt = `You are an AI compliance expert specialising in the EU AI Act and ISO/IEC 42001.
 
-A compliance officer is onboarding a new AI system. Based on their intake answers, identify:
+A compliance officer is onboarding a new AI system. Based on their description and intake answers, identify:
 1. The MINIMUM VIABLE set of applicable controls for this specific system.
 2. A short justification (2–4 sentences) for EACH article-step category that contains at least one selected control.
 
-## System Characteristics
+${descriptionBlock}## System Characteristics (wizard answers)
 
 ${answersText}
 
