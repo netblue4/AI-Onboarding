@@ -675,6 +675,10 @@ button:hover {
 /* Role and Buttons */
         .main-container {
             margin: 0 auto;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
         .controls-bar {
             background: #252525;
@@ -788,8 +792,11 @@ button:hover {
 
         .content-area {
             padding: 30px;
-            max-height: calc(100vh - 300px);
+            height: calc(100vh - 240px);
+            min-height: 400px;
             overflow-y: auto;
+            overflow-x: hidden;
+            box-sizing: border-box;
         }
 
         .phase-section {
@@ -929,14 +936,15 @@ button:hover {
     box-shadow: none;           
 }
 .role-progress-item.in-progress {
-    background: #2b2310;
-    border-color: #b8963e;
-    box-shadow: 0 0 0 1px rgba(184, 150, 62, 0.15);
+    background: #2a2a2a;
+    border-color: #6b5a2e;
+    box-shadow: none;
 }
 .role-progress-item.current {
-    background: #2b2310;
-    border-color: #b8963e;
-    box-shadow: 0 0 0 3px rgba(184, 150, 62, 0.2), inset 0 1px 0 rgba(184, 150, 62, 0.1);
+    background: #2e2510;
+    border-color: #d4af37;
+    border-top: 3px solid #d4af37;
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.25), 0 2px 12px rgba(212, 175, 55, 0.12);
 }
 .role-progress-name {
     font-size: 13px;
@@ -964,7 +972,7 @@ button:hover {
     background: #22c55e;        
 }
 .role-progress-item.in-progress .role-progress-fill {
-    background: #b8963e;
+    background: #6b5a2e;
 }
 .role-progress-item.current .role-progress-fill {
     background: #b8963e;

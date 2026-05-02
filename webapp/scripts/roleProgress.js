@@ -73,9 +73,12 @@ class RoleProgressTracker {
             // Handle roles with no fields
             if (roleFields.length === 0) {
                 progressItem.classList.remove('completed', 'in-progress', 'current');
-                progressItem.classList.add('completed');
+                if (role === this.state.currentRole) {
+                    progressItem.classList.add('current');
+                } else {
+                    progressItem.classList.add('completed');
+                }
                 progressItem.querySelector('.role-progress-fill').style.width = '100%';
-                //progressItem.querySelector('.role-progress-text').textContent = 'N/A';
                 progressItem.querySelector('.role-progress-number').textContent = 'N/A';
                 return;
             }
