@@ -547,9 +547,11 @@ function buildImplCard(node, fieldStoredValue, sanitizeForId) {
 // ─── Status dropdown for Approver comply-status (preserved for state capture) ─
 
 function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue, cardElement) {
+    const wrapper = document.createElement('div');
+
     const select = document.createElement('select');
     select.style.cssText = `
-        margin:5px 0 10px 0;padding:4px 2rem 4px 0.75rem;border-radius:6px;
+        margin:5px 0 0 0;padding:4px 2rem 4px 0.75rem;border-radius:6px;
         border:1px solid #444;background-color:#1e1e1e;color:#e0e0e0;
         cursor:pointer;appearance:none;-webkit-appearance:none;
         background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
@@ -557,7 +559,7 @@ function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue, cardE
     `;
     select.name = sanitizeForId(subControl.control_number) + '_complystatus';
 
-    const complyStatusValue = fieldStoredValue(subControl, true);
+    let complyStatusValue = fieldStoredValue(subControl, true);
 
     function updateBorder(status) {
         if (status === 'Met') cardElement.style.borderColor = '#22c55e';
@@ -574,6 +576,47 @@ function createStatusDropdown(subControl, sanitizeForId, fieldStoredValue, cardE
         if (complyStatusValue === optText) opt.selected = true;
         select.appendChild(opt);
     });
-    select.addEventListener('change', e => updateBorder(e.target.value));
-    return select;
+
+    const controlKey = sanitizeForId(subControl.control_number);
+    const noteKey = controlKey + '_complynote';
+
+    const noteArea = document.createElement('textarea');
+    noteArea.placeholder = 'Justification (optional)…';
+    noteArea.rows = 2;
+    noteArea.style.cssText = `
+        width:100%;margin-top:6px;padding:6px 8px;border-radius:6px;
+        border:1px solid #3d3d3d;background:#161616;color:#c4bdb5;
+        font-size:11px;resize:vertical;font-family:inherit;line-height:1.5;
+        display:${(complyStatusValue && complyStatusValue !== 'Select') ? 'block' : 'none'};
+    `;
+    noteArea.value = state.capturedData[noteKey] || '';
+    noteArea.addEventListener('input', () => {
+        state.capturedData[noteKey] = noteArea.value;
+    });
+
+    select.addEventListener('change', e => {
+        const newStatus = e.target.value;
+        updateBorder(newStatus);
+        noteArea.style.display = (newStatus && newStatus !== 'Select') ? 'block' : 'none';
+
+        if (newStatus && newStatus !== 'Select') {
+            if (!Array.isArray(state.capturedData._auditLog)) {
+                state.capturedData._auditLog = [];
+            }
+            state.capturedData._auditLog.push({
+                controlNumber: subControl.control_number || '',
+                controlName:   subControl.jkName || subControl.jkText || '',
+                from:          complyStatusValue || 'Not Assessed',
+                to:            newStatus,
+                timestamp:     new Date().toISOString(),
+                note:          state.capturedData[noteKey] || ''
+            });
+        }
+
+        complyStatusValue = newStatus;
+    });
+
+    wrapper.appendChild(select);
+    wrapper.appendChild(noteArea);
+    return wrapper;
 }
