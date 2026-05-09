@@ -1004,7 +1004,7 @@
         {
           "jkType": "fieldGroup",
           "jkName": "Fairness Definition and Stakeholder Engagement Record",
-          "Role": "Engineer",
+          "Role": "Data Engineer",
           "controls": [
             {
               "requirement_control_number": "[18283.7]",
@@ -1587,7 +1587,7 @@
       "Fields": [
         {
           "jkType": "risk",
-          "Role": "Engineer",
+          "Role": "Data Engineer",
           "jkName": "Subgroup Coverage Failure",
           "RiskDescription": "The Embedding Model and Vector Store are at risk from 'Representation Collapse' — a condition where one or more legally protected subgroups are statistically underrepresented in the training and retrieval data, and no bias metric gate exists to detect the resulting discriminatory output before it reaches users. Representation Collapse has two compounding modes: 'Coverage Gap', where a protected subgroup falls below the minimum sample threshold during data ingestion and no gate blocks the dataset from entering the Embedding Model training pipeline; and 'Metric Blindness', where a bias metric is applied but its threshold is set too loosely or the wrong metric is selected for the use case, allowing a Disparate Impact Ratio below 0.80 to pass undetected. The result is a system that is technically operational but produces systematically worse outcomes for a legally protected group — a discriminatory output that carries regulatory liability under EU non-discrimination law.",
           "controls": [
@@ -1777,7 +1777,7 @@
       "Fields": [
         {
           "jkType": "risk",
-          "Role": "Engineer",
+          "Role": "Data Engineer",
           "jkName": "Dataset Lifecycle Integrity Failure",
           "RiskDescription": "The Vector Store and Embedding Model are at risk from 'Lifecycle Integrity Failure' — a condition where the datasets that built and populate the system are split incorrectly, retained beyond or below their legal period, or built on assumptions that have never been stated or tested. 'Split Contamination' occurs when the test partition is accessible to the training pipeline, producing accuracy scores that are technically correct but do not reflect unseen-data performance. 'Retention Violation' occurs when data is kept longer than its legal basis permits or destroyed before the 10-year documentation minimum, creating simultaneous GDPR and regulatory audit risk. 'Assumption Drift' occurs when the real-world conditions the system was built to model — such as the assumption that historical data predicts current behaviour — change without any mechanism detecting that the assumption is no longer valid.",
           "controls": [
@@ -1851,7 +1851,7 @@
         },
         {
           "jkType": "risk",
-          "Role": "Engineer",
+          "Role": "Data Engineer",
           "jkName": "Data Governance Documentation Failure",
           "RiskDescription": "The Vector Store and Embedding Model are at risk from 'Provenance Collapse' — a condition where the data ingested into the Vector Store or used to train the Embedding Model has no documented selection rationale, no recorded legal basis, and no traceable preparation history. When provenance [the documented chain of origin, legal permission, and transformation history for every dataset] is absent, three compounding failures occur: the organisation cannot prove it had the legal right to use the data, engineers cannot trace a retrieval quality problem back to the pipeline operation that introduced it, and auditors cannot verify that the data was fit for the declared purpose. A system built on undocumented data is not a data problem — it is an unauditable system.",
           "controls": [
@@ -1925,7 +1925,7 @@
         },
         {
           "jkType": "risk",
-          "Role": "Engineer",
+          "Role": "Data Engineer",
           "jkName": "Data Quality Measurement Failure",
           "RiskDescription": "The Embedding Model and Vector Store are at risk from 'Silent Data Bias' — a condition where the data used to build the system has passed ingestion but has never been statistically tested for representativeness, completeness, or label accuracy. Silent Data Bias has three distinct modes: 'Coverage Gap', where an entire user population segment, language, or query type is absent from the training and retrieval data, causing the Retriever to return zero or irrelevant results for that segment; 'Label Noise', where incorrect or inconsistent human-assigned labels corrupt the Embedding Model's learned associations, causing semantically wrong retrieval results that appear confident; and 'Completeness Blindness', where missing data fields pass validation checks because no completeness threshold was defined, allowing structurally incomplete records to train the Embedding Model or populate the Vector Store.",
           "controls": [
