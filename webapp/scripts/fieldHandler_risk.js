@@ -135,8 +135,20 @@ function createRisk(field, capturedData, sanitizeForId, fieldStoredValue, mindma
 
             appendTechBlock('Maturity',      controlItem.jkMaturity,    false);
             appendTechBlock('Attack Vector', controlItem.jkAttackVector, false);
-            appendTechBlock('Task',          controlItem.jkTask,         false);
-            appendTechBlock('Code Sample',   controlItem.jkCodeSample,   true);
+
+            // Pair each Task with its matching Code Sample by index
+            const taskArray = Array.isArray(controlItem.jkTask)
+                ? controlItem.jkTask
+                : [controlItem.jkTask].filter(Boolean);
+            const codeArray = Array.isArray(controlItem.jkCodeSample)
+                ? controlItem.jkCodeSample
+                : [controlItem.jkCodeSample].filter(Boolean);
+
+            const pairCount = Math.max(taskArray.length, codeArray.length);
+            for (let i = 0; i < pairCount; i++) {
+                appendTechBlock(`Task ${i + 1}`,        taskArray[i], false);
+                appendTechBlock(`Code Sample ${i + 1}`, codeArray[i], true);
+            }
 
             techHeaderDiv.addEventListener('click', (e) => {
                 e.stopPropagation();
