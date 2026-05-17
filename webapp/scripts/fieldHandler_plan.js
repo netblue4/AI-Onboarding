@@ -106,6 +106,7 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
             th.style.border = '1px solid #ccc';
             th.style.padding = '8px';
             th.style.textAlign = 'left';
+            th.style.color = '#000';
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
@@ -121,6 +122,7 @@ function createPlan(field, capturedData, sanitizeForId, fieldStoredValue, mindma
                 td.style.border = '1px solid #ccc';
                 td.style.padding = '8px';
                 td.style.verticalAlign = 'top';
+                td.style.color = '#000';
                 row.appendChild(td);
             });
             tbody.appendChild(row);
