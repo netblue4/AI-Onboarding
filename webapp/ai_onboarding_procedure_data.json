@@ -724,20 +724,23 @@
             {
               "requirement_control_number": "[18286.9]",
               "jkName": "System Identity & Purpose",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Documented declaration of the system name, version, intended purpose, and the specific task it performs, as required by Annex IV point 1 of the AI Act."
+              "jkText": "Documented declaration of the system name, version, intended purpose, and the specific task it performs, as required by Annex IV point 1 of the AI Act."
             },
             {
               "requirement_control_number": "[18286.10]",
               "jkName": "Architecture & Components",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Description of the overall system architecture, key components, and the interactions between them, including any third-party models or services."
+              "jkText": "Description of the overall system architecture, key components, and the interactions between them, including any third-party models or services."
             },
             {
               "requirement_control_number": "[18286.11]",
               "jkName": "Training Methodology",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Documentation of the training approach, algorithms used, hyperparameters, and design choices made during development."
+              "jkText": "Documentation of the training approach, algorithms used, hyperparameters, and design choices made during development."
             }
           ]
         },
@@ -748,14 +751,16 @@
             {
               "requirement_control_number": "[18286.12]",
               "jkName": "Accuracy & Metrics Achieved",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Documented evidence of the accuracy levels and performance metrics achieved during testing, to be included in the instructions for use per Article 13."
+              "jkText": "Documented evidence of the accuracy levels and performance metrics achieved during testing, to be included in the instructions for use per Article 13."
             },
             {
               "requirement_control_number": "[18286.13]",
               "jkName": "Testing & Validation Results",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Summary of testing and validation outcomes including datasets used, test conditions, and results demonstrating the system meets its intended performance levels."
+              "jkText": "Summary of testing and validation outcomes including datasets used, test conditions, and results demonstrating the system meets its intended performance levels."
             }
           ]
         },
@@ -766,14 +771,16 @@
             {
               "requirement_control_number": "[18286.14]",
               "jkName": "Version Control",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A versioning scheme is in place ensuring every release of the system is uniquely identified and traceable to its corresponding technical documentation."
+              "jkText": "A versioning scheme is in place ensuring every release of the system is uniquely identified and traceable to its corresponding technical documentation."
             },
             {
               "requirement_control_number": "[18286.15]",
               "jkName": "Modification Log",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "An auditable log of all changes made to the system after initial placement on the market, including the nature of the change and whether a new conformity assessment was triggered."
+              "jkText": "An auditable log of all changes made to the system after initial placement on the market, including the nature of the change and whether a new conformity assessment was triggered."
             }
           ]
         }
@@ -789,14 +796,16 @@
             {
               "requirement_control_number": "[42001.1]",
               "jkName": "Scope of Change Evaluation",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A documented process exists to evaluate whether a proposed change to the AI system constitutes a substantial modification that affects the system's compliance with Chapter III Section 2 requirements."
+              "jkText": "A documented process exists to evaluate whether a proposed change to the AI system constitutes a substantial modification that affects the system's compliance with Chapter III Section 2 requirements."
             },
             {
               "requirement_control_number": "[42001.2]",
               "jkName": "Provider Responsibility Trigger",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Where a deployer makes a substantial modification outside the original provider's intended purpose, the process confirms that the modifier assumes provider responsibilities under Article 25."
+              "jkText": "Where a deployer makes a substantial modification outside the original provider's intended purpose, the process confirms that the modifier assumes provider responsibilities under Article 25."
             }
           ]
         },
@@ -807,14 +816,16 @@
             {
               "requirement_control_number": "[42001.3]",
               "jkName": "Re-assessment Requirement",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A substantial modification triggers a full or partial re-run of the conformity assessment process under Article 43 before the modified system is redeployed."
+              "jkText": "A substantial modification triggers a full or partial re-run of the conformity assessment process under Article 43 before the modified system is redeployed."
             },
             {
               "requirement_control_number": "[42001.4]",
               "jkName": "Updated Technical Documentation",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The technical documentation under Article 11 is updated to reflect the modification, including revised architecture, performance evidence, and modification log entries."
+              "jkText": "The technical documentation under Article 11 is updated to reflect the modification, including revised architecture, performance evidence, and modification log entries."
             }
           ]
         }
@@ -830,20 +841,23 @@
             {
               "requirement_control_number": "[42001.5]",
               "jkName": "Instructions for Use Compliance",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The deployer operates the system strictly within the intended purpose and in accordance with the provider's instructions for use supplied under Article 13."
+              "jkText": "The deployer operates the system strictly within the intended purpose and in accordance with the provider's instructions for use supplied under Article 13."
             },
             {
               "requirement_control_number": "[42001.6]",
               "jkName": "Human Oversight Implementation",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The deployer has assigned competent natural persons to perform human oversight of the system during operation, with the authority and capability to intervene or halt the system."
+              "jkText": "The deployer has assigned competent natural persons to perform human oversight of the system during operation, with the authority and capability to intervene or halt the system."
             },
             {
               "requirement_control_number": "[42001.7]",
               "jkName": "Monitoring & Logging",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The deployer monitors system operation and retains logs generated under Article 12 for the period specified by the provider or at least six months, and makes them available to authorities on request."
+              "jkText": "The deployer monitors system operation and retains logs generated under Article 12 for the period specified by the provider or at least six months, and makes them available to authorities on request."
             }
           ]
         },
@@ -854,14 +868,16 @@
             {
               "requirement_control_number": "[42001.8]",
               "jkName": "Fundamental Rights Impact Assessment",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Prior to deployment in a public authority or regulated context, the deployer has conducted a fundamental rights impact assessment as required by Article 26(7), documented the findings, and notified the provider of any identified risks."
+              "jkText": "Prior to deployment in a public authority or regulated context, the deployer has conducted a fundamental rights impact assessment as required by Article 26(7), documented the findings, and notified the provider of any identified risks."
             },
             {
               "requirement_control_number": "[42001.9]",
               "jkName": "Affected Persons Identification",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The categories of natural persons and groups likely to be affected by the system's outputs have been identified, documented, and considered in the deployment design and oversight arrangements."
+              "jkText": "The categories of natural persons and groups likely to be affected by the system's outputs have been identified, documented, and considered in the deployment design and oversight arrangements."
             }
           ]
         }
@@ -877,14 +893,16 @@
             {
               "requirement_control_number": "[18286.16]",
               "jkName": "Articles 9-17 Completion Verification",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A structured internal review confirms that all applicable Article 9-17 controls in this framework have been assessed, that no controls remain in a Not Met status, and that evidence is available for each Applicable control."
+              "jkText": "A structured internal review confirms that all applicable Article 9-17 controls in this framework have been assessed, that no controls remain in a Not Met status, and that evidence is available for each Applicable control."
             },
             {
               "requirement_control_number": "[18286.17]",
               "jkName": "Competent Reviewer Sign-off",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The self-assessment has been reviewed and approved by a person with sufficient technical and legal competence to evaluate conformity with the AI Act requirements, whose identity and qualifications are recorded."
+              "jkText": "The self-assessment has been reviewed and approved by a person with sufficient technical and legal competence to evaluate conformity with the AI Act requirements, whose identity and qualifications are recorded."
             }
           ]
         },
@@ -895,14 +913,16 @@
             {
               "requirement_control_number": "[18286.18]",
               "jkName": "No Critical Gaps Declaration",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A formal written declaration confirms that no critical compliance gaps have been identified, or that all identified gaps have been resolved and re-assessed prior to market placement."
+              "jkText": "A formal written declaration confirms that no critical compliance gaps have been identified, or that all identified gaps have been resolved and re-assessed prior to market placement."
             },
             {
               "requirement_control_number": "[18286.19]",
               "jkName": "Self-Assessment Conclusion Statement",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A documented conclusion statement is produced confirming that the system meets all applicable requirements of Chapter III Section 2 of the AI Act and is ready for market placement or deployment."
+              "jkText": "A documented conclusion statement is produced confirming that the system meets all applicable requirements of Chapter III Section 2 of the AI Act and is ready for market placement or deployment."
             }
           ]
         },
@@ -913,8 +933,9 @@
             {
               "requirement_control_number": "[18286.20]",
               "jkName": "Conformity Review Date & Version",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The date the conformity assessment was completed, the version of the system assessed, and the version of this compliance framework used are recorded and retained as part of the technical documentation."
+              "jkText": "The date the conformity assessment was completed, the version of the system assessed, and the version of this compliance framework used are recorded and retained as part of the technical documentation."
             }
           ]
         }
@@ -930,14 +951,16 @@
             {
               "requirement_control_number": "[24368.1]",
               "jkName": "AI Identity Disclosure",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Natural persons interacting with the system are informed in a clear, timely, and unambiguous manner that they are interacting with an AI system, unless this is obvious from context."
+              "jkText": "Natural persons interacting with the system are informed in a clear, timely, and unambiguous manner that they are interacting with an AI system, unless this is obvious from context."
             },
             {
               "requirement_control_number": "[24368.2]",
               "jkName": "Disclosure Timing & Clarity",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The AI disclosure is presented at the start of the interaction or before any consequential output is produced, and is expressed in plain language accessible to the intended audience."
+              "jkText": "The AI disclosure is presented at the start of the interaction or before any consequential output is produced, and is expressed in plain language accessible to the intended audience."
             }
           ]
         },
@@ -948,14 +971,16 @@
             {
               "requirement_control_number": "[24368.3]",
               "jkName": "AI-Generated Content Labelling",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Content generated or manipulated by the system that could be mistaken for authentic human-created content is labelled as AI-generated in a machine-readable format and, where technically feasible, in a manner visible to the end user."
+              "jkText": "Content generated or manipulated by the system that could be mistaken for authentic human-created content is labelled as AI-generated in a machine-readable format and, where technically feasible, in a manner visible to the end user."
             },
             {
               "requirement_control_number": "[24368.4]",
               "jkName": "Deep Fake Detection Support",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Where the system generates synthetic audio, image, or video content depicting real persons or events, technical measures are in place to embed provenance metadata or watermarking to support downstream detection."
+              "jkText": "Where the system generates synthetic audio, image, or video content depicting real persons or events, technical measures are in place to embed provenance metadata or watermarking to support downstream detection."
             }
           ]
         },
@@ -966,8 +991,9 @@
             {
               "requirement_control_number": "[24368.5]",
               "jkName": "Deployer Disclosure Implementation",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The deployer has implemented the provider's transparency instructions and can demonstrate that the disclosure mechanism is active in the production environment and has been tested for visibility and accessibility."
+              "jkText": "The deployer has implemented the provider's transparency instructions and can demonstrate that the disclosure mechanism is active in the production environment and has been tested for visibility and accessibility."
             }
           ]
         }
@@ -983,20 +1009,23 @@
             {
               "requirement_control_number": "[18286.21]",
               "jkName": "PMM Plan & Scope",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A post-market monitoring plan is documented, covering the scope of monitoring, the data to be collected, the frequency of review, and the roles responsible for executing the plan."
+              "jkText": "A post-market monitoring plan is documented, covering the scope of monitoring, the data to be collected, the frequency of review, and the roles responsible for executing the plan."
             },
             {
               "requirement_control_number": "[18286.22]",
               "jkName": "Performance Data Collection",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "The system actively collects performance data during operation, including accuracy metrics, error rates, and user feedback, sufficient to detect degradation or emerging risks over time."
+              "jkText": "The system actively collects performance data during operation, including accuracy metrics, error rates, and user feedback, sufficient to detect degradation or emerging risks over time."
             },
             {
               "requirement_control_number": "[18286.23]",
               "jkName": "Drift & Degradation Detection",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "Automated or scheduled checks are in place to detect model drift, data distribution shift, or performance degradation, with defined thresholds that trigger a formal review or corrective action."
+              "jkText": "Automated or scheduled checks are in place to detect model drift, data distribution shift, or performance degradation, with defined thresholds that trigger a formal review or corrective action."
             }
           ]
         },
@@ -1007,14 +1036,16 @@
             {
               "requirement_control_number": "[18286.24]",
               "jkName": "User Incident Reporting Channel",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A mechanism exists for deployers and affected persons to report issues, unexpected behaviour, or near-misses to the provider, and reported issues are logged and reviewed within a defined timeframe."
+              "jkText": "A mechanism exists for deployers and affected persons to report issues, unexpected behaviour, or near-misses to the provider, and reported issues are logged and reviewed within a defined timeframe."
             },
             {
               "requirement_control_number": "[18286.25]",
               "jkName": "Corrective Action Process",
+              "jkType": "requirement",
               "jkSoa": "Select",
-              "jkDescription": "A documented corrective action process is in place to respond to PMM findings, including root cause analysis, remediation steps, re-testing, and where necessary triggering a re-assessment under Article 43."
+              "jkText": "A documented corrective action process is in place to respond to PMM findings, including root cause analysis, remediation steps, re-testing, and where necessary triggering a re-assessment under Article 43."
             }
           ]
         }
