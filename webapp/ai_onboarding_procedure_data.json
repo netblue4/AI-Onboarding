@@ -254,25 +254,25 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "[18229-3: Trustworthiness (Robustness)] - Resilience Factors",
+          "jkName": "[18229-2: Trustworthiness (Robustness)] - Resilience Factors",
           "Role": "Compliance",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.15]",
+              "requirement_control_number": "[18229-2.15]",
               "jkName": "Input Noise",
               "jkText": "Ensuring the AI can handle corrupted inputs (e.g., typos, sensor errors, or blurry data) without crashing.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[18229-3.16]",
+              "requirement_control_number": "[18229-2.16]",
               "jkName": "Environment Changes",
               "jkText": "Maintaining system functionality during external shifts, such as poor lighting or network latency.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[18229-3.17]",
+              "requirement_control_number": "[18229-2.17]",
               "jkName": "Feedback Loops",
               "jkText": "Implementing technical barriers to prevent the AI from learning from its own biased or incorrect outputs over time.",
               "jkType": "requirement",
@@ -282,18 +282,18 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "[18229-3: Trustworthiness (Robustness)] - Fail-Safe Mechanisms",
+          "jkName": "[18229-2: Trustworthiness (Robustness)] - Fail-Safe Mechanisms",
           "Role": "Compliance",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.18]",
+              "requirement_control_number": "[18229-2.18]",
               "jkName": "Graceful Degradation",
               "jkText": "Designing the system to fail safely (e.g., a 'safe state' or limited functionality mode) rather than an abrupt collapse.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[18229-3.19]",
+              "requirement_control_number": "[18229-2.19]",
               "jkName": "Technical Redundancy",
               "jkText": "Utilizing backup modules or 'sanity check' algorithms to catch and mitigate AI errors in real-time.",
               "jkType": "requirement",
@@ -303,11 +303,11 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "[18229-3: Trustworthiness (Robustness)] - Reproducibility",
+          "jkName": "[18229-2: Trustworthiness (Robustness)] - Reproducibility",
           "Role": "Compliance",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.20]",
+              "requirement_control_number": "[18229-2.20]",
               "jkName": "Output Reliability",
               "jkText": "Ensuring the AI produces consistent, non-random outputs when given the exact same inputs.",
               "jkType": "requirement",
@@ -450,14 +450,14 @@
           "Role": "Compliance",
           "controls": [
             {
-              "requirement_control_number": "[18283.7]",
+              "requirement_control_number": "[18283.4]",
               "jkName": "Multi-stakeholder Input",
               "jkText": "Engaging diverse teams to define 'fairness' for specific use cases, ensuring the system respects different societal and functional settings.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "jkName": "Fundamental Rights",
               "jkText": "Directly linking bias mitigation measures to the protection of fundamental rights and the prevention of discrimination prohibited under Union law.",
               "jkType": "requirement",
@@ -477,7 +477,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "[ISO/IEC 24970: AI System Logging] - Logging Triggers",
+          "jkName": "[24970: AI System Logging] - Logging Triggers",
           "Role": "Compliance",
           "controls": [
             {
@@ -498,25 +498,25 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "[ISO/IEC 24970: AI System Logging] - Captured Information",
+          "jkName": "[24970: AI System Logging] - Captured Information",
           "Role": "Compliance",
           "controls": [
             {
-              "requirement_control_number": "[24970.4]",
+              "requirement_control_number": "[24970.3]",
               "jkName": "System State",
               "jkText": "Snapshots of current model parameters, version IDs, and configuration hashes at the exact time a decision or output was generated.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[24970.5]",
+              "requirement_control_number": "[24970.4]",
               "jkName": "Input/Output Data",
               "jkText": "Recording the specific user prompts and retrieved knowledge chunks that led to a high-risk or decision-making output.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[24970.6]",
+              "requirement_control_number": "[24970.5]",
               "jkName": "Errors & Failures",
               "jkText": "Detailed diagnostic data including error codes, messages, severity levels, and the fallback mechanisms activated during a crash.",
               "jkType": "requirement",
@@ -526,25 +526,25 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "[ISO/IEC 24970: AI System Logging] - Storage & Governance",
+          "jkName": "[24970: AI System Logging] - Storage & Governance",
           "Role": "Compliance",
           "controls": [
             {
-              "requirement_control_number": "[24970.7]",
+              "requirement_control_number": "[24970.6]",
               "jkName": "Tamper Resistance",
               "jkText": "Using technical controls like Write-Once-Read-Many (WORM) storage or cryptographic hashes to ensure logs cannot be altered after creation.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[24970.8]",
+              "requirement_control_number": "[24970.7]",
               "jkName": "Retention Periods",
               "jkText": "Maintaining logs for at least 6 months (per Article 26(6)) or longer as mandated by sector-specific EU or national laws.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[24970.9]",
+              "requirement_control_number": "[24970.8]",
               "jkName": "Privacy",
               "jkText": "Balancing full traceability with GDPR requirements through data minimization, such as anonymizing user IDs where appropriate.",
               "jkType": "requirement",
@@ -564,7 +564,7 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Organizational Strategy",
+          "jkName": "[18286: Quality Management System] - Organizational Strategy",
           "Role": "Compliance",
           "controls": [
             {
@@ -585,7 +585,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Operational Controls",
+          "jkName": "[18286: Quality Management System] - Operational Controls",
           "Role": "Compliance",
           "controls": [
             {
@@ -606,7 +606,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Post-Launch Duties",
+          "jkName": "[18286: Quality Management System] - Post-Launch Duties",
           "Role": "Compliance",
           "controls": [
             {
@@ -627,7 +627,7 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Documentation & Records",
+          "jkName": "[18286: Quality Management System] - Documentation & Records",
           "Role": "Compliance",
           "controls": [
             {
@@ -658,25 +658,25 @@
       "Fields": [
         {
           "jkType": "fieldGroup",
-          "jkName": "Key Risk Iterations",
+          "jkName": "[18228: Risk Management] - Key Risk Iterations",
           "Role": "Compliance",
           "controls": [
             {
-              "requirement_control_number": "[18228-1]",
+              "requirement_control_number": "[18228.1]",
               "jkName": "Identification",
               "jkText": "Identification and analysis of known and reasonably foreseeable risks the AI system may pose to health, safety, or fundamental rights.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[18228-2]",
+              "requirement_control_number": "[18228.2]",
               "jkName": "Estimation",
               "jkText": "Estimation and evaluation of the risks that may emerge when the high-risk AI system is used in accordance with its intended purpose or under conditions of reasonably foreseeable misuse.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[18228-3]",
+              "requirement_control_number": "[18228.3]",
               "jkName": "Evaluation",
               "jkText": "Evaluation of other emerging risks based on the analysis of data gathered from the post-market monitoring system.",
               "jkType": "requirement",
@@ -686,29 +686,335 @@
         },
         {
           "jkType": "fieldGroup",
-          "jkName": "Mitigation Hierarchy",
+          "jkName": "[18228: Risk Management] - Mitigation Hierarchy",
           "Role": "Compliance",
           "controls": [
             {
-              "requirement_control_number": "[18228-4]",
+              "requirement_control_number": "[18228.4]",
               "jkName": "1. Elimination",
               "jkText": "Elimination or reduction of risks as far as possible through adequate design and development.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[18228-5]",
+              "requirement_control_number": "[18228.5]",
               "jkName": "2. Mitigation",
               "jkText": "Implementation of appropriate mitigation and control measures in relation to risks that cannot be eliminated.",
               "jkType": "requirement",
               "jkSoa": "Select"
             },
             {
-              "requirement_control_number": "[18228-6]",
+              "requirement_control_number": "[18228.6]",
               "jkName": "3. Information",
               "jkText": "Provision of adequate information to deployers and, where appropriate, to persons likely to be affected by the system.",
               "jkType": "requirement",
               "jkSoa": "Select"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "Article 11: Technical Documentation",
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[18286: Quality Management System] - System Description",
+          "controls": [
+            {
+              "requirement_control_number": "[18286.9]",
+              "jkName": "System Identity & Purpose",
+              "jkSoa": "Select",
+              "jkDescription": "Documented declaration of the system name, version, intended purpose, and the specific task it performs, as required by Annex IV point 1 of the AI Act."
+            },
+            {
+              "requirement_control_number": "[18286.10]",
+              "jkName": "Architecture & Components",
+              "jkSoa": "Select",
+              "jkDescription": "Description of the overall system architecture, key components, and the interactions between them, including any third-party models or services."
+            },
+            {
+              "requirement_control_number": "[18286.11]",
+              "jkName": "Training Methodology",
+              "jkSoa": "Select",
+              "jkDescription": "Documentation of the training approach, algorithms used, hyperparameters, and design choices made during development."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[18286: Quality Management System] - Performance Evidence",
+          "controls": [
+            {
+              "requirement_control_number": "[18286.12]",
+              "jkName": "Accuracy & Metrics Achieved",
+              "jkSoa": "Select",
+              "jkDescription": "Documented evidence of the accuracy levels and performance metrics achieved during testing, to be included in the instructions for use per Article 13."
+            },
+            {
+              "requirement_control_number": "[18286.13]",
+              "jkName": "Testing & Validation Results",
+              "jkSoa": "Select",
+              "jkDescription": "Summary of testing and validation outcomes including datasets used, test conditions, and results demonstrating the system meets its intended performance levels."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[18286: Quality Management System] - Change Management",
+          "controls": [
+            {
+              "requirement_control_number": "[18286.14]",
+              "jkName": "Version Control",
+              "jkSoa": "Select",
+              "jkDescription": "A versioning scheme is in place ensuring every release of the system is uniquely identified and traceable to its corresponding technical documentation."
+            },
+            {
+              "requirement_control_number": "[18286.15]",
+              "jkName": "Modification Log",
+              "jkSoa": "Select",
+              "jkDescription": "An auditable log of all changes made to the system after initial placement on the market, including the nature of the change and whether a new conformity assessment was triggered."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "Article 25: Substantial Modification",
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[42001: AI Management System] - Modification Assessment",
+          "controls": [
+            {
+              "requirement_control_number": "[42001.1]",
+              "jkName": "Scope of Change Evaluation",
+              "jkSoa": "Select",
+              "jkDescription": "A documented process exists to evaluate whether a proposed change to the AI system constitutes a substantial modification that affects the system's compliance with Chapter III Section 2 requirements."
+            },
+            {
+              "requirement_control_number": "[42001.2]",
+              "jkName": "Provider Responsibility Trigger",
+              "jkSoa": "Select",
+              "jkDescription": "Where a deployer makes a substantial modification outside the original provider's intended purpose, the process confirms that the modifier assumes provider responsibilities under Article 25."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[42001: AI Management System] - Re-conformity",
+          "controls": [
+            {
+              "requirement_control_number": "[42001.3]",
+              "jkName": "Re-assessment Requirement",
+              "jkSoa": "Select",
+              "jkDescription": "A substantial modification triggers a full or partial re-run of the conformity assessment process under Article 43 before the modified system is redeployed."
+            },
+            {
+              "requirement_control_number": "[42001.4]",
+              "jkName": "Updated Technical Documentation",
+              "jkSoa": "Select",
+              "jkDescription": "The technical documentation under Article 11 is updated to reflect the modification, including revised architecture, performance evidence, and modification log entries."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "Article 26: Deployer Obligations",
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[42001: AI Management System] - Operational Governance",
+          "controls": [
+            {
+              "requirement_control_number": "[42001.5]",
+              "jkName": "Instructions for Use Compliance",
+              "jkSoa": "Select",
+              "jkDescription": "The deployer operates the system strictly within the intended purpose and in accordance with the provider's instructions for use supplied under Article 13."
+            },
+            {
+              "requirement_control_number": "[42001.6]",
+              "jkName": "Human Oversight Implementation",
+              "jkSoa": "Select",
+              "jkDescription": "The deployer has assigned competent natural persons to perform human oversight of the system during operation, with the authority and capability to intervene or halt the system."
+            },
+            {
+              "requirement_control_number": "[42001.7]",
+              "jkName": "Monitoring & Logging",
+              "jkSoa": "Select",
+              "jkDescription": "The deployer monitors system operation and retains logs generated under Article 12 for the period specified by the provider or at least six months, and makes them available to authorities on request."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[42001: AI Management System] - Impact Assessment",
+          "controls": [
+            {
+              "requirement_control_number": "[42001.8]",
+              "jkName": "Fundamental Rights Impact Assessment",
+              "jkSoa": "Select",
+              "jkDescription": "Prior to deployment in a public authority or regulated context, the deployer has conducted a fundamental rights impact assessment as required by Article 26(7), documented the findings, and notified the provider of any identified risks."
+            },
+            {
+              "requirement_control_number": "[42001.9]",
+              "jkName": "Affected Persons Identification",
+              "jkSoa": "Select",
+              "jkDescription": "The categories of natural persons and groups likely to be affected by the system's outputs have been identified, documented, and considered in the deployment design and oversight arrangements."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "Article 43: Conformity Assessment",
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[18286: Quality Management System] - Pre-Market Review",
+          "controls": [
+            {
+              "requirement_control_number": "[18286.16]",
+              "jkName": "Articles 9-17 Completion Verification",
+              "jkSoa": "Select",
+              "jkDescription": "A structured internal review confirms that all applicable Article 9-17 controls in this framework have been assessed, that no controls remain in a Not Met status, and that evidence is available for each Applicable control."
+            },
+            {
+              "requirement_control_number": "[18286.17]",
+              "jkName": "Competent Reviewer Sign-off",
+              "jkSoa": "Select",
+              "jkDescription": "The self-assessment has been reviewed and approved by a person with sufficient technical and legal competence to evaluate conformity with the AI Act requirements, whose identity and qualifications are recorded."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[18286: Quality Management System] - Conformity Conclusion",
+          "controls": [
+            {
+              "requirement_control_number": "[18286.18]",
+              "jkName": "No Critical Gaps Declaration",
+              "jkSoa": "Select",
+              "jkDescription": "A formal written declaration confirms that no critical compliance gaps have been identified, or that all identified gaps have been resolved and re-assessed prior to market placement."
+            },
+            {
+              "requirement_control_number": "[18286.19]",
+              "jkName": "Self-Assessment Conclusion Statement",
+              "jkSoa": "Select",
+              "jkDescription": "A documented conclusion statement is produced confirming that the system meets all applicable requirements of Chapter III Section 2 of the AI Act and is ready for market placement or deployment."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[18286: Quality Management System] - Assessment Record",
+          "controls": [
+            {
+              "requirement_control_number": "[18286.20]",
+              "jkName": "Conformity Review Date & Version",
+              "jkSoa": "Select",
+              "jkDescription": "The date the conformity assessment was completed, the version of the system assessed, and the version of this compliance framework used are recorded and retained as part of the technical documentation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "Article 50: Transparency Obligations for Certain AI Systems",
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[24368: AI Transparency] - Disclosure Requirements",
+          "controls": [
+            {
+              "requirement_control_number": "[24368.1]",
+              "jkName": "AI Identity Disclosure",
+              "jkSoa": "Select",
+              "jkDescription": "Natural persons interacting with the system are informed in a clear, timely, and unambiguous manner that they are interacting with an AI system, unless this is obvious from context."
+            },
+            {
+              "requirement_control_number": "[24368.2]",
+              "jkName": "Disclosure Timing & Clarity",
+              "jkSoa": "Select",
+              "jkDescription": "The AI disclosure is presented at the start of the interaction or before any consequential output is produced, and is expressed in plain language accessible to the intended audience."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[24368: AI Transparency] - Synthetic Content",
+          "controls": [
+            {
+              "requirement_control_number": "[24368.3]",
+              "jkName": "AI-Generated Content Labelling",
+              "jkSoa": "Select",
+              "jkDescription": "Content generated or manipulated by the system that could be mistaken for authentic human-created content is labelled as AI-generated in a machine-readable format and, where technically feasible, in a manner visible to the end user."
+            },
+            {
+              "requirement_control_number": "[24368.4]",
+              "jkName": "Deep Fake Detection Support",
+              "jkSoa": "Select",
+              "jkDescription": "Where the system generates synthetic audio, image, or video content depicting real persons or events, technical measures are in place to embed provenance metadata or watermarking to support downstream detection."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[24368: AI Transparency] - Deployer Duties",
+          "controls": [
+            {
+              "requirement_control_number": "[24368.5]",
+              "jkName": "Deployer Disclosure Implementation",
+              "jkSoa": "Select",
+              "jkDescription": "The deployer has implemented the provider's transparency instructions and can demonstrate that the disclosure mechanism is active in the production environment and has been tested for visibility and accessibility."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StepName": "Article 72: Post-Market Monitoring",
+      "Fields": [
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[18286: Quality Management System] - Monitoring System",
+          "controls": [
+            {
+              "requirement_control_number": "[18286.21]",
+              "jkName": "PMM Plan & Scope",
+              "jkSoa": "Select",
+              "jkDescription": "A post-market monitoring plan is documented, covering the scope of monitoring, the data to be collected, the frequency of review, and the roles responsible for executing the plan."
+            },
+            {
+              "requirement_control_number": "[18286.22]",
+              "jkName": "Performance Data Collection",
+              "jkSoa": "Select",
+              "jkDescription": "The system actively collects performance data during operation, including accuracy metrics, error rates, and user feedback, sufficient to detect degradation or emerging risks over time."
+            },
+            {
+              "requirement_control_number": "[18286.23]",
+              "jkName": "Drift & Degradation Detection",
+              "jkSoa": "Select",
+              "jkDescription": "Automated or scheduled checks are in place to detect model drift, data distribution shift, or performance degradation, with defined thresholds that trigger a formal review or corrective action."
+            }
+          ]
+        },
+        {
+          "jkType": "fieldGroup",
+          "jkName": "[18286: Quality Management System] - Feedback Loop",
+          "controls": [
+            {
+              "requirement_control_number": "[18286.24]",
+              "jkName": "User Incident Reporting Channel",
+              "jkSoa": "Select",
+              "jkDescription": "A mechanism exists for deployers and affected persons to report issues, unexpected behaviour, or near-misses to the provider, and reported issues are logged and reviewed within a defined timeframe."
+            },
+            {
+              "requirement_control_number": "[18286.25]",
+              "jkName": "Corrective Action Process",
+              "jkSoa": "Select",
+              "jkDescription": "A documented corrective action process is in place to respond to PMM findings, including root cause analysis, remediation steps, re-testing, and where necessary triggering a re-assessment under Article 43."
             }
           ]
         }
@@ -726,7 +1032,7 @@
       "Fields": [
         {
           "Role": "Requester",
-          "requirement_control_number": "[18283.8]",
+          "requirement_control_number": "[18283.5]",
           "control_number": "[1.1.1]",
           "jkName": "Will the AI system be used for any of the following prohibited purposes?",
           "jkText": "The EU AI Act strictly prohibits certain AI practices that pose an unacceptable risk. If any of the following options are selected, the AI system is considered prohibited and cannot be deployed.",
@@ -744,7 +1050,7 @@
       "Fields": [
         {
           "Role": "Requester",
-          "requirement_control_number": "[18228-1]",
+          "requirement_control_number": "[18228.1]",
           "control_number": "[1.2.1]",
           "jkName": "Which description best defines your organization's role and activities for this AI system?",
           "jkText": "It's very important to clearly define the organisation's activities because it will impact the AI Act’s distinction between 'Provider' (developer) and 'Deployer' (user), which comes with significantly different responsibilities. The organisation's activities are exclusively focused on operationalizing, integrating, and governing generic pre-trained LLMs and developing internal infrastructure for Retrieval-Augmented Generation (RAG), without any modification, fine-tuning, or retraining of the underlying model itself. The AI system is for internal organizational use only, and is not repackaged or distributed to external customers. The LLM is chosen as a generic, pre-trained model, stored on-premises, and never fine-tuned, retrained, Its parameters, weights, or architecture layers are not modified by the organisation's internal engineering team. Meaning it does not interact with or access any external internet datasets, ensuring data sovereignty and minimizing exposure to third-party risks. The organisation's internal engineering team’s efforts are strictly limited to building infrastructure, orchestration, and internal data pipelines for the LLM, but do not alter the core LLM architecture or its parameters.",
@@ -762,7 +1068,7 @@
       "Fields": [
         {
           "Role": "Requester",
-          "requirement_control_number": "[18228-3]",
+          "requirement_control_number": "[18228.3]",
           "control_number": "[1.3.1]",
           "jkName": "Will the AI system be used for any of the following purposes?",
           "jkText": "Under the EU AI Act, a system is classified as high-risk if its intended use falls into specific categories. Please select all that apply. If any option is selected, the AI system will be classified as high-risk.",
@@ -770,7 +1076,7 @@
         },
         {
           "Role": "Requester",
-          "requirement_control_number": "[18228-3]",
+          "requirement_control_number": "[18228.3]",
           "control_number": "[1.3.2]",
           "jkName": "Does the AI system have specific transparency obligations (Limited Risk)?",
           "jkText": "If the system is not high-risk, it may still be 'Limited Risk' and have specific transparency obligations to ensure users are not deceived. Please select all that apply.",
@@ -792,7 +1098,7 @@
           "Role": "Requester",
           "controls": [
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.1]",
               "jkName": "Select the at-risk group(s) impacted by the AI system",
               "jkText": "",
@@ -800,7 +1106,7 @@
               "jkObjective": "To identify specific vulnerable populations that require heightened protection and targeted risk assessment."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.2]",
               "jkName": "Potential negative impacts on fundamental rights",
               "jkText": "Select specifically identified risks to the vulnerable population.",
@@ -808,7 +1114,7 @@
               "jkObjective": "To categorize potential harms to fundamental human rights to ensure appropriate mitigation strategies are developed."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.3]",
               "jkName": "Potential positive impacts on fundamental rights",
               "jkText": "Select expected benefits for the vulnerable population.",
@@ -816,7 +1122,7 @@
               "jkObjective": "To document the anticipated societal benefits and improvements in equity resulting from the AI implementation."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.4]",
               "jkName": "Rate the severity of identified negative impacts",
               "jkText": "",
@@ -824,7 +1130,7 @@
               "jkObjective": "To quantify the level of risk associated with identified negative impacts to prioritize governance efforts."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.5]",
               "jkName": "Describe the severity of identified impacts",
               "jkText": "Provide justification for the severity rating selected above.",
@@ -832,7 +1138,7 @@
               "jkObjective": "To provide a qualitative rationale and evidence base for the risk severity level assigned to the system."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.6]",
               "jkName": "Technical mechanisms implemented to mitigate negative impacts",
               "jkText": "MultiSelect:Bias Detection & Correction/Privacy-Enhancing Technologies (PETs)/Explainability Modules (XAI)/Human-in-the-Loop (HITL)/Robustness & Adversarial Training/Data Minimization/Automated Logging & Auditing",
@@ -840,7 +1146,7 @@
               "jkObjective": "To document the specific technical controls and safeguards deployed to neutralize or reduce identified risks."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.7]",
               "jkName": "Post-Deployment Monitoring Plan",
               "jkText": "Describe the plan for monitoring the AI system's performance and impact on vulnerable populations after deployment. Include key metrics and frequency of review.",
@@ -855,7 +1161,7 @@
           "Role": "Requester",
           "controls": [
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.8]",
               "jkName": "Select the job titles whose daily tasks may be altered by more than 20% due to the AI system",
               "jkText": "",
@@ -863,7 +1169,7 @@
               "jkObjective": "To identify specific professional roles undergoing significant transformation to target support and transition resources effectively."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.9]",
               "jkName": "Identify the primary roles of the AI system relative to human workers",
               "jkText": "",
@@ -871,7 +1177,7 @@
               "jkObjective": "To define the nature of the human-AI interaction and determine whether the system is designed to support, replace, or expand human capabilities."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.10]",
               "jkName": "Automated/Eliminated Tasks",
               "jkText": "List the specific tasks that will be fully automated or eliminated for the affected roles, and the estimated percentage of work time saved across the department.",
@@ -879,7 +1185,7 @@
               "jkObjective": "To quantify the operational shift and identify the specific workflow components that will no longer require human intervention."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.11]",
               "jkName": "Primary Mitigation Strategy for Displacement",
               "jkText": "If job displacement is identified, select the primary strategies for the affected workers",
@@ -887,7 +1193,7 @@
               "jkObjective": "To document the ethical and organizational approach to managing workforce reduction or transition resulting from AI implementation."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.12]",
               "jkName": "Structured Re-skilling Program in Place",
               "jkText": "Describe the primary strategies to address the affected workers.",
@@ -895,7 +1201,7 @@
               "jkObjective": "To ensure that a proactive educational framework exists to help employees adapt to new roles or technical requirements."
             },
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[2.3.13]",
               "jkName": "Structured Re-skilling Program Effectiveness",
               "jkText": "Describe the Training Effectiveness measures to evaluate the success of the primary strategies to address the affected workers.",
@@ -1007,7 +1313,7 @@
           "Role": "Data Engineer",
           "controls": [
             {
-              "requirement_control_number": "[18283.7]",
+              "requirement_control_number": "[18283.4]",
               "control_number": "[6.2.1]",
               "jkName": "Declare the agreed fairness definition for this system and confirm multi-stakeholder engagement",
               "jkText": "Enter the agreed definition of fairness that applies to this system's specific use case — for example: 'Fairness means equal positive outcome rates across all declared age groups for recruitment screening queries' or 'Fairness means no statistically significant difference in retrieval quality between any two declared language groups'. Then list every stakeholder group consulted during the fairness definition process, including the consultation date and the name or role of the representative — for example: 'Legal Counsel | 2026-01-14 | Head of Employment Law', 'Affected Community Representative | 2026-01-21 | External Disability Rights Advisor', 'Data Ethics Board | 2026-02-03 | Ethics Review Chair'. A fairness definition set by the engineering team alone, without input from affected communities or legal counsel, does not satisfy the multi-stakeholder requirement. If consultation has not yet occurred, enter 'Pending' — the system cannot proceed to bias evaluation or deployment until this field is completed and signed off.",
@@ -1022,7 +1328,7 @@
           "Role": "Engineer",
           "controls": [
             {
-              "requirement_control_number": "[18283.8]",
+              "requirement_control_number": "[18283.5]",
               "control_number": "[6.2.2]",
               "jkName": "Map each implemented bias control to the specific fundamental right it protects",
               "jkText": "For every bias control implemented in this system, enter the control number, a one-sentence description of what it does, and the specific fundamental right or EU legal provision it protects — for example: '[6.1.R1] Subgroup Representation Gate — ensures training data covers all protected age, gender, and disability subgroups | EU Charter of Fundamental Rights Art. 21 (Non-discrimination) | EU AI Act Art. 10(2)(f)', '[6.1.R2] Disparate Impact Detection Gate — blocks deployment when the Disparate Impact Ratio falls below 0.80 for any protected subgroup pair | EU Charter Art. 21 | EU Equal Treatment Directive 2000/43/EC', '[6.1.R3] Proxy Correlation Screening — prevents indirect discrimination by detecting variables that encode protected characteristics | EU Charter Art. 21 | GDPR Art. 22 (Automated decision-making)'. Every bias control must be mapped — an unmapped control cannot be cited in a compliance assertion because the legal right it protects has never been declared. If a control cannot be mapped to a fundamental right, enter the control number and 'Mapping Pending' — this generates a mandatory Compliance review gate before that control can be used as compliance evidence.",
@@ -1117,7 +1423,7 @@
           "Role": "Requester",
           "controls": [
             {
-              "requirement_control_number": "[24970.9]",
+              "requirement_control_number": "[24970.8]",
               "control_number": "[3.3.3]",
               "jkName": "Declare every log entry field that contains or may contain personal data in this system",
               "jkText": "Enter every field name written to the log store by this system that contains or may contain personal data — for example: 'user_email', 'user_name', 'ip_address', 'employee_id', 'manager_name'. These fields will be replaced with deterministic HMAC pseudonymised tokens before any entry reaches the log store. A field not listed here will be written as raw personal data to a shared log store, constituting a GDPR Art. 5(1)(f) breach from the first log entry written. Enter one field name per line, exactly as it appears in the log entry schema. If this system does not write any personal data fields to the log store, enter 'None' with a written justification — this generates a mandatory Compliance review gate before the pseudonymisation processor can be bypassed.",
@@ -1132,7 +1438,7 @@
           "Role": "Requester",
           "controls": [
             {
-              "requirement_control_number": "[24970.8]",
+              "requirement_control_number": "[24970.7]",
               "control_number": "[3.4.1]",
               "jkName": "Declare the maximum log retention period and legal basis for this system's log store",
               "jkText": "Enter the maximum number of days log entries may be retained in this system's log store, and the legal basis under which they are held — for example: '365 days | EU AI Act Art. 26(6) minimum extended by GDPR Art. 6(1)(c) legal obligation', '730 days | Sector-specific obligation under NIS2 Directive Art. 23', '180 days | EU AI Act Art. 26(6) minimum only, no sector extension applies'. The minimum retention floor of 180 days is fixed by EU AI Act Art. 26(6) and cannot be reduced regardless of what is declared here — if you declare a value below 180 days the system will reject it and apply the 180-day floor. The declared maximum becomes the ceiling enforced by the daily scheduler: log entries older than this value will be cryptographically erased. If no sector-specific law extends the minimum, enter '180 days' and the applicable legal basis. If retention obligations are governed by a separate Data Processing Agreement, reference the document name and version.",
@@ -1255,7 +1561,7 @@
       ]
     },
     {
-      "StepName": "18229-3: Trustworthiness (Robustness)",
+      "StepName": "18229-2: Trustworthiness (Robustness)",
       "Objectives": [
         {
           "Objective": "."
@@ -1268,7 +1574,7 @@
           "Role": "Requester",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.17]",
+              "requirement_control_number": "[18229-2.17]",
               "control_number": "[7.1.3]",
               "jkName": "Register all paths and domains where this system stores LLM-generated outputs",
               "jkText": "Enter every file system path, storage bucket prefix, and internal domain where this system writes LLM (Generator) outputs — for example '/llm-outputs/', 'ai-responses.internal', or 's3://ai-output-bucket/'. The Feedback Isolation Barrier uses this registry as its provenance blocklist — any document submitted to the ingestion pipeline whose source field matches a registered path will be hard-rejected before it reaches the Vector Store. If a path is missing from this registry, documents originating from that path will pass the provenance check silently and may contaminate the Vector Store. Enter one entry per line. If the system does not persist LLM outputs to any retrievable store, enter 'None'.",
@@ -1283,7 +1589,7 @@
           "Role": "Requester",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.19]",
+              "requirement_control_number": "[18229-2.19]",
               "control_number": "[7.2.2]",
               "jkName": "Declare the domain-specific plausibility rules this system must enforce on every LLM response",
               "jkText": "Enter every domain-specific rule the Output Sanity Check must enforce on LLM (Generator) responses before they reach the Output Guardrail. Each rule must be stated as a specific, machine-evaluable constraint — for example: 'Annual leave entitlement must be a whole number between 1 and 365 days', 'Notice period must not exceed 26 weeks', or 'No response may reference a document published before 2020'. A response that violates any single rule will be suppressed and routed to the human reviewer queue before it reaches the Response Interface. If no domain-specific rules can be defined, enter 'None' — this generates a mandatory Build layer control requiring at least one plausibility rule before go-live.",
@@ -1298,7 +1604,7 @@
           "Role": "Requester",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.20]",
+              "requirement_control_number": "[18229-2.20]",
               "control_number": "[7.3.1]",
               "jkName": "Declare the fixed probe query and expected reference response for determinism verification",
               "jkText": "Enter the exact query string the Orchestrator will submit to the LLM (Generator) at every startup and after every configuration change to verify deterministic behaviour — for example: 'What is the statutory minimum annual leave entitlement in days?'. Then enter the exact expected response text the LLM must return for that query under the declared configuration (temperature = 0.0, top_p = 1.0, fixed seed). The Determinism Enforcement Gate hashes this expected response at configuration time and stores it as the reference hash — a startup is blocked if the live response hash does not match. Choose a query with a single, unambiguous correct answer within this system's domain. If neither value is yet known, enter 'Pending' — the Query Interface cannot be opened until both fields are populated and a passing determinism check is on record.",
@@ -1554,7 +1860,7 @@
               "jkImplementationEvidence": "'Human Intervention Log Test Report' showing AL-P-04 result: written = true, event_type = 'output_override', session cross-reference = passed; AL-P-05 result: written = false, reason = 'session_id not found in session log', intervention_log count = 0."
             },
             {
-              "requirement_control_number": "[24970.7]",
+              "requirement_control_number": "[24970.6]",
               "control_number": "[3.3.T1]",
               "jkName": "Tamper Detection Verification Report",
               "jkText": "Generate a 'Log Tamper Detection Test Report' after every test run covering AL-P-06. The report must show the original SHA-256 hash, the modified SHA-256 hash, the integrity_check result, and confirmation that a TAMPER_DETECTED event was written to the audit store containing the session_id and query_id of the modified entry.",
@@ -1564,7 +1870,7 @@
               "jkImplementationEvidence": "'Log Tamper Detection Test Report' showing AL-P-06 result: original_hash ≠ modified_hash, integrity_check = false, TAMPER_DETECTED event present in audit store with correct session_id and query_id, and UTC timestamp of detection recorded."
             },
             {
-              "requirement_control_number": "[24970.9]",
+              "requirement_control_number": "[24970.8]",
               "control_number": "[3.3.T2]",
               "jkName": "PII Pseudonymisation Verification Report",
               "jkText": "Generate a 'PII Pseudonymisation Test Report' after every test run covering AL-P-07. The report must show the input field containing raw PII, the SHA-256 pseudonym written to the log store, confirmation the raw value does not appear in the written entry, and the result of the PII scan across the log store for this entry.",
@@ -2260,7 +2566,7 @@
           "RiskDescription": "The Orchestrator is at risk from 'Log Integrity Failure' — a condition where event records are incomplete, mutable, or unrecoverable at the point they are needed for incident investigation or regulatory audit. A Log Integrity Failure has three distinct modes: 'Log Gap', where the Orchestrator fails to write an entry for a session start, session end, human intervention, or component failure event; 'Log Tampering', where a log entry is altered or deleted after it is written because no immutable storage mechanism is in place; and 'Reconstruction Failure', where a log entry exists but lacks the system state snapshot, chunk IDs, or error diagnostic data needed to reproduce the event. Any one of these three modes means the system cannot demonstrate what it did, when it did it, or why — making every AI output in the affected period unauditable and legally indefensible.",
           "controls": [
             {
-              "requirement_control_number": "[18229-1.4],[24970.6],[24970.1]",
+              "requirement_control_number": "[18229-1.4],[24970.5],[24970.1]",
               "control_number": "[3.1.R1]",
               "jkName": "Mandatory Event Write Enforcement",
               "jkText": "Every mandatory pipeline event must be written to the log store as a blocking operation with a 200-millisecond timeout — the pipeline must not advance to the next stage until the write is confirmed, and any timeout or error must halt the pipeline, return HTTP 500 to the Query Interface, and write a fallback entry to a local buffer store.",
@@ -2284,7 +2590,7 @@
               ]
             },
             {
-              "requirement_control_number": "[18229-1.5],[24970.4],[24970.5]",
+              "requirement_control_number": "[18229-1.5],[24970.3],[24970.4]",
               "control_number": "[3.1.R2]",
               "jkName": "Reconstruction Payload Standard",
               "jkText": "Every Orchestrator log entry must include eleven mandatory reconstruction fields — session ID, query ID, user pseudonym, UTC timestamp to millisecond precision, RAG component, model version ID, configuration hash, retrieved chunk IDs with similarity scores, assembled context hash, LLM response hash, and confidence score — validated at write time with schema rejection of any partial entry.",
@@ -2330,7 +2636,7 @@
               ]
             },
             {
-              "requirement_control_number": "[24970.7]",
+              "requirement_control_number": "[24970.6]",
               "control_number": "[3.3.R1]",
               "jkName": "Immutable Log Storage Enforcement",
               "jkText": "The log store must enforce an append-only write policy with SHA-256 hash verification on every entry at write time and re-verification on read, triggering an immediate tamper alert and writing a detection event to a separate integrity log on any hash mismatch.",
@@ -2352,7 +2658,7 @@
               ]
             },
             {
-              "requirement_control_number": "[24970.9]",
+              "requirement_control_number": "[24970.8]",
               "control_number": "[3.3.R2]",
               "jkName": "Privacy-Safe Log Pseudonymisation",
               "jkText": "The Orchestrator must replace every raw user identifier — name, email address, IP address — with a deterministic HMAC pseudonymised token before writing any log entry, store the token-to-identifier mapping in a separate access-controlled key store, and apply SHA-256 hashing to prompt content in any entry where the Input Guardrail flagged personal data.",
@@ -2384,7 +2690,7 @@
           "RiskDescription": "The log store is at risk from 'Log Retention Violation' — a condition where audit log entries are either deleted before the mandatory 6-month minimum retention floor or retained indefinitely beyond the declared maximum period. Log Retention Violation has two compounding modes: 'Premature Deletion', where a misconfigured or absent retention floor allows log entries to be purged before the minimum 6-month period expires, destroying the audit trail for incidents that may not be investigated until months after they occur; and 'Indefinite Accumulation', where no maximum retention ceiling is declared or enforced, causing log entries containing pseudonymised session data to accumulate in the log store beyond their lawful basis — creating GDPR Art. 5(1)(e) liability from the same store that was built to demonstrate compliance. Unlike dataset retention governed by [5.3.R2], this risk targets the log store specifically and requires a minimum floor that no deletion scheduler may breach, in addition to a declared maximum ceiling aligned to sector-specific EU or national law.",
           "controls": [
             {
-              "requirement_control_number": "[24970.8]",
+              "requirement_control_number": "[24970.7]",
               "control_number": "[3.4.R1]",
               "jkName": "Log Retention Schedule Enforcement",
               "jkText": "Every log entry must be tagged with a minimum retention floor of 180 days and a declared maximum retention ceiling at write time. A daily scheduled job must enforce both bounds — blocking deletion of any entry before the floor expires, and executing cryptographic erasure of any entry that has exceeded the maximum ceiling — with every deletion event written to a separate decommission log including the authorising engineer ID and UTC timestamp.",
@@ -2415,7 +2721,7 @@
           "jkType": "plan",
           "Role": "Tester",
           "jkName": "[TEST-AL-01] - Mandatory Event Write, Reconstruction Payload Schema, and Human Intervention Capture Validation",
-          "PlanObjective": "This plan validates that the Mandatory Event Write Enforcement defined in [3.1.R1], the Reconstruction Payload Standard defined in [3.1.R2], and the Human Intervention Event Capture defined in [3.1.R3] are correctly implemented. All tests target Audit Integrity Risk — specifically Log Gap, where a pipeline stage advances without a confirmed log write; Reconstruction Failure, where a log entry exists but lacks the fields needed to reproduce the event; and Oversight Invisibility, where a human intervention is performed but generates no log entry. [24970.1] Monitoring Events and [24970.6] Errors and Failures are both covered by [3.1.R1] — the blocking write pattern and fallback buffer capture both routine pipeline events and failure events. [24970.4] System State and [24970.5] Input/Output Data are both covered by [3.1.R2] — model_version_id, configuration_hash, retrieved_chunk_ids, assembled_context_hash, and llm_response_hash are all mandatory reconstruction fields. [24970.2] Human Intervention is covered by [3.1.R3].",
+          "PlanObjective": "This plan validates that the Mandatory Event Write Enforcement defined in [3.1.R1], the Reconstruction Payload Standard defined in [3.1.R2], and the Human Intervention Event Capture defined in [3.1.R3] are correctly implemented. All tests target Audit Integrity Risk — specifically Log Gap, where a pipeline stage advances without a confirmed log write; Reconstruction Failure, where a log entry exists but lacks the fields needed to reproduce the event; and Oversight Invisibility, where a human intervention is performed but generates no log entry. [24970.1] Monitoring Events and [24970.5] Errors and Failures are both covered by [3.1.R1] — the blocking write pattern and fallback buffer capture both routine pipeline events and failure events. [24970.3] System State and [24970.4] Input/Output Data are both covered by [3.1.R2] — model_version_id, configuration_hash, retrieved_chunk_ids, assembled_context_hash, and llm_response_hash are all mandatory reconstruction fields. [24970.2] Human Intervention is covered by [3.1.R3].",
           "TestDataset": [
             {
               "ID": "AL-P-01",
@@ -2556,7 +2862,7 @@
           ],
           "controls": [
             {
-              "requirement_control_number": "[24970.7]",
+              "requirement_control_number": "[24970.6]",
               "control_number": "[3.3.T11]",
               "jkName": "Log Integrity Verification Test Report",
               "jkText": "Generate a 'Log Integrity Verification Test Report' after every test run covering AL-P-09 and AL-P-10. The report must show the count of entries hash-verified, the count of mismatches detected, the tampered indices, and a zero count of post-write field modifications that were not detected and written to the isolated integrity log.",
@@ -2566,7 +2872,7 @@
               "jkImplementationEvidence": "'Log Integrity Verification Test Report' showing AL-P-09: mismatches_detected = 1, tampered_indices = [0], integrity_log count = 1 with TAMPER_DETECTED event; AL-P-10: entries_verified = 3, mismatches_detected = 0, integrity_log empty."
             },
             {
-              "requirement_control_number": "[24970.9]",
+              "requirement_control_number": "[24970.8]",
               "control_number": "[3.3.T22]",
               "jkName": "Log Privacy Compliance Test Report",
               "jkText": "Generate a 'Log Privacy Compliance Test Report' after every test run covering AL-P-11 and AL-P-12. The report must show the count of entries processed, the count of PII fields pseudonymised, the count of prompts hashed, and a zero count of log entries reaching the log store with any raw personal data value in a declared PII field.",
@@ -2576,7 +2882,7 @@
               "jkImplementationEvidence": "'Log Privacy Compliance Test Report' showing AL-P-11: three PII fields pseudonymised, prompt hashed, prompt_pii_hashed = True, pseudo_key_store count = 3, zero raw PII in sanitised entry; AL-P-12: entry unchanged, pseudo_key_store count unchanged, no prompt_pii_hashed flag."
             },
             {
-              "requirement_control_number": "[24970.8]",
+              "requirement_control_number": "[24970.7]",
               "control_number": "[3.4.T1]",
               "jkName": "Log Retention Schedule Test Report",
               "jkText": "Generate a 'Log Retention Compliance Test Report' after every test run covering AL-P-13, AL-P-14, AL-P-15, and AL-P-16. The report must show the floor_protected, ceiling_eligible, and retained entry counts from the daily evaluator, the decommission log entries per executed erasure, the floor violation blocked entries, and a zero count of log entries deleted before the 180-day floor or retained beyond their declared ceiling without a decommission log entry.",
@@ -3370,7 +3676,7 @@
       ]
     },
     {
-      "StepName": "18229-3: Trustworthiness (Robustness)",
+      "StepName": "18229-2: Trustworthiness (Robustness)",
       "Objectives": [
         {
           "Objective": "."
@@ -3384,7 +3690,7 @@
           "RiskDescription": "The Vector Store and Embedding Model are at risk from 'Self-Reinforcement Contamination' — a condition where outputs generated by the LLM (Generator) are re-ingested into the Vector Store or used to retrain the Embedding Model without human review, causing the system to progressively learn from and amplify its own errors and biases. Self-Reinforcement Contamination is a Trust Risk because the system continues to function technically — queries are processed, responses are returned — while the quality of those responses degrades silently with each contamination cycle. The danger compounds because each contaminated ingestion increases the proportion of AI-generated content in the Vector Store, reducing the influence of the original human-verified source documents and making the contamination progressively harder to detect and reverse without a full Vector Store rebuild.",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.17]",
+              "requirement_control_number": "[18229-2.17]",
               "control_number": "[7.1.R3]",
               "jkName": "Feedback Isolation Barrier",
               "jkText": "The data ingestion pipeline must run two independent checks on every inbound document — a provenance source path check and a cryptographic AI-generated marker check — before any document is written to the Vector Store or passed to the Embedding Model, and must route any rejected document to a human review queue with a structured rejection log entry.",
@@ -3416,7 +3722,7 @@
           "RiskDescription": "The LLM (Generator) is at risk from 'Determinism Failure' — a condition where identical inputs submitted to the system at different times produce materially different outputs because the LLM (Generator) temperature parameter is set above 0.0 or because non-deterministic sampling is enabled. Determinism Failure breaks two critical system properties simultaneously: auditability, because an investigator cannot reproduce the exact output that caused an incident by replaying the original input; and test reliability, because the same Golden Dataset query produces different outputs on different test runs, making pass or fail results non-repeatable. A system with Determinism Failure cannot be formally audited, cannot produce reliable regression test results, and cannot guarantee that a compliance-verified output will be reproduced consistently for all users submitting the same query.",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.20]",
+              "requirement_control_number": "[18229-2.20]",
               "control_number": "[7.3.R1]",
               "jkName": "Determinism Enforcement Gate",
               "jkText": "The Orchestrator initialisation sequence must configure the LLM with temperature = 0.0, top_p = 1.0, and a fixed integer seed, then execute a fixed probe query and compare its response hash against a stored reference hash — blocking the Query Interface from accepting user input and alerting the engineering team if the hashes do not match.",
@@ -3450,7 +3756,7 @@
           "RiskDescription": "The Input Guardrail and Retriever are at risk from 'Corruption Propagation' — a condition where a malformed, truncated, or encoding-corrupted prompt bypasses the Input Guardrail and reaches the Retriever, causing a retrieval failure, a pipeline crash, or — most dangerously — a semantically incorrect embedding that returns plausible but wrong document chunks. Corruption Propagation has two modes: 'Hard Corruption', where the input is structurally invalid (e.g., null payload, broken encoding) and causes the Retriever or Embedding Model to throw an unhandled exception; and 'Soft Corruption', where the input is structurally valid but semantically degraded (e.g., a prompt with 40% typographical errors) and causes the Embedding Model to generate a misleading vector that retrieves irrelevant chunks without any error signal. Both modes require distinct detection and handling mechanisms in the Input Guardrail.",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.15]",
+              "requirement_control_number": "[18229-2.15]",
               "control_number": "[7.1.R1]",
               "jkName": "Corrupted Input Sanitisation Gate",
               "jkText": "The Input Guardrail must apply a two-stage validation on every prompt — a structural check for null, encoding, and length validity followed by a semantic integrity check against the Embedding Model's vocabulary — rejecting any prompt with an unrecognised token ratio above 30%, attempting domain spell-correction for prompts between 10% and 30%, and logging all check results before any call to the Embedding Model.",
@@ -3476,7 +3782,7 @@
               ]
             },
             {
-              "requirement_control_number": "[18229-3.16]",
+              "requirement_control_number": "[18229-2.16]",
               "control_number": "[7.1.R2]",
               "jkName": "Environment Degradation Response Gate",
               "jkText": "The Orchestrator must monitor the response latency of every external dependency on every pipeline execution, automatically switch to the declared degraded mode for any dependency that exceeds its configured threshold for 3 consecutive calls, send an immediate engineering alert, and automatically restore normal operation after 5 consecutive below-threshold calls.",
@@ -3510,7 +3816,7 @@
           "RiskDescription": "The Orchestrator and Response Interface are at risk from 'Uncontrolled Collapse' — a condition where a RAG component fails and the system has no defined safe state to transition to, causing either an unhandled crash that terminates the pipeline mid-execution or a continued operation that delivers unvalidated outputs to users because the failed component's checks were silently bypassed. Uncontrolled Collapse has two modes: 'Hard Collapse', where the Orchestrator throws an unhandled exception and the Query Interface returns a raw error to the user with no safe state message; and 'Silent Bypass', where the Orchestrator catches the component failure but continues routing queries through the remaining pipeline without the failed component's validation, delivering outputs that have not been through the full safety stack. Both modes represent a failure of the fail-safe design, not a failure of the component itself.",
           "controls": [
             {
-              "requirement_control_number": "[18229-3.18]",
+              "requirement_control_number": "[18229-2.18]",
               "control_number": "[7.2.R1]",
               "jkName": "Safe State Trigger Gate",
               "jkText": "The Orchestrator must register a health check handler for every RAG component, execute the component's declared safe state behaviour within 500 milliseconds of any failure status, default to maintenance mode and Query Interface blocking when no safe state is declared, and log every activation event with an engineering alert — never default to silent bypass.",
@@ -3534,7 +3840,7 @@
               ]
             },
             {
-              "requirement_control_number": "[18229-3.19]",
+              "requirement_control_number": "[18229-2.19]",
               "control_number": "[7.2.R2]",
               "jkName": "Redundancy Failover Gate",
               "jkText": "The Orchestrator must automatically route the current and all subsequent requests to a declared redundant instance within 200 milliseconds when the primary Vector Store, Embedding Model, or LLM exceeds its latency threshold or returns an error, and must suppress any LLM response that fails a pre-Output-Guardrail plausibility sanity check — routing it to the human reviewer queue and writing a violation log entry.",
@@ -3612,7 +3918,7 @@
           ],
           "controls": [
             {
-              "requirement_control_number": "[18229-3.15]",
+              "requirement_control_number": "[18229-2.15]",
               "control_number": "[7.1.T1]",
               "jkName": "Input Sanitisation Gate Test Report",
               "jkText": "Generate an 'Input Sanitisation Test Report' after every test run covering RB-P-01, RB-P-02, and RB-P-03. The report must show the stage reached, the unrecognised token ratio before and after correction, the gate decision, and a zero count of prompts with an unrecognised token ratio above 30% or a null payload that reached the Embedding Model.",
@@ -3622,7 +3928,7 @@
               "jkImplementationEvidence": "'Input Sanitisation Test Report' showing RB-P-01: STAGE1_STRUCTURAL_REJECTION, http_response = 400, Stage 2 not reached; RB-P-02: stage = 2, ratio_final > 0.30, accepted = false; RB-P-03: ratio_final = 0.0, accepted = true, Embedding Model invoked; zero prompts above threshold reaching the Embedding Model."
             },
             {
-              "requirement_control_number": "[18229-3.16]",
+              "requirement_control_number": "[18229-2.16]",
               "control_number": "[7.1.T2]",
               "jkName": "Environment Degradation Monitor Test Report",
               "jkText": "Generate an 'Environment Degradation Test Report' after every test run covering RB-P-04 and RB-P-05. The report must show the latency value and breach/recovery counter per call, the degraded mode activation event with elapsed timestamp, the engineering alert confirmation, the recovery event, and a zero count of three-consecutive-breach sequences that did not trigger degraded mode activation.",
@@ -3632,7 +3938,7 @@
               "jkImplementationEvidence": "'Environment Degradation Test Report' showing RB-P-04: DEGRADED_MODE_ACTIVATED on third breach, breaches_in_window = 3, alert dispatched, behaviour descriptor correct; RB-P-05: DEGRADED_MODE_RECOVERED after fifth below-threshold call, recoveries_in_window = 5, degraded = false."
             },
             {
-              "requirement_control_number": "[18229-3.17]",
+              "requirement_control_number": "[18229-2.17]",
               "control_number": "[7.1.T3]",
               "jkName": "Feedback Isolation Barrier Test Report",
               "jkText": "Generate a 'Feedback Isolation Test Report' after every test run covering RB-P-06 and RB-P-07. The report must show the provenance check result, the marker check result, the rejection reason, the human review queue entry confirmation, and a zero count of AI-generated or LLM-store-sourced documents written to the Vector Store.",
@@ -3688,7 +3994,7 @@
           ],
           "controls": [
             {
-              "requirement_control_number": "[18229-3.18]",
+              "requirement_control_number": "[18229-2.18]",
               "control_number": "[7.2.T1]",
               "jkName": "Safe State Activation Test Report",
               "jkText": "Generate a 'Safe State Activation Test Report' after every test run covering RB-P-08 and RB-P-09. The report must show the failed component, the safe state behaviour activated, the elapsed milliseconds from failure to activation, the engineering alert confirmation, and a zero count of component failures that resulted in silent bypass or unhandled crash.",
@@ -3698,7 +4004,7 @@
               "jkImplementationEvidence": "'Safe State Activation Test Report' showing RB-P-08: SAFE_STATE_ACTIVATED for embedding_model, safe_state_behaviour = maintenance_message, elapsed_ms ≤ 500, alert sent; RB-P-09: default safe state activated for unregistered component, elapsed_ms ≤ 500, pipeline did not advance; zero silent bypass events."
             },
             {
-              "requirement_control_number": "[18229-3.19]",
+              "requirement_control_number": "[18229-2.19]",
               "control_number": "[7.2.T2]",
               "jkName": "Redundancy Failover and Sanity Check Test Report",
               "jkText": "Generate a 'Redundancy Failover Test Report' after every test run covering RB-P-10 and RB-P-11. The report must show the failover elapsed time, the backup instance activated, the re-issued request confirmation, the plausibility rule triggered, the suppression result, and a zero count of plausibility-failed responses delivered to the Response Interface.",
@@ -3708,7 +4014,7 @@
               "jkImplementationEvidence": "'Redundancy Failover Test Report' showing RB-P-10: FAILOVER_ACTIVATED, elapsed_ms ≤ 200, backup instance recorded, request re-issued successfully; RB-P-11: plausibility rule triggered, suppressed = true, routed_to_human_review = true, zero plausibility-failed responses reaching the Response Interface."
             },
             {
-              "requirement_control_number": "[18229-3.20]",
+              "requirement_control_number": "[18229-2.20]",
               "control_number": "[7.3.T1]",
               "jkName": "Determinism Enforcement Test Report",
               "jkText": "Generate a 'Determinism Validation Test Report' after every test run covering RB-P-12 and RB-P-13. The report must show the probe response hash, the reference hash, the hash comparison result, the active LLM configuration values, the Query Interface gate status, and a zero count of startups where the Query Interface accepted user input with a failing determinism check on record.",
