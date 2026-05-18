@@ -4274,5 +4274,72 @@
       ],
       "Fields": []
     }
+  ],
+  "0. Compliance Groups": [
+    {
+      "group_id": "G1",
+      "group_name": "High-Risk System Requirements",
+      "group_description": "Essential requirements that all providers of high-risk AI systems must meet before placing the system on the market. Sourced from Chapter III Section 2 of the EU AI Act and the primary prEN harmonised standards.",
+      "group_colour": "#ca8a04",
+      "primary_standards": [
+        "18228",
+        "18229-1",
+        "18229-2",
+        "18282",
+        "18283",
+        "18284",
+        "24970",
+        "18286"
+      ],
+      "articles": [
+        "Article 9: Risk Management System",
+        "Article 10: Data and Data Governance",
+        "Article 12: Record-Keeping",
+        "Article 13: Transparency and Provision of Information to Deployers",
+        "Article 14: Human Oversight",
+        "Article 15: Accuracy, Robustness and Cybersecurity",
+        "Article 17: Quality Management System"
+      ]
+    },
+    {
+      "group_id": "G2",
+      "group_name": "Documentation & Conformity",
+      "group_description": "Pre-market gate requirements. The provider must produce the technical file and complete the internal conformity assessment before the system can be placed on the EU market or put into service.",
+      "group_colour": "#2563eb",
+      "primary_standards": [
+        "18286"
+      ],
+      "articles": [
+        "Article 11: Technical Documentation",
+        "Article 43: Conformity Assessment"
+      ]
+    },
+    {
+      "group_id": "G3",
+      "group_name": "Deployer & Lifecycle Obligations",
+      "group_description": "Obligations that govern what happens after the system is built and deployed — covering deployer responsibilities, response to substantial modifications, and ongoing post-market monitoring throughout the system lifecycle.",
+      "group_colour": "#16a34a",
+      "primary_standards": [
+        "42001",
+        "18286"
+      ],
+      "articles": [
+        "Article 25: Substantial Modification",
+        "Article 26: Deployer Obligations",
+        "Article 72: Post-Market Monitoring"
+      ]
+    },
+    {
+      "group_id": "G4",
+      "group_name": "Transparency & Limited Risk",
+      "group_description": "Cross-cutting transparency obligations under Chapter VI of the EU AI Act that apply regardless of risk tier. Any AI system that interacts directly with humans or generates synthetic content must comply with these requirements.",
+      "group_colour": "#7c3aed",
+      "primary_standards": [
+        "24368"
+      ],
+      "articles": [
+        "Article 50: Transparency Obligations for Certain AI Systems"
+      ]
+    }
   ]
 }
