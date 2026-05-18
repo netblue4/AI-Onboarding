@@ -16,6 +16,7 @@ function getFieldHandler(fieldType) {
         'plan':createPlan,
         'fieldGroup':createFieldGroup,
         'complytable': createComplyTable,
+        'frameworkmapping': createFrameworkMapping,
         'requirement':createRequirement,
     };
     

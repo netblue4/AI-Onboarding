@@ -33,6 +33,30 @@ class ContentRenderer {
         }
     }
 
+    /**
+     * Renders the Framework Mapping table view.
+     */
+    renderFrameworkMappingView() {
+        console.log('Rendering Framework Mapping View');
+        const contentArea = document.getElementById('content-area');
+        if (!contentArea) return;
+        contentArea.innerHTML = '';
+
+        try {
+            const handler = getFieldHandler('frameworkmapping');
+            if (handler) {
+                webappData  = window.originalWebappData;
+                mindmapData = buildMindmapData(webappData, sanitizeForId, fieldStoredValue);
+                const el = handler(sanitizeForId, fieldStoredValue, webappData, mindmapData);
+                if (el) contentArea.appendChild(el);
+                else contentArea.innerHTML = '<div class="empty-state">No framework data found.</div>';
+            }
+        } catch (error) {
+            console.error('Error rendering Framework Mapping:', error);
+            contentArea.innerHTML = '<div class="error">Failed to render framework mapping.</div>';
+        }
+    }
+
 	/**
 	 * Renders the special AI Assessment view for roles such as Approver or Compliance.
 	 */

@@ -13,6 +13,7 @@ const CONFIG = {
     ROLES: [
         'System',
         'Compliance',
+        'Framework Mapping',
         'Requester',
         'Data Engineer',
         'Engineer',

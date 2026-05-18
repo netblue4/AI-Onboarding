@@ -179,12 +179,11 @@ getFieldsForRole(role) {
 
             if (role === 'System') {
                 contentRenderer.renderSystemWizard();
+            } else if (role === 'Framework Mapping') {
+                contentRenderer.renderFrameworkMappingView();
             } else if (this.state.currentRole === "Approver" || this.state.currentRole === "Compliance") {
-                // Only render the AI Assessment View
                 contentRenderer.renderSpecialView();
-            }
-            else {
-                // Default: Render the standard assessment fields
+            } else {
                 contentRenderer.render();
             }
 
