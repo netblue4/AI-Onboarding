@@ -17,7 +17,7 @@ function createComplyTable(sanitizeForId, fieldStoredValue, webappData = null, m
         wrapper.appendChild(renderApproverProgressBar(mindmap, fieldStoredValue));
     }
 
-    wrapper.appendChild(renderComplyCards(mindmap, fieldStoredValue, sanitizeForId));
+    wrapper.appendChild(renderComplyCards(mindmap, fieldStoredValue, sanitizeForId, webappData));
     return wrapper;
 }
 
@@ -130,21 +130,138 @@ function renderApproverProgressBar(mindmapData, fieldStoredValue) {
 
 // ─── Main card renderer ───────────────────────────────────────────────────────
 
-function renderComplyCards(mindmapData, fieldStoredValue, sanitizeForId) {
+function renderComplyCards(mindmapData, fieldStoredValue, sanitizeForId, webappData) {
     const wrapper = document.createElement('div');
     wrapper.style.cssText = 'display:flex;flex-direction:column;gap:10px;';
 
-    let firstSection = true;
-    mindmapData.forEach((groups, stepName) => {
-        const section = buildArticleAccordion(stepName, groups, fieldStoredValue, sanitizeForId, firstSection);
-        wrapper.appendChild(section);
-        firstSection = false;
-    });
+    const complianceGroups = webappData && webappData['0. Compliance Groups'];
+    if (complianceGroups && complianceGroups.length > 0) {
+        complianceGroups.forEach((group, idx) => {
+            const articleEntries = [];
+            group.articles.forEach(articleName => {
+                if (mindmapData.has(articleName)) {
+                    articleEntries.push([articleName, mindmapData.get(articleName)]);
+                }
+            });
+            if (articleEntries.length > 0) {
+                wrapper.appendChild(buildComplianceGroupSection(group, articleEntries, fieldStoredValue, sanitizeForId, idx === 0));
+            }
+        });
+    } else {
+        let firstSection = true;
+        mindmapData.forEach((groups, stepName) => {
+            wrapper.appendChild(buildArticleAccordion(stepName, groups, fieldStoredValue, sanitizeForId, firstSection));
+            firstSection = false;
+        });
+    }
 
     return wrapper;
 }
 
-function buildArticleAccordion(stepName, groups, fieldStoredValue, sanitizeForId, startOpen) {
+function buildComplianceGroupSection(group, articleEntries, fieldStoredValue, sanitizeForId, startOpen) {
+    const colour = group.group_colour || '#b8963e';
+
+    // Initial aggregate tally
+    let totalCount = 0, applicableCount = 0;
+    articleEntries.forEach(([, groups]) => {
+        groups.forEach(gData => {
+            gData.requirements.forEach(reqEntry => {
+                totalCount++;
+                if (fieldStoredValue(reqEntry.requirement, true) === 'Applicable') applicableCount++;
+            });
+        });
+    });
+
+    const pct = totalCount > 0 ? Math.round((applicableCount / totalCount) * 100) : 0;
+    const statusColor = applicableCount === 0 ? '#555' : pct === 100 ? '#22c55e' : colour;
+
+    const section = document.createElement('div');
+    section.style.cssText = `border-radius:12px;overflow:hidden;border:2px solid ${colour}33;`;
+
+    const header = document.createElement('div');
+    header.style.cssText = `
+        display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;
+        background:linear-gradient(135deg,${colour}1a 0%,#1a1a1a 100%);
+        user-select:none;transition:background 0.2s;border-left:4px solid ${colour};
+    `;
+    header.addEventListener('mouseenter', () => header.style.background = `linear-gradient(135deg,${colour}28 0%,#202020 100%)`);
+    header.addEventListener('mouseleave', () => header.style.background = `linear-gradient(135deg,${colour}1a 0%,#1a1a1a 100%)`);
+
+    const chevron = document.createElement('span');
+    chevron.style.cssText = 'font-size:12px;color:#8a8480;transition:transform 0.25s;flex-shrink:0;';
+    chevron.textContent = '▶';
+
+    const groupIdBadge = document.createElement('span');
+    groupIdBadge.style.cssText = `font-size:10px;font-weight:700;color:${colour};background:${colour}22;border:1px solid ${colour}55;border-radius:4px;padding:2px 8px;flex-shrink:0;`;
+    groupIdBadge.textContent = group.group_id;
+
+    const titleText = document.createElement('span');
+    titleText.style.cssText = 'font-size:15px;font-weight:700;color:#e0d9ce;flex:1;';
+    titleText.textContent = group.group_name;
+
+    const groupBadge = document.createElement('span');
+    groupBadge.style.cssText = `font-size:13px;font-weight:700;color:${statusColor};white-space:nowrap;`;
+    groupBadge.textContent = `${applicableCount} / ${totalCount}`;
+
+    const groupBar = document.createElement('div');
+    groupBar.style.cssText = 'width:100px;height:6px;background:#3d3d3d;border-radius:3px;overflow:hidden;flex-shrink:0;';
+    const groupFill = document.createElement('div');
+    groupFill.style.cssText = `width:${pct}%;height:100%;background:${statusColor};border-radius:3px;transition:width 0.4s;`;
+    groupBar.appendChild(groupFill);
+
+    header.appendChild(chevron);
+    header.appendChild(groupIdBadge);
+    header.appendChild(titleText);
+    header.appendChild(groupBadge);
+    header.appendChild(groupBar);
+    section.appendChild(header);
+
+    function refreshGroupStats() {
+        let tot = 0, app = 0;
+        articleEntries.forEach(([, groups]) => {
+            groups.forEach(gData => {
+                gData.requirements.forEach(reqEntry => {
+                    tot++;
+                    const key = sanitizeForId(reqEntry.requirement.requirement_control_number || '') + '_jkSoa';
+                    if (state.capturedData[key] === 'Applicable') app++;
+                });
+            });
+        });
+        const p = tot > 0 ? Math.round((app / tot) * 100) : 0;
+        const c = app === 0 ? '#555' : p === 100 ? '#22c55e' : colour;
+        groupBadge.textContent = `${app} / ${tot}`;
+        groupBadge.style.color = c;
+        groupFill.style.width = `${p}%`;
+        groupFill.style.background = c;
+    }
+
+    const body = document.createElement('div');
+    body.style.cssText = `background:#141414;padding:12px;display:flex;flex-direction:column;gap:8px;border-top:1px solid ${colour}22;`;
+    body.style.display = startOpen ? 'flex' : 'none';
+    if (startOpen) chevron.style.transform = 'rotate(90deg)';
+
+    if (group.group_description) {
+        const desc = document.createElement('div');
+        desc.style.cssText = `font-size:12px;color:#7a7470;line-height:1.5;padding:8px 12px;background:${colour}0a;border-radius:6px;border-left:2px solid ${colour}44;margin-bottom:4px;`;
+        desc.textContent = group.group_description;
+        body.appendChild(desc);
+    }
+
+    articleEntries.forEach(([articleName, groups]) => {
+        body.appendChild(buildArticleAccordion(articleName, groups, fieldStoredValue, sanitizeForId, false, refreshGroupStats));
+    });
+
+    header.addEventListener('click', () => {
+        const open = body.style.display === 'none';
+        body.style.display = open ? 'flex' : 'none';
+        chevron.style.transform = open ? 'rotate(90deg)' : '';
+    });
+
+    section.appendChild(body);
+    return section;
+}
+
+function buildArticleAccordion(stepName, groups, fieldStoredValue, sanitizeForId, startOpen, groupRefresh) {
     // Tally applicable/total for this article
     let total = 0, applicable = 0;
     groups.forEach(gData => {
@@ -201,7 +318,7 @@ function buildArticleAccordion(stepName, groups, fieldStoredValue, sanitizeForId
     if (startOpen) chevron.style.transform = 'rotate(90deg)';
 
     groups.forEach((gData, groupName) => {
-        body.appendChild(buildGroupBlock(groupName, gData, fieldStoredValue, sanitizeForId, header, badge, miniFill));
+        body.appendChild(buildGroupBlock(groupName, gData, fieldStoredValue, sanitizeForId, header, badge, miniFill, groupRefresh));
     });
 
     header.addEventListener('click', () => {
@@ -214,7 +331,7 @@ function buildArticleAccordion(stepName, groups, fieldStoredValue, sanitizeForId
     return section;
 }
 
-function buildGroupBlock(groupName, gData, fieldStoredValue, sanitizeForId, articleHeader, articleBadge, articleFill) {
+function buildGroupBlock(groupName, gData, fieldStoredValue, sanitizeForId, articleHeader, articleBadge, articleFill, groupRefresh) {
     // Parse "standard — display name" from groupName like "[18229-1: Trustworthiness] - Transparency"
     let standard = '', displayName = groupName;
     if (groupName.includes('] - ')) {
@@ -244,13 +361,13 @@ function buildGroupBlock(groupName, gData, fieldStoredValue, sanitizeForId, arti
     const cardsDiv = document.createElement('div');
     cardsDiv.style.cssText = 'display:flex;flex-direction:column;gap:8px;';
     gData.requirements.forEach((reqEntry, reqKey) => {
-        cardsDiv.appendChild(buildRequirementCard(reqEntry, reqKey, fieldStoredValue, sanitizeForId, articleHeader, articleBadge, articleFill, gData));
+        cardsDiv.appendChild(buildRequirementCard(reqEntry, reqKey, fieldStoredValue, sanitizeForId, articleHeader, articleBadge, articleFill, gData, groupRefresh));
     });
     block.appendChild(cardsDiv);
     return block;
 }
 
-function buildRequirementCard(reqEntry, reqKey, fieldStoredValue, sanitizeForId, articleHeader, articleBadge, articleFill, gData) {
+function buildRequirementCard(reqEntry, reqKey, fieldStoredValue, sanitizeForId, articleHeader, articleBadge, articleFill, gData, groupRefresh) {
     const req = reqEntry.requirement;
     const currentSoa = fieldStoredValue(req, true) || 'Select';
     const sanitizedId = sanitizeForId ? sanitizeForId(reqKey) : reqKey;
@@ -288,7 +405,7 @@ function buildRequirementCard(reqEntry, reqKey, fieldStoredValue, sanitizeForId,
     const rightCol = document.createElement('div');
     rightCol.style.cssText = 'flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:6px;';
 
-    const pillGroup = buildApplicabilityPills(sanitizedId, req, currentSoa, card, gData, articleBadge, articleFill, fieldStoredValue);
+    const pillGroup = buildApplicabilityPills(sanitizedId, req, currentSoa, card, gData, articleBadge, articleFill, fieldStoredValue, groupRefresh);
     rightCol.appendChild(pillGroup);
 
     topRow.appendChild(leftCol);
@@ -307,7 +424,7 @@ function buildRequirementCard(reqEntry, reqKey, fieldStoredValue, sanitizeForId,
 
 // ─── Applicability pills ──────────────────────────────────────────────────────
 
-function buildApplicabilityPills(sanitizedId, req, currentSoa, card, gData, articleBadge, articleFill, fieldStoredValue) {
+function buildApplicabilityPills(sanitizedId, req, currentSoa, card, gData, articleBadge, articleFill, fieldStoredValue, groupRefresh) {
     const group = document.createElement('div');
     group.style.cssText = 'display:flex;gap:4px;';
 
@@ -364,6 +481,7 @@ function buildApplicabilityPills(sanitizedId, req, currentSoa, card, gData, arti
 
             // Refresh article header badge + mini bar
             refreshArticleStats(gData, fieldStoredValue, articleBadge, articleFill);
+            if (typeof groupRefresh === 'function') groupRefresh();
 
             // Refresh role nav progress
             if (typeof roleProgressTracker !== 'undefined') roleProgressTracker.update();
