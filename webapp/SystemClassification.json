@@ -1,0 +1,737 @@
+{
+  "wizard_meta": {
+    "id": "ai_act_classification_wizard",
+    "version": "1.0.0",
+    "title": "EU AI Act — System Classification Wizard",
+    "description": "A structured decision-tree wizard that classifies an AI system under the EU AI Act and returns the set of applicable articles. Complete all gates in order; later gates may be skipped if an earlier gate produces a definitive classification.",
+    "instructions": "Answer every question in each gate sequentially. Gate 1 (Prohibited) must always be completed first — a 'prohibited' result ends the assessment immediately. Gates 2–5 determine the risk tier. Gates 6–8 add cross-cutting obligations that stack on top of any risk-tier articles.",
+    "output_format": "applicable_articles[]  — each entry carries article_number, title, trigger_reason, and obligation_type",
+    "last_updated": "2025-01-01",
+    "legal_basis": "Regulation (EU) 2024/1689 of the European Parliament and of the Council (EU AI Act)"
+  },
+
+  "gates": [
+
+    {
+      "gate_id": "G1",
+      "gate_name": "Prohibited Practices Screen",
+      "gate_purpose": "Article 5 — Identifies uses that are outright banned regardless of any other characteristic. Must be answered first.",
+      "must_complete": true,
+      "short_circuit": "If ANY answer in this gate is YES → classification = PROHIBITED. Assessment ends. No other articles apply.",
+      "questions": [
+        {
+          "id": "G1_Q1",
+          "question": "Does the system use subliminal, manipulative, or deceptive techniques to distort a person's behaviour in a way that causes or is likely to cause harm?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.5(1)(a)"]
+        },
+        {
+          "id": "G1_Q2",
+          "question": "Does the system exploit vulnerabilities of specific groups (age, disability, social/economic situation) to distort behaviour in a harmful way?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.5(1)(b)"]
+        },
+        {
+          "id": "G1_Q3",
+          "question": "Does the system perform social scoring of natural persons by public authorities leading to detrimental or disproportionate treatment?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.5(1)(c)"]
+        },
+        {
+          "id": "G1_Q4",
+          "question": "Does the system assess or predict the risk of a person committing a criminal offence based solely on profiling or personality traits (not objective, verifiable facts)?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.5(1)(d)"]
+        },
+        {
+          "id": "G1_Q5",
+          "question": "Does the system compile facial recognition databases by untargeted scraping of facial images from the internet or CCTV footage?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.5(1)(e)"]
+        },
+        {
+          "id": "G1_Q6",
+          "question": "Does the system infer emotions of natural persons in the workplace or educational institutions (except for safety or medical reasons)?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.5(1)(f)"]
+        },
+        {
+          "id": "G1_Q7",
+          "question": "Does the system perform biometric categorisation of natural persons to deduce or infer race, political opinions, trade union membership, religious/philosophical beliefs, or sexual orientation?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.5(1)(g)"]
+        },
+        {
+          "id": "G1_Q8",
+          "question": "Does the system use real-time remote biometric identification in publicly accessible spaces for law enforcement purposes (outside the narrow Article 5(2) exemptions)?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.5(1)(h)"]
+        }
+      ],
+      "outcomes": {
+        "any_yes": {
+          "classification": "PROHIBITED",
+          "applicable_articles": [
+            {
+              "article_number": "Article 5",
+              "title": "Prohibited AI Practices",
+              "obligation_type": "prohibition",
+              "trigger_reason": "One or more characteristics of the system match a practice prohibited under Article 5(1). The system may not be placed on the market, put into service, or used."
+            }
+          ]
+        },
+        "all_no": {
+          "classification": "NOT_PROHIBITED",
+          "next_gate": "G2"
+        }
+      }
+    },
+
+    {
+      "gate_id": "G2",
+      "gate_name": "Is it an AI System?",
+      "gate_purpose": "Article 3(1) — Confirms the system falls within the Act's definition before applying any obligations.",
+      "must_complete": true,
+      "questions": [
+        {
+          "id": "G2_Q1",
+          "question": "Is the system a machine-based system designed to operate with varying levels of autonomy, that infers from inputs how to generate outputs such as predictions, content, recommendations, or decisions?",
+          "answer_type": "yes_no",
+          "note": "Traditional rule-based software with fully deterministic, handcrafted logic is NOT an AI system under the Act."
+        },
+        {
+          "id": "G2_Q2",
+          "question": "Are the outputs produced by the system intended to influence real or virtual environments?",
+          "answer_type": "yes_no"
+        }
+      ],
+      "outcomes": {
+        "any_no": {
+          "classification": "OUT_OF_SCOPE",
+          "applicable_articles": [],
+          "note": "The system does not meet the Article 3(1) definition of an AI system. The EU AI Act does not apply."
+        },
+        "all_yes": {
+          "classification": "IN_SCOPE",
+          "next_gate": "G3"
+        }
+      }
+    },
+
+    {
+      "gate_id": "G3",
+      "gate_name": "General Purpose AI (GPAI) Screen",
+      "gate_purpose": "Articles 51–56 — Identifies whether the system is or is built on a GPAI model, which carries separate obligations on top of any use-case risk tier.",
+      "must_complete": true,
+      "questions": [
+        {
+          "id": "G3_Q1",
+          "question": "Is the system itself a foundation / large language / multimodal model trained on broad data that can perform a wide range of tasks (e.g. GPT-style, Llama, Mistral, Gemini)?",
+          "answer_type": "yes_no"
+        },
+        {
+          "id": "G3_Q2",
+          "question": "Is the system built on top of, or integrating, a third-party GPAI model via API or fine-tuning?",
+          "answer_type": "yes_no"
+        },
+        {
+          "id": "G3_Q3",
+          "question": "Was the GPAI model trained using compute exceeding 10^25 FLOPs (i.e. is it a systemic-risk model under Article 51)?",
+          "answer_type": "yes_no",
+          "note": "If unknown, answer No — this threshold applies mainly to the largest frontier models."
+        }
+      ],
+      "outcomes": {
+        "G3_Q1_yes_or_G3_Q2_yes_and_G3_Q3_no": {
+          "applicable_articles": [
+            {
+              "article_number": "Articles 53–54",
+              "title": "Obligations for Providers of GPAI Models",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "The system is or incorporates a GPAI model. The GPAI model provider must maintain technical documentation, provide information to downstream deployers, and implement a copyright policy."
+            }
+          ],
+          "note": "These articles apply to the GPAI model provider. As a deployer you inherit downstream transparency obligations.",
+          "next_gate": "G4"
+        },
+        "G3_Q1_yes_or_G3_Q2_yes_and_G3_Q3_yes": {
+          "applicable_articles": [
+            {
+              "article_number": "Articles 53–54",
+              "title": "Obligations for Providers of GPAI Models",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "The system is or incorporates a GPAI model. The GPAI model provider must maintain technical documentation, provide information to downstream deployers, and implement a copyright policy."
+            },
+            {
+              "article_number": "Articles 55–56",
+              "title": "Obligations for Providers of GPAI Models with Systemic Risk",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "The GPAI model exceeds the 10^25 FLOP systemic-risk threshold. Additional obligations apply including adversarial testing, incident reporting to the Commission, and cybersecurity measures."
+            }
+          ],
+          "next_gate": "G4"
+        },
+        "all_no": {
+          "applicable_articles": [],
+          "next_gate": "G4"
+        }
+      }
+    },
+
+    {
+      "gate_id": "G4",
+      "gate_name": "High-Risk Classification — Annex I (Safety-Component of Regulated Products)",
+      "gate_purpose": "Annex I + Article 6(1) — Checks whether the AI system is a safety component in a product already covered by EU product-safety legislation.",
+      "must_complete": true,
+      "questions": [
+        {
+          "id": "G4_Q1",
+          "question": "Is the AI system a safety component of, or itself a product covered by, EU legislation listed in Annex I of the AI Act (e.g. machinery, medical devices, civil aviation, automotive, marine equipment, railway, lifts, pressure equipment, personal protective equipment, gas appliances, radio equipment, in-vitro diagnostics)?",
+          "answer_type": "yes_no"
+        },
+        {
+          "id": "G4_Q2",
+          "question": "Is that product required to undergo a third-party conformity assessment under the applicable Annex I legislation?",
+          "answer_type": "yes_no",
+          "conditional_on": "G4_Q1_yes"
+        }
+      ],
+      "outcomes": {
+        "G4_Q1_yes_and_G4_Q2_yes": {
+          "classification": "HIGH_RISK",
+          "applicable_articles": [
+            {
+              "article_number": "Article 6(1)",
+              "title": "High-Risk Classification — Safety Component of Regulated Product",
+              "obligation_type": "classification",
+              "trigger_reason": "The AI system is a safety component of an Annex I regulated product requiring third-party conformity assessment. Full Chapter III Section 2 obligations apply (Articles 8–15, 17, 72)."
+            }
+          ],
+          "next_gate": "G6",
+          "note": "HIGH-RISK confirmed via Annex I path. Skip G5 and proceed to G6 for cross-cutting obligations."
+        },
+        "otherwise": {
+          "next_gate": "G5"
+        }
+      }
+    },
+
+    {
+      "gate_id": "G5",
+      "gate_name": "High-Risk Classification — Annex III (Standalone High-Risk Use Cases)",
+      "gate_purpose": "Annex III + Article 6(2) — Identifies whether the use case falls within one of the eight high-risk domains listed in Annex III.",
+      "must_complete": true,
+      "instructions": "Select ALL that apply. Any single YES makes the system high-risk.",
+      "questions": [
+        {
+          "id": "G5_Q1",
+          "question": "Does the system perform biometric identification or categorisation of natural persons (excluding systems for purely administrative purposes where the output does not affect legal rights)?",
+          "answer_type": "yes_no",
+          "annex_III_point": "1"
+        },
+        {
+          "id": "G5_Q2",
+          "question": "Is the system used in the management or operation of critical infrastructure (road traffic, water, gas, heating, electricity, rail, air)?",
+          "answer_type": "yes_no",
+          "annex_III_point": "2"
+        },
+        {
+          "id": "G5_Q3",
+          "question": "Is the system used in education or vocational training — e.g. determining access, admission, evaluating learning outcomes, monitoring students?",
+          "answer_type": "yes_no",
+          "annex_III_point": "3"
+        },
+        {
+          "id": "G5_Q4",
+          "question": "Is the system used in employment, workers management, or self-employment — e.g. recruitment, CV screening, promotion decisions, task allocation, performance monitoring?",
+          "answer_type": "yes_no",
+          "annex_III_point": "4"
+        },
+        {
+          "id": "G5_Q5",
+          "question": "Is the system used to evaluate eligibility for, or to assess, essential private or public services — e.g. credit scoring, insurance risk, social benefits, emergency services, public transport, utilities?",
+          "answer_type": "yes_no",
+          "annex_III_point": "5"
+        },
+        {
+          "id": "G5_Q6",
+          "question": "Is the system used by law enforcement authorities — e.g. individual risk assessment, polygraphs, crime analytics, evidence reliability evaluation, crime prediction, profiling?",
+          "answer_type": "yes_no",
+          "annex_III_point": "6"
+        },
+        {
+          "id": "G5_Q7",
+          "question": "Is the system used for migration, asylum, or border control management — e.g. risk assessment of persons, document authenticity, application processing?",
+          "answer_type": "yes_no",
+          "annex_III_point": "7"
+        },
+        {
+          "id": "G5_Q8",
+          "question": "Is the system used in the administration of justice or democratic processes — e.g. assisting courts in researching/interpreting facts, influencing electoral outcomes?",
+          "answer_type": "yes_no",
+          "annex_III_point": "8"
+        }
+      ],
+      "outcomes": {
+        "any_yes": {
+          "classification": "HIGH_RISK",
+          "applicable_articles": [
+            {
+              "article_number": "Article 6(2) + Annex III",
+              "title": "High-Risk Classification — Standalone Use Case",
+              "obligation_type": "classification",
+              "trigger_reason": "The system's use case matches one or more high-risk categories in Annex III. Full Chapter III Section 2 obligations apply."
+            },
+            {
+              "article_number": "Article 9",
+              "title": "Risk Management System",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "High-risk AI systems must establish, implement, document, and maintain a risk management system throughout the entire lifecycle."
+            },
+            {
+              "article_number": "Article 10",
+              "title": "Data and Data Governance",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "Training, validation, and testing data for high-risk systems must meet data governance practices covering relevance, representativeness, and freedom from errors and biases."
+            },
+            {
+              "article_number": "Article 11",
+              "title": "Technical Documentation",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "Providers of high-risk AI systems must draw up technical documentation before the system is placed on the market, in accordance with Annex IV."
+            },
+            {
+              "article_number": "Article 12",
+              "title": "Record-Keeping / Logging",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "High-risk AI systems must have automatic logging capabilities to enable monitoring throughout the system's lifetime."
+            },
+            {
+              "article_number": "Article 13",
+              "title": "Transparency and Provision of Information to Deployers",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "High-risk AI systems must provide deployers with clear instructions for use, covering intended purpose, accuracy levels, relevant risks, and human oversight measures."
+            },
+            {
+              "article_number": "Article 14",
+              "title": "Human Oversight",
+              "obligation_type": "provider_obligation_and_deployer_obligation",
+              "trigger_reason": "High-risk AI systems must be designed so that natural persons can effectively oversee them during the period of use, including the ability to intervene or halt the system."
+            },
+            {
+              "article_number": "Article 15",
+              "title": "Accuracy, Robustness and Cybersecurity",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "High-risk AI systems must achieve appropriate levels of accuracy, robustness, and cybersecurity, and be resilient against attempts to alter their use or performance by malicious third parties."
+            },
+            {
+              "article_number": "Article 17",
+              "title": "Quality Management System",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "Providers of high-risk AI systems must put a quality management system in place covering policies, procedures, techniques, and systematic actions needed to achieve conformity."
+            },
+            {
+              "article_number": "Article 43",
+              "title": "Conformity Assessment",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "Before placing a high-risk AI system on the market, providers must carry out a conformity assessment (self-assessment or third-party, depending on Annex I product type and Annex III point)."
+            },
+            {
+              "article_number": "Article 72",
+              "title": "Post-Market Monitoring",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "Providers of high-risk AI systems must establish and maintain a post-market monitoring system to proactively collect and review data on performance throughout the system's lifetime."
+            }
+          ],
+          "next_gate": "G6"
+        },
+        "all_no": {
+          "classification": "LIMITED_OR_MINIMAL_RISK",
+          "next_gate": "G6",
+          "note": "System is not high-risk via Annex III. Proceed to G6 to check limited-risk transparency obligations, which may still apply."
+        }
+      }
+    },
+
+    {
+      "gate_id": "G6",
+      "gate_name": "Limited Risk — Transparency Obligations (Article 50)",
+      "gate_purpose": "Article 50 — Applies regardless of risk tier. Catches chatbots, synthetic content generators, and deep-fake tools that must disclose their AI nature to users.",
+      "must_complete": true,
+      "note": "These obligations stack on top of high-risk obligations if both apply.",
+      "questions": [
+        {
+          "id": "G6_Q1",
+          "question": "Does the system interact directly with natural persons in a conversational or text-based manner (e.g. chatbot, virtual assistant, voice bot)?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.50(1)"]
+        },
+        {
+          "id": "G6_Q2",
+          "question": "Does the system generate synthetic audio, image, video, or text content that could falsely appear to be authentic (e.g. deep fakes, AI-generated media)?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.50(2) / Art.50(4)"]
+        },
+        {
+          "id": "G6_Q3",
+          "question": "Does the system generate or manipulate text that is published and could constitute information of public interest (e.g. news, policy, legal content) without clearly labelling it as AI-generated?",
+          "answer_type": "yes_no",
+          "yes_triggers": ["Art.50(3)"]
+        }
+      ],
+      "outcomes": {
+        "any_yes": {
+          "applicable_articles": [
+            {
+              "article_number": "Article 50",
+              "title": "Transparency Obligations for Certain AI Systems",
+              "obligation_type": "provider_obligation_and_deployer_obligation",
+              "trigger_reason": "The system either interacts with humans directly, generates synthetic/deceptive content, or produces AI-generated text intended for public dissemination. Users must be informed they are interacting with an AI, or that content is AI-generated, in a clear and timely manner."
+            }
+          ],
+          "next_gate": "G7"
+        },
+        "all_no": {
+          "next_gate": "G7"
+        }
+      }
+    },
+
+    {
+      "gate_id": "G7",
+      "gate_name": "Deployer-Specific Obligations",
+      "gate_purpose": "Article 26 — Identifies whether the organisation is acting as a deployer of a high-risk AI system and therefore carries its own set of obligations beyond those of the provider.",
+      "must_complete": true,
+      "questions": [
+        {
+          "id": "G7_Q1",
+          "question": "Is your organisation deploying a high-risk AI system that was developed by a third-party provider (i.e. you are not the original developer)?",
+          "answer_type": "yes_no"
+        },
+        {
+          "id": "G7_Q2",
+          "question": "Do natural persons in your organisation use the AI system's outputs to make decisions that affect other natural persons (employees, customers, citizens)?",
+          "answer_type": "yes_no",
+          "conditional_on": "G7_Q1_yes"
+        },
+        {
+          "id": "G7_Q3",
+          "question": "Does your organisation make significant changes to the intended purpose of a high-risk AI system supplied by a third-party provider?",
+          "answer_type": "yes_no"
+        }
+      ],
+      "outcomes": {
+        "G7_Q1_yes": {
+          "applicable_articles": [
+            {
+              "article_number": "Article 26",
+              "title": "Obligations of Deployers of High-Risk AI Systems",
+              "obligation_type": "deployer_obligation",
+              "trigger_reason": "Your organisation is a deployer of a high-risk AI system. You must implement appropriate technical and organisational measures, ensure human oversight, monitor system operation, and log activity where feasible."
+            },
+            {
+              "article_number": "Article 26(7)",
+              "title": "Fundamental Rights Impact Assessment",
+              "obligation_type": "deployer_obligation",
+              "trigger_reason": "Deployers of high-risk AI systems in certain public or regulated contexts must carry out a fundamental rights impact assessment before deployment."
+            }
+          ],
+          "next_gate": "G8"
+        },
+        "G7_Q3_yes": {
+          "applicable_articles": [
+            {
+              "article_number": "Article 25",
+              "title": "Responsibilities along the AI Value Chain — Substantial Modification",
+              "obligation_type": "deployer_becomes_provider",
+              "trigger_reason": "Substantially modifying a high-risk AI system outside the provider's intended purpose makes the modifier responsible as a provider, triggering full Articles 8–17 obligations."
+            }
+          ],
+          "next_gate": "G8"
+        },
+        "all_no": {
+          "next_gate": "G8"
+        }
+      }
+    },
+
+    {
+      "gate_id": "G8",
+      "gate_name": "Cross-Cutting Obligations — Registration, Incidents, and Market Surveillance",
+      "gate_purpose": "Articles 49, 73 — Finalises the article set with registration and incident-reporting obligations that apply to all high-risk systems placed on the EU market.",
+      "must_complete": true,
+      "questions": [
+        {
+          "id": "G8_Q1",
+          "question": "Is the high-risk AI system intended to be placed on the EU market or put into service in the EU?",
+          "answer_type": "yes_no"
+        },
+        {
+          "id": "G8_Q2",
+          "question": "Is the system already deployed or in production, meaning it is actively processing real user data?",
+          "answer_type": "yes_no"
+        },
+        {
+          "id": "G8_Q3",
+          "question": "Has the system experienced or could it experience a serious incident (malfunction, accident, or near-miss with potential harm to health, safety, or fundamental rights)?",
+          "answer_type": "yes_no"
+        }
+      ],
+      "outcomes": {
+        "G8_Q1_yes_and_high_risk": {
+          "applicable_articles": [
+            {
+              "article_number": "Article 49",
+              "title": "Registration in the EU Database",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "Providers of high-risk AI systems listed in Annex III must register the system in the EU database managed by the Commission before placing it on the market."
+            },
+            {
+              "article_number": "Article 47",
+              "title": "EU Declaration of Conformity",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "Providers must draw up an EU declaration of conformity confirming the system meets all applicable high-risk requirements before market placement."
+            },
+            {
+              "article_number": "Article 48",
+              "title": "CE Marking of Conformity",
+              "obligation_type": "provider_obligation",
+              "trigger_reason": "High-risk AI systems that are placed on the EU market must bear the CE marking indicating conformity with the Act's requirements."
+            }
+          ]
+        },
+        "G8_Q3_yes": {
+          "applicable_articles": [
+            {
+              "article_number": "Article 73",
+              "title": "Reporting of Serious Incidents",
+              "obligation_type": "provider_obligation_and_deployer_obligation",
+              "trigger_reason": "Providers and deployers must report serious incidents or malfunctions that constitute a breach of obligations under EU law protecting fundamental rights to national market surveillance authorities without undue delay."
+            }
+          ]
+        }
+      }
+    }
+
+  ],
+
+  "article_reference_map": {
+    "description": "Master reference of all AI Act articles that can be returned by this wizard, for linking into your compliance framework JSON.",
+    "articles": [
+      {
+        "article_number": "Article 5",
+        "title": "Prohibited AI Practices",
+        "chapter": "Chapter II",
+        "applies_to": ["provider", "deployer"],
+        "risk_tier": "prohibited",
+        "harmonised_standards_hint": []
+      },
+      {
+        "article_number": "Article 6(1)",
+        "title": "High-Risk Classification — Annex I Safety Component",
+        "chapter": "Chapter III",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001", "ISO/IEC 27001"]
+      },
+      {
+        "article_number": "Article 6(2)",
+        "title": "High-Risk Classification — Annex III Standalone Use Case",
+        "chapter": "Chapter III",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001", "ISO/IEC 27001"]
+      },
+      {
+        "article_number": "Article 9",
+        "title": "Risk Management System",
+        "chapter": "Chapter III Section 2",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 6.1", "ISO 31000"]
+      },
+      {
+        "article_number": "Article 10",
+        "title": "Data and Data Governance",
+        "chapter": "Chapter III Section 2",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 8", "ISO/IEC 5259"]
+      },
+      {
+        "article_number": "Article 11",
+        "title": "Technical Documentation",
+        "chapter": "Chapter III Section 2",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 7.5", "Annex IV AI Act"]
+      },
+      {
+        "article_number": "Article 12",
+        "title": "Record-Keeping / Logging",
+        "chapter": "Chapter III Section 2",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 9.1", "ISO/IEC 27001 Annex A.12.4"]
+      },
+      {
+        "article_number": "Article 13",
+        "title": "Transparency and Provision of Information to Deployers",
+        "chapter": "Chapter III Section 2",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 7.5", "ISO/IEC 42001 Annex A.6"]
+      },
+      {
+        "article_number": "Article 14",
+        "title": "Human Oversight",
+        "chapter": "Chapter III Section 2",
+        "applies_to": ["provider", "deployer"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 8.4", "ISO/IEC TR 24028"]
+      },
+      {
+        "article_number": "Article 15",
+        "title": "Accuracy, Robustness and Cybersecurity",
+        "chapter": "Chapter III Section 2",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 8", "ISO/IEC 27001", "IEC 62443", "ENISA AI Cybersecurity Guidelines"]
+      },
+      {
+        "article_number": "Article 17",
+        "title": "Quality Management System",
+        "chapter": "Chapter III Section 2",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023", "ISO 9001"]
+      },
+      {
+        "article_number": "Article 25",
+        "title": "Responsibilities — Substantial Modification",
+        "chapter": "Chapter III Section 3",
+        "applies_to": ["deployer_becoming_provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": []
+      },
+      {
+        "article_number": "Article 26",
+        "title": "Obligations of Deployers of High-Risk AI Systems",
+        "chapter": "Chapter III Section 3",
+        "applies_to": ["deployer"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 8.4"]
+      },
+      {
+        "article_number": "Article 26(7)",
+        "title": "Fundamental Rights Impact Assessment",
+        "chapter": "Chapter III Section 3",
+        "applies_to": ["deployer"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 29101", "ISO 31000"]
+      },
+      {
+        "article_number": "Article 43",
+        "title": "Conformity Assessment",
+        "chapter": "Chapter V",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 17065", "ISO/IEC 42001"]
+      },
+      {
+        "article_number": "Article 47",
+        "title": "EU Declaration of Conformity",
+        "chapter": "Chapter V",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": []
+      },
+      {
+        "article_number": "Article 48",
+        "title": "CE Marking of Conformity",
+        "chapter": "Chapter V",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": []
+      },
+      {
+        "article_number": "Article 49",
+        "title": "Registration in the EU Database",
+        "chapter": "Chapter V",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": []
+      },
+      {
+        "article_number": "Article 50",
+        "title": "Transparency Obligations for Certain AI Systems",
+        "chapter": "Chapter VI",
+        "applies_to": ["provider", "deployer"],
+        "risk_tier": "limited_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001 Annex A.6", "ISO/IEC TR 24368"]
+      },
+      {
+        "article_number": "Articles 53–54",
+        "title": "Obligations for Providers of GPAI Models",
+        "chapter": "Chapter IX",
+        "applies_to": ["gpai_provider"],
+        "risk_tier": "gpai",
+        "harmonised_standards_hint": ["ISO/IEC 42001", "EU AI Office GPAI Code of Practice"]
+      },
+      {
+        "article_number": "Articles 55–56",
+        "title": "Obligations for Providers of GPAI Models with Systemic Risk",
+        "chapter": "Chapter IX",
+        "applies_to": ["gpai_provider"],
+        "risk_tier": "gpai_systemic",
+        "harmonised_standards_hint": ["EU AI Office GPAI Code of Practice"]
+      },
+      {
+        "article_number": "Article 72",
+        "title": "Post-Market Monitoring",
+        "chapter": "Chapter XI",
+        "applies_to": ["provider"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 42001:2023 Clause 9", "ISO 31000"]
+      },
+      {
+        "article_number": "Article 73",
+        "title": "Reporting of Serious Incidents",
+        "chapter": "Chapter XI",
+        "applies_to": ["provider", "deployer"],
+        "risk_tier": "high_risk",
+        "harmonised_standards_hint": ["ISO/IEC 27035", "ISO/IEC 42001:2023 Clause 10"]
+      }
+    ]
+  },
+
+  "classification_outcomes_summary": {
+    "PROHIBITED": {
+      "description": "System matches Article 5 banned practices. Cannot be placed on the market or put into service.",
+      "articles": ["Article 5"]
+    },
+    "OUT_OF_SCOPE": {
+      "description": "System does not meet the Article 3(1) definition of an AI system. Act does not apply.",
+      "articles": []
+    },
+    "HIGH_RISK": {
+      "description": "Full Chapter III Section 2 obligations apply. Conformity assessment required before market placement.",
+      "core_articles": ["Article 9", "Article 10", "Article 11", "Article 12", "Article 13", "Article 14", "Article 15", "Article 17", "Article 43", "Article 47", "Article 48", "Article 49", "Article 72"],
+      "additional_articles_by_gate": {
+        "GPAI_involved": ["Articles 53–54", "Articles 55–56"],
+        "deployer_context": ["Article 26", "Article 26(7)"],
+        "substantial_modification": ["Article 25"],
+        "incident_reporting": ["Article 73"],
+        "transparency_also_applies": ["Article 50"]
+      }
+    },
+    "LIMITED_RISK": {
+      "description": "No high-risk use case identified. Only Article 50 transparency obligations apply if chatbot/synthetic content features are present.",
+      "articles": ["Article 50"]
+    },
+    "MINIMAL_RISK": {
+      "description": "No prohibited practice, not high-risk, no chatbot or synthetic-content features. No mandatory AI Act obligations, though voluntary codes of practice are encouraged.",
+      "articles": []
+    }
+  }
+}
